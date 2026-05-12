@@ -79,12 +79,14 @@ Rails.application.configure do
   # Only use :id for inspections in production.
   config.active_record.attributes_for_inspect = [ :id ]
 
-  # Enable DNS rebinding protection and other `Host` header attacks.
-  # config.hosts = [
-  #   "example.com",     # Allow requests from example.com
-  #   /.*\.example\.com/ # Allow requests from subdomains like `www.example.com`
-  # ]
-  #
-  # Skip DNS rebinding protection for the default health check endpoint.
-  # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+  # Host authorization — XimTier nip.io 도메인 + Vultr IP 직접 접속 모두 허용
+  config.hosts = [
+    "ximtier.158.247.235.31.nip.io",
+    "158.247.235.31",
+    /.*\.nip\.io/, # 향후 stage/preview 호스트도 nip.io로 운용 가능
+    ENV["EXTRA_HOST"]
+  ].compact
+
+  # /up 헬스체크는 host 검사 면제 (kamal-proxy 헬스체크 우회)
+  config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 end

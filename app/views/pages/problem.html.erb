@@ -1,6 +1,36 @@
-<% content_for :title, "problem — #{t('site.name')}" %>
-<section class="max-w-6xl mx-auto px-6 py-24">
-  <p class="uppercase tracking-[0.3em] text-xs text-cyan-300/80 mb-3"><%= t('site.tagline') %></p>
-  <h1 class="text-3xl md:text-5xl font-bold text-slate-50">problem</h1>
-  <p class="mt-6 text-slate-400">M2 마일스톤에서 콘텐츠가 채워질 예정.</p>
+<% content_for :title, "#{t('problem.h1')} — #{t('site.brand')}" %>
+
+<section class="section-light section-pad">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span><%= t("problem.eyebrow") %></div>
+    <h1 class="h-section mt-3" style="max-width:920px;"><%= t("problem.h1") %></h1>
+    <p class="lead mt-5" style="color:#475467; max-width:760px;"><%= t("problem.lead") %></p>
+
+    <div class="mt-14 grid grid-cols-1 md:grid-cols-3" style="gap:24px;">
+      <% %w[data_sovereignty numeric_calc regulation].each do |key| %>
+        <% c = t("problem.cards.#{key}") %>
+        <%= render CardComponent.new(
+              icon: c[:icon],
+              eyebrow: c[:eyebrow],
+              title: c[:title],
+              body: c[:body],
+              quote: c[:quote],
+              stat_value: c[:stat_value],
+              stat_label: c[:stat_label]
+            ) %>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<section class="section-dark section-pad-compact text-center">
+  <div class="wrap">
+    <h2 class="h-section" style="color:#fff; max-width:760px; margin:0 auto;">
+      <%= I18n.locale == :ko ? "ChatGPT가 못 푸는 3가지 — XimTier는 푼다." : "Three things ChatGPT can't solve — XimTier does." %>
+    </h2>
+    <div class="mt-8 flex justify-center flex-wrap" style="gap:12px;">
+      <%= link_to t("site.nav.solution"), solution_path(locale: I18n.locale), class: "btn btn-grad" %>
+      <%= link_to t("site.nav.demo"), demo_path(locale: I18n.locale), class: "btn btn-ghost" %>
+    </div>
+  </div>
 </section>

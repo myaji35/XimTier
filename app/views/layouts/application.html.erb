@@ -1,45 +1,69 @@
 <!DOCTYPE html>
 <html lang="<%= I18n.locale %>">
   <head>
-    <title><%= content_for(:title) || "#{t('site.name')} — #{t('site.tagline')}" %></title>
+    <%= display_meta_tags(
+          site: t("site.brand"),
+          title: content_for(:title).presence || t("site.positioning"),
+          reverse: true,
+          separator: "—",
+          description: t("site.positioning"),
+          keywords: %w[XAISimTier XimTier Decision\ Intelligence Reverse\ What-If SHAP XAI Post-LLM EU\ AI\ Act],
+          og: {
+            type: "website",
+            site_name: t("site.brand"),
+            locale: I18n.locale.to_s,
+            title: :title,
+            description: :description
+          },
+          twitter: { card: "summary_large_image" }
+        ) %>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="XAISimTier">
+    <meta name="application-name" content="XimTier">
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="description" content="<%= t('site.tagline') %>">
+    <meta name="theme-color" content="#0B132D">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%# hreflang (PRD §FR-1) %>
     <% I18n.available_locales.each do |loc| %>
-      <link rel="alternate" hreflang="<%= loc %>" href="<%= url_for(locale: loc, only_path: false) rescue request.original_url %>">
+      <link rel="alternate" hreflang="<%= loc %>" href="<%= request.base_url %>/<%= loc %>">
     <% end %>
     <link rel="alternate" hreflang="x-default" href="<%= request.base_url %>/">
 
     <%= yield :head %>
 
-    <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="bg-slate-950 text-slate-100 antialiased">
-    <header class="border-b border-slate-800/60">
-      <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
-        <%= link_to home_path(locale: I18n.locale), class: "text-xl font-bold tracking-tight text-cyan-300" do %>
-          <%= t("site.name") %>
+  <body class="section-light">
+    <%= render "shared/brand_svg_defs" %>
+
+    <header class="nav-sticky">
+      <div class="wrap flex items-center justify-between" style="height:68px;">
+        <%= link_to home_path(locale: I18n.locale), class: "no-underline" do %>
+          <%= render BrandLogoComponent.new(variant: :light, size: 28) %>
         <% end %>
-        <nav class="flex items-center gap-6 text-sm">
-          <%= link_to t("site.nav.problem"),      "#problem",    class: "hover:text-cyan-300" %>
-          <%= link_to t("site.nav.solution"),     "#solution",   class: "hover:text-cyan-300" %>
-          <%= link_to t("site.nav.pricing"),      "#pricing",    class: "hover:text-cyan-300" %>
-          <span class="text-slate-600">|</span>
-          <%= link_to "한국어", home_path(locale: :ko), class: "#{I18n.locale == :ko ? 'text-cyan-300 font-semibold' : 'text-slate-400'}" %>
-          <%= link_to "English", home_path(locale: :en), class: "#{I18n.locale == :en ? 'text-cyan-300 font-semibold' : 'text-slate-400'}" %>
+
+        <nav class="hidden md:flex items-center" style="gap:30px;">
+          <%= link_to t("site.nav.solution"),     solution_path(locale: I18n.locale), class: "text-[15px] font-medium text-[#475467] hover:text-[#0B132D] transition" %>
+          <%= link_to t("site.nav.how_it_works"), how_it_works_path(locale: I18n.locale), class: "text-[15px] font-medium text-[#475467] hover:text-[#0B132D] transition" %>
+          <%= link_to t("site.nav.use_cases"),    use_cases_path(locale: I18n.locale), class: "text-[15px] font-medium text-[#475467] hover:text-[#0B132D] transition" %>
+          <%= link_to t("site.nav.pricing"),      pricing_path(locale: I18n.locale), class: "text-[15px] font-medium text-[#475467] hover:text-[#0B132D] transition" %>
+          <%= link_to t("site.nav.team"),         team_path(locale: I18n.locale), class: "text-[15px] font-medium text-[#475467] hover:text-[#0B132D] transition" %>
         </nav>
+
+        <div class="flex items-center" style="gap:10px;">
+          <%= link_to t("site.nav.contact"), "#contact", class: "btn btn-ghost", style: "padding:9px 16px;font-size:13px;" %>
+          <%= link_to t("site.nav.demo"),    "#demo",    class: "btn btn-primary", style: "padding:9px 18px;font-size:13px;" %>
+          <span class="hidden md:inline text-[#e5e9f0]">|</span>
+          <%= link_to "KO", home_path(locale: :ko), class: "text-[12px] font-semibold #{I18n.locale == :ko ? 'text-[#2563EB]' : 'text-[#697386] hover:text-[#0B132D]'} transition" %>
+          <%= link_to "EN", home_path(locale: :en), class: "text-[12px] font-semibold #{I18n.locale == :en ? 'text-[#2563EB]' : 'text-[#697386] hover:text-[#0B132D]'} transition" %>
+        </div>
       </div>
     </header>
 
@@ -47,9 +71,19 @@
       <%= yield %>
     </main>
 
-    <footer class="border-t border-slate-800/60 mt-24">
-      <div class="max-w-6xl mx-auto px-6 py-8 text-sm text-slate-500">
-        <%= t("site.footer.copyright") %>
+    <footer class="section-footer">
+      <div class="wrap" style="padding-top:48px;padding-bottom:40px;">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+          <div>
+            <%= render BrandLogoComponent.new(variant: :dark, size: 28) %>
+            <p class="mt-3 text-[13px]" style="color:#a7b1c7;max-width:520px;">
+              <%= t("site.positioning") %> · <%= t("site.product_label") %>
+            </p>
+          </div>
+          <div class="font-mono text-[12px]" style="color:#697386;">
+            build / 2026.05 · <%= t("site.footer.copyright") %>
+          </div>
+        </div>
       </div>
     </footer>
   </body>

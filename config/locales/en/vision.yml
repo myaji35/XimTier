@@ -1,0 +1,34 @@
+en:
+  vision:
+    eyebrow: Vision
+    h1: Three-phase platform evolution
+    lead: "Become the standard infrastructure where LLMs explain and XAISimTier proves."
+    phases:
+      one:
+        years: "1–2 yrs"
+        title: LLM tool layer
+        analogy: "Wolfram Alpha for Decision Intelligence"
+        body: "List on MCP and Plugin marketplaces — ChatGPT and Claude call XAISimTier. Whenever any LLM needs Reverse What-If, it calls our API."
+        feasibility: 82
+        revenue: Medium
+      two:
+        years: "2–4 yrs"
+        title: AI-agent backend
+        analogy: "Stripe for Decision Intelligence"
+        body: "The standard computation engine agents call when they need mathematical guarantees before acting — providing numeric justification at every step in manufacturing, hospital, and public deployments."
+        feasibility: 58
+        revenue: High
+      three:
+        years: "4–7 yrs"
+        title: Decision Intelligence OS
+        analogy: Standard platform for data-sovereign, regulated industries
+        body: "The decision OS between enterprise data and LLM interfaces. An option unlocked by succeeding in Phases 1 and 2 — presented today as vision."
+        feasibility: 28
+        revenue: Highest
+    roadmap_title: Annual Roadmap
+    roadmap:
+      - { year: "2025", goal: "20 Korea manufacturing/public pilots / ARR ₩0.2B" }
+      - { year: "2026", goal: "MCP launch · Southeast Asia entry · Series A" }
+      - { year: "2027", goal: "AI-agent partnerships · US market entry" }
+      - { year: "2028", goal: "Agent-backend standardization / ARR ₩10B+" }
+      - { year: "2030", goal: "Decision Intelligence global OS standard / ARR ₩50B+" }

@@ -1,0 +1,42 @@
+ko:
+  use_cases:
+    eyebrow: 도입 사례
+    h1: 4개 산업 페르소나가 의사결정을 끝낸다
+    lead: "ChatGPT가 못 다루는 데이터, 우리가 매일 다룹니다."
+    cards:
+      manufacturing:
+        icon: factory
+        persona: 제조 현장 관리자
+        title: 제조 — 불량률·수율 최적화
+        body: 라인 데이터 + 환경 데이터로 불량 원인 회귀 분석. Reverse What-If로 목표 수율을 위한 공정 변수 자동 역산. 온프레미스 100%.
+        outcomes:
+          - 불량률 추적 자동화
+          - 신규 공정 셋업 시간 단축
+          - 외부 LLM 우회 없이 사내 데이터만 사용
+      hospital:
+        icon: heart
+        persona: 병원 경영진
+        title: 병원 — 운영 효율 + 진단 보조
+        body: 병상·인력·검사 시간 데이터로 운영 병목 식별. XAI 기반 진단 보조로 EU AI Act/한국 AI 기본법 동시 충족.
+        outcomes:
+          - 환자 대기 시간 단축
+          - 의료진 인력 배치 최적화
+          - 규제 통과 가능한 설명 가능 AI
+      public:
+        icon: building
+        persona: 공공기관 정책 담당
+        title: 공공 — 정책 시나리오 시뮬레이션
+        body: 행정·인구·예산 데이터를 통합. Reverse What-If로 정책 목표(실업률, 출생률 등)를 위한 정책 변수 역산.
+        outcomes:
+          - NIPA SaaS 지원사업 적합
+          - PoC → 본도입 빠른 전환
+          - 정책 근거 자동 보고서
+      smart_city:
+        icon: city
+        persona: 스마트시티 담당
+        title: 스마트시티 — 도시 시뮬레이션
+        body: IoT 센서·교통·에너지 데이터를 통합 분석. 도시 자원 최적 배분 시뮬레이션. AI 에이전트 백엔드로 확장 가능.
+        outcomes:
+          - 도시 운영 KPI 가시화
+          - 교통·에너지 시나리오 비교
+          - 향후 에이전트 통합 옵션

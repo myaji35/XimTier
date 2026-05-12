@@ -1,0 +1,37 @@
+en:
+  market:
+    eyebrow: Market Opportunity
+    h1: "$17B → $81B — the Post-LLM Decision Intelligence market"
+    lead: As the first LLM-adoption wave ends, enterprises are looking for AI that actually answers. That's the second wave.
+    tam_sam_som:
+      tam: { value: "$81B", label: "2030 Global Decision Intelligence" }
+      sam: { value: "$18B", label: "2025 AI-driven business analytics SaaS" }
+      som: { value: "$500M", label: "Y3 Korea + Southeast Asia target" }
+    indicators:
+      - { value: "+28.5%", label: "Global market CAGR (2025–2030)" }
+      - { value: "+65%",   label: "Enterprise AI investment YoY growth" }
+      - { value: "85%",    label: "Enterprises banning internal ChatGPT use" }
+      - { value: "75%",    label: "Gartner — Gen AI deployments falling short" }
+      - { value: "+262%",  label: "Southeast Asia AI SaaS growth (2025)" }
+    callout: "The second wave begins. After the first wave's shortfalls, enterprises are searching for AI that answers — that market is Post-LLM Decision Intelligence."
+  why_now:
+    eyebrow: Why Now
+    h1: The LLM illusion is ending — right now
+    lead: Three trends intersect at once — LLM limits, data sovereignty, and the AI-agent era.
+    trends:
+      illusion_end:
+        stat: "75%"
+        title: "End of the LLM illusion"
+        body: "Gartner: 75% of enterprise Gen AI rollouts fall short. Hallucination, numeric error, non-reproducibility. Enterprises now want provable answers, not plausible ones."
+        conclusion: "The moment XAISimTier's mathematical guarantee becomes the answer."
+      data_sovereignty:
+        stat: "85%"
+        title: "Data sovereignty explodes"
+        body: "Samsung, Apple, JPMorgan have banned internal ChatGPT use. Healthcare, finance, and public sector treat LLM use as a regulatory violation. Cloud LLMs simply cannot enter these markets."
+        conclusion: "On-prem and private SaaS is the only viable option."
+      agent_era:
+        stat: "×3"
+        title: "The AI-agent era"
+        body: "Agents need mathematical guarantees before they act. As MCP standardizes, the computation engines agents call need standardization too."
+        conclusion: "The moment XAISimTier becomes the computation brain of agents."
+    window: "An 18–24 month window — LLM-limits recognition (2025) + data-sovereignty concern (2025) + AI-agent era opening (2025). Never before have these three aligned. The only window before big-tech responds in earnest in 2027."

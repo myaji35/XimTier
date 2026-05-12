@@ -1,45 +1,188 @@
-<% content_for :title, "#{t('site.name')} — #{t('site.tagline')}" %>
+<% content_for :title, "#{t('site.brand')} — #{t('site.positioning')}" %>
 
-<section class="relative overflow-hidden">
-  <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-slate-950 to-slate-950 pointer-events-none"></div>
+<%# ============ 01 Hero (Deep Navy) ============ %>
+<section class="section-dark relative overflow-hidden" style="padding:140px 0 120px;">
+  <%# radial blue/teal glow %>
+  <div class="absolute inset-0 pointer-events-none" style="
+      background:
+        radial-gradient(900px 500px at 85% 30%, rgba(0,200,200,0.14), transparent 60%),
+        radial-gradient(800px 600px at 10% 80%, rgba(37,99,235,0.22), transparent 60%);
+    "></div>
 
-  <div class="relative max-w-6xl mx-auto px-6 py-24 md:py-32">
-    <p class="uppercase tracking-[0.3em] text-xs text-cyan-300/80 mb-6">
-      <%= t("site.tagline") %>
-    </p>
+  <div class="wrap relative grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr]" style="gap:60px; align-items:center;">
+    <%# Left: Headline + CTA + 4 pillars %>
+    <div>
+      <div class="eyebrow"><span class="dot"></span><%= t("site.hero.eyebrow") %></div>
 
-    <h1 class="text-4xl md:text-6xl font-bold leading-tight text-slate-50">
-      <%= t("site.hero.headline") %>
-    </h1>
+      <h1 class="h-display" style="color:#fff; word-break:keep-all; overflow-wrap:break-word;">
+        <span style="white-space:nowrap;"><%= t("site.hero.headline_top") %></span><br>
+        <span class="text-brand-grad" style="white-space:nowrap;"><%= t("site.hero.headline_bottom") %></span>
+      </h1>
 
-    <p class="mt-6 max-w-3xl text-lg md:text-xl text-slate-300 leading-relaxed">
-      <%= t("site.hero.subhead") %>
-    </p>
+      <p class="lead mt-6" style="color:#a7b1c7; max-width:560px;">
+        <%= t("site.hero.subhead") %>
+      </p>
 
-    <div class="mt-10 flex flex-wrap gap-4">
-      <%= link_to t("site.hero.cta_demo"), "#demo",
-            class: "inline-flex items-center justify-center rounded-md bg-cyan-400 px-6 py-3 font-semibold text-slate-950 hover:bg-cyan-300 transition" %>
-      <%= link_to t("site.hero.cta_ir"), "#investors",
-            class: "inline-flex items-center justify-center rounded-md border border-slate-700 px-6 py-3 font-semibold text-slate-100 hover:border-cyan-400/60 hover:text-cyan-300 transition" %>
+      <div class="mt-9 flex flex-wrap" style="gap:12px;">
+        <a href="#demo" class="btn btn-grad"><%= t("site.hero.cta_demo") %></a>
+        <a href="#investors" class="btn btn-ghost"><%= t("site.hero.cta_ir") %></a>
+      </div>
+
+      <%# 4 Pillars %>
+      <div class="mt-14 grid grid-cols-2 md:grid-cols-4" style="gap:14px;">
+        <% t("site.hero.pillars").each do |pillar| %>
+          <div class="rounded-[12px] p-4" style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);">
+            <div class="font-mono text-[10px]" style="color:#00C8C8; letter-spacing:0.12em;">PILLAR</div>
+            <div class="mt-1 text-[14px] font-semibold" style="color:#fff;"><%= pillar[:label] %></div>
+            <div class="mt-0.5 text-[12px]" style="color:#8a94ac;"><%= pillar[:desc] %></div>
+          </div>
+        <% end %>
+      </div>
     </div>
 
-    <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 text-sm">
-      <div class="rounded-lg border border-slate-800/80 bg-slate-900/40 p-4">
-        <div class="text-2xl font-bold text-cyan-300">85%</div>
-        <div class="text-slate-400 mt-1">기업 ChatGPT 내부 사용 금지</div>
+    <%# Right: X-mark + floating data chips %>
+    <div class="relative hidden lg:block" style="min-height:440px;">
+      <%# Giant X-mark glow %>
+      <div class="absolute" style="left:50%; top:50%; transform:translate(-50%,-50%); width:280px; height:280px; opacity:0.95;">
+        <svg viewBox="0 0 64 64" width="100%" height="100%"><use href="#x-mark-light"/></svg>
       </div>
-      <div class="rounded-lg border border-slate-800/80 bg-slate-900/40 p-4">
-        <div class="text-2xl font-bold text-cyan-300">75%</div>
-        <div class="text-slate-400 mt-1">Gen AI 도입 기대 미달 (Gartner)</div>
-      </div>
-      <div class="rounded-lg border border-slate-800/80 bg-slate-900/40 p-4">
-        <div class="text-2xl font-bold text-cyan-300">$81B</div>
-        <div class="text-slate-400 mt-1">2030 글로벌 DI 시장 (TAM)</div>
-      </div>
-      <div class="rounded-lg border border-slate-800/80 bg-slate-900/40 p-4">
-        <div class="text-2xl font-bold text-cyan-300">+28.5%</div>
-        <div class="text-slate-400 mt-1">시장 CAGR (2025–2030)</div>
-      </div>
+
+      <%# Floating data chips %>
+      <% t("site.hero.chips").each_with_index do |chip, i| %>
+        <% positions = ["left:8%; top:8%;", "right:6%; top:18%;", "left:4%; bottom:18%;", "right:8%; bottom:8%;"] %>
+        <div class="absolute inline-flex items-center font-mono text-[12px]" style="
+              <%= positions[i] %>
+              gap:8px;
+              padding:10px 14px;
+              border-radius:999px;
+              background: rgba(255,255,255,0.06);
+              border: 1px solid rgba(255,255,255,0.12);
+              backdrop-filter: blur(12px);
+              color: #e6e8f0;
+            ">
+          <span style="width:8px; height:8px; border-radius:50%; background:linear-gradient(135deg,#2563EB,#00C8C8);"></span>
+          <span><%= chip[:label] %> <span style="color:#00C8C8;"><%= chip[:value] %></span></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<%# ============ 02 Regulation strip (thin band) ============ %>
+<section class="section-dark" style="padding:24px 0; border-top:1px solid rgba(255,255,255,0.08); border-bottom:1px solid rgba(255,255,255,0.08); background:#060c1f;">
+  <div class="wrap flex items-center justify-between flex-wrap" style="gap:20px;">
+    <div class="font-mono text-[11px]" style="color:#00C8C8; letter-spacing:0.14em;">// <%= t("site.regulation_strip.label").upcase %></div>
+    <div class="flex flex-wrap items-center" style="gap:24px;">
+      <% t("site.regulation_strip.keywords").each do |kw| %>
+        <span class="text-[13px] font-medium" style="color:#a7b1c7;"><%= kw %></span>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<%# ============ 03 Problem (Light) ============ %>
+<section id="problem" class="section-light section-pad">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span><%= t("problem.eyebrow") %></div>
+    <h2 class="h-section mt-3" style="max-width:920px;"><%= t("problem.h1") %></h2>
+    <p class="lead mt-5" style="color:#475467; max-width:760px;"><%= t("problem.lead") %></p>
+
+    <div class="mt-14 grid grid-cols-1 md:grid-cols-3" style="gap:24px;">
+      <% %w[data_sovereignty numeric_calc regulation].each do |key| %>
+        <% c = t("problem.cards.#{key}") %>
+        <%= render CardComponent.new(
+              icon: c[:icon],
+              eyebrow: c[:eyebrow],
+              title: c[:title],
+              body: c[:body],
+              quote: c[:quote],
+              stat_value: c[:stat_value],
+              stat_label: c[:stat_label]
+            ) %>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<%# ============ 04 Solution (Dark) ============ %>
+<section id="solution" class="section-dark section-pad">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span><%= t("solution.eyebrow") %></div>
+    <h2 class="h-section mt-3" style="color:#fff; max-width:920px;"><%= t("solution.h1") %></h2>
+    <p class="lead mt-5" style="color:#a7b1c7; max-width:760px;"><%= t("solution.lead") %></p>
+
+    <blockquote class="mt-10 pl-5" style="border-left:3px solid; border-image:linear-gradient(135deg,#2563EB,#00C8C8) 1; max-width:720px;">
+      <p class="text-[18px] italic" style="color:#e6e8f0;">"<%= t("solution.callout") %>"</p>
+    </blockquote>
+
+    <%# 5-step workflow %>
+    <div class="mt-16">
+      <div class="font-mono text-[11px] mb-4" style="color:#00C8C8; letter-spacing:0.14em;">// 5-STEP WORKFLOW</div>
+      <%= render WorkflowStepsComponent.new(steps: t("workflow.steps"), tone: :dark) %>
+    </div>
+
+    <div class="mt-10">
+      <%= link_to t("site.nav.how_it_works") + " →", how_it_works_path(locale: I18n.locale),
+            class: "btn btn-ghost" %>
+    </div>
+  </div>
+</section>
+
+<%# ============ 05 Market indicators (Tinted) ============ %>
+<section class="section-tinted section-pad-compact">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span><%= t("market.eyebrow") %></div>
+    <div class="grid grid-cols-1 md:grid-cols-[1fr_1fr] mt-3" style="gap:48px; align-items:end;">
+      <h2 class="h-section" style="max-width:560px;"><%= t("market.h1") %></h2>
+      <p class="lead" style="color:#475467;"><%= t("market.lead") %></p>
+    </div>
+
+    <div class="mt-14 grid grid-cols-2 md:grid-cols-5" style="gap:16px;">
+      <% t("market.indicators").each do |ind| %>
+        <div class="rounded-[14px] p-5" style="background:#fff; border:1px solid #e5e9f0;">
+          <div class="text-[28px] font-bold text-brand-grad" style="line-height:1;"><%= ind[:value] %></div>
+          <div class="mt-2 text-[12px]" style="color:#697386;"><%= ind[:label] %></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<%# ============ 06 Moat (Light) ============ %>
+<section id="moat" class="section-light section-pad">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span><%= t("moat.eyebrow") %></div>
+    <div class="grid grid-cols-1 md:grid-cols-[1fr_1fr] mt-3" style="gap:48px; align-items:end;">
+      <h2 class="h-section" style="max-width:560px;"><%= t("moat.h1") %></h2>
+      <p class="lead" style="color:#475467;"><%= t("moat.lead") %></p>
+    </div>
+
+    <div class="mt-16">
+      <%= render MoatTriangleComponent.new(
+            sovereignty: t("moat.triangle.points.sovereignty"),
+            regulated:   t("moat.triangle.points.regulated"),
+            reverse:     t("moat.triangle.points.reverse")
+          ) %>
+    </div>
+
+    <blockquote class="mt-12 pl-5" style="border-left:3px solid; border-image:linear-gradient(135deg,#2563EB,#00C8C8) 1; max-width:760px;">
+      <p class="text-[16px] italic" style="color:#475467;">"<%= t("moat.callout") %>"</p>
+    </blockquote>
+  </div>
+</section>
+
+<%# ============ 07 CTA strip (Deep Navy) ============ %>
+<section id="cta" class="section-dark section-pad-compact relative overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none" style="
+      background: radial-gradient(700px 400px at 50% 50%, rgba(37,99,235,0.22), transparent 60%);
+    "></div>
+  <div class="wrap relative text-center">
+    <h2 class="h-section" style="color:#fff; max-width:760px; margin:0 auto;">
+      <%= I18n.locale == :ko ? "비전문가도 5분 안에 의사결정을 끝냅니다." : "Even non-experts finish a decision in 5 minutes." %>
+    </h2>
+    <div class="mt-8 flex justify-center flex-wrap" style="gap:12px;">
+      <a href="#demo" class="btn btn-grad"><%= t("site.hero.cta_demo") %></a>
+      <a href="#contact" class="btn btn-ghost"><%= t("site.nav.contact") %></a>
     </div>
   </div>
 </section>

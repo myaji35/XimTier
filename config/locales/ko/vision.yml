@@ -1,0 +1,34 @@
+ko:
+  vision:
+    eyebrow: 비전
+    h1: 3단계 플랫폼 진화
+    lead: "\"LLM이 설명하고, XAISimTier가 증명하는 세계의 표준 인프라가 된다\""
+    phases:
+      one:
+        years: "1–2년"
+        title: LLM 도구 레이어
+        analogy: "Wolfram Alpha for Decision Intelligence"
+        body: "MCP·Plugin 등록 → ChatGPT·Claude가 XAISimTier를 호출한다. 어떤 LLM이든 Reverse What-If가 필요할 때 우리 API를 호출."
+        feasibility: 82
+        revenue: 중간
+      two:
+        years: "2–4년"
+        title: AI 에이전트 백엔드
+        analogy: "Stripe for Decision Intelligence"
+        body: "에이전트가 행동 전 수학적 보장이 필요할 때 호출하는 표준 계산 엔진. AI 에이전트가 제조·병원·공공 현장에서 행동할 때마다 수치적 근거 제공."
+        feasibility: 58
+        revenue: 높음
+      three:
+        years: "4–7년"
+        title: Decision Intelligence OS
+        analogy: 데이터 주권·규제 산업의 표준 플랫폼
+        body: "기업 데이터 ↔ LLM 인터페이스 사이의 의사결정 OS. Phase 1→2 성공 후 열리는 옵션. 지금은 비전으로 제시."
+        feasibility: 28
+        revenue: 최고
+    roadmap_title: 연도별 로드맵
+    roadmap:
+      - { year: "2025", goal: "국내 제조·공공 파일럿 20개사 / ARR ₩2억" }
+      - { year: "2026", goal: "MCP 출시 · 동남아 진출 · Series A" }
+      - { year: "2027", goal: "AI 에이전트 파트너십 · 미국 시장 진입" }
+      - { year: "2028", goal: "에이전트 백엔드 표준화 / ARR ₩100억+" }
+      - { year: "2030", goal: "Decision Intelligence 글로벌 OS 표준 / ARR ₩500억+" }

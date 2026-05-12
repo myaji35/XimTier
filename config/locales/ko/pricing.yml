@@ -1,0 +1,33 @@
+ko:
+  pricing:
+    eyebrow: 비즈니스 모델
+    h1: 4단계 수익 구조 — SaaS에서 LLM 생태계 플랫폼까지
+    lead: 진입 장벽이 낮은 SaaS → 산업 솔루션 → 맞춤 구축 → LLM 에코시스템 계산 인프라
+    tiers:
+      light:
+        badge: ①
+        name: Light SaaS
+        price: "월 30–100만원 (기업당)"
+        desc: 데이터 탐색 + 통계 분석 + AI Q&A. 비전문가 즉시 사용. 첫 접점으로 고객 Lock-in 확보.
+      industry:
+        badge: ②
+        name: Industry Solution
+        price: "연 500–3,000만원"
+        desc: 제조 품질관리, 병원 운영, 행정 정책 분석 등 산업 특화 AI 패키지. Reverse What-If 포함.
+      vibe:
+        badge: ③
+        name: Vibe Coding Custom
+        price: "프로젝트 3,000만원+"
+        desc: 고객 데이터에 완전 특화된 AI 의사결정 시스템 구축. 기존 SI 대비 1/3 비용·기간.
+      platform:
+        badge: "④"
+        name: Platform API / MCP Server
+        price: "사용량 과금 ($0.01–$1 / 호출)"
+        soon: "Coming Soon"
+        desc: Anthropic MCP·OpenAI Plugin 등록. LLM과 AI 에이전트가 우리 API 호출. Wolfram Alpha처럼 — LLM이 의사결정 계산이 필요할 때 호출하는 표준 엔진.
+    roadmap_title: ARR 로드맵
+    roadmap:
+      - { year: "Y1", goal: "파일럿 10개사 / ARR ₩2억" }
+      - { year: "Y2", goal: "유료 50개사 + MCP 출시 / ARR ₩8억" }
+      - { year: "Y3", goal: "국내+동남아 200개사 / ARR ₩30억" }
+      - { year: "Y2~3", goal: "손익분기점 달성 목표" }

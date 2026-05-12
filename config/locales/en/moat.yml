@@ -1,0 +1,29 @@
+en:
+  moat:
+    eyebrow: Competitive Advantage
+    h1: Two-sided competition — three intersections form our moat
+    lead: Attacked from both legacy analytics and big-tech LLMs, but at the intersection of "data sovereignty × regulated industries × Reverse What-If," neither side can enter.
+    layer1:
+      title: Layer 1 · Legacy analytics tools
+      brands: ["SAS", "SPSS", "Palantir", "Tableau", "DataRobot", "Databricks"]
+      win: "Why we win: 1/10 implementation cost, non-expert UX, instant domain fit, Vibe Coding integration."
+    layer2:
+      title: Layer 2 · Big-tech AI (the real competition)
+      brands: ["ChatGPT ADA", "Copilot Analytics", "Gemini Data Studio", "Claude Code"]
+      win: "Why we win: structural impossibility of data sovereignty, regulated industries, and Reverse What-If."
+    callout: Fight on the generic-analytics layer and big-tech wins. Our moat exists only where big-tech can't enter — three intersections.
+    triangle:
+      title: ★ Where big-tech cannot enter — the Moat Triangle
+      points:
+        sovereignty:
+          icon: lock
+          title: Data Sovereignty
+          body: A fundamental fact that enterprises can't upload data to external LLMs. An unchanging market.
+        regulated:
+          icon: scale
+          title: Regulated Industries
+          body: EU AI Act, Korea AI Framework Act. XAI mandates in healthcare, finance, and public sector.
+        reverse:
+          icon: arrows
+          title: Reverse What-If
+          body: Transformers cannot mathematically guarantee optimization problems. Unreachable unless big-tech abandons LLMs.

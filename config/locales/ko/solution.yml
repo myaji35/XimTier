@@ -1,0 +1,43 @@
+ko:
+  solution:
+    eyebrow: 솔루션
+    h1: LLM과 XAISimTier는 서로 다른 일을 한다 — 결합하면 완성된다
+    lead: "\"ChatGPT가 설명한다면, XAISimTier는 증명한다.\" LLM 언어 능력 + XAISimTier 계산 능력 = 진짜 의사결정 AI"
+    callout: ChatGPT는 회의실에서 발표하고, XAISimTier는 회의 전에 데이터로 답을 만든다.
+    formula: "LLM (언어) + XAISimTier (계산) = 진짜 의사결정 AI"
+    workflow_title: 5단계 One-Stop 워크플로우
+    table:
+      header_llm: LLM (언어 인터페이스)
+      header_xst: XAISimTier (계산 엔진)
+      subhead_llm: ChatGPT · Claude · Gemini
+      subhead_xst: Decision Intelligence · Reverse What-If
+      rows:
+        - llm: 언어 이해 / 자연어 대화
+          xst: "실제 수치 계산 — 회귀·시계열·분류 직접 실행"
+        - llm: 일반 지식 검색 · 텍스트 생성
+          xst: "Reverse What-If — 목표 입력 → 최적 변수 역산"
+        - llm: 실제 통계 계산 (회귀·SHAP) 불가
+          xst: "SHAP 기반 수학적 XAI — 규제 통과 가능"
+        - llm: Reverse What-If — 구조적 불가
+          xst: "온프레미스 / 프라이빗 — 데이터 외부 유출 없음"
+        - llm: 기업 내부 데이터 접근 불가
+          xst: "산업별 도메인 깊이 — 제조·병원·행정 특화"
+        - llm: 규제 XAI 의무 충족 불가
+          xst: "동일 입력 → 동일 출력 — 재현 가능한 일관성"
+  workflow:
+    steps:
+      - title: 데이터 탐색
+        sub: WhatDataAI
+        desc: 비전문가도 즉시 데이터 구조를 파악
+      - title: 통계 분석
+        sub: Regression · Classification
+        desc: 회귀·시계열·분류를 자동으로 실행
+      - title: Reverse What-If
+        sub: ★ 핵심
+        desc: 목표값 입력 → 최적 변수 역산
+      - title: 자동 보고서
+        sub: One-click Report
+        desc: 의사결정용 임원 보고서를 즉시 생성
+      - title: AI Q&A
+        sub: Conversational
+        desc: 결과에 대해 자연어로 질문·심화

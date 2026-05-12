@@ -1,0 +1,29 @@
+ko:
+  moat:
+    eyebrow: 경쟁 우위
+    h1: 이중 경쟁 구조 — 3가지 교차점이 우리의 해자
+    lead: 전통 분석 도구 + 빅테크 LLM, 양쪽에서 공격받지만 "데이터 주권 × 규제 산업 × Reverse What-If" 교차점은 진입 불가
+    layer1:
+      title: Layer 1 · 전통 분석 도구
+      brands: ["SAS", "SPSS", "Palantir", "Tableau", "DataRobot", "Databricks"]
+      win: "우리가 이기는 이유: 구축비용 1/10 · 비전문가 UX · 도메인 즉시 적용 · 바이브코딩 연계"
+    layer2:
+      title: Layer 2 · 빅테크 AI (진짜 경쟁자)
+      brands: ["ChatGPT ADA", "Copilot Analytics", "Gemini Data Studio", "Claude Code"]
+      win: "우리가 이기는 이유: 데이터 주권 · 규제 산업 · Reverse What-If의 구조적 불가능성"
+    callout: 범용 분석 도구로 싸우면 빅테크에게 진다. 우리의 해자는 빅테크가 들어올 수 없는 3가지 교차점에서만 만들어진다.
+    triangle:
+      title: ★ 빅테크 진입 불가 교차점 — 해자 삼각형
+      points:
+        sovereignty:
+          icon: lock
+          title: 데이터 주권
+          body: 기업이 데이터를 외부 LLM에 못 올린다는 근본 사실. 변하지 않는 시장.
+        regulated:
+          icon: scale
+          title: 규제 산업
+          body: EU AI Act, 한국 AI 기본법. 의료·금융·공공의 XAI 의무화.
+        reverse:
+          icon: arrows
+          title: Reverse What-If
+          body: Transformer는 최적화 문제를 수학적으로 보장할 수 없는 아키텍처. 빅테크가 LLM을 버리지 않는 한 따라올 수 없는 영역.

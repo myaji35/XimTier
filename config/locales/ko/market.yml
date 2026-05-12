@@ -1,0 +1,37 @@
+ko:
+  market:
+    eyebrow: 시장 기회
+    h1: "$17B → $81B — Post-LLM Decision Intelligence 시장"
+    lead: LLM 1차 도입 웨이브가 끝나며, 기업들은 "진짜 답을 주는 AI"를 찾기 시작했다 — 그게 2차 웨이브다.
+    tam_sam_som:
+      tam: { value: "$81B", label: "2030 글로벌 Decision Intelligence" }
+      sam: { value: "$18B", label: "2025 AI 기반 비즈니스 분석 SaaS" }
+      som: { value: "$500M", label: "Y3 국내 + 동남아 타겟" }
+    indicators:
+      - { value: "+28.5%", label: "글로벌 시장 CAGR (2025–2030)" }
+      - { value: "+65%",   label: "기업 AI 투자 YoY 성장" }
+      - { value: "85%",    label: "기업의 ChatGPT 내부 사용 금지율" }
+      - { value: "75%",    label: "Gartner — Gen AI 도입 기대 미달" }
+      - { value: "+262%",  label: "동남아 AI SaaS 성장률 (2025)" }
+    callout: "2차 웨이브의 시작: LLM 1차 도입 후 \"기대 미달\"이 확인되며 기업들은 실제 답을 주는 AI를 찾는다. 이것이 Post-LLM Decision Intelligence 시장이다."
+  why_now:
+    eyebrow: Why Now
+    h1: LLM 환상이 끝나는 시점, 정확히 지금이다
+    lead: 3가지 트렌드가 동시에 교차한다 — LLM 한계 인식 + 데이터 주권 우려 + AI 에이전트 시대 개막
+    trends:
+      illusion_end:
+        stat: "75%"
+        title: "LLM 환상의 종료"
+        body: "Gartner: 기업의 Generative AI 도입 75%가 기대 미달. 환각·수치 부정확·재현 불가. 이제 기업들은 \"그럴듯한 답\"이 아닌 증명 가능한 답을 찾는다."
+        conclusion: "XAISimTier의 수학적 보장이 답이 되는 시점"
+      data_sovereignty:
+        stat: "85%"
+        title: "데이터 주권 폭발"
+        body: "삼성·Apple·JPMorgan이 ChatGPT 내부 사용 금지. 의료·금융·공공은 LLM 사용이 규제 위반. 클라우드 LLM이 절대 들어올 수 없는 시장이 있다."
+        conclusion: "온프레미스·프라이빗 SaaS가 유일한 선택지"
+      agent_era:
+        stat: "×3"
+        title: "AI 에이전트 시대"
+        body: "AI 에이전트는 행동 전 수학적 보장이 필요하다. MCP 표준이 보편화되며 에이전트가 호출할 계산 엔진의 표준화가 시작된다."
+        conclusion: "XAISimTier가 에이전트의 계산 두뇌가 되는 시점"
+    window: "선점 기회: 18~24개월 — LLM 한계 인식(2025) + 데이터 주권 우려 폭발(2025) + AI 에이전트 시대 개막(2025). 이 세 가지가 동시에 충족된 것은 역사상 처음. 2027년 빅테크 본격 대응 전까지가 유일한 창문이다."

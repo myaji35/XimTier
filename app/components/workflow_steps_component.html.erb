@@ -1,0 +1,44 @@
+<div class="grid grid-cols-1 md:grid-cols-5" style="gap:16px;">
+  <% steps.each_with_index do |step, i| %>
+    <% is_core = step["sub"].to_s.include?("★") || step[:sub].to_s.include?("★") %>
+    <% sub_text  = step["sub"]   || step[:sub] %>
+    <% title     = step["title"] || step[:title] %>
+    <% desc      = step["desc"]  || step[:desc] %>
+
+    <div class="relative rounded-[14px] p-5 transition" style="
+        background: <%= is_core ? 'linear-gradient(135deg, rgba(37,99,235,0.12), rgba(0,200,200,0.10))' : card_bg %>;
+        border: 1.5px solid <%= is_core ? '#2563EB' : card_border %>;
+        <%= 'box-shadow: 0 8px 32px -12px rgba(37,99,235,0.45);' if is_core %>
+      ">
+      <%# Step index %>
+      <div class="font-mono text-[11px] mb-3" style="color:<%= is_core ? '#2563EB' : muted_color %>; letter-spacing:0.12em;">
+        STEP / <%= format('%02d', i + 1) %>
+      </div>
+
+      <h4 class="text-[17px] font-semibold leading-snug" style="color:<%= text_color %>;">
+        <%= title %>
+      </h4>
+
+      <% if sub_text %>
+        <div class="mt-1 font-mono text-[11px]" style="color:<%= is_core ? '#00C8C8' : muted_color %>;">
+          <%= sub_text %>
+        </div>
+      <% end %>
+
+      <% if desc %>
+        <p class="mt-3 text-[13px] leading-relaxed" style="color:<%= muted_color %>;">
+          <%= desc %>
+        </p>
+      <% end %>
+
+      <%# Arrow between steps (desktop only) %>
+      <% unless i == steps.size - 1 %>
+        <div class="hidden md:block absolute" style="right:-12px; top:50%; transform:translateY(-50%); color:<%= muted_color %>; z-index:1;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M5 12h14m-5-5l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

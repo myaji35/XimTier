@@ -1,0 +1,32 @@
+en:
+  contact:
+    eyebrow: Contact
+    h1: Demo · Partnership · Investment inquiries
+    lead: We respond within 24 hours. For sensitive data, please email us directly instead of using the form.
+    form:
+      name: Name
+      email: Email
+      company: Company
+      industry: Industry
+      message: Message
+      consent: "I consent to the collection and use of personal information."
+      submit: Send inquiry
+    soon: "Form activation is scheduled in milestone M3."
+  demo:
+    eyebrow: Request Demo
+    h1: Experience the 5-step workflow firsthand
+    lead: Share a data file or scenario, and we'll deliver a working demo within a week.
+    soon: "The demo request form is activated in milestone M3. For now, reach out via the contact page."
+  privacy:
+    eyebrow: Privacy Policy
+    h1: Privacy Policy
+    lead: Full text will be published after legal review.
+  terms:
+    eyebrow: Terms of Service
+    h1: Terms of Service
+    lead: Full text will be published after legal review.
+  platform_api:
+    eyebrow: Platform API
+    h1: MCP Server · OpenAI Plugin
+    lead: The standard engine LLMs call when they need decision computation. Wolfram Alpha for Decision Intelligence.
+    soon: "MCP/Plugin listing planned for Q3 2026. Contact us to be notified."

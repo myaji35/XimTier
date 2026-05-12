@@ -1,17 +1,171 @@
+/* === External fonts (must precede @import "tailwindcss") === */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap");
+
 @import "tailwindcss";
 
+/* === XimTier 디자인 토큰 (design.md / brand-dna.json) === */
 @theme {
-  --color-brand-50:  #ECFEFF;
-  --color-brand-100: #CFFAFE;
-  --color-brand-300: #67E8F9;
-  --color-brand-400: #22D3EE;
-  --color-brand-500: #06B6D4;
-  --color-brand-600: #0891B2;
-  --color-brand-700: #0E7490;
-  --color-brand-900: #164E63;
+  /* Palette */
+  --color-xim-blue: #2563EB;
+  --color-xim-blue-deep: #1d4ed8;
+  --color-xim-blue-soft: #3b82f6;
+  --color-teal-mint: #00C8C8;
+  --color-deep-navy: #0B132D;
+  --color-deep-navy-2: #0e1838;
+  --color-near-black: #060c1f;
+  --color-ink: #0B132D;
+  --color-slate-xim: #697386;
+  --color-slate-xim-2: #475467;
+  --color-light-gray: #F2F4F7;
+  --color-line: #e5e9f0;
 
-  --font-sans: "Pretendard", "Inter", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", Menlo, monospace;
+  /* Fonts */
+  --font-sans: "Pretendard", "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+               system-ui, "Apple SD Gothic Neo", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Radii */
+  --radius-card: 14px;
+  --radius-card-lg: 18px;
+  --radius-shell: 20px;
+  --radius-pill: 999px;
 }
 
-html { font-family: var(--font-sans); }
+html, body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: 'ss01' on, 'kern' on;
+  line-height: 1.55;
+}
+
+.font-mono { font-family: var(--font-mono); }
+
+/* === Section tones === */
+.section-light  { background: #ffffff; color: #0B132D; }
+.section-tinted { background: #F2F4F7; color: #0B132D; }
+.section-dark   { background: #0B132D; color: #e6e8f0; }
+.section-footer { background: #060c1f; color: #a7b1c7; }
+
+/* === Brand gradient === */
+.bg-brand-grad {
+  background: linear-gradient(135deg, #2563EB 0%, #00C8C8 100%);
+}
+.text-brand-grad {
+  background: linear-gradient(135deg, #2563EB 0%, #00C8C8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* === Typography presets === */
+/* 한글 어절 단위 줄바꿈 (keep-all): 단어/조사 중간에서 줄이 끊어지는 문제 방지 */
+.h-display, .h-section, .h-card {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+.h-display {
+  font-size: clamp(40px, 6vw, 78px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.04;
+}
+.h-section {
+  font-size: clamp(32px, 4.2vw, 52px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+}
+.h-card { font-size: 22px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.3; }
+.h-eye  { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+.lead   {
+  font-size: clamp(16px, 1.4vw, 19px);
+  line-height: 1.6;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* Eyebrow with gradient dot */
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+}
+.eyebrow .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: linear-gradient(135deg, #2563EB 0%, #00C8C8 100%);
+}
+.section-light  .eyebrow,
+.section-tinted .eyebrow { color: #2563EB; }
+.section-dark   .eyebrow,
+.section-footer .eyebrow { color: #00C8C8; }
+
+/* === Pill buttons (design.md §5) === */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 22px;
+  border-radius: 999px;
+  font-weight: 600; font-size: 15px;
+  transition: transform .15s ease, background .15s ease, color .15s ease, box-shadow .15s ease;
+  white-space: nowrap;
+}
+.btn-primary { background: #0B132D; color: #fff; }
+.btn-primary:hover { background: #2563EB; }
+.btn-grad {
+  background: linear-gradient(135deg, #2563EB 0%, #00C8C8 100%);
+  color: #fff;
+  box-shadow: 0 8px 24px -8px rgba(37, 99, 235, .55);
+}
+.btn-grad:hover { transform: translateY(-1px); box-shadow: 0 12px 28px -8px rgba(37, 99, 235, .7); }
+.btn-ghost { color: #0B132D; border: 1px solid #e5e9f0; background: #fff; }
+.btn-ghost:hover { border-color: #0B132D; }
+.section-dark .btn-ghost { color: #fff; background: transparent; border-color: rgba(255,255,255,.18); }
+.section-dark .btn-ghost:hover { border-color: #00C8C8; color: #00C8C8; }
+
+/* === Cards === */
+.card {
+  background: #fff;
+  border: 1px solid #e5e9f0;
+  border-radius: 14px;
+  padding: 28px;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.card:hover {
+  transform: translateY(-3px);
+  border-color: #2563EB;
+  box-shadow: 0 10px 30px -12px rgba(11,19,45,0.18);
+}
+.card-dark {
+  background: #0e1838;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 14px;
+  padding: 28px;
+  color: #e6e8f0;
+  transition: transform .2s ease, border-color .2s ease;
+}
+.card-dark:hover { transform: translateY(-3px); border-color: #00C8C8; }
+
+/* === Sticky nav with backdrop blur === */
+.nav-sticky {
+  position: sticky; top: 0; z-index: 50;
+  backdrop-filter: saturate(180%) blur(14px);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  background: rgba(255, 255, 255, 0.78);
+  border-bottom: 1px solid rgba(11, 19, 45, 0.06);
+}
+.section-dark + .nav-sticky,
+.nav-sticky.on-dark {
+  background: rgba(11, 19, 45, 0.78);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+/* === Layout === */
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+.section-pad { padding: 120px 0; }
+.section-pad-compact { padding: 80px 0; }
+
+@media (max-width: 979px) {
+  .section-pad { padding: 80px 0; }
+  .section-pad-compact { padding: 56px 0; }
+  .wrap { padding: 0 20px; }
+}

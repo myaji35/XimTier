@@ -1,89 +1,95 @@
 {
-  "_status": "draft",
-  "_version": "0.1.0",
+  "_status": "active",
+  "_version": "0.2.0",
   "_last_updated": "2026-05-12",
-  "_notes": "초안 — Pre-Seed IR과 정합. 정식 디자인 컨설팅 후 design_consultation 결과로 교체 예정.",
+  "_source": "design.md (XimTier Homepage Design Spec) — 1차 적용",
 
   "brand": {
-    "name": "XAISimTier",
+    "name": "XimTier",
+    "product": "XAISimTier",
     "tagline_ko": "LLM이 못 푸는 수치를, 우리가 증명한다",
     "tagline_en": "We prove the numbers LLMs can't.",
-    "voice": ["증명 가능한", "엔터프라이즈 신뢰", "기술 첨단", "비전문가 친화"]
+    "positioning": "Decision Intelligence, Proven by Numbers",
+    "voice": ["엔터프라이즈 신뢰", "테크 모던", "단호한 단언", "수치 우선"]
   },
 
   "design_tokens": {
     "colors": {
-      "primary": {
-        "50":  "#ECFEFF",
-        "100": "#CFFAFE",
-        "300": "#67E8F9",
-        "400": "#22D3EE",
-        "500": "#06B6D4",
-        "600": "#0891B2",
-        "700": "#0E7490",
-        "900": "#164E63"
-      },
-      "neutral": {
-        "50":  "#F8FAFC",
-        "100": "#F1F5F9",
-        "300": "#CBD5E1",
-        "400": "#94A3B8",
-        "500": "#64748B",
-        "700": "#334155",
-        "800": "#1E293B",
-        "900": "#0F172A",
-        "950": "#020617"
-      },
-      "accent": {
-        "success": "#10B981",
-        "warning": "#F59E0B",
-        "danger":  "#EF4444",
-        "info":    "#3B82F6"
-      },
+      "xim_blue":      "#2563EB",
+      "xim_blue_deep": "#1d4ed8",
+      "xim_blue_soft": "#3b82f6",
+      "teal_mint":     "#00C8C8",
+      "deep_navy":     "#0B132D",
+      "deep_navy_2":   "#0e1838",
+      "near_black":    "#060c1f",
+      "ink":           "#0B132D",
+      "ink_2":         "#1f2937",
+      "slate":         "#697386",
+      "slate_2":       "#475467",
+      "light_gray":    "#F2F4F7",
+      "line":          "#e5e9f0",
+      "white":         "#ffffff",
+
       "semantic": {
-        "background":      "#020617",
-        "background_alt":  "#0F172A",
-        "surface":         "#1E293B",
-        "border":          "#334155",
-        "text_primary":    "#F1F5F9",
-        "text_secondary":  "#94A3B8",
-        "text_muted":      "#64748B",
-        "brand":           "#22D3EE"
+        "section_light":   "#ffffff",
+        "section_tinted":  "#F2F4F7",
+        "section_dark":    "#0B132D",
+        "section_footer":  "#060c1f",
+        "text_on_light":   "#0B132D",
+        "text_on_dark":    "#e6e8f0",
+        "muted_on_light":  "#697386",
+        "muted_on_dark":   "#8a94ac",
+        "accent_blue":     "#2563EB",
+        "accent_teal":     "#00C8C8"
       }
     },
-    "typography": {
-      "font_family_ko": "Pretendard, system-ui, sans-serif",
-      "font_family_en": "Inter, system-ui, sans-serif",
-      "font_family_mono": "JetBrains Mono, Menlo, monospace",
-      "scale": {
-        "xs":  "0.75rem",
-        "sm":  "0.875rem",
-        "base":"1rem",
-        "lg":  "1.125rem",
-        "xl":  "1.25rem",
-        "2xl": "1.5rem",
-        "3xl": "1.875rem",
-        "4xl": "2.25rem",
-        "5xl": "3rem",
-        "6xl": "3.75rem"
-      },
-      "weights": { "regular": 400, "medium": 500, "semibold": 600, "bold": 700 },
-      "letter_spacing_hero": "-0.02em",
-      "letter_spacing_eyebrow": "0.3em"
+    "gradients": {
+      "brand": "linear-gradient(135deg, #2563EB 0%, #00C8C8 100%)",
+      "x_top_left":  "linear-gradient(#3b82f6, #2563EB)",
+      "x_top_right": "linear-gradient(#2563EB, #00C8C8)"
     },
-    "radius": { "sm": "0.25rem", "md": "0.5rem", "lg": "0.75rem", "xl": "1rem", "2xl": "1.5rem", "full": "9999px" },
-    "spacing_base_rem": 0.25,
+    "typography": {
+      "font_family_sans": "Pretendard, 'Pretendard Variable', -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', sans-serif",
+      "font_family_mono": "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
+      "weights": { "light": 300, "regular": 400, "medium": 500, "semibold": 600, "bold": 700 },
+      "scale": {
+        "h_display":  "clamp(40px, 6vw, 78px)",
+        "h_section":  "clamp(32px, 4.2vw, 52px)",
+        "h_card":     "22px",
+        "h_eye":      "13px",
+        "lead":       "clamp(16px, 1.4vw, 19px)",
+        "body":       "15px",
+        "small":      "13px"
+      },
+      "tracking": {
+        "display":  "-0.03em",
+        "section":  "-0.025em",
+        "card":     "-0.01em",
+        "eyebrow":  "0.08em"
+      },
+      "line_height": { "display": 1.04, "section": 1.08, "body": 1.55 }
+    },
+    "radius": { "card": "14px", "card_lg": "18px", "demo_shell": "20px", "button": "999px" },
     "shadow": {
-      "sm":  "0 1px 2px rgba(2,6,23,0.4)",
-      "md":  "0 4px 8px rgba(2,6,23,0.5)",
-      "glow":"0 0 32px rgba(34,211,238,0.25)"
+      "card_hover":  "0 10px 30px -12px rgba(11,19,45,0.18)",
+      "demo_shell":  "0 30px 60px -30px rgba(11,19,45,0.15)",
+      "cta_grad":    "0 8px 24px -8px rgba(37,99,235,0.55)",
+      "cta_grad_hover": "0 12px 28px -8px rgba(37,99,235,0.70)"
+    },
+    "layout": {
+      "max_width":      "1240px",
+      "gutter":         "32px",
+      "section_pad_y":  "120px",
+      "section_pad_y_compact": "80px",
+      "grid_gap_card":  "24px",
+      "grid_gap_hero":  "60px"
     },
     "motion": {
       "duration_fast": "150ms",
       "duration_base": "250ms",
-      "duration_slow": "400ms",
       "easing_standard": "cubic-bezier(0.4, 0, 0.2, 1)"
-    }
+    },
+    "breakpoints": { "mobile_max": "979px", "desktop_min": "980px" }
   },
 
   "page_priorities": {

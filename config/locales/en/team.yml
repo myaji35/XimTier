@@ -1,0 +1,37 @@
+en:
+  team:
+    eyebrow: Team
+    h1: Why this team can solve this problem
+    lead: CEO's domain insight + CTO's build velocity — the fastest combination in the LLM era.
+    members:
+      ceo:
+        initial: "H"
+        name: Han Il
+        role: CEO & Co-founder
+        bullets:
+          - Multi-year experience in data analytics / AI decision-making
+          - First-hand work on manufacturing, public-sector, and healthcare data projects
+          - Personally felt the friction of AI tools that non-experts can't use
+          - Designed the core concept of XAISimTier's algorithm
+          - Network of investors and customers
+      cto:
+        initial: "S"
+        name: Kang Seung-sik
+        role: CTO & Co-founder
+        bullets:
+          - Software architecture and AI system design
+          - "Proven build velocity — 10 concurrent SaaS projects"
+          - Vibe Coding for fast industry expansion
+          - Fluent with Claude Code, Harness CI/CD, MCP integration
+          - Runs a hybrid homelab + cloud infrastructure
+    strengths_title: Team Strengths
+    strengths:
+      problem_owner:
+        title: Problem owners
+        body: Both founders have lived the limits of non-expert AI tools. We turn customer pain into code.
+      lean:
+        title: Two-person core + AI collaboration
+        body: Vibe Coding and Claude Code give us the output and velocity of a 5-person team.
+      advisors:
+        title: Advisors — joining
+        body: Recruiting industry-domain experts, international-expansion veterans, and VC-network advisors.

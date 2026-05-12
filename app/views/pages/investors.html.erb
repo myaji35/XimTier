@@ -1,6 +1,55 @@
-<% content_for :title, "investors — #{t('site.name')}" %>
-<section class="max-w-6xl mx-auto px-6 py-24">
-  <p class="uppercase tracking-[0.3em] text-xs text-cyan-300/80 mb-3"><%= t('site.tagline') %></p>
-  <h1 class="text-3xl md:text-5xl font-bold text-slate-50">investors</h1>
-  <p class="mt-6 text-slate-400">M2 마일스톤에서 콘텐츠가 채워질 예정.</p>
+<% content_for :title, "#{t('investors.h1')} — #{t('site.brand')}" %>
+
+<section class="section-dark section-pad">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span><%= t("investors.eyebrow") %></div>
+    <h1 class="h-section mt-3" style="color:#fff; max-width:920px;"><%= t("investors.h1") %></h1>
+    <p class="lead mt-5" style="color:#a7b1c7; max-width:760px;"><%= t("investors.lead") %></p>
+
+    <%# Ask + Use of funds %>
+    <div class="mt-14 grid grid-cols-1 md:grid-cols-[1fr_1.4fr]" style="gap:32px;">
+      <div class="card-dark" style="padding:32px;">
+        <div class="font-mono text-[11px]" style="color:#00C8C8; letter-spacing:0.14em;">// ASK</div>
+        <div class="mt-3 text-[44px] font-bold text-brand-grad" style="line-height:1;"><%= t("investors.ask.amount") %></div>
+        <div class="mt-3 text-[14px]" style="color:#a7b1c7;">
+          <%= t("investors.ask.stage") %> · <%= t("investors.ask.equity") %>
+        </div>
+      </div>
+
+      <div class="card-dark" style="padding:32px;">
+        <div class="font-mono text-[11px]" style="color:#00C8C8; letter-spacing:0.14em;">// <%= t("investors.use_of_funds_title").upcase %></div>
+        <div class="mt-4 space-y-3">
+          <% t("investors.use_of_funds").each do |row| %>
+            <div class="grid grid-cols-[1fr_auto_auto] gap-4 items-center">
+              <div class="text-[14px]" style="color:#e6e8f0;"><%= row[:item] %></div>
+              <div class="font-mono text-[13px]" style="color:#00C8C8;"><%= row[:pct] %></div>
+              <div class="text-[13px] font-semibold" style="color:#fff;"><%= row[:amount] %></div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <%# Milestones %>
+    <h2 class="h-section mt-20" style="color:#fff; font-size:32px;"><%= t("investors.milestones_title") %></h2>
+    <div class="mt-8 grid grid-cols-1 md:grid-cols-3" style="gap:20px;">
+      <% t("investors.milestones").each_with_index do |m, i| %>
+        <div class="card-dark" style="padding:24px;">
+          <div class="font-mono text-[12px] font-bold text-brand-grad">M / <%= format('%02d', i + 1) %></div>
+          <p class="mt-3 text-[14px]" style="color:#e6e8f0; line-height:1.6;"><%= m %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<%# IR download CTA %>
+<section class="section-tinted section-pad-compact">
+  <div class="wrap text-center">
+    <div class="eyebrow justify-center"><span class="dot"></span><%= t("investors.download_form.title") %></div>
+    <p class="lead mt-3 mx-auto" style="color:#697386; max-width:560px;"><%= t("investors.download_form.subtitle") %></p>
+    <div class="mt-6">
+      <%= link_to t("site.nav.contact"), contact_path(locale: I18n.locale), class: "btn btn-grad" %>
+    </div>
+  </div>
 </section>

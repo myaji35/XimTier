@@ -1,0 +1,43 @@
+en:
+  solution:
+    eyebrow: Solution
+    h1: LLMs and XAISimTier do different jobs — together they're complete
+    lead: "If ChatGPT explains, XAISimTier proves. LLM language + XAISimTier computation = real decision AI."
+    callout: ChatGPT presents in the meeting. XAISimTier produces the answer before the meeting.
+    formula: "LLM (language) + XAISimTier (computation) = real decision AI"
+    workflow_title: 5-Step One-Stop Workflow
+    table:
+      header_llm: LLM (language interface)
+      header_xst: XAISimTier (computation engine)
+      subhead_llm: "ChatGPT · Claude · Gemini"
+      subhead_xst: "Decision Intelligence · Reverse What-If"
+      rows:
+        - llm: Language understanding / natural conversation
+          xst: "Actual numeric computation — regression, time-series, classification"
+        - llm: General knowledge retrieval / text generation
+          xst: "Reverse What-If — input a goal, derive the optimal variables"
+        - llm: Real statistical computation (regression, SHAP) — not possible
+          xst: "SHAP-based mathematical XAI — passes regulation"
+        - llm: Reverse What-If — structurally impossible
+          xst: "On-prem / private — data never leaves your environment"
+        - llm: No access to internal enterprise data
+          xst: "Industry-vertical depth — manufacturing, hospital, public"
+        - llm: Cannot satisfy regulated XAI duty
+          xst: "Same input → same output — reproducible consistency"
+  workflow:
+    steps:
+      - title: Data Exploration
+        sub: WhatDataAI
+        desc: Non-experts grasp data structure in minutes
+      - title: Statistical Analysis
+        sub: Regression · Classification
+        desc: Regression, time-series, and classification — auto-executed
+      - title: Reverse What-If
+        sub: ★ Core
+        desc: Input the goal → derive the optimal variables
+      - title: Auto Report
+        sub: One-click Report
+        desc: Decision-ready executive report, generated instantly
+      - title: AI Q&A
+        sub: Conversational
+        desc: Ask questions about results in natural language

@@ -1,0 +1,37 @@
+ko:
+  team:
+    eyebrow: 팀
+    h1: 왜 이 팀이 이 문제를 풀 수 있는가
+    lead: CEO의 도메인 통찰 + CTO의 빌드 속도 — LLM 시대에 가장 빠르게 움직일 수 있는 조합
+    members:
+      ceo:
+        initial: "한"
+        name: 한일
+        role: CEO & 공동창업자
+        bullets:
+          - "데이터 분석 / AI 의사결정 도메인 다년간 경험 보유"
+          - "제조·행정·의료 현장 데이터 프로젝트 직접 수행"
+          - "'비전문가가 못 쓰는 AI 툴의 답답함' 직접 경험한 당사자"
+          - "XAISimTier 핵심 알고리즘 컨셉 설계"
+          - "투자자·고객 네트워크 보유"
+      cto:
+        initial: "강"
+        name: 강승식
+        role: CTO & 공동창업자
+        bullets:
+          - "소프트웨어 아키텍처 및 AI 시스템 설계 전문"
+          - "10개 SaaS 동시 개발 경험 — 빌드 속도 검증됨"
+          - "Vibe Coding 기반 빠른 산업별 확장 구현"
+          - "Claude Code · Harness CI/CD · MCP 통합 능숙"
+          - "홈랩 + 클라우드 하이브리드 인프라 운영"
+    strengths_title: 팀 강점
+    strengths:
+      problem_owner:
+        title: 문제 당사자
+        body: CEO·CTO 모두 비전문가 AI 툴의 한계를 경험. 고객의 고통을 코드로 해결한다.
+      lean:
+        title: 2인 코어 + AI 협업
+        body: Vibe Coding·Claude Code 활용으로 5명 팀 수준의 산출물과 속도.
+      advisors:
+        title: 어드바이저 모집 중
+        body: 산업 도메인 전문가 + 해외 진출 경험자 + VC 네트워크 어드바이저 목표.

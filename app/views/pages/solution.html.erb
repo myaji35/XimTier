@@ -1,6 +1,66 @@
-<% content_for :title, "solution — #{t('site.name')}" %>
-<section class="max-w-6xl mx-auto px-6 py-24">
-  <p class="uppercase tracking-[0.3em] text-xs text-cyan-300/80 mb-3"><%= t('site.tagline') %></p>
-  <h1 class="text-3xl md:text-5xl font-bold text-slate-50">solution</h1>
-  <p class="mt-6 text-slate-400">M2 마일스톤에서 콘텐츠가 채워질 예정.</p>
+<% content_for :title, "#{t('solution.h1')} — #{t('site.brand')}" %>
+
+<section class="section-dark section-pad">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span><%= t("solution.eyebrow") %></div>
+    <h1 class="h-section mt-3" style="color:#fff; max-width:920px;"><%= t("solution.h1") %></h1>
+    <p class="lead mt-5" style="color:#a7b1c7; max-width:760px;"><%= t("solution.lead") %></p>
+
+    <blockquote class="mt-10 pl-5" style="border-left:3px solid; border-image:linear-gradient(135deg,#2563EB,#00C8C8) 1; max-width:720px;">
+      <p class="text-[18px] italic" style="color:#e6e8f0;">"<%= t("solution.callout") %>"</p>
+    </blockquote>
+  </div>
+</section>
+
+<%# Comparison table — Slide 3 %>
+<section class="section-light section-pad">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span>COMPARISON</div>
+    <h2 class="h-section mt-3" style="max-width:920px;">
+      <%= I18n.locale == :ko ? "LLM (언어) + XAISimTier (계산) = 진짜 의사결정 AI" : "LLM (language) + XAISimTier (computation) = real decision AI" %>
+    </h2>
+
+    <div class="mt-12 overflow-x-auto">
+      <table class="w-full" style="border-collapse:separate; border-spacing:0; min-width:760px;">
+        <thead>
+          <tr>
+            <th class="text-left p-5" style="background:#F2F4F7; border:1px solid #e5e9f0; border-right:0; border-radius:14px 0 0 0;">
+              <div class="font-mono text-[11px]" style="color:#697386; letter-spacing:0.14em;">LLM</div>
+              <div class="h-card mt-1" style="color:#0B132D;"><%= t("solution.table.header_llm") %></div>
+              <div class="text-[12px] mt-1" style="color:#697386;"><%= t("solution.table.subhead_llm") %></div>
+            </th>
+            <th class="text-left p-5" style="background:linear-gradient(135deg, rgba(37,99,235,0.08), rgba(0,200,200,0.08)); border:1.5px solid #2563EB; border-radius:0 14px 0 0;">
+              <div class="font-mono text-[11px] text-brand-grad" style="letter-spacing:0.14em;">XAISimTier</div>
+              <div class="h-card mt-1" style="color:#0B132D;"><%= t("solution.table.header_xst") %></div>
+              <div class="text-[12px] mt-1" style="color:#697386;"><%= t("solution.table.subhead_xst") %></div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% t("solution.table.rows").each_with_index do |row, i| %>
+            <% is_last = i == t("solution.table.rows").size - 1 %>
+            <tr>
+              <td class="p-5 align-top" style="background:#fff; border-left:1px solid #e5e9f0; border-bottom:1px solid #e5e9f0; <%= 'border-bottom-left-radius:14px;' if is_last %>">
+                <span style="color:#697386; margin-right:8px;">✗</span><span style="color:#475467;"><%= row[:llm] %></span>
+              </td>
+              <td class="p-5 align-top" style="background:#fff; border-right:1.5px solid #2563EB; border-bottom:1.5px solid #2563EB; <%= 'border-bottom-right-radius:14px;' if is_last %>">
+                <span style="color:#2563EB; margin-right:8px;">✓</span><span style="color:#0B132D; font-weight:500;"><%= row[:xst] %></span>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<%# 5-step workflow %>
+<section class="section-tinted section-pad-compact">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span>5-STEP WORKFLOW</div>
+    <h2 class="h-section mt-3" style="max-width:760px;"><%= t("solution.workflow_title") %></h2>
+    <div class="mt-12">
+      <%= render WorkflowStepsComponent.new(steps: t("workflow.steps"), tone: :light) %>
+    </div>
+  </div>
 </section>

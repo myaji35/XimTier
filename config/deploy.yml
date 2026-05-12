@@ -1,64 +1,62 @@
-# Kamal 2 — XAISimTier 배포 설정 (PRD §6.5)
-service: xaisimtier
-image: xaisimtier
+# XimTier — Kamal 2 Deploy Config
+# 서버: Vultr ICN (158.247.235.31), 0012(InsureGraph)와 kamal-proxy 공유
+# 접속: http://ximtier.158.247.235.31.nip.io
+# 업데이트: 2026-05-12
+
+service: ximtier
+# Kamal 2가 registry.server를 자동 결합하므로 username/repo 형태로만.
+image: myaji35/ximtier
 
 servers:
   web:
-    - REPLACE_WITH_SERVER_IP   # TODO(M1 end): 실제 VPS/홈랩 IP로 교체
-  # job:
-  #   hosts:
-  #     - REPLACE_WITH_SERVER_IP
-  #   cmd: bin/jobs
+    - 158.247.235.31
 
-# Let's Encrypt + 단일 서버
+ssh:
+  user: root
+
+# kamal-proxy를 0012와 공유 (host-based routing) — proxy.host로 분기됨
 proxy:
-  ssl: true
-  host: REPLACE_WITH_DOMAIN     # TODO: xaisimtier.com 또는 xaisimtier.ai
+  host: ximtier.158.247.235.31.nip.io
+  app_port: 3000
+  healthcheck:
+    path: /up
+    interval: 3
+    timeout: 5
 
+# GitHub Container Registry
 registry:
   server: ghcr.io
-  username: REPLACE_WITH_GH_USER
+  username: myaji35
   password:
     - KAMAL_REGISTRY_PASSWORD
 
 env:
   secret:
     - RAILS_MASTER_KEY
-    - POSTGRES_PASSWORD
   clear:
     SOLID_QUEUE_IN_PUMA: true
-    DB_HOST: xaisimtier-db
-    POSTGRES_USER: xaisimtier
-    POSTGRES_DB: xaisimtier_production
-    RAILS_LOG_LEVEL: info
+    RAILS_ENV: production
+    PORT: "3000"
+    WEB_CONCURRENCY: "1"
+    RAILS_SERVE_STATIC_FILES: "true"
+    RAILS_LOG_TO_STDOUT: "true"
+    # SQLite (Rails 8 기본) — Solid Queue/Cache/Cable 동일 storage 사용
+    DB_HOST: ""
+
+# SQLite + Active Storage volume
+volumes:
+  - "ximtier_storage:/rails/storage"
+
+asset_path: /rails/public/assets
+
+# Mac arm64 → 서버 amd64 크로스컴파일
+builder:
+  arch: amd64
+  # 빠른 빌드를 원하면 원격 amd64 빌더로 변경
+  # remote: ssh://root@158.247.235.31
 
 aliases:
   console: app exec --interactive --reuse "bin/rails console"
   shell:   app exec --interactive --reuse "bash"
   logs:    app logs -f
-  dbc:     app exec --interactive --reuse "bin/rails dbconsole --include-password"
-
-volumes:
-  - "xaisimtier_storage:/rails/storage"
-
-asset_path: /rails/public/assets
-
-builder:
-  arch: amd64
-  # 로컬이 Apple Silicon이라 amd64 빌드 느림 — 필요시 remote 빌더 활성화
-  # remote: ssh://docker@docker-builder-server
-
-# PostgreSQL 16 accessory (self-host, PRD §6.4)
-accessories:
-  db:
-    image: postgres:16
-    host: REPLACE_WITH_SERVER_IP
-    port: "127.0.0.1:5432:5432"
-    env:
-      clear:
-        POSTGRES_USER: xaisimtier
-        POSTGRES_DB: xaisimtier_production
-      secret:
-        - POSTGRES_PASSWORD
-    directories:
-      - data:/var/lib/postgresql/data
+  dbc:     app exec --interactive --reuse "bin/rails dbconsole"

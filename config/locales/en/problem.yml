@@ -1,0 +1,30 @@
+en:
+  problem:
+    eyebrow: Problem
+    h1: ChatGPT, Claude, and Gemini can't solve 3 things enterprises need
+    lead: The first wave of LLM adoption is over. "Plausible-sounding answers" don't drive real decisions — enterprises are waking up.
+    cards:
+      data_sovereignty:
+        icon: lock
+        eyebrow: Problem 1
+        title: Data Sovereignty — internal data can't go to LLMs
+        body: Samsung, Hyundai, and LG have banned internal use of ChatGPT. Healthcare, finance, and the public sector treat LLM use itself as a regulatory violation. OpenAI sells on-prem, but not at a price or complexity SMEs can absorb.
+        quote: No decision-maker is going to send Samsung's wafer-defect data to OpenAI's servers.
+        stat_value: "85%"
+        stat_label: of global enterprises ban public-LLM input of their own data
+      numeric_calc:
+        icon: calculator
+        eyebrow: Problem 2
+        title: Numeric Limits — LLMs describe statistics, they don't compute them
+        body: The Transformer is a next-token predictor. It does not mathematically guarantee regression coefficients, SHAP values, or Reverse What-If optimizations. It outputs "plausible numbers".
+        quote: When an LLM produces an answer, it's a guess, not a calculation. You don't stop a factory line on a guess.
+        stat_value: "75%"
+        stat_label: "Gartner 2025: enterprise Generative AI rollouts that fall short of expectations"
+      regulation:
+        icon: scale
+        eyebrow: Problem 3
+        title: Regulatory Duty — EU AI Act and Korea's AI Framework Act codify explainable AI
+        body: Medical diagnosis, credit scoring, and public-policy decisions now legally require XAI. LLM black boxes can't pass. SHAP-based mathematical justification is mandatory.
+        quote: EU AI Act takes effect in 2026 — high-risk AI must mathematically justify each decision.
+        stat_value: Global
+        stat_label: EU AI Act, Korea AI Framework, US AI Bill of Rights — all in force together

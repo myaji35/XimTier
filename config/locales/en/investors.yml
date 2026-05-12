@@ -1,0 +1,30 @@
+en:
+  investors:
+    eyebrow: Investors
+    h1: "Pre-Seed ₩300M — 18-month runway to the MCP-platform entry"
+    lead: Three milestones this round will deliver — clearly.
+    ask:
+      amount: ₩300M
+      equity: "10–15% negotiable"
+      stage: Pre-Seed
+    use_of_funds_title: Use of Funds
+    use_of_funds:
+      - { item: "Product + MCP development", pct: "45%", amount: "₩135M" }
+      - { item: "Sales & marketing",          pct: "25%", amount: "₩75M" }
+      - { item: "Team building",              pct: "20%", amount: "₩60M" }
+      - { item: "Ops & infrastructure",       pct: "10%", amount: "₩30M" }
+    milestones_title: Milestones this round delivers
+    milestones:
+      - "20 paid customers + MCP beta — pilots converted, Claude/ChatGPT calling us"
+      - "ARR ₩200M — SaaS subscriptions + solutions + Platform API"
+      - "First Southeast Asia partnership — one partner in Singapore or Vietnam"
+    series_a_title: Series A Trigger
+    series_a:
+      target: ₩2B (12–18 months out)
+      condition: "ARR ₩500M + MCP monthly calls + entry into one SEA country"
+      valuation: 30–40x ARR multiple
+    closing: "What investors get: an early seat in Post-LLM Decision Intelligence. A position whose value grows as the LLM era deepens. Targeting Series A alongside The Ventures, SparkLabs, and peers."
+    download_form:
+      title: Download the IR deck
+      subtitle: "We'll email a PDF link. Activated in the M3 milestone."
+      submit: Request download

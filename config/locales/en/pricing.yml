@@ -1,0 +1,33 @@
+en:
+  pricing:
+    eyebrow: Business Model
+    h1: Four-stage revenue — from SaaS to the LLM-ecosystem platform
+    lead: Low-friction SaaS → industry solution → bespoke build → LLM-ecosystem compute infrastructure.
+    tiers:
+      light:
+        badge: ①
+        name: Light SaaS
+        price: "USD 250–800 / month per company"
+        desc: Data exploration + statistical analysis + AI Q&A. Non-experts can start immediately. First touch for customer lock-in.
+      industry:
+        badge: ②
+        name: Industry Solution
+        price: "USD 5K–30K / year"
+        desc: Industry-specific AI packages for manufacturing quality, hospital operations, public policy. Reverse What-If included.
+      vibe:
+        badge: ③
+        name: Vibe Coding Custom
+        price: "USD 30K+ per project"
+        desc: A fully bespoke AI decision system over the customer's data. 1/3 the cost and time of legacy SI.
+      platform:
+        badge: "④"
+        name: Platform API / MCP Server
+        price: "Usage-based ($0.01–$1 per call)"
+        soon: "Coming Soon"
+        desc: Anthropic MCP and OpenAI Plugin listings. The standard engine LLMs and AI agents call when they need decision computation — Wolfram Alpha for Decision Intelligence.
+    roadmap_title: ARR Roadmap
+    roadmap:
+      - { year: "Y1", goal: "10 pilot customers / ARR ₩0.2B" }
+      - { year: "Y2", goal: "50 paid + MCP launch / ARR ₩0.8B" }
+      - { year: "Y3", goal: "200 customers (Korea+SEA) / ARR ₩3B" }
+      - { year: "Y2~3", goal: "Target: breakeven" }

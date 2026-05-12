@@ -1,0 +1,36 @@
+<div class="<%= card_classes %>">
+  <% if icon %>
+    <div class="w-12 h-12 rounded-lg bg-cyan-500/10 border border-cyan-400/30 flex items-center justify-center text-cyan-300 text-xl mb-5">
+      <%= render IconComponent.new(name: icon) %>
+    </div>
+  <% end %>
+
+  <% if eyebrow %>
+    <p class="uppercase tracking-[0.2em] text-xs text-cyan-300/70 mb-2"><%= eyebrow %></p>
+  <% end %>
+
+  <h3 class="text-xl md:text-2xl font-semibold text-slate-50 leading-snug"><%= title %></h3>
+
+  <% if body %>
+    <p class="mt-3 text-slate-300 leading-relaxed"><%= body %></p>
+  <% end %>
+
+  <% if quote %>
+    <blockquote class="mt-5 pl-4 border-l-2 border-cyan-400/50 text-slate-400 italic text-sm">
+      "<%= quote %>"
+    </blockquote>
+  <% end %>
+
+  <% if stat_value %>
+    <div class="mt-6 pt-5 border-t border-slate-800">
+      <div class="text-2xl font-bold text-cyan-300"><%= stat_value %></div>
+      <% if stat_label %>
+        <div class="text-slate-400 mt-1 text-sm"><%= stat_label %></div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if content.present? %>
+    <div class="mt-4"><%= content %></div>
+  <% end %>
+</div>

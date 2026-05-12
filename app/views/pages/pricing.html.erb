@@ -1,6 +1,61 @@
-<% content_for :title, "pricing — #{t('site.name')}" %>
-<section class="max-w-6xl mx-auto px-6 py-24">
-  <p class="uppercase tracking-[0.3em] text-xs text-cyan-300/80 mb-3"><%= t('site.tagline') %></p>
-  <h1 class="text-3xl md:text-5xl font-bold text-slate-50">pricing</h1>
-  <p class="mt-6 text-slate-400">M2 마일스톤에서 콘텐츠가 채워질 예정.</p>
+<% content_for :title, "#{t('pricing.h1')} — #{t('site.brand')}" %>
+
+<section class="section-light section-pad">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span><%= t("pricing.eyebrow") %></div>
+    <h1 class="h-section mt-3" style="max-width:920px;"><%= t("pricing.h1") %></h1>
+    <p class="lead mt-5" style="color:#475467; max-width:760px;"><%= t("pricing.lead") %></p>
+
+    <div class="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4" style="gap:20px;">
+      <% %w[light industry vibe platform].each_with_index do |key, i| %>
+        <% tier = t("pricing.tiers.#{key}") %>
+        <% is_platform = key == "platform" %>
+        <article class="rounded-[18px] p-7 relative" style="
+              background:#fff;
+              border:<%= is_platform ? '1.5px solid #2563EB' : '1px solid #e5e9f0' %>;
+              <%= 'box-shadow: 0 10px 30px -12px rgba(37,99,235,0.18);' if is_platform %>
+            ">
+          <% if is_platform && tier[:soon] %>
+            <div class="absolute top-4 right-4 font-mono text-[10px] px-2.5 py-1 rounded-full text-white" style="background:linear-gradient(135deg,#2563EB,#00C8C8); letter-spacing:0.1em;">
+              <%= tier[:soon].upcase %>
+            </div>
+          <% end %>
+
+          <div class="font-mono text-[12px]" style="color:#697386; letter-spacing:0.14em;">
+            TIER / <%= tier[:badge] %>
+          </div>
+          <h3 class="h-card mt-3" style="color:#0B132D;"><%= tier[:name] %></h3>
+          <div class="mt-4 font-semibold" style="font-size:18px; color:#2563EB;"><%= tier[:price] %></div>
+          <p class="mt-4 text-[14px]" style="color:#475467; line-height:1.6;"><%= tier[:desc] %></p>
+
+          <div class="mt-6 pt-5" style="border-top:1px solid #e5e9f0;">
+            <% if is_platform %>
+              <%= link_to t("site.nav.contact"), contact_path(locale: I18n.locale), class: "btn btn-ghost", style: "width:100%; justify-content:center;" %>
+            <% else %>
+              <%= link_to t("site.hero.cta_demo"), demo_path(locale: I18n.locale),
+                    class: (i == 0 ? "btn btn-grad" : "btn btn-primary"),
+                    style: "width:100%; justify-content:center;" %>
+            <% end %>
+          </div>
+        </article>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<%# ARR Roadmap %>
+<section class="section-tinted section-pad-compact">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span>ARR ROADMAP</div>
+    <h2 class="h-section mt-3" style="max-width:760px;"><%= t("pricing.roadmap_title") %></h2>
+
+    <div class="mt-10 grid grid-cols-2 md:grid-cols-4" style="gap:16px;">
+      <% t("pricing.roadmap").each do |r| %>
+        <div class="rounded-[14px] p-5" style="background:#fff; border:1px solid #e5e9f0;">
+          <div class="font-mono text-[20px] font-bold text-brand-grad"><%= r[:year] %></div>
+          <div class="mt-2 text-[13px]" style="color:#475467;"><%= r[:goal] %></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </section>

@@ -1,0 +1,42 @@
+en:
+  use_cases:
+    eyebrow: Use Cases
+    h1: Four industry personas reach a decision
+    lead: "Data ChatGPT can't touch — we work with it daily."
+    cards:
+      manufacturing:
+        icon: factory
+        persona: Plant floor manager
+        title: Manufacturing — defect & yield optimization
+        body: Regression on line data + environmental data identifies defect drivers. Reverse What-If derives the process variables needed to hit a target yield. 100% on-prem.
+        outcomes:
+          - Automated defect tracking
+          - Shorter setup for new processes
+          - In-house data only, no external LLM
+      hospital:
+        icon: heart
+        persona: Hospital executive
+        title: Hospital — operations & diagnostic assist
+        body: Identify operational bottlenecks from bed, staffing, and exam data. XAI-based diagnostic assist satisfies EU AI Act and Korea's AI Framework simultaneously.
+        outcomes:
+          - Shorter patient wait times
+          - Optimized staffing
+          - Regulator-ready explainable AI
+      public:
+        icon: building
+        persona: Public-policy officer
+        title: Public Sector — policy scenario simulation
+        body: Unify administrative, demographic, and budget data. Reverse What-If derives the policy variables needed to hit a goal (unemployment, birth rate, etc.).
+        outcomes:
+          - NIPA SaaS-program eligible
+          - Fast PoC → production
+          - Auto-generated policy justification reports
+      smart_city:
+        icon: city
+        persona: Smart-city lead
+        title: Smart City — urban simulation
+        body: Integrated analysis across IoT, traffic, and energy data. Simulate optimal allocation of city resources. Extensible as an AI-agent backend.
+        outcomes:
+          - City KPI visibility
+          - Compare traffic and energy scenarios
+          - Future agent-integration option

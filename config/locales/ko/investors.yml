@@ -1,0 +1,30 @@
+ko:
+  investors:
+    eyebrow: 투자자
+    h1: "Pre-Seed ₩3억 조달 — 18개월 런웨이로 MCP 플랫폼 진입까지"
+    lead: 이 투자로 달성할 마일스톤 3개가 명확하다.
+    ask:
+      amount: ₩3억
+      equity: "10–15% 협의"
+      stage: Pre-Seed
+    use_of_funds_title: 투자금 사용처
+    use_of_funds:
+      - { item: "제품 + MCP 개발", pct: "45%", amount: "₩1.35억" }
+      - { item: "영업·마케팅",       pct: "25%", amount: "₩7,500만" }
+      - { item: "팀 빌딩",          pct: "20%", amount: "₩6,000만" }
+      - { item: "운영·인프라",       pct: "10%", amount: "₩3,000만" }
+    milestones_title: 이 투자로 달성할 마일스톤
+    milestones:
+      - "유료 고객 20개사 + MCP 베타 — 제조·공공 파일럿 유료 전환 + Claude/ChatGPT 호출 가능"
+      - "ARR ₩2억 달성 — SaaS 구독 + 솔루션 + Platform API 매출"
+      - "동남아 첫 파트너십 체결 — 싱가포르 또는 베트남 파트너 1개사"
+    series_a_title: Series A 트리거
+    series_a:
+      target: ₩20억 (12–18개월 후)
+      condition: "ARR ₩5억 + MCP 월 [N]만 호출 + 동남아 1개국 진출"
+      valuation: ARR 30–40x 멀티플 적용
+    closing: "투자자가 얻는 것: Post-LLM Decision Intelligence 시장의 초기 선점 기회. LLM 시대가 깊어질수록 가치가 커지는 포지션. 더벤처스·스파크랩 등과 함께 Series A까지 동행 예정."
+    download_form:
+      title: IR 자료 다운로드
+      subtitle: "이메일로 PDF 링크를 보내드립니다. M3 마일스톤에서 활성화 예정."
+      submit: 다운로드 요청

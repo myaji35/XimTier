@@ -1,17 +1,33 @@
 en:
   site:
-    name: XAISimTier
+    brand: XimTier
+    product: XAISimTier
+    product_label: XAISimTier Decision Intelligence Engine
+    name: XimTier
     tagline: Post-LLM Decision Intelligence Platform
+    positioning: Decision Intelligence, Proven by Numbers
     hero:
-      headline: We prove the numbers LLMs can't.
-      subhead: "If ChatGPT explains, XAISimTier proves — at the intersection of data sovereignty, regulated industries, and Reverse What-If, even non-experts finish a decision in 5 minutes."
+      eyebrow: Post-LLM · Decision Intelligence Platform
+      headline_top: We prove the numbers
+      headline_bottom: LLMs can't.
+      subhead: "If ChatGPT explains, XimTier proves. Data sovereignty · regulated industries · Reverse What-If — at the intersection big-tech LLMs cannot enter, even non-experts finish a decision in 5 minutes."
       cta_demo: Request Demo
       cta_ir: Download IR Deck
+      chips:
+        - { label: "Temp",       value: "215°C → 207°C" }
+        - { label: "SHAP",       value: "+0.34" }
+        - { label: "Defect",     value: "2.40% → 1.20%" }
+        - { label: "R²",         value: "0.887" }
+      pillars:
+        - { label: "Data sovereignty",  desc: "100% on-prem" }
+        - { label: "Regulator-ready",   desc: "SHAP mathematical XAI" }
+        - { label: "Reverse What-If",   desc: "Goal → variables" }
+        - { label: "5-minute decision", desc: "Built for non-experts" }
     nav:
-      problem: Problem
       solution: Solution
       how_it_works: How It Works
-      use_cases: Use Cases
+      use_cases: Industries
+      problem: Problem
       pricing: Pricing
       platform_api: Platform API
       team: Team
@@ -20,4 +36,7 @@ en:
       contact: Contact
       demo: Request Demo
     footer:
-      copyright: "© 2025 Gagahoho, Inc. All rights reserved."
+      copyright: "© 2025 XimTier (Gagahoho, Inc.) · All rights reserved."
+    regulation_strip:
+      label: Regulation
+      keywords: ["EU AI Act 2026", "Korea AI Framework Act", "US AI Bill of Rights", "ISO/IEC 42001"]

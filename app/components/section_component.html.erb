@@ -1,0 +1,19 @@
+<section class="<%= section_classes %>" <%= "id=\"#{anchor}\"".html_safe if anchor %>>
+  <% if eyebrow %>
+    <p class="uppercase tracking-[0.3em] text-xs text-cyan-300/80 mb-4"><%= eyebrow %></p>
+  <% end %>
+
+  <h2 class="<%= title_classes %>"><%= title %></h2>
+
+  <% if lead %>
+    <p class="mt-5 max-w-3xl text-base md:text-lg text-slate-300 leading-relaxed"><%= lead %></p>
+  <% end %>
+
+  <div class="mt-10">
+    <%= content %>
+  </div>
+
+  <% if actions? %>
+    <div class="mt-10 flex flex-wrap gap-4"><%= actions %></div>
+  <% end %>
+</section>

@@ -1,0 +1,61 @@
+<div class="grid md:grid-cols-2 items-center" style="gap:60px;">
+  <%# Left: SVG diagram (light bg, gradient center, dashed connecting lines) %>
+  <div class="flex justify-center">
+    <svg viewBox="0 0 460 400" class="w-full" style="max-width:480px;" role="img" aria-label="Moat Triangle">
+      <defs>
+        <linearGradient id="moat-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%"   stop-color="#2563EB"/>
+          <stop offset="100%" stop-color="#00C8C8"/>
+        </linearGradient>
+        <radialGradient id="moat-center-fill">
+          <stop offset="0%" stop-color="#2563EB"/>
+          <stop offset="100%" stop-color="#00C8C8"/>
+        </radialGradient>
+      </defs>
+
+      <%# Dashed connecting lines %>
+      <g stroke="url(#moat-grad)" stroke-width="1.5" stroke-dasharray="4 5" opacity="0.55" fill="none">
+        <line x1="230" y1="70"  x2="70"  y2="320"/>
+        <line x1="230" y1="70"  x2="390" y2="320"/>
+        <line x1="70"  y1="320" x2="390" y2="320"/>
+      </g>
+
+      <%# Center gradient disc with XST label %>
+      <circle cx="230" cy="200" r="58" fill="url(#moat-center-fill)" opacity="0.92"/>
+      <text x="230" y="196" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="700" letter-spacing="1">XST</text>
+      <text x="230" y="218" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="10" letter-spacing="2">XAISimTier</text>
+
+      <%# Vertex nodes (white card style) %>
+      <% [{ cx: 230, cy: 70,  label: sovereignty[:title], icon: "🔒" },
+          { cx: 70,  cy: 320, label: reverse[:title],     icon: "🔄" },
+          { cx: 390, cy: 320, label: regulated[:title],   icon: "⚖" }].each do |v| %>
+        <g>
+          <rect x="<%= v[:cx] - 80 %>" y="<%= v[:cy] - 22 %>" width="160" height="44" rx="22"
+                fill="#ffffff" stroke="#e5e9f0" stroke-width="1.5"/>
+          <text x="<%= v[:cx] %>" y="<%= v[:cy] + 5 %>" text-anchor="middle"
+                fill="#0B132D" font-size="13" font-weight="600">
+            <%= v[:icon] %> <%= v[:label] %>
+          </text>
+        </g>
+      <% end %>
+    </svg>
+  </div>
+
+  <%# Right: text panel %>
+  <div class="space-y-5">
+    <% [sovereignty, regulated, reverse].each do |point| %>
+      <div class="card" style="padding:24px;">
+        <div class="flex items-start" style="gap:14px;">
+          <div class="shrink-0 w-10 h-10 rounded-lg flex items-center justify-center"
+               style="background:linear-gradient(135deg, rgba(37,99,235,0.10), rgba(0,200,200,0.10)); border:1px solid #e5e9f0; color:#2563EB;">
+            <%= render IconComponent.new(name: point[:icon], size: 18) %>
+          </div>
+          <div>
+            <h4 class="h-card" style="color:#0B132D;"><%= point[:title] %></h4>
+            <p class="mt-1.5 text-[14px] leading-relaxed" style="color:#475467;"><%= point[:body] %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -84,21 +84,21 @@ test:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
+# Production: SQLite + storage volume (Rails 8 표준, 0012와 동일 패턴)
+# 트래픽 증가 시 PostgreSQL accessory로 마이그레이션 예정.
 production:
-  primary: &primary_production
-    <<: *default
-    database: xaisimtier_production
-    username: xaisimtier
-    password: <%= ENV["XAISIMTIER_DATABASE_PASSWORD"] %>
+  primary:
+    adapter: sqlite3
+    database: storage/production.sqlite3
   cache:
-    <<: *primary_production
-    database: xaisimtier_production_cache
+    adapter: sqlite3
+    database: storage/production_cache.sqlite3
     migrations_paths: db/cache_migrate
   queue:
-    <<: *primary_production
-    database: xaisimtier_production_queue
+    adapter: sqlite3
+    database: storage/production_queue.sqlite3
     migrations_paths: db/queue_migrate
   cable:
-    <<: *primary_production
-    database: xaisimtier_production_cable
+    adapter: sqlite3
+    database: storage/production_cable.sqlite3
     migrations_paths: db/cable_migrate

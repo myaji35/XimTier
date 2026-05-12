@@ -1,0 +1,32 @@
+ko:
+  contact:
+    eyebrow: 문의
+    h1: 데모·파트너십·투자 문의
+    lead: 24시간 내에 답신드립니다. 보안이 필요한 데이터는 폼 대신 직접 이메일로 보내주세요.
+    form:
+      name: 이름
+      email: 이메일
+      company: 회사
+      industry: 산업
+      message: 메시지
+      consent: "개인정보 수집·이용에 동의합니다."
+      submit: 문의 보내기
+    soon: "폼 활성화는 M3 마일스톤에서 진행됩니다."
+  demo:
+    eyebrow: 데모 신청
+    h1: 5단계 워크플로우를 직접 체험하세요
+    lead: 데이터 파일 또는 시나리오만 보내주시면, 1주일 내 결과 데모를 만들어 드립니다.
+    soon: "데모 신청 폼은 M3 마일스톤에서 활성화 예정. 지금은 contact를 통해 연락 주세요."
+  privacy:
+    eyebrow: 개인정보처리방침
+    h1: 개인정보처리방침
+    lead: 본 페이지의 상세 내용은 법무 검토 후 공개됩니다.
+  terms:
+    eyebrow: 이용약관
+    h1: 이용약관
+    lead: 본 페이지의 상세 내용은 법무 검토 후 공개됩니다.
+  platform_api:
+    eyebrow: Platform API
+    h1: MCP Server · OpenAI Plugin
+    lead: LLM이 의사결정 계산이 필요할 때 호출하는 표준 엔진. Wolfram Alpha for Decision Intelligence.
+    soon: "MCP/Plugin 등록은 2026 Q3 예정. 사전 알림을 원하시면 contact로 연락 주세요."

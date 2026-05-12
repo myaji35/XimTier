@@ -1,23 +1,42 @@
 ko:
   site:
-    name: XAISimTier
+    brand: XimTier
+    product: XAISimTier
+    product_label: XAISimTier Decision Intelligence Engine
+    name: XimTier
     tagline: Post-LLM Decision Intelligence Platform
+    positioning: Decision Intelligence, Proven by Numbers
     hero:
-      headline: LLM이 못 푸는 수치를, 우리가 증명한다
-      subhead: "ChatGPT가 설명한다면, XAISimTier는 증명한다 — 데이터 주권 × 규제 산업 × Reverse What-If 교차점에서 비전문가도 5분 안에 의사결정을 끝낸다."
+      eyebrow: Post-LLM · Decision Intelligence Platform
+      headline_top: LLM이 못 푸는 수치를,
+      headline_bottom: 우리가 증명한다.
+      subhead: "ChatGPT가 설명한다면, XimTier는 증명합니다. 데이터 주권 · 규제 산업 · Reverse What-If — 빅테크 LLM이 들어올 수 없는 교차점에서, 비전문가도 5분 안에 의사결정을 끝냅니다."
       cta_demo: 데모 신청
       cta_ir: IR 자료 다운로드
+      chips:
+        - { label: "온도",      value: "215°C → 207°C" }
+        - { label: "SHAP",     value: "+0.34" }
+        - { label: "불량률",    value: "2.40% → 1.20%" }
+        - { label: "R²",       value: "0.887" }
+      pillars:
+        - { label: "데이터 주권",     desc: "온프레미스 100%" }
+        - { label: "규제 통과",       desc: "SHAP 수학적 XAI" }
+        - { label: "Reverse What-If", desc: "목표→변수 역산" }
+        - { label: "5분 의사결정",    desc: "비전문가 즉시 사용" }
     nav:
-      problem: 문제
       solution: 솔루션
       how_it_works: 작동 원리
-      use_cases: 도입 사례
+      use_cases: 산업별 활용
+      problem: 문제
       pricing: 가격
       platform_api: Platform API
       team: 팀
       vision: 비전
       investors: 투자자
-      contact: 문의
+      contact: 문의하기
       demo: 데모 신청
     footer:
-      copyright: "© 2025 Gagahoho, Inc. All rights reserved."
+      copyright: "© 2025 XimTier (Gagahoho, Inc.) · All rights reserved."
+    regulation_strip:
+      label: 규제 키워드
+      keywords: ["EU AI Act 2026", "한국 AI 기본법", "AI Bill of Rights", "ISO/IEC 42001"]
