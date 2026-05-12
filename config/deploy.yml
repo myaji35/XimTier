@@ -15,13 +15,14 @@ ssh:
   user: root
 
 # kamal-proxy를 0012와 공유 (host-based routing) — proxy.host로 분기됨
+# Dockerfile은 Thruster를 통해 :80에서 외부 노출 — app_port: 80
 proxy:
   host: ximtier.158.247.235.31.nip.io
-  app_port: 3000
+  app_port: 80
   healthcheck:
     path: /up
     interval: 3
-    timeout: 5
+    timeout: 60
 
 # GitHub Container Registry
 registry:
