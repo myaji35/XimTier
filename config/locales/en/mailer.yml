@@ -1,0 +1,16 @@
+en:
+  mailer:
+    contact:
+      auto_reply:
+        subject: "[XimTier] Inquiry received"
+        greeting: "Hello %{name},"
+        body: "Thank you for reaching out to XimTier. We'll get back to you within 24 hours."
+        signature: "— The XimTier Team"
+      admin_notification:
+        title: "New inquiry received"
+    download:
+      subject: "[XimTier] Your IR deck download link"
+      greeting: "Hello %{name},"
+      body: "Here is the requested download link for the XimTier IR deck. Please use it within 24 hours."
+      cta: "Download the IR deck"
+      signature: "— The XimTier Team"

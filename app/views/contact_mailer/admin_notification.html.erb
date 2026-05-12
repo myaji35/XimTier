@@ -1,0 +1,14 @@
+<h2 style="font-family: -apple-system, sans-serif; color: #0B132D; font-size: 18px;">새 문의 도착</h2>
+<table style="font-family: -apple-system, sans-serif; font-size: 14px; color: #475467; border-collapse: collapse;">
+  <tr><td style="padding: 6px 0; width: 100px; color: #697386;">이름</td><td><%= @inquiry.name %></td></tr>
+  <tr><td style="padding: 6px 0; color: #697386;">이메일</td><td><a href="mailto:<%= @inquiry.email %>" style="color: #2563EB;"><%= @inquiry.email %></a></td></tr>
+  <tr><td style="padding: 6px 0; color: #697386;">회사</td><td><%= @inquiry.company %></td></tr>
+  <tr><td style="padding: 6px 0; color: #697386;">산업</td><td><%= @inquiry.industry %></td></tr>
+  <tr><td style="padding: 6px 0; color: #697386;">locale</td><td><%= @inquiry.locale %></td></tr>
+  <tr><td style="padding: 6px 0; color: #697386;">출처</td><td><%= @inquiry.source %></td></tr>
+</table>
+<hr style="border: 0; border-top: 1px solid #e5e9f0; margin: 20px 0;">
+<p style="font-family: -apple-system, sans-serif; color: #0B132D;"><strong>내용</strong></p>
+<blockquote style="border-left: 3px solid #2563EB; padding-left: 12px; font-family: -apple-system, sans-serif; color: #475467; line-height: 1.6;">
+  <%= simple_format(@inquiry.message) %>
+</blockquote>

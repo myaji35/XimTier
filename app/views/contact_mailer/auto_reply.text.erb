@@ -1,0 +1,8 @@
+<%= t("mailer.contact.auto_reply.greeting", name: @inquiry.name) %>
+
+<%= t("mailer.contact.auto_reply.body") %>
+
+문의 내용:
+<%= @inquiry.message %>
+
+<%= t("mailer.contact.auto_reply.signature") %>

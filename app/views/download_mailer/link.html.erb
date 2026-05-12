@@ -1,0 +1,8 @@
+<p style="font-family: -apple-system, sans-serif; color: #0B132D; font-size: 15px;"><%= t("mailer.download.greeting", name: @download.name) %></p>
+<p style="font-family: -apple-system, sans-serif; color: #475467; font-size: 14px; line-height: 1.6;"><%= t("mailer.download.body") %></p>
+<p style="margin: 28px 0;">
+  <a href="<%= @download_url %>" style="display:inline-block; padding:12px 22px; border-radius:999px; background:linear-gradient(135deg,#2563EB,#00C8C8); color:#fff; text-decoration:none; font-family:-apple-system,sans-serif; font-weight:600; font-size:14px;"><%= t("mailer.download.cta") %></a>
+</p>
+<p style="font-family: -apple-system, sans-serif; color: #697386; font-size: 12px;"><%= @download_url %></p>
+<hr style="border: 0; border-top: 1px solid #e5e9f0; margin: 24px 0;">
+<p style="font-family: -apple-system, sans-serif; color: #697386; font-size: 13px;"><%= t("mailer.download.signature") %></p>

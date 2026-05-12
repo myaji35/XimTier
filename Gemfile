@@ -78,6 +78,9 @@ group :development do
 
   # N+1 detection
   gem "bullet"
+
+  # Local mail catcher (dev에서 메일 가로채기)
+  gem "letter_opener_web", "~> 3.0"
 end
 
 group :test do

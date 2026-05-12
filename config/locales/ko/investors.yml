@@ -26,5 +26,10 @@ ko:
     closing: "투자자가 얻는 것: Post-LLM Decision Intelligence 시장의 초기 선점 기회. LLM 시대가 깊어질수록 가치가 커지는 포지션. 더벤처스·스파크랩 등과 함께 Series A까지 동행 예정."
     download_form:
       title: IR 자료 다운로드
-      subtitle: "이메일로 PDF 링크를 보내드립니다. M3 마일스톤에서 활성화 예정."
+      subtitle: "이메일로 PDF 다운로드 링크를 보내드립니다. 1분 안에 메일을 확인해 주세요."
       submit: 다운로드 요청
+    flash:
+      success: 이메일을 확인해 주세요. 다운로드 링크를 보내드렸습니다.
+    errors:
+      invalid_token: 다운로드 링크가 유효하지 않거나 만료되었습니다.
+      file_missing: 자료 파일을 찾지 못했습니다. 관리자에게 문의해 주세요.

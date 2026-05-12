@@ -11,7 +11,17 @@ ko:
       message: 메시지
       consent: "개인정보 수집·이용에 동의합니다."
       submit: 문의 보내기
-    soon: "폼 활성화는 M3 마일스톤에서 진행됩니다."
+    industries:
+      other: 기타
+      manufacturing: 제조
+      hospital: 병원·헬스케어
+      public_sector: 공공·행정
+      finance: 금융
+      smart_city: 스마트시티
+    flash:
+      success: 문의가 정상 접수되었습니다. 곧 답신드리겠습니다.
+    errors:
+      consent_required: 개인정보 수집·이용 동의가 필요합니다.
   demo:
     eyebrow: 데모 신청
     h1: 5단계 워크플로우를 직접 체험하세요

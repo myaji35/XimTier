@@ -11,7 +11,17 @@ en:
       message: Message
       consent: "I consent to the collection and use of personal information."
       submit: Send inquiry
-    soon: "Form activation is scheduled in milestone M3."
+    industries:
+      other: Other
+      manufacturing: Manufacturing
+      hospital: Hospital / Healthcare
+      public_sector: Public sector
+      finance: Finance
+      smart_city: Smart city
+    flash:
+      success: Your inquiry has been received. We'll respond shortly.
+    errors:
+      consent_required: Please consent to the collection and use of personal information.
   demo:
     eyebrow: Request Demo
     h1: Experience the 5-step workflow firsthand

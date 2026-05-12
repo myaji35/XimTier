@@ -26,14 +26,23 @@ Rails.application.routes.draw do
     # Company
     get "/company/team",      to: "pages#team",      as: :team
     get "/company/vision",    to: "pages#vision",    as: :vision
-    get "/company/investors", to: "pages#investors", as: :investors
+    get  "/company/investors", to: "downloads#new",    as: :investors
+    post "/company/investors", to: "downloads#create"
+    get  "/ir/:token",         to: "downloads#show",   as: :ir_download
 
     # Legal
     get "/privacy", to: "pages#privacy"
     get "/terms",   to: "pages#terms"
 
-    # Conversion (stubs — M3에서 구현)
-    get "/contact", to: "pages#contact"
-    get "/demo",    to: "pages#demo"
+    # Contact + Demo
+    get  "/contact", to: "contact_inquiries#new",    as: :contact
+    post "/contact", to: "contact_inquiries#create"
+
+    get "/demo",    to: "pages#demo", as: :demo
+  end
+
+  # letter_opener_web for development
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
 end

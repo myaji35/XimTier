@@ -1,4 +1,5 @@
 <% content_for :title, "#{t('contact.h1')} — #{t('site.brand')}" %>
+<% @inquiry ||= ContactInquiry.new %>
 
 <section class="section-light section-pad">
   <div class="wrap" style="max-width:760px;">
@@ -6,10 +7,73 @@
     <h1 class="h-section mt-3"><%= t("contact.h1") %></h1>
     <p class="lead mt-5" style="color:#475467;"><%= t("contact.lead") %></p>
 
-    <% if I18n.exists?("contact.soon") %>
-      <div class="mt-10 p-5 rounded-[14px]" style="background:#F2F4F7; border:1px solid #e5e9f0;">
-        <div class="font-mono text-[11px]" style="color:#2563EB; letter-spacing:0.14em;">// COMING SOON</div>
-        <p class="mt-2 text-[14px]" style="color:#475467;"><%= t("contact.soon") %></p>
+    <% if flash[:notice] %>
+      <div class="mt-8 p-5 rounded-[14px]" style="background:#E0F2FE; border:1px solid #0891B2; color:#0E7490;">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
+    <%= form_with model: @inquiry, url: contact_path(locale: I18n.locale), local: true, class: "mt-10 space-y-5" do |f| %>
+      <% if @inquiry.errors.any? %>
+        <div class="p-4 rounded-[14px]" style="background:#FEF2F2; border:1px solid #FCA5A5; color:#991B1B;">
+          <ul class="list-disc list-inside text-[14px]">
+            <% @inquiry.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <%# Honeypot — bots fill this %>
+      <div style="position:absolute; left:-9999px;" aria-hidden="true">
+        <label>Website (leave empty)<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+      </div>
+
+      <div>
+        <%= f.label :name, t("contact.form.name"), class: "block text-[13px] font-medium mb-2", style: "color:#0B132D;" %>
+        <%= f.text_field :name, required: true, maxlength: 100,
+              class: "w-full px-4 py-3 rounded-[10px] border text-[15px]",
+              style: "border-color:#e5e9f0; color:#0B132D; background:#fff;" %>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div>
+          <%= f.label :email, t("contact.form.email"), class: "block text-[13px] font-medium mb-2", style: "color:#0B132D;" %>
+          <%= f.email_field :email, required: true,
+                class: "w-full px-4 py-3 rounded-[10px] border text-[15px]",
+                style: "border-color:#e5e9f0; color:#0B132D; background:#fff;" %>
+        </div>
+        <div>
+          <%= f.label :company, t("contact.form.company"), class: "block text-[13px] font-medium mb-2", style: "color:#0B132D;" %>
+          <%= f.text_field :company, maxlength: 100,
+                class: "w-full px-4 py-3 rounded-[10px] border text-[15px]",
+                style: "border-color:#e5e9f0; color:#0B132D; background:#fff;" %>
+        </div>
+      </div>
+
+      <div>
+        <%= f.label :industry, t("contact.form.industry"), class: "block text-[13px] font-medium mb-2", style: "color:#0B132D;" %>
+        <%= f.select :industry,
+              ContactInquiry.industries.keys.map { |k| [t("contact.industries.#{k}"), k] },
+              {},
+              class: "w-full px-4 py-3 rounded-[10px] border text-[15px]",
+              style: "border-color:#e5e9f0; color:#0B132D; background:#fff;" %>
+      </div>
+
+      <div>
+        <%= f.label :message, t("contact.form.message"), class: "block text-[13px] font-medium mb-2", style: "color:#0B132D;" %>
+        <%= f.text_area :message, required: true, rows: 5, maxlength: 5000,
+              class: "w-full px-4 py-3 rounded-[10px] border text-[15px]",
+              style: "border-color:#e5e9f0; color:#0B132D; background:#fff;" %>
+      </div>
+
+      <label class="flex items-start gap-3 text-[14px]" style="color:#475467;">
+        <input type="checkbox" name="contact_inquiry[consent]" value="1" required style="margin-top:4px;">
+        <span><%= t("contact.form.consent") %></span>
+      </label>
+
+      <div class="pt-2">
+        <%= f.submit t("contact.form.submit"), class: "btn btn-grad", style: "border:0; cursor:pointer;" %>
       </div>
     <% end %>
   </div>

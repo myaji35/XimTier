@@ -26,5 +26,10 @@ en:
     closing: "What investors get: an early seat in Post-LLM Decision Intelligence. A position whose value grows as the LLM era deepens. Targeting Series A alongside The Ventures, SparkLabs, and peers."
     download_form:
       title: Download the IR deck
-      subtitle: "We'll email a PDF link. Activated in the M3 milestone."
+      subtitle: "We'll email you a PDF download link. Please check your inbox within a minute."
       submit: Request download
+    flash:
+      success: Please check your email — we've sent the download link.
+    errors:
+      invalid_token: The download link is invalid or has expired.
+      file_missing: The file could not be located. Please contact the administrator.

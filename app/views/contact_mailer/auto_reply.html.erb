@@ -1,0 +1,8 @@
+<p style="font-family: -apple-system, sans-serif; color: #0B132D; font-size: 15px;"><%= t("mailer.contact.auto_reply.greeting", name: @inquiry.name) %></p>
+<p style="font-family: -apple-system, sans-serif; color: #475467; font-size: 14px; line-height: 1.6;"><%= t("mailer.contact.auto_reply.body") %></p>
+<hr style="border: 0; border-top: 1px solid #e5e9f0; margin: 24px 0;">
+<p style="font-family: -apple-system, sans-serif; color: #697386; font-size: 13px;"><strong>문의 내용:</strong></p>
+<blockquote style="border-left: 3px solid #2563EB; padding-left: 12px; color: #475467; font-size: 14px; font-family: -apple-system, sans-serif;">
+  <%= simple_format(@inquiry.message) %>
+</blockquote>
+<p style="font-family: -apple-system, sans-serif; color: #697386; font-size: 13px; margin-top: 32px;"><%= t("mailer.contact.auto_reply.signature") %></p>

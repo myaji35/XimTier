@@ -1,0 +1,16 @@
+ko:
+  mailer:
+    contact:
+      auto_reply:
+        subject: "[XimTier] 문의 접수 확인"
+        greeting: "%{name}님, 안녕하세요."
+        body: "XimTier에 보내주신 문의를 잘 받았습니다. 24시간 내에 담당자가 회신드리겠습니다."
+        signature: "— XimTier 팀"
+      admin_notification:
+        title: "새 문의 도착"
+    download:
+      subject: "[XimTier] IR 자료 다운로드 링크"
+      greeting: "%{name}님, 안녕하세요."
+      body: "요청하신 XimTier IR 자료 다운로드 링크입니다. 24시간 이내에 클릭해 주세요."
+      cta: "IR 자료 다운로드"
+      signature: "— XimTier 팀"
