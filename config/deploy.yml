@@ -19,12 +19,15 @@ ssh:
 proxy:
   host: ximtier.158.247.235.31.nip.io
   app_port: 80
-  deploy_timeout: 120  # Puma 첫 부팅(db:prepare+eager_load) 전체 대기 (기본 30s)
-  drain_timeout: 30
   healthcheck:
     path: /up
     interval: 3
     timeout: 10
+
+# 첫 부팅 전체 대기 — root-level (Kamal 2 스키마, 기본 30s)
+# db:prepare(SQLite 4개 DB 생성) + eager_load + Devise/Avo init 합산 ~45s 필요
+deploy_timeout: 120
+drain_timeout: 30
 
 # GitHub Container Registry
 registry:
