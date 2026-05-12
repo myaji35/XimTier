@@ -1,0 +1,45 @@
+<% content_for :title, "#{t('site.name')} — #{t('site.tagline')}" %>
+
+<section class="relative overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-slate-950 to-slate-950 pointer-events-none"></div>
+
+  <div class="relative max-w-6xl mx-auto px-6 py-24 md:py-32">
+    <p class="uppercase tracking-[0.3em] text-xs text-cyan-300/80 mb-6">
+      <%= t("site.tagline") %>
+    </p>
+
+    <h1 class="text-4xl md:text-6xl font-bold leading-tight text-slate-50">
+      <%= t("site.hero.headline") %>
+    </h1>
+
+    <p class="mt-6 max-w-3xl text-lg md:text-xl text-slate-300 leading-relaxed">
+      <%= t("site.hero.subhead") %>
+    </p>
+
+    <div class="mt-10 flex flex-wrap gap-4">
+      <%= link_to t("site.hero.cta_demo"), "#demo",
+            class: "inline-flex items-center justify-center rounded-md bg-cyan-400 px-6 py-3 font-semibold text-slate-950 hover:bg-cyan-300 transition" %>
+      <%= link_to t("site.hero.cta_ir"), "#investors",
+            class: "inline-flex items-center justify-center rounded-md border border-slate-700 px-6 py-3 font-semibold text-slate-100 hover:border-cyan-400/60 hover:text-cyan-300 transition" %>
+    </div>
+
+    <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 text-sm">
+      <div class="rounded-lg border border-slate-800/80 bg-slate-900/40 p-4">
+        <div class="text-2xl font-bold text-cyan-300">85%</div>
+        <div class="text-slate-400 mt-1">기업 ChatGPT 내부 사용 금지</div>
+      </div>
+      <div class="rounded-lg border border-slate-800/80 bg-slate-900/40 p-4">
+        <div class="text-2xl font-bold text-cyan-300">75%</div>
+        <div class="text-slate-400 mt-1">Gen AI 도입 기대 미달 (Gartner)</div>
+      </div>
+      <div class="rounded-lg border border-slate-800/80 bg-slate-900/40 p-4">
+        <div class="text-2xl font-bold text-cyan-300">$81B</div>
+        <div class="text-slate-400 mt-1">2030 글로벌 DI 시장 (TAM)</div>
+      </div>
+      <div class="rounded-lg border border-slate-800/80 bg-slate-900/40 p-4">
+        <div class="text-2xl font-bold text-cyan-300">+28.5%</div>
+        <div class="text-slate-400 mt-1">시장 CAGR (2025–2030)</div>
+      </div>
+    </div>
+  </div>
+</section>

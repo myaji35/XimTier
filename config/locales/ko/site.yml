@@ -1,0 +1,23 @@
+ko:
+  site:
+    name: XAISimTier
+    tagline: Post-LLM Decision Intelligence Platform
+    hero:
+      headline: LLM이 못 푸는 수치를, 우리가 증명한다
+      subhead: "ChatGPT가 설명한다면, XAISimTier는 증명한다 — 데이터 주권 × 규제 산업 × Reverse What-If 교차점에서 비전문가도 5분 안에 의사결정을 끝낸다."
+      cta_demo: 데모 신청
+      cta_ir: IR 자료 다운로드
+    nav:
+      problem: 문제
+      solution: 솔루션
+      how_it_works: 작동 원리
+      use_cases: 도입 사례
+      pricing: 가격
+      platform_api: Platform API
+      team: 팀
+      vision: 비전
+      investors: 투자자
+      contact: 문의
+      demo: 데모 신청
+    footer:
+      copyright: "© 2025 Gagahoho, Inc. All rights reserved."

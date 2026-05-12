@@ -1,0 +1,64 @@
+# Kamal 2 — XAISimTier 배포 설정 (PRD §6.5)
+service: xaisimtier
+image: xaisimtier
+
+servers:
+  web:
+    - REPLACE_WITH_SERVER_IP   # TODO(M1 end): 실제 VPS/홈랩 IP로 교체
+  # job:
+  #   hosts:
+  #     - REPLACE_WITH_SERVER_IP
+  #   cmd: bin/jobs
+
+# Let's Encrypt + 단일 서버
+proxy:
+  ssl: true
+  host: REPLACE_WITH_DOMAIN     # TODO: xaisimtier.com 또는 xaisimtier.ai
+
+registry:
+  server: ghcr.io
+  username: REPLACE_WITH_GH_USER
+  password:
+    - KAMAL_REGISTRY_PASSWORD
+
+env:
+  secret:
+    - RAILS_MASTER_KEY
+    - POSTGRES_PASSWORD
+  clear:
+    SOLID_QUEUE_IN_PUMA: true
+    DB_HOST: xaisimtier-db
+    POSTGRES_USER: xaisimtier
+    POSTGRES_DB: xaisimtier_production
+    RAILS_LOG_LEVEL: info
+
+aliases:
+  console: app exec --interactive --reuse "bin/rails console"
+  shell:   app exec --interactive --reuse "bash"
+  logs:    app logs -f
+  dbc:     app exec --interactive --reuse "bin/rails dbconsole --include-password"
+
+volumes:
+  - "xaisimtier_storage:/rails/storage"
+
+asset_path: /rails/public/assets
+
+builder:
+  arch: amd64
+  # 로컬이 Apple Silicon이라 amd64 빌드 느림 — 필요시 remote 빌더 활성화
+  # remote: ssh://docker@docker-builder-server
+
+# PostgreSQL 16 accessory (self-host, PRD §6.4)
+accessories:
+  db:
+    image: postgres:16
+    host: REPLACE_WITH_SERVER_IP
+    port: "127.0.0.1:5432:5432"
+    env:
+      clear:
+        POSTGRES_USER: xaisimtier
+        POSTGRES_DB: xaisimtier_production
+      secret:
+        - POSTGRES_PASSWORD
+    directories:
+      - data:/var/lib/postgresql/data

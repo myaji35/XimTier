@@ -1,0 +1,23 @@
+en:
+  site:
+    name: XAISimTier
+    tagline: Post-LLM Decision Intelligence Platform
+    hero:
+      headline: We prove the numbers LLMs can't.
+      subhead: "If ChatGPT explains, XAISimTier proves — at the intersection of data sovereignty, regulated industries, and Reverse What-If, even non-experts finish a decision in 5 minutes."
+      cta_demo: Request Demo
+      cta_ir: Download IR Deck
+    nav:
+      problem: Problem
+      solution: Solution
+      how_it_works: How It Works
+      use_cases: Use Cases
+      pricing: Pricing
+      platform_api: Platform API
+      team: Team
+      vision: Vision
+      investors: Investors
+      contact: Contact
+      demo: Request Demo
+    footer:
+      copyright: "© 2025 Gagahoho, Inc. All rights reserved."

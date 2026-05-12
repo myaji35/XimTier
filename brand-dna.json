@@ -1,0 +1,94 @@
+{
+  "_status": "draft",
+  "_version": "0.1.0",
+  "_last_updated": "2026-05-12",
+  "_notes": "초안 — Pre-Seed IR과 정합. 정식 디자인 컨설팅 후 design_consultation 결과로 교체 예정.",
+
+  "brand": {
+    "name": "XAISimTier",
+    "tagline_ko": "LLM이 못 푸는 수치를, 우리가 증명한다",
+    "tagline_en": "We prove the numbers LLMs can't.",
+    "voice": ["증명 가능한", "엔터프라이즈 신뢰", "기술 첨단", "비전문가 친화"]
+  },
+
+  "design_tokens": {
+    "colors": {
+      "primary": {
+        "50":  "#ECFEFF",
+        "100": "#CFFAFE",
+        "300": "#67E8F9",
+        "400": "#22D3EE",
+        "500": "#06B6D4",
+        "600": "#0891B2",
+        "700": "#0E7490",
+        "900": "#164E63"
+      },
+      "neutral": {
+        "50":  "#F8FAFC",
+        "100": "#F1F5F9",
+        "300": "#CBD5E1",
+        "400": "#94A3B8",
+        "500": "#64748B",
+        "700": "#334155",
+        "800": "#1E293B",
+        "900": "#0F172A",
+        "950": "#020617"
+      },
+      "accent": {
+        "success": "#10B981",
+        "warning": "#F59E0B",
+        "danger":  "#EF4444",
+        "info":    "#3B82F6"
+      },
+      "semantic": {
+        "background":      "#020617",
+        "background_alt":  "#0F172A",
+        "surface":         "#1E293B",
+        "border":          "#334155",
+        "text_primary":    "#F1F5F9",
+        "text_secondary":  "#94A3B8",
+        "text_muted":      "#64748B",
+        "brand":           "#22D3EE"
+      }
+    },
+    "typography": {
+      "font_family_ko": "Pretendard, system-ui, sans-serif",
+      "font_family_en": "Inter, system-ui, sans-serif",
+      "font_family_mono": "JetBrains Mono, Menlo, monospace",
+      "scale": {
+        "xs":  "0.75rem",
+        "sm":  "0.875rem",
+        "base":"1rem",
+        "lg":  "1.125rem",
+        "xl":  "1.25rem",
+        "2xl": "1.5rem",
+        "3xl": "1.875rem",
+        "4xl": "2.25rem",
+        "5xl": "3rem",
+        "6xl": "3.75rem"
+      },
+      "weights": { "regular": 400, "medium": 500, "semibold": 600, "bold": 700 },
+      "letter_spacing_hero": "-0.02em",
+      "letter_spacing_eyebrow": "0.3em"
+    },
+    "radius": { "sm": "0.25rem", "md": "0.5rem", "lg": "0.75rem", "xl": "1rem", "2xl": "1.5rem", "full": "9999px" },
+    "spacing_base_rem": 0.25,
+    "shadow": {
+      "sm":  "0 1px 2px rgba(2,6,23,0.4)",
+      "md":  "0 4px 8px rgba(2,6,23,0.5)",
+      "glow":"0 0 32px rgba(34,211,238,0.25)"
+    },
+    "motion": {
+      "duration_fast": "150ms",
+      "duration_base": "250ms",
+      "duration_slow": "400ms",
+      "easing_standard": "cubic-bezier(0.4, 0, 0.2, 1)"
+    }
+  },
+
+  "page_priorities": {
+    "lcp_target_ms": 2500,
+    "above_fold_kb": 100,
+    "lighthouse_target": { "performance": 90, "accessibility": 95, "seo": 95 }
+  }
+}
