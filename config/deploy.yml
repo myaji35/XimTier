@@ -19,10 +19,12 @@ ssh:
 proxy:
   host: ximtier.158.247.235.31.nip.io
   app_port: 80
+  deploy_timeout: 120  # Puma 첫 부팅(db:prepare+eager_load) 전체 대기 (기본 30s)
+  drain_timeout: 30
   healthcheck:
     path: /up
     interval: 3
-    timeout: 60
+    timeout: 10
 
 # GitHub Container Registry
 registry:
