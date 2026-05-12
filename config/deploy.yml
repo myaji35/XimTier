@@ -49,11 +49,10 @@ volumes:
 
 asset_path: /rails/public/assets
 
-# Mac arm64 → 서버 amd64 크로스컴파일
+# 원격 amd64 native 빌드 (QEMU 회피) — Vultr 서버에서 직접 빌드
 builder:
   arch: amd64
-  # 빠른 빌드를 원하면 원격 amd64 빌더로 변경
-  # remote: ssh://root@158.247.235.31
+  remote: ssh://root@158.247.235.31
 
 aliases:
   console: app exec --interactive --reuse "bin/rails console"
