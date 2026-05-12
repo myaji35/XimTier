@@ -52,11 +52,11 @@ class CreateAhoyVisitsAndEvents < ActiveRecord::Migration[8.1]
       t.references :user
 
       t.string :name
-      t.jsonb :properties
+      # SQLite 호환을 위해 json 사용 (PostgreSQL에서도 동작). jsonb 성능 인덱스는 미사용.
+      t.json :properties
       t.datetime :time
     end
 
     add_index :ahoy_events, [:name, :time]
-    add_index :ahoy_events, :properties, using: :gin, opclass: :jsonb_path_ops
   end
 end
