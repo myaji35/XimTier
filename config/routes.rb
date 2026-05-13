@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     get "/problem",      to: "pages#problem"
     get "/solution",     to: "pages#solution"
     get "/how-it-works", to: "pages#how_it_works", as: :how_it_works
+    get "/why-not-llm",  to: "pages#why_not_llm", as: :why_not_llm
     get "/use-cases",    to: "pages#use_cases",    as: :use_cases
     get "/cases/:slug",  to: "pages#case_study",   as: :case_study,
         constraints: { slug: /manufacturing|hospital|public|smart-city|finance|retail|logistics|energy|education|telecom/ }

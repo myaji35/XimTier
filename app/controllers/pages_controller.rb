@@ -3,6 +3,7 @@ class PagesController < ApplicationController
   def problem; end
   def solution; end
   def how_it_works; end
+  def why_not_llm; end
   def use_cases; end
 
   def case_study

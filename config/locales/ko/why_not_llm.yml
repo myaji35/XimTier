@@ -1,0 +1,45 @@
+ko:
+  why_now:
+    eyebrow: WHY NOW
+    title: 2026년, 설명 의무가 강제됩니다
+    body: >
+      2026년 8월 2일, EU AI Act가 발효됩니다. 위반 시 €35,000,000 또는 글로벌 매출 7%.
+      2026년 1월 22일부터 한국 AI 기본법이 시행되어 '인공지능 설명 방안 수립' 의무가
+      적용되며 안정성·신뢰성 확보 문서는 5년간 보관해야 합니다. 그날 이후, 의사결정의
+      '왜'를 LLM 환각으로는 감사를 통과할 수 없습니다.
+    cta: 규제 대응 진단 보기 →
+  why_not_llm:
+    eyebrow: WHY NOT LLM
+    h1: ChatGPT는 설명합니다. XimTier는 증명합니다.
+    lead: "LLM·회귀·일반 ML은 의사결정의 일부만 답합니다. XimTier는 '얼마나 바꿔야 목표에 도달하는가'까지 수학으로 풉니다."
+    not_pattern:
+      - "Not a tool you prompt."
+      - "Not a regression report."
+      - "Not a black-box model."
+      - "It's a decision engine, with the math attached."
+    matrix_title: 4-row 비교 매트릭스
+    matrix_cols:
+      tool: 도구
+      attribution: "변수가 *어떻게* 영향?"
+      reverse: "*얼마나* 바꿔야 목표?"
+      proof: "수학적 근거 자동 첨부"
+      onprem: "온프레미스 100%"
+    rows:
+      - { tool: "ChatGPT · Claude · Gemini", attribution: "△ 환각 위험", reverse: "✗", proof: "✗", onprem: "✗" }
+      - { tool: "BI (Tableau · PowerBI)",   attribution: "✓ 회귀 분석", reverse: "✗", proof: "✗", onprem: "✓" }
+      - { tool: "일반 ML (DataRobot · H2O)", attribution: "✓",            reverse: "△ 제한적", proof: "✗ 블랙박스", onprem: "△" }
+      - { tool: "XimTier",                   attribution: "✓",            reverse: "✓ Reverse What-If", proof: "✓ SHAP 자동", onprem: "✓" }
+    rows_highlight: 3   # 0-based, "XimTier" 행 강조
+    enemies_title: "우리가 싸우는 두 적"
+    enemy1_label: "1차 적 — 직감과 엑셀"
+    enemy1_body: "시니어 분석가 직감, 엑셀 수작업, 사후 분석만 가능한 BI 대시보드. '얼마나 바꿔야 목표 도달?'에 답이 없습니다."
+    enemy2_label: "2차 적 — LLM 환각"
+    enemy2_body: "ChatGPT/Claude는 그럴듯한 설명을 *생성*하지만, 데이터에 기반한 수학적 *증명*이 아닙니다. 감사 통과 불가."
+    moat_title: "이 차이가 만드는 결정적 우위"
+    moats:
+      - { label: "Reverse What-If",   body: "회귀를 넘어 역산. 목표값에 도달하기 위한 변수별 최적값을 0.18초 안에 자동 산출." }
+      - { label: "SHAP 자동 첨부",    body: "모든 결정에 변수별 기여도 + 수학적 근거 자동. EU AI Act Article 13/14 증거 패키지." }
+      - { label: "100% 온프레미스",   body: "외부 LLM 호출 0건. 금융·국방·의료 보안 정책 그대로 통과. Sovereign AI 운영." }
+      - { label: "3대 규제 동시 만족", body: "EU AI Act + 한국 AI 기본법 + 식약처 의료기기 가이드 동일 문서 자동 발급." }
+    cta_demo: 5분 라이브 데모 체험 →
+    cta_cases: 케이스 상세 보기 →

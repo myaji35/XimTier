@@ -15,8 +15,8 @@
       <div class="eyebrow"><span class="dot"></span><%= t("site.hero.eyebrow") %></div>
 
       <h1 class="h-display" style="color:#fff; word-break:keep-all; overflow-wrap:break-word;">
-        <span style="white-space:nowrap;"><%= t("site.hero.headline_top") %></span><br>
-        <span class="text-brand-grad" style="white-space:nowrap;"><%= t("site.hero.headline_bottom") %></span>
+        <%= t("site.hero.headline_top") %><br>
+        <span class="text-brand-grad"><%= t("site.hero.headline_bottom") %></span>
       </h1>
 
       <p class="lead mt-6" style="color:#a7b1c7; max-width:560px;">
@@ -68,14 +68,41 @@
   </div>
 </section>
 
-<%# ============ 02 Regulation strip (thin band) ============ %>
-<section class="section-dark" style="padding:24px 0; border-top:1px solid rgba(255,255,255,0.08); border-bottom:1px solid rgba(255,255,255,0.08); background:#060c1f;">
-  <div class="wrap flex items-center justify-between flex-wrap" style="gap:20px;">
-    <div class="font-mono text-[11px]" style="color:#00C8C8; letter-spacing:0.14em;">// <%= t("site.regulation_strip.label").upcase %></div>
-    <div class="flex flex-wrap items-center" style="gap:24px;">
-      <% t("site.regulation_strip.keywords").each do |kw| %>
-        <span class="text-[13px] font-medium" style="color:#a7b1c7;"><%= kw %></span>
-      <% end %>
+<%# ============ 02 Fear-fact strip (€35M / D-Day / 100%) ============ %>
+<section class="section-dark" style="padding:18px 0; border-top:1px solid rgba(255,255,255,0.08); border-bottom:1px solid rgba(255,255,255,0.08); background:#060c1f;">
+  <div class="wrap grid grid-cols-1 md:grid-cols-3" style="gap:18px;">
+    <div class="flex items-center" style="gap:14px;">
+      <div class="font-mono text-[10px]" style="color:#00C8C8; letter-spacing:0.14em;">EU AI ACT</div>
+      <div>
+        <div class="text-[12px]" style="color:#8a94ac;"><%= t("site.fear_strip.eu") %></div>
+        <div class="text-[18px] font-bold" style="color:#fff;"><%= t("site.fear_strip.eu_amount") %></div>
+      </div>
+    </div>
+    <div class="flex items-center" style="gap:14px;">
+      <div class="font-mono text-[10px]" style="color:#00C8C8; letter-spacing:0.14em;">KR AI ACT</div>
+      <div>
+        <div class="text-[12px]" style="color:#8a94ac;"><%= t("site.fear_strip.kr") %></div>
+        <div class="text-[18px] font-bold" style="color:#fff;"><%= t("site.fear_strip.kr_status") %></div>
+      </div>
+    </div>
+    <div class="flex items-center" style="gap:14px;">
+      <div class="font-mono text-[10px]" style="color:#00C8C8; letter-spacing:0.14em;">AUDIT</div>
+      <div>
+        <div class="text-[12px]" style="color:#8a94ac;"><%= t("site.fear_strip.audit") %></div>
+        <div class="text-[18px] font-bold" style="color:#fff;"><%= t("site.fear_strip.audit_status") %></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%# ============ 02.5 Why Now (Light) ============ %>
+<section class="section-light" style="padding:60px 0; border-bottom:1px solid #e5e9f0;">
+  <div class="wrap" style="max-width:920px;">
+    <div class="eyebrow"><span class="dot"></span><%= t("why_now.eyebrow") %></div>
+    <h2 class="h-section mt-3"><%= t("why_now.title") %></h2>
+    <p class="lead mt-5" style="color:#475467;"><%= t("why_now.body") %></p>
+    <div class="mt-6">
+      <a href="/<%= I18n.locale %>/why-not-llm" class="text-[14px] font-semibold" style="color:#2563EB;"><%= t("why_now.cta") %></a>
     </div>
   </div>
 </section>

@@ -3,10 +3,12 @@ en:
     eyebrow: Use Cases
     h1: Ten industry personas reach a decision
     lead: "Data ChatGPT can't touch — we work with it daily."
+    roi_line: "Save 11-20 hrs/week on audit evidence · Cut certification timeline by 6 months · 8-week payback"
     cards:
       manufacturing:
         icon: factory
         persona: Plant floor manager
+        ai_role: AI Process Optimizer
         title: Manufacturing — defect & yield optimization
         body: Regression on line data + environmental data identifies defect drivers. Reverse What-If derives the process variables needed to hit a target yield. 100% on-prem.
         outcomes:
@@ -16,6 +18,7 @@ en:
       hospital:
         icon: heart
         persona: Hospital executive
+        ai_role: AI Clinical Decision Officer
         title: Hospital — operations & diagnostic assist
         body: Identify operational bottlenecks from bed, staffing, and exam data. XAI-based diagnostic assist satisfies EU AI Act and Korea's AI Framework simultaneously.
         outcomes:
@@ -25,6 +28,7 @@ en:
       public:
         icon: building
         persona: Public-policy officer
+        ai_role: AI Policy Analyst
         title: Public Sector — policy scenario simulation
         body: Unify administrative, demographic, and budget data. Reverse What-If derives the policy variables needed to hit a goal (unemployment, birth rate, etc.).
         outcomes:
@@ -34,6 +38,7 @@ en:
       smart_city:
         icon: city
         persona: Smart-city lead
+        ai_role: AI City Operator
         title: Smart City — urban simulation
         body: Integrated analysis across IoT, traffic, and energy data. Simulate optimal allocation of city resources. Extensible as an AI-agent backend.
         outcomes:
@@ -43,6 +48,7 @@ en:
       finance:
         icon: scale
         persona: Financial risk officer
+        ai_role: AI Underwriter
         title: Finance — credit & fraud decisions
         body: SHAP-based per-variable contribution is attached to every credit and fraud score, ready for regulator explainability requests.
         outcomes:
@@ -52,6 +58,7 @@ en:
       retail:
         icon: chart
         persona: Retail / e-commerce BI lead
+        ai_role: AI Merchandiser
         title: Retail — pricing & inventory optimization
         body: SKU-level price elasticity and inventory turnover regression. Reverse What-If derives the price/promotion mix needed to hit a revenue target.
         outcomes:
@@ -61,6 +68,7 @@ en:
       logistics:
         icon: arrows
         persona: Logistics / SCM operations
+        ai_role: AI Dispatch Planner
         title: Logistics — delivery & inventory optimization
         body: Unified analysis of orders, inventory, and fleet positions. Reverse-solve lead-time and cost targets to pick hubs and routes.
         outcomes:
@@ -70,6 +78,7 @@ en:
       energy:
         icon: bolt
         persona: Energy & utilities operations
+        ai_role: AI Grid Operator
         title: Energy — demand forecast & grid stability
         body: Hourly regression across load, generation, and weather. Reverse What-If outputs the resource mix needed to avoid peak loads.
         outcomes:
@@ -79,6 +88,7 @@ en:
       education:
         icon: calculator
         persona: Education / EdTech data lead
+        ai_role: AI Learning Coach
         title: Education — outcome & dropout prediction
         body: Regression across study activity, assessments, and environment. Reverse-solve the study pattern needed to hit a target pass rate.
         outcomes:
@@ -88,6 +98,7 @@ en:
       telecom:
         icon: lock
         persona: Telecom / network operations
+        ai_role: AI Retention Analyst
         title: Telecom — churn prediction & QoS
         body: Subscriber usage logs, call drops, and plan data. SHAP identifies the variables driving churn risk.
         outcomes:

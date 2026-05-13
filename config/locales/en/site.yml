@@ -7,10 +7,10 @@ en:
     tagline: Post-LLM Decision Intelligence Platform
     positioning: Decision Intelligence, Proven by Numbers
     hero:
-      eyebrow: Post-LLM · Decision Intelligence Platform
-      headline_top: We prove the numbers
-      headline_bottom: LLMs can't.
-      subhead: "If ChatGPT explains, XimTier proves. Data sovereignty · regulated industries · Reverse What-If — at the intersection big-tech LLMs cannot enter, even non-experts finish a decision in 5 minutes."
+      eyebrow: Decision Intelligence · Regulated AI
+      headline_top: "When 'because the AI said so'"
+      headline_bottom: won't pass audit.
+      subhead: "The explainable decision engine for the EU AI Act and Korea AI Framework era. Not another LLM wrapper. Not another regression report. — Reverse What-If solves the math of every decision."
       cta_demo: Request Demo
       cta_ir: Download IR Deck
       chips:
@@ -28,6 +28,7 @@ en:
       how_it_works: How It Works
       use_cases: Industries
       problem: Problem
+      why_not_llm: "Why not LLM?"
       pricing: Pricing
       market: Market
       platform_api: Platform API
@@ -36,6 +37,13 @@ en:
       investors: Investors
       contact: Contact
       demo: Request Demo
+    fear_strip:
+      eu: "EU AI Act maximum fine"
+      eu_amount: "€ 35,000,000"
+      kr: "Korea AI Framework Act takes effect"
+      kr_status: "2026-01-22"
+      audit: "Audit-passing decisions"
+      audit_status: "100% automated"
     footer:
       copyright: "© 2025 XimTier (Gagahoho, Inc.) · All rights reserved."
     regulation_strip:

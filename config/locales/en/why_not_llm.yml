@@ -1,0 +1,46 @@
+en:
+  why_now:
+    eyebrow: WHY NOW
+    title: In 2026, explainability becomes mandatory.
+    body: >
+      On August 2, 2026, the EU AI Act takes full effect — fines up to €35,000,000 or 7% of
+      global revenue. Korea's AI Framework Act starts on January 22, 2026, requiring every
+      organization to establish an "AI explanation method" and retain reliability and
+      safety records for five years. From that day on, "the AI said so" no longer passes
+      an audit.
+    cta: See the regulatory readiness map →
+  why_not_llm:
+    eyebrow: WHY NOT LLM
+    h1: ChatGPT explains. XimTier proves.
+    lead: "LLMs, regression and generic ML answer only part of a decision. XimTier solves the math of 'how much to change to hit the target.'"
+    not_pattern:
+      - "Not a tool you prompt."
+      - "Not a regression report."
+      - "Not a black-box model."
+      - "It's a decision engine, with the math attached."
+    matrix_title: A 4-row comparison
+    matrix_cols:
+      tool: Tool
+      attribution: "Does it explain *how* variables matter?"
+      reverse: "*How much* to change to hit a target?"
+      proof: "Math-backed proof auto-attached"
+      onprem: "100% on-prem"
+    rows:
+      - { tool: "ChatGPT · Claude · Gemini", attribution: "△ Hallucination risk", reverse: "✗", proof: "✗", onprem: "✗" }
+      - { tool: "BI (Tableau · PowerBI)",   attribution: "✓ Regression",  reverse: "✗", proof: "✗", onprem: "✓" }
+      - { tool: "Generic ML (DataRobot · H2O)", attribution: "✓",       reverse: "△ Limited", proof: "✗ Black box", onprem: "△" }
+      - { tool: "XimTier",                  attribution: "✓",            reverse: "✓ Reverse What-If", proof: "✓ SHAP auto", onprem: "✓" }
+    rows_highlight: 3
+    enemies_title: "Two enemies we fight"
+    enemy1_label: "Enemy #1 — Gut feel and spreadsheets"
+    enemy1_body: "Senior-analyst intuition, manual Excel work, and BI dashboards that only show retrospective analysis. None can answer 'how much to move to hit the target?'"
+    enemy2_label: "Enemy #2 — LLM hallucination"
+    enemy2_body: "ChatGPT/Claude *generate* plausible explanations but not data-grounded mathematical *proof*. They cannot survive an audit."
+    moat_title: "Why this matters"
+    moats:
+      - { label: "Reverse What-If",   body: "Beyond regression — reverse-solve each variable's optimum to hit a target in 0.18 seconds." }
+      - { label: "SHAP auto-attached", body: "Every decision ships with per-variable contribution and mathematical justification. EU AI Act Article 13/14 evidence pack." }
+      - { label: "100% on-prem",      body: "Zero external LLM calls. Passes finance, defense, and medical security policy as-is. Sovereign AI operation." }
+      - { label: "Three regs at once", body: "EU AI Act + Korea AI Framework + KR MFDS medical-device guidance — one auto-generated document set." }
+    cta_demo: Try the 5-minute live demo →
+    cta_cases: Read case studies →

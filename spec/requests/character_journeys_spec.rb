@@ -14,7 +14,7 @@ RSpec.describe "Character Journeys", type: :request do
 
       # Step 2: Hero 메시지
       get "/ko"
-      expect(response.body).to include("LLM이 못 푸는 수치를")
+      expect(response.body).to include("감사를 통과할 수 없습니다")
 
       # Step 3: use-cases 클릭
       get "/ko/use-cases"
@@ -82,8 +82,8 @@ RSpec.describe "Character Journeys", type: :request do
       expect(response).to redirect_to("/en")
 
       get "/en"
-      expect(response.body).to include("We prove the numbers")
-      expect(response.body).to match(/LLMs can.{1,8}t/)
+      expect(response.body).to include("pass audit")
+      expect(response.body).to include("Reverse What-If")
 
       get "/en/platform-api"
       expect(response).to have_http_status(:ok)
@@ -91,7 +91,7 @@ RSpec.describe "Character Journeys", type: :request do
 
       # 토글 검증
       get "/ko"
-      expect(response.body).to include("LLM이 못 푸는 수치를")
+      expect(response.body).to include("감사를 통과할 수 없습니다")
     end
   end
 

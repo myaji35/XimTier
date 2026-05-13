@@ -6,6 +6,13 @@
     <h1 class="h-section mt-3" style="color:#fff; max-width:920px;"><%= t("use_cases.h1") %></h1>
     <p class="lead mt-5" style="color:#a7b1c7; max-width:760px;"><%= t("use_cases.lead") %></p>
 
+    <%# ROI 1줄 (CI 레터팩 톤) %>
+    <div class="mt-6 inline-block font-mono text-[12px]"
+         style="color:#00C8C8; letter-spacing:0.08em; padding:8px 14px;
+                background:rgba(0,200,200,0.08); border:1px solid rgba(0,200,200,0.28); border-radius:999px;">
+      <%= t("use_cases.roi_line") %>
+    </div>
+
     <div class="mt-14 grid grid-cols-1 md:grid-cols-2" style="gap:24px;">
       <% %w[manufacturing hospital public smart_city finance retail logistics energy education telecom].each do |key| %>
         <% c = t("use_cases.cards.#{key}") %>
@@ -17,6 +24,13 @@
             </div>
             <div class="flex-1">
               <div class="font-mono text-[11px]" style="color:#00C8C8; letter-spacing:0.14em;">// <%= c[:persona].to_s.upcase %></div>
+              <% if c[:ai_role].present? %>
+                <div class="mt-1 inline-block font-mono text-[10px]"
+                     style="background:rgba(255,255,255,0.06); border:1px solid rgba(0,200,200,0.35);
+                            color:#00C8C8; padding:2px 8px; border-radius:999px; letter-spacing:0.08em;">
+                  <%= c[:ai_role] %>
+                </div>
+              <% end %>
               <h3 class="h-card mt-2" style="color:#fff;"><%= c[:title] %></h3>
               <p class="mt-3 text-[14px]" style="color:#a7b1c7; line-height:1.65;"><%= c[:body] %></p>
               <ul class="mt-4 space-y-1.5">

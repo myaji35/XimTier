@@ -7,10 +7,10 @@ ko:
     tagline: Post-LLM Decision Intelligence Platform
     positioning: Decision Intelligence, Proven by Numbers
     hero:
-      eyebrow: Post-LLM · Decision Intelligence Platform
-      headline_top: LLM이 못 푸는 수치를,
-      headline_bottom: 우리가 증명한다.
-      subhead: "ChatGPT가 설명한다면, XimTier는 증명합니다. 데이터 주권 · 규제 산업 · Reverse What-If — 빅테크 LLM이 들어올 수 없는 교차점에서, 비전문가도 5분 안에 의사결정을 끝냅니다."
+      eyebrow: Decision Intelligence · Regulated AI
+      headline_top: "'AI가 그렇게 말했다'로는"
+      headline_bottom: 감사를 통과할 수 없습니다.
+      subhead: "EU AI Act · 한국 AI 기본법 시대의 설명 가능한 의사결정 엔진. Not another LLM wrapper. Not another regression report. — Reverse What-If로 거꾸로 푸는 결정의 수학."
       cta_demo: 데모 신청
       cta_ir: IR 자료 다운로드
       chips:
@@ -28,6 +28,7 @@ ko:
       how_it_works: 작동 원리
       use_cases: 산업별 활용
       problem: 문제
+      why_not_llm: "Why not LLM?"
       pricing: 가격
       market: 시장
       platform_api: Platform API
@@ -36,6 +37,13 @@ ko:
       investors: 투자자
       contact: 문의하기
       demo: 데모 신청
+    fear_strip:
+      eu: "EU AI Act 위반 시"
+      eu_amount: "€ 35,000,000"
+      kr: "한국 AI 기본법 시행"
+      kr_status: "2026-01-22"
+      audit: "감사 통과 가능 결정"
+      audit_status: "100% 자동"
     footer:
       copyright: "© 2025 XimTier (Gagahoho, Inc.) · All rights reserved."
     regulation_strip:

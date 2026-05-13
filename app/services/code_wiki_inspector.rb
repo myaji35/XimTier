@@ -13,9 +13,30 @@ class CodeWikiInspector
       locales:        locales,
       agents:         harness_agents,
       issues:         harness_issues,
+      research:       research_documents,
       stats:          stats,
       generated_at:   Time.current
     }
+  end
+
+  def self.research_documents
+    dir = ROOT.join("_workspace", "research")
+    return [] unless Dir.exist?(dir)
+    Dir.glob(dir.join("*.md")).sort.reverse.map do |f|
+      name = File.basename(f)
+      lines = file_lines(f)
+      size_kb = (File.size(f) / 1024.0).round(1)
+      headings = File.foreach(f).lazy.select { |l| l.start_with?("# ", "## ") }.first(8).map(&:strip)
+      {
+        name: name,
+        file: f.sub(ROOT.to_s + "/", ""),
+        lines: lines,
+        size_kb: size_kb,
+        headings: headings
+      }
+    end
+  rescue
+    []
   end
 
   def self.view_components

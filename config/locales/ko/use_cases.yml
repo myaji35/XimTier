@@ -3,10 +3,12 @@ ko:
     eyebrow: 도입 사례
     h1: 10개 산업 페르소나가 의사결정을 끝낸다
     lead: "ChatGPT가 못 다루는 데이터, 우리가 매일 다룹니다."
+    roi_line: "감사 자료 11~20시간/주 절약 · 인허가 6개월 단축 · 8주 페이백"
     cards:
       manufacturing:
         icon: factory
         persona: 제조 현장 관리자
+        ai_role: AI Process Optimizer
         title: 제조 — 불량률·수율 최적화
         body: 라인 데이터 + 환경 데이터로 불량 원인 회귀 분석. Reverse What-If로 목표 수율을 위한 공정 변수 자동 역산. 온프레미스 100%.
         outcomes:
@@ -16,6 +18,7 @@ ko:
       hospital:
         icon: heart
         persona: 병원 경영진
+        ai_role: AI Clinical Decision Officer
         title: 병원 — 운영 효율 + 진단 보조
         body: 병상·인력·검사 시간 데이터로 운영 병목 식별. XAI 기반 진단 보조로 EU AI Act/한국 AI 기본법 동시 충족.
         outcomes:
@@ -25,6 +28,7 @@ ko:
       public:
         icon: building
         persona: 공공기관 정책 담당
+        ai_role: AI Policy Analyst
         title: 공공 — 정책 시나리오 시뮬레이션
         body: 행정·인구·예산 데이터를 통합. Reverse What-If로 정책 목표(실업률, 출생률 등)를 위한 정책 변수 역산.
         outcomes:
@@ -34,6 +38,7 @@ ko:
       smart_city:
         icon: city
         persona: 스마트시티 담당
+        ai_role: AI City Operator
         title: 스마트시티 — 도시 시뮬레이션
         body: IoT 센서·교통·에너지 데이터를 통합 분석. 도시 자원 최적 배분 시뮬레이션. AI 에이전트 백엔드로 확장 가능.
         outcomes:
@@ -43,6 +48,7 @@ ko:
       finance:
         icon: scale
         persona: 금융 리스크 담당
+        ai_role: AI Underwriter
         title: 금융 — 신용·이상거래 의사결정
         body: 신용평가·이상거래 점수에 SHAP 기반 변수별 기여도 자동 첨부. 감독당국 설명 요구 대응 가능.
         outcomes:
@@ -52,6 +58,7 @@ ko:
       retail:
         icon: chart
         persona: 리테일·이커머스 BI 팀
+        ai_role: AI Merchandiser
         title: 리테일 — 가격·재고 최적화
         body: SKU 단위 가격 탄력성·재고 회전 회귀 분석. Reverse What-If로 매출 목표 달성에 필요한 가격·프로모션 조합 역산.
         outcomes:
@@ -61,6 +68,7 @@ ko:
       logistics:
         icon: arrows
         persona: 물류·SCM 운영팀
+        ai_role: AI Dispatch Planner
         title: 물류 — 배송·재고 최적화
         body: 주문·재고·차량 위치 데이터 통합 분석. 배송 리드타임/비용 목표 역산으로 거점·경로 결정.
         outcomes:
@@ -70,6 +78,7 @@ ko:
       energy:
         icon: bolt
         persona: 에너지·유틸리티 운영
+        ai_role: AI Grid Operator
         title: 에너지 — 수요 예측·계통 안정화
         body: 시간 단위 수요·발전·기상 데이터를 통합 회귀. Reverse What-If로 첨두 부하 회피를 위한 가용 자원 조합 산출.
         outcomes:
@@ -79,6 +88,7 @@ ko:
       education:
         icon: calculator
         persona: 교육·에듀테크 데이터팀
+        ai_role: AI Learning Coach
         title: 교육 — 학습 성과·중도이탈 예측
         body: 학습 활동·평가·환경 데이터로 성취도·이탈 회귀. Reverse What-If로 목표 합격률에 필요한 학습 패턴 역산.
         outcomes:
@@ -88,6 +98,7 @@ ko:
       telecom:
         icon: lock
         persona: 통신·네트워크 운영
+        ai_role: AI Retention Analyst
         title: 통신 — 이탈 예측·품질 보장
         body: 가입자 사용 로그·콜드롭·요금제 데이터 분석. SHAP 기반 이탈 원인 변수 자동 도출.
         outcomes:
