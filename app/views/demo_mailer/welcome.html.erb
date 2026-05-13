@@ -1,0 +1,10 @@
+<p style="font-family:-apple-system,sans-serif;color:#0B132D;font-size:15px;"><%= t("mailer.demo.welcome.greeting", name: @user.display_name) %></p>
+<p style="font-family:-apple-system,sans-serif;color:#475467;font-size:14px;line-height:1.6;"><%= t("mailer.demo.welcome.body") %></p>
+<div style="margin:20px 0;padding:16px;background:#F2F4F7;border:1px solid #e5e9f0;border-radius:10px;">
+  <div style="font-family:-apple-system,sans-serif;color:#697386;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;"><%= t("mailer.demo.welcome.password_label") %></div>
+  <div style="font-family:'JetBrains Mono',monospace;color:#0B132D;font-size:18px;font-weight:600;margin-top:6px;"><%= @password %></div>
+</div>
+<p style="margin:24px 0;">
+  <a href="<%= @login_url %>" style="display:inline-block;padding:12px 22px;border-radius:999px;background:linear-gradient(135deg,#2563EB,#00C8C8);color:#fff;text-decoration:none;font-family:-apple-system,sans-serif;font-weight:600;font-size:14px;"><%= t("mailer.demo.welcome.cta") %></a>
+</p>
+<p style="font-family:-apple-system,sans-serif;color:#697386;font-size:13px;">— XimTier 팀</p>

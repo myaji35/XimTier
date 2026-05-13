@@ -3,6 +3,9 @@
 
 Rack::Attack.cache.store = ActiveSupport::Cache::MemoryStore.new
 
+# Test 환경에서는 비활성화 (RSpec 다중 요청 시 throttle false positive 방지)
+Rack::Attack.enabled = !Rails.env.test?
+
 # === Throttles ===
 
 # 폼 제출 — IP당 분당 5회

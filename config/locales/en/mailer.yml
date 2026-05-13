@@ -14,3 +14,14 @@ en:
       body: "Here is the requested download link for the XimTier IR deck. Please use it within 24 hours."
       cta: "Download the IR deck"
       signature: "— The XimTier Team"
+    demo:
+      welcome:
+        subject: "[XimTier] Your account has been created — temporary password"
+        greeting: "Welcome to XimTier, %{name}."
+        body: "Along with your demo request, an account was created automatically. Please sign in with this temporary password and change it."
+        password_label: Temporary password
+        cta: Sign in
+      received:
+        subject: "[XimTier] Demo request received"
+        body: "Your demo request has been received. We'll contact you within a week to schedule."
+        cta: Open dashboard

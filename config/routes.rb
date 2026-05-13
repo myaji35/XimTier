@@ -38,7 +38,14 @@ Rails.application.routes.draw do
     get  "/contact", to: "contact_inquiries#new",    as: :contact
     post "/contact", to: "contact_inquiries#create"
 
-    get "/demo",    to: "pages#demo", as: :demo
+    get  "/demo", to: "demo_requests#new",    as: :demo
+    post "/demo", to: "demo_requests#create"
+
+    # 사용자 대시보드 (Devise 로그인 필요)
+    get "/dashboard", to: "dashboards#show", as: :dashboard
+    resources :demo_requests, only: [], path: "demo-requests" do
+      resources :comments, only: [:create]
+    end
   end
 
   # letter_opener_web for development

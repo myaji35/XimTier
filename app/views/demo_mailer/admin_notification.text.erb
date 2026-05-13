@@ -1,0 +1,13 @@
+새 데모 신청
+
+신청자: <%= @user.display_name %>
+이메일: <%= @user.email %>
+회사: <%= @user.company %>
+직책: <%= @user.role %>
+산업: <%= @user.industry %>
+희망 시점: <%= @demo_request.preferred_at %>
+locale: <%= @demo_request.locale %>
+파일 첨부: <%= @demo_request.data_file.attached? ? "있음" : "없음" %>
+
+데이터/시나리오 설명:
+<%= @demo_request.data_description %>

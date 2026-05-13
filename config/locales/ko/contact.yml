@@ -26,7 +26,38 @@ ko:
     eyebrow: 데모 신청
     h1: 5단계 워크플로우를 직접 체험하세요
     lead: 데이터 파일 또는 시나리오만 보내주시면, 1주일 내 결과 데모를 만들어 드립니다.
-    soon: "데모 신청 폼은 M3 마일스톤에서 활성화 예정. 지금은 contact를 통해 연락 주세요."
+    form:
+      name: 이름
+      email: 이메일
+      company: 회사
+      role: 직책
+      industry: 산업
+      data_description: 데이터/시나리오 설명
+      data_description_placeholder: "예) 6개월치 공정 로그 CSV. 목표 불량률 1.5% 미만의 변수 조합을 찾고 싶습니다."
+      data_file: 데이터 파일 (선택)
+      preferred_at: 희망 일정
+      submit: 데모 신청
+    flash:
+      success: 데모 신청이 접수되었습니다. 대시보드에서 진행 상황을 확인하세요.
+    note: 신규 이메일이면 자동으로 계정이 생성되고, 임시 비밀번호를 메일로 보내드립니다.
+  dashboard:
+    title: 내 데모 신청 현황
+    welcome: "%{name}님, 환영합니다."
+    no_requests: 아직 데모 신청이 없습니다.
+    status:
+      pending:   접수 완료 — 일정 조율 중
+      scheduled: 일정 확정
+      completed: 완료
+      cancelled: 취소
+    meeting_url: 미팅 링크
+    requested_at: 신청일
+    preferred_at: 희망 시점
+    description: 신청 내용
+    file: 첨부 파일
+    comments: 코멘트
+    comment_placeholder: 추가 문의/요청을 남겨주세요
+    add_comment: 코멘트 등록
+    sign_out: 로그아웃
   privacy:
     eyebrow: 개인정보처리방침
     h1: 개인정보처리방침

@@ -26,7 +26,38 @@ en:
     eyebrow: Request Demo
     h1: Experience the 5-step workflow firsthand
     lead: Share a data file or scenario, and we'll deliver a working demo within a week.
-    soon: "The demo request form is activated in milestone M3. For now, reach out via the contact page."
+    form:
+      name: Name
+      email: Email
+      company: Company
+      role: Role
+      industry: Industry
+      data_description: Data / scenario description
+      data_description_placeholder: "e.g., 6 months of process log CSV. Want to find a variable mix that keeps defect rate under 1.5%."
+      data_file: Data file (optional)
+      preferred_at: Preferred time
+      submit: Request demo
+    flash:
+      success: Your demo request has been received. Check your dashboard for status.
+    note: If your email is new, we'll auto-create your account and send a temporary password.
+  dashboard:
+    title: My demo requests
+    welcome: "Welcome, %{name}."
+    no_requests: No demo requests yet.
+    status:
+      pending:   Received — scheduling
+      scheduled: Scheduled
+      completed: Completed
+      cancelled: Cancelled
+    meeting_url: Meeting link
+    requested_at: Requested
+    preferred_at: Preferred
+    description: Description
+    file: Attached file
+    comments: Comments
+    comment_placeholder: Add a question or note
+    add_comment: Post comment
+    sign_out: Sign out
   privacy:
     eyebrow: Privacy Policy
     h1: Privacy Policy

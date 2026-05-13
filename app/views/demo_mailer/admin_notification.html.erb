@@ -1,0 +1,16 @@
+<h2 style="font-family:-apple-system,sans-serif;color:#0B132D;font-size:18px;">새 데모 신청</h2>
+<table style="font-family:-apple-system,sans-serif;font-size:14px;color:#475467;border-collapse:collapse;">
+  <tr><td style="padding:6px 0;width:120px;color:#697386;">신청자</td><td><%= @user.display_name %></td></tr>
+  <tr><td style="padding:6px 0;color:#697386;">이메일</td><td><a href="mailto:<%= @user.email %>" style="color:#2563EB;"><%= @user.email %></a></td></tr>
+  <tr><td style="padding:6px 0;color:#697386;">회사</td><td><%= @user.company %></td></tr>
+  <tr><td style="padding:6px 0;color:#697386;">직책</td><td><%= @user.role %></td></tr>
+  <tr><td style="padding:6px 0;color:#697386;">산업</td><td><%= @user.industry %></td></tr>
+  <tr><td style="padding:6px 0;color:#697386;">희망 시점</td><td><%= @demo_request.preferred_at %></td></tr>
+  <tr><td style="padding:6px 0;color:#697386;">locale</td><td><%= @demo_request.locale %></td></tr>
+  <tr><td style="padding:6px 0;color:#697386;">파일 첨부</td><td><%= @demo_request.data_file.attached? ? "있음" : "없음" %></td></tr>
+</table>
+<hr style="border:0;border-top:1px solid #e5e9f0;margin:20px 0;">
+<p style="font-family:-apple-system,sans-serif;color:#0B132D;"><strong>데이터/시나리오 설명</strong></p>
+<blockquote style="border-left:3px solid #2563EB;padding-left:12px;font-family:-apple-system,sans-serif;color:#475467;line-height:1.6;">
+  <%= simple_format(@demo_request.data_description) %>
+</blockquote>
