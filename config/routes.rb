@@ -20,7 +20,8 @@ Rails.application.routes.draw do
     get "/solution",     to: "pages#solution"
     get "/how-it-works", to: "pages#how_it_works", as: :how_it_works
     get "/use-cases",    to: "pages#use_cases",    as: :use_cases
-    get "/cases/:slug",  to: "pages#case_study",   as: :case_study, constraints: { slug: /manufacturing|hospital|public|smart-city/ }
+    get "/cases/:slug",  to: "pages#case_study",   as: :case_study,
+        constraints: { slug: /manufacturing|hospital|public|smart-city|finance|retail|logistics|energy|education|telecom/ }
     get "/pricing",      to: "pages#pricing"
     get "/platform-api", to: "pages#platform_api", as: :platform_api
 

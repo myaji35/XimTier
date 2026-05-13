@@ -2,10 +2,16 @@ require "rails_helper"
 
 RSpec.describe "Case Studies", type: :request do
   CASES = {
-    "manufacturing" => { ko: "반도체 공정", en: "Semiconductor" },
-    "hospital"      => { ko: "XAI 진단 보조", en: "XAI diagnostic" },
-    "public"        => { ko: "정책 시나리오", en: "policy simulation" },
-    "smart-city"    => { ko: "교통·에너지",   en: "traffic" }
+    "manufacturing" => { ko: "반도체 공정",        en: "Semiconductor" },
+    "hospital"      => { ko: "XAI 진단 보조",      en: "XAI diagnostic" },
+    "public"        => { ko: "정책 시나리오",      en: "policy simulation" },
+    "smart-city"    => { ko: "교통·에너지",       en: "traffic" },
+    "finance"       => { ko: "Adverse Action",   en: "adverse action" },
+    "retail"        => { ko: "프로모션 ROI",       en: "promotion ROI" },
+    "logistics"     => { ko: "라스트마일",          en: "Last-mile" },
+    "energy"        => { ko: "첨두 부하",          en: "peak" },
+    "education"     => { ko: "중도이탈",            en: "dropout" },
+    "telecom"       => { ko: "이탈 예측",          en: "churn" }
   }.freeze
 
   CASES.each do |slug, snip|
@@ -31,12 +37,11 @@ RSpec.describe "Case Studies", type: :request do
     expect(true).to be true
   end
 
-  it "use_cases 페이지에서 케이스스터디 링크 노출" do
+  it "use_cases 페이지에서 10 케이스스터디 링크 모두 노출" do
     get "/ko/use-cases"
-    expect(response.body).to match(%r{/ko/cases/manufacturing})
-    expect(response.body).to match(%r{/ko/cases/hospital})
-    expect(response.body).to match(%r{/ko/cases/public})
-    expect(response.body).to match(%r{/ko/cases/smart-city})
+    %w[manufacturing hospital public smart-city finance retail logistics energy education telecom].each do |slug|
+      expect(response.body).to match(%r{/ko/cases/#{slug}}), "missing /ko/cases/#{slug} link"
+    end
   end
 
   it "Pricing 매트릭스 노출" do

@@ -115,6 +115,175 @@ en:
         - "Carbon emission simulation accuracy within ±3%"
       note: "Example data — fine-tuned on customer data at deployment."
 
+    finance:
+      eyebrow: Case · Finance
+      slug: finance
+      title: Credit scoring — auto-attached adverse action reasons
+      persona: "Cho, Risk Modeling Lead — commercial bank"
+      industry_label: "Finance / Banking"
+      dataset: "case_05 · credit_scoring_log.csv · 96,400 rows"
+      problem_title: The Problem
+      problem_body: >
+        From 2026, Korea's FSS requires "adverse action explainability" at the
+        model layer for AI-based credit scoring — not as a post-hoc patch.
+        Existing boosted models were black boxes; if a customer disputed a
+        decline, the entire model had to be retired.
+      approach_title: XimTier Approach
+      approach_body: >
+        Credit, transaction, and income data are integrated in an air-gapped
+        environment. SHAP-based per-variable contributions are auto-attached
+        to every decision. Reverse What-If even generates customer-facing
+        guidance ("which variable, by how much, to become approvable"), and
+        regulator-submission documents are produced automatically.
+      outcomes_title: Outcomes
+      outcomes:
+        - "Auto-generated adverse action notices"
+        - "Dispute resolution time −62%"
+        - "Fraud false-positive rate −38%"
+        - "Air-gapped operation (zero external LLM calls)"
+      note: "Example data — fine-tuned on customer data at deployment."
+
+    retail:
+      eyebrow: Case · Retail
+      slug: retail
+      title: E-commerce — pre-simulating price & promotion ROI
+      persona: "Yang, BI Lead — multi-category e-commerce"
+      industry_label: "Retail / E-commerce"
+      dataset: "case_06 · sku_price_elasticity.csv · 48,000 SKUs × 24 months"
+      problem_title: The Problem
+      problem_body: >
+        Pricing and promotion decisions across 48K SKUs run weekly, but "what
+        if I cut price by 5% — what happens to revenue, turnover, and margin?"
+        had no cross-variable answer. Regression alone could not reverse-solve
+        *how much* to move each lever.
+      approach_title: XimTier Approach
+      approach_body: >
+        Per-SKU price elasticity, inventory turnover, and seasonality are
+        unified via Reverse What-If. Set a revenue target, and the system
+        returns the optimal price / promotion / inventory mix — each
+        recommendation ships with expected impact, confidence interval, and
+        risk, so promo ROI is validated *before* launch.
+      outcomes_title: Outcomes
+      outcomes:
+        - "Pre-simulate price changes (24h → 12min)"
+        - "Inventory turnover +18% YoY"
+        - "Promo ROI forecast accuracy 89%"
+        - "Stock-out rate −24% simultaneously"
+      note: "Example data — fine-tuned on customer data at deployment."
+
+    logistics:
+      eyebrow: Case · Logistics
+      slug: logistics
+      title: Last-mile — lead time & freight cost, optimized together
+      persona: "Han, SCM Operations — national logistics carrier"
+      industry_label: "Logistics / SCM"
+      dataset: "case_07 · last_mile_dispatch.csv · 1.2M deliveries"
+      problem_title: The Problem
+      problem_body: >
+        1.2M daily deliveries had to satisfy lead time *and* freight cost
+        simultaneously, but operations ran on spreadsheets + intuition with
+        only retrospective analysis. "How much does adding a hub reduce lead
+        time in region X?" was unanswerable in advance.
+      approach_title: XimTier Approach
+      approach_body: >
+        Orders, inventory, fleet positions, and traffic data are unified.
+        Provide a lead-time target and Reverse What-If reverse-solves the
+        optimal mix of hub additions, route reassignments, and fleet
+        expansion — including the freight cost for each option, so the
+        decision is one step.
+      outcomes_title: Outcomes
+      outcomes:
+        - "Average lead time −1.4 hours"
+        - "Freight cost −9.2%"
+        - "Stock-out and overstock both fall (dual KPI satisfied)"
+        - "Hub decision time 6 weeks → 4 days"
+      note: "Example data — fine-tuned on customer data at deployment."
+
+    energy:
+      eyebrow: Case · Energy
+      slug: energy
+      title: Power grid — peak avoidance & renewables absorption
+      persona: "Song, Grid Operations — power exchange"
+      industry_label: "Energy / Utilities"
+      dataset: "case_08 · grid_load_renewable.csv · hourly · 36 months"
+      problem_title: The Problem
+      problem_body: >
+        As renewables crossed 30% of generation, hourly volatility jumped
+        sharply. Deciding which resources (pumped hydro, demand response,
+        reserves) to dispatch at peak hours required a cross-variable
+        simulation across weather, demand, and renewable output — and no
+        such tool existed.
+      approach_title: XimTier Approach
+      approach_body: >
+        Demand, generation, weather, and renewable output are regressed at
+        hourly granularity. Set a peak-avoidance target and Reverse What-If
+        outputs the optimal dispatch mix of available resources, with
+        SHAP-based justification auto-attached to every energy-trading
+        decision.
+      outcomes_title: Outcomes
+      outcomes:
+        - "Peak-load avoidance +24%"
+        - "Auto-generated renewables-absorption scenarios"
+        - "SHAP rationale auto-attached to trading decisions"
+        - "Operating cost −7.8% via reserve optimization"
+      note: "Example data — fine-tuned on customer data at deployment."
+
+    education:
+      eyebrow: Case · Education
+      slug: education
+      title: EdTech — early dropout signal + pass-rate scenarios
+      persona: "Yoo, Data Lead — certification EdTech"
+      industry_label: "Education / EdTech"
+      dataset: "case_09 · learner_activity.csv · 240K learners × 18 months"
+      problem_title: The Problem
+      problem_body: >
+        240K learners' study logs, assessments, and environment data piled
+        up, but the team could not answer "which learner is at high dropout
+        risk in the next 4 weeks?" or "what study pattern would get them
+        to pass?" — no model gave a justified, learner-specific answer.
+      approach_title: XimTier Approach
+      approach_body: >
+        Study activity, assessments, and environment are regressed to detect
+        early dropout signals, with SHAP contributions for each at-risk
+        learner. Reverse What-If solves the study-hours / problem-count /
+        review-cycle mix needed to hit a target pass rate, and produces a
+        rationale that is explainable to learners and parents.
+      outcomes_title: Outcomes
+      outcomes:
+        - "Dropout detection 4 weeks early (84% accuracy)"
+        - "Pre-simulated pass-rate scenarios"
+        - "Learner / parent-facing explainable rationale"
+        - "Tutor capacity +40% (learners per tutor)"
+      note: "Example data — fine-tuned on customer data at deployment."
+
+    telecom:
+      eyebrow: Case · Telecom
+      slug: telecom
+      title: Mobile carrier — churn prediction & plan-impact simulation
+      persona: "Lim, Subscriber Analytics — mobile carrier"
+      industry_label: "Telecom"
+      dataset: "case_10 · subscriber_usage_log.csv · 4.2M subscribers"
+      problem_title: The Problem
+      problem_body: >
+        With 4.2M subscribers, churn signals had to be caught proactively;
+        without per-variable attribution, retention actions scattered and
+        wasted budget. And before launching a new plan, the impact on
+        revenue and churn had to be simulated — but no such tool existed.
+      approach_title: XimTier Approach
+      approach_body: >
+        Subscriber usage, service quality, and plan history are analyzed
+        end-to-end, with SHAP-based per-variable contributions auto-attached
+        to every churn score. Reverse What-If pre-simulates a new plan's
+        revenue and churn impact so launch decisions ship with auto-generated
+        justification.
+      outcomes_title: Outcomes
+      outcomes:
+        - "Proactive care of high-risk subscribers (churn −16%)"
+        - "Auto-identified drivers of network quality drops"
+        - "Pre-simulated impact of new plans"
+        - "Retention-campaign ROI +43%"
+      note: "Example data — fine-tuned on customer data at deployment."
+
   cases_cta:
     title: "Apply this to your industry?"
     body: "See it yourself in a 5-minute demo."
