@@ -1,14 +1,14 @@
 en:
   solution:
     eyebrow: Solution
-    h1: LLMs and XAISimTier do different jobs — together they're complete
-    lead: "If ChatGPT explains, XAISimTier proves. LLM language + XAISimTier computation = real decision AI."
-    callout: ChatGPT presents in the meeting. XAISimTier produces the answer before the meeting.
-    formula: "LLM (language) + XAISimTier (computation) = real decision AI"
+    h1: LLMs and XimTier do different jobs — together they're complete
+    lead: "If ChatGPT explains, XimTier proves. LLM language + XimTier computation = real decision AI."
+    callout: ChatGPT presents in the meeting. XimTier produces the answer before the meeting.
+    formula: "LLM (language) + XimTier (computation) = real decision AI"
     workflow_title: 5-Step One-Stop Workflow
     table:
       header_llm: LLM (language interface)
-      header_xst: XAISimTier (computation engine)
+      header_xst: XimTier (computation engine)
       subhead_llm: "ChatGPT · Claude · Gemini"
       subhead_xst: "Decision Intelligence · Reverse What-If"
       rows:

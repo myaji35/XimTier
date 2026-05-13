@@ -2,13 +2,13 @@ ko:
   vision:
     eyebrow: 비전
     h1: 3단계 플랫폼 진화
-    lead: "\"LLM이 설명하고, XAISimTier가 증명하는 세계의 표준 인프라가 된다\""
+    lead: "\"LLM이 설명하고, XimTier가 증명하는 세계의 표준 인프라가 된다\""
     phases:
       one:
         years: "1–2년"
         title: LLM 도구 레이어
         analogy: "Wolfram Alpha for Decision Intelligence"
-        body: "MCP·Plugin 등록 → ChatGPT·Claude가 XAISimTier를 호출한다. 어떤 LLM이든 Reverse What-If가 필요할 때 우리 API를 호출."
+        body: "MCP·Plugin 등록 → ChatGPT·Claude가 XimTier를 호출한다. 어떤 LLM이든 Reverse What-If가 필요할 때 우리 API를 호출."
         feasibility: 82
         revenue: 중간
       two:

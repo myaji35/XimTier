@@ -17,7 +17,7 @@
 | 스크린샷 | `_design_ref/screenshots/hero.png` | 디자인 의도 캡처 |
 
 ### 1.2 정의된 항목 (이미 갖춰진 것)
-- **브랜드 이중구조**: 회사/도메인 = XimTier, 제품/기술 = XAISimTier
+- **브랜드 일원화** (2026-05-13 결정): 회사·제품·도메인 모두 **XimTier**로 통일. 이전 `XAISimTier` 명칭은 PDF 파일명 등 레거시 자산에만 잔존.
 - **포지셔닝**: "Decision Intelligence, Proven by Numbers"
 - **태그라인**: 한 — "LLM이 못 푸는 수치를, 우리가 증명한다" / 영 — "We prove the numbers LLMs can't."
 - **컬러 시스템**: Blue(`#2563EB`) + Teal(`#00C8C8`) + Deep Navy(`#0B132D`) + Light Gray(`#F2F4F7`)

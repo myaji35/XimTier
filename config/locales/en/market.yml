@@ -23,7 +23,7 @@ en:
         stat: "75%"
         title: "End of the LLM illusion"
         body: "Gartner: 75% of enterprise Gen AI rollouts fall short. Hallucination, numeric error, non-reproducibility. Enterprises now want provable answers, not plausible ones."
-        conclusion: "The moment XAISimTier's mathematical guarantee becomes the answer."
+        conclusion: "The moment XimTier's mathematical guarantee becomes the answer."
       data_sovereignty:
         stat: "85%"
         title: "Data sovereignty explodes"
@@ -33,5 +33,5 @@ en:
         stat: "×3"
         title: "The AI-agent era"
         body: "Agents need mathematical guarantees before they act. As MCP standardizes, the computation engines agents call need standardization too."
-        conclusion: "The moment XAISimTier becomes the computation brain of agents."
+        conclusion: "The moment XimTier becomes the computation brain of agents."
     window: "An 18–24 month window — LLM-limits recognition (2025) + data-sovereignty concern (2025) + AI-agent era opening (2025). Never before have these three aligned. The only window before big-tech responds in earnest in 2027."

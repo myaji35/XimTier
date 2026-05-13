@@ -1,14 +1,14 @@
 ko:
   solution:
     eyebrow: 솔루션
-    h1: LLM과 XAISimTier는 서로 다른 일을 한다 — 결합하면 완성된다
-    lead: "\"ChatGPT가 설명한다면, XAISimTier는 증명한다.\" LLM 언어 능력 + XAISimTier 계산 능력 = 진짜 의사결정 AI"
-    callout: ChatGPT는 회의실에서 발표하고, XAISimTier는 회의 전에 데이터로 답을 만든다.
-    formula: "LLM (언어) + XAISimTier (계산) = 진짜 의사결정 AI"
+    h1: LLM과 XimTier는 서로 다른 일을 한다 — 결합하면 완성된다
+    lead: "\"ChatGPT가 설명한다면, XimTier는 증명한다.\" LLM 언어 능력 + XimTier 계산 능력 = 진짜 의사결정 AI"
+    callout: ChatGPT는 회의실에서 발표하고, XimTier는 회의 전에 데이터로 답을 만든다.
+    formula: "LLM (언어) + XimTier (계산) = 진짜 의사결정 AI"
     workflow_title: 5단계 One-Stop 워크플로우
     table:
       header_llm: LLM (언어 인터페이스)
-      header_xst: XAISimTier (계산 엔진)
+      header_xst: XimTier (계산 엔진)
       subhead_llm: ChatGPT · Claude · Gemini
       subhead_xst: Decision Intelligence · Reverse What-If
       rows:

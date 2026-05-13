@@ -23,7 +23,7 @@ ko:
         stat: "75%"
         title: "LLM 환상의 종료"
         body: "Gartner: 기업의 Generative AI 도입 75%가 기대 미달. 환각·수치 부정확·재현 불가. 이제 기업들은 \"그럴듯한 답\"이 아닌 증명 가능한 답을 찾는다."
-        conclusion: "XAISimTier의 수학적 보장이 답이 되는 시점"
+        conclusion: "XimTier의 수학적 보장이 답이 되는 시점"
       data_sovereignty:
         stat: "85%"
         title: "데이터 주권 폭발"
@@ -33,5 +33,5 @@ ko:
         stat: "×3"
         title: "AI 에이전트 시대"
         body: "AI 에이전트는 행동 전 수학적 보장이 필요하다. MCP 표준이 보편화되며 에이전트가 호출할 계산 엔진의 표준화가 시작된다."
-        conclusion: "XAISimTier가 에이전트의 계산 두뇌가 되는 시점"
+        conclusion: "XimTier가 에이전트의 계산 두뇌가 되는 시점"
     window: "선점 기회: 18~24개월 — LLM 한계 인식(2025) + 데이터 주권 우려 폭발(2025) + AI 에이전트 시대 개막(2025). 이 세 가지가 동시에 충족된 것은 역사상 처음. 2027년 빅테크 본격 대응 전까지가 유일한 창문이다."
