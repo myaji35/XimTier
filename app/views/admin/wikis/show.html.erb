@@ -16,22 +16,22 @@
 <section id="overview" class="sec">
   <div class="stats">
     <div class="stat accent">
-      <div class="l">Environment</div>
+      <div class="l">실행 환경</div>
       <div class="v"><%= s[:stats][:env] %></div>
       <div class="sub">Rails <%= s[:stats][:rails] %> · Ruby <%= s[:stats][:ruby] %></div>
     </div>
     <div class="stat">
       <div class="l">Git</div>
       <div class="v" style="font-family:ui-monospace,Menlo,monospace;font-size:18px;"><%= s[:stats][:git_sha] || "—" %></div>
-      <div class="sub">branch: <%= s[:stats][:git_branch] || "—" %></div>
+      <div class="sub">브랜치 <%= s[:stats][:git_branch] || "—" %></div>
     </div>
     <div class="stat">
-      <div class="l">App Files</div>
+      <div class="l">앱 파일</div>
       <div class="v"><%= s[:stats][:total_files] %></div>
       <div class="sub">app/ 하위 전체</div>
     </div>
     <div class="stat">
-      <div class="l">Harness Issues</div>
+      <div class="l">하네스 이슈</div>
       <% if s[:issues][:available] %>
         <div class="v"><%= s[:issues][:total] %></div>
         <div class="sub">
@@ -41,53 +41,53 @@
         </div>
       <% else %>
         <div class="v" style="color:#94A3B8;">—</div>
-        <div class="sub">registry 없음</div>
+        <div class="sub">레지스트리 없음</div>
       <% end %>
     </div>
   </div>
 </section>
 
 <section id="components" class="sec">
-  <h2>🧩 ViewComponents <span class="cnt">(<%= s[:components].size %>)</span></h2>
+  <h2>🧩 뷰 컴포넌트 <span class="cnt">(<%= s[:components].size %>) — 화면 조립 단위</span></h2>
   <div class="grid cols-3">
     <% s[:components].each do |c| %>
       <div class="item">
         <div class="name"><%= c[:name] %></div>
         <div class="file"><%= c[:file] %></div>
-        <div class="meta"><%= c[:lines] %> lines · template <%= c[:has_template] ? "✓" : "✗" %></div>
+        <div class="meta"><%= c[:lines] %>줄 · 템플릿 <%= c[:has_template] ? "✓" : "✗" %></div>
       </div>
     <% end %>
   </div>
 </section>
 
 <section id="stimulus" class="sec">
-  <h2>⚡ Stimulus Controllers <span class="cnt">(<%= s[:stimulus].size %>)</span></h2>
+  <h2>⚡ Stimulus 컨트롤러 <span class="cnt">(<%= s[:stimulus].size %>) — 화면 인터랙션</span></h2>
   <div class="grid cols-2">
     <% s[:stimulus].each do |c| %>
       <div class="item">
         <div class="sti">data-controller="<%= c[:identifier] %>"</div>
         <div class="file"><%= c[:file] %></div>
-        <div class="meta"><%= c[:lines] %> lines</div>
+        <div class="meta"><%= c[:lines] %>줄</div>
       </div>
     <% end %>
   </div>
 </section>
 
 <section id="controllers" class="sec">
-  <h2>🎮 Rails Controllers <span class="cnt">(<%= s[:controllers].size %>)</span></h2>
+  <h2>🎮 Rails 컨트롤러 <span class="cnt">(<%= s[:controllers].size %>) — 요청 라우팅 + 비즈니스 로직</span></h2>
   <div class="grid cols-2">
     <% s[:controllers].each do |c| %>
       <div class="item">
         <div class="name"><%= c[:name] %></div>
         <div class="file"><%= c[:file] %></div>
-        <div class="meta"><%= c[:lines] %> lines</div>
+        <div class="meta"><%= c[:lines] %>줄</div>
       </div>
     <% end %>
   </div>
 </section>
 
 <section id="models" class="sec">
-  <h2>💾 Models <span class="cnt">(<%= s[:models].size %>)</span></h2>
+  <h2>💾 데이터 모델 <span class="cnt">(<%= s[:models].size %>) — DB 테이블 매핑</span></h2>
   <div class="grid cols-3">
     <% s[:models].each do |m| %>
       <div class="item">
@@ -99,25 +99,25 @@
 </section>
 
 <section id="pages" class="sec">
-  <h2>📄 Pages <span class="cnt">(<%= s[:pages].size %>)</span></h2>
+  <h2>📄 페이지 <span class="cnt">(<%= s[:pages].size %>) — 마케팅 + 컨버전 화면</span></h2>
   <div class="grid cols-4">
     <% s[:pages].each do |p| %>
       <div class="item">
         <div class="name"><%= p[:name] %></div>
-        <div class="meta"><%= p[:lines] %>L</div>
+        <div class="meta"><%= p[:lines] %>줄</div>
       </div>
     <% end %>
   </div>
 </section>
 
 <section id="locales" class="sec">
-  <h2>🌐 i18n Locales <span class="cnt">(<%= s[:locales].size %>)</span></h2>
+  <h2>🌐 다국어 사전 <span class="cnt">(<%= s[:locales].size %>) — 한/영 문구</span></h2>
   <div class="grid cols-2">
     <% s[:locales].each do |loc| %>
       <div class="locale">
         <div class="hdr">
           <span class="code"><%= loc[:locale] %></span>
-          <span style="font-size:11px;color:#6B7280;"><%= loc[:file_count] %> files · ~<%= loc[:approx_keys] %> keys</span>
+          <span style="font-size:11px;color:#6B7280;">파일 <%= loc[:file_count] %>개 · 키 약 <%= loc[:approx_keys] %>개</span>
         </div>
         <div class="files">
           <% loc[:files].each do |f| %>
@@ -130,15 +130,15 @@
 </section>
 
 <section id="agents" class="sec">
-  <h2>🤖 Harness Agents <span class="cnt">(<%= s[:agents].size %>)</span></h2>
+  <h2>🤖 하네스 에이전트 <span class="cnt">(<%= s[:agents].size %>) — 자율 실행 LLM 역할</span></h2>
   <% if s[:agents].empty? %>
-    <p class="empty">.claude/agents 디렉토리 없음 또는 비어있음</p>
+    <p class="empty">.claude/agents 디렉터리가 비어 있습니다.</p>
   <% else %>
     <div class="grid cols-4">
       <% s[:agents].each do |a| %>
         <div class="item">
           <div class="sti"><%= a[:name] %></div>
-          <div class="meta"><%= a[:size_kb] %> KB</div>
+          <div class="meta">파일 크기 <%= a[:size_kb] %> KB</div>
         </div>
       <% end %>
     </div>
@@ -146,17 +146,17 @@
 </section>
 
 <section id="issues" class="sec">
-  <h2>📋 Harness Issues
+  <h2>📋 하네스 이슈
     <span class="cnt">
-      <% if s[:issues][:available] %>(<%= s[:issues][:total] %>)<% end %>
+      <% if s[:issues][:available] %>(<%= s[:issues][:total] %>) — 진행 상태 + 우선순위<% end %>
     </span>
   </h2>
   <% if s[:issues][:available] %>
     <div class="grid cols-4" style="margin-bottom:14px;">
       <% (s[:issues][:by_priority] || {}).each do |p, c| %>
         <div class="item">
-          <div class="meta" style="text-transform:uppercase;letter-spacing:.08em;">Priority <%= p %></div>
-          <div class="name" style="font-size:22px;margin-top:4px;"><%= c %></div>
+          <div class="meta">우선순위 <%= p %></div>
+          <div class="name" style="font-size:22px;margin-top:4px;"><%= c %>건</div>
         </div>
       <% end %>
     </div>
@@ -165,10 +165,10 @@
       <table>
         <thead>
           <tr>
-            <th>ID</th>
-            <th>TITLE</th>
-            <th>STATUS</th>
-            <th>P</th>
+            <th>이슈 ID</th>
+            <th>제목</th>
+            <th>상태</th>
+            <th>우선순위</th>
           </tr>
         </thead>
         <tbody>
@@ -185,9 +185,9 @@
     <% end %>
 
     <p style="margin-top:14px;font-size:12px;color:#6B7280;">
-      💡 누적 학습 패턴: <strong><%= s[:issues][:success_patterns] %>개</strong>
+      💡 누적 학습 패턴 <strong><%= s[:issues][:success_patterns] %>개</strong>가 다음 작업에 자동 반영됩니다.
     </p>
   <% else %>
-    <p class="empty">.claude/issue-db/registry.json 없음</p>
+    <p class="empty">이슈 레지스트리(.claude/issue-db/registry.json)를 찾을 수 없습니다.</p>
   <% end %>
 </section>
