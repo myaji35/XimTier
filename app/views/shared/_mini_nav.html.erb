@@ -1,0 +1,38 @@
+<%# 좌측 fixed mini-nav — Home 전용 scroll-spy %>
+<aside data-controller="mini-nav"
+       class="hidden xl:flex flex-col"
+       style="position:fixed; left:24px; top:50%; transform:translateY(-50%);
+              z-index:30; gap:18px; pointer-events:auto;">
+  <% t("site.mini_nav").each do |item| %>
+    <a href="#<%= item[:id] %>"
+       data-mini-nav-target="link"
+       data-section-id="<%= item[:id] %>"
+       class="mini-nav-link group inline-flex items-center"
+       style="gap:10px; color:#697386; font-family:ui-monospace, Menlo, monospace;
+              font-size:11px; letter-spacing:0.08em; text-decoration:none;
+              transition: color .25s, transform .25s;">
+      <span class="mini-nav-dot"
+            style="width:10px; height:10px; border-radius:50%;
+                   background:#c8ced9; border:2px solid #fff;
+                   box-shadow:0 1px 4px rgba(11,19,45,0.18);
+                   transition: background .25s, transform .25s, width .25s;
+                   display:inline-block;"></span>
+      <span class="mini-nav-label"
+            style="opacity:0; transform:translateX(-4px); transition: opacity .25s, transform .25s;
+                   white-space:nowrap;"><%= item[:label] %></span>
+    </a>
+  <% end %>
+</aside>
+
+<style>
+  .mini-nav-link:hover .mini-nav-dot { background:#2563EB; transform: scale(1.2); }
+  .mini-nav-link:hover .mini-nav-label { opacity:1; transform:translateX(0); }
+  .mini-nav-link:hover { color:#0B132D; }
+  .mini-nav-link.active .mini-nav-dot {
+    background:linear-gradient(135deg,#2563EB,#00C8C8);
+    width:14px; height:14px; transform: scale(1);
+    box-shadow:0 0 0 4px rgba(0,200,200,0.18);
+  }
+  .mini-nav-link.active .mini-nav-label { opacity:1; transform:translateX(0); }
+  .mini-nav-link.active { color:#0B132D; }
+</style>

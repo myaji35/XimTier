@@ -8,11 +8,11 @@ en:
     positioning: Decision Intelligence, Proven by Numbers
     hero:
       eyebrow: Decision Intelligence · Regulated AI
-      headline_top: "When 'because the AI said so'"
-      headline_bottom: won't pass audit.
+      headline_top: AI decisions
+      headline_bottom: that pass an audit.
       subhead: "The explainable decision engine for the EU AI Act and Korea AI Framework era. Not another LLM wrapper. Not another regression report. — Reverse What-If solves the math of every decision."
-      cta_demo: Request Demo
-      cta_ir: Download IR Deck
+      cta_demo: See the 5-min Live Demo
+      cta_ir: Download IR Deck →
       chips:
         - { label: "Temp",       value: "215°C → 207°C" }
         - { label: "SHAP",       value: "+0.34" }
@@ -39,11 +39,25 @@ en:
       demo: Request Demo
     fear_strip:
       eu: "EU AI Act maximum fine"
-      eu_amount: "€ 35,000,000"
+      eu_amount: "€35M"
       kr: "Korea AI Framework Act takes effect"
       kr_status: "2026-01-22"
       audit: "Audit-passing decisions"
-      audit_status: "100% automated"
+      audit_status: "100%"
+    trust_strip:
+      label: Data sources & validation
+      items:
+        - { label: "TAM source",          value: "Gartner · IDC · Markets&Markets" }
+        - { label: "Industry validation", value: "10 persona case studies" }
+        - { label: "Production",          value: "21 zero-downtime deploys" }
+        - { label: "Test coverage",       value: "RSpec 104 / 0 PASS" }
+    mini_nav:
+      - { id: "fear",        label: "01 · Stakes" }
+      - { id: "why-now",     label: "02 · Why now" }
+      - { id: "problem",     label: "03 · Problem" }
+      - { id: "solution",    label: "04 · Solution" }
+      - { id: "moat",        label: "05 · Moat" }
+      - { id: "cta",         label: "06 · CTA" }
     footer:
       copyright: "© 2025 XimTier (Gagahoho, Inc.) · All rights reserved."
     regulation_strip:

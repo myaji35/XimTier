@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "Pages", type: :request do
   PUBLIC_PAGES = {
-    ""               => { ko: "감사를 통과할 수 없습니다",     en: "pass audit" },
+    ""               => { ko: "감사를 통과해야 한다",          en: "pass an audit" },
     "/problem"       => { ko: "데이터 주권",                en: "Data Sovereignty" },
     "/solution"      => { ko: "결합하면 완성된다",          en: "together they" }, # apostrophe → &#39; 이스케이프 회피
     "/how-it-works"  => { ko: "5단계",                      en: "5-Step" },

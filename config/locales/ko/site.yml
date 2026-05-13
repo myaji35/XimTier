@@ -8,11 +8,11 @@ ko:
     positioning: Decision Intelligence, Proven by Numbers
     hero:
       eyebrow: Decision Intelligence · Regulated AI
-      headline_top: "'AI가 그렇게 말했다'로는"
-      headline_bottom: 감사를 통과할 수 없습니다.
+      headline_top: AI도
+      headline_bottom: 감사를 통과해야 한다.
       subhead: "EU AI Act · 한국 AI 기본법 시대의 설명 가능한 의사결정 엔진. Not another LLM wrapper. Not another regression report. — Reverse What-If로 거꾸로 푸는 결정의 수학."
-      cta_demo: 데모 신청
-      cta_ir: IR 자료 다운로드
+      cta_demo: 5분 라이브 데모 보기
+      cta_ir: IR 자료 다운로드 →
       chips:
         - { label: "온도",      value: "215°C → 207°C" }
         - { label: "SHAP",     value: "+0.34" }
@@ -38,12 +38,26 @@ ko:
       contact: 문의하기
       demo: 데모 신청
     fear_strip:
-      eu: "EU AI Act 위반 시"
-      eu_amount: "€ 35,000,000"
+      eu: "EU AI Act 위반 시 최대 벌금"
+      eu_amount: "€35M"
       kr: "한국 AI 기본법 시행"
       kr_status: "2026-01-22"
       audit: "감사 통과 가능 결정"
-      audit_status: "100% 자동"
+      audit_status: "100%"
+    trust_strip:
+      label: 데이터·검증 출처
+      items:
+        - { label: "TAM 출처",       value: "Gartner · IDC · Markets&Markets" }
+        - { label: "산업 검증",       value: "10개 페르소나 케이스" }
+        - { label: "프로덕션 검증",   value: "21차 무중단 배포" }
+        - { label: "테스트 커버",     value: "RSpec 104 / 0 PASS" }
+    mini_nav:
+      - { id: "fear",        label: "01 · Stakes" }
+      - { id: "why-now",     label: "02 · Why now" }
+      - { id: "problem",     label: "03 · Problem" }
+      - { id: "solution",    label: "04 · Solution" }
+      - { id: "moat",        label: "05 · Moat" }
+      - { id: "cta",         label: "06 · CTA" }
     footer:
       copyright: "© 2025 XimTier (Gagahoho, Inc.) · All rights reserved."
     regulation_strip:

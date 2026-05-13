@@ -1,5 +1,7 @@
 <% content_for :title, "#{t('site.brand')} — #{t('site.positioning')}" %>
 
+<%= render "shared/mini_nav" %>
+
 <%# ============ 01 Hero (Deep Navy) ============ %>
 <section class="section-dark relative overflow-hidden" style="padding:140px 0 120px;">
   <%# radial blue/teal glow %>
@@ -23,9 +25,13 @@
         <%= t("site.hero.subhead") %>
       </p>
 
-      <div class="mt-9 flex flex-wrap" style="gap:12px;">
-        <%= link_to t("site.hero.cta_demo"), demo_path(locale: I18n.locale),      class: "btn btn-grad" %>
-        <%= link_to t("site.hero.cta_ir"),   investors_path(locale: I18n.locale), class: "btn btn-ghost" %>
+      <div class="mt-9 flex flex-wrap items-center" style="gap:24px;">
+        <%= link_to t("site.hero.cta_demo"), demo_path(locale: I18n.locale),
+              class: "btn btn-grad cta-primary",
+              style: "padding:16px 28px; font-size:15px; font-weight:600; box-shadow:0 12px 28px -8px rgba(0,200,200,0.4);" %>
+        <%= link_to t("site.hero.cta_ir"),   investors_path(locale: I18n.locale),
+              class: "text-[14px] font-semibold cta-secondary",
+              style: "color:#a7b1c7;" %>
       </div>
 
       <%# 4 Pillars %>
@@ -68,35 +74,53 @@
   </div>
 </section>
 
-<%# ============ 02 Fear-fact strip (€35M / D-Day / 100%) ============ %>
-<section class="section-dark" style="padding:18px 0; border-top:1px solid rgba(255,255,255,0.08); border-bottom:1px solid rgba(255,255,255,0.08); background:#060c1f;">
-  <div class="wrap grid grid-cols-1 md:grid-cols-3" style="gap:18px;">
-    <div class="flex items-center" style="gap:14px;">
-      <div class="font-mono text-[10px]" style="color:#00C8C8; letter-spacing:0.14em;">EU AI ACT</div>
-      <div>
-        <div class="text-[12px]" style="color:#8a94ac;"><%= t("site.fear_strip.eu") %></div>
-        <div class="text-[18px] font-bold" style="color:#fff;"><%= t("site.fear_strip.eu_amount") %></div>
-      </div>
-    </div>
-    <div class="flex items-center" style="gap:14px;">
-      <div class="font-mono text-[10px]" style="color:#00C8C8; letter-spacing:0.14em;">KR AI ACT</div>
-      <div>
-        <div class="text-[12px]" style="color:#8a94ac;"><%= t("site.fear_strip.kr") %></div>
-        <div class="text-[18px] font-bold" style="color:#fff;"><%= t("site.fear_strip.kr_status") %></div>
-      </div>
-    </div>
-    <div class="flex items-center" style="gap:14px;">
-      <div class="font-mono text-[10px]" style="color:#00C8C8; letter-spacing:0.14em;">AUDIT</div>
-      <div>
-        <div class="text-[12px]" style="color:#8a94ac;"><%= t("site.fear_strip.audit") %></div>
-        <div class="text-[18px] font-bold" style="color:#fff;"><%= t("site.fear_strip.audit_status") %></div>
-      </div>
+<%# ============ 02 Trust signal strip (출처·검증) ============ %>
+<section class="section-dark" style="padding:14px 0; border-top:1px solid rgba(255,255,255,0.08); background:#060c1f;">
+  <div class="wrap flex items-center justify-between flex-wrap" style="gap:24px;">
+    <div class="font-mono text-[10px]" style="color:#00C8C8; letter-spacing:0.18em;">// <%= t("site.trust_strip.label").upcase %></div>
+    <div class="flex flex-wrap items-center" style="gap:28px;">
+      <% t("site.trust_strip.items").each do |it| %>
+        <div class="flex items-baseline" style="gap:8px;">
+          <span class="font-mono text-[10px]" style="color:#697386; letter-spacing:0.12em; text-transform:uppercase;"><%= it[:label] %></span>
+          <span class="text-[12px] font-semibold" style="color:#e6e8f0;"><%= it[:value] %></span>
+        </div>
+      <% end %>
     </div>
   </div>
 </section>
 
-<%# ============ 02.5 Why Now (Light) ============ %>
-<section class="section-light" style="padding:60px 0; border-bottom:1px solid #e5e9f0;">
+<%# ============ 03 Fear-fact KPI 거대 (€35M / D-Day / 100%) ============ %>
+<section id="fear" class="section-dark" style="padding:44px 0; border-top:1px solid rgba(255,255,255,0.08); border-bottom:1px solid rgba(255,255,255,0.08); background:#060c1f;">
+  <div class="wrap grid grid-cols-1 md:grid-cols-3" style="gap:32px;">
+    <%# 1) EU 벌금 %>
+    <div class="flex flex-col" style="padding:0 12px;">
+      <div class="font-mono text-[10px]" style="color:#EF4444; letter-spacing:0.18em;">// EU AI ACT</div>
+      <div class="mt-3" style="font-size:42px; font-weight:800; line-height:1; color:#fff; letter-spacing:-0.02em;">
+        <%= t("site.fear_strip.eu_amount") %>
+      </div>
+      <div class="mt-3 text-[12px]" style="color:#8a94ac; line-height:1.55;"><%= t("site.fear_strip.eu") %></div>
+    </div>
+    <%# 2) D-Day %>
+    <div class="flex flex-col" style="padding:0 12px;">
+      <div class="font-mono text-[10px]" style="color:#F59E0B; letter-spacing:0.18em;">// KR AI ACT</div>
+      <div class="mt-3" style="font-size:42px; font-weight:800; line-height:1; color:#fff; letter-spacing:-0.02em;">
+        <%= t("site.fear_strip.kr_status") %>
+      </div>
+      <div class="mt-3 text-[12px]" style="color:#8a94ac; line-height:1.55;"><%= t("site.fear_strip.kr") %></div>
+    </div>
+    <%# 3) 100% %>
+    <div class="flex flex-col" style="padding:0 12px;">
+      <div class="font-mono text-[10px]" style="color:#00C8C8; letter-spacing:0.18em;">// AUDIT</div>
+      <div class="mt-3" style="font-size:42px; font-weight:800; line-height:1; color:#fff; letter-spacing:-0.02em;">
+        <span class="text-brand-grad"><%= t("site.fear_strip.audit_status") %></span>
+      </div>
+      <div class="mt-3 text-[12px]" style="color:#8a94ac; line-height:1.55;"><%= t("site.fear_strip.audit") %></div>
+    </div>
+  </div>
+</section>
+
+<%# ============ 04 Why Now (Light) ============ %>
+<section id="why-now" class="section-light" style="padding:60px 0; border-bottom:1px solid #e5e9f0;">
   <div class="wrap" style="max-width:920px;">
     <div class="eyebrow"><span class="dot"></span><%= t("why_now.eyebrow") %></div>
     <h2 class="h-section mt-3"><%= t("why_now.title") %></h2>

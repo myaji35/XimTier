@@ -14,7 +14,7 @@ RSpec.describe "Character Journeys", type: :request do
 
       # Step 2: Hero 메시지
       get "/ko"
-      expect(response.body).to include("감사를 통과할 수 없습니다")
+      expect(response.body).to include("감사를 통과해야 한다")
 
       # Step 3: use-cases 클릭
       get "/ko/use-cases"
@@ -82,7 +82,7 @@ RSpec.describe "Character Journeys", type: :request do
       expect(response).to redirect_to("/en")
 
       get "/en"
-      expect(response.body).to include("pass audit")
+      expect(response.body).to include("pass an audit")
       expect(response.body).to include("Reverse What-If")
 
       get "/en/platform-api"
@@ -91,7 +91,7 @@ RSpec.describe "Character Journeys", type: :request do
 
       # 토글 검증
       get "/ko"
-      expect(response.body).to include("감사를 통과할 수 없습니다")
+      expect(response.body).to include("감사를 통과해야 한다")
     end
   end
 

@@ -117,6 +117,11 @@ html, body {
   box-shadow: 0 8px 24px -8px rgba(37, 99, 235, .55);
 }
 .btn-grad:hover { transform: translateY(-1px); box-shadow: 0 12px 28px -8px rgba(37, 99, 235, .7); }
+.cta-primary { transition: transform .25s ease, box-shadow .25s ease, filter .25s ease; }
+.cta-primary:hover { transform: translateY(-2px) scale(1.02); filter: brightness(1.08); box-shadow: 0 18px 36px -10px rgba(0, 200, 200, 0.55); }
+.cta-primary:focus-visible { outline: 3px solid rgba(0, 200, 200, 0.6); outline-offset: 3px; }
+.cta-secondary { transition: color .25s ease, transform .15s ease; }
+.cta-secondary:hover { color: #ffffff !important; transform: translateX(4px); }
 .btn-ghost { color: #0B132D; border: 1px solid #e5e9f0; background: #fff; }
 .btn-ghost:hover { border-color: #0B132D; }
 .section-dark .btn-ghost { color: #fff; background: transparent; border-color: rgba(255,255,255,.18); }
