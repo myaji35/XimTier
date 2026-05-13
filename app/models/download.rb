@@ -17,7 +17,7 @@ class Download < ApplicationRecord
   def asset_path
     case asset
     when "ir_deck_ko", "ir_deck_en"
-      Rails.root.join("public", "ir", "XAISimTier_PitchDeck_v2.pdf")
+      Rails.root.join("public", "ir", "XimTier_IR_PreSeed_v1.pdf")
     when "ai_engine_deck"
       Rails.root.join("public", "ir", "XAISimTier_AI_Decision_Engine.pdf")
     end
