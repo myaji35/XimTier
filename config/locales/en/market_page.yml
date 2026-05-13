@@ -1,0 +1,82 @@
+en:
+  market_page:
+    eyebrow: Market Value
+    h1: "$81B market — validated by a sum-of-adjacent model"
+    lead: "This number isn't from a single source. It's the non-overlap sum of three adjacent markets."
+
+    kpis:
+      bull:  { value: "$81B",   label: "Bull TAM",   sub: "DI + XAI + Prescriptive non-overlap" }
+      base:  { value: "$50.1B", label: "Base TAM",   sub: "MarketsandMarkets DI alone" }
+      worst: { value: "$36.3B", label: "Worst TAM",  sub: "Grand View DI alone" }
+      cagr:  { value: "+28.5%", label: "CAGR",       sub: "2025–2030 weighted average" }
+
+    scenarios:
+      eyebrow: Scenarios
+      title: "Three scenarios prepared for different investor stances"
+      lead: "Click each tab to see the formula and meaning."
+      bull:
+        tab: "Aggressive (Bull)"
+        value: "$81B"
+        formula: "DI($43B) + XAI($21B) + Prescriptive non-overlap($17B)"
+        body: "Sum of three adjacent markets XimTier can reach. $14B overlap deducted."
+        share: "Only 0.046% market share gives ARR ₩3B."
+      base:
+        tab: "Standard (Base)"
+        value: "$50.1B"
+        formula: "MarketsandMarkets Decision Intelligence (single source)"
+        body: "Single authoritative source. The default VCs trust most. CAGR 24.7%."
+        share: "Only 0.07% market share gives ARR ₩3B."
+      worst:
+        tab: "Conservative (Worst)"
+        value: "$36.3B"
+        formula: "Grand View Research Decision Intelligence (single source)"
+        body: "Most conservative single source. Business holds even at half the market."
+        share: "Only 0.1% share gives ARR ₩50B."
+
+    sum_model:
+      eyebrow: Sum Model
+      title: "How $81B is built"
+      lead: "Not a naive sum. Overlap between markets is deducted — no inflation."
+      circles:
+        di:           { value: "$43B", label: "Decision Intelligence" }
+        xai:          { value: "$21B", label: "Explainable AI (XAI)" }
+        prescriptive: { value: "$17B", label: "Prescriptive Analytics (non-overlap)" }
+      caption: "$14B overlap deducted = $81B"
+
+    why_now:
+      eyebrow: Why Now
+      title: "Why now"
+      lead: "Three market signals converge on us at the same time."
+      cards:
+        - { stat: "30~50%", label: "Gen AI failure rate",   source: "Gartner 2024–25", body: "LLM hype deflating. Demand for provable AI rising." }
+        - { stat: "€17B",   label: "EU AI Act compliance",  source: "EU Commission",   body: "Transparency regulation. SHAP-based XAI mandatory." }
+        - { stat: "85%",    label: "Enterprise LLM ban",    source: "Cisco AI Survey", body: "Data security. On-prem is the only viable path." }
+
+    funnel:
+      eyebrow: TAM / SAM / SOM
+      title: "What XimTier can actually reach"
+      lead: "Total market is huge. Year-3 target is realistic."
+      tam: { value: "$81B",  label: "TAM",  sub: "Global potential (Bull-case)" }
+      sam: { value: "$18B",  label: "SAM",  sub: "Business analytics SaaS (Serviceable)" }
+      som: { value: "$500M", label: "SOM",  sub: "Year-3 Korea + Southeast Asia SME (Obtainable)" }
+      target_callout: "Y3 ARR ₩3B = just 0.46% of SOM"
+
+    sources:
+      eyebrow: Sources
+      title: "Where the numbers come from"
+      lead: "Eight primary research sources. Click to read the originals."
+      items:
+        - { org: "MarketsandMarkets",   quote: "DI $13.3B → $50.1B (CAGR 24.7%)",    year: 2024, url: "https://www.marketsandmarkets.com/PressReleases/decision-intelligence.asp" }
+        - { org: "Grand View Research", quote: "DI $15.22B → $36.34B (CAGR 15.4%)",   year: 2024, url: "https://www.grandviewresearch.com/industry-analysis/decision-intelligence-market-report" }
+        - { org: "Grand View Research", quote: "XAI $7.79B → $21.06B (CAGR 18.0%)",   year: 2024, url: "https://www.grandviewresearch.com/industry-analysis/explainable-ai-market-report" }
+        - { org: "Research and Markets", quote: "Prescriptive Analytics $37.05B (CAGR 22%)", year: 2024, url: "https://www.researchandmarkets.com/reports/5933907/prescriptive-analytics-market-report" }
+        - { org: "Gartner",             quote: "30% of Gen AI projects abandoned by end-2025", year: 2024, url: "https://www.gartner.com/en/newsroom/press-releases/2024-07-29-gartner-predicts-30-percent-of-generative-ai-projects-will-be-abandoned-after-proof-of-concept-by-end-of-2025" }
+        - { org: "EU Commission",       quote: "AI Act effective 2026-08 · €17B compliance market", year: 2024, url: "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" }
+        - { org: "Statista",            quote: "SEA Public Cloud CAGR 23.5%",         year: 2025, url: "https://www.statista.com/outlook/tmo/public-cloud/southeast-asia" }
+        - { org: "Korean Government",   quote: "5-year AI investment $71.5B (Aug 2025)", year: 2025, url: "https://www.investkorea.org/ik-en/bbs/i-5025/detail.do" }
+
+    cta:
+      title: "Bringing this to a VC meeting?"
+      lead: "Answer the question in 30 seconds with a 5-page research PDF."
+      pdf_button: "Get the $81B research PDF"
+      demo_button: "See 5-min demo"

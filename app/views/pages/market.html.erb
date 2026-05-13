@@ -1,0 +1,132 @@
+<% content_for :title, "#{t('market_page.h1')} — #{t('site.brand')}" %>
+
+<%# 01 Hero (dark) %>
+<section class="section-dark section-pad">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span><%= t("market_page.eyebrow") %></div>
+    <h1 class="h-section mt-3" style="color:#fff; max-width:920px;"><%= t("market_page.h1") %></h1>
+    <p class="lead mt-5" style="color:#a7b1c7; max-width:760px;"><%= t("market_page.lead") %></p>
+
+    <div class="mt-12 grid grid-cols-2 md:grid-cols-4" style="gap:14px;">
+      <% %i[bull base worst cagr].each do |key| %>
+        <% k = t("market_page.kpis.#{key}") %>
+        <div class="rounded-[14px] p-5" style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);">
+          <div class="font-mono text-[10px]" style="color:#00C8C8; letter-spacing:0.14em;"><%= k[:label] %></div>
+          <div class="mt-2 font-mono font-bold" style="font-size:30px; color:#fff; letter-spacing:-0.02em;"><%= k[:value] %></div>
+          <div class="mt-1 text-[12px]" style="color:#a7b1c7; line-height:1.5;"><%= k[:sub] %></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<%# 02 Scenarios (light, interactive) %>
+<section class="section-light section-pad">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span><%= t("market_page.scenarios.eyebrow") %></div>
+    <h2 class="h-section mt-3" style="max-width:760px;"><%= t("market_page.scenarios.title") %></h2>
+    <p class="lead mt-5" style="color:#475467;"><%= t("market_page.scenarios.lead") %></p>
+
+    <div class="mt-10">
+      <%= render MarketScenarioToggleComponent.new(
+            bull: t("market_page.scenarios.bull"),
+            base: t("market_page.scenarios.base"),
+            worst: t("market_page.scenarios.worst")
+          ) %>
+    </div>
+  </div>
+</section>
+
+<%# 03 Sum Model Venn (tinted) %>
+<section class="section-tinted section-pad">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span><%= t("market_page.sum_model.eyebrow") %></div>
+    <h2 class="h-section mt-3" style="max-width:760px;"><%= t("market_page.sum_model.title") %></h2>
+    <p class="lead mt-5" style="color:#475467; max-width:760px;"><%= t("market_page.sum_model.lead") %></p>
+
+    <div class="mt-12">
+      <%= render MarketVennComponent.new(
+            di:           t("market_page.sum_model.circles.di"),
+            xai:          t("market_page.sum_model.circles.xai"),
+            prescriptive: t("market_page.sum_model.circles.prescriptive"),
+            caption:      t("market_page.sum_model.caption")
+          ) %>
+    </div>
+  </div>
+</section>
+
+<%# 04 Why Now (dark) %>
+<section class="section-dark section-pad">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span><%= t("market_page.why_now.eyebrow") %></div>
+    <h2 class="h-section mt-3" style="color:#fff; max-width:760px;"><%= t("market_page.why_now.title") %></h2>
+    <p class="lead mt-5" style="color:#a7b1c7; max-width:760px;"><%= t("market_page.why_now.lead") %></p>
+
+    <div class="mt-12 grid grid-cols-1 md:grid-cols-3" style="gap:20px;">
+      <% t("market_page.why_now.cards").each_with_index do |c, i| %>
+        <div class="card-dark" style="padding:28px;">
+          <div class="font-mono text-[11px]" style="color:#00C8C8; letter-spacing:0.14em;">// FACTOR <%= format('%02d', i + 1) %></div>
+          <div class="mt-3 font-mono" style="font-size:32px; font-weight:700; color:#fff;"><%= c[:stat] %></div>
+          <div class="mt-2 text-[14px] font-semibold" style="color:#e6e8f0;"><%= c[:label] %></div>
+          <p class="mt-3 text-[13px]" style="color:#a7b1c7; line-height:1.6;"><%= c[:body] %></p>
+          <div class="mt-4 pt-3 font-mono text-[11px]" style="color:#697386; letter-spacing:0.06em; border-top:1px solid rgba(255,255,255,0.08);">
+            <%= c[:source] %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<%# 05 TAM/SAM/SOM Funnel (light) %>
+<section class="section-light section-pad">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span><%= t("market_page.funnel.eyebrow") %></div>
+    <h2 class="h-section mt-3" style="max-width:760px;"><%= t("market_page.funnel.title") %></h2>
+    <p class="lead mt-5" style="color:#475467; max-width:760px;"><%= t("market_page.funnel.lead") %></p>
+
+    <div class="mt-12">
+      <%= render MarketFunnelComponent.new(
+            tam: t("market_page.funnel.tam"),
+            sam: t("market_page.funnel.sam"),
+            som: t("market_page.funnel.som"),
+            target_callout: t("market_page.funnel.target_callout")
+          ) %>
+    </div>
+  </div>
+</section>
+
+<%# 06 Sources (tinted) %>
+<section class="section-tinted section-pad">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span><%= t("market_page.sources.eyebrow") %></div>
+    <h2 class="h-section mt-3" style="max-width:760px;"><%= t("market_page.sources.title") %></h2>
+    <p class="lead mt-5" style="color:#475467;"><%= t("market_page.sources.lead") %></p>
+
+    <div class="mt-10 grid grid-cols-1 md:grid-cols-2" style="gap:16px;">
+      <% t("market_page.sources.items").each_with_index do |item, i| %>
+        <a href="<%= item[:url] %>" target="_blank" rel="noopener" class="card block" style="padding:18px; text-decoration:none;">
+          <div class="flex items-baseline justify-between">
+            <span class="font-mono text-[10px]" style="color:#2563EB; letter-spacing:0.14em;">SOURCE / <%= format('%02d', i + 1) %></span>
+            <span class="font-mono text-[10px]" style="color:#697386;"><%= item[:year] %></span>
+          </div>
+          <div class="mt-2 text-[14px] font-semibold" style="color:#0B132D;"><%= item[:org] %></div>
+          <div class="mt-1 text-[12px]" style="color:#475467; line-height:1.5;"><%= item[:quote] %></div>
+        </a>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<%# 07 CTA (dark) %>
+<section class="section-dark section-pad-compact relative overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(700px 400px at 50% 50%, rgba(37,99,235,0.22), transparent 60%);"></div>
+  <div class="wrap relative text-center">
+    <h2 class="h-section" style="color:#fff; max-width:760px; margin:0 auto;"><%= t("market_page.cta.title") %></h2>
+    <p class="lead mt-4 mx-auto" style="color:#a7b1c7; max-width:560px;"><%= t("market_page.cta.lead") %></p>
+    <div class="mt-8 flex justify-center flex-wrap" style="gap:12px;">
+      <%= link_to t("market_page.cta.pdf_button"),  investors_path(locale: I18n.locale), class: "btn btn-grad" %>
+      <%= link_to t("market_page.cta.demo_button"), demo_path(locale: I18n.locale),      class: "btn btn-ghost" %>
+    </div>
+  </div>
+</section>

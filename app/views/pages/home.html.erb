@@ -24,8 +24,8 @@
       </p>
 
       <div class="mt-9 flex flex-wrap" style="gap:12px;">
-        <a href="#demo" class="btn btn-grad"><%= t("site.hero.cta_demo") %></a>
-        <a href="#investors" class="btn btn-ghost"><%= t("site.hero.cta_ir") %></a>
+        <%= link_to t("site.hero.cta_demo"), demo_path(locale: I18n.locale),      class: "btn btn-grad" %>
+        <%= link_to t("site.hero.cta_ir"),   investors_path(locale: I18n.locale), class: "btn btn-ghost" %>
       </div>
 
       <%# 4 Pillars %>
@@ -145,6 +145,12 @@
         </div>
       <% end %>
     </div>
+
+    <div class="mt-6 text-center">
+      <%= link_to (I18n.locale == :ko ? "이 숫자들의 근거 보기 →" : "How these numbers are derived →"),
+            market_path(locale: I18n.locale),
+            class: "text-[14px] font-semibold", style: "color:#2563EB;" %>
+    </div>
   </div>
 </section>
 
@@ -181,8 +187,8 @@
       <%= I18n.locale == :ko ? "비전문가도 5분 안에 의사결정을 끝냅니다." : "Even non-experts finish a decision in 5 minutes." %>
     </h2>
     <div class="mt-8 flex justify-center flex-wrap" style="gap:12px;">
-      <a href="#demo" class="btn btn-grad"><%= t("site.hero.cta_demo") %></a>
-      <a href="#contact" class="btn btn-ghost"><%= t("site.nav.contact") %></a>
+      <%= link_to t("site.hero.cta_demo"), demo_path(locale: I18n.locale),    class: "btn btn-grad" %>
+      <%= link_to t("site.nav.contact"),   contact_path(locale: I18n.locale), class: "btn btn-ghost" %>
     </div>
   </div>
 </section>

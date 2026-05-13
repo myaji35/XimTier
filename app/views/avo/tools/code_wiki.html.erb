@@ -1,0 +1,214 @@
+<%# XimTier Code Wiki — 코드 구조 + Harness 상태 라이브 대시보드 %>
+<% s = @snapshot %>
+
+<div class="flex flex-col" style="font-family: -apple-system, system-ui, sans-serif;">
+  <%= render Avo::PanelComponent.new(name: "XimTier Code Wiki", display_breadcrumbs: true) do |c| %>
+    <% c.with_tools do %>
+      <div class="text-sm" style="color:#697386;">
+        Generated: <code style="background:#F2F4F7; padding:2px 6px; border-radius:3px;"><%= s[:generated_at].strftime("%Y-%m-%d %H:%M:%S") %></code>
+      </div>
+    <% end %>
+
+    <% c.with_body do %>
+      <div class="p-6 space-y-8">
+
+        <%# === Stats Strip === %>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div class="p-4 rounded-lg" style="background:linear-gradient(135deg,#2563EB,#00C8C8); color:#fff;">
+            <div class="text-xs opacity-80" style="letter-spacing:0.1em;">ENVIRONMENT</div>
+            <div class="text-lg font-bold mt-1"><%= s[:stats][:env] %></div>
+            <div class="text-xs mt-1 opacity-80">Rails <%= s[:stats][:rails] %> · Ruby <%= s[:stats][:ruby] %></div>
+          </div>
+          <div class="p-4 rounded-lg" style="background:#fff; border:1px solid #e5e9f0;">
+            <div class="text-xs" style="color:#697386; letter-spacing:0.1em;">GIT</div>
+            <div class="text-lg font-mono font-bold mt-1" style="color:#0B132D;"><%= s[:stats][:git_sha] || "—" %></div>
+            <div class="text-xs mt-1" style="color:#697386;">branch: <%= s[:stats][:git_branch] || "—" %></div>
+          </div>
+          <div class="p-4 rounded-lg" style="background:#fff; border:1px solid #e5e9f0;">
+            <div class="text-xs" style="color:#697386; letter-spacing:0.1em;">APP FILES</div>
+            <div class="text-2xl font-bold mt-1" style="color:#0B132D;"><%= s[:stats][:total_files] %></div>
+            <div class="text-xs mt-1" style="color:#697386;">app/ 하위 전체</div>
+          </div>
+          <div class="p-4 rounded-lg" style="background:#fff; border:1px solid #e5e9f0;">
+            <div class="text-xs" style="color:#697386; letter-spacing:0.1em;">HARNESS ISSUES</div>
+            <% if s[:issues][:available] %>
+              <div class="text-2xl font-bold mt-1" style="color:#0B132D;"><%= s[:issues][:total] %></div>
+              <div class="text-xs mt-1" style="color:#697386;">
+                <% (s[:issues][:by_status] || {}).each do |k, v| %>
+                  <span style="margin-right:8px;"><%= k %>: <strong><%= v %></strong></span>
+                <% end %>
+              </div>
+            <% else %>
+              <div class="text-lg mt-1" style="color:#94A3B8;">registry 없음</div>
+            <% end %>
+          </div>
+        </div>
+
+        <%# === ViewComponents === %>
+        <section>
+          <h3 class="text-base font-semibold mb-3" style="color:#0B132D;">
+            🧩 ViewComponents <span class="text-xs font-normal" style="color:#697386;">(<%= s[:components].size %>)</span>
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+            <% s[:components].each do |c| %>
+              <div class="p-3 rounded" style="background:#F2F4F7; border:1px solid #e5e9f0;">
+                <div class="text-sm font-semibold" style="color:#0B132D;"><%= c[:name] %></div>
+                <div class="text-xs mt-1 font-mono" style="color:#697386;"><%= c[:file] %></div>
+                <div class="text-xs mt-1" style="color:#94A3B8;">
+                  <%= c[:lines] %> lines · template <%= c[:has_template] ? "✓" : "✗" %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </section>
+
+        <%# === Stimulus + Rails Controllers === %>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <section>
+            <h3 class="text-base font-semibold mb-3" style="color:#0B132D;">
+              ⚡ Stimulus Controllers <span class="text-xs font-normal" style="color:#697386;">(<%= s[:stimulus].size %>)</span>
+            </h3>
+            <div class="space-y-2">
+              <% s[:stimulus].each do |c| %>
+                <div class="p-2 rounded" style="background:#F2F4F7; border:1px solid #e5e9f0;">
+                  <div class="text-sm font-mono" style="color:#2563EB;">data-controller="<%= c[:identifier] %>"</div>
+                  <div class="text-xs mt-1" style="color:#697386;"><%= c[:file] %> · <%= c[:lines] %> lines</div>
+                </div>
+              <% end %>
+            </div>
+          </section>
+
+          <section>
+            <h3 class="text-base font-semibold mb-3" style="color:#0B132D;">
+              🎮 Rails Controllers <span class="text-xs font-normal" style="color:#697386;">(<%= s[:controllers].size %>)</span>
+            </h3>
+            <div class="space-y-2">
+              <% s[:controllers].each do |c| %>
+                <div class="p-2 rounded" style="background:#F2F4F7; border:1px solid #e5e9f0;">
+                  <div class="text-sm font-semibold" style="color:#0B132D;"><%= c[:name] %></div>
+                  <div class="text-xs mt-1" style="color:#697386;"><%= c[:lines] %> lines · <%= c[:file] %></div>
+                </div>
+              <% end %>
+            </div>
+          </section>
+        </div>
+
+        <%# === Models + Pages === %>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <section>
+            <h3 class="text-base font-semibold mb-3" style="color:#0B132D;">
+              💾 Models <span class="text-xs font-normal" style="color:#697386;">(<%= s[:models].size %>)</span>
+            </h3>
+            <div class="space-y-2">
+              <% s[:models].each do |m| %>
+                <div class="p-2 rounded" style="background:#F2F4F7; border:1px solid #e5e9f0;">
+                  <div class="text-sm font-semibold" style="color:#0B132D;"><%= m[:name] %></div>
+                  <div class="text-xs mt-1" style="color:#697386;"><%= m[:lines] %> lines</div>
+                </div>
+              <% end %>
+            </div>
+          </section>
+
+          <section>
+            <h3 class="text-base font-semibold mb-3" style="color:#0B132D;">
+              📄 Pages <span class="text-xs font-normal" style="color:#697386;">(<%= s[:pages].size %>)</span>
+            </h3>
+            <div class="grid grid-cols-2 gap-2">
+              <% s[:pages].each do |p| %>
+                <div class="p-2 rounded text-xs" style="background:#F2F4F7; border:1px solid #e5e9f0;">
+                  <div class="font-semibold" style="color:#0B132D;"><%= p[:name] %></div>
+                  <div class="font-mono mt-1" style="color:#697386;"><%= p[:lines] %>L</div>
+                </div>
+              <% end %>
+            </div>
+          </section>
+        </div>
+
+        <%# === Locales === %>
+        <section>
+          <h3 class="text-base font-semibold mb-3" style="color:#0B132D;">🌐 i18n Locales</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <% s[:locales].each do |loc| %>
+              <div class="p-4 rounded" style="background:#F2F4F7; border:1px solid #e5e9f0;">
+                <div class="flex items-baseline justify-between">
+                  <span class="text-lg font-bold uppercase" style="color:#0B132D;"><%= loc[:locale] %></span>
+                  <span class="text-sm" style="color:#697386;"><%= loc[:file_count] %> files · ~<%= loc[:approx_keys] %> keys</span>
+                </div>
+                <div class="mt-2 flex flex-wrap gap-1">
+                  <% loc[:files].each do |f| %>
+                    <span class="text-xs px-2 py-1 rounded" style="background:#fff; border:1px solid #e5e9f0; color:#475467;"><%= f %></span>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </section>
+
+        <%# === Harness Agents === %>
+        <section>
+          <h3 class="text-base font-semibold mb-3" style="color:#0B132D;">
+            🤖 Harness Agents <span class="text-xs font-normal" style="color:#697386;">(<%= s[:agents].size %>)</span>
+          </h3>
+          <% if s[:agents].empty? %>
+            <p class="text-sm" style="color:#94A3B8;">.claude/agents 디렉토리 없음 또는 비어있음</p>
+          <% else %>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+              <% s[:agents].each do |a| %>
+                <div class="p-2 rounded text-xs" style="background:#F2F4F7; border:1px solid #e5e9f0;">
+                  <div class="font-mono font-semibold" style="color:#2563EB;"><%= a[:name] %></div>
+                  <div class="mt-1" style="color:#697386;"><%= a[:size_kb] %> KB</div>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </section>
+
+        <%# === Harness Issues === %>
+        <section>
+          <h3 class="text-base font-semibold mb-3" style="color:#0B132D;">📊 Harness Issues</h3>
+          <% if s[:issues][:available] %>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+              <% (s[:issues][:by_priority] || {}).each do |p, c| %>
+                <div class="p-3 rounded" style="background:#F2F4F7; border:1px solid #e5e9f0;">
+                  <div class="text-xs" style="color:#697386; letter-spacing:0.1em;">PRIORITY <%= p %></div>
+                  <div class="text-2xl font-bold mt-1" style="color:#0B132D;"><%= c %></div>
+                </div>
+              <% end %>
+            </div>
+
+            <% if s[:issues][:latest].any? %>
+              <h4 class="text-sm font-semibold mb-2" style="color:#0B132D;">최근 5개 이슈</h4>
+              <table class="w-full text-sm">
+                <thead>
+                  <tr style="background:#F2F4F7;">
+                    <th class="text-left p-2 text-xs" style="color:#697386; letter-spacing:0.1em;">ID</th>
+                    <th class="text-left p-2 text-xs" style="color:#697386; letter-spacing:0.1em;">TITLE</th>
+                    <th class="text-left p-2 text-xs" style="color:#697386; letter-spacing:0.1em;">STATUS</th>
+                    <th class="text-left p-2 text-xs" style="color:#697386; letter-spacing:0.1em;">P</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% s[:issues][:latest].each do |iss| %>
+                    <tr style="border-bottom:1px solid #e5e9f0;">
+                      <td class="p-2 font-mono text-xs" style="color:#2563EB;"><%= iss[:id] %></td>
+                      <td class="p-2 text-xs" style="color:#0B132D;"><%= iss[:title] %></td>
+                      <td class="p-2 text-xs" style="color:#475467;"><%= iss[:status] %></td>
+                      <td class="p-2 font-mono text-xs" style="color:#697386;"><%= iss[:priority] %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            <% end %>
+
+            <div class="mt-3 text-xs" style="color:#697386;">
+              💡 누적 학습 패턴: <strong><%= s[:issues][:success_patterns] %>개</strong>
+            </div>
+          <% else %>
+            <p class="text-sm" style="color:#94A3B8;">.claude/issue-db/registry.json 없음</p>
+          <% end %>
+        </section>
+
+      </div>
+    <% end %>
+  <% end %>
+</div>

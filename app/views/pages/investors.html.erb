@@ -6,6 +6,22 @@
     <h1 class="h-section mt-3" style="color:#fff; max-width:920px;"><%= t("investors.h1") %></h1>
     <p class="lead mt-5" style="color:#a7b1c7; max-width:760px;"><%= t("investors.lead") %></p>
 
+    <%# 30초 시장 요약 카드 → /company/market %>
+    <div class="mt-10 p-5 rounded-[14px] flex items-start gap-4" style="background:rgba(0,200,200,0.06); border:1px solid rgba(0,200,200,0.25);">
+      <div class="font-mono text-[10px]" style="color:#00C8C8; letter-spacing:0.14em; padding-top:4px;">// 30초 요약</div>
+      <div class="flex-1">
+        <h3 class="text-[18px] font-semibold" style="color:#fff;"><%= I18n.locale == :ko ? "우리 시장은 $81B" : "Our market is $81B" %></h3>
+        <p class="mt-2 text-[14px]" style="color:#a7b1c7; line-height:1.65;">
+          <%= I18n.locale == :ko ?
+                "Decision Intelligence + XAI + Prescriptive Analytics 합산 TAM. 보수적으로는 $50.1B (MarketsandMarkets 단독, CAGR 24.7%)." :
+                "Sum-of-adjacent TAM for DI + XAI + Prescriptive Analytics. Conservative single-source: $50.1B (MarketsandMarkets, CAGR 24.7%)." %>
+        </p>
+        <%= link_to (I18n.locale == :ko ? "→ 합산 근거 보기" : "→ See sum-of-adjacent model"),
+              market_path(locale: I18n.locale),
+              class: "text-[13px] font-semibold mt-3 inline-block", style: "color:#00C8C8;" %>
+      </div>
+    </div>
+
     <%# Ask + Use of funds %>
     <div class="mt-14 grid grid-cols-1 md:grid-cols-[1fr_1.4fr]" style="gap:32px;">
       <div class="card-dark" style="padding:32px;">

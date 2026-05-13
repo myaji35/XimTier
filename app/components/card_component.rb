@@ -13,8 +13,8 @@ class CardComponent < ApplicationComponent
   end
 
   def card_classes
-    base = "rounded-xl border bg-slate-900/40 p-6 md:p-8 transition"
-    base += highlighted ? " border-cyan-400/50 shadow-[0_0_32px_rgba(34,211,238,0.15)]" : " border-slate-800/80 hover:border-slate-700"
+    base = "rounded-xl border p-6 md:p-8 transition"
+    base += highlighted ? " border-[#2563EB] shadow-[0_10px_30px_-12px_rgba(11,19,45,0.18)] bg-white" : " border-[#e5e9f0] bg-white hover:border-[#2563EB] hover:shadow-[0_10px_30px_-12px_rgba(11,19,45,0.18)]"
     base
   end
 end

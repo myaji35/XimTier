@@ -1,0 +1,115 @@
+<% content_for :title, "#{@case[:title]} — #{t('site.brand')}" %>
+
+<%# 01 Hero (dark) %>
+<section class="section-dark section-pad">
+  <div class="wrap" style="max-width:920px;">
+    <div class="eyebrow"><span class="dot"></span><%= @case[:eyebrow] %></div>
+    <h1 class="h-section mt-3" style="color:#fff;"><%= @case[:title] %></h1>
+    <div class="mt-6 grid grid-cols-1 md:grid-cols-3" style="gap:16px;">
+      <div class="font-mono text-[12px]" style="color:#a7b1c7;">
+        <div style="color:#00C8C8; letter-spacing:0.14em;">// PERSONA</div>
+        <div class="mt-1" style="color:#e6e8f0;"><%= @case[:persona] %></div>
+      </div>
+      <div class="font-mono text-[12px]" style="color:#a7b1c7;">
+        <div style="color:#00C8C8; letter-spacing:0.14em;">// INDUSTRY</div>
+        <div class="mt-1" style="color:#e6e8f0;"><%= @case[:industry_label] %></div>
+      </div>
+      <div class="font-mono text-[12px]" style="color:#a7b1c7;">
+        <div style="color:#00C8C8; letter-spacing:0.14em;">// DATASET</div>
+        <div class="mt-1" style="color:#e6e8f0;"><%= @case[:dataset] %></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%# 02 Problem (light) %>
+<section class="section-light section-pad">
+  <div class="wrap" style="max-width:760px;">
+    <div class="eyebrow"><span class="dot"></span>PROBLEM</div>
+    <h2 class="h-section mt-3"><%= @case[:problem_title] %></h2>
+    <p class="lead mt-5" style="color:#475467; white-space:pre-line;"><%= @case[:problem_body] %></p>
+  </div>
+</section>
+
+<%# 03 Approach (tinted) %>
+<section class="section-tinted section-pad">
+  <div class="wrap" style="max-width:760px;">
+    <div class="eyebrow"><span class="dot"></span>APPROACH</div>
+    <h2 class="h-section mt-3"><%= @case[:approach_title] %></h2>
+    <p class="lead mt-5" style="color:#475467; white-space:pre-line;"><%= @case[:approach_body] %></p>
+  </div>
+</section>
+
+<%# 04 Variables table (Manufacturing only) %>
+<% if @case[:variables].present? %>
+  <section class="section-light section-pad">
+    <div class="wrap" style="max-width:920px;">
+      <div class="eyebrow"><span class="dot"></span>VARIABLES</div>
+      <h2 class="h-section mt-3"><%= @case[:variables_title] %></h2>
+
+      <div class="mt-10 overflow-x-auto">
+        <table class="w-full" style="border-collapse:separate; border-spacing:0; min-width:560px;">
+          <thead>
+            <tr>
+              <th class="text-left p-4 font-mono text-[11px]" style="background:#F2F4F7; color:#697386; letter-spacing:0.14em; border:1px solid #e5e9f0; border-right:0;">VARIABLE</th>
+              <th class="text-left p-4 font-mono text-[11px]" style="background:#F2F4F7; color:#697386; letter-spacing:0.14em; border-top:1px solid #e5e9f0; border-bottom:1px solid #e5e9f0;">BASELINE</th>
+              <th class="text-left p-4 font-mono text-[11px]" style="background:#F2F4F7; color:#2563EB; letter-spacing:0.14em; border-top:1px solid #e5e9f0; border-bottom:1px solid #e5e9f0;">OPTIMAL</th>
+              <th class="text-left p-4 font-mono text-[11px]" style="background:#F2F4F7; color:#00C8C8; letter-spacing:0.14em; border:1px solid #e5e9f0; border-left:0;">Δ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @case[:variables].each_with_index do |v, i| %>
+              <% is_last = i == @case[:variables].size - 1 %>
+              <% border_b = is_last ? "border-bottom:1px solid #e5e9f0;" : "border-bottom:1px solid #e5e9f0;" %>
+              <tr>
+                <td class="p-4" style="background:#fff; <%= border_b %> border-left:1px solid #e5e9f0;"><%= v[:name] %></td>
+                <td class="p-4 font-mono text-[14px]" style="background:#fff; color:#697386; <%= border_b %>"><%= v[:from] %></td>
+                <td class="p-4 font-mono text-[14px] font-semibold" style="background:#fff; color:#2563EB; <%= border_b %>"><%= v[:to] %></td>
+                <td class="p-4 font-mono text-[13px]" style="background:#fff; color:#00C8C8; <%= border_b %> border-right:1px solid #e5e9f0;"><%= v[:delta] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-6 text-center">
+        <%= link_to (I18n.locale == :ko ? "라이브 데모에서 직접 슬라이더 조작하기 →" : "Try the live demo →"),
+              how_it_works_path(locale: I18n.locale, anchor: "reverse-what-if-demo"),
+              class: "text-[14px] font-semibold", style: "color:#2563EB;" %>
+      </div>
+    </div>
+  </section>
+<% end %>
+
+<%# 05 Outcomes (dark) %>
+<section class="section-dark section-pad">
+  <div class="wrap" style="max-width:920px;">
+    <div class="eyebrow"><span class="dot"></span>OUTCOMES</div>
+    <h2 class="h-section mt-3" style="color:#fff;"><%= @case[:outcomes_title] %></h2>
+
+    <div class="mt-10 grid grid-cols-1 md:grid-cols-2" style="gap:16px;">
+      <% @case[:outcomes].each_with_index do |o, i| %>
+        <div class="card-dark" style="padding:24px;">
+          <div class="font-mono text-[11px] text-brand-grad">OUT / <%= format('%02d', i + 1) %></div>
+          <p class="mt-3 text-[15px]" style="color:#e6e8f0; line-height:1.6;"><%= o %></p>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="mt-8 p-3 rounded-[10px] text-center" style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);">
+      <span class="font-mono text-[11px]" style="color:#8a94ac;">⚠ <%= @case[:note] %></span>
+    </div>
+  </div>
+</section>
+
+<%# 06 CTA (tinted) %>
+<section class="section-tinted section-pad-compact text-center">
+  <div class="wrap">
+    <h2 class="h-section" style="max-width:760px; margin:0 auto;"><%= t("cases_cta.title") %></h2>
+    <p class="lead mt-4" style="color:#475467;"><%= t("cases_cta.body") %></p>
+    <div class="mt-8 flex justify-center flex-wrap" style="gap:12px;">
+      <%= link_to t("cases_cta.button"), demo_path(locale: I18n.locale), class: "btn btn-grad" %>
+      <%= link_to t("site.nav.contact"), contact_path(locale: I18n.locale), class: "btn btn-ghost" %>
+    </div>
+  </div>
+</section>

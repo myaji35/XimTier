@@ -185,3 +185,81 @@ html, body {
 @media (prefers-reduced-motion: reduce) {
   .float-chip { animation: none !important; }
 }
+
+/* === Tweaks Panel — body[data-tweak-*] 토글 === */
+/* 액센트: electric (blue → purple) */
+body[data-tweak-accent="electric"] .text-brand-grad {
+  background-image: linear-gradient(135deg, #2563EB 0%, #A855F7 100%) !important;
+}
+body[data-tweak-accent="electric"] .btn-grad,
+body[data-tweak-accent="electric"] .bg-brand-grad {
+  background: linear-gradient(135deg, #2563EB 0%, #A855F7 100%) !important;
+}
+
+/* 액센트: monochrome */
+body[data-tweak-accent="mono"] .text-brand-grad {
+  background-image: linear-gradient(135deg, #0B132D 0%, #475467 100%) !important;
+}
+body[data-tweak-accent="mono"] .btn-grad,
+body[data-tweak-accent="mono"] .bg-brand-grad {
+  background: linear-gradient(135deg, #0B132D 0%, #475467 100%) !important;
+}
+
+/* 칩 OFF — Hero의 floating data chips 숨김 */
+body[data-tweak-chips="off"] .float-chip { display: none !important; }
+
+/* 컴팩트 여백 */
+body[data-tweak-spacing="compact"] .section-pad { padding: 60px 0 !important; }
+body[data-tweak-spacing="compact"] .section-pad-compact { padding: 40px 0 !important; }
+
+/* 올라이트: 다크 섹션을 라이트로 강제 */
+body[data-tweak-section="all-light"] .section-dark {
+  background: #ffffff !important;
+  color: #0B132D !important;
+}
+body[data-tweak-section="all-light"] .section-dark .h-section,
+body[data-tweak-section="all-light"] .section-dark h1,
+body[data-tweak-section="all-light"] .section-dark h2 { color: #0B132D !important; }
+body[data-tweak-section="all-light"] .section-dark .lead,
+body[data-tweak-section="all-light"] .section-dark p { color: #475467 !important; }
+body[data-tweak-section="all-light"] .section-footer {
+  background: #F2F4F7 !important;
+}
+
+/* Tweaks Panel 자체 스타일 */
+.tweaks-trigger {
+  position: fixed; right: 20px; bottom: 20px; z-index: 60;
+  width: 48px; height: 48px;
+  border-radius: 999px;
+  background: #0B132D; color: #fff;
+  border: 0; cursor: pointer;
+  box-shadow: 0 10px 30px -10px rgba(11,19,45,.5);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em;
+}
+.tweaks-trigger:hover { background: #2563EB; }
+
+.tweaks-panel {
+  position: fixed; right: 20px; bottom: 80px; z-index: 60;
+  width: 280px;
+  background: #fff;
+  border: 1px solid #e5e9f0;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 20px 50px -10px rgba(11,19,45,.25);
+  display: none;
+}
+.tweaks-panel.is-open { display: block; }
+.tweaks-panel h4 { font-size: 13px; font-weight: 600; color: #0B132D; margin-bottom: 8px; }
+.tweaks-panel .tweaks-group { padding: 10px 0; border-top: 1px solid #F2F4F7; }
+.tweaks-panel .tweaks-group:first-of-type { border-top: 0; padding-top: 0; }
+.tweaks-panel label {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-right: 12px; font-size: 12px; color: #475467; cursor: pointer;
+}
+.tweaks-panel .tweaks-reset {
+  margin-top: 12px; padding: 6px 12px;
+  background: transparent; border: 1px solid #e5e9f0; border-radius: 999px;
+  font-size: 11px; color: #697386; cursor: pointer;
+}
+.tweaks-panel .tweaks-reset:hover { border-color: #2563EB; color: #2563EB; }

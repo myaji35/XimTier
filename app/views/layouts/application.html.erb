@@ -54,12 +54,13 @@
           <%= link_to t("site.nav.how_it_works"), how_it_works_path(locale: I18n.locale), class: "text-[15px] font-medium text-[#475467] hover:text-[#0B132D] transition" %>
           <%= link_to t("site.nav.use_cases"),    use_cases_path(locale: I18n.locale), class: "text-[15px] font-medium text-[#475467] hover:text-[#0B132D] transition" %>
           <%= link_to t("site.nav.pricing"),      pricing_path(locale: I18n.locale), class: "text-[15px] font-medium text-[#475467] hover:text-[#0B132D] transition" %>
+          <%= link_to t("site.nav.market"),       market_path(locale: I18n.locale), class: "text-[15px] font-medium text-[#475467] hover:text-[#0B132D] transition" %>
           <%= link_to t("site.nav.team"),         team_path(locale: I18n.locale), class: "text-[15px] font-medium text-[#475467] hover:text-[#0B132D] transition" %>
         </nav>
 
         <div class="flex items-center" style="gap:10px;">
-          <%= link_to t("site.nav.contact"), "#contact", class: "btn btn-ghost", style: "padding:9px 16px;font-size:13px;" %>
-          <%= link_to t("site.nav.demo"),    "#demo",    class: "btn btn-primary", style: "padding:9px 18px;font-size:13px;" %>
+          <%= link_to t("site.nav.contact"), contact_path(locale: I18n.locale), class: "btn btn-ghost", style: "padding:9px 16px;font-size:13px;" %>
+          <%= link_to t("site.nav.demo"),    demo_path(locale: I18n.locale),    class: "btn btn-primary", style: "padding:9px 18px;font-size:13px;" %>
           <span class="hidden md:inline text-[#e5e9f0]">|</span>
           <%= link_to "KO", home_path(locale: :ko), class: "text-[12px] font-semibold #{I18n.locale == :ko ? 'text-[#2563EB]' : 'text-[#697386] hover:text-[#0B132D]'} transition" %>
           <%= link_to "EN", home_path(locale: :en), class: "text-[12px] font-semibold #{I18n.locale == :en ? 'text-[#2563EB]' : 'text-[#697386] hover:text-[#0B132D]'} transition" %>
@@ -70,6 +71,8 @@
     <main>
       <%= yield %>
     </main>
+
+    <%= render "shared/tweaks_panel" %>
 
     <footer class="section-footer">
       <div class="wrap" style="padding-top:48px;padding-bottom:40px;">

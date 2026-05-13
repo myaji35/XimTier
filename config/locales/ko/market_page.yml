@@ -1,0 +1,82 @@
+ko:
+  market_page:
+    eyebrow: 시장 가치
+    h1: "$81B 시장 — 합산 모델로 검증"
+    lead: "이 숫자는 단일 출처가 아닙니다. 인접 3시장의 비중복 합산입니다."
+
+    kpis:
+      bull:  { value: "$81B",   label: "Bull TAM",   sub: "DI + XAI + Prescriptive 비중복 합산" }
+      base:  { value: "$50.1B", label: "Base TAM",   sub: "MarketsandMarkets DI 단독" }
+      worst: { value: "$36.3B", label: "Worst TAM",  sub: "Grand View DI 단독" }
+      cagr:  { value: "+28.5%", label: "CAGR",       sub: "2025–2030 가중 평균" }
+
+    scenarios:
+      eyebrow: 시나리오
+      title: "투자자 성향에 따라 3가지 시나리오를 준비했습니다"
+      lead: "탭을 클릭해 각 시나리오의 산출 공식과 의미를 확인하세요."
+      bull:
+        tab: "공격적 (Bull)"
+        value: "$81B"
+        formula: "DI($43B) + XAI($21B) + Prescriptive 비중복($17B)"
+        body: "XimTier가 닿을 수 있는 인접 3시장 합산. 중복분 $14B는 차감했습니다."
+        share: "이 시장의 0.046%만 점유해도 ARR ₩30억."
+      base:
+        tab: "표준 (Base)"
+        value: "$50.1B"
+        formula: "MarketsandMarkets Decision Intelligence 단독"
+        body: "권위 있는 단일 출처. VC가 가장 신뢰하는 default 인용값. CAGR 24.7%."
+        share: "이 시장의 0.07%만 점유해도 ARR ₩30억."
+      worst:
+        tab: "보수적 (Worst)"
+        value: "$36.3B"
+        formula: "Grand View Research Decision Intelligence 단독"
+        body: "가장 짠 단일 출처. 시장이 절반으로 줄어도 사업은 성립합니다."
+        share: "이 시장의 0.1%만 점유해도 ARR ₩500억."
+
+    sum_model:
+      eyebrow: 합산 모델
+      title: "어떻게 $81B가 되는가"
+      lead: "단순 더하기가 아닙니다. 시장 간 중복을 빼서 부풀리지 않았습니다."
+      circles:
+        di:           { value: "$43B", label: "Decision Intelligence" }
+        xai:          { value: "$21B", label: "Explainable AI (XAI)" }
+        prescriptive: { value: "$17B", label: "Prescriptive Analytics (비중복)" }
+      caption: "중복분 $14B 차감 후 = $81B"
+
+    why_now:
+      eyebrow: Why Now
+      title: "왜 지금인가"
+      lead: "3가지 시장 신호가 동시에 우리를 가리킵니다."
+      cards:
+        - { stat: "30~50%", label: "Gen AI 실패율",         source: "Gartner 2024–25", body: "거품이 빠지는 LLM. \"증명 가능한 AI\" 수요 ↑" }
+        - { stat: "€17B",   label: "EU AI Act 컴플라이언스", source: "EU Commission",   body: "투명성 규제 시행. SHAP 기반 XAI 필수" }
+        - { stat: "85%",    label: "기업 LLM 금지율",       source: "Cisco AI Survey", body: "데이터 보안. 온프레미스만 가능" }
+
+    funnel:
+      eyebrow: TAM / SAM / SOM
+      title: "우리가 닿을 수 있는 시장"
+      lead: "전체 시장은 크지만, 1차 목표는 현실적입니다."
+      tam: { value: "$81B",  label: "TAM",  sub: "글로벌 잠재 시장 (Bull-case)" }
+      sam: { value: "$18B",  label: "SAM",  sub: "비즈니스 분석 SaaS (Serviceable)" }
+      som: { value: "$500M", label: "SOM",  sub: "Y3 한국·동남아 SME (Obtainable)" }
+      target_callout: "Y3 ARR ₩30억 = SOM의 단 0.46% 점유"
+
+    sources:
+      eyebrow: 출처
+      title: "이 모든 숫자의 출처"
+      lead: "8개 1차 리서치 소스. 클릭하여 원문을 확인하세요."
+      items:
+        - { org: "MarketsandMarkets",   quote: "DI $13.3B → $50.1B (CAGR 24.7%)",    year: 2024, url: "https://www.marketsandmarkets.com/PressReleases/decision-intelligence.asp" }
+        - { org: "Grand View Research", quote: "DI $15.22B → $36.34B (CAGR 15.4%)",   year: 2024, url: "https://www.grandviewresearch.com/industry-analysis/decision-intelligence-market-report" }
+        - { org: "Grand View Research", quote: "XAI $7.79B → $21.06B (CAGR 18.0%)",   year: 2024, url: "https://www.grandviewresearch.com/industry-analysis/explainable-ai-market-report" }
+        - { org: "Research and Markets", quote: "Prescriptive Analytics $37.05B (CAGR 22%)", year: 2024, url: "https://www.researchandmarkets.com/reports/5933907/prescriptive-analytics-market-report" }
+        - { org: "Gartner",             quote: "30% Gen AI 프로젝트 PoC 후 폐기 (2025말)", year: 2024, url: "https://www.gartner.com/en/newsroom/press-releases/2024-07-29-gartner-predicts-30-percent-of-generative-ai-projects-will-be-abandoned-after-proof-of-concept-by-end-of-2025" }
+        - { org: "EU Commission",       quote: "AI Act 2026-08 시행 · €17B 컴플라이언스 시장", year: 2024, url: "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" }
+        - { org: "Statista",            quote: "SEA 퍼블릭 클라우드 CAGR 23.5%",     year: 2025, url: "https://www.statista.com/outlook/tmo/public-cloud/southeast-asia" }
+        - { org: "한국 정부",            quote: "5년 AI 투자 $71.5B (2025-08 발표)",  year: 2025, url: "https://www.investkorea.org/ik-en/bbs/i-5025/detail.do" }
+
+    cta:
+      title: "VC 미팅에 가져가실 분?"
+      lead: "5페이지 리서치 PDF로 30초 안에 답하세요."
+      pdf_button: "$81B 근거 PDF 받기"
+      demo_button: "5분 데모 보기"

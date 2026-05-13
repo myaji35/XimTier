@@ -1,0 +1,66 @@
+<div data-controller="market-scenario"
+     data-market-scenario-bull-value='<%= bull.to_json %>'
+     data-market-scenario-base-value='<%= base_case.to_json %>'
+     data-market-scenario-worst-value='<%= worst.to_json %>'>
+
+  <%# Tabs %>
+  <div class="flex flex-wrap" style="gap:8px; margin-bottom:20px;">
+    <button type="button"
+            data-market-scenario-target="tab"
+            data-scenario="bull"
+            data-action="click->market-scenario#switch"
+            class="market-tab is-active"
+            style="padding:10px 18px; border-radius:999px; border:1px solid #e5e9f0; cursor:pointer; font-size:13px; font-weight:600; font-family:'JetBrains Mono', monospace; letter-spacing:0.06em;">
+      <%= bull[:tab] %>
+    </button>
+    <button type="button"
+            data-market-scenario-target="tab"
+            data-scenario="base"
+            data-action="click->market-scenario#switch"
+            class="market-tab"
+            style="padding:10px 18px; border-radius:999px; border:1px solid #e5e9f0; background:#fff; color:#697386; cursor:pointer; font-size:13px; font-weight:600; font-family:'JetBrains Mono', monospace; letter-spacing:0.06em;">
+      <%= base_case[:tab] %>
+    </button>
+    <button type="button"
+            data-market-scenario-target="tab"
+            data-scenario="worst"
+            data-action="click->market-scenario#switch"
+            class="market-tab"
+            style="padding:10px 18px; border-radius:999px; border:1px solid #e5e9f0; background:#fff; color:#697386; cursor:pointer; font-size:13px; font-weight:600; font-family:'JetBrains Mono', monospace; letter-spacing:0.06em;">
+      <%= worst[:tab] %>
+    </button>
+  </div>
+
+  <%# Panel %>
+  <div class="rounded-[18px] p-8" style="background:#fff; border:1.5px solid #2563EB; box-shadow:0 20px 40px -20px rgba(11,19,45,0.15);">
+    <div class="grid grid-cols-1 md:grid-cols-[1fr_2fr]" style="gap:32px; align-items:start;">
+      <div>
+        <div class="font-mono text-[11px]" style="color:#697386; letter-spacing:0.14em;">// TAM 2030</div>
+        <div data-market-scenario-target="value" class="mt-2 text-brand-grad" style="font-size:64px; font-weight:800; line-height:1; letter-spacing:-0.03em;">
+          <%= bull[:value] %>
+        </div>
+      </div>
+      <div>
+        <div class="font-mono text-[11px]" style="color:#697386; letter-spacing:0.14em;">// FORMULA</div>
+        <div data-market-scenario-target="formula" class="mt-2 p-3 rounded-[10px] font-mono text-[13px]" style="background:#F2F4F7; color:#0B132D; line-height:1.65;">
+          <%= bull[:formula] %>
+        </div>
+        <p data-market-scenario-target="body" class="mt-4 text-[14px]" style="color:#475467; line-height:1.65;">
+          <%= bull[:body] %>
+        </p>
+        <div data-market-scenario-target="share" class="mt-4 p-3 rounded-[10px] flex items-center gap-2" style="background:linear-gradient(135deg, rgba(37,99,235,0.08), rgba(0,200,200,0.08)); border:1px solid rgba(37,99,235,0.25);">
+          <span style="width:8px; height:8px; border-radius:50%; background:linear-gradient(135deg,#2563EB,#00C8C8);"></span>
+          <span class="text-[13px] font-semibold" style="color:#0B132D;"><%= bull[:share] %></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .market-tab.is-active {
+    background: linear-gradient(135deg, #2563EB, #00C8C8) !important;
+    color: #fff !important;
+    border-color: transparent !important;
+  }
+</style>

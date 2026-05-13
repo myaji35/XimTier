@@ -1,0 +1,113 @@
+ko:
+  cases:
+    manufacturing:
+      eyebrow: 케이스 · 제조
+      slug: manufacturing
+      title: 반도체 공정 — 불량률 2.40% → 1.20% 역산
+      persona: "김상무 / 반도체 SME 제조본부 임원"
+      industry_label: "제조 / Semiconductor"
+      dataset: "case_01 · semiconductor_defect_rate.csv · 12,480 rows"
+      problem_title: 마주한 문제
+      problem_body: |
+        라인 평균 불량률이 분기 목표(1.5%)를 0.9%p 초과. ChatGPT에 6개월치 공정 로그
+        업로드 자체가 사내 보안 정책 위반. 기존 BI 툴(Tableau)은 회귀 분석만 보여줄 뿐
+        "어느 변수를 얼마만큼 조절해야 하는가"를 제시하지 못함.
+      approach_title: XimTier 접근
+      approach_body: |
+        온프레미스 환경에 데이터 로딩 → WhatDataAI가 5개 핵심 변수 식별 →
+        Reverse What-If 알고리즘이 목표 불량률(1.20%)에 도달하기 위한 변수별 최적값을 역산.
+        모든 결과는 SHAP 기반 수학적 근거 자동 첨부 (EU AI Act 통과 가능).
+      outcomes_title: 결과
+      outcomes:
+        - "불량률 −50% (베이스라인 2.40% → 1.20%)"
+        - "처리 시간 0.18s (실시간 슬라이더 응답)"
+        - "예상 정확도 92.4% / R² 0.887"
+        - "데이터 외부 유출 0건 (100% 온프레미스)"
+      variables_title: 5개 공정 변수 역산
+      variables:
+        - { name: "공정 온도",  from: "215.0°C",   to: "224.9°C",  delta: "+9.9°C" }
+        - { name: "주입 압력",  from: "88.0 MPa",  to: "83.7 MPa", delta: "-4.3 MPa" }
+        - { name: "라인 속도",  from: "14.0 m/min", to: "8.0 m/min", delta: "-6.0 m/min" }
+        - { name: "습도",       from: "52.0%",     to: "49.5%",     delta: "-2.5%" }
+        - { name: "원료 등급",  from: "3.0",       to: "4.5",       delta: "+1.5" }
+      note: "예시 데이터 — 실제 도입 시 고객 데이터로 파인튜닝됩니다."
+
+    hospital:
+      eyebrow: 케이스 · 병원
+      slug: hospital
+      title: 종합병원 — XAI 진단 보조로 EU AI Act 통과
+      persona: "이부장 / 상급종합병원 의료정보팀장"
+      industry_label: "병원 / Healthcare"
+      dataset: "case_02 · imaging_diagnosis_log.csv · 8,200 rows"
+      problem_title: 마주한 문제
+      problem_body: |
+        EU AI Act 2026 시행으로 고위험 AI(진단 보조)는 수학적 근거 제시 의무화.
+        기존 딥러닝 모델은 블랙박스. 한국 식약처도 동일 방향. 의료진은 "왜 이 환자가
+        고위험으로 분류됐는가"를 환자/보호자에게 설명해야 하는데 모델이 못 말해줌.
+      approach_title: XimTier 접근
+      approach_body: |
+        병원 내 PACS와 EMR 데이터를 격리 환경에서 통합 → 진단 결과에 대해 SHAP
+        기반 변수별 기여도 자동 생성 → 의료진 인터페이스에 "이 케이스는 X 변수의
+        영향이 0.34만큼 위험도를 높였다"는 형태로 노출. 규제 통과 가능 문서 자동 발급.
+      outcomes_title: 결과
+      outcomes:
+        - "EU AI Act / 한국 AI 기본법 동시 충족"
+        - "의료진 1인당 의사결정 시간 −34%"
+        - "환자 대기 시간 평균 18분 단축"
+        - "감사·인증 자료 자동 생성 (수동 작업 −80%)"
+      note: "예시 데이터 — 실제 도입 시 고객 데이터로 파인튜닝됩니다."
+
+    public:
+      eyebrow: 케이스 · 공공
+      slug: public
+      title: 광역시 — 청년 실업률 정책 시나리오 시뮬레이션
+      persona: "박사무관 / 광역시청 일자리정책과"
+      industry_label: "공공 / Public Sector"
+      dataset: "case_03 · regional_youth_employment.csv · 60개월 시계열"
+      problem_title: 마주한 문제
+      problem_body: |
+        청년 실업률 목표 4.0%에 도달하기 위해 어떤 정책 변수(인건비 지원율,
+        창업 지원금, 직업 훈련 인원, 외부 기업 유치 수)를 얼마나 조정해야 하는지
+        과거 정책 시뮬레이션이 부재. 매번 사후 효과만 확인.
+      approach_title: XimTier 접근
+      approach_body: |
+        지자체 행정 데이터 + 통계청 공개 데이터 결합 → Reverse What-If로 목표 실업률
+        달성을 위한 4개 정책 변수 최적 조합 자동 산출. NIPA SaaS 지원사업 활용한
+        파일럿 → 본도입 빠른 전환.
+      outcomes_title: 결과
+      outcomes:
+        - "정책 시나리오 비교 시간 −70% (수기 분석 대비)"
+        - "정책 의사결정 근거 보고서 자동 생성"
+        - "NIPA SaaS 지원사업 적합 검증"
+        - "PoC → 본도입 6주 (기존 SI 6개월 대비)"
+      note: "예시 데이터 — 실제 도입 시 고객 데이터로 파인튜닝됩니다."
+
+    smart_city:
+      eyebrow: 케이스 · 스마트시티
+      slug: smart-city
+      title: 스마트시티 — 교통·에너지 통합 시뮬레이션
+      persona: "정과장 / 스마트시티 통합운영센터"
+      industry_label: "스마트시티 / Smart City"
+      dataset: "case_04 · iot_traffic_energy.csv · 240,000 events/day"
+      problem_title: 마주한 문제
+      problem_body: |
+        IoT 센서(교통·전력·환경)가 매일 24만 이벤트 발생. 각 도메인별 도구는 따로
+        존재하나 통합 의사결정이 불가능. "교통 흐름을 5% 개선하면 에너지 소비가
+        얼마나 줄어드는가?" 같은 cross-domain 질문에 답 못함.
+      approach_title: XimTier 접근
+      approach_body: |
+        IoT 게이트웨이에서 시간 단위 집계 → 도시 KPI 변수 8개(교통량/평균 속도/
+        피크 전력/CO₂ 등) 통합 회귀 + Reverse What-If. AI 에이전트가 호출 가능한
+        MCP 표준 인터페이스로 노출하여 자동화 시나리오 확장.
+      outcomes_title: 결과
+      outcomes:
+        - "도시 KPI 가시화 (실시간 대시보드)"
+        - "교통·에너지 시나리오 비교 시간 −82%"
+        - "MCP 인터페이스로 AI 에이전트 통합 가능"
+        - "탄소 배출 시뮬레이션 정확도 ±3% 이내"
+      note: "예시 데이터 — 실제 도입 시 고객 데이터로 파인튜닝됩니다."
+
+  cases_cta:
+    title: "당신의 산업에 적용하면?"
+    body: "5분 데모로 직접 확인해 보세요."
+    button: 데모 신청

@@ -79,6 +79,9 @@ jobs:
       - name: i18n-tasks health (PRD §FR-1 i18n coverage)
         run: bundle exec i18n-tasks health
 
+      - name: Copy lint (금지어 검출, design.md §9)
+        run: bash .claude/hooks/copy-lint.sh
+
   test:
     runs-on: ubuntu-latest
     services:

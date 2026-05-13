@@ -25,6 +25,20 @@ ko:
         price: "사용량 과금 ($0.01–$1 / 호출)"
         soon: "Coming Soon"
         desc: Anthropic MCP·OpenAI Plugin 등록. LLM과 AI 에이전트가 우리 API 호출. Wolfram Alpha처럼 — LLM이 의사결정 계산이 필요할 때 호출하는 표준 엔진.
+    matrix_title: 기능 비교 매트릭스
+    matrix_features:
+      - { feature: "데이터 탐색 (WhatDataAI)",        light: "✓", industry: "✓", vibe: "✓", platform: "✓" }
+      - { feature: "통계 분석 (회귀·시계열·분류)",    light: "✓", industry: "✓", vibe: "✓", platform: "✓" }
+      - { feature: "Reverse What-If",                  light: "—", industry: "✓", vibe: "✓", platform: "✓" }
+      - { feature: "SHAP 수학적 XAI",                  light: "—", industry: "✓", vibe: "✓", platform: "✓" }
+      - { feature: "AI Q&A (자연어 질의)",             light: "✓", industry: "✓", vibe: "✓", platform: "—" }
+      - { feature: "자동 보고서",                      light: "—", industry: "✓", vibe: "✓", platform: "—" }
+      - { feature: "온프레미스 배포",                  light: "—", industry: "✓", vibe: "✓", platform: "—" }
+      - { feature: "산업 도메인 파인튜닝",             light: "—", industry: "✓", vibe: "✓", platform: "✓" }
+      - { feature: "고객 데이터 1:1 커스텀",          light: "—", industry: "—", vibe: "✓", platform: "—" }
+      - { feature: "MCP / Plugin 호출 (LLM)",         light: "—", industry: "—", vibe: "—", platform: "✓" }
+      - { feature: "AI 에이전트 통합 (백엔드)",       light: "—", industry: "—", vibe: "—", platform: "✓" }
+      - { feature: "Admin SLA (응답 시간)",            light: "영업일 24h", industry: "영업일 4h", vibe: "전용 채널", platform: "API 99.5%" }
     roadmap_title: ARR 로드맵
     roadmap:
       - { year: "Y1", goal: "파일럿 10개사 / ARR ₩2억" }

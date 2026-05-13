@@ -20,12 +20,14 @@ Rails.application.routes.draw do
     get "/solution",     to: "pages#solution"
     get "/how-it-works", to: "pages#how_it_works", as: :how_it_works
     get "/use-cases",    to: "pages#use_cases",    as: :use_cases
+    get "/cases/:slug",  to: "pages#case_study",   as: :case_study, constraints: { slug: /manufacturing|hospital|public|smart-city/ }
     get "/pricing",      to: "pages#pricing"
     get "/platform-api", to: "pages#platform_api", as: :platform_api
 
     # Company
     get "/company/team",      to: "pages#team",      as: :team
     get "/company/vision",    to: "pages#vision",    as: :vision
+    get "/company/market",    to: "pages#market",    as: :market
     get  "/company/investors", to: "downloads#new",    as: :investors
     post "/company/investors", to: "downloads#create"
     get  "/ir/:token",         to: "downloads#show",   as: :ir_download
@@ -51,5 +53,12 @@ Rails.application.routes.draw do
   # letter_opener_web for development
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
+end
+
+if defined? ::Avo
+  Avo::Engine.routes.draw do
+    # This route is not protected, secure it with authentication if needed.
+    get "code_wiki", to: "tools#code_wiki", as: :code_wiki
   end
 end

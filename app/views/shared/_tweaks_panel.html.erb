@@ -1,0 +1,37 @@
+<%# Tweaks Panel — design.md §7 (Designer's preview) %>
+<div data-controller="tweaks">
+  <button type="button" class="tweaks-trigger" data-tweaks-target="trigger" data-action="click->tweaks#toggle" aria-label="Tweaks Panel">
+    ⚙
+  </button>
+
+  <div class="tweaks-panel" data-tweaks-target="panel">
+    <h4>Tweaks · Designer's preview</h4>
+
+    <div class="tweaks-group">
+      <div class="text-[11px] mb-2" style="color:#697386; letter-spacing:0.08em; text-transform:uppercase;">Accent</div>
+      <label><input type="radio" name="accent" value="default" data-action="change->tweaks#change"> Default</label>
+      <label><input type="radio" name="accent" value="electric" data-action="change->tweaks#change"> Electric</label>
+      <label><input type="radio" name="accent" value="mono" data-action="change->tweaks#change"> Mono</label>
+    </div>
+
+    <div class="tweaks-group">
+      <div class="text-[11px] mb-2" style="color:#697386; letter-spacing:0.08em; text-transform:uppercase;">Hero Chips</div>
+      <label><input type="radio" name="chips" value="on" data-action="change->tweaks#change"> ON</label>
+      <label><input type="radio" name="chips" value="off" data-action="change->tweaks#change"> OFF</label>
+    </div>
+
+    <div class="tweaks-group">
+      <div class="text-[11px] mb-2" style="color:#697386; letter-spacing:0.08em; text-transform:uppercase;">Spacing</div>
+      <label><input type="radio" name="spacing" value="default" data-action="change->tweaks#change"> Default</label>
+      <label><input type="radio" name="spacing" value="compact" data-action="change->tweaks#change"> Compact</label>
+    </div>
+
+    <div class="tweaks-group">
+      <div class="text-[11px] mb-2" style="color:#697386; letter-spacing:0.08em; text-transform:uppercase;">Section</div>
+      <label><input type="radio" name="section" value="default" data-action="change->tweaks#change"> Default</label>
+      <label><input type="radio" name="section" value="all-light" data-action="change->tweaks#change"> All Light</label>
+    </div>
+
+    <button type="button" class="tweaks-reset" data-action="click->tweaks#reset">Reset</button>
+  </div>
+</div>

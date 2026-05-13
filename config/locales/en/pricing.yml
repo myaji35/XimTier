@@ -25,6 +25,20 @@ en:
         price: "Usage-based ($0.01–$1 per call)"
         soon: "Coming Soon"
         desc: Anthropic MCP and OpenAI Plugin listings. The standard engine LLMs and AI agents call when they need decision computation — Wolfram Alpha for Decision Intelligence.
+    matrix_title: Feature Comparison Matrix
+    matrix_features:
+      - { feature: "Data exploration (WhatDataAI)",     light: "✓", industry: "✓", vibe: "✓", platform: "✓" }
+      - { feature: "Statistical analysis",              light: "✓", industry: "✓", vibe: "✓", platform: "✓" }
+      - { feature: "Reverse What-If",                   light: "—", industry: "✓", vibe: "✓", platform: "✓" }
+      - { feature: "SHAP mathematical XAI",             light: "—", industry: "✓", vibe: "✓", platform: "✓" }
+      - { feature: "AI Q&A (natural language)",         light: "✓", industry: "✓", vibe: "✓", platform: "—" }
+      - { feature: "Auto-generated reports",            light: "—", industry: "✓", vibe: "✓", platform: "—" }
+      - { feature: "On-prem deployment",                light: "—", industry: "✓", vibe: "✓", platform: "—" }
+      - { feature: "Industry-domain fine-tuning",       light: "—", industry: "✓", vibe: "✓", platform: "✓" }
+      - { feature: "1:1 customer-data customization",   light: "—", industry: "—", vibe: "✓", platform: "—" }
+      - { feature: "MCP / Plugin call (LLMs)",          light: "—", industry: "—", vibe: "—", platform: "✓" }
+      - { feature: "AI-agent backend integration",      light: "—", industry: "—", vibe: "—", platform: "✓" }
+      - { feature: "Admin SLA (response time)",         light: "24h biz", industry: "4h biz", vibe: "Dedicated", platform: "API 99.5%" }
     roadmap_title: ARR Roadmap
     roadmap:
       - { year: "Y1", goal: "10 pilot customers / ARR ₩0.2B" }

@@ -1,0 +1,75 @@
+<div class="grid grid-cols-1 md:grid-cols-[1.1fr_1fr] items-center" style="gap:48px;">
+  <%# SVG 동심원 — TAM(가장 큰) > SAM > SOM %>
+  <div class="flex justify-center">
+    <svg viewBox="0 0 400 400" class="w-full" style="max-width:440px;" role="img" aria-label="TAM SAM SOM funnel">
+      <defs>
+        <radialGradient id="funnel-tam" cx="50%" cy="50%" r="50%">
+          <stop offset="0%"   stop-color="#2563EB" stop-opacity="0.05"/>
+          <stop offset="100%" stop-color="#2563EB" stop-opacity="0.20"/>
+        </radialGradient>
+        <radialGradient id="funnel-sam" cx="50%" cy="50%" r="50%">
+          <stop offset="0%"   stop-color="#00C8C8" stop-opacity="0.10"/>
+          <stop offset="100%" stop-color="#00C8C8" stop-opacity="0.35"/>
+        </radialGradient>
+        <radialGradient id="funnel-som" cx="50%" cy="50%" r="50%">
+          <stop offset="0%"   stop-color="#10B981" stop-opacity="0.50"/>
+          <stop offset="100%" stop-color="#10B981" stop-opacity="0.85"/>
+        </radialGradient>
+      </defs>
+
+      <%# TAM - 가장 큰 원 %>
+      <circle cx="200" cy="200" r="180" fill="url(#funnel-tam)" stroke="#2563EB" stroke-width="1.5"/>
+      <text x="200" y="46" text-anchor="middle" fill="#2563EB" font-size="13" font-weight="700" font-family="JetBrains Mono, monospace">TAM</text>
+      <text x="200" y="66" text-anchor="middle" fill="#0B132D" font-size="22" font-weight="800"><%= tam[:value] %></text>
+
+      <%# SAM - 중간 원 %>
+      <circle cx="200" cy="220" r="115" fill="url(#funnel-sam)" stroke="#00C8C8" stroke-width="1.5"/>
+      <text x="200" y="145" text-anchor="middle" fill="#0E7490" font-size="13" font-weight="700" font-family="JetBrains Mono, monospace">SAM</text>
+      <text x="200" y="165" text-anchor="middle" fill="#0B132D" font-size="20" font-weight="800"><%= sam[:value] %></text>
+
+      <%# SOM - 가장 작은 원 (강조) %>
+      <circle cx="200" cy="240" r="60" fill="url(#funnel-som)" stroke="#10B981" stroke-width="2"/>
+      <text x="200" y="232" text-anchor="middle" fill="#fff" font-size="12" font-weight="700" font-family="JetBrains Mono, monospace">SOM</text>
+      <text x="200" y="255" text-anchor="middle" fill="#fff" font-size="18" font-weight="800"><%= som[:value] %></text>
+
+      <%# 0.46% 마커 (SOM 내부 작은 점) %>
+      <circle cx="195" cy="245" r="4" fill="#FFD700" stroke="#fff" stroke-width="1"/>
+      <text x="208" y="249" fill="#fff" font-size="10" font-weight="700">← Y3 ARR ₩30억</text>
+    </svg>
+  </div>
+
+  <%# Legend cards %>
+  <div class="space-y-3">
+    <div class="p-4 rounded-[12px]" style="background:#fff; border:1px solid #e5e9f0;">
+      <div class="flex items-baseline justify-between">
+        <span class="font-mono text-[11px]" style="color:#2563EB; letter-spacing:0.14em;">TAM</span>
+        <span class="font-bold text-[20px]" style="color:#0B132D;"><%= tam[:value] %></span>
+      </div>
+      <div class="mt-2 text-[13px] font-semibold" style="color:#0B132D;"><%= tam[:label] %></div>
+      <div class="mt-1 text-[12px]" style="color:#697386;"><%= tam[:sub] %></div>
+    </div>
+
+    <div class="p-4 rounded-[12px]" style="background:#fff; border:1px solid #e5e9f0;">
+      <div class="flex items-baseline justify-between">
+        <span class="font-mono text-[11px]" style="color:#0E7490; letter-spacing:0.14em;">SAM</span>
+        <span class="font-bold text-[20px]" style="color:#0B132D;"><%= sam[:value] %></span>
+      </div>
+      <div class="mt-2 text-[13px] font-semibold" style="color:#0B132D;"><%= sam[:label] %></div>
+      <div class="mt-1 text-[12px]" style="color:#697386;"><%= sam[:sub] %></div>
+    </div>
+
+    <div class="p-4 rounded-[12px]" style="background:linear-gradient(135deg, #10B981, #059669); color:#fff;">
+      <div class="flex items-baseline justify-between">
+        <span class="font-mono text-[11px]" style="color:rgba(255,255,255,0.85); letter-spacing:0.14em;">SOM</span>
+        <span class="font-bold text-[20px]" style="color:#fff;"><%= som[:value] %></span>
+      </div>
+      <div class="mt-2 text-[13px] font-semibold" style="color:#fff;"><%= som[:label] %></div>
+      <div class="mt-1 text-[12px]" style="color:rgba(255,255,255,0.85);"><%= som[:sub] %></div>
+    </div>
+
+    <div class="p-3 rounded-[10px] mt-2" style="background:#FFFBEB; border:1.5px solid #F59E0B;">
+      <div class="font-mono text-[11px]" style="color:#92400E; letter-spacing:0.14em;">// TARGET</div>
+      <div class="mt-1 text-[15px] font-bold" style="color:#92400E;"><%= target_callout %></div>
+    </div>
+  </div>
+</div>

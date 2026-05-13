@@ -1,8 +1,40 @@
 {
   "_status": "active",
-  "_version": "0.2.0",
-  "_last_updated": "2026-05-12",
-  "_source": "design.md (XimTier Homepage Design Spec) — 1차 적용",
+  "_version": "0.3.0",
+  "_last_updated": "2026-05-13",
+  "_source": "design.md (XimTier Homepage Design Spec) — 1차 적용 + brand 일원화 (2026-05-13)",
+
+  "_governance": {
+    "owner": "강승식 (CTO)",
+    "design_lead": "한일 (CEO)",
+    "approval_required_for": [
+      "brand.name",
+      "brand.tagline_ko",
+      "brand.tagline_en",
+      "brand.positioning",
+      "design_tokens.colors.xim_blue",
+      "design_tokens.colors.teal_mint",
+      "design_tokens.colors.deep_navy",
+      "design_tokens.gradients.brand",
+      "design_tokens.typography.font_family_sans"
+    ],
+    "auto_iterable": [
+      "design_tokens.radius",
+      "design_tokens.shadow",
+      "design_tokens.motion",
+      "design_tokens.layout",
+      "page_priorities"
+    ],
+    "review_cadence": "주 1회 (목요일)",
+    "change_log_path": "_workspace/brand-changelog.md",
+    "lock_until": "2026-09-30",
+    "frozen_principles": [
+      "X 심볼 4-blade 구조",
+      "Blue→Teal 135deg 그라디언트 방향",
+      "'Decision Intelligence, Proven by Numbers' 포지셔닝",
+      "voice 4어 (엔터프라이즈 신뢰, 테크 모던, 단호한 단언, 수치 우선)"
+    ]
+  },
 
   "brand": {
     "name": "XimTier",

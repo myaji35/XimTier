@@ -26,6 +26,12 @@
                   </li>
                 <% end %>
               </ul>
+              <% slug = key.to_s.tr("_", "-") %>
+              <div class="mt-5">
+                <%= link_to (I18n.locale == :ko ? "케이스 상세 보기 →" : "Read case study →"),
+                      case_study_path(locale: I18n.locale, slug: slug),
+                      class: "text-[13px] font-semibold", style: "color:#00C8C8;" %>
+              </div>
             </div>
           </div>
         </article>
