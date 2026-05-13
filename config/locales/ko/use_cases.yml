@@ -1,7 +1,7 @@
 ko:
   use_cases:
     eyebrow: 도입 사례
-    h1: 4개 산업 페르소나가 의사결정을 끝낸다
+    h1: 10개 산업 페르소나가 의사결정을 끝낸다
     lead: "ChatGPT가 못 다루는 데이터, 우리가 매일 다룹니다."
     cards:
       manufacturing:
@@ -40,3 +40,57 @@ ko:
           - 도시 운영 KPI 가시화
           - 교통·에너지 시나리오 비교
           - 향후 에이전트 통합 옵션
+      finance:
+        icon: scale
+        persona: 금융 리스크 담당
+        title: 금융 — 신용·이상거래 의사결정
+        body: 신용평가·이상거래 점수에 SHAP 기반 변수별 기여도 자동 첨부. 감독당국 설명 요구 대응 가능.
+        outcomes:
+          - 거절 사유 설명 가능 (금감원 대응)
+          - 이상거래 탐지 정확도 + False Positive 절감
+          - 내부망 격리 운영
+      retail:
+        icon: chart
+        persona: 리테일·이커머스 BI 팀
+        title: 리테일 — 가격·재고 최적화
+        body: SKU 단위 가격 탄력성·재고 회전 회귀 분석. Reverse What-If로 매출 목표 달성에 필요한 가격·프로모션 조합 역산.
+        outcomes:
+          - 가격 변경 영향 사전 시뮬레이션
+          - 재고 회전 + 결품률 동시 개선
+          - 행사 ROI 사전 예측
+      logistics:
+        icon: arrows
+        persona: 물류·SCM 운영팀
+        title: 물류 — 배송·재고 최적화
+        body: 주문·재고·차량 위치 데이터 통합 분석. 배송 리드타임/비용 목표 역산으로 거점·경로 결정.
+        outcomes:
+          - 배송 리드타임 단축
+          - 운임 비용 절감
+          - 결품·과재고 동시 감소
+      energy:
+        icon: bolt
+        persona: 에너지·유틸리티 운영
+        title: 에너지 — 수요 예측·계통 안정화
+        body: 시간 단위 수요·발전·기상 데이터를 통합 회귀. Reverse What-If로 첨두 부하 회피를 위한 가용 자원 조합 산출.
+        outcomes:
+          - 피크 부하 사전 회피
+          - 재생에너지 변동 흡수 시나리오
+          - 에너지 거래 의사결정 근거 자동 생성
+      education:
+        icon: calculator
+        persona: 교육·에듀테크 데이터팀
+        title: 교육 — 학습 성과·중도이탈 예측
+        body: 학습 활동·평가·환경 데이터로 성취도·이탈 회귀. Reverse What-If로 목표 합격률에 필요한 학습 패턴 역산.
+        outcomes:
+          - 중도이탈 조기 신호 탐지
+          - 합격률 목표 달성 시나리오
+          - 학부모·학습자 설명 가능한 근거
+      telecom:
+        icon: lock
+        persona: 통신·네트워크 운영
+        title: 통신 — 이탈 예측·품질 보장
+        body: 가입자 사용 로그·콜드롭·요금제 데이터 분석. SHAP 기반 이탈 원인 변수 자동 도출.
+        outcomes:
+          - 고위험 가입자 사전 케어
+          - 망 품질 저하 원인 식별
+          - 요금제 개편 영향 시뮬레이션

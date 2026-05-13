@@ -1,7 +1,7 @@
 en:
   use_cases:
     eyebrow: Use Cases
-    h1: Four industry personas reach a decision
+    h1: Ten industry personas reach a decision
     lead: "Data ChatGPT can't touch — we work with it daily."
     cards:
       manufacturing:
@@ -40,3 +40,57 @@ en:
           - City KPI visibility
           - Compare traffic and energy scenarios
           - Future agent-integration option
+      finance:
+        icon: scale
+        persona: Financial risk officer
+        title: Finance — credit & fraud decisions
+        body: SHAP-based per-variable contribution is attached to every credit and fraud score, ready for regulator explainability requests.
+        outcomes:
+          - Adverse-action reasons (regulator-ready)
+          - Better fraud accuracy with fewer false positives
+          - Air-gapped internal-network deployment
+      retail:
+        icon: chart
+        persona: Retail / e-commerce BI lead
+        title: Retail — pricing & inventory optimization
+        body: SKU-level price elasticity and inventory turnover regression. Reverse What-If derives the price/promotion mix needed to hit a revenue target.
+        outcomes:
+          - Pre-simulate the impact of price changes
+          - Improve inventory turn and stock-out rates
+          - Forecast promotion ROI before launch
+      logistics:
+        icon: arrows
+        persona: Logistics / SCM operations
+        title: Logistics — delivery & inventory optimization
+        body: Unified analysis of orders, inventory, and fleet positions. Reverse-solve lead-time and cost targets to pick hubs and routes.
+        outcomes:
+          - Shorter delivery lead time
+          - Lower freight cost
+          - Less stock-out and overstock at the same time
+      energy:
+        icon: bolt
+        persona: Energy & utilities operations
+        title: Energy — demand forecast & grid stability
+        body: Hourly regression across load, generation, and weather. Reverse What-If outputs the resource mix needed to avoid peak loads.
+        outcomes:
+          - Preempt peak-load events
+          - Absorb renewable-output variability
+          - Auto-generated justifications for energy-trading
+      education:
+        icon: calculator
+        persona: Education / EdTech data lead
+        title: Education — outcome & dropout prediction
+        body: Regression across study activity, assessments, and environment. Reverse-solve the study pattern needed to hit a target pass rate.
+        outcomes:
+          - Early dropout signal detection
+          - Scenarios to hit a pass-rate target
+          - Explainable rationale for parents and learners
+      telecom:
+        icon: lock
+        persona: Telecom / network operations
+        title: Telecom — churn prediction & QoS
+        body: Subscriber usage logs, call drops, and plan data. SHAP identifies the variables driving churn risk.
+        outcomes:
+          - Proactive care for high-risk subscribers
+          - Identify network quality degradation causes
+          - Simulate the impact of new plans

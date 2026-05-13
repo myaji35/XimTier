@@ -6,8 +6,9 @@
     <h1 class="h-section mt-3" style="color:#fff; max-width:920px;"><%= t("use_cases.h1") %></h1>
     <p class="lead mt-5" style="color:#a7b1c7; max-width:760px;"><%= t("use_cases.lead") %></p>
 
+    <% case_study_keys = %w[manufacturing hospital public smart_city] %>
     <div class="mt-14 grid grid-cols-1 md:grid-cols-2" style="gap:24px;">
-      <% %w[manufacturing hospital public smart_city].each do |key| %>
+      <% %w[manufacturing hospital public smart_city finance retail logistics energy education telecom].each do |key| %>
         <% c = t("use_cases.cards.#{key}") %>
         <article class="card-dark">
           <div class="flex items-start gap-4">
@@ -26,11 +27,17 @@
                   </li>
                 <% end %>
               </ul>
-              <% slug = key.to_s.tr("_", "-") %>
               <div class="mt-5">
-                <%= link_to (I18n.locale == :ko ? "케이스 상세 보기 →" : "Read case study →"),
-                      case_study_path(locale: I18n.locale, slug: slug),
-                      class: "text-[13px] font-semibold", style: "color:#00C8C8;" %>
+                <% if case_study_keys.include?(key) %>
+                  <% slug = key.tr("_", "-") %>
+                  <%= link_to (I18n.locale == :ko ? "케이스 상세 보기 →" : "Read case study →"),
+                        case_study_path(locale: I18n.locale, slug: slug),
+                        class: "text-[13px] font-semibold", style: "color:#00C8C8;" %>
+                <% else %>
+                  <%= link_to (I18n.locale == :ko ? "이 산업으로 데모 신청 →" : "Request a demo for this industry →"),
+                        demo_path(locale: I18n.locale),
+                        class: "text-[13px] font-semibold", style: "color:#00C8C8;" %>
+                <% end %>
               </div>
             </div>
           </div>
