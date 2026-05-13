@@ -62,3 +62,10 @@ if defined? ::Avo
     get "code_wiki", to: "tools#code_wiki", as: :code_wiki
   end
 end
+
+if defined? ::Avo
+  Avo::Engine.routes.draw do
+    # This route is not protected, secure it with authentication if needed.
+    get "harness_dashboard", to: "tools#harness_dashboard", as: :harness_dashboard
+  end
+end

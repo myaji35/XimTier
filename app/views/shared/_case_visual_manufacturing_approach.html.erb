@@ -1,0 +1,34 @@
+<%# 제조 Approach — 슬라이더 sweep + optimal glow %>
+<div class="case-visual">
+  <div class="layer grid-bg"></div>
+
+  <%# 슬라이더 영역 + sweep %>
+  <div class="layer" style="padding:36px 32px; position:relative;">
+    <div class="flex items-center justify-between mb-3">
+      <span class="label-mono">// TARGET</span>
+      <span class="font-mono text-[14px] font-bold text-brand-grad">1.20%</span>
+    </div>
+
+    <%# 슬라이더 track %>
+    <div style="position:relative; height:6px; background:#e5e9f0; border-radius:3px; margin-bottom:36px;">
+      <div style="position:absolute; left:0; top:0; bottom:0; width:60%; background:linear-gradient(90deg,#2563EB,#00C8C8); border-radius:3px;"></div>
+      <div class="cv-sweep" style="top:-30px; bottom:-30px;"></div>
+    </div>
+
+    <div class="flex items-center justify-center" style="margin-top:8px; position:relative;">
+      <div class="cv-mfg-optimal" style="position:absolute; left:50%; top:0; transform:translateX(-50%);"></div>
+      <div class="font-mono text-[10px] text-center" style="color:#2563EB; letter-spacing:0.14em; position:relative; z-index:2;">
+        OPTIMAL INPUTS
+      </div>
+    </div>
+
+    <div class="mt-6 grid grid-cols-5" style="gap:4px;">
+      <% %w[온도 압력 속도 습도 등급].each do |v| %>
+        <div class="text-center">
+          <div class="font-mono" style="font-size:8.5px; color:#697386; letter-spacing:0.1em;"><%= v %></div>
+          <div class="mt-1 h-1.5 rounded-full" style="background:linear-gradient(90deg,#2563EB,#00C8C8);"></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

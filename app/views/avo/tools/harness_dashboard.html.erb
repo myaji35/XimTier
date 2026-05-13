@@ -1,0 +1,158 @@
+<%# XimTier Harness Dashboard — 이슈 운영 + Lead KPI 통합 %>
+<% h = @harness %>
+
+<div class="flex flex-col" style="font-family: -apple-system, system-ui, sans-serif;">
+  <%= render Avo::PanelComponent.new(name: "XimTier Harness Dashboard", display_breadcrumbs: true) do |c| %>
+    <% c.with_tools do %>
+      <div class="text-sm" style="color:#697386;">
+        <code style="background:#F2F4F7; padding:2px 6px; border-radius:3px;"><%= h[:generated_at].strftime("%Y-%m-%d %H:%M:%S") %></code>
+      </div>
+    <% end %>
+
+    <% c.with_body do %>
+      <div class="p-6 space-y-8">
+
+        <%# Mission / Strategy %>
+        <% if h[:mission].present? %>
+          <div class="p-4 rounded-lg" style="background:linear-gradient(135deg,#0B132D,#1d4ed8); color:#fff;">
+            <div class="text-xs opacity-80" style="letter-spacing:0.1em;">MISSION</div>
+            <p class="text-sm mt-2"><%= h[:mission] %></p>
+            <% if h[:strategy].present? %>
+              <div class="text-xs opacity-80 mt-3" style="letter-spacing:0.1em;">STRATEGY</div>
+              <p class="text-sm mt-1"><%= h[:strategy] %></p>
+            <% end %>
+          </div>
+        <% end %>
+
+        <%# Issue Status Cards %>
+        <section>
+          <h3 class="text-base font-semibold mb-3" style="color:#0B132D;">📋 Issue Status</h3>
+          <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+            <% [
+              ["READY",       h[:stats][:ready],     "#00C8C8"],
+              ["IN_PROGRESS", h[:stats][:in_prog],   "#F59E0B"],
+              ["COMPLETED",   h[:stats][:completed], "#10B981"],
+              ["BLOCKED",     h[:stats][:blocked],   "#EF4444"],
+              ["TOTAL",       h[:stats][:total],     "#2563EB"]
+            ].each do |label, count, color| %>
+              <div class="p-4 rounded-lg" style="background:#fff; border:1px solid #e5e9f0;">
+                <div class="font-mono text-[10px]" style="color:<%= color %>; letter-spacing:0.14em;"><%= label %></div>
+                <div class="mt-1 text-2xl font-bold" style="color:#0B132D;"><%= count %></div>
+              </div>
+            <% end %>
+          </div>
+        </section>
+
+        <%# Next READY (실행 큐) %>
+        <section>
+          <h3 class="text-base font-semibold mb-3" style="color:#0B132D;">
+            ⏭ Next 5 READY Issues <span class="text-xs font-normal" style="color:#697386;">(P0 → P3 정렬)</span>
+          </h3>
+          <% if h[:ready_issues].any? %>
+            <table class="w-full text-sm" style="border-collapse:collapse;">
+              <thead>
+                <tr style="background:#F2F4F7;">
+                  <th class="text-left p-2 text-xs" style="color:#697386; letter-spacing:0.1em;">ID</th>
+                  <th class="text-left p-2 text-xs" style="color:#697386; letter-spacing:0.1em;">P</th>
+                  <th class="text-left p-2 text-xs" style="color:#697386; letter-spacing:0.1em;">TITLE</th>
+                  <th class="text-left p-2 text-xs" style="color:#697386; letter-spacing:0.1em;">AGENT</th>
+                  <th class="text-left p-2 text-xs" style="color:#697386; letter-spacing:0.1em;">TYPE</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% h[:ready_issues].each do |iss| %>
+                  <tr style="border-bottom:1px solid #e5e9f0;">
+                    <td class="p-2 font-mono text-xs" style="color:#2563EB;"><%= iss["id"] %></td>
+                    <td class="p-2 font-mono text-xs">
+                      <% color = { "P0" => "#EF4444", "P1" => "#F59E0B", "P2" => "#00C8C8", "P3" => "#697386" }[iss["priority"]] %>
+                      <span style="color:<%= color %>; font-weight:600;"><%= iss["priority"] %></span>
+                    </td>
+                    <td class="p-2 text-xs" style="color:#0B132D;"><%= iss["title"] %></td>
+                    <td class="p-2 text-xs font-mono" style="color:#475467;"><%= iss["agent"] %></td>
+                    <td class="p-2 text-xs font-mono" style="color:#697386;"><%= iss["type"] %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          <% else %>
+            <p class="text-sm" style="color:#94A3B8;">READY 이슈 없음 — proactive-scan.sh 실행 권장.</p>
+          <% end %>
+        </section>
+
+        <%# Recently Completed %>
+        <% if h[:completed_recent].any? %>
+          <section>
+            <h3 class="text-base font-semibold mb-3" style="color:#0B132D;">✅ Recently Completed</h3>
+            <div class="space-y-2">
+              <% h[:completed_recent].each do |iss| %>
+                <div class="p-3 rounded" style="background:#F2F4F7; border-left:3px solid #10B981;">
+                  <div class="flex items-baseline justify-between">
+                    <span class="font-mono text-xs" style="color:#2563EB;"><%= iss["id"] %></span>
+                    <span class="text-xs" style="color:#697386;"><%= iss["completed_at"] %></span>
+                  </div>
+                  <div class="text-sm mt-1" style="color:#0B132D;"><%= iss["title"] %></div>
+                </div>
+              <% end %>
+            </div>
+          </section>
+        <% end %>
+
+        <%# Lead KPIs %>
+        <% k = h[:lead_kpis] %>
+        <% unless k[:error] %>
+          <section>
+            <h3 class="text-base font-semibold mb-3" style="color:#0B132D;">📊 Lead KPIs</h3>
+            <div class="grid grid-cols-3 md:grid-cols-6 gap-3">
+              <% [
+                ["Demo today",    k[:demo_today]],
+                ["Demo week",     k[:demo_week]],
+                ["Demo total",    k[:demo_total]],
+                ["Contact today", k[:contact_today]],
+                ["Contact total", k[:contact_total]],
+                ["IR downloads",  k[:ir_total]]
+              ].each do |label, val| %>
+                <div class="p-3 rounded" style="background:#fff; border:1px solid #e5e9f0;">
+                  <div class="text-xs" style="color:#697386; letter-spacing:0.05em;"><%= label %></div>
+                  <div class="text-xl font-bold mt-1" style="color:#0B132D;"><%= val || 0 %></div>
+                </div>
+              <% end %>
+            </div>
+
+            <% if k[:industry_dist].present? %>
+              <div class="mt-4 p-3 rounded" style="background:#F2F4F7;">
+                <div class="text-xs mb-2" style="color:#697386; letter-spacing:0.1em;">// INDUSTRY DISTRIBUTION (Demo Requests)</div>
+                <div class="flex flex-wrap gap-2">
+                  <% k[:industry_dist].each do |ind, cnt| %>
+                    <span class="text-xs px-2 py-1 rounded" style="background:#fff; border:1px solid #e5e9f0;">
+                      <strong><%= ind %></strong>: <%= cnt %>
+                    </span>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </section>
+        <% end %>
+
+        <%# Success Patterns %>
+        <% if h[:success_patterns].any? %>
+          <section>
+            <h3 class="text-base font-semibold mb-3" style="color:#0B132D;">
+              💡 Success Patterns <span class="text-xs font-normal" style="color:#697386;">(<%= h[:success_patterns].size %>)</span>
+            </h3>
+            <div class="space-y-2">
+              <% h[:success_patterns].each do |pattern| %>
+                <div class="p-3 rounded" style="background:#FFFBEB; border-left:3px solid #F59E0B;">
+                  <div class="text-sm font-medium" style="color:#92400E;"><%= pattern["pattern"] %></div>
+                  <div class="text-xs mt-1" style="color:#78350F;">
+                    소스: <%= pattern["source"] %> · 적용: <%= pattern["applies_to"] %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </section>
+        <% end %>
+
+      </div>
+    <% end %>
+  <% end %>
+</div>

@@ -1,0 +1,28 @@
+<%# 공공 Approach — Reverse What-If로 정책 변수 역산 %>
+<div class="case-visual">
+  <div class="layer grid-bg"></div>
+  <div class="layer flex flex-col justify-center" style="padding:32px 36px;">
+    <div class="label-mono mb-4">// POLICY VARIABLES</div>
+
+    <div class="space-y-2.5">
+      <% [
+        ["인건비 지원율", "32%", "48%", "+16%"],
+        ["창업 지원금",   "₩50B", "₩72B", "+22B"],
+        ["직업 훈련 인원", "8K",  "14K",  "+6K"],
+        ["기업 유치 수",   "12",  "21",   "+9"]
+      ].each do |v, from, to, delta| %>
+        <div class="p-2 rounded-[8px] flex items-center justify-between" style="background:#fff; border:1px solid #e5e9f0;">
+          <span class="text-[11px] font-medium" style="color:#0B132D;"><%= v %></span>
+          <span class="font-mono text-[10px]" style="color:#697386;"><%= from %></span>
+          <span style="color:#697386;">→</span>
+          <span class="font-mono text-[10px] font-bold" style="color:#2563EB;"><%= to %></span>
+          <span class="font-mono text-[9px]" style="color:#00C8C8;"><%= delta %></span>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="mt-4 p-2 rounded-[8px] text-center" style="background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.25);">
+      <div class="font-mono text-[10px]" style="color:#047857; letter-spacing:0.1em;">✓ 청년 실업률 4.0% 달성 시뮬레이션</div>
+    </div>
+  </div>
+</div>

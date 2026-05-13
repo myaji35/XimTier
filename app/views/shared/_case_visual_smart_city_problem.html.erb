@@ -1,0 +1,29 @@
+<%# 스마트시티 Problem — 도메인별 도구가 따로 노는 IoT %>
+<div class="case-visual">
+  <div class="layer grid-bg"></div>
+  <div class="layer flex flex-col justify-center" style="padding:32px 36px;">
+    <div class="flex items-center justify-between mb-4">
+      <span class="label-mono">// IoT EVENTS / DAY</span>
+      <span class="font-mono text-[12px] font-bold" style="color:#2563EB;">240,000+</span>
+    </div>
+
+    <%# 분리된 3개 도메인 박스 %>
+    <div class="grid grid-cols-3 gap-3" style="margin-bottom:16px;">
+      <% [["교통", "#EF4444"], ["전력", "#F59E0B"], ["환경", "#10B981"]].each do |label, color| %>
+        <div class="p-3 rounded-[10px] text-center" style="background:#fff; border:1px solid <%= color %>40;">
+          <div class="font-mono text-[10px]" style="color:<%= color %>; letter-spacing:0.14em;"><%= label %></div>
+          <%# 미니 IoT dot grid %>
+          <div class="grid grid-cols-4 gap-1 mt-2" style="justify-items:center;">
+            <% 8.times do |i| %>
+              <span class="cv-iot-dot" style="background:<%= color %>; animation-delay:<%= (i * 0.2).round(1) %>s;"></span>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="p-2 rounded-[8px] text-center" style="background:rgba(239,68,68,0.08); border-left:3px solid #EF4444;">
+      <div class="font-mono text-[10px]" style="color:#B91C1C;">// CROSS-DOMAIN 분석 불가</div>
+    </div>
+  </div>
+</div>

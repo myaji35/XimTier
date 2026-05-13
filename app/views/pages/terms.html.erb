@@ -1,16 +1,18 @@
-<% content_for :title, "#{t('terms.h1')} — #{t('site.brand')}" %>
+<% content_for :title, "#{t('terms_page.h1')} — #{t('site.brand')}" %>
 
 <section class="section-light section-pad">
   <div class="wrap" style="max-width:760px;">
-    <div class="eyebrow"><span class="dot"></span><%= t("terms.eyebrow") %></div>
-    <h1 class="h-section mt-3"><%= t("terms.h1") %></h1>
-    <p class="lead mt-5" style="color:#475467;"><%= t("terms.lead") %></p>
+    <div class="eyebrow"><span class="dot"></span><%= t("terms_page.eyebrow") %></div>
+    <h1 class="h-section mt-3"><%= t("terms_page.h1") %></h1>
+    <p class="lead mt-5" style="color:#475467;"><%= t("terms_page.lead") %></p>
 
-    <% if I18n.exists?("terms.soon") %>
-      <div class="mt-10 p-5 rounded-[14px]" style="background:#F2F4F7; border:1px solid #e5e9f0;">
-        <div class="font-mono text-[11px]" style="color:#2563EB; letter-spacing:0.14em;">// COMING SOON</div>
-        <p class="mt-2 text-[14px]" style="color:#475467;"><%= t("terms.soon") %></p>
-      </div>
-    <% end %>
+    <div class="mt-12 space-y-8">
+      <% t("terms_page.sections").each do |s| %>
+        <article>
+          <h2 class="text-[20px] font-semibold mb-3" style="color:#0B132D;"><%= s[:title] %></h2>
+          <div class="text-[14px]" style="color:#475467; line-height:1.75; white-space:pre-line;"><%= s[:body] %></div>
+        </article>
+      <% end %>
+    </div>
   </div>
 </section>

@@ -1,0 +1,27 @@
+<%# 병원 Approach — SHAP 막대 진폭 %>
+<div class="case-visual">
+  <div class="layer grid-bg"></div>
+  <div class="layer flex flex-col justify-center" style="padding:32px 36px;">
+    <div class="flex items-center justify-between mb-3">
+      <span class="label-mono">// SHAP IMPACT</span>
+      <span class="font-mono text-[10px]" style="color:#10B981; letter-spacing:0.1em;">R² 0.91</span>
+    </div>
+    <div>
+      <% [
+        ["나이",       "62%", false],
+        ["BMI",       "48%", true],
+        ["흡연 이력",   "39%", false],
+        ["혈압",       "31%", false],
+        ["가족력",     "24%", true]
+      ].each do |label, w, neg| %>
+        <div class="cv-shap-row">
+          <span class="lab"><%= label %></span>
+          <span class="cv-shap-bar <%= 'neg' if neg %>" style="--shap-w: <%= w %>; width:<%= w %>;"></span>
+        </div>
+      <% end %>
+    </div>
+    <div class="mt-5 p-2 rounded-[8px] text-center" style="background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.25);">
+      <div class="font-mono text-[10px]" style="color:#047857; letter-spacing:0.14em;">✓ EU AI Act + 한국 AI 기본법 통과</div>
+    </div>
+  </div>
+</div>

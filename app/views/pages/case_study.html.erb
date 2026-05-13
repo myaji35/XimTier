@@ -28,21 +28,31 @@
   </div>
 </section>
 
-<%# 02 Problem (light) %>
+<%# 02 Problem (light, 2-col with case visual on right) %>
 <section class="section-light section-pad">
-  <div class="wrap" style="max-width:760px;">
-    <div class="eyebrow"><span class="dot"></span>PROBLEM</div>
-    <h2 class="h-section mt-3"><%= @case[:problem_title] %></h2>
-    <p class="lead mt-5" style="color:#475467; white-space:pre-line;"><%= @case[:problem_body] %></p>
+  <div class="wrap grid grid-cols-1 md:grid-cols-[1fr_1fr] items-center" style="gap:64px;">
+    <div>
+      <div class="eyebrow"><span class="dot"></span>PROBLEM</div>
+      <h2 class="h-section mt-3"><%= @case[:problem_title] %></h2>
+      <p class="lead mt-5" style="color:#475467; white-space:pre-line;"><%= @case[:problem_body] %></p>
+    </div>
+    <div class="case-visual">
+      <%= render "shared/case_visual_#{@case_key}_problem" rescue render("shared/case_visual_fallback") %>
+    </div>
   </div>
 </section>
 
-<%# 03 Approach (tinted) %>
+<%# 03 Approach (tinted, 2-col with case visual on right) %>
 <section class="section-tinted section-pad">
-  <div class="wrap" style="max-width:760px;">
-    <div class="eyebrow"><span class="dot"></span>APPROACH</div>
-    <h2 class="h-section mt-3"><%= @case[:approach_title] %></h2>
-    <p class="lead mt-5" style="color:#475467; white-space:pre-line;"><%= @case[:approach_body] %></p>
+  <div class="wrap grid grid-cols-1 md:grid-cols-[1fr_1fr] items-center" style="gap:64px;">
+    <div>
+      <div class="eyebrow"><span class="dot"></span>APPROACH</div>
+      <h2 class="h-section mt-3"><%= @case[:approach_title] %></h2>
+      <p class="lead mt-5" style="color:#475467; white-space:pre-line;"><%= @case[:approach_body] %></p>
+    </div>
+    <div class="case-visual">
+      <%= render "shared/case_visual_#{@case_key}_approach" rescue render("shared/case_visual_fallback") %>
+    </div>
   </div>
 </section>
 
