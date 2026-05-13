@@ -1,1 +1,14 @@
-# See https://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
+# XimTier robots.txt
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /users
+Disallow: /letter_opener
+Disallow: /rails/active_storage
+Disallow: /ir/
+
+# Crawl delay
+Crawl-delay: 1
+
+# Sitemap
+Sitemap: https://ximtier.io/sitemap.xml

@@ -50,6 +50,10 @@ gem "ahoy_matey"
 gem "rack-attack"
 gem "avo", ">= 3.0"
 
+# Sentry — ENV SENTRY_DSN 있을 때만 활성 (initializer에서 가드)
+gem "sentry-ruby"
+gem "sentry-rails"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"

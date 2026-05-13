@@ -39,6 +39,11 @@ registry:
 env:
   secret:
     - RAILS_MASTER_KEY
+    # SMTP — 도메인/계정 결정 후 .kamal/secrets에 채워 활성
+    - SMTP_USERNAME
+    - SMTP_PASSWORD
+    # Sentry/Plausible — 결정 후 채워 활성 (없으면 자동 비활성)
+    - SENTRY_DSN
   clear:
     SOLID_QUEUE_IN_PUMA: true
     RAILS_ENV: production
@@ -48,6 +53,17 @@ env:
     RAILS_LOG_TO_STDOUT: "true"
     # SQLite (Rails 8 기본) — Solid Queue/Cache/Cable 동일 storage 사용
     DB_HOST: ""
+    # 도메인 — 정식 도메인 확정 시 ximtier.io 등으로 교체
+    APP_HOST: "ximtier.158.247.235.31.nip.io"
+    APP_PROTOCOL: "http"
+    # SMTP placeholder — 미설정이면 production.rb가 자동 :test 폴백
+    SMTP_HOST: ""
+    SMTP_PORT: "587"
+    SMTP_DOMAIN: "ximtier.158.247.235.31.nip.io"
+    SMTP_AUTH: "plain"
+    SMTP_STARTTLS: "true"
+    # Plausible — 도메인 결정 후 활성
+    PLAUSIBLE_DOMAIN: ""
 
 # SQLite + Active Storage volume
 volumes:

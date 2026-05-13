@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="<%= I18n.locale %>">
   <head>
+    <% og_image_url = "#{ENV.fetch('APP_PROTOCOL', 'http')}://#{ENV.fetch('APP_HOST', request.host_with_port)}/og-image.png" %>
     <%= display_meta_tags(
           site: t("site.brand"),
           title: content_for(:title).presence || t("site.positioning"),
@@ -13,9 +14,10 @@
             site_name: t("site.brand"),
             locale: I18n.locale.to_s,
             title: :title,
-            description: :description
+            description: :description,
+            image: { _: og_image_url, width: 1200, height: 630, alt: t("site.positioning") }
           },
-          twitter: { card: "summary_large_image" }
+          twitter: { card: "summary_large_image", image: og_image_url }
         ) %>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -38,6 +40,16 @@
 
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <%# JSON-LD 구조화 데이터 (SEO) %>
+    <%= jsonld_script(organization_jsonld) %>
+    <%= jsonld_script(website_jsonld) %>
+    <%= yield :jsonld %>
+
+    <%# Plausible Analytics — ENV PLAUSIBLE_DOMAIN 설정 시만 활성 %>
+    <% if ENV["PLAUSIBLE_DOMAIN"].present? %>
+      <script defer data-domain="<%= ENV['PLAUSIBLE_DOMAIN'] %>" src="https://plausible.io/js/script.js"></script>
+    <% end %>
   </head>
 
   <body class="section-light">

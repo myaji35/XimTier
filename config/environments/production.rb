@@ -33,6 +33,34 @@ Rails.application.configure do
   # Skip http-to-https redirect for the default health check endpoint.
   # config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
 
+  # Action Mailer — generic SMTP (Postmark/Mailgun/SES/SendGrid plug-in)
+  # 활성 조건: ENV SMTP_HOST + SMTP_USERNAME + SMTP_PASSWORD 모두 존재
+  # 없으면 :test로 폴백 → 메일 발송 시도 시 deliveries 배열에만 저장 (404 X)
+  if ENV["SMTP_HOST"].present? && ENV["SMTP_USERNAME"].present? && ENV["SMTP_PASSWORD"].present?
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      address:              ENV["SMTP_HOST"],
+      port:                 ENV.fetch("SMTP_PORT", "587").to_i,
+      domain:               ENV.fetch("SMTP_DOMAIN", ENV.fetch("APP_HOST", "ximtier.io")),
+      user_name:            ENV["SMTP_USERNAME"],
+      password:             ENV["SMTP_PASSWORD"],
+      authentication:       (ENV["SMTP_AUTH"] || "plain").to_sym,
+      enable_starttls_auto: ENV["SMTP_STARTTLS"] != "false",
+      open_timeout:         10,
+      read_timeout:         20
+    }
+    config.action_mailer.raise_delivery_errors = true
+  else
+    config.action_mailer.delivery_method = :test
+    config.action_mailer.raise_delivery_errors = false
+    Rails.logger.warn("[mailer] SMTP_HOST 미설정 — production에서도 :test로 동작 (deliveries 큐만 채움). ENV 설정 후 재배포 필요.") rescue nil
+  end
+  config.action_mailer.perform_caching = false
+  config.action_mailer.default_url_options = {
+    host:     ENV.fetch("APP_HOST",     "ximtier.158.247.235.31.nip.io"),
+    protocol: ENV.fetch("APP_PROTOCOL", "http")
+  }
+
   # Log to STDOUT with the current request id as a default log tag.
   config.log_tags = [ :request_id ]
   config.logger   = ActiveSupport::TaggedLogging.logger(STDOUT)

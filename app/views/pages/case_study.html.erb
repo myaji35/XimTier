@@ -1,4 +1,10 @@
 <% content_for :title, "#{@case[:title]} — #{t('site.brand')}" %>
+<% content_for :jsonld do %>
+  <%= jsonld_script(article_jsonld(
+        title: @case[:title],
+        description: "#{@case[:persona]} · #{@case[:industry_label]}"
+      )) %>
+<% end %>
 
 <%# 01 Hero (dark) %>
 <section class="section-dark section-pad">
