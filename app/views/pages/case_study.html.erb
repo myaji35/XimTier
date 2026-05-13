@@ -34,7 +34,7 @@
     <div>
       <div class="eyebrow"><span class="dot"></span>PROBLEM</div>
       <h2 class="h-section mt-3"><%= @case[:problem_title] %></h2>
-      <p class="lead mt-5" style="color:#475467; white-space:pre-line;"><%= @case[:problem_body] %></p>
+      <p class="lead mt-5" style="color:#475467;"><%= @case[:problem_body] %></p>
     </div>
     <div class="case-visual">
       <%= render "shared/case_visual_#{@case_key}_problem" rescue render("shared/case_visual_fallback") %>
@@ -48,7 +48,7 @@
     <div>
       <div class="eyebrow"><span class="dot"></span>APPROACH</div>
       <h2 class="h-section mt-3"><%= @case[:approach_title] %></h2>
-      <p class="lead mt-5" style="color:#475467; white-space:pre-line;"><%= @case[:approach_body] %></p>
+      <p class="lead mt-5" style="color:#475467;"><%= @case[:approach_body] %></p>
     </div>
     <div class="case-visual">
       <%= render "shared/case_visual_#{@case_key}_approach" rescue render("shared/case_visual_fallback") %>

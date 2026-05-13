@@ -8,17 +8,17 @@ en:
       industry_label: "Manufacturing / Semiconductor"
       dataset: "case_01 · semiconductor_defect_rate.csv · 12,480 rows"
       problem_title: The Problem
-      problem_body: |
+      problem_body: >
         Line average defect rate exceeded the quarterly target (1.5%) by 0.9pp.
-        Uploading 6 months of process logs to ChatGPT was a policy violation.
-        Existing BI tools (Tableau) only showed regression — not "which variable
-        to adjust by how much" to hit the target.
+        Uploading six months of process logs to ChatGPT was a policy violation,
+        and existing BI tools (Tableau) only showed regression — never "which
+        variable to adjust by how much" to hit the target.
       approach_title: XimTier Approach
-      approach_body: |
-        Loaded data on-prem → WhatDataAI identified 5 core variables →
+      approach_body: >
+        Loaded data on-prem, WhatDataAI identified the five core variables, and
         Reverse What-If reverse-solved each variable's optimum to hit 1.20%.
-        Every result ships with SHAP-based mathematical justification
-        (EU AI Act compliant).
+        Every result ships with SHAP-based mathematical justification, ready
+        for EU AI Act compliance.
       outcomes_title: Outcomes
       outcomes:
         - "Defect rate −50% (baseline 2.40% → 1.20%)"
@@ -42,17 +42,17 @@ en:
       industry_label: "Hospital / Healthcare"
       dataset: "case_02 · imaging_diagnosis_log.csv · 8,200 rows"
       problem_title: The Problem
-      problem_body: |
-        EU AI Act 2026 mandates mathematical justification for high-risk AI
-        (diagnostic assist). Existing deep-learning models are black boxes.
-        Korea's regulator is moving the same way. Clinicians have to explain
-        "why is this patient high-risk?" to patients — but the model can't.
+      problem_body: >
+        EU AI Act 2026 mandates mathematical justification for high-risk AI such
+        as diagnostic assist, and Korea's regulator is heading the same way.
+        Existing deep-learning models are black boxes, so clinicians have to
+        explain "why is this patient high-risk?" — but the model cannot.
       approach_title: XimTier Approach
-      approach_body: |
-        Integrated PACS + EMR in an isolated environment → SHAP-based
-        variable contributions auto-generated for each diagnosis → clinician
-        UI shows "this case: variable X raised risk by 0.34". Regulator-ready
-        documents are produced automatically.
+      approach_body: >
+        PACS and EMR data are integrated inside an isolated environment, and
+        SHAP-based variable contributions are auto-generated for each diagnosis.
+        The clinician UI shows lines like "this case: variable X raised risk by
+        0.34", and regulator-ready documents are produced automatically.
       outcomes_title: Outcomes
       outcomes:
         - "EU AI Act + Korea AI Framework both satisfied"
@@ -69,17 +69,17 @@ en:
       industry_label: "Public Sector"
       dataset: "case_03 · regional_youth_employment.csv · 60-month series"
       problem_title: The Problem
-      problem_body: |
-        Hitting the 4.0% youth unemployment target — which policy variable
-        (wage subsidy ratio, startup grants, training seats, foreign-company
-        relocations) to adjust by how much? No historical simulation existed.
-        Only after-effect analysis was available.
+      problem_body: >
+        To hit the 4.0% youth unemployment target, which policy variable —
+        wage-subsidy ratio, startup grants, training seats, foreign-company
+        relocations — should be moved by how much? No historical simulation
+        existed, only after-the-fact analysis.
       approach_title: XimTier Approach
-      approach_body: |
-        Combined municipal admin data with public statistics → Reverse What-If
-        outputs the optimal combination of 4 policy variables to hit a target
-        unemployment rate. Leveraged NIPA SaaS support program for fast
-        pilot → production conversion.
+      approach_body: >
+        Municipal admin data is combined with public statistics, and Reverse
+        What-If outputs the optimal combination of four policy variables to
+        hit a target unemployment rate. The NIPA SaaS support program enables
+        fast pilot-to-production conversion.
       outcomes_title: Outcomes
       outcomes:
         - "Policy scenario comparison time −70% (vs manual)"
@@ -96,17 +96,17 @@ en:
       industry_label: "Smart City"
       dataset: "case_04 · iot_traffic_energy.csv · 240,000 events/day"
       problem_title: The Problem
-      problem_body: |
-        IoT sensors emit 240K events/day across traffic, power, and
-        environment. Per-domain tools exist but cross-domain decisions are
+      problem_body: >
+        IoT sensors emit 240K events/day across traffic, power, and environment,
+        yet per-domain tools sit in silos and cross-domain decisions are
         impossible. "How much does a 5% traffic-flow improvement cut energy
         use?" remains unanswerable.
       approach_title: XimTier Approach
-      approach_body: |
-        Hourly aggregation at IoT gateways → integrated regression + Reverse
-        What-If across 8 city KPIs (traffic, average speed, peak power, CO₂,
-        etc.). Exposed via MCP-standard interface so AI agents can call it
-        for automated scenarios.
+      approach_body: >
+        Hourly aggregation runs at IoT gateways, and eight city KPIs — traffic,
+        average speed, peak power, CO₂, and more — are analyzed via integrated
+        regression and Reverse What-If. Everything is exposed through an
+        MCP-standard interface so AI agents can drive automated scenarios.
       outcomes_title: Outcomes
       outcomes:
         - "Real-time city KPI dashboard"
