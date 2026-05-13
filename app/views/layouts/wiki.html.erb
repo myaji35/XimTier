@@ -6,48 +6,145 @@
   <title>XimTier Wiki</title>
   <meta name="robots" content="noindex, nofollow">
   <style>
+    *{box-sizing:border-box;}
     body{margin:0;font-family:-apple-system,system-ui,"Pretendard",sans-serif;background:#F7F9FC;color:#0B132D;}
-    .topbar{background:linear-gradient(135deg,#2563EB 0%,#00C8C8 100%);color:#fff;padding:18px 28px;}
-    .topbar h1{margin:0;font-size:20px;font-weight:700;letter-spacing:-0.01em;}
-    .topbar .meta{font-size:12px;opacity:.85;margin-top:4px;}
-    .wrap{max-width:1240px;margin:0 auto;padding:24px;}
+    a{color:inherit;text-decoration:none;}
+
+    /* ===== Layout ===== */
+    .shell{display:grid;grid-template-columns:240px 1fr;min-height:100vh;}
+    @media (max-width:900px){.shell{grid-template-columns:1fr;}}
+
+    /* ===== Sidebar ===== */
+    .sidebar{background:#0B132D;color:#e6e8f0;padding:0;position:sticky;top:0;height:100vh;overflow-y:auto;}
+    .sidebar .brand{padding:22px 22px 18px;background:linear-gradient(135deg,#2563EB 0%,#00C8C8 100%);}
+    .sidebar .brand h1{margin:0;font-size:17px;font-weight:700;color:#fff;letter-spacing:-0.01em;}
+    .sidebar .brand .sub{font-size:11px;opacity:.88;margin-top:3px;color:#fff;}
+    .sidebar nav{padding:14px 0;}
+    .sidebar nav a{display:flex;align-items:center;justify-content:space-between;
+                   padding:9px 22px;font-size:13px;color:#a7b1c7;
+                   border-left:3px solid transparent;transition:all .15s;}
+    .sidebar nav a:hover{background:rgba(255,255,255,0.04);color:#fff;border-left-color:#00C8C8;}
+    .sidebar nav a.active{background:rgba(0,200,200,0.08);color:#fff;border-left-color:#00C8C8;}
+    .sidebar nav a .ico{font-size:14px;margin-right:8px;width:18px;display:inline-block;text-align:center;}
+    .sidebar nav a .label{flex:1;}
+    .sidebar nav a .count{font-size:10px;color:#697386;font-family:ui-monospace,Menlo,monospace;
+                          background:rgba(255,255,255,0.06);padding:2px 7px;border-radius:9px;}
+    .sidebar nav a.active .count{color:#00C8C8;background:rgba(0,200,200,0.15);}
+    .sidebar nav .divider{height:1px;background:rgba(255,255,255,0.07);margin:10px 22px;}
+    .sidebar .foot{padding:14px 22px;font-size:11px;color:#6B7280;border-top:1px solid rgba(255,255,255,0.07);}
+
+    /* ===== Main ===== */
+    .main{padding:24px 32px 64px;max-width:1240px;}
+    @media (max-width:900px){.main{padding:18px;}}
+
+    /* Stat strip */
     .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:28px;}
     .stat{background:#fff;border:1px solid #E5E7EB;border-radius:10px;padding:14px 16px;}
     .stat .l{font-size:11px;color:#6B7280;text-transform:uppercase;letter-spacing:.08em;}
     .stat .v{font-size:22px;font-weight:700;color:#0B132D;margin-top:6px;}
     .stat .sub{font-size:11px;color:#6B7280;margin-top:4px;}
     .stat.accent{background:linear-gradient(135deg,#2563EB 0%,#00C8C8 100%);color:#fff;border:none;}
-    .stat.accent .l,.stat.accent .v,.stat.accent .sub{color:#fff;opacity:1;}
-    .stat.accent .l,.stat.accent .sub{opacity:.85;}
-    h2{font-size:15px;margin:32px 0 12px;color:#0B132D;border-bottom:2px solid #2563EB;padding-bottom:6px;letter-spacing:-0.01em;}
+    .stat.accent .l,.stat.accent .v,.stat.accent .sub{color:#fff;}
+    .stat.accent .l,.stat.accent .sub{opacity:.88;}
+
+    /* Section */
+    section.sec{margin-top:36px;scroll-margin-top:14px;}
+    section.sec:first-of-type{margin-top:0;}
+    section.sec h2{font-size:15px;margin:0 0 14px;color:#0B132D;
+                   border-bottom:2px solid #2563EB;padding-bottom:6px;
+                   letter-spacing:-0.01em;display:flex;align-items:baseline;gap:8px;}
+    section.sec h2 .cnt{font-size:11px;font-weight:500;color:#6B7280;}
+
+    /* Items */
     .grid{display:grid;gap:10px;}
     .grid.cols-3{grid-template-columns:repeat(auto-fill,minmax(260px,1fr));}
-    .grid.cols-2{grid-template-columns:repeat(auto-fill,minmax(300px,1fr));}
+    .grid.cols-2{grid-template-columns:repeat(auto-fill,minmax(320px,1fr));}
     .grid.cols-4{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));}
-    .item{background:#fff;border:1px solid #E5E7EB;border-radius:8px;padding:10px 12px;}
+    .item{background:#fff;border:1px solid #E5E7EB;border-radius:8px;padding:11px 13px;}
     .item .name{font-size:13px;font-weight:600;color:#0B132D;}
-    .item .file{font-size:11px;color:#6B7280;font-family:ui-monospace,Menlo,monospace;margin-top:4px;}
+    .item .file{font-size:11px;color:#6B7280;font-family:ui-monospace,Menlo,monospace;margin-top:5px;
+                white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
     .item .meta{font-size:11px;color:#94A3B8;margin-top:4px;}
-    .item .sti{color:#2563EB;font-family:ui-monospace,Menlo,monospace;font-size:12px;}
-    table{width:100%;border-collapse:collapse;background:#fff;font-size:12px;border:1px solid #E5E7EB;border-radius:8px;overflow:hidden;}
+    .item .sti{color:#2563EB;font-family:ui-monospace,Menlo,monospace;font-size:12px;font-weight:600;}
+
+    /* Table */
+    table{width:100%;border-collapse:collapse;background:#fff;font-size:12px;
+          border:1px solid #E5E7EB;border-radius:8px;overflow:hidden;}
     th,td{padding:8px 10px;text-align:left;border-bottom:1px solid #F3F4F6;}
-    th{background:#F9FAFB;font-weight:600;color:#374151;font-size:11px;text-transform:uppercase;letter-spacing:.05em;}
+    th{background:#F9FAFB;font-weight:600;color:#374151;font-size:11px;
+       text-transform:uppercase;letter-spacing:.05em;}
     td.id{font-family:ui-monospace,Menlo,monospace;color:#2563EB;}
+
+    /* Locale card */
     .locale{background:#fff;border:1px solid #E5E7EB;border-radius:8px;padding:14px;}
     .locale .hdr{display:flex;justify-content:space-between;align-items:baseline;}
     .locale .code{font-size:17px;font-weight:700;text-transform:uppercase;}
     .locale .files{margin-top:8px;display:flex;flex-wrap:wrap;gap:4px;}
     .locale .files span{background:#F3F4F6;color:#475467;font-size:11px;padding:3px 8px;border-radius:4px;}
+
     .empty{color:#94A3B8;font-size:13px;}
+
+    /* Scroll-spy active state via JS-less anchor — :target selector */
+    section.sec:target h2{color:#2563EB;}
   </style>
 </head>
 <body>
-  <div class="topbar">
-    <h1>XimTier Wiki</h1>
-    <div class="meta">코드 · 컴포넌트 · Harness 상태 — 단일 비밀번호 인증</div>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>XimTier Wiki</h1>
+        <div class="sub">단일 비밀번호 인증</div>
+      </div>
+      <nav data-nav>
+        <a href="#overview" class="active" data-target="overview"><span class="ico">📊</span><span class="label">Overview</span></a>
+        <div class="divider"></div>
+        <a href="#components" data-target="components"><span class="ico">🧩</span><span class="label">ViewComponents</span><span class="count" data-count="components"></span></a>
+        <a href="#stimulus" data-target="stimulus"><span class="ico">⚡</span><span class="label">Stimulus</span><span class="count" data-count="stimulus"></span></a>
+        <a href="#controllers" data-target="controllers"><span class="ico">🎮</span><span class="label">Controllers</span><span class="count" data-count="controllers"></span></a>
+        <a href="#models" data-target="models"><span class="ico">💾</span><span class="label">Models</span><span class="count" data-count="models"></span></a>
+        <a href="#pages" data-target="pages"><span class="ico">📄</span><span class="label">Pages</span><span class="count" data-count="pages"></span></a>
+        <a href="#locales" data-target="locales"><span class="ico">🌐</span><span class="label">Locales</span><span class="count" data-count="locales"></span></a>
+        <div class="divider"></div>
+        <a href="#agents" data-target="agents"><span class="ico">🤖</span><span class="label">Harness Agents</span><span class="count" data-count="agents"></span></a>
+        <a href="#issues" data-target="issues"><span class="ico">📋</span><span class="label">Issues</span><span class="count" data-count="issues"></span></a>
+      </nav>
+      <div class="foot">
+        Generated<br>
+        <strong style="color:#cbd0e0;"><%= @snapshot[:generated_at].strftime("%Y-%m-%d %H:%M") %></strong>
+      </div>
+    </aside>
+
+    <main class="main">
+      <%= yield %>
+    </main>
   </div>
-  <div class="wrap">
-    <%= yield %>
-  </div>
+
+  <script>
+    // Inject counts into sidebar pills + scroll-spy active state
+    (function(){
+      var counts = window.WIKI_COUNTS || {};
+      document.querySelectorAll('[data-count]').forEach(function(el){
+        var k = el.getAttribute('data-count');
+        if (counts[k] != null) el.textContent = counts[k];
+      });
+
+      var links = document.querySelectorAll('[data-target]');
+      var sections = Array.from(links).map(function(a){
+        return { link: a, sec: document.getElementById(a.getAttribute('data-target')) };
+      }).filter(function(p){ return p.sec; });
+
+      function onScroll(){
+        var pos = window.scrollY + 100;
+        var active = sections[0];
+        sections.forEach(function(p){
+          if (p.sec.offsetTop <= pos) active = p;
+        });
+        links.forEach(function(l){ l.classList.remove('active'); });
+        if (active) active.link.classList.add('active');
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+  </script>
 </body>
 </html>
