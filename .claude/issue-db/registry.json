@@ -1,0 +1,107 @@
+{
+  "version": "3.0.0",
+  "mission": "XimTier — Post-LLM Decision Intelligence Platform. 데이터 주권 × 규제 산업 × Reverse What-If 교차점에서 비전문가가 5분 안에 의사결정을 끝내는 SaaS.",
+  "strategy": "Pre-Seed 단계 — 외부 인상(랜딩+데모)을 완성하여 파일럿 리드 확보 + Series A 트리거(ARR ₩2억 + MCP 출시 + 동남아 1국)까지.",
+  "created_at": "2026-05-13T10:34:24Z",
+  "issues": [
+    {
+      "id": "ISS-001",
+      "type": "FEATURE_PLAN",
+      "title": "[W1-P0] Reverse What-If 인터랙티브 데모 — 핵심 차별점 구현",
+      "description": "_design_ref/demo.jsx를 Stimulus 컨트롤러로 포팅. 목표 불량률 슬라이더(0.3-3.0%) → 5변수(온도/압력/습도/속도/체류시간) baseline→optimal 즉시 계산. R² 0.887 표시.",
+      "agent": "agent-harness",
+      "priority": "P0",
+      "status": "READY",
+      "depth": 0,
+      "depends_on": [],
+      "scope": [
+        "app/javascript/controllers/reverse_what_if_controller.js",
+        "app/views/shared/_reverse_what_if_demo.html.erb",
+        "config/locales/ko/demo.yml",
+        "config/locales/en/demo.yml",
+        "app/views/pages/how_it_works.html.erb"
+      ],
+      "success_criteria": "슬라이더 드래그 시 5변수 카드 ≤16ms 업데이트 + SHAP 탭 전환 + RSpec system test PASS",
+      "tags": ["W1", "P0", "core-differentiator", "stimulus"]
+    },
+    {
+      "id": "ISS-002",
+      "type": "GENERATE_CODE",
+      "title": "[W1] SHAP 시각화 SVG (양/음 막대 + 중앙 0선)",
+      "description": "Pure SVG bar chart (라이브러리 X). 양수=teal(#00C8C8), 음수=blue(#2563EB). 5개 변수 weight 시각화. Stimulus targets로 슬라이더 변경 시 실시간 업데이트.",
+      "agent": "agent-harness",
+      "priority": "P0",
+      "status": "READY",
+      "depth": 0,
+      "depends_on": ["ISS-001"],
+      "scope": [
+        "app/components/shap_chart_component.rb",
+        "app/components/shap_chart_component.html.erb"
+      ],
+      "success_criteria": "5개 변수 막대 정상 렌더 + 중앙 0선 + reduce-motion 존중",
+      "tags": ["W1", "P0", "viz"]
+    },
+    {
+      "id": "ISS-003",
+      "type": "GENERATE_CODE",
+      "title": "[W1] Hero floating chips 5-7s staggered 애니메이션",
+      "description": "CSS @keyframes float (translateY ±8px). 4개 칩 staggered delay (0/1.5/3/4.5s). prefers-reduced-motion: reduce 시 모션 OFF.",
+      "agent": "agent-harness",
+      "priority": "P1",
+      "status": "READY",
+      "depth": 0,
+      "depends_on": [],
+      "scope": [
+        "app/assets/tailwind/application.css",
+        "app/views/pages/home.html.erb"
+      ],
+      "success_criteria": "4개 칩 부드럽게 float + 사용자 모션 설정 존중",
+      "tags": ["W1", "P1", "animation", "polish"]
+    },
+    {
+      "id": "ISS-004",
+      "type": "RUN_TESTS",
+      "title": "[W1-검증] Reverse What-If RSpec system test",
+      "description": "Capybara + headless Chrome으로 슬라이더 드래그 → 5변수 카드 텍스트 변경 확인 + SHAP 탭 전환 확인.",
+      "agent": "test-harness",
+      "priority": "P1",
+      "status": "READY",
+      "depth": 1,
+      "depends_on": ["ISS-001", "ISS-002"],
+      "scope": ["spec/system/reverse_what_if_demo_spec.rb"],
+      "success_criteria": "system spec PASS + 전체 spec suite PASS",
+      "tags": ["W1", "test"]
+    },
+    {
+      "id": "ISS-005",
+      "type": "DEPLOY_READY",
+      "title": "[W1-종료] 9차 배포 + 외부 검증 + W1 보고서",
+      "description": "kamal deploy → http://ximtier.158.247.235.31.nip.io/ko/how-it-works 데모 외부 동작 확인. Lighthouse mobile 측정. _workspace/w1-report.md 작성.",
+      "agent": "cicd-harness",
+      "priority": "P1",
+      "status": "READY",
+      "depth": 1,
+      "depends_on": ["ISS-001", "ISS-002", "ISS-003", "ISS-004"],
+      "scope": ["config/deploy.yml"],
+      "success_criteria": "외부 /ko/how-it-works 200 + 슬라이더 외부 작동 + Lighthouse Perf ≥ 85 + 보고서 commit",
+      "tags": ["W1", "deploy"]
+    }
+  ],
+  "hooks": { "on_create": [], "on_start": [], "on_complete": [], "on_fail": [], "on_learn": [] },
+  "knowledge": {
+    "success_patterns": [
+      { "pattern": "원격 amd64 builder (builder.remote: ssh://root@server) — M-series Mac에서 QEMU gcc segfault 회피", "source": "M3 1-2차 배포 실패에서 학습", "applies_to": "Kamal 2 + Mac M-series 모든 프로젝트" },
+      { "pattern": "Vultr 다중 SaaS 서버 — kamal-proxy(3030) 뒤에 nginx vhost 별도 등록 필요", "source": "M3 7차 배포에서 학습", "applies_to": "0012 InsureGraph와 공존하는 모든 신규 서비스" },
+      { "pattern": "SQLite production — Ahoy jsonb→json + Avo Resource enum select", "source": "M3 3차 배포 실패에서 학습", "applies_to": "Rails 8 + SQLite multi-DB" },
+      { "pattern": "git update-index --chmod=+x bin/* — 외장 nosync 디스크 권한 누락 방지", "source": "M3 2차 배포 실패에서 학습", "applies_to": "외장 디스크에서 git init한 모든 프로젝트" }
+    ],
+    "failure_patterns": [],
+    "meta_observations": [
+      "M3 배포 7회 시도 → 7차 성공. 매번 다른 원인 (QEMU/perms/SQLite/port/timeout/schema/nginx). 다음 프로젝트는 첫 배포 전 체크리스트로 6개 항목 사전 점검."
+    ]
+  },
+  "stats": { "total_issues": 5, "completed": 0, "failed": 0, "current_depth": 0 },
+  "opus_budget_state": { "daily_used_usd": 0, "daily_soft_cap": 10, "daily_hard_cap": 20, "monthly_used_usd": 0, "monthly_cap": 250 },
+  "hermes_state": { "active_escalations": [] },
+  "proactive_scan_state": { "last_run": null, "daily_runs": 0, "daily_limit": 3 }
+}

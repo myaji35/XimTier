@@ -169,3 +169,19 @@ html, body {
   .section-pad-compact { padding: 56px 0; }
   .wrap { padding: 0 20px; }
 }
+
+/* === Hero floating chips animation (design.md §5) === */
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+
+.float-chip { animation: float-y 6s ease-in-out infinite; }
+.float-chip-1 { animation-delay: 0s; }
+.float-chip-2 { animation-delay: 1.5s; }
+.float-chip-3 { animation-delay: 3s; }
+.float-chip-4 { animation-delay: 4.5s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .float-chip { animation: none !important; }
+}

@@ -1,0 +1,20 @@
+en:
+  reverse_what_if:
+    section_eyebrow: Live Demo
+    section_title: One slider → five process variables reverse-solved instantly
+    section_lead: Regression + SHAP. ChatGPT estimates; XimTier computes.
+    tab_reverse: "Reverse What-If"
+    tab_shap: "SHAP Analysis"
+    dataset_meta: "case_01 · semiconductor_defect_rate.csv · 12,480 rows"
+    target_label: "Target defect rate ↓"
+    target_unit: "%"
+    baseline_compare_html: "Baseline <strong>%{baseline}%</strong>, target improvement <strong class='text-brand-grad'>%{improvement}</strong>"
+    slider_min: "0.30%"
+    slider_max: "3.00%"
+    algorithm_title: "Reverse Algorithm"
+    algorithm_body_html: "Move the slider — the <strong>optimal combination of 5 process variables</strong> to hit your target is computed instantly on the right. Regression + SHAP."
+    optimal_inputs_title: "Optimal Inputs"
+    accuracy_html: "Predicted accuracy <strong>92.4%</strong> · R² = 0.887 · Inference <strong>0.18s</strong>"
+    shap_title: "Feature Impact (SHAP)"
+    shap_legend_html: "Positive (<span class='text-[#2563EB] font-semibold'>+</span>) increases defect rate; negative (<span class='text-[#E85A5A] font-semibold'>−</span>) decreases. <strong>Mathematical justification for EU AI Act compliance</strong> — generated automatically."
+    note: "Example data. Real deployments are fine-tuned on customer data."

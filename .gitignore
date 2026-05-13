@@ -43,3 +43,7 @@
 
 # Kamal secrets (.kamal/secrets.example만 커밋)
 /.kamal/secrets
+.claude/worktrees
+worktrees/
+.harness-worktree-meta
+.claude/worktrees.json

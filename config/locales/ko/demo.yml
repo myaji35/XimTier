@@ -1,0 +1,20 @@
+ko:
+  reverse_what_if:
+    section_eyebrow: 라이브 데모
+    section_title: 슬라이더 한 번에 5개 변수가 자동 역산됩니다
+    section_lead: 회귀 모델 + SHAP 기반. ChatGPT는 추정하지만, XimTier는 계산합니다.
+    tab_reverse: "Reverse What-If"
+    tab_shap: "SHAP 분석"
+    dataset_meta: "case_01 · semiconductor_defect_rate.csv · 12,480 rows"
+    target_label: "목표 불량률 ↓"
+    target_unit: "%"
+    baseline_compare_html: "현재 베이스라인 <strong>%{baseline}%</strong> 대비 <strong class='text-brand-grad'>%{improvement}</strong> 개선 목표"
+    slider_min: "0.30%"
+    slider_max: "3.00%"
+    algorithm_title: "역산 (Reverse) 알고리즘"
+    algorithm_body_html: "슬라이더를 움직이면 <strong>목표값에 도달하기 위한 5개 공정 변수의 최적 조합</strong>이 우측에 즉시 계산됩니다. 회귀 모델 + SHAP 기반."
+    optimal_inputs_title: "최적 변수 역산 · Optimal Inputs"
+    accuracy_html: "예상 정확도 <strong>92.4%</strong> · R² = 0.887 · 추론 시간 <strong>0.18s</strong>"
+    shap_title: "변수 중요도 (SHAP) · Feature Impact"
+    shap_legend_html: "양(<span class='text-[#2563EB] font-semibold'>+</span>)은 불량률 증가 방향, 음(<span class='text-[#E85A5A] font-semibold'>−</span>)은 감소 방향. <strong>EU AI Act 규제 통과 가능한 수학적 근거</strong>를 자동 산출합니다."
+    note: "예시 데이터 · 실제 도입 시 고객 데이터로 파인튜닝됩니다."

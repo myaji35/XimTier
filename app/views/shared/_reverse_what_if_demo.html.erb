@@ -1,0 +1,124 @@
+<%# Reverse What-If 인터랙티브 데모 (Stimulus + 라이브러리 X) %>
+<div data-controller="reverse-what-if"
+     data-reverse-what-if-baseline-defect-value="2.4"
+     data-reverse-what-if-target-defect-value="1.2"
+     class="rounded-[20px] overflow-hidden"
+     style="background:#fff; border:1px solid #e5e9f0; box-shadow:0 30px 60px -30px rgba(11,19,45,0.15);">
+
+  <%# Top bar: tabs + dataset meta %>
+  <div class="flex items-center justify-between flex-wrap gap-3" style="padding:18px 24px; border-bottom:1px solid #e5e9f0; background:#F2F4F7;">
+    <div class="flex" style="gap:4px;">
+      <button type="button" data-reverse-what-if-target="tabReverse" data-action="click->reverse-what-if#showReverse"
+              class="active" style="padding:8px 16px; border-radius:8px; font-size:13px; font-weight:600; border:0; cursor:pointer; background:#0B132D; color:#fff;">
+        <%= t("reverse_what_if.tab_reverse") %>
+      </button>
+      <button type="button" data-reverse-what-if-target="tabShap" data-action="click->reverse-what-if#showShap"
+              style="padding:8px 16px; border-radius:8px; font-size:13px; font-weight:600; border:0; cursor:pointer; background:transparent; color:#697386;">
+        <%= t("reverse_what_if.tab_shap") %>
+      </button>
+    </div>
+    <div class="font-mono text-[11px]" style="color:#697386;"><%= t("reverse_what_if.dataset_meta") %></div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2" style="padding:28px;">
+    <%# Left: Target + Slider + Algorithm note %>
+    <div style="padding-right:24px; border-right:1px solid #e5e9f0;">
+      <div class="font-mono text-[11px]" style="color:#697386; letter-spacing:0.14em;">// TARGET</div>
+
+      <div class="mt-3 p-5 rounded-[14px]" style="background:linear-gradient(135deg, #2563EB, #00C8C8); color:#fff;">
+        <div class="text-[12px]" style="opacity:0.85;"><%= t("reverse_what_if.target_label") %></div>
+        <div class="mt-1" style="font-size:48px; font-weight:700; line-height:1; letter-spacing:-0.03em;">
+          <span data-reverse-what-if-target="targetValue">1.20</span><span style="font-size:20px; margin-left:4px;">%</span>
+        </div>
+        <div class="mt-2 text-[12px]" style="opacity:0.9;">
+          현재 베이스라인 <strong>2.40%</strong> 대비 <strong style="color:#fff;" data-reverse-what-if-target="improvement">−50%</strong> 개선 목표
+        </div>
+      </div>
+
+      <div class="flex justify-between mt-5 text-[11px] font-mono" style="color:#697386;">
+        <span><%= t("reverse_what_if.slider_min") %></span>
+        <span><%= t("reverse_what_if.slider_max") %></span>
+      </div>
+      <input type="range" min="0.3" max="3.0" step="0.05" value="1.2"
+             data-reverse-what-if-target="slider"
+             data-action="input->reverse-what-if#changeTarget"
+             class="w-full mt-1"
+             style="accent-color:#2563EB;">
+
+      <div class="mt-6 p-4 rounded-[10px]" style="background:#F2F4F7; font-size:13px; color:#475467; line-height:1.6;">
+        <div class="flex items-center gap-2 mb-2">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color:#2563EB;"><path d="M12 2v20M2 12h20"/></svg>
+          <strong style="color:#0B132D;"><%= t("reverse_what_if.algorithm_title") %></strong>
+        </div>
+        <%= t("reverse_what_if.algorithm_body_html").html_safe %>
+      </div>
+    </div>
+
+    <%# Right: Tabs panels %>
+    <div style="padding-left:24px;">
+      <%# Reverse panel %>
+      <div data-reverse-what-if-target="panelReverse" style="display:block;">
+        <div class="font-mono text-[11px]" style="color:#697386; letter-spacing:0.14em;">// OPTIMAL INPUTS</div>
+        <div class="mt-3 space-y-3">
+          <% 5.times do %>
+            <div data-reverse-what-if-target="varRow"
+                 class="p-3 rounded-[10px] flex items-center justify-between"
+                 style="background:#fff; border:1px solid #e5e9f0;">
+              <div>
+                <div class="text-[13px] font-medium" style="color:#0B132D;" data-reverse-what-if-target="varName">—</div>
+              </div>
+              <div class="flex items-center gap-2 font-mono text-[12px]">
+                <span style="color:#697386;" data-reverse-what-if-target="varFrom">—</span>
+                <span style="color:#697386;">→</span>
+                <span style="color:#2563EB; font-weight:600;" data-reverse-what-if-target="varTo">—</span>
+                <span style="color:#00C8C8; font-size:11px;" data-reverse-what-if-target="varDelta">—</span>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div class="mt-5 p-3 rounded-[10px] flex items-center gap-2" style="background:rgba(0,200,200,0.08); border:1px solid rgba(0,200,200,0.25); font-size:12px; color:#1f2937;">
+          <span style="width:8px; height:8px; border-radius:50%; background:#00C8C8;"></span>
+          <span><%= t("reverse_what_if.accuracy_html").html_safe %></span>
+        </div>
+      </div>
+
+      <%# SHAP panel %>
+      <div data-reverse-what-if-target="panelShap" style="display:none;">
+        <div class="font-mono text-[11px]" style="color:#697386; letter-spacing:0.14em;">// FEATURE IMPACT (SHAP)</div>
+        <div class="mt-3 space-y-3">
+          <% 5.times do %>
+            <div data-reverse-what-if-target="shapRow" class="flex items-center gap-3">
+              <div class="text-[12px]" style="width:80px; color:#0B132D;" data-reverse-what-if-target="shapLabel">—</div>
+              <div style="flex:1; height:24px; position:relative; background:#F2F4F7; border-radius:6px; overflow:hidden;">
+                <div style="position:absolute; left:50%; top:0; bottom:0; width:1px; background:rgba(11,19,45,0.15);"></div>
+                <div data-reverse-what-if-target="shapFill"
+                     class="shap-fill"
+                     style="position:absolute; top:4px; bottom:4px; left:50%; width:0%; background:#2563EB; border-radius:4px; transition:all 0.2s ease;"></div>
+              </div>
+              <div class="font-mono text-[11px]" style="width:54px; text-align:right; color:#475467;" data-reverse-what-if-target="shapNum">—</div>
+            </div>
+          <% end %>
+        </div>
+        <div class="mt-4 p-3 rounded-[8px]" style="background:#F2F4F7; font-size:12px; color:#475467; line-height:1.6;">
+          <%= t("reverse_what_if.shap_legend_html").html_safe %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center py-3 text-[11px] font-mono" style="background:#0B132D; color:#697386; letter-spacing:0.1em;">
+    ⚠ <%= t("reverse_what_if.note") %>
+  </div>
+</div>
+
+<style>
+  /* tab active 색 — Stimulus가 active 클래스 토글 */
+  [data-controller="reverse-what-if"] button.active {
+    background: #0B132D !important;
+    color: #fff !important;
+  }
+  /* shap-fill — neg일 때 색 변경 */
+  [data-controller="reverse-what-if"] .shap-fill.is-neg {
+    background: #E85A5A !important;
+  }
+</style>

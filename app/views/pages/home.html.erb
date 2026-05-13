@@ -50,7 +50,7 @@
       <%# Floating data chips %>
       <% t("site.hero.chips").each_with_index do |chip, i| %>
         <% positions = ["left:8%; top:8%;", "right:6%; top:18%;", "left:4%; bottom:18%;", "right:8%; bottom:8%;"] %>
-        <div class="absolute inline-flex items-center font-mono text-[12px]" style="
+        <div class="absolute inline-flex items-center font-mono text-[12px] float-chip float-chip-<%= i + 1 %>" style="
               <%= positions[i] %>
               gap:8px;
               padding:10px 14px;
