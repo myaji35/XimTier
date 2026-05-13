@@ -1,5 +1,5 @@
 # 런타임 코드 구조 + Harness 상태 + RSpec 상태 수집기
-# /admin/code-wiki Avo Tool에서 사용
+# /admin/wiki (Basic auth) 에서 사용
 class CodeWikiInspector
   ROOT = Rails.root
 

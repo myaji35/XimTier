@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>XimTier Wiki</title>
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    body{margin:0;font-family:-apple-system,system-ui,"Pretendard",sans-serif;background:#F7F9FC;color:#0B132D;}
+    .topbar{background:linear-gradient(135deg,#2563EB 0%,#00C8C8 100%);color:#fff;padding:18px 28px;}
+    .topbar h1{margin:0;font-size:20px;font-weight:700;letter-spacing:-0.01em;}
+    .topbar .meta{font-size:12px;opacity:.85;margin-top:4px;}
+    .wrap{max-width:1240px;margin:0 auto;padding:24px;}
+    .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:28px;}
+    .stat{background:#fff;border:1px solid #E5E7EB;border-radius:10px;padding:14px 16px;}
+    .stat .l{font-size:11px;color:#6B7280;text-transform:uppercase;letter-spacing:.08em;}
+    .stat .v{font-size:22px;font-weight:700;color:#0B132D;margin-top:6px;}
+    .stat .sub{font-size:11px;color:#6B7280;margin-top:4px;}
+    .stat.accent{background:linear-gradient(135deg,#2563EB 0%,#00C8C8 100%);color:#fff;border:none;}
+    .stat.accent .l,.stat.accent .v,.stat.accent .sub{color:#fff;opacity:1;}
+    .stat.accent .l,.stat.accent .sub{opacity:.85;}
+    h2{font-size:15px;margin:32px 0 12px;color:#0B132D;border-bottom:2px solid #2563EB;padding-bottom:6px;letter-spacing:-0.01em;}
+    .grid{display:grid;gap:10px;}
+    .grid.cols-3{grid-template-columns:repeat(auto-fill,minmax(260px,1fr));}
+    .grid.cols-2{grid-template-columns:repeat(auto-fill,minmax(300px,1fr));}
+    .grid.cols-4{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));}
+    .item{background:#fff;border:1px solid #E5E7EB;border-radius:8px;padding:10px 12px;}
+    .item .name{font-size:13px;font-weight:600;color:#0B132D;}
+    .item .file{font-size:11px;color:#6B7280;font-family:ui-monospace,Menlo,monospace;margin-top:4px;}
+    .item .meta{font-size:11px;color:#94A3B8;margin-top:4px;}
+    .item .sti{color:#2563EB;font-family:ui-monospace,Menlo,monospace;font-size:12px;}
+    table{width:100%;border-collapse:collapse;background:#fff;font-size:12px;border:1px solid #E5E7EB;border-radius:8px;overflow:hidden;}
+    th,td{padding:8px 10px;text-align:left;border-bottom:1px solid #F3F4F6;}
+    th{background:#F9FAFB;font-weight:600;color:#374151;font-size:11px;text-transform:uppercase;letter-spacing:.05em;}
+    td.id{font-family:ui-monospace,Menlo,monospace;color:#2563EB;}
+    .locale{background:#fff;border:1px solid #E5E7EB;border-radius:8px;padding:14px;}
+    .locale .hdr{display:flex;justify-content:space-between;align-items:baseline;}
+    .locale .code{font-size:17px;font-weight:700;text-transform:uppercase;}
+    .locale .files{margin-top:8px;display:flex;flex-wrap:wrap;gap:4px;}
+    .locale .files span{background:#F3F4F6;color:#475467;font-size:11px;padding:3px 8px;border-radius:4px;}
+    .empty{color:#94A3B8;font-size:13px;}
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <h1>XimTier Wiki</h1>
+    <div class="meta">코드 · 컴포넌트 · Harness 상태 — 단일 비밀번호 인증</div>
+  </div>
+  <div class="wrap">
+    <%= yield %>
+  </div>
+</body>
+</html>

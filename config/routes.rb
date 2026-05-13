@@ -50,16 +50,12 @@ Rails.application.routes.draw do
     end
   end
 
+  # Admin Wiki (Basic auth — single password gate, bypasses Devise)
+  get "/admin/wiki", to: "admin/wikis#show", as: :admin_wiki
+
   # letter_opener_web for development
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
-  end
-end
-
-if defined? ::Avo
-  Avo::Engine.routes.draw do
-    # This route is not protected, secure it with authentication if needed.
-    get "code_wiki", to: "tools#code_wiki", as: :code_wiki
   end
 end
 

@@ -1,0 +1,163 @@
+<% s = @snapshot %>
+
+<div class="stats">
+  <div class="stat accent">
+    <div class="l">Environment</div>
+    <div class="v"><%= s[:stats][:env] %></div>
+    <div class="sub">Rails <%= s[:stats][:rails] %> · Ruby <%= s[:stats][:ruby] %></div>
+  </div>
+  <div class="stat">
+    <div class="l">Git</div>
+    <div class="v" style="font-family:ui-monospace,Menlo,monospace;"><%= s[:stats][:git_sha] || "—" %></div>
+    <div class="sub">branch: <%= s[:stats][:git_branch] || "—" %></div>
+  </div>
+  <div class="stat">
+    <div class="l">App Files</div>
+    <div class="v"><%= s[:stats][:total_files] %></div>
+    <div class="sub">app/ 하위 전체</div>
+  </div>
+  <div class="stat">
+    <div class="l">Harness Issues</div>
+    <% if s[:issues][:available] %>
+      <div class="v"><%= s[:issues][:total] %></div>
+      <div class="sub">
+        <% (s[:issues][:by_status] || {}).each do |k, v| %>
+          <%= k %>: <strong><%= v %></strong>&nbsp;
+        <% end %>
+      </div>
+    <% else %>
+      <div class="v" style="color:#94A3B8;">—</div>
+      <div class="sub">registry 없음</div>
+    <% end %>
+  </div>
+  <div class="stat">
+    <div class="l">Generated</div>
+    <div class="v" style="font-size:14px;"><%= s[:generated_at].strftime("%H:%M:%S") %></div>
+    <div class="sub"><%= s[:generated_at].strftime("%Y-%m-%d") %></div>
+  </div>
+</div>
+
+<h2>🧩 ViewComponents (<%= s[:components].size %>)</h2>
+<div class="grid cols-3">
+  <% s[:components].each do |c| %>
+    <div class="item">
+      <div class="name"><%= c[:name] %></div>
+      <div class="file"><%= c[:file] %></div>
+      <div class="meta"><%= c[:lines] %> lines · template <%= c[:has_template] ? "✓" : "✗" %></div>
+    </div>
+  <% end %>
+</div>
+
+<h2>⚡ Stimulus Controllers (<%= s[:stimulus].size %>)</h2>
+<div class="grid cols-2">
+  <% s[:stimulus].each do |c| %>
+    <div class="item">
+      <div class="sti">data-controller="<%= c[:identifier] %>"</div>
+      <div class="file"><%= c[:file] %></div>
+      <div class="meta"><%= c[:lines] %> lines</div>
+    </div>
+  <% end %>
+</div>
+
+<h2>🎮 Rails Controllers (<%= s[:controllers].size %>)</h2>
+<div class="grid cols-2">
+  <% s[:controllers].each do |c| %>
+    <div class="item">
+      <div class="name"><%= c[:name] %></div>
+      <div class="file"><%= c[:file] %></div>
+      <div class="meta"><%= c[:lines] %> lines</div>
+    </div>
+  <% end %>
+</div>
+
+<h2>💾 Models (<%= s[:models].size %>)</h2>
+<div class="grid cols-3">
+  <% s[:models].each do |m| %>
+    <div class="item">
+      <div class="name"><%= m[:name] %></div>
+      <div class="meta"><%= m[:lines] %> lines</div>
+    </div>
+  <% end %>
+</div>
+
+<h2>📄 Pages (<%= s[:pages].size %>)</h2>
+<div class="grid cols-4">
+  <% s[:pages].each do |p| %>
+    <div class="item">
+      <div class="name"><%= p[:name] %></div>
+      <div class="meta"><%= p[:lines] %>L</div>
+    </div>
+  <% end %>
+</div>
+
+<h2>🌐 i18n Locales</h2>
+<div class="grid cols-2">
+  <% s[:locales].each do |loc| %>
+    <div class="locale">
+      <div class="hdr">
+        <span class="code"><%= loc[:locale] %></span>
+        <span style="font-size:11px;color:#6B7280;"><%= loc[:file_count] %> files · ~<%= loc[:approx_keys] %> keys</span>
+      </div>
+      <div class="files">
+        <% loc[:files].each do |f| %>
+          <span><%= f %></span>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<h2>🤖 Harness Agents (<%= s[:agents].size %>)</h2>
+<% if s[:agents].empty? %>
+  <p class="empty">.claude/agents 디렉토리 없음 또는 비어있음</p>
+<% else %>
+  <div class="grid cols-4">
+    <% s[:agents].each do |a| %>
+      <div class="item">
+        <div class="sti"><%= a[:name] %></div>
+        <div class="meta"><%= a[:size_kb] %> KB</div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<h2>📊 Harness Issues</h2>
+<% if s[:issues][:available] %>
+  <div class="grid cols-4" style="margin-bottom:14px;">
+    <% (s[:issues][:by_priority] || {}).each do |p, c| %>
+      <div class="item">
+        <div class="meta" style="text-transform:uppercase;letter-spacing:.08em;">Priority <%= p %></div>
+        <div class="name" style="font-size:22px;margin-top:4px;"><%= c %></div>
+      </div>
+    <% end %>
+  </div>
+
+  <% if s[:issues][:latest].any? %>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>TITLE</th>
+          <th>STATUS</th>
+          <th>P</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% s[:issues][:latest].each do |iss| %>
+          <tr>
+            <td class="id"><%= iss[:id] %></td>
+            <td><%= iss[:title] %></td>
+            <td><%= iss[:status] %></td>
+            <td style="font-family:ui-monospace,Menlo,monospace;color:#6B7280;"><%= iss[:priority] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+
+  <p style="margin-top:14px;font-size:12px;color:#6B7280;">
+    💡 누적 학습 패턴: <strong><%= s[:issues][:success_patterns] %>개</strong>
+  </p>
+<% else %>
+  <p class="empty">.claude/issue-db/registry.json 없음</p>
+<% end %>
