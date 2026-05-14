@@ -1,0 +1,17 @@
+en:
+  faq:
+    section_eyebrow: Frequently Asked Questions
+    section_title: Six questions we hear most before a XimTier rollout
+    items:
+      - q: Do we need to send our data outside our network?
+        a: "No. XimTier deploys 100% on-premises by default. All training, inference, and SHAP calculations run inside your infrastructure (your own servers or VPC). Your data is never sent to XimTier-hosted cloud."
+      - q: How is this different from LLMs like ChatGPT or Claude?
+        a: "LLMs are language models; XimTier is a decision engine. LLMs cannot directly run regression, SHAP, or time-series analysis, and they give different answers to the same question. XimTier provides SHAP-based mathematical explanations and reproducible outputs, which is what regulations like the EU AI Act and Korea's AI Framework Act actually require."
+      - q: What exactly is Reverse What-If?
+        a: "Traditional What-If asks \"If I change variable X, what happens to the outcome?\" Reverse What-If runs the other direction: you fix the outcome first (\"defect rate must reach 1.2%\") and the engine finds the variable combinations that produce it."
+      - q: How long does deployment take?
+        a: "A standard PoC takes 4–6 weeks. Week 1: data connection and schema validation. Weeks 2–3: model training and SHAP analysis. Week 4: Reverse What-If simulation. Weeks 5–6: production cutover and executive reporting."
+      - q: Can XimTier really satisfy the EU AI Act and Korea's AI Framework Act?
+        a: "High-risk AI must show \"explainability\" — mathematically demonstrating how each input variable contributed to a result. XimTier produces SHAP values along with model cards, data lineage, and decision logs in a format you can hand directly to an auditor."
+      - q: Can non-technical users operate it?
+        a: "Yes. XimTier is built for decision makers who do not have a data science team — plant managers, hospital directors, policy leads. The five-step workflow (data exploration → statistics → Reverse What-If → auto-report → AI Q&A) runs on one screen, and most users reach a conclusion in five minutes."

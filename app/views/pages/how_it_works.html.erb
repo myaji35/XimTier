@@ -1,4 +1,13 @@
 <% content_for :title, "#{t('solution.workflow_title')} — #{t('site.brand')}" %>
+<% content_for :description, (I18n.locale == :ko ?
+     "데이터 탐색 → 통계 분석 → Reverse What-If → 자동 보고서 → AI Q&A. XimTier 5단계 워크플로우와 도입 검토 시 자주 묻는 질문 6가지를 한 자리에 정리." :
+     "Data exploration → statistics → Reverse What-If → auto-report → AI Q&A. The XimTier 5-step workflow with the six questions teams most often ask before deployment.") %>
+<% faq_items = t("faq.items", default: []) %>
+<% if faq_items.is_a?(Array) && faq_items.any? %>
+  <% content_for :jsonld do %>
+    <%= jsonld_script(faqpage_jsonld(faq_items.map { |it| [it[:q], it[:a]] })) %>
+  <% end %>
+<% end %>
 
 <section class="section-light section-pad">
   <div class="wrap">
@@ -49,6 +58,33 @@
     <% end %>
   </div>
 </section>
+
+<%# ============ FAQ (FAQPage JSON-LD 동반) ============ %>
+<% if faq_items.is_a?(Array) && faq_items.any? %>
+<section id="faq" class="section-light section-pad">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span><%= t("faq.section_eyebrow") %></div>
+    <h2 class="h-section mt-3" style="max-width:920px;"><%= t("faq.section_title") %></h2>
+
+    <div class="mt-10 space-y-4" itemscope itemtype="https://schema.org/FAQPage">
+      <% faq_items.each do |item| %>
+        <details
+          class="rounded-xl border bg-white"
+          style="border-color:#e5e9f0; padding:20px 24px;"
+          itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <summary class="cursor-pointer font-semibold text-[17px]" style="color:#0B132D;" itemprop="name">
+            <%= item[:q] %>
+          </summary>
+          <div class="mt-4 text-[15px]" style="color:#475467; line-height:1.7;"
+               itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div itemprop="text"><%= item[:a] %></div>
+          </div>
+        </details>
+      <% end %>
+    </div>
+  </div>
+</section>
+<% end %>
 
 <section class="section-dark section-pad-compact text-center">
   <div class="wrap">

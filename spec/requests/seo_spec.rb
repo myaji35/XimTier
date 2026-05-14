@@ -46,4 +46,42 @@ RSpec.describe "SEO assets", type: :request do
     expect(response.body).to match(/hreflang=["']ko["']/)
     expect(response.body).to match(/hreflang=["']en["']/)
   end
+
+  it "hreflang — 현재 경로를 보존 (서브 페이지)" do
+    get "/ko/pricing"
+    expect(response.body).to match(%r{hreflang=["']en["']\s+href=["'][^"']*/en/pricing})
+    expect(response.body).to match(%r{hreflang=["']ko["']\s+href=["'][^"']*/ko/pricing})
+    expect(response.body).to match(%r{hreflang=["']x-default["']\s+href=["'][^"']*/pricing})
+  end
+
+  it "/ko/how-it-works — FAQPage JSON-LD + 가시 FAQ 노출" do
+    get "/ko/how-it-works"
+    expect(response.body).to include('"FAQPage"')
+    expect(response.body).to include('"mainEntity"')
+    # 시각적 FAQ 마크업도 함께
+    expect(response.body).to include('itemtype="https://schema.org/FAQPage"')
+  end
+
+  it "canonical link이 현재 URL을 가리킨다" do
+    get "/ko/pricing"
+    expect(response.body).to match(%r{<link rel=["']canonical["']\s+href=["'][^"']*/ko/pricing})
+  end
+
+  it "per-page description meta가 page-specific 값으로 노출 (how_it_works)" do
+    get "/ko/how-it-works"
+    expect(response.body).to match(/name=["']description["'][^>]*Reverse What-If/)
+  end
+
+  it "sitemap.xml.gz가 생성되어 있고 양/영 URL을 모두 포함" do
+    path = Rails.root.join("public", "sitemap.xml.gz")
+    expect(path).to exist
+    require "zlib"
+    body = Zlib::GzipReader.open(path) { |gz| gz.read }
+    expect(body).to include("<urlset")
+    expect(body).to include("/ko/how-it-works")
+    expect(body).to include("/en/how-it-works")
+    expect(body).to include('hreflang="x-default"')
+    # 깨진 더블 슬래시 회귀 방지
+    expect(body).not_to match(%r{href="//[a-z]})
+  end
 end

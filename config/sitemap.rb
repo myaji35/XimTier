@@ -34,12 +34,14 @@ PUBLIC_PAGES = [
 SitemapGenerator::Sitemap.create do
   %i[ko en].each do |locale|
     PUBLIC_PAGES.each do |entry|
-      url = entry[:path] == "/" ? "/#{locale}" : "/#{locale}#{entry[:path]}"
+      is_root = entry[:path] == "/"
+      url = is_root ? "/#{locale}" : "/#{locale}#{entry[:path]}"
+      x_default_path = is_root ? "/" : entry[:path]
       add(url, priority: entry[:priority], changefreq: entry[:changefreq],
           alternates: [
-            { href: "/ko#{entry[:path] == '/' ? '' : entry[:path]}", lang: "ko" },
-            { href: "/en#{entry[:path] == '/' ? '' : entry[:path]}", lang: "en" },
-            { href: "/#{entry[:path] == '/' ? '' : entry[:path]}",    lang: "x-default" }
+            { href: "/ko#{is_root ? '' : entry[:path]}", lang: "ko" },
+            { href: "/en#{is_root ? '' : entry[:path]}", lang: "en" },
+            { href: x_default_path,                       lang: "x-default" }
           ])
     end
   end

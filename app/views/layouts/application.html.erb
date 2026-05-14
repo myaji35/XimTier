@@ -2,19 +2,22 @@
 <html lang="<%= I18n.locale %>">
   <head>
     <% og_image_url = "#{ENV.fetch('APP_PROTOCOL', 'http')}://#{ENV.fetch('APP_HOST', request.host_with_port)}/og-image.png" %>
+    <% page_description = content_for(:description).presence || t("site.positioning") %>
     <%= display_meta_tags(
           site: t("site.brand"),
           title: content_for(:title).presence || t("site.positioning"),
           reverse: true,
           separator: "—",
-          description: t("site.positioning"),
+          description: page_description,
           keywords: %w[XimTier Decision\ Intelligence Reverse\ What-If SHAP XAI Post-LLM EU\ AI\ Act],
+          canonical: request.original_url,
           og: {
             type: "website",
             site_name: t("site.brand"),
             locale: I18n.locale.to_s,
             title: :title,
             description: :description,
+            url: request.original_url,
             image: { _: og_image_url, width: 1200, height: 630, alt: t("site.positioning") }
           },
           twitter: { card: "summary_large_image", image: og_image_url }
@@ -27,11 +30,13 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%# hreflang (PRD §FR-1) %>
+    <%# hreflang (PRD §FR-1 / FR-10) — 현재 경로 보존 %>
+    <% path_no_locale = request.path.sub(%r{^/(ko|en)(?=/|$)}, "") %>
+    <% path_no_locale = "" if path_no_locale == "/" %>
     <% I18n.available_locales.each do |loc| %>
-      <link rel="alternate" hreflang="<%= loc %>" href="<%= request.base_url %>/<%= loc %>">
+      <link rel="alternate" hreflang="<%= loc %>" href="<%= request.base_url %>/<%= loc %><%= path_no_locale %>">
     <% end %>
-    <link rel="alternate" hreflang="x-default" href="<%= request.base_url %>/">
+    <link rel="alternate" hreflang="x-default" href="<%= request.base_url %><%= path_no_locale.presence || "/" %>">
 
     <%= yield :head %>
 
