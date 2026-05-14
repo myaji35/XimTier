@@ -1,13 +1,10 @@
 FactoryBot.define do
   factory :demo_request do
-    user { nil }
-    data_description { "MyText" }
-    preferred_at { "2026-05-12 19:56:59" }
-    status { 1 }
-    scheduled_at { "2026-05-12 19:56:59" }
-    meeting_url { "MyString" }
-    admin_notes { "MyText" }
-    locale { "MyString" }
-    source { "MyString" }
+    user
+    data_description { "We have time-series sensor data and need anomaly insights." }
+    preferred_at     { 3.days.from_now }
+    status           { :pending }
+    locale           { "ko" }
+    source           { "demo_form" }
   end
 end

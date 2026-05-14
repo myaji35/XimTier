@@ -67,5 +67,8 @@ if defined? ::Avo
   Avo::Engine.routes.draw do
     # This route is not protected, secure it with authentication if needed.
     get "harness_dashboard", to: "tools#harness_dashboard", as: :harness_dashboard
+    get "leads",             to: "tools#leads",             as: :leads
+    get "leads.csv",         to: "tools#leads", defaults: { format: :csv }, as: :leads_csv
+    get "kpi",               to: "tools#kpi",               as: :kpi
   end
 end

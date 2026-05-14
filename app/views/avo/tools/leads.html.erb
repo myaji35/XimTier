@@ -1,0 +1,130 @@
+<%# PRD §FR-8 — 데모/문의 통합 리드 리스트 + 필터 + CSV 익스포트 %>
+<% f = @filters %>
+
+<div class="flex flex-col" style="font-family: -apple-system, system-ui, sans-serif;">
+  <%= render Avo::PanelComponent.new(name: "Leads", display_breadcrumbs: true) do |c| %>
+    <% c.with_tools do %>
+      <%= link_to "Export CSV",
+            avo.leads_csv_path(request.query_parameters),
+            class: "button-component inline-flex items-center text-white text-sm font-semibold rounded px-3 py-2",
+            style: "background:#0B132D;" %>
+    <% end %>
+
+    <% c.with_body do %>
+      <div class="p-6 space-y-6">
+
+        <%# Counts %>
+        <section class="grid grid-cols-3 gap-3">
+          <% [
+            ["TOTAL",   @counts[:total],   "#2563EB"],
+            ["DEMO",    @counts[:demo],    "#10B981"],
+            ["CONTACT", @counts[:contact], "#F59E0B"]
+          ].each do |label, count, color| %>
+            <div class="p-4 rounded-lg" style="background:#fff; border:1px solid #e5e9f0;">
+              <div class="font-mono text-[10px]" style="color:<%= color %>; letter-spacing:0.14em;"><%= label %></div>
+              <div class="mt-1 text-2xl font-bold" style="color:#0B132D;"><%= count %></div>
+            </div>
+          <% end %>
+        </section>
+
+        <%# Filters %>
+        <section class="p-4 rounded-lg" style="background:#F7F9FC; border:1px solid #e5e9f0;">
+          <%= form_with url: avo.leads_path, method: :get, local: true, class: "grid grid-cols-2 md:grid-cols-6 gap-3 items-end" do %>
+            <div>
+              <label class="block text-[11px] font-semibold mb-1" style="color:#697386;">KIND</label>
+              <select name="kind" class="w-full text-sm rounded border-gray-300">
+                <option value="">All</option>
+                <% LeadsAggregator::KINDS.each do |k| %>
+                  <option value="<%= k %>" <%= "selected" if f[:kind] == k %>><%= k %></option>
+                <% end %>
+              </select>
+            </div>
+            <div>
+              <label class="block text-[11px] font-semibold mb-1" style="color:#697386;">STATUS</label>
+              <select name="status" class="w-full text-sm rounded border-gray-300">
+                <option value="">All</option>
+                <% LeadsAggregator::STATUSES.each do |s| %>
+                  <option value="<%= s %>" <%= "selected" if f[:status] == s %>><%= s %></option>
+                <% end %>
+              </select>
+            </div>
+            <div>
+              <label class="block text-[11px] font-semibold mb-1" style="color:#697386;">INDUSTRY</label>
+              <select name="industry" class="w-full text-sm rounded border-gray-300">
+                <option value="">All</option>
+                <% User.industries.keys.each do |i| %>
+                  <option value="<%= i %>" <%= "selected" if f[:industry] == i %>><%= i %></option>
+                <% end %>
+              </select>
+            </div>
+            <div>
+              <label class="block text-[11px] font-semibold mb-1" style="color:#697386;">LOCALE</label>
+              <select name="locale" class="w-full text-sm rounded border-gray-300">
+                <option value="">All</option>
+                <% %w[ko en].each do |l| %>
+                  <option value="<%= l %>" <%= "selected" if f[:locale] == l %>><%= l %></option>
+                <% end %>
+              </select>
+            </div>
+            <div>
+              <label class="block text-[11px] font-semibold mb-1" style="color:#697386;">RANGE</label>
+              <select name="range" class="w-full text-sm rounded border-gray-300">
+                <% LeadsAggregator::RANGES.each do |r| %>
+                  <option value="<%= r %>" <%= "selected" if f[:range] == r %>><%= r %></option>
+                <% end %>
+              </select>
+            </div>
+            <div>
+              <label class="block text-[11px] font-semibold mb-1" style="color:#697386;">SEARCH</label>
+              <div class="flex gap-2">
+                <input type="text" name="q" value="<%= f[:q] %>" placeholder="email/name/company" class="w-full text-sm rounded border-gray-300" />
+                <button type="submit" class="button-component text-white text-sm font-semibold rounded px-3 py-2" style="background:#2563EB;">Apply</button>
+              </div>
+            </div>
+          <% end %>
+        </section>
+
+        <%# Leads Table %>
+        <section class="rounded-lg overflow-hidden" style="border:1px solid #e5e9f0;">
+          <table class="w-full text-sm">
+            <thead style="background:#F2F4F7;">
+              <tr style="color:#697386;">
+                <% %w[Kind Created Name Email Company Industry Status Locale Source].each do |h| %>
+                  <th class="text-left px-3 py-2 font-semibold text-[11px] uppercase tracking-wider"><%= h %></th>
+                <% end %>
+                <th class="px-3 py-2"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if @leads.empty? %>
+                <tr><td colspan="10" class="px-3 py-8 text-center" style="color:#697386;">No leads match the current filters.</td></tr>
+              <% else %>
+                <% @leads.each do |l| %>
+                  <tr style="border-top:1px solid #eef1f5;">
+                    <td class="px-3 py-2">
+                      <span class="font-mono text-[10px] uppercase tracking-wider px-2 py-1 rounded" style="background:<%= l.kind == 'demo' ? '#DCFCE7' : '#FEF3C7' %>; color:<%= l.kind == 'demo' ? '#15803D' : '#92400E' %>;"><%= l.kind %></span>
+                    </td>
+                    <td class="px-3 py-2 whitespace-nowrap" style="color:#697386;"><%= l.created_at&.strftime("%Y-%m-%d %H:%M") %></td>
+                    <td class="px-3 py-2 font-medium" style="color:#0B132D;"><%= l.name.presence || "-" %></td>
+                    <td class="px-3 py-2"><%= mail_to l.email, l.email, class: "text-blue-600 hover:underline" if l.email.present? %></td>
+                    <td class="px-3 py-2"><%= l.company.presence || "-" %></td>
+                    <td class="px-3 py-2"><%= l.industry.presence || "-" %></td>
+                    <td class="px-3 py-2">
+                      <span class="text-[11px] px-2 py-1 rounded" style="background:#EEF2FF; color:#3730A3;"><%= l.status.presence || "-" %></span>
+                    </td>
+                    <td class="px-3 py-2"><%= l.locale.presence || "-" %></td>
+                    <td class="px-3 py-2 text-[11px]" style="color:#697386;"><%= l.source.presence || "-" %></td>
+                    <td class="px-3 py-2 text-right">
+                      <%= link_to "Open", l.record_path, class: "text-xs text-blue-600 hover:underline" %>
+                    </td>
+                  </tr>
+                <% end %>
+              <% end %>
+            </tbody>
+          </table>
+        </section>
+
+      </div>
+    <% end %>
+  <% end %>
+</div>

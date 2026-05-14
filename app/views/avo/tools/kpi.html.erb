@@ -1,0 +1,173 @@
+<%# PRD §FR-9 — Admin KPI Dashboard (일/주/월 + 산업/언어 분포 + 14일 트렌드) %>
+<% k = @kpi %>
+
+<div class="flex flex-col" style="font-family: -apple-system, system-ui, sans-serif;">
+  <%= render Avo::PanelComponent.new(name: "KPI Dashboard", display_breadcrumbs: true) do |c| %>
+    <% c.with_tools do %>
+      <div class="text-sm" style="color:#697386;">
+        <code style="background:#F2F4F7; padding:2px 6px; border-radius:3px;"><%= k[:generated_at].strftime("%Y-%m-%d %H:%M:%S") %></code>
+      </div>
+    <% end %>
+
+    <% c.with_body do %>
+      <div class="p-6 space-y-8">
+
+        <%# 1) Window counts %>
+        <section>
+          <h3 class="text-base font-semibold mb-3" style="color:#0B132D;">📊 Window Counts (Today / Week / Month / Total)</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <% [
+              ["Demo Requests",   :demo,        "#10B981"],
+              ["Contact Inquiries", :contact,   "#F59E0B"],
+              ["IR Downloads",    :ir_download, "#2563EB"]
+            ].each do |label, key, color| %>
+              <div class="p-4 rounded-lg" style="background:#fff; border:1px solid #e5e9f0;">
+                <div class="font-mono text-[10px]" style="color:<%= color %>; letter-spacing:0.14em;"><%= label.upcase %></div>
+                <div class="grid grid-cols-4 gap-2 mt-3">
+                  <% [[:today, "Today"], [:week, "7d"], [:month, "30d"], [:total, "All"]].each do |code, lbl| %>
+                    <div>
+                      <div class="text-[10px]" style="color:#697386;"><%= lbl %></div>
+                      <div class="text-xl font-bold" style="color:#0B132D;"><%= k[:counts][key][code] %></div>
+                    </div>
+                  <% end %>
+                </div>
+                <% if key == :ir_download && k[:counts][:ir_download][:clicks_total].to_i > 0 %>
+                  <div class="text-[10px] mt-2" style="color:#697386;">Total clicks: <%= k[:counts][:ir_download][:clicks_total] %></div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </section>
+
+        <%# 2) 14-day trend (sparkline-style table — Chart.js 미도입) %>
+        <section>
+          <h3 class="text-base font-semibold mb-3" style="color:#0B132D;">📈 Last 14 Days Trend</h3>
+          <div class="rounded-lg overflow-x-auto" style="border:1px solid #e5e9f0;">
+            <table class="w-full text-xs">
+              <thead style="background:#F2F4F7;">
+                <tr>
+                  <th class="text-left px-2 py-2 font-semibold" style="color:#697386;">Series</th>
+                  <% k[:trend_14d][:days].each do |d| %>
+                    <th class="px-2 py-2 font-mono" style="color:#697386;"><%= d %></th>
+                  <% end %>
+                </tr>
+              </thead>
+              <tbody>
+                <% [["demo", "#10B981"], ["contact", "#F59E0B"], ["ir", "#2563EB"]].each do |key, color| %>
+                  <tr style="border-top:1px solid #eef1f5;">
+                    <td class="px-2 py-2 font-semibold" style="color:<%= color %>;"><%= key.upcase %></td>
+                    <% k[:trend_14d][key.to_sym].each do |v| %>
+                      <td class="px-2 py-2 text-center font-mono" style="color:#0B132D;"><%= v.zero? ? "·" : v %></td>
+                    <% end %>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <%# 3) Industry distribution %>
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <% [["Demo by Industry", k[:industry][:demo]], ["Contact by Industry", k[:industry][:contact]]].each do |title, data| %>
+            <div class="p-4 rounded-lg" style="background:#fff; border:1px solid #e5e9f0;">
+              <h4 class="text-sm font-semibold mb-2" style="color:#0B132D;"><%= title %></h4>
+              <% if data.empty? %>
+                <p class="text-xs" style="color:#697386;">No data yet.</p>
+              <% else %>
+                <% total = [data.values.sum, 1].max %>
+                <% data.sort_by { |_, v| -v }.each do |label, count| %>
+                  <div class="mb-2">
+                    <div class="flex justify-between text-xs mb-1">
+                      <span style="color:#0B132D;"><%= label %></span>
+                      <span class="font-mono" style="color:#697386;"><%= count %> (<%= ((count.to_f/total)*100).round(1) %>%)</span>
+                    </div>
+                    <div style="background:#F2F4F7; border-radius:3px; height:6px;">
+                      <div style="width:<%= (count.to_f/total)*100 %>%; height:6px; background:#2563EB; border-radius:3px;"></div>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        </section>
+
+        <%# 4) Locale split %>
+        <section>
+          <h3 class="text-base font-semibold mb-3" style="color:#0B132D;">🌐 Locale Split (ko / en)</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <% [["Demo", k[:locale][:demo]], ["Contact", k[:locale][:contact]], ["IR", k[:locale][:ir]]].each do |title, data| %>
+              <div class="p-4 rounded-lg" style="background:#fff; border:1px solid #e5e9f0;">
+                <div class="font-mono text-[10px]" style="color:#697386; letter-spacing:0.14em;"><%= title.upcase %></div>
+                <div class="grid grid-cols-2 gap-3 mt-2">
+                  <div>
+                    <div class="text-[10px]" style="color:#697386;">KO</div>
+                    <div class="text-lg font-bold" style="color:#0B132D;"><%= data["ko"].to_i %></div>
+                  </div>
+                  <div>
+                    <div class="text-[10px]" style="color:#697386;">EN</div>
+                    <div class="text-lg font-bold" style="color:#0B132D;"><%= data["en"].to_i %></div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </section>
+
+        <%# 5) Conversion %>
+        <section class="p-4 rounded-lg" style="background:linear-gradient(135deg,#0B132D,#1d4ed8); color:#fff;">
+          <h3 class="text-sm font-semibold mb-3 opacity-90" style="letter-spacing:0.1em;">CONVERSION</h3>
+          <div class="grid grid-cols-3 gap-4">
+            <div>
+              <div class="text-[10px] opacity-80">Demo → Scheduled</div>
+              <div class="text-2xl font-bold mt-1"><%= k[:conversion][:demo_to_scheduled_pct] %>%</div>
+            </div>
+            <div>
+              <div class="text-[10px] opacity-80">IR Total</div>
+              <div class="text-2xl font-bold mt-1"><%= k[:conversion][:ir_total] %></div>
+            </div>
+            <div>
+              <div class="text-[10px] opacity-80">Y1 Target Progress (100)</div>
+              <div class="text-2xl font-bold mt-1"><%= k[:conversion][:ir_target_pct] %>%</div>
+            </div>
+          </div>
+        </section>
+
+        <%# 6) Status & Asset breakdown %>
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="p-4 rounded-lg" style="background:#fff; border:1px solid #e5e9f0;">
+            <h4 class="text-sm font-semibold mb-2" style="color:#0B132D;">Demo Status</h4>
+            <% k[:status][:demo].each do |s, c| %>
+              <div class="flex justify-between text-xs py-1" style="border-top:1px solid #eef1f5;">
+                <span style="color:#697386;"><%= s %></span>
+                <span class="font-mono" style="color:#0B132D;"><%= c %></span>
+              </div>
+            <% end %>
+          </div>
+          <div class="p-4 rounded-lg" style="background:#fff; border:1px solid #e5e9f0;">
+            <h4 class="text-sm font-semibold mb-2" style="color:#0B132D;">Contact Status</h4>
+            <% k[:status][:contact].each do |s, c| %>
+              <div class="flex justify-between text-xs py-1" style="border-top:1px solid #eef1f5;">
+                <span style="color:#697386;"><%= s %></span>
+                <span class="font-mono" style="color:#0B132D;"><%= c %></span>
+              </div>
+            <% end %>
+          </div>
+          <div class="p-4 rounded-lg" style="background:#fff; border:1px solid #e5e9f0;">
+            <h4 class="text-sm font-semibold mb-2" style="color:#0B132D;">IR Asset Split</h4>
+            <% if k[:asset_split].empty? %>
+              <p class="text-xs" style="color:#697386;">No downloads yet.</p>
+            <% else %>
+              <% k[:asset_split].each do |a, c| %>
+                <div class="flex justify-between text-xs py-1" style="border-top:1px solid #eef1f5;">
+                  <span style="color:#697386;"><%= a %></span>
+                  <span class="font-mono" style="color:#0B132D;"><%= c %></span>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </section>
+
+      </div>
+    <% end %>
+  <% end %>
+</div>

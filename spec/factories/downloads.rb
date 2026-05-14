@@ -1,12 +1,11 @@
 FactoryBot.define do
   factory :download do
-    email { "MyString" }
-    name { "MyString" }
-    company { "MyString" }
-    role { "MyString" }
-    asset { 1 }
-    download_token { "MyString" }
+    sequence(:email) { |n| "ir#{n}@example.com" }
+    sequence(:name)  { |n| "IR Visitor #{n}" }
+    company  { "Acme Inc" }
+    role     { "VC Analyst" }
+    asset    { :ir_deck_ko }
     downloaded_count { 1 }
-    locale { "MyString" }
+    locale   { "ko" }
   end
 end
