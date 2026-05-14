@@ -193,6 +193,60 @@
   <% end %>
 </section>
 
+<section id="reports" class="sec">
+  <h2>📑 보고서 라이브러리 <span class="cnt">(<%= (@reports || []).size %>) — IR · 컴플라이언스 · 전략 PDF/HTML</span></h2>
+  <% if (@reports || []).empty? %>
+    <p class="empty">config/reports.yml 또는 storage/reports/ 디렉터리가 비어 있습니다.</p>
+  <% else %>
+    <div class="grid cols-2">
+      <% @reports.each do |r| %>
+        <div class="item" style="padding:14px 16px;">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:6px;">
+            <div class="name" style="font-size:14px;">
+              <%= link_to r["title"], admin_wiki_report_path(slug: r["slug"]),
+                          style: "color:#0B132D;text-decoration:none;" %>
+            </div>
+            <span style="background:#F3F4F6;color:#475467;font-size:10px;padding:2px 7px;border-radius:4px;font-family:ui-monospace,Menlo,monospace;letter-spacing:.05em;">
+              <%= r["category"] %>
+            </span>
+          </div>
+          <div class="meta" style="margin-bottom:6px;color:#6B7280;font-size:11px;">
+            <%= r["subtitle"] %>
+          </div>
+          <div class="meta" style="font-size:11px;color:#94A3B8;display:flex;flex-wrap:wrap;gap:10px;">
+            <span>👥 <%= r["audience"] %></span>
+            <span>📄 <%= r["pages"] %>p</span>
+            <span>📦 PDF <%= r["pdf_size_kb"] %>KB</span>
+            <span>📅 <%= r["created_at"] %></span>
+            <% if r["updated_at"] %>
+              <span style="color:#2563EB;">⟳ <%= r["updated_at"].strftime("%Y-%m-%d %H:%M") %></span>
+            <% end %>
+          </div>
+          <p style="margin:8px 0 10px;font-size:11.5px;color:#475467;line-height:1.5;">
+            <%= r["summary"] %>
+          </p>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <% if r["has_html"] %>
+              <%= link_to "🔍 HTML 보기", admin_wiki_report_path(slug: r["slug"]),
+                  style: "background:#2563EB;color:#fff;font-size:11px;padding:5px 10px;border-radius:5px;font-weight:600;" %>
+            <% end %>
+            <% if r["has_pdf"] %>
+              <%= link_to "📄 PDF 열기", admin_wiki_report_pdf_path(slug: r["slug"], format: :pdf),
+                  target: "_blank",
+                  style: "background:#fff;border:1px solid #2563EB;color:#2563EB;font-size:11px;padding:5px 10px;border-radius:5px;font-weight:600;" %>
+              <%= link_to "⬇ PDF 다운로드", admin_wiki_report_pdf_path(slug: r["slug"], download: 1, format: :pdf),
+                  style: "background:#fff;border:1px solid #E5E7EB;color:#475467;font-size:11px;padding:5px 10px;border-radius:5px;" %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <p style="margin-top:12px;font-size:11px;color:#94A3B8;">
+      💡 새 보고서는 <code style="background:#F3F4F6;padding:1px 5px;border-radius:3px;">storage/reports/{slug}.html</code>·<code style="background:#F3F4F6;padding:1px 5px;border-radius:3px;">{slug}.pdf</code> 쌍으로 두고 <code style="background:#F3F4F6;padding:1px 5px;border-radius:3px;">config/reports.yml</code>에 메타데이터를 추가하면 자동으로 노출됩니다.
+    </p>
+  <% end %>
+</section>
+
 <section id="research" class="sec">
   <h2>📚 리서치 라이브러리 <span class="cnt">(<%= (s[:research] || []).size %>) — 시장 조사 + 경쟁사 분석</span></h2>
   <% if (s[:research] || []).empty? %>

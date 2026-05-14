@@ -1,0 +1,48 @@
+# XimTier 내부 보고서 카탈로그
+# storage/reports/{slug}.html + {slug}.pdf 페어로 보관
+# 새 보고서 추가 시 이 파일에 한 줄 추가하면 /admin/Report에 자동 노출
+reports:
+  - slug: palantir_vs_ximtier
+    title: "Palantir vs XimTier 비교 보고서"
+    subtitle: "비즈니스 제안자 관점 — 같은 카테고리, 다른 방식"
+    category: "포지셔닝"
+    audience: "IR · 세일즈 · 임원"
+    pages: 5
+    created_at: "2026-05-14"
+    summary: "Palantir Foundry/AIP와 XimTier의 본질 차이 — ICP·제품·규제·해자 정밀 비교. 한국·아시아 현지성과 수학적 증명으로 같은 시장에서 다른 방식으로 이긴다."
+
+  - slug: ir_contact_package
+    title: "XimTier IR 컨택 패키지"
+    subtitle: "1순위 VC 6곳 심층 + 콜드 메일 + Why this VC"
+    category: "IR"
+    audience: "IR · 사업개발"
+    pages: 7
+    created_at: "2026-05-14"
+    summary: "Pre-Seed 라운드 시작용 통합 IR 자료. Kakao Ventures · Naver D2SF · 블루포인트 · 프라이머 · 더벤처스 · KB인베스트먼트의 심층 분석과 콜드 메일 6종, IR Deck 부록 슬라이드 6장."
+
+  - slug: followers_analysis
+    title: "XimTier 후발주자 검토 보고서"
+    subtitle: "5개 카테고리 진입 가능성 + 18개월 윈도우"
+    category: "전략 리스크"
+    audience: "임원 · IR · 이사회"
+    pages: 5
+    created_at: "2026-05-14"
+    summary: "빅테크 · 글로벌 DI · 한국 LLM · 국내 BI · SI 5개 카테고리의 진입 확률과 위협도. 18개월 안에 케이스 50건+MCP 선점+데이터 주권 메시지 굳히기가 절대 미션."
+
+  - slug: regulator_response
+    title: "XimTier 규제 당국 대응 통합 보고서"
+    subtitle: "컴플라이언스 입증 전략 + 9개 기관 제출 가이드"
+    category: "컴플라이언스"
+    audience: "법무 · 컴플라이언스 · CTO · 이사회"
+    pages: 5
+    created_at: "2026-05-14"
+    summary: "AI 기본법 · EU AI Act · 도메인 규제(금융위·식약처·개인정보위) 대응 매뉴얼. 9개 핵심 기관 역할·제출 서류·절차·기간·비용·XimTier 전략 통합."
+
+  - slug: tta_cat_submission
+    title: "TTA CAT 제출 서류 8종 초안 보고서"
+    subtitle: "AI 신뢰성 인증(CAT) 신청 매뉴얼"
+    category: "컴플라이언스"
+    audience: "CTO · CISO · 법무"
+    pages: 6
+    created_at: "2026-05-14"
+    summary: "TTA CAT 8종 서류(신청서·Model Card·Data Card·XAI·공정성·견고성·보안·운영매뉴얼)의 표준 양식 + XimTier 초안 + 8~12주 작성 로드맵 + 현장 평가 시연 시나리오."

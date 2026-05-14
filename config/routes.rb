@@ -54,6 +54,8 @@ Rails.application.routes.draw do
 
   # Admin Wiki (Basic auth — single password gate, bypasses Devise)
   get "/admin/wiki", to: "admin/wikis#show", as: :admin_wiki
+  get "/admin/wiki/reports/:slug.pdf", to: "admin/wikis#report_pdf", as: :admin_wiki_report_pdf, constraints: { slug: /[\w\-]+/ }
+  get "/admin/wiki/reports/:slug",     to: "admin/wikis#report_show", as: :admin_wiki_report, constraints: { slug: /[\w\-]+/ }
 
   # letter_opener_web for development
   if Rails.env.development?
