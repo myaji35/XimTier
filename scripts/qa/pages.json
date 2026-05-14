@@ -1,0 +1,30 @@
+{
+  "baseUrl": "http://ximtier.158.247.235.31.nip.io",
+  "pages": [
+    { "id": "ko-home",          "path": "/ko",                       "locale": "ko", "name": "랜딩" },
+    { "id": "ko-how-it-works",  "path": "/ko/how-it-works",          "locale": "ko", "name": "How It Works (Reverse What-If 데모)" },
+    { "id": "ko-use-cases",     "path": "/ko/use-cases",             "locale": "ko", "name": "Use Cases" },
+    { "id": "ko-pricing",       "path": "/ko/pricing",               "locale": "ko", "name": "Pricing" },
+    { "id": "ko-investors",     "path": "/ko/company/investors",     "locale": "ko", "name": "IR Investors" },
+    { "id": "ko-contact",       "path": "/ko/contact",               "locale": "ko", "name": "Contact" },
+    { "id": "ko-demo",          "path": "/ko/demo",                  "locale": "ko", "name": "Demo 신청" },
+    { "id": "en-home",          "path": "/en",                       "locale": "en", "name": "Landing" },
+    { "id": "en-how-it-works",  "path": "/en/how-it-works",          "locale": "en", "name": "How It Works (Reverse What-If demo)" },
+    { "id": "en-use-cases",     "path": "/en/use-cases",             "locale": "en", "name": "Use Cases" },
+    { "id": "en-pricing",       "path": "/en/pricing",               "locale": "en", "name": "Pricing" },
+    { "id": "en-investors",     "path": "/en/company/investors",     "locale": "en", "name": "IR Investors" },
+    { "id": "en-contact",       "path": "/en/contact",               "locale": "en", "name": "Contact" },
+    { "id": "en-demo",          "path": "/en/demo",                  "locale": "en", "name": "Demo Request" }
+  ],
+  "thresholds": {
+    "lcp_ms": 2500,
+    "cls": 0.1,
+    "tbt_ms": 200,
+    "perf_score": 0.85,
+    "a11y_score": 0.95
+  },
+  "notes": [
+    "TBT(Total Blocking Time)는 Lighthouse가 측정하는 Lab 지표로, RUM 환경의 FID/INP 대응 지표다.",
+    "Lab 측정이라 절대값보다 회귀 트렌드를 본다. RUM은 추후 Plausible/Ahoy + web-vitals 연동(PRD FR-11)."
+  ]
+}

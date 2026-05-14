@@ -53,3 +53,5 @@ worktrees/
 .harness-worktree-meta
 .claude/worktrees.json
 .gstack/
+node_modules/
+package-lock.json
