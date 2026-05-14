@@ -5,8 +5,11 @@
   <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:14px;">
     <div style="flex:1;min-width:280px;">
       <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:4px;flex-wrap:wrap;">
-        <%= link_to "← 보고서 라이브러리", admin_wiki_path(anchor: "reports"),
-                    style: "font-size:11px;color:#2563EB;font-weight:600;" %>
+        <%= link_to admin_wiki_path(anchor: "reports"),
+                    style: "font-size:11px;color:#2563EB;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:4px;" do %>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          보고서 라이브러리
+        <% end %>
         <span style="background:#F3F4F6;color:#475467;font-size:10px;padding:2px 7px;border-radius:4px;font-family:ui-monospace,Menlo,monospace;letter-spacing:.05em;">
           <%= @report["category"] %>
         </span>
@@ -17,29 +20,34 @@
       <div style="font-size:13px;color:#475467;margin-bottom:8px;">
         <%= @report["subtitle"] %>
       </div>
-      <div style="font-size:11px;color:#94A3B8;display:flex;flex-wrap:wrap;gap:10px;">
-        <span>👥 <%= @report["audience"] %></span>
-        <span>📄 <%= @report["pages"] %>p</span>
-        <span>📅 작성 <%= @report["created_at"] %></span>
+      <div style="font-size:11px;color:#94A3B8;display:flex;flex-wrap:wrap;gap:12px;align-items:center;">
+        <span><%= @report["audience"] %></span>
+        <span><%= @report["pages"] %>p</span>
+        <span>작성 <%= @report["created_at"] %></span>
         <% if @report["updated_at"] %>
-          <span style="color:#2563EB;">⟳ 최종 갱신 <%= @report["updated_at"].strftime("%Y-%m-%d %H:%M") %></span>
+          <span style="color:#2563EB;">⟳ <%= @report["updated_at"].strftime("%Y-%m-%d %H:%M") %></span>
         <% end %>
       </div>
     </div>
 
     <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:flex-start;">
       <button onclick="window.print()"
-              style="background:#0B132D;color:#fff;font-size:12px;padding:8px 14px;border-radius:6px;font-weight:600;border:none;cursor:pointer;">
-        🖨 인쇄 / PDF 저장
+              style="background:#0B132D;color:#fff;font-size:12px;padding:8px 14px;border-radius:6px;font-weight:600;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:6px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        인쇄 / PDF 저장
       </button>
       <% if @report["has_pdf"] %>
-        <%= link_to "📄 PDF 새 창",
-                    admin_wiki_report_pdf_path(slug: @report["slug"], format: :pdf),
+        <%= link_to admin_wiki_report_pdf_path(slug: @report["slug"], format: :pdf),
                     target: "_blank",
-                    style: "background:#2563EB;color:#fff;font-size:12px;padding:8px 14px;border-radius:6px;font-weight:600;text-decoration:none;" %>
-        <%= link_to "⬇ PDF 다운로드",
-                    admin_wiki_report_pdf_path(slug: @report["slug"], download: 1, format: :pdf),
-                    style: "background:#fff;border:1px solid #2563EB;color:#2563EB;font-size:12px;padding:7px 13px;border-radius:6px;font-weight:600;text-decoration:none;" %>
+                    style: "background:#2563EB;color:#fff;font-size:12px;padding:8px 14px;border-radius:6px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:6px;" do %>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          PDF 새 창
+        <% end %>
+        <%= link_to admin_wiki_report_pdf_path(slug: @report["slug"], download: 1, format: :pdf),
+                    style: "background:#fff;border:1px solid #2563EB;color:#2563EB;font-size:12px;padding:7px 13px;border-radius:6px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:6px;" do %>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          PDF 다운로드
+        <% end %>
       <% end %>
     </div>
   </div>
@@ -61,8 +69,8 @@
     title="<%= @report['title'] %> 본문"></iframe>
 
   <p style="font-size:11px;color:#94A3B8;margin-top:10px;">
-    💡 보고서 본문은 iframe 안에서 렌더링됩니다. 인쇄 시 위의 <strong>🖨 인쇄 / PDF 저장</strong> 버튼을 사용하거나
-    <strong>📄 PDF 새 창</strong>으로 원본 PDF를 여세요. 브라우저의 인쇄 기능은 iframe 안 콘텐츠만 가져오지 못할 수 있어 PDF 다운로드를 권장합니다.
+    보고서 본문은 iframe 안에서 렌더링됩니다. 인쇄 시 위의 <strong>인쇄 / PDF 저장</strong> 버튼을 사용하거나
+    <strong>PDF 새 창</strong>으로 원본 PDF를 여세요. 브라우저의 기본 인쇄는 iframe 안 콘텐츠를 모두 잡지 못할 수 있어 PDF 다운로드를 권장합니다.
   </p>
 </section>
 

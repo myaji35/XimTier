@@ -10,6 +10,7 @@
     locales:    <%= s[:locales].size %>,
     agents:     <%= s[:agents].size %>,
     issues:     <%= s[:issues][:available] ? s[:issues][:total] : 0 %>,
+    reports:    <%= (@reports || []).size %>,
     research:   <%= (s[:research] || []).size %>
   };
 </script>
@@ -49,7 +50,7 @@
 </section>
 
 <section id="components" class="sec">
-  <h2>🧩 뷰 컴포넌트 <span class="cnt">(<%= s[:components].size %>) — 화면 조립 단위</span></h2>
+  <h2><span class="hico"><svg><use href="#ico-components"/></svg></span>뷰 컴포넌트 <span class="cnt">(<%= s[:components].size %>) — 화면 조립 단위</span></h2>
   <div class="grid cols-3">
     <% s[:components].each do |c| %>
       <div class="item">
@@ -62,7 +63,7 @@
 </section>
 
 <section id="stimulus" class="sec">
-  <h2>⚡ Stimulus 컨트롤러 <span class="cnt">(<%= s[:stimulus].size %>) — 화면 인터랙션</span></h2>
+  <h2><span class="hico"><svg><use href="#ico-stimulus"/></svg></span>Stimulus 컨트롤러 <span class="cnt">(<%= s[:stimulus].size %>) — 화면 인터랙션</span></h2>
   <div class="grid cols-2">
     <% s[:stimulus].each do |c| %>
       <div class="item">
@@ -75,7 +76,7 @@
 </section>
 
 <section id="controllers" class="sec">
-  <h2>🎮 Rails 컨트롤러 <span class="cnt">(<%= s[:controllers].size %>) — 요청 라우팅 + 비즈니스 로직</span></h2>
+  <h2><span class="hico"><svg><use href="#ico-controllers"/></svg></span>Rails 컨트롤러 <span class="cnt">(<%= s[:controllers].size %>) — 요청 라우팅 + 비즈니스 로직</span></h2>
   <div class="grid cols-2">
     <% s[:controllers].each do |c| %>
       <div class="item">
@@ -88,7 +89,7 @@
 </section>
 
 <section id="models" class="sec">
-  <h2>💾 데이터 모델 <span class="cnt">(<%= s[:models].size %>) — DB 테이블 매핑</span></h2>
+  <h2><span class="hico"><svg><use href="#ico-models"/></svg></span>데이터 모델 <span class="cnt">(<%= s[:models].size %>) — DB 테이블 매핑</span></h2>
   <div class="grid cols-3">
     <% s[:models].each do |m| %>
       <div class="item">
@@ -100,7 +101,7 @@
 </section>
 
 <section id="pages" class="sec">
-  <h2>📄 페이지 <span class="cnt">(<%= s[:pages].size %>) — 마케팅 + 컨버전 화면</span></h2>
+  <h2><span class="hico"><svg><use href="#ico-pages"/></svg></span>페이지 <span class="cnt">(<%= s[:pages].size %>) — 마케팅 + 컨버전 화면</span></h2>
   <div class="grid cols-4">
     <% s[:pages].each do |p| %>
       <div class="item">
@@ -112,7 +113,7 @@
 </section>
 
 <section id="locales" class="sec">
-  <h2>🌐 다국어 사전 <span class="cnt">(<%= s[:locales].size %>) — 한/영 문구</span></h2>
+  <h2><span class="hico"><svg><use href="#ico-locales"/></svg></span>다국어 사전 <span class="cnt">(<%= s[:locales].size %>) — 한/영 문구</span></h2>
   <div class="grid cols-2">
     <% s[:locales].each do |loc| %>
       <div class="locale">
@@ -131,7 +132,7 @@
 </section>
 
 <section id="agents" class="sec">
-  <h2>🤖 하네스 에이전트 <span class="cnt">(<%= s[:agents].size %>) — 자율 실행 LLM 역할</span></h2>
+  <h2><span class="hico"><svg><use href="#ico-agents"/></svg></span>하네스 에이전트 <span class="cnt">(<%= s[:agents].size %>) — 자율 실행 LLM 역할</span></h2>
   <% if s[:agents].empty? %>
     <p class="empty">.claude/agents 디렉터리가 비어 있습니다.</p>
   <% else %>
@@ -147,7 +148,7 @@
 </section>
 
 <section id="issues" class="sec">
-  <h2>📋 하네스 이슈
+  <h2><span class="hico"><svg><use href="#ico-issues"/></svg></span>하네스 이슈
     <span class="cnt">
       <% if s[:issues][:available] %>(<%= s[:issues][:total] %>) — 진행 상태 + 우선순위<% end %>
     </span>
@@ -186,7 +187,7 @@
     <% end %>
 
     <p style="margin-top:14px;font-size:12px;color:#6B7280;">
-      💡 누적 학습 패턴 <strong><%= s[:issues][:success_patterns] %>개</strong>가 다음 작업에 자동 반영됩니다.
+      누적 학습 패턴 <strong><%= s[:issues][:success_patterns] %>개</strong>가 다음 작업에 자동 반영됩니다.
     </p>
   <% else %>
     <p class="empty">이슈 레지스트리(.claude/issue-db/registry.json)를 찾을 수 없습니다.</p>
@@ -194,7 +195,7 @@
 </section>
 
 <section id="reports" class="sec">
-  <h2>📑 보고서 라이브러리 <span class="cnt">(<%= (@reports || []).size %>) — IR · 컴플라이언스 · 전략 PDF/HTML</span></h2>
+  <h2><span class="hico"><svg><use href="#ico-reports"/></svg></span>보고서 라이브러리 <span class="cnt">(<%= (@reports || []).size %>) — IR · 컴플라이언스 · 전략 PDF/HTML</span></h2>
   <% if (@reports || []).empty? %>
     <p class="empty">config/reports.yml 또는 storage/reports/ 디렉터리가 비어 있습니다.</p>
   <% else %>
@@ -213,11 +214,11 @@
           <div class="meta" style="margin-bottom:6px;color:#6B7280;font-size:11px;">
             <%= r["subtitle"] %>
           </div>
-          <div class="meta" style="font-size:11px;color:#94A3B8;display:flex;flex-wrap:wrap;gap:10px;">
-            <span>👥 <%= r["audience"] %></span>
-            <span>📄 <%= r["pages"] %>p</span>
-            <span>📦 PDF <%= r["pdf_size_kb"] %>KB</span>
-            <span>📅 <%= r["created_at"] %></span>
+          <div class="meta" style="font-size:11px;color:#94A3B8;display:flex;flex-wrap:wrap;gap:12px;align-items:center;">
+            <span><%= r["audience"] %></span>
+            <span><%= r["pages"] %>p</span>
+            <span>PDF <%= r["pdf_size_kb"] %>KB</span>
+            <span><%= r["created_at"] %></span>
             <% if r["updated_at"] %>
               <span style="color:#2563EB;">⟳ <%= r["updated_at"].strftime("%Y-%m-%d %H:%M") %></span>
             <% end %>
@@ -227,28 +228,28 @@
           </p>
           <div style="display:flex;gap:6px;flex-wrap:wrap;">
             <% if r["has_html"] %>
-              <%= link_to "🔍 HTML 보기", admin_wiki_report_path(slug: r["slug"]),
-                  style: "background:#2563EB;color:#fff;font-size:11px;padding:5px 10px;border-radius:5px;font-weight:600;" %>
+              <%= link_to "HTML 보기", admin_wiki_report_path(slug: r["slug"]),
+                  style: "background:#2563EB;color:#fff;font-size:11px;padding:5px 12px;border-radius:5px;font-weight:600;text-decoration:none;" %>
             <% end %>
             <% if r["has_pdf"] %>
-              <%= link_to "📄 PDF 열기", admin_wiki_report_pdf_path(slug: r["slug"], format: :pdf),
+              <%= link_to "PDF 열기", admin_wiki_report_pdf_path(slug: r["slug"], format: :pdf),
                   target: "_blank",
-                  style: "background:#fff;border:1px solid #2563EB;color:#2563EB;font-size:11px;padding:5px 10px;border-radius:5px;font-weight:600;" %>
-              <%= link_to "⬇ PDF 다운로드", admin_wiki_report_pdf_path(slug: r["slug"], download: 1, format: :pdf),
-                  style: "background:#fff;border:1px solid #E5E7EB;color:#475467;font-size:11px;padding:5px 10px;border-radius:5px;" %>
+                  style: "background:#fff;border:1px solid #2563EB;color:#2563EB;font-size:11px;padding:5px 12px;border-radius:5px;font-weight:600;text-decoration:none;" %>
+              <%= link_to "PDF 다운로드", admin_wiki_report_pdf_path(slug: r["slug"], download: 1, format: :pdf),
+                  style: "background:#fff;border:1px solid #E5E7EB;color:#475467;font-size:11px;padding:5px 12px;border-radius:5px;text-decoration:none;" %>
             <% end %>
           </div>
         </div>
       <% end %>
     </div>
     <p style="margin-top:12px;font-size:11px;color:#94A3B8;">
-      💡 새 보고서는 <code style="background:#F3F4F6;padding:1px 5px;border-radius:3px;">storage/reports/{slug}.html</code>·<code style="background:#F3F4F6;padding:1px 5px;border-radius:3px;">{slug}.pdf</code> 쌍으로 두고 <code style="background:#F3F4F6;padding:1px 5px;border-radius:3px;">config/reports.yml</code>에 메타데이터를 추가하면 자동으로 노출됩니다.
+      새 보고서는 <code style="background:#F3F4F6;padding:1px 5px;border-radius:3px;">storage/reports/{slug}.html</code>·<code style="background:#F3F4F6;padding:1px 5px;border-radius:3px;">{slug}.pdf</code> 쌍으로 두고 <code style="background:#F3F4F6;padding:1px 5px;border-radius:3px;">config/reports.yml</code>에 메타데이터를 추가하면 자동으로 노출됩니다.
     </p>
   <% end %>
 </section>
 
 <section id="research" class="sec">
-  <h2>📚 리서치 라이브러리 <span class="cnt">(<%= (s[:research] || []).size %>) — 시장 조사 + 경쟁사 분석</span></h2>
+  <h2><span class="hico"><svg><use href="#ico-research"/></svg></span>리서치 라이브러리 <span class="cnt">(<%= (s[:research] || []).size %>) — 시장 조사 + 경쟁사 분석</span></h2>
   <% if (s[:research] || []).empty? %>
     <p class="empty">_workspace/research 디렉터리가 비어 있습니다.</p>
   <% else %>
