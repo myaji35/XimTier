@@ -290,7 +290,7 @@
                     if first_report["has_html"]
                       admin_wiki_report_path(slug: first_report["slug"])
                     elsif first_report["has_pdf"]
-                      admin_wiki_report_pdf_path(slug: first_report["slug"], format: :pdf)
+                      admin_wiki_report_pdf_path(slug: first_report["slug"])
                     end
                   end
                   tooltip = [
@@ -368,7 +368,7 @@
     <div class="grid cols-2">
       <% @reports.each do |r| %>
         <% primary_url = r["has_html"] ? admin_wiki_report_path(slug: r["slug"]) :
-                                          (r["has_pdf"] ? admin_wiki_report_pdf_path(slug: r["slug"], format: :pdf) : "#") %>
+                                          (r["has_pdf"] ? admin_wiki_report_pdf_path(slug: r["slug"]) : "#") %>
         <% primary_target = (!r["has_html"] && r["has_pdf"]) ? "_blank" : nil %>
         <a href="<%= primary_url %>" <%= "target=\"#{primary_target}\"".html_safe if primary_target %> class="report-card">
           <div class="rc-row1">
@@ -392,9 +392,9 @@
                   class: "rc-btn primary", data: { "stop-propagation": "true" } %>
             <% end %>
             <% if r["has_pdf"] %>
-              <%= link_to "PDF 열기", admin_wiki_report_pdf_path(slug: r["slug"], format: :pdf),
+              <%= link_to "PDF 열기", admin_wiki_report_pdf_path(slug: r["slug"]),
                   target: "_blank", class: "rc-btn outline" %>
-              <%= link_to "PDF 다운로드", admin_wiki_report_pdf_path(slug: r["slug"], download: 1, format: :pdf),
+              <%= link_to "PDF 다운로드", admin_wiki_report_pdf_path(slug: r["slug"], download: 1),
                   class: "rc-btn subtle" %>
             <% end %>
           </div>
