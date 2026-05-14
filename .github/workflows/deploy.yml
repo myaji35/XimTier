@@ -1,0 +1,154 @@
+name: Deploy
+
+# 트리거 정책:
+# - main 푸시 → staging 자동 배포
+# - workflow_dispatch (production 환경 manual approval) → 프로덕션 배포
+#
+# 사전 조건:
+# - GitHub Environments에 `staging`, `production` 두 개 환경 등록
+# - production 환경은 "Required reviewers"에 대표님 (또는 CTO) 지정
+# - Repository Secrets:
+#     RAILS_MASTER_KEY        — config/master.key 내용
+#     GHCR_PAT                — packages:write 스코프의 PAT (kamal builder login용)
+#     KAMAL_SSH_PRIVATE_KEY   — Vultr 서버 root 접속용 SSH 키
+#     SMTP_USERNAME / SMTP_PASSWORD / SENTRY_DSN — 선택
+#     CF_TURNSTILE_SITE_KEY / CF_TURNSTILE_SECRET_KEY — XIM-16/17 활성 시
+#     SLACK_WEBHOOK_URL — 리드 알림 활성 시
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - 'reports/**'
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 'Deploy target'
+        required: true
+        default: staging
+        type: choice
+        options:
+          - staging
+          - production
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  # 1) 게이트: CI가 통과한 커밋만 배포 (CI workflow의 lint/test/scan_ruby/scan_js/i18n 모두 green)
+  wait-for-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Resolve target
+        id: target
+        run: |
+          if [ "${{ github.event_name }}" = "push" ]; then
+            echo "target=staging" >> "$GITHUB_OUTPUT"
+          else
+            echo "target=${{ inputs.target }}" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Echo target
+        run: echo "Will deploy to ${{ steps.target.outputs.target }}"
+    outputs:
+      target: ${{ steps.target.outputs.target }}
+
+  deploy:
+    needs: wait-for-ci
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ needs.wait-for-ci.outputs.target }}
+    concurrency:
+      group: deploy-${{ needs.wait-for-ci.outputs.target }}
+      cancel-in-progress: false
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Install Kamal
+        run: gem install kamal -v '~> 2.0'
+
+      - name: Configure SSH for Kamal
+        env:
+          KAMAL_SSH_PRIVATE_KEY: ${{ secrets.KAMAL_SSH_PRIVATE_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$KAMAL_SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H 158.247.235.31 >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Write config/master.key
+        env:
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+        run: |
+          mkdir -p config
+          echo -n "$RAILS_MASTER_KEY" > config/master.key
+          chmod 600 config/master.key
+
+      - name: Write .kamal/secrets
+        env:
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+          KAMAL_REGISTRY_PASSWORD: ${{ secrets.GHCR_PAT }}
+          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+          CF_TURNSTILE_SITE_KEY: ${{ secrets.CF_TURNSTILE_SITE_KEY }}
+          CF_TURNSTILE_SECRET_KEY: ${{ secrets.CF_TURNSTILE_SECRET_KEY }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          mkdir -p .kamal
+          cat > .kamal/secrets <<'SECRETS'
+          RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
+          KAMAL_REGISTRY_PASSWORD=${KAMAL_REGISTRY_PASSWORD}
+          SMTP_USERNAME=${SMTP_USERNAME}
+          SMTP_PASSWORD=${SMTP_PASSWORD}
+          SENTRY_DSN=${SENTRY_DSN}
+          CF_TURNSTILE_SITE_KEY=${CF_TURNSTILE_SITE_KEY}
+          CF_TURNSTILE_SECRET_KEY=${CF_TURNSTILE_SECRET_KEY}
+          SLACK_WEBHOOK_URL=${SLACK_WEBHOOK_URL}
+          SECRETS
+          chmod 600 .kamal/secrets
+
+      - name: Kamal config validation
+        run: |
+          if [ "${{ needs.wait-for-ci.outputs.target }}" = "production" ]; then
+            kamal config
+          else
+            kamal -d staging config
+          fi
+
+      - name: Kamal deploy
+        env:
+          KAMAL_REGISTRY_PASSWORD: ${{ secrets.GHCR_PAT }}
+        run: |
+          if [ "${{ needs.wait-for-ci.outputs.target }}" = "production" ]; then
+            kamal deploy
+          else
+            kamal -d staging deploy
+          fi
+
+      - name: Post-deploy health check
+        run: |
+          if [ "${{ needs.wait-for-ci.outputs.target }}" = "production" ]; then
+            HOST="ximtier.158.247.235.31.nip.io"
+          else
+            HOST="ximtier-staging.158.247.235.31.nip.io"
+          fi
+          for i in 1 2 3 4 5; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "http://${HOST}/up" || true)
+            if [ "$code" = "200" ]; then
+              echo "OK /up=200 on attempt $i"
+              exit 0
+            fi
+            echo "attempt $i: got ${code:-no-response}; sleeping 5s"
+            sleep 5
+          done
+          echo "Health check failed after 5 attempts"
+          exit 1

@@ -1,0 +1,83 @@
+# XimTier — Kamal 2 Staging Deploy Config
+# 호출: kamal -d staging deploy
+#
+# prod와 동일 서버(Vultr ICN), kamal-proxy를 host-based routing으로 공유.
+# 스테이징은 별도 컨테이너 이름(`ximtier-staging`) + 별도 storage volume +
+# 별도 nip.io 호스트(`ximtier-staging.158.247.235.31.nip.io`).
+#
+# 안전 원칙:
+# - registry는 prod와 동일 GHCR repo. 이미지 태그는 git SHA 자동.
+# - storage volume(`ximtier_staging_storage`)은 prod(`ximtier_storage`)와 분리.
+# - 데이터 동기화 없음. 스테이징은 매번 빈 DB로 시작 가능.
+
+service: ximtier-staging
+image: myaji35/ximtier
+
+servers:
+  web:
+    - 158.247.235.31
+
+ssh:
+  user: root
+
+proxy:
+  host: ximtier-staging.158.247.235.31.nip.io
+  app_port: 80
+  healthcheck:
+    path: /up
+    interval: 3
+    timeout: 10
+
+deploy_timeout: 120
+drain_timeout: 30
+
+registry:
+  server: ghcr.io
+  username: myaji35
+  password:
+    - KAMAL_REGISTRY_PASSWORD
+
+env:
+  secret:
+    - RAILS_MASTER_KEY
+    - SMTP_USERNAME
+    - SMTP_PASSWORD
+    - SENTRY_DSN
+    - CF_TURNSTILE_SITE_KEY
+    - CF_TURNSTILE_SECRET_KEY
+    - SLACK_WEBHOOK_URL
+  clear:
+    SOLID_QUEUE_IN_PUMA: true
+    RAILS_ENV: production
+    # 스테이징도 RAILS_ENV=production을 쓰지만 APP_ENV로 분기.
+    APP_ENV: staging
+    PORT: "3000"
+    WEB_CONCURRENCY: "1"
+    RAILS_SERVE_STATIC_FILES: "true"
+    RAILS_LOG_TO_STDOUT: "true"
+    DB_HOST: ""
+    APP_HOST: "ximtier-staging.158.247.235.31.nip.io"
+    APP_PROTOCOL: "http"
+    SMTP_HOST: ""
+    SMTP_PORT: "587"
+    SMTP_DOMAIN: "ximtier-staging.158.247.235.31.nip.io"
+    SMTP_AUTH: "plain"
+    SMTP_STARTTLS: "true"
+    PLAUSIBLE_DOMAIN: ""
+    # robots.txt는 staging에서 강제 Disallow (production.rb에서 APP_ENV 분기).
+    ROBOTS_DISALLOW_ALL: "true"
+
+volumes:
+  - "ximtier_staging_storage:/rails/storage"
+
+asset_path: /rails/public/assets
+
+builder:
+  arch: amd64
+  remote: ssh://root@158.247.235.31
+
+aliases:
+  console: app exec --interactive --reuse "bin/rails console"
+  shell:   app exec --interactive --reuse "bash"
+  logs:    app logs -f
+  dbc:     app exec --interactive --reuse "bin/rails dbconsole"

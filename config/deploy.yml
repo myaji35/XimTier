@@ -44,6 +44,11 @@ env:
     - SMTP_PASSWORD
     # Sentry/Plausible — 결정 후 채워 활성 (없으면 자동 비활성)
     - SENTRY_DSN
+    # Cloudflare Turnstile (FR-4 문의 폼, FR-5 데모 신청) — 미설정 시 view에서 자동 비활성
+    - CF_TURNSTILE_SITE_KEY
+    - CF_TURNSTILE_SECRET_KEY
+    # Slack 알림 (FR-4 문의/FR-5 데모) — 미설정 시 알림 silently skip
+    - SLACK_WEBHOOK_URL
   clear:
     SOLID_QUEUE_IN_PUMA: true
     RAILS_ENV: production
