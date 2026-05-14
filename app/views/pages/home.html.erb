@@ -188,10 +188,10 @@
       <p class="lead" style="color:#475467;"><%= t("market.lead") %></p>
     </div>
 
-    <div class="mt-14 grid grid-cols-2 md:grid-cols-5" style="gap:16px;">
+    <div class="mt-14 grid grid-cols-2 md:grid-cols-5" data-controller="count-up" style="gap:16px;">
       <% t("market.indicators").each do |ind| %>
         <div class="rounded-[14px] p-5" style="background:#fff; border:1px solid #e5e9f0;">
-          <div class="text-[28px] font-bold text-brand-grad" style="line-height:1;"><%= ind[:value] %></div>
+          <div class="text-[28px] font-bold text-brand-grad" data-count-up-target="value" style="line-height:1;"><%= ind[:value] %></div>
           <div class="mt-2 text-[12px]" style="color:#697386;"><%= ind[:label] %></div>
         </div>
       <% end %>

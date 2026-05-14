@@ -14,12 +14,21 @@ class Download < ApplicationRecord
 
   scope :recent, -> { order(created_at: :desc) }
 
+  ASSET_FILES = {
+    "ir_deck_ko"     => "XimTier_IR_PreSeed_v1.pdf",
+    "ir_deck_en"     => "XimTier_IR_PreSeed_v1_en.pdf",
+    "ai_engine_deck" => "XAISimTier_AI_Decision_Engine.pdf"
+  }.freeze
+
   def asset_path
-    case asset
-    when "ir_deck_ko", "ir_deck_en"
-      Rails.root.join("public", "ir", "XimTier_IR_PreSeed_v1.pdf")
-    when "ai_engine_deck"
-      Rails.root.join("public", "ir", "XAISimTier_AI_Decision_Engine.pdf")
+    ir_dir = Rails.root.join("public", "ir")
+    primary = ir_dir.join(ASSET_FILES.fetch(asset, ASSET_FILES["ir_deck_ko"]))
+    return primary if File.exist?(primary)
+
+    if asset == "ir_deck_en"
+      ir_dir.join(ASSET_FILES["ir_deck_ko"])
+    else
+      primary
     end
   end
 
