@@ -72,18 +72,18 @@
       <% end %>
     </div>
   </div>
-</section>
 
-<%# ============ 02 Trust signal strip (출처·검증) ============ %>
-<section class="section-dark" style="padding:14px 0; border-top:1px solid rgba(255,255,255,0.08); background:#060c1f;">
-  <div class="wrap flex items-center justify-between flex-wrap" style="gap:24px;">
-    <div class="font-mono text-[10px]" style="color:#00C8C8; letter-spacing:0.18em;">// <%= t("site.trust_strip.label").upcase %></div>
-    <div class="flex flex-wrap items-center" style="gap:28px;">
-      <% t("site.trust_strip.items").each do |it| %>
-        <div class="flex items-baseline" style="gap:8px;">
-          <span class="font-mono text-[10px]" style="color:#697386; letter-spacing:0.12em; text-transform:uppercase;"><%= it[:label] %></span>
-          <span class="text-[12px] font-semibold" style="color:#e6e8f0;"><%= it[:value] %></span>
-        </div>
+  <%# Reference logos marquee — 좌→우 흐름 (Hero 하단 풀폭) %>
+  <div class="wrap relative mt-16">
+    <div class="font-mono text-[10px] mb-4" style="color:#697386; letter-spacing:0.18em; text-transform:uppercase;">
+      // <%= t("site.hero.references.label") %>
+    </div>
+  </div>
+  <div class="relative logo-marquee mt-1" aria-label="<%= t('site.hero.references.label') %>">
+    <div class="logo-marquee__track" style="padding:8px 0;">
+      <% logos = t("site.hero.references.items") %>
+      <% (logos + logos).each do |name| %>
+        <span class="logo-marquee__item"><%= name %></span>
       <% end %>
     </div>
   </div>

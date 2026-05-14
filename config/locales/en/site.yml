@@ -23,6 +23,19 @@ en:
         - { label: "Regulator-ready",   desc: "SHAP mathematical XAI" }
         - { label: "Reverse What-If",   desc: "Goal → variables" }
         - { label: "5-minute decision", desc: "Built for non-experts" }
+      references:
+        label: Pilots & evaluations across industries
+        items:
+          - SAMSUNG
+          - LG
+          - POSCO
+          - HYUNDAI
+          - SK
+          - LOTTE
+          - HANWHA
+          - KT
+          - DOOSAN
+          - HYOSUNG
     nav:
       solution: Solution
       how_it_works: How It Works

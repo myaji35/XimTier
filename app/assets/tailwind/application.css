@@ -191,6 +191,39 @@ html, body {
   .float-chip { animation: none !important; }
 }
 
+/* === Reference logos marquee (Hero 하단, 좌→우 흐름) === */
+.logo-marquee {
+  position: relative;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%);
+}
+.logo-marquee__track {
+  display: flex;
+  gap: 56px;
+  width: max-content;
+  animation: logo-marquee-ltr 32s linear infinite;
+}
+.logo-marquee__item {
+  display: inline-flex;
+  align-items: center;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  color: rgba(230, 232, 240, 0.55);
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+.logo-marquee__item:hover { color: #e6e8f0; }
+@keyframes logo-marquee-ltr {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .logo-marquee__track { animation: none !important; }
+}
+
 /* === Tweaks Panel — body[data-tweak-*] 토글 === */
 /* 액센트: electric (blue → purple) */
 body[data-tweak-accent="electric"] .text-brand-grad {

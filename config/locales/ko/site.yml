@@ -23,6 +23,19 @@ ko:
         - { label: "규제 통과",       desc: "SHAP 수학적 XAI" }
         - { label: "Reverse What-If", desc: "목표→변수 역산" }
         - { label: "5분 의사결정",    desc: "비전문가 즉시 사용" }
+      references:
+        label: 도입 검토·파일럿 산업군
+        items:
+          - SAMSUNG
+          - LG
+          - POSCO
+          - HYUNDAI
+          - SK
+          - LOTTE
+          - HANWHA
+          - KT
+          - DOOSAN
+          - HYOSUNG
     nav:
       solution: 솔루션
       how_it_works: 작동 원리
