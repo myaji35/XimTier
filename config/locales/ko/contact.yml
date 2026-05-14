@@ -22,6 +22,7 @@ ko:
       success: 문의가 정상 접수되었습니다. 곧 답신드리겠습니다.
     errors:
       consent_required: 개인정보 수집·이용 동의가 필요합니다.
+      turnstile_failed: 보안 인증에 실패했습니다. 페이지를 새로고침 후 다시 시도해 주세요.
   demo:
     eyebrow: 데모 신청
     h1: 5단계 워크플로우를 직접 체험하세요

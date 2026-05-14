@@ -22,6 +22,7 @@ en:
       success: Your inquiry has been received. We'll respond shortly.
     errors:
       consent_required: Please consent to the collection and use of personal information.
+      turnstile_failed: Security verification failed. Please refresh the page and try again.
   demo:
     eyebrow: Request Demo
     h1: Experience the 5-step workflow firsthand

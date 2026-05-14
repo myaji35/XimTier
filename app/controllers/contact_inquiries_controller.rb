@@ -20,9 +20,19 @@ class ContactInquiriesController < ApplicationController
       redirect_to contact_path(locale: I18n.locale), notice: I18n.t("contact.flash.success") and return
     end
 
+    # Cloudflare Turnstile (skipped automatically when env keys are absent)
+    if TurnstileVerifier.enabled?
+      token = params["cf-turnstile-response"].presence || params[:cf_turnstile_response]
+      unless TurnstileVerifier.verify(token, remote_ip: request.remote_ip)
+        @inquiry.errors.add(:base, I18n.t("contact.errors.turnstile_failed"))
+        render "pages/contact", status: :unprocessable_entity and return
+      end
+    end
+
     if @inquiry.save
       ContactMailer.auto_reply(@inquiry).deliver_later
       ContactMailer.admin_notification(@inquiry).deliver_later
+      SlackContactNotificationJob.perform_later(@inquiry.id)
       redirect_to contact_path(locale: I18n.locale), notice: I18n.t("contact.flash.success")
     else
       render "pages/contact", status: :unprocessable_entity

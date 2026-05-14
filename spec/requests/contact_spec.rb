@@ -3,8 +3,12 @@ require "rails_helper"
 RSpec.describe "Contact form", type: :request do
   include ActiveJob::TestHelper
 
-  it "POST /ko/contact — DB 저장 + 메일 2통 발송 + 302 redirect" do
+  it "POST /ko/contact — DB 저장 + 메일 2통 발송 + 슬랙 알림 + 302 redirect" do
+    expect(SlackContactNotificationJob).to receive(:perform_later).with(kind_of(Integer)).and_call_original
+
     perform_enqueued_jobs do
+      expect(SlackNotifier).to receive(:notify_contact).and_return(true)
+
       expect {
         post "/ko/contact", params: {
         contact_inquiry: {
@@ -48,5 +52,44 @@ RSpec.describe "Contact form", type: :request do
       }
     }.to_not change(ContactInquiry, :count)
     expect(response).to redirect_to("/ko/contact")
+  end
+
+  context "Turnstile 검증" do
+    before do
+      allow(TurnstileVerifier).to receive(:enabled?).and_return(true)
+    end
+
+    it "토큰 검증 실패 시 422 + 저장 안 함" do
+      allow(TurnstileVerifier).to receive(:verify).and_return(false)
+
+      expect {
+        post "/ko/contact", params: {
+          "cf-turnstile-response": "bad-token",
+          contact_inquiry: {
+            name: "공격자", email: "x@y.com",
+            message: "bypass attempt", consent: "1"
+          }
+        }
+      }.to_not change(ContactInquiry, :count)
+
+      expect(response).to have_http_status(:unprocessable_entity)
+    end
+
+    it "토큰 검증 통과 시 저장됨" do
+      allow(TurnstileVerifier).to receive(:verify).and_return(true)
+      allow(SlackContactNotificationJob).to receive(:perform_later)
+
+      expect {
+        post "/ko/contact", params: {
+          "cf-turnstile-response": "good-token",
+          contact_inquiry: {
+            name: "정상사용자", email: "ok@y.com",
+            message: "정상 문의", consent: "1"
+          }
+        }
+      }.to change(ContactInquiry, :count).by(1)
+
+      expect(response).to redirect_to("/ko/contact")
+    end
   end
 end

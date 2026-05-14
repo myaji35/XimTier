@@ -1,6 +1,12 @@
 <% content_for :title, "#{t('contact.h1')} — #{t('site.brand')}" %>
 <% @inquiry ||= ContactInquiry.new %>
 
+<% if TurnstileVerifier.enabled? %>
+  <% content_for :head do %>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <% end %>
+<% end %>
+
 <section class="section-light section-pad">
   <div class="wrap" style="max-width:760px;">
     <div class="eyebrow"><span class="dot"></span><%= t("contact.eyebrow") %></div>
@@ -71,6 +77,10 @@
         <input type="checkbox" name="contact_inquiry[consent]" value="1" required style="margin-top:4px;">
         <span><%= t("contact.form.consent") %></span>
       </label>
+
+      <% if TurnstileVerifier.enabled? %>
+        <div class="cf-turnstile" data-sitekey="<%= TurnstileVerifier.site_key %>" data-theme="light"></div>
+      <% end %>
 
       <div class="pt-2">
         <%= f.submit t("contact.form.submit"), class: "btn btn-grad", style: "border:0; cursor:pointer;" %>
