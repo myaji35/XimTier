@@ -194,35 +194,189 @@
   <% end %>
 </section>
 
+<section id="roadmap" class="sec">
+  <h2><span class="hico"><svg><use href="#ico-controllers"/></svg></span>인가·시장 진출 로드맵 <span class="cnt">— 법인·규제·제품·시장·투자·운영 통합 간트</span></h2>
+  <% if @roadmap.nil? %>
+    <p class="empty">config/roadmap.yml 이 없거나 비어 있습니다.</p>
+  <% else %>
+    <% months = @roadmap["months"] %>
+    <% total = months.length %>
+    <% range_start = @roadmap["range_start"] %>
+    <% reports_by_slug = (@reports || []).index_by { |r| r["slug"] } %>
+    <style>
+      .gantt{background:#fff;border:1px solid #E5E7EB;border-radius:8px;overflow:hidden;font-size:11px;}
+      .gantt .gantt-head{display:grid;grid-template-columns:200px 1fr;background:#F9FAFB;border-bottom:2px solid #2563EB;}
+      .gantt .gantt-head .track-head{padding:8px 12px;font-weight:600;color:#374151;text-transform:uppercase;letter-spacing:.05em;font-size:10px;}
+      .gantt .gantt-head .months-head{display:grid;}
+      .gantt .gantt-head .month-cell{padding:6px 4px;text-align:center;font-size:9.5px;color:#6B7280;border-left:1px solid #F0F0F0;font-family:ui-monospace,Menlo,monospace;}
+      .gantt .gantt-head .month-cell.qstart{background:#F3F4F6;color:#16325C;font-weight:600;}
+      .gantt .gantt-track{display:grid;grid-template-columns:200px 1fr;border-bottom:1px solid #F3F4F6;}
+      .gantt .gantt-track:last-child{border-bottom:none;}
+      .gantt .track-label{padding:10px 12px;background:#FAFAFA;border-right:1px solid #E5E7EB;display:flex;align-items:center;gap:8px;}
+      .gantt .track-label .dot{width:10px;height:10px;border-radius:3px;flex-shrink:0;}
+      .gantt .track-label .name{font-weight:600;color:#16325C;font-size:12px;}
+      .gantt .track-label .count{font-size:10px;color:#94A3B8;}
+      .gantt .phases-grid{position:relative;}
+      .gantt .phase-row{position:relative;height:32px;border-bottom:1px solid #F8F9FA;}
+      .gantt .phase-row:last-child{border-bottom:none;}
+      .gantt .grid-bg{position:absolute;inset:0;display:grid;pointer-events:none;}
+      .gantt .grid-bg .gb-cell{border-left:1px solid #F3F4F6;}
+      .gantt .grid-bg .gb-cell.qstart{border-left:1px solid #E5E7EB;}
+      .gantt .phase-bar{position:absolute;top:5px;bottom:5px;border-radius:4px;display:flex;align-items:center;
+                        padding:0 8px;font-size:10px;color:#fff;font-weight:600;cursor:pointer;
+                        text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+                        transition:transform .1s, box-shadow .1s;}
+      .gantt .phase-bar:hover{transform:scale(1.01);box-shadow:0 4px 12px -4px rgba(0,0,0,0.3);z-index:2;}
+      .gantt .phase-bar.done{opacity:.65;}
+      .gantt .phase-bar.planned{opacity:.85;}
+      .gantt .phase-bar.in_progress::before{content:"▶";font-size:8px;margin-right:4px;}
+      .gantt .phase-bar.blocked{background:repeating-linear-gradient(45deg,#EF4444,#EF4444 6px,#F87171 6px,#F87171 12px) !important;}
+      .gantt .phase-tip{position:absolute;display:none;background:#0B132D;color:#fff;font-size:10.5px;padding:6px 10px;
+                        border-radius:4px;z-index:50;box-shadow:0 6px 18px -4px rgba(0,0,0,0.3);max-width:260px;line-height:1.5;}
+      .gantt .legend{display:flex;gap:14px;padding:8px 12px;background:#F9FAFB;border-top:1px solid #E5E7EB;font-size:10.5px;color:#6B7280;flex-wrap:wrap;}
+      .gantt .legend .ll{display:flex;align-items:center;gap:5px;}
+      .gantt .legend .ll .sw{width:14px;height:10px;border-radius:2px;}
+      .gantt .today-line{position:absolute;top:0;bottom:0;width:2px;background:#EF4444;z-index:3;pointer-events:none;}
+      .gantt .today-line::after{content:"오늘";position:absolute;top:2px;left:4px;background:#EF4444;color:#fff;
+                                font-size:9px;padding:1px 5px;border-radius:2px;font-weight:600;}
+      .gantt-foot{padding:8px 12px;background:#F9FAFB;font-size:10.5px;color:#6B7280;border-top:1px solid #E5E7EB;}
+    </style>
+
+    <div class="gantt">
+      <%# Header — 월 눈금 %>
+      <div class="gantt-head">
+        <div class="track-head">트랙 / Phase</div>
+        <div class="months-head" style="grid-template-columns: repeat(<%= total %>, 1fr);">
+          <% months.each do |m| %>
+            <div class="month-cell <%= 'qstart' if [1,4,7,10].include?(m.month) %>">
+              <%= m.strftime("%y/%m") %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <%# Tracks %>
+      <% @roadmap["tracks"].each do |track| %>
+        <div class="gantt-track">
+          <div class="track-label">
+            <span class="dot" style="background:<%= track['color'] || '#2563EB' %>;"></span>
+            <div>
+              <div class="name"><%= track["title"] %></div>
+              <div class="count"><%= (track["phases"] || []).size %>개 단계</div>
+            </div>
+          </div>
+          <div class="phases-grid">
+            <%# 배경 격자 + 오늘선 %>
+            <% today = Date.today %>
+            <% today_offset_pct = (((today - range_start).to_i / 30.4) / total.to_f * 100).clamp(0, 100) %>
+            <% (track["phases"] || []).each_with_index do |phase, _idx| %>
+              <div class="phase-row">
+                <div class="grid-bg" style="grid-template-columns: repeat(<%= total %>, 1fr);">
+                  <% months.each do |m| %>
+                    <div class="gb-cell <%= 'qstart' if [1,4,7,10].include?(m.month) %>"></div>
+                  <% end %>
+                </div>
+                <%
+                  ps = parse_month_view(phase["start"])
+                  pe = parse_month_view(phase["end"])
+                  next unless ps && pe
+                  start_offset = ((ps.year * 12 + ps.month) - (range_start.year * 12 + range_start.month))
+                  dur_months   = ((pe.year * 12 + pe.month) - (ps.year * 12 + ps.month) + 1)
+                  left_pct  = (start_offset.to_f / total) * 100
+                  width_pct = (dur_months.to_f / total) * 100
+                  matched_reports = (phase["reports"] || []).map { |s| reports_by_slug[s] }.compact
+                  first_report = matched_reports.first
+                  bar_href = if first_report
+                    if first_report["has_html"]
+                      admin_wiki_report_path(slug: first_report["slug"])
+                    elsif first_report["has_pdf"]
+                      admin_wiki_report_pdf_path(slug: first_report["slug"], format: :pdf)
+                    end
+                  end
+                  tooltip = [
+                    phase["title"],
+                    "기간: #{phase['start']} → #{phase['end']} (#{dur_months}개월)",
+                    "상태: #{phase['status']}",
+                    "담당: #{phase['owner']}",
+                    "🎯 #{phase['milestone']}",
+                    (matched_reports.any? ? "📄 #{matched_reports.map{|r|r['title']}.join(' · ')}" : nil)
+                  ].compact.join(" • ")
+                %>
+                <% if bar_href %>
+                  <a class="phase-bar <%= phase['status'] %>"
+                     style="left:<%= left_pct.round(2) %>%; width:<%= width_pct.round(2) %>%; background:<%= track['color'] || '#2563EB' %>;"
+                     href="<%= bar_href %>"
+                     title="<%= tooltip %>">
+                    <%= phase["title"] %>
+                    <% if matched_reports.any? %><span style="margin-left:auto;font-size:9px;opacity:.85;">[<%= matched_reports.size %>]</span><% end %>
+                  </a>
+                <% else %>
+                  <div class="phase-bar <%= phase['status'] %>"
+                       style="left:<%= left_pct.round(2) %>%; width:<%= width_pct.round(2) %>%; background:<%= track['color'] || '#2563EB' %>; cursor:default;"
+                       title="<%= tooltip %>">
+                    <%= phase["title"] %>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
+      <%# 범례 %>
+      <div class="legend">
+        <span class="ll"><span class="sw" style="background:#2563EB;"></span>계획됨 (planned)</span>
+        <span class="ll"><span class="sw" style="background:#2563EB;opacity:1;"></span>진행 중 (in_progress) — ▶ 표시</span>
+        <span class="ll"><span class="sw" style="background:#2563EB;opacity:.65;"></span>완료 (done)</span>
+        <span class="ll"><span class="sw" style="background:repeating-linear-gradient(45deg,#EF4444,#EF4444 4px,#F87171 4px,#F87171 8px);"></span>차단 (blocked)</span>
+        <span class="ll" style="margin-left:auto;color:#94A3B8;">📄 막대 클릭 → 연결된 보고서 열림 · [숫자] = 연결 보고서 수</span>
+      </div>
+
+      <div class="gantt-foot">
+        일정 변경은 <code style="background:#F3F4F6;padding:1px 5px;border-radius:3px;">config/roadmap.yml</code> 만 수정하면 자동 반영. 각 phase의 <code>reports:</code> 배열에 보고서 slug 추가 시 막대 클릭으로 보고서 직접 열람 가능.
+      </div>
+    </div>
+  <% end %>
+</section>
+
 <section id="reports" class="sec">
   <h2><span class="hico"><svg><use href="#ico-reports"/></svg></span>보고서 라이브러리 <span class="cnt">(<%= (@reports || []).size %>) — IR · 컴플라이언스 · 전략 PDF/HTML</span></h2>
   <% if (@reports || []).empty? %>
     <p class="empty">config/reports.yml 또는 storage/reports/ 디렉터리가 비어 있습니다.</p>
   <% else %>
+    <style>
+      .report-card{display:block;background:#fff;border:1px solid #E5E7EB;border-radius:8px;padding:14px 16px;
+                   color:inherit;text-decoration:none;transition:border-color .15s, box-shadow .15s, transform .05s;
+                   position:relative;}
+      .report-card:hover{border-color:#2563EB;box-shadow:0 6px 18px -8px rgba(37,99,235,0.25);}
+      .report-card:active{transform:translateY(1px);}
+      .report-card .rc-row1{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;}
+      .report-card .rc-title{font-size:14px;font-weight:600;color:#0B132D;line-height:1.35;}
+      .report-card .rc-cat{background:#F3F4F6;color:#475467;font-size:10px;padding:2px 7px;border-radius:4px;
+                           font-family:ui-monospace,Menlo,monospace;letter-spacing:.05em;flex-shrink:0;}
+      .report-card .rc-sub{margin-bottom:6px;color:#6B7280;font-size:11px;}
+      .report-card .rc-meta{font-size:11px;color:#94A3B8;display:flex;flex-wrap:wrap;gap:12px;align-items:center;}
+      .report-card .rc-summary{margin:8px 0 10px;font-size:11.5px;color:#475467;line-height:1.5;}
+      .report-card .rc-actions{display:flex;gap:6px;flex-wrap:wrap;}
+      .report-card .rc-btn{font-size:11px;padding:5px 12px;border-radius:5px;text-decoration:none;font-weight:600;
+                           display:inline-flex;align-items:center;gap:5px;border:1px solid transparent;}
+      .report-card .rc-btn.primary{background:#2563EB;color:#fff;}
+      .report-card .rc-btn.outline{background:#fff;border-color:#2563EB;color:#2563EB;}
+      .report-card .rc-btn.subtle{background:#fff;border-color:#E5E7EB;color:#475467;font-weight:500;}
+      .report-card .rc-btn:hover{filter:brightness(1.05);}
+    </style>
     <div class="grid cols-2">
       <% @reports.each do |r| %>
-        <div class="item" style="padding:14px 16px;">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:6px;">
-            <div class="name" style="font-size:14px;">
-              <% if r["has_html"] %>
-                <%= link_to r["title"], admin_wiki_report_path(slug: r["slug"]),
-                            style: "color:#0B132D;text-decoration:none;" %>
-              <% elsif r["has_pdf"] %>
-                <%= link_to r["title"], admin_wiki_report_pdf_path(slug: r["slug"], format: :pdf),
-                            target: "_blank",
-                            style: "color:#0B132D;text-decoration:none;" %>
-              <% else %>
-                <%= r["title"] %>
-              <% end %>
-            </div>
-            <span style="background:#F3F4F6;color:#475467;font-size:10px;padding:2px 7px;border-radius:4px;font-family:ui-monospace,Menlo,monospace;letter-spacing:.05em;">
-              <%= r["category"] %>
-            </span>
+        <% primary_url = r["has_html"] ? admin_wiki_report_path(slug: r["slug"]) :
+                                          (r["has_pdf"] ? admin_wiki_report_pdf_path(slug: r["slug"], format: :pdf) : "#") %>
+        <% primary_target = (!r["has_html"] && r["has_pdf"]) ? "_blank" : nil %>
+        <a href="<%= primary_url %>" <%= "target=\"#{primary_target}\"".html_safe if primary_target %> class="report-card">
+          <div class="rc-row1">
+            <div class="rc-title"><%= r["title"] %></div>
+            <span class="rc-cat"><%= r["category"] %></span>
           </div>
-          <div class="meta" style="margin-bottom:6px;color:#6B7280;font-size:11px;">
-            <%= r["subtitle"] %>
-          </div>
-          <div class="meta" style="font-size:11px;color:#94A3B8;display:flex;flex-wrap:wrap;gap:12px;align-items:center;">
+          <div class="rc-sub"><%= r["subtitle"] %></div>
+          <div class="rc-meta">
             <span><%= r["audience"] %></span>
             <% if r["pages"].present? %><span><%= r["pages"] %>p</span><% end %>
             <span>PDF <%= r["pdf_size_kb"] %>KB</span>
@@ -231,25 +385,28 @@
               <span style="color:#2563EB;">⟳ <%= r["updated_at"].strftime("%Y-%m-%d %H:%M") %></span>
             <% end %>
           </div>
-          <p style="margin:8px 0 10px;font-size:11.5px;color:#475467;line-height:1.5;">
-            <%= r["summary"] %>
-          </p>
-          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+          <p class="rc-summary"><%= r["summary"] %></p>
+          <div class="rc-actions" onclick="event.stopPropagation()">
             <% if r["has_html"] %>
               <%= link_to "HTML 보기", admin_wiki_report_path(slug: r["slug"]),
-                  style: "background:#2563EB;color:#fff;font-size:11px;padding:5px 12px;border-radius:5px;font-weight:600;text-decoration:none;" %>
+                  class: "rc-btn primary", data: { "stop-propagation": "true" } %>
             <% end %>
             <% if r["has_pdf"] %>
               <%= link_to "PDF 열기", admin_wiki_report_pdf_path(slug: r["slug"], format: :pdf),
-                  target: "_blank",
-                  style: "background:#fff;border:1px solid #2563EB;color:#2563EB;font-size:11px;padding:5px 12px;border-radius:5px;font-weight:600;text-decoration:none;" %>
+                  target: "_blank", class: "rc-btn outline" %>
               <%= link_to "PDF 다운로드", admin_wiki_report_pdf_path(slug: r["slug"], download: 1, format: :pdf),
-                  style: "background:#fff;border:1px solid #E5E7EB;color:#475467;font-size:11px;padding:5px 12px;border-radius:5px;text-decoration:none;" %>
+                  class: "rc-btn subtle" %>
             <% end %>
           </div>
-        </div>
+        </a>
       <% end %>
     </div>
+    <script>
+      // 카드 안 액션 버튼 클릭은 카드의 메인 링크와 분리
+      document.querySelectorAll('.report-card .rc-actions a').forEach(function(a){
+        a.addEventListener('click', function(e){ e.stopPropagation(); });
+      });
+    </script>
     <p style="margin-top:12px;font-size:11px;color:#94A3B8;">
       새 보고서는 <code style="background:#F3F4F6;padding:1px 5px;border-radius:3px;">config/reports_data/{slug}.html</code>·<code style="background:#F3F4F6;padding:1px 5px;border-radius:3px;">{slug}.pdf</code> 쌍으로 두고 <code style="background:#F3F4F6;padding:1px 5px;border-radius:3px;">config/reports.yml</code>에 메타데이터를 추가하면 자동으로 노출됩니다.
     </p>

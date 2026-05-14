@@ -6,11 +6,14 @@ class Admin::WikisController < ApplicationController
     password: ENV.fetch("ADMIN_WIKI_PASSWORD", "gmldnjs!00")
   )
 
+  helper_method :parse_month_view
+
   REPORTS_DIR = Rails.root.join("config", "reports_data").freeze
 
   def show
     @snapshot = CodeWikiInspector.snapshot
     @reports  = load_reports
+    @roadmap  = load_roadmap
   end
 
   def report_show
@@ -36,6 +39,40 @@ class Admin::WikisController < ApplicationController
   end
 
   private
+
+  def load_roadmap
+    cfg_path = Rails.root.join("config", "roadmap.yml")
+    return nil unless File.exist?(cfg_path)
+    yml = YAML.safe_load_file(cfg_path, permitted_classes: [Date, Time], aliases: true)
+    return nil unless yml.is_a?(Hash)
+
+    range_start = parse_month(yml.dig("range", "start"))
+    range_end   = parse_month(yml.dig("range", "end"))
+    return nil unless range_start && range_end
+
+    months = []
+    cur = range_start
+    while cur <= range_end
+      months << cur
+      cur = cur.next_month
+    end
+
+    {
+      "range_start" => range_start,
+      "range_end"   => range_end,
+      "months"      => months,
+      "tracks"      => yml["tracks"] || []
+    }
+  end
+
+  def parse_month(str)
+    return nil unless str.is_a?(String)
+    Date.parse("#{str}-01")
+  rescue ArgumentError
+    nil
+  end
+  public :parse_month
+  alias_method :parse_month_view, :parse_month
 
   def load_reports
     cfg_path = Rails.root.join("config", "reports.yml")

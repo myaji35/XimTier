@@ -1,0 +1,258 @@
+# XimTier 인가·시장 진출·법인 운영 통합 로드맵
+# admin/wiki 의 간트차트로 시각화됨. 일정 변경 시 이 파일만 수정.
+# date 포맷: YYYY-MM (월 단위) — quarter 자동 계산
+#
+# 각 트랙(track)별 phase 목록:
+#   - id: 고유 식별자
+#     title: 화면 표시명
+#     start / end: 시작·종료 월 (YYYY-MM)
+#     status: planned | in_progress | done | blocked
+#     owner: 책임자/팀
+#     reports: 연결된 보고서 slug 배열 (config/reports.yml 참조)
+#     milestone: 핵심 산출물 한 줄
+
+# 간트 표시 기간 (월 단위 X축)
+range:
+  start: "2026-05"
+  end:   "2027-12"
+
+tracks:
+  - id: legal
+    title: "법인·법무"
+    color: "#8B5CF6"
+    phases:
+      - id: incorporation
+        title: "법인 설립 완료"
+        start: "2026-05"
+        end:   "2026-06"
+        status: in_progress
+        owner: "대표 · 외부 법무"
+        reports: [incorporation_docs]
+        milestone: "Gagahoho, Inc. 등기 + 사업자 등록"
+
+      - id: ip_protection
+        title: "지식재산권 보호 (특허·상표)"
+        start: "2026-06"
+        end:   "2026-12"
+        status: planned
+        owner: "외부 변리사"
+        reports: []
+        milestone: "Reverse What-If 알고리즘 특허 출원 + XimTier 상표 등록"
+
+      - id: contracts
+        title: "표준 계약서 정비 (NDA · SaaS 약관 · 데이터 처리 위탁)"
+        start: "2026-07"
+        end:   "2026-09"
+        status: planned
+        owner: "외부 법무"
+        reports: []
+        milestone: "PoC·고객·파트너 3종 계약 템플릿"
+
+  - id: compliance
+    title: "규제·인증"
+    color: "#10B981"
+    phases:
+      - id: tta_cat_prep
+        title: "TTA CAT 사전 준비 (8종 서류)"
+        start: "2026-05"
+        end:   "2026-09"
+        status: in_progress
+        owner: "CTO · CISO"
+        reports: [tta_cat_submission, regulator_response]
+        milestone: "8종 서류 초안 완성 + 외부 자문 검토"
+
+      - id: tta_cat_apply
+        title: "TTA CAT 정식 신청 + 심사"
+        start: "2026-09"
+        end:   "2027-02"
+        status: planned
+        owner: "CTO"
+        reports: [tta_cat_submission]
+        milestone: "AI 신뢰성 인증서 발급"
+
+      - id: isms_p
+        title: "KISA ISMS-P 인증"
+        start: "2026-08"
+        end:   "2027-04"
+        status: planned
+        owner: "CISO · 법무"
+        reports: [regulator_response]
+        milestone: "ISMS-P 인증서 발급 (금융권 PoC 전제)"
+
+      - id: nia_ethics
+        title: "NIA 윤리 영향 평가"
+        start: "2026-10"
+        end:   "2027-01"
+        status: planned
+        owner: "CTO"
+        reports: [regulator_response]
+        milestone: "NIA 자문위원 권고안 회신 (공공 영업 전)"
+
+      - id: sandbox
+        title: "과기부 ICT 규제 샌드박스 (의료·금융 진입 시)"
+        start: "2026-10"
+        end:   "2027-03"
+        status: planned
+        owner: "대표 · 법무"
+        reports: [regulator_response]
+        milestone: "규제 해석 사전 확보"
+
+      - id: fss_validation
+        title: "금융위/FSS 모형 검증 사전 협의"
+        start: "2027-02"
+        end:   "2027-08"
+        status: planned
+        owner: "대표 · 금융 도메인 책임자"
+        reports: [regulator_response]
+        milestone: "KB·신한 PoC 연계 모형 검증 계획"
+
+      - id: iso_42001
+        title: "ISO/IEC 42001 AI 경영시스템"
+        start: "2027-06"
+        end:   "2027-12"
+        status: planned
+        owner: "CTO · CISO"
+        reports: [regulator_response]
+        milestone: "글로벌 진출 전 국제 표준 인증"
+
+  - id: product
+    title: "제품·기술"
+    color: "#00A1E0"
+    phases:
+      - id: mvp_complete
+        title: "MVP 5개 기능 안정화 + 22+ 차 배포"
+        start: "2026-05"
+        end:   "2026-08"
+        status: in_progress
+        owner: "CTO"
+        reports: []
+        milestone: "프로덕션 안정 + 베타 5명 검증"
+
+      - id: fairness_module
+        title: "공정성 평가 모듈 신설 (fairlearn 통합)"
+        start: "2026-07"
+        end:   "2026-09"
+        status: planned
+        owner: "CTO"
+        reports: [tta_cat_submission]
+        milestone: "그룹별 fairness metrics + 자동 보고서"
+
+      - id: robustness
+        title: "견고성·적대적 입력 테스트 자동화"
+        start: "2026-07"
+        end:   "2026-10"
+        status: planned
+        owner: "CTO · QA"
+        reports: [tta_cat_submission]
+        milestone: "spec/robustness 6 시나리오 + OOD 탐지"
+
+      - id: mcp_server
+        title: "MCP Server 출시 · Marketplace 등록"
+        start: "2026-08"
+        end:   "2027-01"
+        status: planned
+        owner: "CTO"
+        reports: [hw_mcp_report]
+        milestone: "Anthropic MCP + OpenAI Plugin Store 등재"
+
+  - id: gtm
+    title: "시장 진출"
+    color: "#F59E0B"
+    phases:
+      - id: pilot_5
+        title: "한국 규제 산업 파일럿 5사 확보"
+        start: "2026-06"
+        end:   "2026-12"
+        status: in_progress
+        owner: "대표 · 사업개발"
+        reports: [competitor_research, competitor_research_guide]
+        milestone: "제조·금융·의료 도메인 케이스 5건"
+
+      - id: pilot_15
+        title: "케이스 15건 축적 + 산업별 템플릿"
+        start: "2026-10"
+        end:   "2027-06"
+        status: planned
+        owner: "사업개발"
+        reports: [competitor_research]
+        milestone: "분기당 8~10건 신규 케이스 사이클 정착"
+
+      - id: case_50
+        title: "케이스 50건 축적 (해자 굳히기)"
+        start: "2027-01"
+        end:   "2027-12"
+        status: planned
+        owner: "사업개발 · CTO"
+        reports: [followers_analysis]
+        milestone: "후발주자 추격 불가 시점 (시간 의존 해자)"
+
+      - id: sea_pilot
+        title: "동남아 PoC 1국 진입 (베트남·인니·태국 중 1)"
+        start: "2027-04"
+        end:   "2027-12"
+        status: planned
+        owner: "대표 · 더벤처스 채널"
+        reports: [followers_analysis]
+        milestone: "한국 케이스 5건 → 동남아 1국 PoC 복제"
+
+  - id: funding
+    title: "투자·자금"
+    color: "#EF4444"
+    phases:
+      - id: preseed
+        title: "Pre-Seed 라운드 (₩10~15억 목표)"
+        start: "2026-05"
+        end:   "2026-09"
+        status: in_progress
+        owner: "대표 · IR"
+        reports: [ir_preseed, ir_contact_package, palantir_vs_ximtier, tam_81b_evidence, followers_analysis]
+        milestone: "1순위 VC 6곳 컨택 + 텀시트 확보"
+
+      - id: bridge
+        title: "Bridge / Seed 확장"
+        start: "2026-12"
+        end:   "2027-06"
+        status: planned
+        owner: "대표 · IR"
+        reports: [ir_contact_package]
+        milestone: "ARR ₩2억 + MCP 출시 검증 후 추가 라운드"
+
+      - id: series_a
+        title: "Series A 준비"
+        start: "2027-04"
+        end:   "2027-12"
+        status: planned
+        owner: "대표 · IR"
+        reports: [ir_contact_package, followers_analysis]
+        milestone: "ARR ₩8억 + ISO 42001 + 동남아 1국 진출 마일스톤"
+
+  - id: ops
+    title: "조직·운영"
+    color: "#475467"
+    phases:
+      - id: hire_cto_helper
+        title: "엔지니어 1~2명 채용 (공정성/MCP 담당)"
+        start: "2026-09"
+        end:   "2027-01"
+        status: planned
+        owner: "대표 · CTO"
+        reports: []
+        milestone: "TTA CAT 인증 후 조직 확장"
+
+      - id: hire_ciso
+        title: "CISO·보안 책임자 영입"
+        start: "2026-11"
+        end:   "2027-03"
+        status: planned
+        owner: "대표"
+        reports: []
+        milestone: "ISMS-P 본격 신청 전 조직 보강"
+
+      - id: domestic_office
+        title: "강남 사무실 + 인프라"
+        start: "2026-07"
+        end:   "2026-09"
+        status: planned
+        owner: "대표"
+        reports: [incorporation_docs]
+        milestone: "팀 5명 수용 가능 워크스페이스"
