@@ -55,3 +55,5 @@ worktrees/
 .gstack/
 node_modules/
 package-lock.json
+# roadmap.yml 자동 백업 (저장 시 생성, 추적 안 함)
+/config/roadmap.yml.bak.*

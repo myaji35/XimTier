@@ -195,7 +195,19 @@
 </section>
 
 <section id="roadmap" class="sec">
-  <h2><span class="hico"><svg><use href="#ico-controllers"/></svg></span>인가·시장 진출 로드맵 <span class="cnt">— 법인·규제·제품·시장·투자·운영 통합 간트</span></h2>
+  <h2 style="display:flex;justify-content:space-between;align-items:center;">
+    <span style="display:flex;align-items:center;gap:8px;">
+      <span class="hico"><svg><use href="#ico-controllers"/></svg></span>
+      인가·시장 진출 로드맵
+      <span class="cnt">— 법인·규제·제품·시장·투자·운영 통합 간트</span>
+    </span>
+    <% if @roadmap %>
+      <button id="rm-edit-toggle" type="button"
+              style="background:#2563EB;color:#fff;font-size:11px;padding:5px 12px;border-radius:5px;font-weight:600;border:none;cursor:pointer;">
+        ✎ 편집 모드
+      </button>
+    <% end %>
+  </h2>
   <% if @roadmap.nil? %>
     <p class="empty">config/roadmap.yml 이 없거나 비어 있습니다.</p>
   <% else %>
@@ -333,9 +345,267 @@
       </div>
 
       <div class="gantt-foot">
-        일정 변경은 <code style="background:#F3F4F6;padding:1px 5px;border-radius:3px;">config/roadmap.yml</code> 만 수정하면 자동 반영. 각 phase의 <code>reports:</code> 배열에 보고서 slug 추가 시 막대 클릭으로 보고서 직접 열람 가능.
+        일정 변경은 <code style="background:#F3F4F6;padding:1px 5px;border-radius:3px;">config/roadmap.yml</code> 만 수정하면 자동 반영. 각 phase의 <code>reports:</code> 배열에 보고서 slug 추가 시 막대 클릭으로 보고서 직접 열람 가능. 또는 위의 <strong>✎ 편집 모드</strong> 버튼으로 화면에서 직접 편집 가능.
       </div>
     </div>
+
+    <%# ───────────────── 편집기 ───────────────── %>
+    <div id="rm-editor" style="display:none;margin-top:14px;background:#0B132D;color:#e6e8f0;border-radius:8px;padding:16px;">
+      <style>
+        #rm-editor h3{color:#fff;font-size:13px;margin:14px 0 8px;border-bottom:1px solid rgba(255,255,255,0.15);padding-bottom:5px;letter-spacing:.01em;}
+        #rm-editor h3:first-child{margin-top:0;}
+        #rm-editor label{font-size:10px;color:#a7b1c7;text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:3px;}
+        #rm-editor input[type="text"],#rm-editor input[type="month"],#rm-editor select,#rm-editor textarea{
+          width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.12);color:#fff;
+          font-family:inherit;font-size:11px;padding:5px 8px;border-radius:4px;outline:none;
+        }
+        #rm-editor input:focus,#rm-editor select:focus,#rm-editor textarea:focus{border-color:#00C8C8;background:rgba(0,200,200,0.06);}
+        #rm-editor input[type="color"]{width:32px;height:24px;border:1px solid rgba(255,255,255,0.12);border-radius:4px;background:transparent;cursor:pointer;}
+        #rm-editor .rm-row{display:grid;gap:8px;align-items:end;}
+        #rm-editor .rm-range{grid-template-columns:1fr 1fr;}
+        #rm-editor .track-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:12px;margin-bottom:12px;}
+        #rm-editor .track-head{display:grid;grid-template-columns:auto 1fr 1fr 90px;gap:8px;align-items:end;margin-bottom:10px;}
+        #rm-editor .phase-row{display:grid;grid-template-columns:1.5fr 0.9fr 0.9fr 1fr 1fr 1fr 1.6fr 28px;gap:6px;align-items:start;
+                              padding:6px 0;border-top:1px dashed rgba(255,255,255,0.08);}
+        #rm-editor .phase-row:first-of-type{border-top:none;}
+        #rm-editor .phase-row .small-label{font-size:9px;color:#697386;}
+        #rm-editor .btn{background:#2563EB;color:#fff;font-size:11px;padding:5px 10px;border-radius:4px;font-weight:600;
+                        border:none;cursor:pointer;}
+        #rm-editor .btn.subtle{background:rgba(255,255,255,0.06);color:#a7b1c7;}
+        #rm-editor .btn.danger{background:#EF4444;}
+        #rm-editor .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.15);}
+        #rm-editor .btn:hover{filter:brightness(1.1);}
+        #rm-editor .btn-icon{background:rgba(239,68,68,0.15);color:#FCA5A5;font-size:13px;width:28px;height:28px;
+                             border-radius:4px;border:none;cursor:pointer;line-height:1;}
+        #rm-editor .btn-icon:hover{background:rgba(239,68,68,0.35);}
+        #rm-editor .actions-bar{display:flex;gap:8px;flex-wrap:wrap;padding:12px 0;border-top:1px solid rgba(255,255,255,0.15);
+                                margin-top:14px;align-items:center;}
+        #rm-editor .actions-bar .status{flex:1;font-size:11px;color:#a7b1c7;}
+        #rm-editor .actions-bar .status.success{color:#10B981;}
+        #rm-editor .actions-bar .status.error{color:#EF4444;}
+        #rm-editor select option{background:#0B132D;color:#fff;}
+      </style>
+
+      <h3>🛠 로드맵 편집기 — config/roadmap.yml 직접 수정</h3>
+
+      <div class="rm-row rm-range" style="margin-bottom:10px;">
+        <div>
+          <label>표시 시작 (range.start)</label>
+          <input type="month" id="rm-range-start" value="<%= @roadmap['range_start'].strftime('%Y-%m') %>">
+        </div>
+        <div>
+          <label>표시 끝 (range.end)</label>
+          <input type="month" id="rm-range-end" value="<%= @roadmap['range_end'].strftime('%Y-%m') %>">
+        </div>
+      </div>
+
+      <h3>트랙 (가로 줄)</h3>
+      <div id="rm-tracks"></div>
+
+      <button type="button" id="rm-add-track" class="btn ghost" style="margin-top:6px;">+ 새 트랙 추가</button>
+
+      <div class="actions-bar">
+        <button type="button" id="rm-save" class="btn">💾 저장</button>
+        <button type="button" id="rm-reset" class="btn subtle">↺ 변경 취소</button>
+        <span class="status" id="rm-status">변경 후 저장하면 config/roadmap.yml에 즉시 기록 (백업 자동 생성)</span>
+      </div>
+
+      <details style="margin-top:14px;font-size:10.5px;color:#697386;">
+        <summary style="cursor:pointer;color:#a7b1c7;">📋 사용 가능한 보고서 slug (reports 필드)</summary>
+        <pre style="background:rgba(255,255,255,0.03);padding:10px;border-radius:4px;margin-top:6px;overflow-x:auto;font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#cbd5e1;"><% (@reports || []).each do |r| %><%= r['slug'].ljust(28) %> <%= r['title'] %>
+<% end %></pre>
+      </details>
+    </div>
+
+    <script>
+    (function(){
+      // 초기 데이터 — 서버에서 직렬화
+      var INITIAL_ROADMAP = <%= raw({
+        range: { start: @roadmap['range_start'].strftime('%Y-%m'), end: @roadmap['range_end'].strftime('%Y-%m') },
+        tracks: @roadmap['tracks']
+      }.to_json) %>;
+
+      var state = JSON.parse(JSON.stringify(INITIAL_ROADMAP));
+      var statusEl = document.getElementById('rm-status');
+      var editorEl = document.getElementById('rm-editor');
+      var toggleBtn = document.getElementById('rm-edit-toggle');
+
+      // 토글
+      toggleBtn.addEventListener('click', function(){
+        var visible = editorEl.style.display !== 'none';
+        editorEl.style.display = visible ? 'none' : 'block';
+        toggleBtn.textContent = visible ? '✎ 편집 모드' : '× 편집 닫기';
+        if (!visible) {
+          render();
+          editorEl.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      });
+
+      function setStatus(msg, cls){
+        statusEl.textContent = msg;
+        statusEl.className = 'status ' + (cls || '');
+      }
+
+      function escapeHtml(s){ return String(s||'').replace(/[&<>"']/g, function(c){
+        return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+      });}
+
+      function render(){
+        var container = document.getElementById('rm-tracks');
+        container.innerHTML = '';
+        state.tracks.forEach(function(t, ti){
+          var card = document.createElement('div');
+          card.className = 'track-card';
+          card.innerHTML = '' +
+            '<div class="track-head">' +
+              '<div><label>색상</label><input type="color" data-track-color="'+ti+'" value="'+escapeHtml(t.color||'#2563EB')+'"></div>' +
+              '<div><label>트랙 ID (영문)</label><input type="text" data-track-id="'+ti+'" value="'+escapeHtml(t.id||'')+'"></div>' +
+              '<div><label>제목</label><input type="text" data-track-title="'+ti+'" value="'+escapeHtml(t.title||'')+'"></div>' +
+              '<button type="button" class="btn danger" data-del-track="'+ti+'">트랙 삭제</button>' +
+            '</div>' +
+            '<div data-phases-for="'+ti+'"></div>' +
+            '<button type="button" class="btn ghost" data-add-phase="'+ti+'" style="margin-top:6px;">+ phase 추가</button>';
+          container.appendChild(card);
+
+          var phasesEl = card.querySelector('[data-phases-for]');
+          (t.phases || []).forEach(function(p, pi){
+            var row = document.createElement('div');
+            row.className = 'phase-row';
+            row.innerHTML = '' +
+              '<div><label class="small-label">제목</label><input type="text" data-p="title" data-ti="'+ti+'" data-pi="'+pi+'" value="'+escapeHtml(p.title||'')+'"></div>' +
+              '<div><label class="small-label">시작</label><input type="month" data-p="start" data-ti="'+ti+'" data-pi="'+pi+'" value="'+escapeHtml(p.start||'')+'"></div>' +
+              '<div><label class="small-label">종료</label><input type="month" data-p="end" data-ti="'+ti+'" data-pi="'+pi+'" value="'+escapeHtml(p.end||'')+'"></div>' +
+              '<div><label class="small-label">상태</label>' +
+                '<select data-p="status" data-ti="'+ti+'" data-pi="'+pi+'">' +
+                  ['planned','in_progress','done','blocked'].map(function(s){
+                    return '<option value="'+s+'"'+(p.status===s?' selected':'')+'>'+s+'</option>';
+                  }).join('') +
+                '</select>' +
+              '</div>' +
+              '<div><label class="small-label">담당</label><input type="text" data-p="owner" data-ti="'+ti+'" data-pi="'+pi+'" value="'+escapeHtml(p.owner||'')+'"></div>' +
+              '<div><label class="small-label">phase ID</label><input type="text" data-p="id" data-ti="'+ti+'" data-pi="'+pi+'" value="'+escapeHtml(p.id||'')+'"></div>' +
+              '<div><label class="small-label">보고서 slug (콤마 구분)</label><input type="text" data-p="reports" data-ti="'+ti+'" data-pi="'+pi+'" value="'+escapeHtml((p.reports||[]).join(', '))+'" placeholder="예: ir_preseed, tam_81b_evidence"></div>' +
+              '<button type="button" class="btn-icon" data-del-phase="'+ti+':'+pi+'" title="phase 삭제">×</button>';
+            phasesEl.appendChild(row);
+
+            // milestone(별도 줄)
+            var ms = document.createElement('div');
+            ms.style.gridColumn = '1 / -1';
+            ms.style.marginTop = '-2px';
+            ms.innerHTML = '<label class="small-label">마일스톤(달성 기준)</label><input type="text" data-p="milestone" data-ti="'+ti+'" data-pi="'+pi+'" value="'+escapeHtml(p.milestone||'')+'">';
+            phasesEl.appendChild(ms);
+          });
+        });
+
+        bindInputs();
+      }
+
+      function bindInputs(){
+        // 트랙 필드
+        editorEl.querySelectorAll('[data-track-id]').forEach(function(el){
+          el.oninput = function(){ state.tracks[+el.dataset.trackId].id = el.value.trim(); };
+        });
+        editorEl.querySelectorAll('[data-track-title]').forEach(function(el){
+          el.oninput = function(){ state.tracks[+el.dataset.trackTitle].title = el.value; };
+        });
+        editorEl.querySelectorAll('[data-track-color]').forEach(function(el){
+          el.oninput = function(){ state.tracks[+el.dataset.trackColor].color = el.value; };
+        });
+
+        // phase 필드
+        editorEl.querySelectorAll('[data-ti][data-pi]').forEach(function(el){
+          el.oninput = el.onchange = function(){
+            var ti = +el.dataset.ti, pi = +el.dataset.pi, key = el.dataset.p;
+            var v = el.value;
+            if (key === 'reports') {
+              v = v.split(',').map(function(s){return s.trim();}).filter(Boolean);
+            }
+            state.tracks[ti].phases[pi][key] = v;
+          };
+        });
+
+        // 트랙 삭제
+        editorEl.querySelectorAll('[data-del-track]').forEach(function(b){
+          b.onclick = function(){
+            var ti = +b.dataset.delTrack;
+            if (!confirm('트랙 "'+state.tracks[ti].title+'" 삭제? 안의 phase도 모두 삭제됩니다.')) return;
+            state.tracks.splice(ti,1); render();
+          };
+        });
+        // phase 추가
+        editorEl.querySelectorAll('[data-add-phase]').forEach(function(b){
+          b.onclick = function(){
+            var ti = +b.dataset.addPhase;
+            var rs = document.getElementById('rm-range-start').value;
+            state.tracks[ti].phases = state.tracks[ti].phases || [];
+            state.tracks[ti].phases.push({
+              id: 'new_'+Date.now().toString(36).slice(-4),
+              title: '새 단계', start: rs, end: rs,
+              status: 'planned', owner: '', reports: [], milestone: ''
+            });
+            render();
+          };
+        });
+        // phase 삭제
+        editorEl.querySelectorAll('[data-del-phase]').forEach(function(b){
+          b.onclick = function(){
+            var parts = b.dataset.delPhase.split(':');
+            var ti = +parts[0], pi = +parts[1];
+            state.tracks[ti].phases.splice(pi,1); render();
+          };
+        });
+      }
+
+      // 새 트랙
+      document.getElementById('rm-add-track').addEventListener('click', function(){
+        state.tracks.push({
+          id: 'new_track_'+Date.now().toString(36).slice(-4),
+          title: '새 트랙', color: '#2563EB', phases: []
+        });
+        render();
+      });
+
+      // 변경 취소
+      document.getElementById('rm-reset').addEventListener('click', function(){
+        if (!confirm('편집 중인 모든 변경을 취소하고 마지막 저장 상태로 돌립니다.')) return;
+        state = JSON.parse(JSON.stringify(INITIAL_ROADMAP));
+        render();
+        setStatus('변경 취소됨.');
+      });
+
+      // 저장
+      document.getElementById('rm-save').addEventListener('click', function(){
+        var payload = {
+          range: {
+            start: document.getElementById('rm-range-start').value,
+            end:   document.getElementById('rm-range-end').value
+          },
+          tracks: state.tracks
+        };
+        setStatus('저장 중...');
+        fetch('<%= admin_wiki_update_roadmap_path %>', {
+          method: 'POST',
+          headers: {'Content-Type':'application/json','Accept':'application/json'},
+          body: JSON.stringify(payload),
+          credentials: 'include'
+        }).then(function(r){ return r.json().then(function(j){ return {ok:r.ok, body:j}; }); })
+          .then(function(res){
+            if (res.ok && res.body.ok) {
+              setStatus('✓ 저장 완료 ('+res.body.saved_at+') — 새로고침하면 간트가 갱신됩니다.', 'success');
+              setTimeout(function(){ location.reload(); }, 800);
+            } else {
+              var msg = (res.body.errors || [res.body.error || '저장 실패']).join(' / ');
+              setStatus('✗ ' + msg, 'error');
+            }
+          })
+          .catch(function(e){ setStatus('✗ 네트워크 오류: '+e.message, 'error'); });
+      });
+
+      // 초기 렌더
+      render();
+    })();
+    </script>
+    <%# ───────────────── /편집기 ───────────────── %>
   <% end %>
 </section>
 
