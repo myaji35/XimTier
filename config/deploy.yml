@@ -17,9 +17,12 @@ ssh:
 # kamal-proxy를 0012와 공유 (host-based routing) — proxy.host로 분기됨
 # Dockerfile은 Thruster를 통해 :80에서 외부 노출 — app_port: 80
 # 외부 nginx가 80/443을 받아 내부 kamal-proxy(:3030)로 라우팅하는 공유 환경.
-# ximtier.com 정식 도메인은 외부 nginx vhost 설정이 별도 필요 — 그때까지 nip.io 유지.
+# kamal-proxy는 hosts 배열로 받는 호스트 다중 등록. SSL은 외부 nginx + certbot에서 처리.
 proxy:
-  host: ximtier.158.247.235.31.nip.io
+  hosts:
+    - ximtier.com
+    - www.ximtier.com
+    - ximtier.158.247.235.31.nip.io
   app_port: 80
   healthcheck:
     path: /up
