@@ -6,7 +6,7 @@ class Admin::WikisController < ApplicationController
     password: ENV.fetch("ADMIN_WIKI_PASSWORD", "gmldnjs!00")
   )
 
-  REPORTS_DIR = Rails.root.join("storage", "reports").freeze
+  REPORTS_DIR = Rails.root.join("config", "reports_data").freeze
 
   def show
     @snapshot = CodeWikiInspector.snapshot
