@@ -24,6 +24,11 @@
 # Ignore storage (uploaded files in development and any SQLite databases).
 /storage/*
 !/storage/.keep
+# 내부 보고서 라이브러리는 배포에 포함 (admin/wiki에서 노출)
+!/storage/reports/
+/storage/reports/*
+!/storage/reports/*.html
+!/storage/reports/*.pdf
 /tmp/storage/*
 !/tmp/storage/
 !/tmp/storage/.keep
@@ -47,3 +52,4 @@
 worktrees/
 .harness-worktree-meta
 .claude/worktrees.json
+.gstack/

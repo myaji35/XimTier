@@ -46,3 +46,57 @@ reports:
     pages: 6
     created_at: "2026-05-14"
     summary: "TTA CAT 8종 서류(신청서·Model Card·Data Card·XAI·공정성·견고성·보안·운영매뉴얼)의 표준 양식 + XimTier 초안 + 8~12주 작성 로드맵 + 현장 평가 시연 시나리오."
+
+  - slug: incorporation_docs
+    title: "XimTier 법인 설립 서류"
+    subtitle: "Gagahoho, Inc. 법인 설립 관련 종합 문서"
+    category: "법무"
+    audience: "대표 · 법무 · 회계"
+    pages: null
+    created_at: "2026-05-14"
+    summary: "Gagahoho, Inc. 법인 설립과 관련된 신청·등록 종합 문서. 법무·회계 협업용 내부 자료."
+
+  - slug: competitor_research
+    title: "XimTier 경쟁사 리서치 보고서"
+    subtitle: "Post-LLM Decision Intelligence 경쟁 환경 분석"
+    category: "시장 조사"
+    audience: "IR · 사업개발 · 임원"
+    pages: null
+    created_at: "2026-05-13"
+    summary: "Decision Intelligence·XAI·온프레미스 AI 시장의 글로벌·국내 경쟁사 매핑. 빅테크 LLM·전통 BI·정통 DI(Palantir·Databricks)·국내 LLM(업스테이지·뤼튼·노타) 카테고리별 위협도와 우리 차별점."
+
+  - slug: competitor_research_guide
+    title: "경쟁사 리서치 가이드"
+    subtitle: "리서치 방법론·소스·업데이트 절차"
+    category: "시장 조사"
+    audience: "사업개발 · 기획"
+    pages: null
+    created_at: "2026-05-13"
+    summary: "경쟁사 리서치를 분기마다 업데이트할 때 따라야 할 방법론·체크리스트·1차 소스 목록. 새 경쟁사 등장 시 모니터링 기준."
+
+  - slug: hw_mcp_report
+    title: "XimTier MCP 통합 전략 보고서"
+    subtitle: "Anthropic MCP · OpenAI Plugin Store 진입"
+    category: "기술 전략"
+    audience: "CTO · IR · 임원"
+    pages: null
+    created_at: "2026-05-13"
+    summary: "Model Context Protocol(MCP)을 통해 XimTier가 LLM 생태계의 표준 의사결정 계산 엔진이 되는 경로. Wolfram Alpha for Business Decision 포지션 선점 전략."
+
+  - slug: ir_preseed
+    title: "XimTier Pre-Seed IR 자료"
+    subtitle: "Pre-Seed 라운드 IR Deck 초기 버전"
+    category: "IR"
+    audience: "투자자 · IR"
+    pages: null
+    created_at: "2026-05-13"
+    summary: "Pre-Seed 라운드 IR Deck 초기 버전. 비전·문제·해법·시장·BM·팀·재무 7개 슬라이드 구성. 현재는 Pitch Deck v2가 메인이며 이 자료는 참고용."
+
+  - slug: tam_81b_evidence
+    title: "TAM $81B 산정 근거 보고서"
+    subtitle: "Decision Intelligence 글로벌 시장 추정"
+    category: "시장 조사"
+    audience: "IR · 임원"
+    pages: null
+    created_at: "2026-05-13"
+    summary: "TAM $81B(2030 글로벌 Decision Intelligence) 수치의 출처 트리. Gartner · IDC · Markets & Markets 3대 리서치 기관 데이터 교차 검증."

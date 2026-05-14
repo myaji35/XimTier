@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>XimTier IR 컨택 패키지 — VC 심층 리서치 + 콜드 메일 + Why this VC</title>
+<style>
+  @page { size: A4; margin: 12mm 14mm; }
+  *, *::before, *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: "Apple SD Gothic Neo", -apple-system, sans-serif; color:#1a1a1a; line-height: 1.45; }
+
+  h1 { font-size: 22px; margin: 0 0 6px; color:#16325C; letter-spacing:-0.01em; }
+  h2 { font-size: 16px; margin: 18px 0 8px; color:#16325C; border-bottom: 2px solid #00A1E0; padding-bottom: 4px; }
+  h3 { font-size: 13px; margin: 10px 0 5px; color:#16325C; }
+  h4 { font-size: 12px; margin: 8px 0 4px; color:#16325C; }
+  p, li { font-size: 11px; margin: 4px 0; }
+  small { font-size: 9.5px; color:#5a6478; }
+  strong { color:#16325C; }
+  code { background:#F3F2F2; padding:1px 4px; border-radius:3px; font-size:10px; font-family: "JetBrains Mono", monospace; color:#16325C; }
+
+  table { width:100%; border-collapse: collapse; margin: 6px 0; font-size:10.5px; }
+  th, td { padding: 5px 7px; border-bottom: 1px solid #E5E7EB; vertical-align: top; text-align:left; }
+  th { background:#F3F2F2; color:#16325C; font-weight:600; font-size:10.5px; border-bottom:2px solid #00A1E0; }
+  table.compact td, table.compact th { padding:4px 6px; font-size:10px; }
+
+  ul { padding-left: 16px; margin: 4px 0; }
+  ul.tight li { margin-bottom: 2px; font-size:11px; }
+  ol { padding-left: 18px; margin: 4px 0; }
+  ol li { margin: 2px 0; }
+
+  .callout { padding: 7px 12px; margin: 8px 0; font-size: 11px; border-radius: 4px; }
+  .callout-info    { border-left: 4px solid #00A1E0; background:#EEF7FC; }
+  .callout-success { border-left: 4px solid #10B981; background:#ECFDF5; }
+  .callout-warn    { border-left: 4px solid #F59E0B; background:#FFFBEB; }
+  .callout-danger  { border-left: 4px solid #EF4444; background:#FEF2F2; }
+
+  .b { display:inline-block; padding:1px 6px; border-radius:8px; font-size:9px; font-weight:600; }
+  .b-blue   { background:#DBEAFE; color:#1E40AF; }
+  .b-green  { background:#D1FAE5; color:#065F46; }
+  .b-yellow { background:#FEF3C7; color:#92400E; }
+  .b-red    { background:#FEE2E2; color:#991B1B; }
+  .b-gray   { background:#E5E7EB; color:#374151; }
+  .b-purple { background:#EDE9FE; color:#5B21B6; }
+
+  .col2 { display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin:6px 0; }
+  .col2 > div { background:#FAFAFA; border:1px solid #E5E7EB; border-radius:4px; padding:8px 10px; }
+  .col2 h4 { margin:0 0 4px; font-size:12px; color:#16325C; }
+  .col2 ul { margin:2px 0; }
+
+  .kpi-grid { display:grid; grid-template-columns: repeat(4,1fr); gap:6px; margin:8px 0; }
+  .kpi-card { background:#F3F2F2; border-left:3px solid #00A1E0; padding:8px; border-radius:3px; }
+  .kpi-label { font-size:9px; color:#5a6478; letter-spacing:0.08em; text-transform:uppercase; }
+  .kpi-value { font-size:18px; font-weight:700; color:#16325C; line-height:1.1; margin-top:2px; }
+  .kpi-sub   { font-size:9.5px; color:#5a6478; margin-top:2px; }
+
+  .cover {
+    page-break-after: always;
+    page-break-inside: avoid;
+    background-color: #16325C !important;
+    color: #ffffff !important;
+    text-align: center;
+    margin: -12mm -14mm 0 -14mm;
+    padding: 90mm 40px 90mm 40px;
+    box-sizing: border-box;
+    min-height: 250mm;
+  }
+  .cover * { color: #ffffff !important; }
+  .cover .eyebrow { font-size: 11px; letter-spacing:0.25em; opacity:0.85; }
+  .cover .title { font-size: 28px; font-weight:800; margin:14px 0 6px; letter-spacing:-0.02em; line-height:1.15; }
+  .cover .subtitle { font-size: 13px; opacity:0.9; max-width: 540px; margin: 0 auto; line-height:1.5; }
+  .cover .meta { margin-top: 28px; font-size: 11px; opacity:0.85; }
+
+  .pagebreak { page-break-before: always; }
+
+  .toc { background:#F3F2F2; border-radius:4px; padding:10px 14px; margin: 8px 0 12px; }
+  .toc h3 { margin:0 0 6px; }
+  .toc ol { columns: 2; column-gap: 24px; margin:0; padding-left:18px; }
+  .toc li { font-size:10.5px; margin:2px 0; }
+
+  .quote { border-left:3px solid #00A1E0; padding:6px 12px; background:#F8FBFD; font-style: italic; color:#16325C; font-size:11px; margin:6px 0; }
+
+  /* VC card style */
+  .vc-card { border:1px solid #E5E7EB; border-radius:6px; padding:10px 12px; margin:10px 0; background:#FAFBFC; }
+  .vc-card .vc-header { display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid #E5E7EB; padding-bottom:4px; margin-bottom:6px; }
+  .vc-card .vc-name { font-size:14px; font-weight:700; color:#16325C; }
+  .vc-card .vc-type { font-size:10px; color:#5a6478; }
+
+  /* Cold email */
+  .email-block { border:1px solid #E5E7EB; border-radius:4px; padding:8px 12px; margin:8px 0; background:#FFFFFF; }
+  .email-subj { font-weight:600; color:#16325C; font-size:11px; margin-bottom:4px; padding-bottom:3px; border-bottom:1px dashed #E5E7EB; }
+  .email-body { font-size:10.5px; line-height:1.5; white-space: pre-wrap; font-family: "Apple SD Gothic Neo", sans-serif; }
+
+  /* Slide mockup */
+  .slide-mockup { background-color: #0B132D !important; color: #ffffff !important; border-radius:6px; padding:14px 16px; margin:8px 0; }
+  .slide-mockup * { color: #ffffff !important; }
+  .slide-mockup .slide-eyebrow { font-size:9px; opacity:0.65; letter-spacing:0.18em; text-transform:uppercase; font-family:"JetBrains Mono", monospace; color:#00C8C8; }
+  .slide-mockup .slide-head { font-size:16px; font-weight:800; margin:5px 0 8px; line-height:1.2; }
+  .slide-mockup .slide-body { font-size:10.5px; opacity:0.95; }
+  .slide-mockup .slide-body ul { padding-left:18px; }
+  .slide-mockup .slide-body li { margin:3px 0; }
+  .slide-mockup .slide-close { font-style:italic; font-size:10.5px; opacity:0.85; margin-top:8px; border-left:2px solid #00C8C8; padding-left:8px; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="eyebrow">IR CONTACT PACKAGE · CONFIDENTIAL</div>
+  <div class="title">XimTier 1순위 VC 컨택 패키지<br>심층 리서치 · 콜드 메일 · Why this VC</div>
+  <div class="subtitle">한국 Pre-Seed 라운드 시작용 통합 IR 자료 — 1순위 6곳(Kakao Ventures · Naver D2SF · 블루포인트 · 프라이머 · 더벤처스 · KB인베스트먼트)에 대한 심층 분석, 콜드 메일 템플릿, IR Deck 부록 슬라이드</div>
+  <div class="meta">2026-05-14 · Gagahoho, Inc. · 내부 + IR 제출용</div>
+</div>
+<div style="page-break-before: always;"></div>
+
+<h1>Executive Summary</h1>
+<p>본 문서는 2026-05-14 기준 XimTier의 Pre-Seed 라운드 시작용 IR 컨택 패키지다. 1순위 VC 6곳에 대한 (a) 심층 리서치, (b) 콜드 메일 6종, (c) IR Deck 부록 슬라이드를 한 문서로 통합했다.</p>
+
+<div class="kpi-grid">
+  <div class="kpi-card"><div class="kpi-label">1순위 VC</div><div class="kpi-value">6곳</div><div class="kpi-sub">25곳 중 적합도 상 + 빠른 결정 우선</div></div>
+  <div class="kpi-card"><div class="kpi-label">평균 응답 사이클</div><div class="kpi-value">4-8주</div><div class="kpi-sub">콜드 메일 W1 발송 → 회수 ~W4</div></div>
+  <div class="kpi-card"><div class="kpi-label">티켓 사이즈 범위</div><div class="kpi-value">₩1-30억</div><div class="kpi-sub">Pre-Seed ~ Pre-A 라운드</div></div>
+  <div class="kpi-card"><div class="kpi-label">필수 산출물</div><div class="kpi-value">5종</div><div class="kpi-sub">IR Deck · 비교 보고서 · 데모 · 검증 케이스 · WTVC 슬라이드</div></div>
+</div>
+
+<div class="callout callout-info">
+  <strong>핵심 전략</strong> — 빠른 결정 트랙(카카오/블루포인트/더벤처스)을 W1~W4 메인으로, 임팩트 큰 중장기 트랙(D2SF/KB)을 백업으로, 프라이머는 데모데이 사이클 별도 운영. 모든 미팅에 <strong>해당 VC 전용 "Why this VC" 1슬라이드</strong>를 부록 마지막에 삽입한다.
+</div>
+
+<div class="toc">
+  <h3>목차</h3>
+  <ol>
+    <li>1순위 VC 6곳 매핑 한눈에</li>
+    <li>심층 리서치 — Kakao Ventures</li>
+    <li>심층 리서치 — Naver D2SF</li>
+    <li>심층 리서치 — 블루포인트파트너스</li>
+    <li>심층 리서치 — 프라이머(Primer)</li>
+    <li>심층 리서치 — 더벤처스(The Ventures)</li>
+    <li>심층 리서치 — KB인베스트먼트</li>
+    <li>콜드 메일 템플릿 6종</li>
+    <li>IR Deck 부록 — Why this VC 슬라이드 6장</li>
+    <li>실행 로드맵 W1~W4</li>
+  </ol>
+</div>
+
+<!-- ========== A. 매핑 + 심층 리서치 ========== -->
+<h2>1. 1순위 VC 6곳 매핑 한눈에</h2>
+<table class="compact">
+  <thead><tr><th>#</th><th>VC</th><th>단계</th><th>적합 사유 핵심</th><th>컨택 1순위 채널</th><th>사이클</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td><strong>Kakao Ventures</strong></td><td>Pre-Seed</td><td>MCP/에이전트 비전 + 빠른 결정</td><td>홈페이지 Apply</td><td>2~6주</td></tr>
+    <tr><td>2</td><td><strong>Naver D2SF</strong></td><td>Seed</td><td>HyperCLOVA × Decision Intelligence</td><td>D2SF Open Innovation</td><td>4~8주</td></tr>
+    <tr><td>3</td><td><strong>블루포인트파트너스</strong></td><td>Pre-Seed/Seed</td><td>딥테크/SHAP 수학 명백 정합</td><td>홈페이지 + KAIST 네트워크</td><td>4~8주</td></tr>
+    <tr><td>4</td><td><strong>프라이머</strong></td><td>Pre-Seed</td><td>B2B SaaS 시드 절대 강자</td><td>프라이머 데모데이</td><td>6~10주</td></tr>
+    <tr><td>5</td><td><strong>더벤처스</strong></td><td>Pre-Seed/Seed</td><td>PRD 명시 동남아 채널</td><td>홈페이지 Application</td><td>4~8주</td></tr>
+    <tr><td>6</td><td><strong>KB인베스트먼트</strong></td><td>Pre-A</td><td>금융 RegTech·XAI 직접 노출</td><td>KB Starters</td><td>6~12주</td></tr>
+  </tbody>
+</table>
+
+<h2>2. Kakao Ventures — 심층 리서치</h2>
+<div class="vc-card">
+  <div class="vc-header"><span class="vc-name">Kakao Ventures</span><span class="vc-type">카카오 그룹 CVC · 시드 특화</span></div>
+  <table class="compact">
+    <tr><td style="width:25%"><strong>주력 단계</strong></td><td>Pre-Seed, Seed (티켓 1~10억)</td></tr>
+    <tr><td><strong>결정 속도</strong></td><td>한국 시드 시장에서 <strong>빠른 결정으로 유명</strong> — 2~6주 내 term sheet 가능</td></tr>
+    <tr><td><strong>운영 철학</strong></td><td>창업자 친화, 작은 라운드도 적극, follow-on 잘 들어옴</td></tr>
+    <tr><td><strong>본사</strong></td><td>제주 카카오 본사 + 서울 사무소</td></tr>
+    <tr><td><strong>홈페이지</strong></td><td>https://www.kakao.vc</td></tr>
+    <tr><td><strong>알려진 포트폴리오</strong></td><td>뤼튼테크놀로지스, 노타(Nota), 업스테이지, 트웰브랩스 — B2B AI/LLM/딥테크</td></tr>
+  </table>
+  <h4>XimTier 어필 포인트</h4>
+  <ul class="tight">
+    <li>"<strong>Post-LLM</strong>" — LLM 1차 도입 후 한계를 푸는 다음 카테고리</li>
+    <li>"<strong>MCP Server / Wolfram Alpha for Business Decision</strong>" — Anthropic 생태계 진입 비전</li>
+    <li>"<strong>데이터 주권 + 온프레미스</strong>" — LLM이 못 들어가는 시장 (포트폴리오와 시너지)</li>
+    <li>"<strong>비전문가 5분</strong>" — 카카오의 대중성 코드와 정합</li>
+  </ul>
+  <h4>주의/리스크</h4>
+  <ul class="tight">
+    <li>뤼튼·업스테이지가 LLM 본진 — "LLM <em>대체</em>"가 아닌 "LLM <em>보완</em>" 메시지 명확히</li>
+    <li>티켓 사이즈는 Pre-Seed 적합. Series A 이상은 후속만 기대</li>
+  </ul>
+  <div class="quote">"Kakao Ventures 포트폴리오의 뤼튼·업스테이지·노타가 LLM 인프라라면, XimTier는 그 LLM이 호출할 <strong>계산 엔진</strong>입니다."</div>
+</div>
+
+<h2>3. Naver D2SF — 심층 리서치</h2>
+<div class="vc-card">
+  <div class="vc-header"><span class="vc-name">Naver D2SF (D2 Startup Factory)</span><span class="vc-type">네이버 본사 직속 CVC + 액셀러레이팅</span></div>
+  <table class="compact">
+    <tr><td style="width:25%"><strong>주력 단계</strong></td><td>Seed, Series A (티켓 5~30억)</td></tr>
+    <tr><td><strong>결정 속도</strong></td><td>4~8주, 네이버 사내 기술 평가 거치므로 <strong>기술 깊이</strong>에 점수 큼</td></tr>
+    <tr><td><strong>운영 철학</strong></td><td>네이버 클라우드·HyperCLOVA·CLOVA Studio 등 사내 자원과 시너지 강조</td></tr>
+    <tr><td><strong>본사</strong></td><td>경기 성남시 분당구 정자일로 95 네이버 1784</td></tr>
+    <tr><td><strong>홈페이지</strong></td><td>https://d2startup.com</td></tr>
+    <tr><td><strong>알려진 포트폴리오</strong></td><td>업스테이지, 솔라봇, Lablup — 한국어 AI/LLM 인프라/MLOps</td></tr>
+  </table>
+  <h4>XimTier 어필 포인트</h4>
+  <ul class="tight">
+    <li><strong>HyperCLOVA + Decision Intelligence 결합</strong> — "네이버 LLM이 의사결정 계산이 필요할 때 호출할 표준 엔진"</li>
+    <li><strong>네이버 클라우드 마켓플레이스</strong> 등록 가능성 — 한국 정부·공공 조달 정합</li>
+    <li><strong>데이터 주권</strong> — 네이버 자체가 데이터 주권을 BM의 일부로 보유</li>
+  </ul>
+  <h4>주의/리스크</h4>
+  <ul class="tight">
+    <li>사내 기술 평가 — 데모/벤치마크 결과 사전 준비 필수 (R² 0.887 · Reverse What-If 검증)</li>
+    <li>"온프레미스 100%"인데 NCP 의존 어떻게 푸느냐 질문 → "온프레미스 기본 + NCP 옵션"으로 정리</li>
+  </ul>
+  <div class="quote">"HyperCLOVA가 한국어 인터페이스라면, XimTier는 한국어로 묻고 <strong>수학으로 답하는</strong> 의사결정 엔진입니다."</div>
+</div>
+
+<h2>4. 블루포인트파트너스 — 심층 리서치</h2>
+<div class="vc-card">
+  <div class="vc-header"><span class="vc-name">BluePoint Partners</span><span class="vc-type">AC + 시드 VC · KAIST 창업원 기반</span></div>
+  <table class="compact">
+    <tr><td style="width:25%"><strong>주력 단계</strong></td><td>Pre-Seed, Seed (티켓 2~10억)</td></tr>
+    <tr><td><strong>결정 속도</strong></td><td>4~8주, <strong>딥테크/공학 기반 팀에 최우호</strong></td></tr>
+    <tr><td><strong>운영 철학</strong></td><td>"Deep Tech Korea" — 수학·물리·재료·바이오 등 진짜 기술 백본</td></tr>
+    <tr><td><strong>본사</strong></td><td>대전 유성구 KAIST 창업원</td></tr>
+    <tr><td><strong>홈페이지</strong></td><td>https://www.bluepoint.ac</td></tr>
+    <tr><td><strong>알려진 포트폴리오</strong></td><td>모트렉스, 트웰브랩스 등 — 하드웨어·소프트웨어 양쪽 딥테크 균형</td></tr>
+  </table>
+  <h4>XimTier 어필 포인트</h4>
+  <ul class="tight">
+    <li><strong>SHAP·회귀·역최적화 = 수학 기반 XAI</strong> — 블루포인트가 정확히 좋아하는 톤</li>
+    <li>"Transformer는 다음 토큰 예측기이지 최적화 풀이기가 아니다" — 학술적 정확성 가산점</li>
+    <li>KAIST/SNU 라벨링 시 매칭 가속</li>
+  </ul>
+  <h4>주의/리스크</h4>
+  <ul class="tight">
+    <li>BM 깊이 질문 강하게 들어옴 → 4단계 BM(Light SaaS / Industry / Vibe Custom / MCP) 명확히</li>
+    <li>POC → 매출 전환율 증거 필요</li>
+  </ul>
+  <div class="quote">"LLM은 확률적 토큰 예측, XimTier는 결정론적 최적화. 같은 입력 → 같은 출력. EU AI Act 9조가 요구하는 수학적 근거를 SHAP·역최적화로 제공합니다."</div>
+</div>
+
+<h2>5. 프라이머(Primer) — 심층 리서치</h2>
+<div class="vc-card">
+  <div class="vc-header"><span class="vc-name">Primer</span><span class="vc-type">AC + 시드 VC · 권도균 대표</span></div>
+  <table class="compact">
+    <tr><td style="width:25%"><strong>주력 단계</strong></td><td>Pre-Seed (티켓 1~5억)</td></tr>
+    <tr><td><strong>결정 속도</strong></td><td>6~10주 (데모데이 사이클 따름)</td></tr>
+    <tr><td><strong>운영 철학</strong></td><td>"창업자 친화 시드의 원조" — 멘토링 강함, follow-on 적극</td></tr>
+    <tr><td><strong>본사</strong></td><td>서울 강남구 테헤란로 134 포스코P&S타워</td></tr>
+    <tr><td><strong>홈페이지</strong></td><td>https://www.primer.kr</td></tr>
+    <tr><td><strong>알려진 포트폴리오</strong></td><td>당근마켓, 스타일쉐어, 왓챠 초기 등 한국 시드 시그니처 알럼나이</td></tr>
+  </table>
+  <h4>XimTier 어필 포인트</h4>
+  <ul class="tight">
+    <li>"비전문가 5분 의사결정" = <strong>대중성 코드</strong></li>
+    <li>"한국 규제 산업 중견기업 ICP" — 명확한 단일 페르소나</li>
+    <li>권도균 대표 글에 반복되는 "단순한 가치 제안, 명확한 ICP"와 정합</li>
+  </ul>
+  <h4>주의/리스크</h4>
+  <ul class="tight">
+    <li>B2B 딥테크에 보수적일 수 있음 — C 시장 강자 이미지</li>
+    <li>MCP/Decision Intelligence 등 외래어 풀어서 설명 필요</li>
+  </ul>
+  <div class="quote">"공장장이 5분 안에 결정합니다. ChatGPT는 환각, 팔란티어는 비싸고 길어요. 그 사이의 빈 자리를 XimTier가 채웁니다."</div>
+</div>
+
+<h2>6. 더벤처스(The Ventures) — 심층 리서치</h2>
+<div class="vc-card">
+  <div class="vc-header"><span class="vc-name">The Ventures</span><span class="vc-type">AC + 시드 VC · 동남아 진출 네트워크</span></div>
+  <table class="compact">
+    <tr><td style="width:25%"><strong>주력 단계</strong></td><td>Pre-Seed, Seed (티켓 2~10억)</td></tr>
+    <tr><td><strong>결정 속도</strong></td><td>4~8주</td></tr>
+    <tr><td><strong>운영 철학</strong></td><td>"한국 + 동남아 듀얼 트랙" — 베트남·싱가포르·인도네시아 LP/파트너 네트워크</td></tr>
+    <tr><td><strong>본사</strong></td><td>서울 강남구 케이스퀘어 강남2</td></tr>
+    <tr><td><strong>홈페이지</strong></td><td>https://www.theventures.co</td></tr>
+    <tr><td><strong>알려진 포트폴리오</strong></td><td>쏘카, NXMH, 동남아 다수</td></tr>
+  </table>
+  <h4>XimTier 어필 포인트</h4>
+  <ul class="tight">
+    <li><strong>PRD에 이미 명시</strong> — "동남아 진출 — 더벤처스 베트남·싱가포르 네트워크"</li>
+    <li>Phase B(Y2~) 동남아 +262% 시장 수치 직접 인용</li>
+    <li>규제 산업 + 동남아 제조업 — 베트남 삼성 협력업체·인도네시아 광물·태국 자동차 부품 매칭</li>
+  </ul>
+  <h4>주의/리스크</h4>
+  <ul class="tight">
+    <li>한국 매출 검증 우선 — "한국 5사 → 동남아 1국 PoC" 순서 명확히</li>
+    <li>로컬 파트너 매핑 사전 준비 (어떤 한국 기업의 동남아 법인이 1차 PoC인지)</li>
+  </ul>
+  <div class="quote">"PRD에 더벤처스는 우리의 동남아 채널로 이미 명시되어 있습니다. 한국 5건이 쌓이면, 그대로 베트남/인도네시아/태국으로 복제됩니다."</div>
+</div>
+
+<h2>7. KB인베스트먼트 — 심층 리서치</h2>
+<div class="vc-card">
+  <div class="vc-header"><span class="vc-name">KB Investment</span><span class="vc-type">KB금융지주 CVC</span></div>
+  <table class="compact">
+    <tr><td style="width:25%"><strong>주력 단계</strong></td><td>Pre-A, Series A (티켓 5~30억)</td></tr>
+    <tr><td><strong>결정 속도</strong></td><td>6~12주 (금융 그룹 컴플라이언스 사이클 포함)</td></tr>
+    <tr><td><strong>운영 철학</strong></td><td>금융·핀테크 + 최근 B2B AI/RegTech 트랙 확장</td></tr>
+    <tr><td><strong>본사</strong></td><td>서울 영등포구 국제금융로 8길 26 KB금융타워</td></tr>
+    <tr><td><strong>홈페이지</strong></td><td>https://www.kbic.co.kr</td></tr>
+    <tr><td><strong>알려진 포트폴리오</strong></td><td>마이리얼트립, 핀테크 다수, B2B AI/RegTech 확장 중</td></tr>
+  </table>
+  <h4>XimTier 어필 포인트</h4>
+  <ul class="tight">
+    <li><strong>EU AI Act + 한국 AI 기본법 + 금융감독원</strong> — 우리 메시지가 KB의 컴플라이언스가 매일 고민하는 그것</li>
+    <li><strong>신용평가·여신심사 XAI 의무화</strong> — Reverse What-If가 직접 적용 (거절 사유 SHAP 근거)</li>
+    <li><strong>데이터 주권 + 온프레미스</strong> — 금융권 외부 클라우드 LLM 못 쓰는 근본 사실</li>
+  </ul>
+  <h4>주의/리스크</h4>
+  <ul class="tight">
+    <li>PoC 사이클이 김 — KB은행 컴플라이언스 거쳐야 데이터 받음. 의사결정자 KB인베/지주 분리</li>
+    <li>포트폴리오 충돌 가능성 — 이미 다른 RegTech 투자 여부 LinkedIn으로 확인</li>
+  </ul>
+  <div class="quote">"한국 AI 기본법 시행 후 KB국민은행의 여신심사·신용평가가 '설명 가능 AI' 의무를 어떻게 충족할까요? XimTier는 SHAP 기반으로 모든 결정에 수학적 근거를 첨부합니다."</div>
+</div>
+
+<!-- ========== B. 콜드 메일 ========== -->
+<h2>8. 콜드 메일 템플릿 6종</h2>
+
+<div class="callout callout-info">
+  <strong>공통 원칙</strong> — 제목 60자 이내 / 본문 250단어 이내 / 첨부 2개 이하(IR Deck + Palantir 비교 보고서) / 데모 URL 명시 / "다음 단계 1개"만 제안 / 외래어 최소화 / 첫 두 줄에 결론.<br>
+  <strong>발신자 헤더 공통:</strong> [대표명] · Gagahoho, Inc. · XimTier Co-founder/CEO · [전화] · [이메일] · 데모 URL: http://ximtier.158.247.235.31.nip.io/ko/
+</div>
+
+<h3>8-1. Kakao Ventures 용</h3>
+<div class="email-block">
+  <div class="email-subj">제목: [Kakao Ventures] LLM의 다음 단계 — XimTier가 LLM이 호출할 계산 엔진을 만듭니다</div>
+  <div class="email-body">안녕하세요. XimTier 공동창업자 [대표명]입니다.
+
+<strong>한 줄로:</strong> ChatGPT가 설명한다면, XimTier는 증명합니다. LLM 1차 도입의 75%가 기대 미달인 지금(Gartner), 우리는 LLM이 의사결정 계산이 필요할 때 호출할 표준 엔진을 만들고 있습니다. MCP Server 형태로요.
+
+<strong>왜 Kakao Ventures인가:</strong> 귀사 포트폴리오의 뤼튼·업스테이지·노타가 LLM 인프라라면, XimTier는 그 위에서 *결정을 푸는* 계산층입니다. 동일 입력 → 동일 출력의 SHAP 기반 수학적 XAI로 EU AI Act·한국 AI 기본법을 통과시키는 첫 한국 SaaS를 노립니다.
+
+<strong>현재 상태 (Pre-Seed):</strong>
+• MVP 5개 기능 완성, 프로덕션 22차 무중단 배포
+• 제조 데이터셋에서 Reverse What-If 검증 (R² 0.887)
+• 베타 5명 전원 "기존 LLM·BI와 확실히 다르다" 평가
+
+<strong>다음 단계 제안:</strong> 30분 데모 미팅 — 다음 2주 내 30분 시간 비워주실 수 있을까요?</div>
+</div>
+
+<h3>8-2. Naver D2SF 용</h3>
+<div class="email-block">
+  <div class="email-subj">제목: [D2SF] HyperCLOVA + XimTier — 한국어로 묻고, 수학으로 답하는 의사결정 엔진</div>
+  <div class="email-body">안녕하세요. XimTier 공동창업자 [대표명]입니다.
+
+<strong>한 줄로:</strong> HyperCLOVA가 한국어 인터페이스라면, XimTier는 그 위에서 *수학적으로 증명*하는 의사결정 엔진입니다. 두 개를 결합하면 한국 규제 산업 첫 "Audit-passing AI"가 됩니다.
+
+<strong>왜 D2SF인가:</strong> 네이버 클라우드 + HyperCLOVA + CLOVA Studio 인프라 위에 XimTier가 MCP Server로 얹히면, 네이버 생태계가 그대로 "감사 통과 가능한 AI"를 제공할 수 있습니다. EU AI Act 9조·한국 AI 기본법 13조의 "수학적 근거 제시 의무"를 LLM만으로는 충족할 수 없습니다. 우리는 SHAP·회귀·역최적화로 충족합니다.
+
+<strong>현재 상태:</strong>
+• 한국 규제 산업 10개 페르소나 케이스
+• 프로덕션 22차 배포, RSpec 104 / 0 PASS
+• Reverse What-If R² 0.887 검증
+
+<strong>다음 단계 제안:</strong> D2SF 오피스아워 또는 사내 기술 평가 — 적합한 채널을 알려주시면 자료 준비하겠습니다.</div>
+</div>
+
+<h3>8-3. 블루포인트파트너스 용</h3>
+<div class="email-block">
+  <div class="email-subj">제목: [블루포인트] Transformer는 최적화 풀이기가 아닙니다 — 수학으로 푸는 의사결정 엔진</div>
+  <div class="email-body">안녕하세요. XimTier 공동창업자 [대표명]입니다.
+
+<strong>한 줄로:</strong> LLM은 확률적 토큰 예측, XimTier는 결정론적 최적화. SHAP·회귀·역최적화 기반으로 동일 입력에서 동일 출력을 보장합니다. EU AI Act 9조가 요구하는 수학적 근거를 그대로 떨굽니다.
+
+<strong>왜 블루포인트인가:</strong> 귀사가 딥테크의 진짜 기술 백본을 본다는 점에서, 우리의 차별점은 마케팅 카피가 아니라 아키텍처입니다. Transformer는 다음 토큰을 확률로 예측하는 모델로, 회귀 계수·SHAP 값·역최적화를 수학적으로 보장하지 않습니다. 우리는 보장합니다.
+
+<strong>현재 상태:</strong>
+• 5변수 제조 라인 데이터셋에서 목표 불량률(2.4% → 1.2%) 역산 검증
+• SHAP 분해 5변수 weight 시각화 (R² 0.887)
+• 온프레미스 100% 배포
+
+<strong>다음 단계 제안:</strong> 30분 기술 미팅 — 알고리즘 구조와 검증 데이터를 직접 보여드리겠습니다. KAIST 창업원 사무실 방문 가능합니다.</div>
+</div>
+
+<h3>8-4. 프라이머(Primer) 용</h3>
+<div class="email-block">
+  <div class="email-subj">제목: [프라이머] 공장장이 5분 안에 결정합니다 — XimTier</div>
+  <div class="email-body">안녕하세요. XimTier 공동창업자 [대표명]입니다.
+
+<strong>한 줄로:</strong> 공장장이 마우스를 5분 클릭하면, 다음 분기 결정이 끝납니다. ChatGPT는 환각이고 팔란티어는 비싸고 길어요. 그 사이의 빈 자리를 XimTier가 채웁니다.
+
+<strong>왜 프라이머인가:</strong> 귀사의 시드 알럼나이(당근마켓·스타일쉐어·왓챠 초기)가 공통적으로 가진 것은 "단순한 가치 제안과 명확한 ICP"였습니다. 우리도 같습니다. 타깃은 한국 규제 산업 중견 제조·금융·의료 50~2,000명 규모 기업. 가격은 연 5천만~3억. 도입은 4~12주.
+
+<strong>현재 상태 (Pre-Seed):</strong>
+• MVP 5개 기능 완성, 프로덕션 22차 무중단 배포
+• 베타 5명 전원 "기존 BI·LLM과 확실히 다르다" 평가
+• 10개 산업 페르소나 케이스, 라이브 데모 운영
+
+<strong>다음 단계 제안:</strong> 다음 프라이머 데모데이 신청, 또는 30분 오피스아워 — 어느 쪽이 빠를까요?</div>
+</div>
+
+<h3>8-5. 더벤처스(The Ventures) 용</h3>
+<div class="email-block">
+  <div class="email-subj">제목: [The Ventures] PRD에 명시된 동남아 채널 — XimTier가 첫 케이스 5건을 준비했습니다</div>
+  <div class="email-body">안녕하세요. XimTier 공동창업자 [대표명]입니다.
+
+<strong>한 줄로:</strong> 우리 PRD에 더벤처스는 동남아 진출 채널로 이미 명시되어 있습니다. 한국 케이스 5건이 쌓이면, 그대로 베트남 제조·인도네시아 광물·태국 자동차 부품으로 복제됩니다. 동남아 AI SaaS +262% 시장의 첫 진입자를 노립니다.
+
+<strong>왜 더벤처스인가:</strong> 귀사의 호치민·자카르타·싱가포르 네트워크가 우리에게 가장 정합한 채널입니다. 한국 규제 산업 중견기업에 최적화된 의사결정 엔진을, 그 케이스를 1:1로 동남아 동일 산업에 복제하는 전략입니다. 한국 검증 후 동남아 현지화에 6~12개월입니다.
+
+<strong>현재 상태:</strong>
+• 한국 10개 산업 페르소나 케이스
+• Reverse What-If R² 0.887 검증
+• 베트남/인도네시아/태국의 1차 PoC 페르소나 매핑 완료
+
+<strong>다음 단계 제안:</strong> 30분 미팅 — 동남아 진출 시나리오 1쪽 자료와 함께. 호치민 오피스 채널 컨택도 가능합니다.</div>
+</div>
+
+<h3>8-6. KB인베스트먼트 용</h3>
+<div class="email-block">
+  <div class="email-subj">제목: [KB인베] 금융 RegTech — 한국 AI 기본법 시대의 신용평가·여신심사 설명 엔진</div>
+  <div class="email-body">안녕하세요. XimTier 공동창업자 [대표명]입니다.
+
+<strong>한 줄로:</strong> 한국 AI 기본법(2026-01-22 시행) 후 KB국민은행 여신심사·신용평가가 "설명 가능 AI" 의무를 어떻게 충족할까요? XimTier는 SHAP 기반으로 모든 결정에 수학적 근거를 첨부합니다. 데이터는 KB 방화벽 안에서만 돕니다.
+
+<strong>왜 KB인베스트먼트인가:</strong> 귀사가 금융 그룹 CVC로서 직면한 컴플라이언스 환경은 우리의 정확한 ICP입니다. EU AI Act + 한국 AI 기본법 + 금융감독원 가이드라인이 동시에 요구하는 "고위험 AI의 수학적 근거 제시"를 LLM만으로는 충족할 수 없습니다.
+
+<strong>현재 상태:</strong>
+• 금융 도메인 페르소나 케이스 사전 보유 (신용평가·여신심사·AML)
+• 온프레미스 100% — KB 방화벽 외부 유출 없음
+• Reverse What-If R² 0.887 검증
+
+<strong>다음 단계 제안:</strong> KB Starters 오픈이노베이션 신청 또는 KB인베스트먼트 직접 미팅 — 적합한 트랙을 알려주시면 진행하겠습니다.</div>
+</div>
+
+<div class="callout callout-warn">
+  <strong>발송 전 자가 점검 5항목</strong>
+  <ol>
+    <li>제목이 60자 이내, 첫 단어로 [VC명] 태깅</li>
+    <li>본문 두 번째 줄에 결론이 있는가</li>
+    <li>"왜 이 VC인가" 명시 (포트폴리오 1~2개 인용)</li>
+    <li>다음 단계 1개만 제안하는가</li>
+    <li>라이브 데모 URL + 첨부 2개 명시</li>
+  </ol>
+</div>
+
+<!-- ========== C. Why this VC 슬라이드 ========== -->
+<h2>9. IR Deck 부록 — Why this VC 슬라이드 6장</h2>
+
+<p>각 VC 미팅 직전 IR Deck v2의 마지막에 *해당 VC용 1장만* 삽입하세요. 나머지 5장은 숨김. 미팅 끝에 "이 VC에만 정합한 한 장"으로 클로징.</p>
+
+<div class="slide-mockup">
+  <div class="slide-eyebrow">// WHY THIS VC · A. KAKAO VENTURES</div>
+  <div class="slide-head">XimTier는 LLM이 호출할 계산 엔진입니다.</div>
+  <div class="slide-body">
+    <ul>
+      <li>카카오 포트폴리오: <strong>뤼튼·업스테이지·노타</strong> — LLM 인프라</li>
+      <li>XimTier: 그 LLM이 결정 계산이 필요할 때 호출하는 표준 엔진</li>
+      <li>진입 채널: <strong>Anthropic MCP Marketplace · OpenAI Plugin Store</strong></li>
+      <li>비유: "Wolfram Alpha for Business Decision"</li>
+    </ul>
+  </div>
+  <div class="slide-close">"카카오 포트폴리오의 LLM 인프라 위에, 우리는 결정의 수학을 얹습니다."</div>
+</div>
+
+<div class="slide-mockup">
+  <div class="slide-eyebrow">// WHY THIS VC · B. NAVER D2SF</div>
+  <div class="slide-head">HyperCLOVA × XimTier — 한국 첫 Audit-passing AI.</div>
+  <div class="slide-body">
+    <ul>
+      <li>HyperCLOVA = 한국어 자연어 인터페이스</li>
+      <li>XimTier = SHAP·회귀·역최적화 기반 <strong>수학적</strong> 의사결정 엔진</li>
+      <li>결합 = EU AI Act 9조 · 한국 AI 기본법 13조 동시 통과</li>
+      <li>배포 경로: 네이버 클라우드 마켓플레이스 + 온프레미스 옵션</li>
+    </ul>
+  </div>
+  <div class="slide-close">"네이버 생태계가 처음으로 *감사 통과 가능한 AI*를 제공할 수 있게 됩니다."</div>
+</div>
+
+<div class="slide-mockup">
+  <div class="slide-eyebrow">// WHY THIS VC · C. BLUEPOINT PARTNERS</div>
+  <div class="slide-head">Transformer는 다음 토큰 예측기, XimTier는 최적화 풀이기.</div>
+  <div class="slide-body">
+    <ul>
+      <li>LLM: 확률적 P(다음 토큰 | 앞의 토큰들) — 동일 입력에서도 다른 출력</li>
+      <li>XimTier: 결정론적 argmax over 변수 공간 — <strong>동일 입력 = 동일 출력</strong></li>
+      <li>SHAP 분해: 각 변수의 결정 기여도를 수학적으로 분리</li>
+      <li>Reverse What-If: 목표값 → 변수 역산 (제약조건 하 최적화)</li>
+    </ul>
+  </div>
+  <div class="slide-close">"우리의 차별점은 마케팅 카피가 아니라 아키텍처입니다. EU AI Act 9조가 LLM에게 묻는 '왜?'에, 우리는 수학으로 답합니다."</div>
+</div>
+
+<div class="slide-mockup">
+  <div class="slide-eyebrow">// WHY THIS VC · D. PRIMER</div>
+  <div class="slide-head">공장장이 5분 안에 결정합니다.</div>
+  <div class="slide-body">
+    <ul>
+      <li>타깃: 한국 규제 산업 중견기업 (50~2,000명)</li>
+      <li>페르소나: 공장장 / 품질팀장 / CFO / 컴플라이언스</li>
+      <li>가격: 연 0.5~3억 · 도입 4~12주</li>
+      <li>ChatGPT는 환각, 팔란티어는 비싸고 길어요. 그 사이의 빈 자리를 우리가 채웁니다</li>
+    </ul>
+  </div>
+  <div class="slide-close">"프라이머 알럼나이가 공통으로 가진 것 — 단순함 + 명확한 ICP. 우리도 같습니다."</div>
+</div>
+
+<div class="slide-mockup">
+  <div class="slide-eyebrow">// WHY THIS VC · E. THE VENTURES</div>
+  <div class="slide-head">한국 케이스 5건 → 동남아 1국 PoC → +262% 시장 선점.</div>
+  <div class="slide-body">
+    <ul>
+      <li>한국: 규제 산업 10개 페르소나 케이스 보유</li>
+      <li>베트남: 삼성 협력업체 · 인도네시아: 광물 가공 · 태국: 자동차 부품</li>
+      <li>동남아 AI SaaS 성장률 <strong>+262% (2025)</strong> — 우리 1차 진입자 노린다</li>
+      <li>더벤처스 호치민·자카르타·싱가포르 네트워크가 우리에게 가장 정합</li>
+    </ul>
+  </div>
+  <div class="slide-close">"PRD에 더벤처스는 이미 우리의 동남아 채널로 명시되어 있습니다. 우리는 준비됐습니다."</div>
+</div>
+
+<div class="slide-mockup">
+  <div class="slide-eyebrow">// WHY THIS VC · F. KB INVESTMENT</div>
+  <div class="slide-head">한국 AI 기본법 시대, KB의 여신심사는 어떻게 *설명*할 것인가?</div>
+  <div class="slide-body">
+    <ul>
+      <li>2026-01-22 한국 AI 기본법 시행: 고위험 AI의 설명 가능성 의무화</li>
+      <li>금융감독원 + EU AI Act + ISO/IEC 42001 동시 압력</li>
+      <li>LLM 기반 신용평가는 *왜 거절했는지* 수학적으로 증명 불가</li>
+      <li><strong>XimTier:</strong> SHAP 기반으로 모든 결정에 수학적 근거 자동 첨부</li>
+    </ul>
+  </div>
+  <div class="slide-close">"KB가 직면한 컴플라이언스 환경은 우리의 정확한 ICP입니다. 시연 가능합니다."</div>
+</div>
+
+<!-- ========== 실행 로드맵 ========== -->
+<h2>10. 실행 로드맵 W1~W4</h2>
+
+<table>
+  <thead><tr><th>주차</th><th>액션</th><th>대상</th><th>산출물</th></tr></thead>
+  <tbody>
+    <tr><td><strong>W1</strong></td><td>홈페이지 Apply 폼 일괄 제출 + 콜드 메일 6종 발송</td><td>6곳 전체</td><td>발송 로그 + 회신 트래커</td></tr>
+    <tr><td><strong>W2</strong></td><td>KAIST/네이버/카카오 사내 referral 워밍업</td><td>카카오·D2SF·블루포인트</td><td>레퍼럴 컨택 리스트</td></tr>
+    <tr><td><strong>W3</strong></td><td>프라이머 데모데이 신청 + KB Starters 신청</td><td>프라이머·KB</td><td>신청서 + IR Deck 제출본</td></tr>
+    <tr><td><strong>W4</strong></td><td>더벤처스 동남아 시나리오 1쪽 + 호치민 오피스 컨택</td><td>더벤처스</td><td>SEA 진출 페이지 1장</td></tr>
+    <tr><td><strong>W4</strong></td><td>회수 0건이면 referral 강화 + 메시지 재조정</td><td>전체</td><td>2차 콜드 메일 v2</td></tr>
+  </tbody>
+</table>
+
+<div class="callout callout-success">
+  <strong>모든 미팅 필수 산출물 5종</strong>
+  <ol>
+    <li>IR Deck v2 (현재 보유)</li>
+    <li>Palantir vs XimTier 비교 보고서 PDF (reports/Palantir_vs_XimTier_비교보고서_260514.pdf)</li>
+    <li>라이브 데모 URL — http://ximtier.158.247.235.31.nip.io/ko/</li>
+    <li>Reverse What-If 검증 케이스 1건 (R² 0.887, 제조 데이터셋)</li>
+    <li>이 VC 전용 1슬라이드 (Why this VC — 본 문서 §9)</li>
+  </ol>
+</div>
+
+<p style="margin-top:14px;"><small>출처: XAISimTier Pitch Deck v2 (2026-04), PRD v1, KVCA 공개 자료, 각 VC 홈페이지(2026-01 기준). 개별 심사역 매칭은 LinkedIn / The VC / 디스콰이엇 / 로켓펀치에서 30분 보강 필요. 본 보고서는 내부 IR 운영용 — 외부 공개 금지.</small></p>
+
+</body>
+</html>

@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>XimTier 규제 당국 대응 통합 보고서 — 컴플라이언스 입증 전략 + 기관별 제출 가이드</title>
+<style>
+  @page { size: A4; margin: 12mm 14mm; }
+  *, *::before, *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: "Apple SD Gothic Neo", -apple-system, sans-serif; color:#1a1a1a; line-height: 1.45; }
+
+  h1 { font-size: 22px; margin: 0 0 6px; color:#16325C; letter-spacing:-0.01em; }
+  h2 { font-size: 16px; margin: 18px 0 8px; color:#16325C; border-bottom: 2px solid #00A1E0; padding-bottom: 4px; }
+  h3 { font-size: 13px; margin: 10px 0 5px; color:#16325C; }
+  h4 { font-size: 12px; margin: 8px 0 4px; color:#16325C; }
+  p, li { font-size: 11px; margin: 4px 0; }
+  small { font-size: 9.5px; color:#5a6478; }
+  strong { color:#16325C; }
+  em { color:#5a6478; }
+  code { background:#F3F2F2; padding:1px 4px; border-radius:3px; font-size:10px; font-family: "JetBrains Mono", monospace; color:#16325C; }
+
+  table { width:100%; border-collapse: collapse; margin: 6px 0; font-size:10.5px; }
+  th, td { padding: 5px 7px; border-bottom: 1px solid #E5E7EB; vertical-align: top; text-align:left; }
+  th { background:#F3F2F2; color:#16325C; font-weight:600; font-size:10.5px; border-bottom:2px solid #00A1E0; }
+  table.compact td, table.compact th { padding:4px 6px; font-size:10px; }
+
+  ul { padding-left: 16px; margin: 4px 0; }
+  ul.tight li { margin-bottom: 2px; font-size:11px; }
+  ol { padding-left: 18px; margin: 4px 0; }
+  ol li { margin: 2px 0; }
+
+  .callout { padding: 7px 12px; margin: 8px 0; font-size: 11px; border-radius: 4px; }
+  .callout-info    { border-left: 4px solid #00A1E0; background:#EEF7FC; }
+  .callout-success { border-left: 4px solid #10B981; background:#ECFDF5; }
+  .callout-warn    { border-left: 4px solid #F59E0B; background:#FFFBEB; }
+  .callout-danger  { border-left: 4px solid #EF4444; background:#FEF2F2; }
+
+  .b { display:inline-block; padding:1px 6px; border-radius:8px; font-size:9px; font-weight:600; }
+  .b-blue   { background:#DBEAFE; color:#1E40AF; }
+  .b-green  { background:#D1FAE5; color:#065F46; }
+  .b-yellow { background:#FEF3C7; color:#92400E; }
+  .b-red    { background:#FEE2E2; color:#991B1B; }
+  .b-gray   { background:#E5E7EB; color:#374151; }
+  .b-purple { background:#EDE9FE; color:#5B21B6; }
+
+  .col2 { display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin:6px 0; }
+  .col2 > div { background:#FAFAFA; border:1px solid #E5E7EB; border-radius:4px; padding:8px 10px; }
+  .col2 h4 { margin:0 0 4px; font-size:12px; color:#16325C; }
+  .col2 ul { margin:2px 0; }
+
+  .kpi-grid { display:grid; grid-template-columns: repeat(4,1fr); gap:6px; margin:8px 0; }
+  .kpi-card { background:#F3F2F2; border-left:3px solid #00A1E0; padding:8px; border-radius:3px; }
+  .kpi-label { font-size:9px; color:#5a6478; letter-spacing:0.08em; text-transform:uppercase; }
+  .kpi-value { font-size:18px; font-weight:700; color:#16325C; line-height:1.1; margin-top:2px; }
+  .kpi-sub   { font-size:9.5px; color:#5a6478; margin-top:2px; }
+
+  .cover {
+    page-break-after: always;
+    page-break-inside: avoid;
+    background-color: #16325C !important;
+    color: #ffffff !important;
+    text-align: center;
+    margin: -12mm -14mm 0 -14mm;
+    padding: 90mm 40px 90mm 40px;
+    box-sizing: border-box;
+    min-height: 250mm;
+  }
+  .cover * { color: #ffffff !important; }
+  .cover .eyebrow { font-size: 11px; letter-spacing:0.25em; opacity:0.85; }
+  .cover .title { font-size: 26px; font-weight:800; margin:14px 0 6px; letter-spacing:-0.02em; line-height:1.2; }
+  .cover .subtitle { font-size: 12.5px; opacity:0.9; max-width: 560px; margin: 0 auto; line-height:1.5; }
+  .cover .meta { margin-top: 28px; font-size: 11px; opacity:0.85; }
+
+  .toc { background:#F3F2F2; border-radius:4px; padding:10px 14px; margin: 8px 0 12px; }
+  .toc h3 { margin:0 0 6px; }
+  .toc ol { columns: 2; column-gap: 24px; margin:0; padding-left:18px; }
+  .toc li { font-size:10.5px; margin:2px 0; }
+
+  .quote { border-left:3px solid #00A1E0; padding:6px 12px; background:#F8FBFD; font-style: italic; color:#16325C; font-size:11px; margin:6px 0; }
+
+  /* Agency card */
+  .agency-card { border:1px solid #E5E7EB; border-radius:6px; padding:10px 12px; margin:10px 0; background:#FAFBFC; }
+  .agency-card .agency-header { display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid #E5E7EB; padding-bottom:4px; margin-bottom:6px; }
+  .agency-card .agency-name { font-size:14px; font-weight:700; color:#16325C; }
+  .agency-card .agency-tag { font-size:10px; color:#5a6478; }
+
+  /* Process steps */
+  .process { display:grid; grid-template-columns: repeat(4, 1fr); gap:6px; margin:8px 0; }
+  .process .step { background:#F3F2F2; border-left:3px solid #00A1E0; padding:8px; border-radius:3px; }
+  .process .step-num { font-size:9px; color:#00A1E0; font-weight:700; letter-spacing:0.1em; }
+  .process .step-title { font-size:11px; font-weight:600; color:#16325C; margin:3px 0; }
+  .process .step-body { font-size:10px; color:#5a6478; }
+
+  /* Risk matrix */
+  .matrix { display:grid; grid-template-columns: 110px repeat(4, 1fr); gap:3px; margin:6px 0; font-size:10px; }
+  .matrix .cell { padding:6px; text-align:center; min-height:36px; display:flex; flex-direction:column; justify-content:center; border-radius:3px; }
+  .matrix .head { background:#16325C !important; color:#fff !important; font-weight:600; }
+  .matrix .row-label { background:#F3F2F2; font-weight:600; color:#16325C; text-align:left; padding-left:8px; }
+  .matrix .h { background:#FEE2E2; color:#991B1B; font-weight:600; }
+  .matrix .m { background:#FEF3C7; color:#92400E; font-weight:600; }
+  .matrix .l { background:#D1FAE5; color:#065F46; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="eyebrow">REGULATORY RESPONSE REPORT · INTERNAL + COMPLIANCE</div>
+  <div class="title">XimTier 규제 당국 대응 통합 보고서<br>컴플라이언스 입증 전략 + 기관별 제출 가이드</div>
+  <div class="subtitle">AI 기본법 · EU AI Act · 도메인 규제(금융위·식약처·개인정보위) 시대의 신뢰성 입증 매뉴얼 — 9개 핵심 기관별 역할·제출 서류·절차·예상 기간·XimTier 대응 전략 통합</div>
+  <div class="meta">2026-05-14 · Gagahoho, Inc. · 내부 임원·법무·컴플라이언스 + IR/감사 대응용</div>
+</div>
+<div style="page-break-before: always;"></div>
+
+<!-- ============ Summary ============ -->
+<h1>요약 (Executive Summary)</h1>
+
+<p>본 보고서는 XimTier가 한국 AI 기본법(2026-01-22 시행) + EU AI Act(2026-08 완전 시행) + 도메인별 규제(금융위·식약처·개인정보위) 환경에서 <strong>(가) 어떻게 규제를 통과시킬지에 대한 내부 컴플라이언스 입증 전략</strong>과 <strong>(나) 각 규제·인증 기관에 무엇을 어떻게 제출할지에 대한 실무 가이드</strong>를 통합한 매뉴얼이다.</p>
+
+<div class="kpi-grid">
+  <div class="kpi-card"><div class="kpi-label">대응 대상 기관</div><div class="kpi-value">9개</div><div class="kpi-sub">정책 4 + 도메인 3 + 글로벌 2</div></div>
+  <div class="kpi-card"><div class="kpi-label">핵심 인증</div><div class="kpi-value">TTA CAT</div><div class="kpi-sub">AI 신뢰성 인증 · 3~6개월</div></div>
+  <div class="kpi-card"><div class="kpi-label">전체 로드맵</div><div class="kpi-value">12-18개월</div><div class="kpi-sub">사전 준비 → 인증 → 도메인 인허가</div></div>
+  <div class="kpi-card"><div class="kpi-label">XimTier 강점</div><div class="kpi-value">XAI 4종</div><div class="kpi-sub">SHAP · Reverse What-If · 편향제어 · 감사로그</div></div>
+</div>
+
+<div class="callout callout-info">
+  <strong>핵심 메시지</strong> — 한국 AI 기본법의 4대 감사 지표(XAI · 반사실적 설명 · 편향성 제어 · 데이터 거버넌스)는 우연히도 <strong>XimTier 아키텍처의 핵심 자산</strong>과 정확히 일치한다. 우리에게는 규제 비용이 아니라 <strong>경쟁 우위로 전환 가능한 자산</strong>이다. 단, *내가 그렇다고 말하는 것*과 *제3자 기관이 인증서를 발급하는 것*은 다르다. 12~18개월 내 TTA CAT + 도메인 인허가를 확보해야 IR/세일즈에서 메시지가 진짜 무기가 된다.
+</div>
+
+<div class="toc">
+  <h3>목차</h3>
+  <ol>
+    <li>규제 환경 한눈에 — AI 기본법 시대의 4중 레이어</li>
+    <li>4대 감사 지표 vs XimTier 아키텍처 매핑</li>
+    <li>범부처 정책·기술 인증 기관 (과기부·TTA·NIA·KISA)</li>
+    <li>도메인 규제 기관 (금융위/감독원·식약처·개인정보위)</li>
+    <li>글로벌 규제 (EU AI Act·ISO/IEC 42001)</li>
+    <li>서비스 런칭 4단계 로드맵 (12~18개월)</li>
+    <li>기관별 제출 서류 목록 (체크리스트)</li>
+    <li>리스크 매트릭스 · 대응 우선순위</li>
+    <li>컴플라이언스 비용·기간 추정</li>
+    <li>다음 액션 (분기별)</li>
+  </ol>
+</div>
+
+<!-- ============ 1. 규제 환경 ============ -->
+<h2>1. 규제 환경 한눈에 — AI 기본법 시대의 4중 레이어</h2>
+
+<p>XimTier가 한국 시장에서 상용 서비스를 시작하려면 <strong>4중 레이어의 규제</strong>를 동시에 통과해야 한다.</p>
+
+<table>
+  <thead><tr><th style="width:8%">레이어</th><th>법령/표준</th><th>주관 기관</th><th>고위험 AI 위반 제재</th><th>적용 시점</th></tr></thead>
+  <tbody>
+    <tr><td><span class="b b-blue">L1</span></td><td>한국 AI 기본법</td><td>과학기술정보통신부</td><td>시정명령·과징금</td><td><strong>2026-01-22 시행 중</strong></td></tr>
+    <tr><td><span class="b b-purple">L2</span></td><td>제3자 신뢰성 인증 (TTA CAT)</td><td>TTA</td><td>인증 미발급 시 정부 조달 배제</td><td>2026~ 단계 시행</td></tr>
+    <tr><td><span class="b b-yellow">L3</span></td><td>도메인 규제 (금융·의료·개인정보)</td><td>금융위/감독원·식약처·개인정보위</td><td>업무 정지·면허 박탈·형사 책임</td><td>도메인별 상시</td></tr>
+    <tr><td><span class="b b-red">L4</span></td><td>EU AI Act (글로벌 진출 시)</td><td>EU 회원국 · 한국 제3자 인증</td><td>최대 <strong>€35M</strong> 또는 매출 7%</td><td>2026-08 완전 시행</td></tr>
+  </tbody>
+</table>
+
+<div class="callout callout-warn">
+  <strong>이중·삼중 적용</strong> — 의료 금융 분야는 L1+L2+L3 동시 적용, EU 수출 시 L1+L2+L3+L4 모두 통과해야 함. 가장 보수적 기관의 기준이 사실상 사업 진입 장벽.
+</div>
+
+<!-- ============ 2. 4대 감사 지표 매핑 ============ -->
+<h2>2. 4대 감사 지표 vs XimTier 아키텍처 매핑</h2>
+
+<p>AI 기본법 §13(설명 가능성) 및 EU AI Act §9(고위험 AI 의무)가 공통으로 요구하는 4가지 감사 지표를 XimTier 아키텍처와 매핑한다.</p>
+
+<table>
+  <thead><tr><th style="width:24%">감사 지표 (Audit Point)</th><th>규제가 요구하는 것</th><th>XimTier 대응 자산</th><th style="width:13%">대응 등급</th></tr></thead>
+  <tbody>
+    <tr><td><strong>① 설명 가능성 (XAI)</strong></td><td>블랙박스 모델이 아닌, 결과 도출 과정을 인간 언어로 소명</td><td><strong>SHAP 기반 변수 기여도 분해</strong> + 자동 보고서 생성</td><td><span class="b b-green">강함</span></td></tr>
+    <tr><td><strong>② 반사실적 설명 (Reverse What-If)</strong></td><td>결과를 바꾸기 위한 대안 경로(최소 변화량) 제시</td><td><strong>Reverse What-If 엔진</strong> — 핵심 차별점</td><td><span class="b b-green">강함</span></td></tr>
+    <tr><td><strong>③ 편향성 제어</strong></td><td>성별·연령·지역 등 특정 계층 차별 출력 방지</td><td>학습 데이터 그룹별 fairness 지표 모니터링 모듈 (구축 단계)</td><td><span class="b b-yellow">보강 필요</span></td></tr>
+    <tr><td><strong>④ 데이터 거버넌스</strong></td><td>수집-학습-폐기 전 과정 법적 절차 준수</td><td>온프레미스 100% + 감사 로그 + 데이터 라이프사이클 정책</td><td><span class="b b-yellow">정책 문서화 필요</span></td></tr>
+  </tbody>
+</table>
+
+<div class="callout callout-success">
+  <strong>XimTier 강점</strong> — 한국 AI 기본법 4대 지표 중 <strong>① + ② 두 가지는 처음부터 아키텍처의 핵심</strong>이다. 이 두 가지를 다른 솔루션이 *나중에* 붙이려면 모델 재설계가 필요하지만 우리는 *기본값*이다.<br>
+  <strong>보강 영역</strong> — ③ 편향성 제어 모듈 + ④ 데이터 거버넌스 정책 문서가 *제3자 인증* 통과의 마지막 관문. 2026 H2까지 보강 필요.
+</div>
+
+<!-- ============ 3. 정책·기술 인증 기관 ============ -->
+<h2>3. 범부처 정책·기술 인증 기관</h2>
+
+<h3>3-1. 과학기술정보통신부 (과기부) — 정책 총괄 <span class="b b-blue">L1</span></h3>
+<div class="agency-card">
+  <div class="agency-header"><span class="agency-name">과학기술정보통신부 (MSIT)</span><span class="agency-tag">정책 · 시행령 · 고위험 AI 분류</span></div>
+  <table class="compact">
+    <tr><td style="width:22%"><strong>핵심 역할</strong></td><td>AI 기본법 시행령 관리, 고위험 AI 분류 기준 수립, ICT 규제 샌드박스 운영</td></tr>
+    <tr><td><strong>XimTier 접점</strong></td><td>(1) 고위험 AI 분류 신청 — 의료·금융·공공 도메인 적용 시 (2) 규제 샌드박스 — 신규 적용 분야에서 현행법 모호 시</td></tr>
+    <tr><td><strong>제출 서류</strong></td><td>고위험 AI 등록 신청서 · 시스템 카드(Model Card) · 영향평가 보고서 · 데이터셋 설명서</td></tr>
+    <tr><td><strong>절차</strong></td><td>온라인 신청 → 서면 심사 → 보완 (1차) → 현장 점검(필요 시) → 등록 결정</td></tr>
+    <tr><td><strong>예상 기간</strong></td><td>표준 등록: 2~3개월 · 규제 샌드박스: 3~6개월 (분기별 심사위 개최)</td></tr>
+    <tr><td><strong>비용</strong></td><td>등록 자체는 무상 · 컨설팅·법무 비용 별도</td></tr>
+    <tr><td><strong>XimTier 전략</strong></td><td>의료/금융 도메인 본격 진입 전 <em>샌드박스 신청으로 규제 해석 사전 확보</em>. 첫 PoC 완료(2026 Q3) 이후 즉시 신청 권장</td></tr>
+  </table>
+</div>
+
+<h3>3-2. TTA (한국정보통신기술협회) — AI 신뢰성 인증(CAT) <span class="b b-purple">L2 핵심</span></h3>
+<div class="agency-card">
+  <div class="agency-header"><span class="agency-name">TTA — Telecommunications Technology Association</span><span class="agency-tag">AI 신뢰성 인증 (CAT) · 제3자 기술 인증</span></div>
+  <table class="compact">
+    <tr><td style="width:22%"><strong>핵심 역할</strong></td><td>AI 신뢰성 인증 (CAT) 발급 — XAI·공정성·안전성·견고성 기술 표준 적합성 평가</td></tr>
+    <tr><td><strong>XimTier 접점</strong></td><td><strong>가장 중요한 단일 인증</strong> — IR/세일즈·정부 조달·도메인 허가 모두에서 핵심 신뢰 마커</td></tr>
+    <tr><td><strong>인증 항목</strong></td><td>설명 가능성(XAI) · 공정성(Fairness) · 견고성(Robustness) · 안전성(Safety) · 투명성(Transparency)</td></tr>
+    <tr><td><strong>제출 서류</strong></td><td>(1) 신청서 (2) <strong>AI 시스템 명세서</strong> (모델 카드) (3) <strong>학습 데이터셋 설명서</strong> (데이터 카드) (4) XAI 설명 모듈 결과물 샘플 (5) 공정성 평가 결과 (6) <strong>견고성 테스트 보고서</strong> (적대적 입력 대응) (7) 보안·개인정보 보호 정책 (8) 운영 매뉴얼</td></tr>
+    <tr><td><strong>절차</strong></td><td>① 신청 접수 → ② 서면 심사 → ③ <strong>현장 평가</strong> (시연 + 코드 부분 검증) → ④ 보완 요청 → ⑤ 인증 위원회 심의 → ⑥ 인증서 발급</td></tr>
+    <tr><td><strong>예상 기간</strong></td><td><strong>3~6개월</strong> (보완 요청 횟수에 따라 가변)</td></tr>
+    <tr><td><strong>비용</strong></td><td>약 2,000만~5,000만원 (시스템 규모·인증 범위에 따라)</td></tr>
+    <tr><td><strong>XimTier 전략</strong></td><td>2026 Q3~Q4 신청 → 2027 Q1~Q2 인증 획득 목표. IR Deck에 인증 진행 마일스톤 명시 → "TTA CAT 신청 중" 시점부터 신뢰도 마커 사용 가능</td></tr>
+  </table>
+</div>
+
+<h3>3-3. NIA (한국지능정보사회진흥원) — 공공 확산 <span class="b b-blue">L1</span></h3>
+<div class="agency-card">
+  <div class="agency-header"><span class="agency-name">NIA — National Information Society Agency</span><span class="agency-tag">공공기관 도입 가이드 · 윤리 영향 평가</span></div>
+  <table class="compact">
+    <tr><td style="width:22%"><strong>핵심 역할</strong></td><td>공공기관 AI 도입 가이드라인 개발, AI 윤리 영향 평가 지원, 공공 데이터 매칭</td></tr>
+    <tr><td><strong>XimTier 접점</strong></td><td>(1) 공공기관 영업 시 NIA 가이드라인 적합성 자체 점검 (2) <strong>AI 윤리 영향 평가</strong>를 자발적으로 받아 신뢰 마커 확보 (3) 공공 SaaS 마켓플레이스(디지털서비스개방형 플랫폼) 등록</td></tr>
+    <tr><td><strong>제출 서류</strong></td><td>윤리 영향 평가 신청서 + 시스템 설명서 + 이해관계자 분석 + 영향 평가 자체 보고서</td></tr>
+    <tr><td><strong>절차</strong></td><td>온라인 신청 → 자체 평가 보고서 제출 → NIA 자문위원 검토 → 권고안 회신</td></tr>
+    <tr><td><strong>예상 기간</strong></td><td>2~3개월</td></tr>
+    <tr><td><strong>비용</strong></td><td>무상</td></tr>
+    <tr><td><strong>XimTier 전략</strong></td><td>공공기관 영업 본격화(2027 H1) 전 NIA 윤리 영향 평가 완료. 결과를 IR 자료에 활용</td></tr>
+  </table>
+</div>
+
+<h3>3-4. KISA (한국인터넷진흥원) — 보안·데이터 <span class="b b-blue">L1</span></h3>
+<div class="agency-card">
+  <div class="agency-header"><span class="agency-name">KISA — Korea Internet & Security Agency</span><span class="agency-tag">AI 보안 · 개인정보 비식별화 평가</span></div>
+  <table class="compact">
+    <tr><td style="width:22%"><strong>핵심 역할</strong></td><td>AI 모델 보안성 검토, 학습 데이터 내 개인정보 비식별화 적정성 평가, 정보보호 관리체계(ISMS) 인증</td></tr>
+    <tr><td><strong>XimTier 접점</strong></td><td>(1) <strong>ISMS-P 인증</strong> — 금융·의료 도메인 진입 필수 (2) 비식별 적정성 평가 — 고객 데이터 학습/PoC 시</td></tr>
+    <tr><td><strong>제출 서류</strong></td><td>ISMS-P: 정보보호 정책서 · 위험 분석 보고서 · 운영 절차서 · 감사 로그 · 사고 대응 매뉴얼 (총 80~120개 항목)</td></tr>
+    <tr><td><strong>절차</strong></td><td>① 자체 점검 → ② 신청 → ③ 1차 심사 (서면) → ④ 2차 심사 (현장) → ⑤ 보완 → ⑥ 인증위원회 → ⑦ 인증 발급</td></tr>
+    <tr><td><strong>예상 기간</strong></td><td>ISMS-P: <strong>6~9개월</strong> (첫 인증) · 비식별 평가: 1~2개월</td></tr>
+    <tr><td><strong>비용</strong></td><td>ISMS-P: 약 3,000만~6,000만원 (조직 규모별) · 비식별 평가: 무상</td></tr>
+    <tr><td><strong>XimTier 전략</strong></td><td>금융권 PoC 본격화 전 ISMS-P 필수. 2026 H2~2027 H1 진행. 우리 "온프레미스 100%" 메시지가 ISMS-P 통과 난이도를 낮춤</td></tr>
+  </table>
+</div>
+
+<!-- ============ 4. 도메인 규제 ============ -->
+<h2>4. 도메인 규제 기관</h2>
+
+<h3>4-1. 금융위원회 / 금융감독원 — 신용평가·자산관리 AI <span class="b b-yellow">L3</span></h3>
+<div class="agency-card">
+  <div class="agency-header"><span class="agency-name">금융위원회 (FSC) · 금융감독원 (FSS)</span><span class="agency-tag">AI 신용평가·자산관리 알고리즘 투명성</span></div>
+  <table class="compact">
+    <tr><td style="width:22%"><strong>핵심 임무</strong></td><td>AI 신용평가·자산관리 모델의 알고리즘 투명성 심사. 금융소비자보호법상 '설명 의무' 준수 여부 점검</td></tr>
+    <tr><td><strong>특이사항</strong></td><td><strong>Reverse What-If를 통한 대출 거절 사유 소명 가능 여부를 중점 확인</strong> — XimTier의 핵심 기능과 정확히 일치</td></tr>
+    <tr><td><strong>제출 서류</strong></td><td>(1) AI 신용평가 모델 검증 보고서 (2) <strong>설명 가능성 입증서 (SHAP·반사실적 설명)</strong> (3) 모형 검증위원회 보고서 (4) 데이터 거버넌스 정책 (5) 운영 위험 평가 (6) 사후 모니터링 계획</td></tr>
+    <tr><td><strong>절차</strong></td><td>① 금융사 사전 신고 → ② FSS 모형 검증 → ③ 현장 점검(거절·차별 사례 5건 이상 샘플 검증) → ④ 보완 → ⑤ 사용 승인</td></tr>
+    <tr><td><strong>예상 기간</strong></td><td><strong>6~12개월</strong> (금융사 사이클이 김)</td></tr>
+    <tr><td><strong>비용</strong></td><td>승인 자체는 무상 · 모형 검증 컨설팅 5,000만~2억</td></tr>
+    <tr><td><strong>XimTier 전략</strong></td><td>KB인베·신한벤처 IR 미팅에서 <strong>"우리는 FSS 모형 검증을 정확히 통과하도록 설계됨"</strong> 메시지 강조. KB Starters 오픈이노베이션 시 모형 검증 PoC 제안</td></tr>
+  </table>
+</div>
+
+<h3>4-2. 식품의약품안전처 — AI 의료기기(SaMD) <span class="b b-yellow">L3</span></h3>
+<div class="agency-card">
+  <div class="agency-header"><span class="agency-name">식품의약품안전처 (MFDS)</span><span class="agency-tag">AI 의료기기 인허가 · 임상 유효성</span></div>
+  <table class="compact">
+    <tr><td style="width:22%"><strong>핵심 임무</strong></td><td>AI 의료기기(Software as a Medical Device · SaMD) 인허가 및 임상적 유효성 평가</td></tr>
+    <tr><td><strong>특이사항</strong></td><td>AI 진단 결과의 <strong>판독 근거(Heatmap/SHAP 등) 시각화</strong> + 의사의 최종 판단 지원 능력 필수</td></tr>
+    <tr><td><strong>제출 서류</strong></td><td>(1) 의료기기 제조 허가 신청서 (2) GMP 적합 인정서 (3) <strong>임상시험 결과 보고서</strong> (4) 기술문서 (의도된 사용·성능·임상 평가) (5) 위험관리 보고서 (6) 사이버 보안 평가 (7) <strong>설명 가능성 입증 자료</strong> — XimTier 강점</td></tr>
+    <tr><td><strong>절차</strong></td><td>① 사전 상담 → ② 임상시험 계획 승인 → ③ 임상시험 실시 → ④ 허가 신청 → ⑤ 심사 → ⑥ 보완 → ⑦ 허가</td></tr>
+    <tr><td><strong>예상 기간</strong></td><td><strong>12~24개월</strong> (임상 포함 시 가장 김)</td></tr>
+    <tr><td><strong>비용</strong></td><td>임상 포함 5억~수십억 (영상의학 SaMD 기준)</td></tr>
+    <tr><td><strong>XimTier 전략</strong></td><td>의료 도메인은 *직접 SaMD 등록보다 대형 병원과 공동 R&D*가 효율적. 첫 케이스는 의료기기가 아닌 *병원 경영 최적화*로 우회 진입</td></tr>
+  </table>
+</div>
+
+<h3>4-3. 개인정보보호위원회 — 자동화된 결정 <span class="b b-yellow">L3</span></h3>
+<div class="agency-card">
+  <div class="agency-header"><span class="agency-name">개인정보보호위원회 (PIPC)</span><span class="agency-tag">자동 의사결정 · 정보주체 권리</span></div>
+  <table class="compact">
+    <tr><td style="width:22%"><strong>핵심 임무</strong></td><td>자동화된 결정(Automated Decision-making)에 대한 정보주체의 권리 보장 심사. 개인정보보호법 §37의2 적용</td></tr>
+    <tr><td><strong>특이사항</strong></td><td>이용자가 AI 결정에 이의 제기 시 기업이 <strong>적절한 설명을 제공할 시스템</strong>을 갖췄는지 평가</td></tr>
+    <tr><td><strong>제출 서류</strong></td><td>(1) 자동 결정 시스템 설명서 (2) 이용자 통지·설명 절차 (3) 이의제기 처리 절차 (4) <strong>설명 가능성 기술 입증 자료</strong> (5) 개인정보 영향평가서(공공기관 의무)</td></tr>
+    <tr><td><strong>절차</strong></td><td>사전 컨설팅 → 시정명령(문제 발견 시) 또는 침해사고 신고 시 조사</td></tr>
+    <tr><td><strong>예상 기간</strong></td><td>사전 컨설팅: 1~2개월 · 조사 발생 시 6개월+</td></tr>
+    <tr><td><strong>XimTier 전략</strong></td><td>고객사가 PIPC 점검 받을 때 *우리 시스템이 이미 설명 가능성을 보장*한다는 입증 자료를 *고객사가 그대로 제출* 가능하도록 표준 양식 사전 준비</td></tr>
+  </table>
+</div>
+
+<!-- ============ 5. 글로벌 규제 ============ -->
+<h2>5. 글로벌 규제 — EU AI Act · ISO/IEC 42001</h2>
+
+<h3>5-1. EU AI Act (2026-08 완전 시행) <span class="b b-red">L4</span></h3>
+<div class="agency-card">
+  <div class="agency-header"><span class="agency-name">EU AI Act</span><span class="agency-tag">고위험 AI · €35M 벌금 · 글로벌 진출 필수</span></div>
+  <table class="compact">
+    <tr><td style="width:22%"><strong>관련 조항</strong></td><td>§9 위험관리시스템 · §10 데이터·데이터 거버넌스 · §11 기술문서 · §12 로깅 · §13 투명성·이용자 정보 · §14 인적 감독 · §15 정확성·견고성·사이버보안</td></tr>
+    <tr><td><strong>고위험 AI 분류</strong></td><td>고용·교육·신용평가·법 집행·의료·핵심 인프라 — XimTier 주요 ICP가 대부분 포함</td></tr>
+    <tr><td><strong>제출 서류</strong></td><td>(1) 적합성 평가 (Conformity Assessment) (2) <strong>EU 선언문</strong> (Declaration of Conformity) (3) CE 마킹 (4) 기술문서 (Annex IV) (5) <strong>위험관리·데이터 거버넌스·로깅·투명성·인적감독·견고성</strong> 7대 영역 입증 (6) Post-Market Monitoring Plan</td></tr>
+    <tr><td><strong>절차</strong></td><td>유럽 회원국 Notified Body 또는 한국 협력 인증기관 → 적합성 평가 → CE 마킹</td></tr>
+    <tr><td><strong>예상 기간</strong></td><td><strong>6~12개월</strong></td></tr>
+    <tr><td><strong>벌금</strong></td><td>최대 <strong>€35M (약 ₩520억)</strong> 또는 글로벌 매출 7% 중 큰 금액</td></tr>
+    <tr><td><strong>XimTier 전략</strong></td><td>국내 시장 안착(2026 H2~2027 H1) 후 2027 H2부터 본격 준비. 한국 TTA CAT 인증을 EU 인증의 <strong>사전 단계</strong>로 활용 (양자 협력 진행 중)</td></tr>
+  </table>
+</div>
+
+<h3>5-2. ISO/IEC 42001 — AI 경영시스템</h3>
+<div class="agency-card">
+  <div class="agency-header"><span class="agency-name">ISO/IEC 42001</span><span class="agency-tag">AI 경영시스템 국제 표준</span></div>
+  <table class="compact">
+    <tr><td style="width:22%"><strong>핵심 임무</strong></td><td>AI 경영시스템(AIMS) 국제 표준 — 위험관리·문서화·지속개선 체계</td></tr>
+    <tr><td><strong>제출 서류</strong></td><td>AI 정책 · 위험 분석 · 통제 절차 · 내부 감사 보고서 · 경영검토 회의록</td></tr>
+    <tr><td><strong>절차</strong></td><td>1단계 심사(문서) → 2단계 심사(현장) → 인증 → 매년 사후 심사 → 3년마다 갱신</td></tr>
+    <tr><td><strong>예상 기간</strong></td><td>첫 인증 9~12개월 · 갱신 3개월</td></tr>
+    <tr><td><strong>비용</strong></td><td>약 3,000만~8,000만원 (조직 규모별)</td></tr>
+    <tr><td><strong>XimTier 전략</strong></td><td>EU/일본/싱가포르 진출 시 필수. ISMS-P 통합 운영하면 비용·기간 절감 가능</td></tr>
+  </table>
+</div>
+
+<!-- ============ 6. 로드맵 ============ -->
+<h2>6. 서비스 런칭 4단계 로드맵 (12~18개월)</h2>
+
+<div class="process">
+  <div class="step">
+    <div class="step-num">STEP 1 · 0~3M</div>
+    <div class="step-title">사전 준비</div>
+    <div class="step-body">AI 윤리 가이드라인 수립 · XAI 모듈 아키텍처 설계 · 편향성 제어 모듈 보강 · 데이터 거버넌스 정책 문서화</div>
+  </div>
+  <div class="step">
+    <div class="step-num">STEP 2 · 3~9M</div>
+    <div class="step-title">기술 인증</div>
+    <div class="step-body">TTA CAT 신청 → 서면·현장 심사 → 인증 획득 · KISA ISMS-P 병행 · NIA 윤리 영향평가</div>
+  </div>
+  <div class="step">
+    <div class="step-num">STEP 3 · 6~12M</div>
+    <div class="step-title">규제 샌드박스</div>
+    <div class="step-body">과기부 ICT 샌드박스 신청 (신규 도메인 적용 시) · 규제 해석 사전 확보 · PoC 보호막 확보</div>
+  </div>
+  <div class="step">
+    <div class="step-num">STEP 4 · 9~18M</div>
+    <div class="step-title">도메인 인허가</div>
+    <div class="step-body">금융위/FSS 모형 검증 (금융사 PoC 시) · 식약처 SaMD (의료기기 시) · 개인정보위 컨설팅 (자동 결정 적용 시)</div>
+  </div>
+</div>
+
+<div class="callout callout-info">
+  <strong>병렬 처리가 핵심</strong> — 위 4단계는 순차가 아닌 <strong>병렬 실행 가능</strong>. STEP 1 종료 시점에 STEP 2와 STEP 3 동시 진행 가능. 실제 소요는 12~18개월.
+</div>
+
+<!-- ============ 7. 제출 서류 체크리스트 ============ -->
+<h2>7. 기관별 제출 서류 체크리스트</h2>
+
+<table class="compact">
+  <thead><tr><th>기관</th><th>핵심 제출 서류</th><th>난이도</th><th>현재 보유</th></tr></thead>
+  <tbody>
+    <tr><td>과기부</td><td>고위험 AI 등록 신청서 · 시스템 카드 · 영향평가</td><td>중</td><td>부분</td></tr>
+    <tr><td>TTA CAT ⭐</td><td>모델 카드 · 데이터 카드 · XAI 샘플 · 공정성 평가 · 견고성 테스트 · 보안 정책 · 운영 매뉴얼</td><td>높음</td><td>부분 (XAI 강함)</td></tr>
+    <tr><td>NIA</td><td>윤리 영향 평가 자체 보고서</td><td>낮음</td><td>미보유</td></tr>
+    <tr><td>KISA ISMS-P</td><td>정보보호 정책 · 위험 분석 · 운영 절차 · 사고 대응 (80~120 항목)</td><td>높음</td><td>미보유</td></tr>
+    <tr><td>금융위/FSS</td><td>모델 검증 보고서 · 설명 가능성 입증 · 모형 검증위 보고서</td><td>매우 높음</td><td>부분</td></tr>
+    <tr><td>식약처</td><td>임상 결과 · 기술문서 · 위험관리 · 사이버보안</td><td>매우 높음</td><td>미보유 (의료 직접 진입 시)</td></tr>
+    <tr><td>개인정보위</td><td>자동 결정 시스템 설명서 · 이의제기 처리</td><td>중</td><td>미보유</td></tr>
+    <tr><td>EU AI Act</td><td>적합성 평가 · 기술문서 (Annex IV) · CE 마킹</td><td>매우 높음</td><td>미보유</td></tr>
+    <tr><td>ISO/IEC 42001</td><td>AI 정책 · 위험 분석 · 통제 절차 · 감사 보고서</td><td>높음</td><td>미보유</td></tr>
+  </tbody>
+</table>
+
+<!-- ============ 8. 리스크 매트릭스 ============ -->
+<h2>8. 리스크 매트릭스 · 대응 우선순위</h2>
+
+<p>인증/허가 미확보가 사업에 미치는 영향을 *발생 확률* × *영향* 매트릭스로 평가한다.</p>
+
+<table>
+  <thead><tr><th>리스크</th><th>발생 확률</th><th>영향도</th><th>대응 우선순위</th></tr></thead>
+  <tbody>
+    <tr><td>금융권 PoC 시 FSS 모형 검증 통과 실패</td><td><span class="b b-red">높음</span></td><td><span class="b b-red">매우 큼</span></td><td>P0 — TTA CAT + 모형 검증 사전 준비</td></tr>
+    <tr><td>개인정보 침해 사고 → 개인정보위 조사</td><td><span class="b b-yellow">중간</span></td><td><span class="b b-red">매우 큼</span></td><td>P0 — 온프레미스 + 감사 로그 + ISMS-P</td></tr>
+    <tr><td>EU 진출 시 AI Act 부적합 → €35M 벌금</td><td><span class="b b-blue">낮음</span> (현 단계)</td><td><span class="b b-red">치명적</span></td><td>P1 — 2027 H2부터 준비</td></tr>
+    <tr><td>TTA CAT 미인증 → 정부 조달 배제</td><td><span class="b b-yellow">중간</span></td><td><span class="b b-yellow">큼</span></td><td>P0 — 2026 Q3 신청</td></tr>
+    <tr><td>NIA 윤리 영향 평가 부정 의견</td><td><span class="b b-blue">낮음</span></td><td><span class="b b-yellow">중간</span></td><td>P2 — 공공 영업 시점에 맞춰</td></tr>
+    <tr><td>식약처 SaMD 미허가 → 의료 직접 진입 불가</td><td><span class="b b-red">높음</span></td><td><span class="b b-yellow">큼</span></td><td>P2 — 의료는 *경영 최적화*로 우회 진입</td></tr>
+  </tbody>
+</table>
+
+<!-- ============ 9. 비용·기간 추정 ============ -->
+<h2>9. 컴플라이언스 비용·기간 추정</h2>
+
+<table>
+  <thead><tr><th>항목</th><th>기간</th><th>비용 (직접)</th><th>비용 (간접·인건비)</th><th>비고</th></tr></thead>
+  <tbody>
+    <tr><td>TTA CAT 인증</td><td>3~6개월</td><td>₩2,000~5,000만</td><td>₩5,000만~1억</td><td>2026 Q3~Q4 신청 권장</td></tr>
+    <tr><td>KISA ISMS-P</td><td>6~9개월</td><td>₩3,000~6,000만</td><td>₩1억~1.5억</td><td>금융권 PoC 전 필수</td></tr>
+    <tr><td>NIA 윤리 영향 평가</td><td>2~3개월</td><td>무상</td><td>₩2,000만~3,000만</td><td>공공 영업 전</td></tr>
+    <tr><td>과기부 ICT 샌드박스</td><td>3~6개월</td><td>무상</td><td>₩3,000만~5,000만</td><td>신규 도메인 시</td></tr>
+    <tr><td>금융위/FSS 모형 검증</td><td>6~12개월</td><td>무상</td><td>₩5,000만~2억</td><td>금융사 PoC 시</td></tr>
+    <tr><td>ISO/IEC 42001</td><td>9~12개월</td><td>₩3,000~8,000만</td><td>₩1억</td><td>해외 진출 전</td></tr>
+    <tr><td>EU AI Act 적합성</td><td>6~12개월</td><td>₩5,000만~2억</td><td>₩2억~5억</td><td>2027 H2+</td></tr>
+    <tr><td><strong>총합 (한국 시장)</strong></td><td><strong>12~18개월</strong></td><td><strong>₩1억~2.5억</strong></td><td><strong>₩3.5억~6억</strong></td><td>국내 진출용</td></tr>
+    <tr><td><strong>총합 (글로벌)</strong></td><td><strong>24~30개월</strong></td><td><strong>₩2억~5억</strong></td><td><strong>₩7억~12억</strong></td><td>EU/일본 포함</td></tr>
+  </tbody>
+</table>
+
+<div class="callout callout-success">
+  <strong>비용은 사실상 "Pre-Seed 시드 라운드 한 번"</strong> — 한국 컴플라이언스 총비용 ₩4.5~8.5억은 Seed 라운드(₩10~15억) 한 번으로 모두 커버 가능. 이 투자가 <strong>경쟁 우위로 직접 전환</strong>되는 영역.
+</div>
+
+<!-- ============ 10. 다음 액션 ============ -->
+<h2>10. 다음 액션 (분기별)</h2>
+
+<table>
+  <thead><tr><th style="width:13%">시기</th><th>액션</th><th>담당</th><th>산출물</th></tr></thead>
+  <tbody>
+    <tr><td><strong>2026 Q2</strong></td><td>TTA CAT 사전 컨설팅 신청 · 시스템 카드/데이터 카드 1.0 작성</td><td>CTO + 외부 컴플라이언스 자문</td><td>시스템 카드 v1.0</td></tr>
+    <tr><td><strong>2026 Q3</strong></td><td>TTA CAT 정식 신청 · KISA ISMS-P 사전 진단 · NIA 윤리 영향 평가 신청</td><td>CTO · CISO</td><td>3개 신청서</td></tr>
+    <tr><td><strong>2026 Q3</strong></td><td>과기부 ICT 샌드박스 신청 (Reverse What-If 신규 적용 분야 보호)</td><td>CEO · 법무</td><td>샌드박스 승인</td></tr>
+    <tr><td><strong>2026 Q4</strong></td><td>TTA CAT 현장 평가 · 편향성 제어 모듈 v1.0 출시</td><td>CTO</td><td>편향성 모듈</td></tr>
+    <tr><td><strong>2027 Q1</strong></td><td>TTA CAT 인증서 발급 · KISA ISMS-P 1차 심사</td><td>CTO · CISO</td><td>TTA CAT 인증서</td></tr>
+    <tr><td><strong>2027 Q2</strong></td><td>금융위/FSS 모형 검증 사전 협의 (KB·신한 PoC 연계)</td><td>CEO · 금융 도메인 책임자</td><td>모형 검증 계획</td></tr>
+    <tr><td><strong>2027 H2</strong></td><td>ISO/IEC 42001 신청 · EU AI Act 적합성 사전 평가</td><td>CTO · 글로벌 사업 책임자</td><td>EU CE 마킹 준비</td></tr>
+  </tbody>
+</table>
+
+<div class="callout callout-info">
+  <strong>핵심 우선순위 P0</strong> — <strong>① TTA CAT 인증 (2026 Q3 신청)</strong>가 모든 후속 인증·세일즈·IR의 신뢰 마커. 이 한 건이 가장 중요.<br>
+  <strong>차순위 P1</strong> — KISA ISMS-P (금융권 PoC의 전제 조건).
+</div>
+
+<!-- ============ 11. 결론 ============ -->
+<h2>11. 결론</h2>
+
+<div class="callout callout-success">
+  <strong>규제는 비용이 아니라 자산이다.</strong> 한국 AI 기본법 §13의 4대 감사 지표(XAI · Reverse What-If · 편향성 · 데이터 거버넌스) 중 ①②는 XimTier 아키텍처의 *기본값*이다. 우리에게는 규제 시행이 *위협*이 아니라 *증명 가능한 솔루션의 시장 가치를 끌어올리는 트리거*다.<br><br>
+  단, <em>"내가 그렇다고 말하는 것"</em>과 <em>"제3자 기관이 인증서를 발급하는 것"</em>은 다르다. <strong>TTA CAT 인증 + KISA ISMS-P 두 가지는 12~18개월 안에 반드시 확보해야 한다.</strong> 이것이 없으면 IR/세일즈 메시지가 *마케팅 카피*에 머무르고, 있으면 *제3자 보증된 차별점*이 된다.
+</div>
+
+<p style="margin-top:14px;"><small>출처: AI_Framework_Act_Key_Institutions.md (2026-05), 한국 AI 기본법 (2026-01-22 시행), EU AI Act (Regulation 2024/1689), ISO/IEC 42001:2023, TTA AI 신뢰성 인증 가이드, KISA ISMS-P 인증 안내서, 금융감독원 AI 모형 가이드라인, 식약처 SaMD 가이드, 개인정보보호위원회 자동 결정 안내. 본 보고서는 내부 임원·법무·컴플라이언스 + IR/감사 대응용. 시일·비용은 추정치이며 실제 신청 시 각 기관 최신 안내 확인 필요.</small></p>
+
+</body>
+</html>

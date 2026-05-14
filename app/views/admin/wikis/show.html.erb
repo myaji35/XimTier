@@ -204,8 +204,16 @@
         <div class="item" style="padding:14px 16px;">
           <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:6px;">
             <div class="name" style="font-size:14px;">
-              <%= link_to r["title"], admin_wiki_report_path(slug: r["slug"]),
-                          style: "color:#0B132D;text-decoration:none;" %>
+              <% if r["has_html"] %>
+                <%= link_to r["title"], admin_wiki_report_path(slug: r["slug"]),
+                            style: "color:#0B132D;text-decoration:none;" %>
+              <% elsif r["has_pdf"] %>
+                <%= link_to r["title"], admin_wiki_report_pdf_path(slug: r["slug"], format: :pdf),
+                            target: "_blank",
+                            style: "color:#0B132D;text-decoration:none;" %>
+              <% else %>
+                <%= r["title"] %>
+              <% end %>
             </div>
             <span style="background:#F3F4F6;color:#475467;font-size:10px;padding:2px 7px;border-radius:4px;font-family:ui-monospace,Menlo,monospace;letter-spacing:.05em;">
               <%= r["category"] %>
@@ -216,7 +224,7 @@
           </div>
           <div class="meta" style="font-size:11px;color:#94A3B8;display:flex;flex-wrap:wrap;gap:12px;align-items:center;">
             <span><%= r["audience"] %></span>
-            <span><%= r["pages"] %>p</span>
+            <% if r["pages"].present? %><span><%= r["pages"] %>p</span><% end %>
             <span>PDF <%= r["pdf_size_kb"] %>KB</span>
             <span><%= r["created_at"] %></span>
             <% if r["updated_at"] %>
