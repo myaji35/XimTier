@@ -107,8 +107,10 @@ Rails.application.configure do
   # Only use :id for inspections in production.
   config.active_record.attributes_for_inspect = [ :id ]
 
-  # Host authorization — XimTier nip.io 도메인 + Vultr IP 직접 접속 모두 허용
+  # Host authorization — 정식 도메인 + nip.io 임시 도메인 + Vultr IP 직접 접속 모두 허용
   config.hosts = [
+    "ximtier.com",
+    "www.ximtier.com",
     "ximtier.158.247.235.31.nip.io",
     "158.247.235.31",
     /.*\.nip\.io/, # 향후 stage/preview 호스트도 nip.io로 운용 가능
