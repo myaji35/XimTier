@@ -615,32 +615,26 @@
     <p class="empty">config/reports.yml 또는 storage/reports/ 디렉터리가 비어 있습니다.</p>
   <% else %>
     <style>
-      .report-card{display:block;background:#fff;border:1px solid #E5E7EB;border-radius:8px;padding:14px 16px;
-                   color:inherit;text-decoration:none;transition:border-color .15s, box-shadow .15s, transform .05s;
-                   position:relative;}
+      .report-card{display:flex;flex-direction:column;background:#fff;border:1px solid #E5E7EB;border-radius:8px;padding:14px 16px;
+                   color:inherit;text-decoration:none;cursor:pointer;
+                   transition:border-color .15s, box-shadow .15s, transform .05s;}
       .report-card:hover{border-color:#2563EB;box-shadow:0 6px 18px -8px rgba(37,99,235,0.25);}
       .report-card:active{transform:translateY(1px);}
       .report-card .rc-row1{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;}
-      .report-card .rc-title{font-size:14px;font-weight:600;color:#0B132D;line-height:1.35;}
+      .report-card .rc-title{font-size:14px;font-weight:600;color:#0B132D;line-height:1.35;flex:1;}
       .report-card .rc-cat{background:#F3F4F6;color:#475467;font-size:10px;padding:2px 7px;border-radius:4px;
                            font-family:ui-monospace,Menlo,monospace;letter-spacing:.05em;flex-shrink:0;}
       .report-card .rc-sub{margin-bottom:6px;color:#6B7280;font-size:11px;}
       .report-card .rc-meta{font-size:11px;color:#94A3B8;display:flex;flex-wrap:wrap;gap:12px;align-items:center;}
-      .report-card .rc-summary{margin:8px 0 10px;font-size:11.5px;color:#475467;line-height:1.5;}
-      .report-card .rc-actions{display:flex;gap:6px;flex-wrap:wrap;}
-      .report-card .rc-btn{font-size:11px;padding:5px 12px;border-radius:5px;text-decoration:none;font-weight:600;
-                           display:inline-flex;align-items:center;gap:5px;border:1px solid transparent;}
-      .report-card .rc-btn.primary{background:#2563EB;color:#fff;}
-      .report-card .rc-btn.outline{background:#fff;border-color:#2563EB;color:#2563EB;}
-      .report-card .rc-btn.subtle{background:#fff;border-color:#E5E7EB;color:#475467;font-weight:500;}
-      .report-card .rc-btn:hover{filter:brightness(1.05);}
+      .report-card .rc-summary{margin:8px 0 0;font-size:11.5px;color:#475467;line-height:1.5;}
     </style>
     <div class="grid cols-2">
       <% @reports.each do |r| %>
         <% primary_url = r["has_html"] ? admin_wiki_report_path(slug: r["slug"]) :
                                           (r["has_pdf"] ? admin_wiki_report_pdf_path(slug: r["slug"]) : "#") %>
-        <% primary_target = (!r["has_html"] && r["has_pdf"]) ? "_blank" : nil %>
-        <a href="<%= primary_url %>" <%= "target=\"#{primary_target}\"".html_safe if primary_target %> class="report-card">
+        <%= link_to primary_url,
+                    target: ((!r["has_html"] && r["has_pdf"]) ? "_blank" : nil),
+                    class: "report-card" do %>
           <div class="rc-row1">
             <div class="rc-title"><%= r["title"] %></div>
             <span class="rc-cat"><%= r["category"] %></span>
@@ -656,27 +650,9 @@
             <% end %>
           </div>
           <p class="rc-summary"><%= r["summary"] %></p>
-          <div class="rc-actions" onclick="event.stopPropagation()">
-            <% if r["has_html"] %>
-              <%= link_to "HTML 보기", admin_wiki_report_path(slug: r["slug"]),
-                  class: "rc-btn primary", data: { "stop-propagation": "true" } %>
-            <% end %>
-            <% if r["has_pdf"] %>
-              <%= link_to "PDF 열기", admin_wiki_report_pdf_path(slug: r["slug"]),
-                  target: "_blank", class: "rc-btn outline" %>
-              <%= link_to "PDF 다운로드", admin_wiki_report_pdf_path(slug: r["slug"], download: 1),
-                  class: "rc-btn subtle" %>
-            <% end %>
-          </div>
-        </a>
+        <% end %>
       <% end %>
     </div>
-    <script>
-      // 카드 안 액션 버튼 클릭은 카드의 메인 링크와 분리
-      document.querySelectorAll('.report-card .rc-actions a').forEach(function(a){
-        a.addEventListener('click', function(e){ e.stopPropagation(); });
-      });
-    </script>
     <p style="margin-top:12px;font-size:11px;color:#94A3B8;">
       새 보고서는 <code style="background:#F3F4F6;padding:1px 5px;border-radius:3px;">config/reports_data/{slug}.html</code>·<code style="background:#F3F4F6;padding:1px 5px;border-radius:3px;">{slug}.pdf</code> 쌍으로 두고 <code style="background:#F3F4F6;padding:1px 5px;border-radius:3px;">config/reports.yml</code>에 메타데이터를 추가하면 자동으로 노출됩니다.
     </p>

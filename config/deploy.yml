@@ -16,8 +16,12 @@ ssh:
 
 # kamal-proxy를 0012와 공유 (host-based routing) — proxy.host로 분기됨
 # Dockerfile은 Thruster를 통해 :80에서 외부 노출 — app_port: 80
+# 2026-05-14: ximtier.com 정식 도메인 + Let's Encrypt SSL 자동 발급
 proxy:
-  host: ximtier.158.247.235.31.nip.io
+  hosts:
+    - ximtier.com
+    - www.ximtier.com
+  ssl: true
   app_port: 80
   healthcheck:
     path: /up
@@ -58,13 +62,13 @@ env:
     RAILS_LOG_TO_STDOUT: "true"
     # SQLite (Rails 8 기본) — Solid Queue/Cache/Cable 동일 storage 사용
     DB_HOST: ""
-    # 도메인 — 정식 도메인 확정 시 ximtier.io 등으로 교체
-    APP_HOST: "ximtier.158.247.235.31.nip.io"
-    APP_PROTOCOL: "http"
-    # SMTP placeholder — 미설정이면 production.rb가 자동 :test 폴백
-    SMTP_HOST: ""
+    # 도메인 — ximtier.com 정식 운영 (2026-05-14~)
+    APP_HOST: "ximtier.com"
+    APP_PROTOCOL: "https"
+    # SMTP — Google Workspace (myaji35@ximtier.com 앱 비밀번호 .kamal/secrets에 주입)
+    SMTP_HOST: "smtp.gmail.com"
     SMTP_PORT: "587"
-    SMTP_DOMAIN: "ximtier.158.247.235.31.nip.io"
+    SMTP_DOMAIN: "ximtier.com"
     SMTP_AUTH: "plain"
     SMTP_STARTTLS: "true"
     # Plausible — 도메인 결정 후 활성
