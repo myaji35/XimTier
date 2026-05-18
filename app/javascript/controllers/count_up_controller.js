@@ -12,13 +12,14 @@ export default class extends Controller {
   }
 
   connect() {
-    this.targets = this.valueTargets.length ? this.valueTargets : [this.element]
-    this.original = this.targets.map(el => el.textContent.trim())
+    // NOTE: `this.targets`는 Stimulus base Controller의 getter-only 속성이므로 인스턴스 변수명을 분리한다.
+    this.targetEls = this.valueTargets.length ? this.valueTargets : [this.element]
+    this.original = this.targetEls.map(el => el.textContent.trim())
     this.played = false
 
     if (this.prefersReducedMotion()) return
 
-    this.targets.forEach((el, i) => {
+    this.targetEls.forEach((el, i) => {
       const parsed = this.parse(this.original[i])
       if (parsed) el.textContent = this.format(0, parsed)
     })
@@ -70,7 +71,7 @@ export default class extends Controller {
 
   animateAll() {
     const start = performance.now()
-    const parsed = this.targets.map((el, i) => ({
+    const parsed = this.targetEls.map((el, i) => ({
       el,
       data: this.parse(this.original[i])
     }))

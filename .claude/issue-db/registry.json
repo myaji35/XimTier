@@ -272,7 +272,7 @@
       "description": "http://localhost:3000/ko 진입 시 Stimulus count-up 컨트롤러가 \"Cannot set property targets of #<ae> which has only a getter\" 에러로 connect 실패. count_up_controller.js:15에서 this.targets = ... 형태 할당 시 Stimulus base class의 targets getter와 충돌. 컴파일된 자산 기준 추적 필요.",
       "agent": "agent-harness",
       "priority": "P1",
-      "status": "READY",
+      "status": "COMPLETED",
       "depth": 0,
       "depends_on": [],
       "scope": [
@@ -285,7 +285,13 @@
         "hero"
       ],
       "discovered_during": "ISS-003 검증 (2026-05-18)",
-      "created_at": "2026-05-18T01:10:00Z"
+      "created_at": "2026-05-18T01:10:00Z",
+      "completed_at": "2026-05-18T01:15:00Z",
+      "result": {
+        "root_cause": "connect()의 this.targets = ... 가 Stimulus base Controller의 getter-only \"targets\" 속성과 충돌",
+        "fix": "this.targets → this.targetEls 로 인스턴스 변수 분리 (animateAll 사용처 동기)",
+        "verified": "/ko 콘솔 에러 0 + count-up 5개 모두 최종값 도달(+28.5%/+65%/85%/75%/+262%) + 부호·단위 보존"
+      }
     }
   ],
   "hooks": {
@@ -325,7 +331,7 @@
   },
   "stats": {
     "total_issues": 9,
-    "completed": 3,
+    "completed": 4,
     "failed": 0,
     "current_depth": 0
   },
