@@ -1,40 +1,36 @@
 <% content_for :title, "#{t('pricing.h1')} — #{t('site.brand')}" %>
 
-<section class="section-light section-pad">
+<section class="surface-canvas section-pad">
   <div class="wrap">
-    <div class="eyebrow"><span class="dot"></span><%= t("pricing.eyebrow") %></div>
-    <h1 class="h-section mt-3" style="max-width:920px;"><%= t("pricing.h1") %></h1>
-    <p class="lead mt-5" style="color:#475467; max-width:760px;"><%= t("pricing.lead") %></p>
+    <p class="type-uppercase-tag text-rausch"><%= t("pricing.eyebrow") %></p>
+    <h1 class="type-display-xl mt-3" style="max-width:920px;"><%= t("pricing.h1") %></h1>
+    <p class="type-body-md text-body-airbnb mt-5" style="max-width:760px;"><%= t("pricing.lead") %></p>
 
     <div class="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4" style="gap:20px;">
       <% %w[light industry vibe platform].each_with_index do |key, i| %>
         <% tier = t("pricing.tiers.#{key}") %>
         <% is_platform = key == "platform" %>
-        <article class="rounded-[18px] p-7 relative" style="
-              background:#fff;
-              border:<%= is_platform ? '1.5px solid #2563EB' : '1px solid #e5e9f0' %>;
-              <%= 'box-shadow: 0 10px 30px -12px rgba(37,99,235,0.18);' if is_platform %>
-            ">
+        <article class="card-airbnb shadow-card-hover relative" style="padding:28px; <%= 'border-color: var(--color-rausch);' if is_platform %>">
           <% if is_platform && tier[:soon] %>
-            <div class="absolute top-4 right-4 font-mono text-[10px] px-2.5 py-1 rounded-full text-white" style="background:linear-gradient(135deg,#2563EB,#00C8C8); letter-spacing:0.1em;">
+            <div class="absolute top-4 right-4 airbnb-new-tag">
               <%= tier[:soon].upcase %>
             </div>
           <% end %>
 
-          <div class="font-mono text-[12px]" style="color:#697386; letter-spacing:0.14em;">
+          <div class="font-mono type-uppercase-tag text-muted-airbnb">
             TIER / <%= tier[:badge] %>
           </div>
-          <h3 class="h-card mt-3" style="color:#0B132D;"><%= tier[:name] %></h3>
-          <div class="mt-4 font-semibold" style="font-size:18px; color:#2563EB;"><%= tier[:price] %></div>
-          <p class="mt-4 text-[14px]" style="color:#475467; line-height:1.6;"><%= tier[:desc] %></p>
+          <h3 class="type-display-sm mt-3"><%= tier[:name] %></h3>
+          <div class="mt-4 type-title-md text-rausch" style="font-size:18px;"><%= tier[:price] %></div>
+          <p class="type-body-sm text-body-airbnb mt-4" style="line-height:1.6;"><%= tier[:desc] %></p>
 
-          <div class="mt-6 pt-5" style="border-top:1px solid #e5e9f0;">
+          <div class="mt-6 pt-5 border-t-hairline">
             <% if is_platform %>
-              <%= link_to t("site.nav.contact"), contact_path(locale: I18n.locale), class: "btn btn-ghost", style: "width:100%; justify-content:center;" %>
+              <%= link_to t("site.nav.contact"), contact_path(locale: I18n.locale), class: "btn-secondary-airbnb", style: "width:100%;" %>
             <% else %>
               <%= link_to t("site.hero.cta_demo"), demo_path(locale: I18n.locale),
-                    class: (i == 0 ? "btn btn-grad" : "btn btn-primary"),
-                    style: "width:100%; justify-content:center;" %>
+                    class: "btn-rausch",
+                    style: "width:100%;" %>
             <% end %>
           </div>
         </article>
@@ -44,34 +40,31 @@
 </section>
 
 <%# Feature Comparison Matrix %>
-<section class="section-tinted section-pad">
+<section class="surface-soft section-pad">
   <div class="wrap" style="max-width:1100px;">
-    <div class="eyebrow"><span class="dot"></span>FEATURE MATRIX</div>
-    <h2 class="h-section mt-3"><%= t("pricing.matrix_title") %></h2>
+    <p class="type-uppercase-tag text-rausch">FEATURE MATRIX</p>
+    <h2 class="type-display-xl mt-3"><%= t("pricing.matrix_title") %></h2>
 
     <div class="mt-10 overflow-x-auto">
-      <table class="w-full" style="border-collapse:separate; border-spacing:0; min-width:760px; background:#fff; border-radius:14px; overflow:hidden; border:1px solid #e5e9f0;">
+      <table class="w-full card-airbnb" style="border-collapse:separate; border-spacing:0; min-width:760px; padding:0; overflow:hidden;">
         <thead>
           <tr>
-            <th class="text-left p-4 font-mono text-[11px]" style="background:#F2F4F7; color:#4B5468; letter-spacing:0.14em; border-bottom:1px solid #e5e9f0;">FEATURE</th>
-            <th class="text-center p-4 font-mono text-[11px]" style="background:#F2F4F7; color:#4B5468; letter-spacing:0.14em; border-bottom:1px solid #e5e9f0;">① LIGHT</th>
-            <th class="text-center p-4 font-mono text-[11px]" style="background:#F2F4F7; color:#2563EB; letter-spacing:0.14em; border-bottom:1px solid #e5e9f0;">② INDUSTRY</th>
-            <th class="text-center p-4 font-mono text-[11px]" style="background:#F2F4F7; color:#2563EB; letter-spacing:0.14em; border-bottom:1px solid #e5e9f0;">③ VIBE</th>
-            <th class="text-center p-4 font-mono text-[11px]" style="background:#F2F4F7; color:#005959; letter-spacing:0.14em; border-bottom:1px solid #e5e9f0;">④ PLATFORM</th>
+            <% [["FEATURE", "text-muted-airbnb"], ["① LIGHT", "text-muted-airbnb"], ["② INDUSTRY", "text-rausch"], ["③ VIBE", "text-rausch"], ["④ PLATFORM", "text-rausch"]].each_with_index do |(label, klass), i| %>
+              <th class="<%= i == 0 ? 'text-left' : 'text-center' %> p-4 font-mono type-uppercase-tag <%= klass %> border-b-hairline" style="background: var(--color-surface-soft); font-size:11px; letter-spacing:0.14em;"><%= label %></th>
+            <% end %>
           </tr>
         </thead>
         <tbody>
           <% t("pricing.matrix_features").each_with_index do |row, i| %>
             <% is_last = i == t("pricing.matrix_features").size - 1 %>
-            <% bb = is_last ? "" : "border-bottom:1px solid #e5e9f0;" %>
+            <% bb_class = is_last ? "" : "border-b-hairline" %>
             <tr>
-              <td class="p-4 text-[14px]" style="color:#0B132D; <%= bb %>"><%= row[:feature] %></td>
+              <td class="p-4 type-body-sm text-ink-airbnb <%= bb_class %>"><%= row[:feature] %></td>
               <% %i[light industry vibe platform].each do |tier| %>
                 <% val = row[tier] %>
-                <% color = val == "✓" ? "#2563EB" : (val == "—" ? "#CBD5E1" : "#475467") %>
-                <% weight = val == "✓" ? 700 : (val == "—" ? 400 : 500) %>
-                <td class="p-4 text-center" style="<%= bb %>">
-                  <span style="color:<%= color %>; font-weight:<%= weight %>; font-size:<%= val.length > 1 ? '12px' : '16px' %>; font-family:<%= val.length > 1 ? 'inherit' : '-apple-system,sans-serif' %>;"><%= val %></span>
+                <% cls = val == "✓" ? "text-rausch font-bold" : (val == "—" ? "text-muted-airbnb" : "text-body-airbnb") %>
+                <td class="p-4 text-center <%= bb_class %>">
+                  <span class="<%= cls %>" style="font-size:<%= val.to_s.length > 1 ? '12px' : '16px' %>;"><%= val %></span>
                 </td>
               <% end %>
             </tr>
@@ -83,16 +76,16 @@
 </section>
 
 <%# ARR Roadmap %>
-<section class="section-light section-pad-compact">
+<section class="surface-canvas section-pad-compact">
   <div class="wrap">
-    <div class="eyebrow"><span class="dot"></span>ARR ROADMAP</div>
-    <h2 class="h-section mt-3" style="max-width:760px;"><%= t("pricing.roadmap_title") %></h2>
+    <p class="type-uppercase-tag text-rausch">ARR ROADMAP</p>
+    <h2 class="type-display-xl mt-3" style="max-width:760px;"><%= t("pricing.roadmap_title") %></h2>
 
     <div class="mt-10 grid grid-cols-2 md:grid-cols-4" style="gap:16px;">
       <% t("pricing.roadmap").each do |r| %>
-        <div class="rounded-[14px] p-5" style="background:#fff; border:1px solid #e5e9f0;">
-          <div class="font-mono text-[20px] font-bold text-brand-grad"><%= r[:year] %></div>
-          <div class="mt-2 text-[13px]" style="color:#475467;"><%= r[:goal] %></div>
+        <div class="card-airbnb shadow-card-hover" style="padding:20px;">
+          <div class="font-mono type-display-sm text-rausch" style="font-size:20px;"><%= r[:year] %></div>
+          <div class="mt-2 type-body-sm text-body-airbnb"><%= r[:goal] %></div>
         </div>
       <% end %>
     </div>
