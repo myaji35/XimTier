@@ -40,7 +40,9 @@ Data visualizations. Two acceptable kinds:
 **Never embed copyrighted chart screenshots** from Gartner, IDC, Forrester, etc.
 Cite their numbers in self-authored SVGs instead.
 
-- (entries added as charts are committed)
+- gartner_llm_poc_failure.svg — Self-authored XimTier · License: self-authored (free to redistribute with attribution to XimTier) · Cites: Gartner 2024 "Generative AI POC Outcomes" (numerical estimate only, no chart screenshot)
+- eu_ai_act_timeline.svg     — Self-authored XimTier · License: self-authored · Cites: Regulation (EU) 2024/1689 (Official Journal, public domain) + 인공지능 기본법(법률 제20039호, 한국 법령정보, public domain)
+- chatgpt_vs_ximtier_radar.svg — Self-authored XimTier · License: self-authored · Cites: XimTier internal qualitative benchmark 2026-05
 
 ## brand/
 

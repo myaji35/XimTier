@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 280" role="img" aria-labelledby="title desc">
+  <title id="title">EU AI Act + 한국 AI 기본법 적용 타임라인</title>
+  <desc id="desc">2026년 EU AI Act 발효일, 한국 AI 기본법 시행일, 위반 시 벌금 상한선을 한 줄에 배치한 타임라인.</desc>
+
+  <style>
+    .lane   { stroke: #dddddd; stroke-width: 2; }
+    .tick   { stroke: #222222; stroke-width: 2; }
+    .tick-r { stroke: #ff385c; stroke-width: 3; }
+    .lab    { font: 700 13px -apple-system, "Inter", sans-serif; fill: #222222; }
+    .lab-r  { fill: #ff385c; }
+    .date   { font: 500 11px ui-monospace, Menlo, monospace; fill: #717171; letter-spacing: 0.04em; }
+    .desc-t { font: 400 12px -apple-system, "Inter", sans-serif; fill: #717171; }
+    .src    { font: 600 10px ui-monospace, Menlo, monospace; fill: #717171; letter-spacing: 0.06em; }
+    .hd     { font: 500 13px -apple-system, "Inter", sans-serif; fill: #222222; }
+  </style>
+
+  <text x="32" y="36" class="hd">규제 발효 D-Day — 의사결정 AI 감사 의무</text>
+
+  <line x1="60" y1="140" x2="660" y2="140" class="lane"/>
+
+  <circle cx="180" cy="140" r="7" fill="#ff385c"/>
+  <line x1="180" y1="140" x2="180" y2="90" class="tick-r"/>
+  <text x="180" y="80" text-anchor="middle" class="lab lab-r">한국 AI 기본법</text>
+  <text x="180" y="170" text-anchor="middle" class="date">2026-01-22 시행</text>
+  <text x="180" y="190" text-anchor="middle" class="desc-t">설명 방안 수립 의무</text>
+  <text x="180" y="208" text-anchor="middle" class="desc-t">5년 보관</text>
+
+  <circle cx="420" cy="140" r="7" fill="#ff385c"/>
+  <line x1="420" y1="140" x2="420" y2="90" class="tick-r"/>
+  <text x="420" y="80" text-anchor="middle" class="lab lab-r">EU AI Act</text>
+  <text x="420" y="170" text-anchor="middle" class="date">2026-08-02 발효</text>
+  <text x="420" y="190" text-anchor="middle" class="desc-t">고위험 AI 적합성 평가</text>
+  <text x="420" y="208" text-anchor="middle" class="desc-t">최대 €35M 또는 매출 7%</text>
+
+  <circle cx="600" cy="140" r="6" fill="#222222"/>
+  <line x1="600" y1="140" x2="600" y2="100" class="tick"/>
+  <text x="600" y="90" text-anchor="middle" class="lab">현재 (오늘)</text>
+  <text x="600" y="170" text-anchor="middle" class="date">2026-05-18</text>
+
+  <text x="32" y="262" class="src">SOURCE: REGULATION (EU) 2024/1689 · 인공지능 기본법(법률 제20039호) — 자체 재작성</text>
+</svg>
