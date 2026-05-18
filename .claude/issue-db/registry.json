@@ -134,7 +134,7 @@
       "description": "kamal deploy → http://ximtier.158.247.235.31.nip.io/ko/how-it-works 데모 외부 동작 확인. Lighthouse mobile 측정. _workspace/w1-report.md 작성.",
       "agent": "cicd-harness",
       "priority": "P1",
-      "status": "READY",
+      "status": "COMPLETED",
       "depth": 1,
       "depends_on": [
         "ISS-001",
@@ -149,7 +149,38 @@
       "tags": [
         "W1",
         "deploy"
-      ]
+      ],
+      "completed_at": "2026-05-18T01:25:00Z",
+      "result": {
+        "deploy": "9차 — kamal deploy 213.1s, image=ghcr.io/myaji35/ximtier:427d41f2864c18aa9349b9bfa376947b419c2bd4",
+        "external_health": "https://ximtier.com/ko/how-it-works → 200 OK (0.37s)",
+        "production_verified": "slider 0.6 → 0.60% / -75% / aria-valuetext updated + SHAP panel toggle + 5 한글 labels + 콘솔 에러 0",
+        "lighthouse_mobile": {
+          "ko-home": {
+            "lcp_ms": 1464,
+            "cls": 0.0,
+            "tbt_ms": 0,
+            "perf": 0.89,
+            "a11y": 0.98
+          },
+          "ko-how-it-works": {
+            "lcp_ms": 728,
+            "cls": 0.0,
+            "tbt_ms": 0,
+            "perf": 0.99,
+            "a11y": 0.98
+          },
+          "en-how-it-works": {
+            "lcp_ms": 772,
+            "cls": 0.004,
+            "tbt_ms": 0,
+            "perf": 0.99,
+            "a11y": 0.98
+          }
+        },
+        "report": "_workspace/w1-report-260518.md",
+        "all_criteria_met": true
+      }
     },
     {
       "id": "ISS-006",
@@ -331,7 +362,7 @@
   },
   "stats": {
     "total_issues": 9,
-    "completed": 4,
+    "completed": 5,
     "failed": 0,
     "current_depth": 0
   },
