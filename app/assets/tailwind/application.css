@@ -191,6 +191,103 @@ html, body {
   .float-chip { animation: none !important; }
 }
 
+/* === XIM-12 해자 삼각형 인터랙티브 === */
+.moat-triangle-vertex {
+  cursor: pointer;
+  outline: none;
+  transition: opacity 180ms cubic-bezier(0.4,0,0.2,1);
+}
+.moat-triangle-vertex:focus-visible .moat-triangle-vertex-rect {
+  outline: 2px solid #2563EB;
+  outline-offset: 4px;
+}
+.moat-triangle-vertex-rect {
+  transition: stroke 180ms, filter 180ms;
+}
+.moat-triangle-vertex-text {
+  transition: font-weight 180ms;
+}
+/* 활성 vertex: 강조 */
+.moat-triangle-vertex[data-active="true"] .moat-triangle-vertex-rect {
+  stroke: #2563EB;
+  stroke-width: 2;
+  filter: drop-shadow(0 0 12px rgba(37,99,235,0.35));
+}
+.moat-triangle-vertex[data-active="true"] .moat-triangle-vertex-text {
+  font-weight: 700;
+}
+/* 활성 시 다른 vertex 디엠퍼시스 */
+.moat-triangle-root[data-moat-triangle-active-key-value]:not([data-moat-triangle-active-key-value=""])
+  .moat-triangle-vertex:not([data-active="true"]) {
+  opacity: 0.45;
+}
+
+/* line — 기본 점선, 활성/비활성 분기 */
+.moat-triangle-line {
+  stroke-dasharray: 4 5;
+  opacity: 0.55;
+  transition: opacity 220ms, stroke-dasharray 220ms;
+}
+.moat-triangle-line[data-active="true"] {
+  opacity: 1;
+  stroke-dasharray: 6 4;
+}
+.moat-triangle-line[data-muted="true"] {
+  opacity: 0.2;
+}
+
+/* 스크롤 reveal — 점선 draw-in */
+.moat-triangle-root .moat-triangle-line {
+  stroke-dashoffset: 200;
+  transition: stroke-dashoffset 900ms ease-out, opacity 220ms;
+}
+.moat-triangle-root[data-revealed="true"] .moat-triangle-line {
+  stroke-dashoffset: 0;
+}
+
+/* card — 우측 패널 */
+.moat-triangle-card {
+  cursor: pointer;
+  outline: none;
+  transition: opacity 180ms, box-shadow 180ms, border-color 180ms, transform 180ms;
+}
+.moat-triangle-card:focus-visible {
+  outline: 2px solid #2563EB;
+  outline-offset: 3px;
+}
+.moat-triangle-card[data-active="true"] {
+  border-color: #2563EB !important;
+  box-shadow: 0 12px 28px -12px rgba(37,99,235,0.35);
+  transform: translateY(-2px);
+}
+.moat-triangle-root[data-moat-triangle-active-key-value]:not([data-moat-triangle-active-key-value=""])
+  .moat-triangle-card:not([data-active="true"]) {
+  opacity: 0.55;
+}
+
+/* disc — hover 효과 (스펙: 중앙 disc scale 1.06) */
+.moat-triangle-disc {
+  transform-origin: 230px 200px;
+  transition: transform 200ms cubic-bezier(0.4,0,0.2,1);
+}
+.moat-triangle-disc:hover {
+  transform: scale(1.06);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .moat-triangle-vertex,
+  .moat-triangle-vertex-rect,
+  .moat-triangle-vertex-text,
+  .moat-triangle-card,
+  .moat-triangle-disc,
+  .moat-triangle-line {
+    transition: none !important;
+  }
+  .moat-triangle-root .moat-triangle-line {
+    stroke-dashoffset: 0 !important;
+  }
+}
+
 /* === Reference logos marquee (Hero 하단, 좌→우 흐름) === */
 .logo-marquee {
   position: relative;

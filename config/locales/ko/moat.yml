@@ -19,11 +19,14 @@ ko:
           icon: lock
           title: 데이터 주권
           body: 기업이 데이터를 외부 LLM에 못 올린다는 근본 사실. 변하지 않는 시장.
+          aria: "해자 차원: 데이터 주권 — 자세히 보기"
         regulated:
           icon: scale
           title: 규제 산업
           body: EU AI Act, 한국 AI 기본법. 의료·금융·공공의 XAI 의무화.
+          aria: "해자 차원: 규제 산업 — 자세히 보기"
         reverse:
           icon: arrows
           title: Reverse What-If
           body: Transformer는 최적화 문제를 수학적으로 보장할 수 없는 아키텍처. 빅테크가 LLM을 버리지 않는 한 따라올 수 없는 영역.
+          aria: "해자 차원: Reverse What-If — 자세히 보기"

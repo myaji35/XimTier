@@ -1,7 +1,14 @@
-<div class="grid md:grid-cols-2 items-center" style="gap:60px;">
-  <%# Left: SVG diagram (light bg, gradient center, dashed connecting lines) %>
+<%# XIM-12 — 해자 삼각형 인터랙티브 SVG %>
+<%# vertex/card 양방향 동기화, 키보드 ←/→ 순환, 스크롤 reveal, reduce-motion 존중 %>
+<div data-controller="moat-triangle"
+     data-moat-triangle-active-key-value=""
+     class="grid md:grid-cols-2 items-center moat-triangle-root"
+     style="gap:60px;">
+
+  <%# Left: SVG diagram %>
   <div class="flex justify-center">
-    <svg viewBox="0 0 460 400" class="w-full" style="max-width:480px;" role="img" aria-label="Moat Triangle">
+    <svg viewBox="0 0 460 400" class="w-full moat-triangle-svg" style="max-width:480px;"
+         role="img" aria-label="<%= t('moat.triangle.title', default: 'Moat Triangle') %>">
       <defs>
         <linearGradient id="moat-grad" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%"   stop-color="#2563EB"/>
@@ -13,38 +20,79 @@
         </radialGradient>
       </defs>
 
-      <%# Dashed connecting lines %>
-      <g stroke="url(#moat-grad)" stroke-width="1.5" stroke-dasharray="4 5" opacity="0.55" fill="none">
-        <line x1="230" y1="70"  x2="70"  y2="320"/>
-        <line x1="230" y1="70"  x2="390" y2="320"/>
-        <line x1="70"  y1="320" x2="390" y2="320"/>
+      <%# Dashed connecting lines — data-pair로 끝점 두 vertex key 식별 %>
+      <g stroke="url(#moat-grad)" stroke-width="1.5" fill="none">
+        <% MoatTriangleComponent::LINE_PAIRS.each do |pair| %>
+          <% coords = {
+               sovereignty: [230, 70],
+               reverse:     [70,  320],
+               regulated:   [390, 320]
+             } %>
+          <% x1, y1 = coords[pair[0]] %>
+          <% x2, y2 = coords[pair[1]] %>
+          <line data-moat-triangle-target="line"
+                data-pair="<%= line_pair_attr(pair) %>"
+                x1="<%= x1 %>" y1="<%= y1 %>"
+                x2="<%= x2 %>" y2="<%= y2 %>"
+                class="moat-triangle-line"/>
+        <% end %>
       </g>
 
-      <%# Center gradient disc with XST label %>
-      <circle cx="230" cy="200" r="58" fill="url(#moat-center-fill)" opacity="0.92"/>
-      <text x="230" y="196" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="700" letter-spacing="1">XST</text>
-      <text x="230" y="218" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="10" letter-spacing="2">XimTier</text>
+      <%# Center gradient disc %>
+      <g data-moat-triangle-target="disc" class="moat-triangle-disc">
+        <circle cx="230" cy="200" r="58" fill="url(#moat-center-fill)" opacity="0.92"/>
+        <text x="230" y="196" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="700" letter-spacing="1">XST</text>
+        <text x="230" y="218" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="10" letter-spacing="2">XimTier</text>
+      </g>
 
-      <%# Vertex nodes (white card style) %>
-      <% [{ cx: 230, cy: 70,  label: sovereignty[:title], icon: "🔒" },
-          { cx: 70,  cy: 320, label: reverse[:title],     icon: "🔄" },
-          { cx: 390, cy: 320, label: regulated[:title],   icon: "⚖" }].each do |v| %>
-        <g>
-          <rect x="<%= v[:cx] - 80 %>" y="<%= v[:cy] - 22 %>" width="160" height="44" rx="22"
-                fill="#ffffff" stroke="#e5e9f0" stroke-width="1.5"/>
-          <text x="<%= v[:cx] %>" y="<%= v[:cy] + 5 %>" text-anchor="middle"
-                fill="#0B132D" font-size="13" font-weight="600">
-            <%= v[:icon] %> <%= v[:label] %>
+      <%# Vertex nodes %>
+      <% points_in_order.each do |key, point, geom| %>
+        <g data-moat-triangle-target="vertex"
+           data-key="<%= key %>"
+           tabindex="0"
+           role="button"
+           aria-label="<%= point[:aria] || point[:title] %>"
+           class="moat-triangle-vertex"
+           data-action="mouseenter->moat-triangle#highlight
+                        mouseleave->moat-triangle#release
+                        focus->moat-triangle#highlight
+                        blur->moat-triangle#release
+                        click->moat-triangle#toggle
+                        keydown.enter->moat-triangle#toggle
+                        keydown.space->moat-triangle#toggle
+                        keydown.right->moat-triangle#navigate
+                        keydown.left->moat-triangle#navigate">
+          <rect x="<%= geom[:cx] - 80 %>" y="<%= geom[:cy] - 22 %>"
+                width="160" height="44" rx="22"
+                fill="#ffffff" stroke="#e5e9f0" stroke-width="1.5"
+                class="moat-triangle-vertex-rect"/>
+          <text x="<%= geom[:cx] %>" y="<%= geom[:cy] + 5 %>" text-anchor="middle"
+                fill="#0B132D" font-size="13" font-weight="600"
+                class="moat-triangle-vertex-text">
+            <%= geom[:icon] %> <%= point[:title] %>
           </text>
         </g>
       <% end %>
     </svg>
   </div>
 
-  <%# Right: text panel %>
+  <%# Right: text panel — vertex와 양방향 동기화 %>
   <div class="space-y-5">
-    <% [sovereignty, regulated, reverse].each do |point| %>
-      <div class="card" style="padding:24px;">
+    <% card_order.each do |key, point| %>
+      <article data-moat-triangle-target="card"
+               data-key="<%= key %>"
+               tabindex="0"
+               role="button"
+               aria-label="<%= point[:aria] || point[:title] %>"
+               class="card moat-triangle-card"
+               style="padding:24px;"
+               data-action="mouseenter->moat-triangle#highlight
+                            mouseleave->moat-triangle#release
+                            focus->moat-triangle#highlight
+                            blur->moat-triangle#release
+                            click->moat-triangle#toggle
+                            keydown.enter->moat-triangle#toggle
+                            keydown.space->moat-triangle#toggle">
         <div class="flex items-start" style="gap:14px;">
           <div class="shrink-0 w-10 h-10 rounded-lg flex items-center justify-center"
                style="background:linear-gradient(135deg, rgba(37,99,235,0.10), rgba(0,200,200,0.10)); border:1px solid #e5e9f0; color:#2563EB;">
@@ -55,7 +103,7 @@
             <p class="mt-1.5 text-[14px] leading-relaxed" style="color:#475467;"><%= point[:body] %></p>
           </div>
         </div>
-      </div>
+      </article>
     <% end %>
   </div>
 </div>

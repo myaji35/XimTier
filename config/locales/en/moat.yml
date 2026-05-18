@@ -19,11 +19,14 @@ en:
           icon: lock
           title: Data Sovereignty
           body: A fundamental fact that enterprises can't upload data to external LLMs. An unchanging market.
+          aria: "Moat dimension: Data Sovereignty — show details"
         regulated:
           icon: scale
           title: Regulated Industries
           body: EU AI Act, Korea AI Framework Act. XAI mandates in healthcare, finance, and public sector.
+          aria: "Moat dimension: Regulated Industries — show details"
         reverse:
           icon: arrows
           title: Reverse What-If
           body: Transformers cannot mathematically guarantee optimization problems. Unreachable unless big-tech abandons LLMs.
+          aria: "Moat dimension: Reverse What-If — show details"
