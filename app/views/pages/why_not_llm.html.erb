@@ -4,7 +4,7 @@
 <section class="section-dark section-pad">
   <div class="wrap" style="max-width:920px;">
     <div class="eyebrow"><span class="dot"></span><%= t("why_not_llm.eyebrow") %></div>
-    <h1 class="h-section mt-3" style="color:#fff; max-width:780px;"><%= t("why_not_llm.h1") %></h1>
+    <h1 class="h-section mt-3" style="color:#fff; max-width:780px;"><%= safe_join(t("why_not_llm.h1").split(". ", 2).map { |s| s.end_with?(".") ? s : "#{s}." }, tag.br) %></h1>
     <p class="lead mt-5" style="color:#a7b1c7; max-width:720px;"><%= t("why_not_llm.lead") %></p>
 
     <ul class="mt-9 grid grid-cols-1 md:grid-cols-2" style="gap:10px;">
