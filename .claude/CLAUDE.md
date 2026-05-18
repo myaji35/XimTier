@@ -1,5 +1,36 @@
 # Self-Evolving Harness System
 
+## ⭐ 장기 전략 과제 상기 (STRATEGIC BACKLOG) — 2026-05-14 등록
+
+**대표님이 명시 요청한 장기 추진 과제. 매 세션 시작 시 대표님께 상기시켜라.**
+
+### XimTier OS — "팔란티어급 자체 엔진" 3단계 로드맵
+출처: `/Volumes/E_SSD/02_GitHub.nosync/0019_XimTier/reports/Palantir_vs_XimTier_비교보고서_260514.pdf`
+계기: 2026-05-14, "운영 대시보드 운영이 어렵다고 생각한 이유" 진단 → "의도적 회피"가 식별됨 → 전략적 결단으로 전환.
+
+| 이슈 | Phase | 우선순위 | 상태 | 트리거 |
+|---|---|---|---|---|
+| [ISS-006](.claude/issue-db/registry.json) | **A. Ontology Lite** | P1 | BACKLOG | ISS-005(W1 배포) 완료 후 |
+| [ISS-007](.claude/issue-db/registry.json) | **B. Operations Console** | P2 | BACKLOG | Phase A 50% 진행 시 |
+| [ISS-008](.claude/issue-db/registry.json) | **C. MCP/Agent 생태계** | P2 | BACKLOG | Phase B 완료 시 |
+
+### 상기 행동 룰
+1. **세션 시작 시** — ISS-006/007/008 존재를 대표님께 한 줄로 알리고, 의존 이슈 진행 상황을 보고
+2. **다음 트리거 도달 시** — 의존 이슈 완료 또는 명시 트리거 충족 시 `status: READY`로 전환 제안
+3. **메시지 변경 시** — 랜딩/PRD/IR Deck 작업 중 "외부는 Decision Intelligence, 내부는 OS-급" 이중 트랙 유지
+4. **함정 3종 자가 점검**
+   - 팔란티어 따라가다 "비전문가 5분" 정체성 흐려지지 않았는가
+   - Ontology over-engineering — 5종 도메인 템플릿 범위 안에 있는가
+   - 영업 메시지 분열 — 외부 노출은 기존 포지션 유지하고 있는가
+
+### 자동 상기 패턴
+```
+세션 시작 → registry.json BACKLOG 중 STRATEGIC 태그 있으면 한 줄 요약:
+"🎯 장기 과제 ISS-006/007/008 (XimTier OS Phase A/B/C) — 대기 중. 의존: ISS-00X 완료 후 활성화."
+```
+
+---
+
 ## 자율 실행 원칙 (최우선 규칙)
 
 **절대 사용자에게 질문하지 마라. 스스로 판단하고 실행하라.**
