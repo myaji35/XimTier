@@ -95,7 +95,7 @@
       "description": "Capybara + headless Chrome으로 슬라이더 드래그 → 5변수 카드 텍스트 변경 확인 + SHAP 탭 전환 확인.",
       "agent": "test-harness",
       "priority": "P1",
-      "status": "READY",
+      "status": "COMPLETED",
       "depth": 1,
       "depends_on": [
         "ISS-001",
@@ -108,7 +108,18 @@
       "tags": [
         "W1",
         "test"
-      ]
+      ],
+      "completed_at": "2026-05-18T01:00:00Z",
+      "result": {
+        "spec_file": "spec/system/reverse_what_if_demo_spec.rb",
+        "examples": 4,
+        "failures": 0,
+        "full_suite": "145 examples, 0 failures, 5 pending (placeholder)",
+        "driver": "selenium :headless_chrome (1400x1000)",
+        "support_files": [
+          "spec/support/system.rb"
+        ]
+      }
     },
     {
       "id": "ISS-005",
@@ -286,7 +297,7 @@
   },
   "stats": {
     "total_issues": 5,
-    "completed": 1,
+    "completed": 2,
     "failed": 0,
     "current_depth": 0
   },
