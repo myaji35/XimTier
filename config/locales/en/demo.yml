@@ -18,5 +18,6 @@ en:
     optimal_inputs_title: "Optimal Inputs"
     accuracy_html: "Predicted accuracy <strong>92.4%</strong> · R² = 0.887 · Inference <strong>0.18s</strong>"
     shap_title: "Feature Impact (SHAP)"
-    shap_legend_html: "Positive (<span class='text-[#2563EB] font-semibold'>+</span>) increases defect rate; negative (<span class='text-[#E85A5A] font-semibold'>−</span>) decreases. <strong>Mathematical justification for EU AI Act compliance</strong> — generated automatically."
+    shap_chart_aria_label: "SHAP feature impact chart — 5 process variables, positive/negative contribution"
+    shap_legend_html: "Positive (<span class='text-[#00C8C8] font-semibold'>+</span>) increases defect rate; negative (<span class='text-[#2563EB] font-semibold'>−</span>) decreases. <strong>Mathematical justification for EU AI Act compliance</strong> — generated automatically."
     note: "Example data. Real deployments are fine-tuned on customer data."

@@ -86,22 +86,11 @@
         </div>
       </div>
 
-      <%# SHAP panel %>
+      <%# SHAP panel — 정식 SVG 컴포넌트 (ISS-002) %>
       <div data-reverse-what-if-target="panelShap" style="display:none;">
         <div class="font-mono text-[11px]" style="color:#4B5468; letter-spacing:0.14em;">// FEATURE IMPACT (SHAP)</div>
-        <div class="mt-3 space-y-3">
-          <% 5.times do %>
-            <div data-reverse-what-if-target="shapRow" class="flex items-center gap-3">
-              <div class="text-[12px]" style="width:80px; color:#0B132D;" data-reverse-what-if-target="shapLabel">—</div>
-              <div style="flex:1; height:24px; position:relative; background:#F2F4F7; border-radius:6px; overflow:hidden;">
-                <div style="position:absolute; left:50%; top:0; bottom:0; width:1px; background:rgba(11,19,45,0.15);"></div>
-                <div data-reverse-what-if-target="shapFill"
-                     class="shap-fill"
-                     style="position:absolute; top:4px; bottom:4px; left:50%; width:0%; background:#2563EB; border-radius:4px; transition:all 0.2s ease;"></div>
-              </div>
-              <div class="font-mono text-[11px]" style="width:54px; text-align:right; color:#475467;" data-reverse-what-if-target="shapNum">—</div>
-            </div>
-          <% end %>
+        <div class="mt-3">
+          <%= render(ShapChartComponent.new(rows: 5)) %>
         </div>
         <div class="mt-4 p-3 rounded-[8px]" style="background:#F2F4F7; font-size:12px; color:#475467; line-height:1.6;">
           <%= t("reverse_what_if.shap_legend_html").html_safe %>
@@ -120,9 +109,5 @@
   [data-controller="reverse-what-if"] button.active {
     background: #0B132D !important;
     color: #fff !important;
-  }
-  /* shap-fill — neg일 때 색 변경 */
-  [data-controller="reverse-what-if"] .shap-fill.is-neg {
-    background: #E85A5A !important;
   }
 </style>

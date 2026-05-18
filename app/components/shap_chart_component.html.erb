@@ -1,0 +1,97 @@
+<%# SHAP 시각화 — 라이브러리 없는 정식 SVG + 중앙 0선 + 양/음 색 분기 %>
+<%# 데이터 주입: Stimulus reverse_what_if_controller가 shapLabel/shapFill/shapNum target에 값 갱신 %>
+<%# 양수(불량률 증가 기여) = teal #00C8C8 / 음수(감소 기여) = blue #2563EB %>
+<div class="shap-chart"
+     role="img"
+     aria-label="<%= t('reverse_what_if.shap_chart_aria_label', default: 'SHAP feature impact chart — 5 process variables') %>">
+  <%# 중앙 0선 SVG — 절대 위치, 차트 전체 높이 가로지름 %>
+  <svg class="shap-chart__axis"
+       aria-hidden="true"
+       viewBox="0 0 100 <%= chart_height %>"
+       preserveAspectRatio="none"
+       width="100%"
+       height="<%= chart_height %>"
+       xmlns="http://www.w3.org/2000/svg">
+    <line x1="50" y1="0" x2="50" y2="<%= chart_height %>"
+          stroke="<%= ShapChartComponent::AXIS_COLOR %>"
+          stroke-width="1"
+          vector-effect="non-scaling-stroke" />
+  </svg>
+
+  <div class="shap-chart__rows">
+    <% row_indices.each do |_i| %>
+      <div data-reverse-what-if-target="shapRow"
+           class="shap-chart__row"
+           style="grid-template-columns: <%= label_width %>px 1fr <%= num_width %>px;">
+        <div class="shap-chart__label"
+             data-reverse-what-if-target="shapLabel">—</div>
+        <div class="shap-chart__track" style="height: <%= row_height %>px;">
+          <div data-reverse-what-if-target="shapFill"
+               class="shap-chart__fill"
+               style="width:0%; left:50%;"></div>
+        </div>
+        <div class="shap-chart__num font-mono"
+             data-reverse-what-if-target="shapNum">—</div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<style>
+  .shap-chart {
+    position: relative;
+  }
+  .shap-chart__axis {
+    position: absolute;
+    top: 0;
+    left: <%= label_width %>px;
+    right: <%= num_width %>px;
+    width: calc(100% - <%= label_width + num_width %>px);
+    pointer-events: none;
+  }
+  .shap-chart__rows {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: <%= gap %>px;
+  }
+  .shap-chart__row {
+    display: grid;
+    align-items: center;
+    column-gap: 12px;
+  }
+  .shap-chart__label {
+    font-size: 12px;
+    color: #0B132D;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .shap-chart__track {
+    position: relative;
+    background: <%= ShapChartComponent::GRID_BG %>;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .shap-chart__fill {
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    background: <%= ShapChartComponent::POSITIVE_COLOR %>;
+    border-radius: 4px;
+    transition: width 0.2s ease, left 0.2s ease, background 0.2s ease;
+  }
+  .shap-chart__fill.is-neg {
+    background: <%= ShapChartComponent::NEGATIVE_COLOR %>;
+  }
+  .shap-chart__num {
+    font-size: 11px;
+    text-align: right;
+    color: #475467;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .shap-chart__fill {
+      transition: none;
+    }
+  }
+</style>

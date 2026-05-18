@@ -36,7 +36,7 @@
       "description": "Pure SVG bar chart (라이브러리 X). 양수=teal(#00C8C8), 음수=blue(#2563EB). 5개 변수 weight 시각화. Stimulus targets로 슬라이더 변경 시 실시간 업데이트.",
       "agent": "agent-harness",
       "priority": "P0",
-      "status": "READY",
+      "status": "COMPLETED",
       "depth": 0,
       "depends_on": [
         "ISS-001"
@@ -50,7 +50,21 @@
         "W1",
         "P0",
         "viz"
-      ]
+      ],
+      "completed_at": "2026-05-18T00:50:00Z",
+      "result": {
+        "component_files": [
+          "app/components/shap_chart_component.rb",
+          "app/components/shap_chart_component.html.erb"
+        ],
+        "verified": "Playwright: 5 fills + axis line(x1=x2=50) + role=img + reduce-motion rule",
+        "visual_evidence": [
+          ".playwright-mcp/iss002-j1-s1-aggressive-all-neg.png",
+          ".playwright-mcp/iss002-j1-s2-relaxed-all-pos.png"
+        ],
+        "console_errors": 0,
+        "color_mapping": "positive=#00C8C8 (teal), negative=#2563EB (blue)"
+      }
     },
     {
       "id": "ISS-003",
@@ -272,7 +286,7 @@
   },
   "stats": {
     "total_issues": 5,
-    "completed": 0,
+    "completed": 1,
     "failed": 0,
     "current_depth": 0
   },
