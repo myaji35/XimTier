@@ -7,22 +7,22 @@
   <% end %>
 <% end %>
 
-<section class="section-light section-pad">
+<section class="surface-canvas section-pad">
   <div class="wrap" style="max-width:760px;">
-    <div class="eyebrow"><span class="dot"></span><%= t("contact.eyebrow") %></div>
-    <h1 class="h-section mt-3"><%= t("contact.h1") %></h1>
-    <p class="lead mt-5" style="color:#475467;"><%= t("contact.lead") %></p>
+    <p class="type-uppercase-tag text-rausch"><%= t("contact.eyebrow") %></p>
+    <h1 class="type-display-xl mt-3"><%= t("contact.h1") %></h1>
+    <p class="type-body-md text-body-airbnb mt-5"><%= t("contact.lead") %></p>
 
     <% if flash[:notice] %>
-      <div class="mt-8 p-5 rounded-[14px]" style="background:#E0F2FE; border:1px solid #0891B2; color:#0E7490;">
-        <%= flash[:notice] %>
+      <div class="mt-8 p-5 card-airbnb" style="border-color: var(--color-rausch);">
+        <p class="type-body-md text-ink-airbnb"><%= flash[:notice] %></p>
       </div>
     <% end %>
 
     <%= form_with model: @inquiry, url: contact_path(locale: I18n.locale), local: true, class: "mt-10 space-y-5" do |f| %>
       <% if @inquiry.errors.any? %>
-        <div class="p-4 rounded-[14px]" style="background:#FEF2F2; border:1px solid #FCA5A5; color:#991B1B;">
-          <ul class="list-disc list-inside text-[14px]">
+        <div class="p-4 card-airbnb" style="border-color: var(--color-rausch);">
+          <ul class="list-disc list-inside type-body-sm text-rausch">
             <% @inquiry.errors.full_messages.each do |msg| %>
               <li><%= msg %></li>
             <% end %>
@@ -36,44 +36,44 @@
       </div>
 
       <div>
-        <%= f.label :name, t("contact.form.name"), class: "block text-[13px] font-medium mb-2", style: "color:#0B132D;" %>
+        <%= f.label :name, t("contact.form.name"), class: "block type-body-sm font-semibold text-ink-airbnb mb-2" %>
         <%= f.text_field :name, required: true, maxlength: 100,
-              class: "w-full px-4 py-3 rounded-[10px] border text-[15px]",
-              style: "border-color:#e5e9f0; color:#0B132D; background:#fff;" %>
+              class: "w-full px-4 py-3 rounded-[10px] border-hairline type-body-md text-ink-airbnb",
+              style: "background: var(--color-canvas);" %>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div>
-          <%= f.label :email, t("contact.form.email"), class: "block text-[13px] font-medium mb-2", style: "color:#0B132D;" %>
+          <%= f.label :email, t("contact.form.email"), class: "block type-body-sm font-semibold text-ink-airbnb mb-2" %>
           <%= f.email_field :email, required: true,
-                class: "w-full px-4 py-3 rounded-[10px] border text-[15px]",
-                style: "border-color:#e5e9f0; color:#0B132D; background:#fff;" %>
+                class: "w-full px-4 py-3 rounded-[10px] border-hairline type-body-md text-ink-airbnb",
+                style: "background: var(--color-canvas);" %>
         </div>
         <div>
-          <%= f.label :company, t("contact.form.company"), class: "block text-[13px] font-medium mb-2", style: "color:#0B132D;" %>
+          <%= f.label :company, t("contact.form.company"), class: "block type-body-sm font-semibold text-ink-airbnb mb-2" %>
           <%= f.text_field :company, maxlength: 100,
-                class: "w-full px-4 py-3 rounded-[10px] border text-[15px]",
-                style: "border-color:#e5e9f0; color:#0B132D; background:#fff;" %>
+                class: "w-full px-4 py-3 rounded-[10px] border-hairline type-body-md text-ink-airbnb",
+                style: "background: var(--color-canvas);" %>
         </div>
       </div>
 
       <div>
-        <%= f.label :industry, t("contact.form.industry"), class: "block text-[13px] font-medium mb-2", style: "color:#0B132D;" %>
+        <%= f.label :industry, t("contact.form.industry"), class: "block type-body-sm font-semibold text-ink-airbnb mb-2" %>
         <%= f.select :industry,
               ContactInquiry.industries.keys.map { |k| [t("contact.industries.#{k}"), k] },
               {},
-              class: "w-full px-4 py-3 rounded-[10px] border text-[15px]",
-              style: "border-color:#e5e9f0; color:#0B132D; background:#fff;" %>
+              class: "w-full px-4 py-3 rounded-[10px] border-hairline type-body-md text-ink-airbnb",
+              style: "background: var(--color-canvas);" %>
       </div>
 
       <div>
-        <%= f.label :message, t("contact.form.message"), class: "block text-[13px] font-medium mb-2", style: "color:#0B132D;" %>
+        <%= f.label :message, t("contact.form.message"), class: "block type-body-sm font-semibold text-ink-airbnb mb-2" %>
         <%= f.text_area :message, required: true, rows: 5, maxlength: 5000,
-              class: "w-full px-4 py-3 rounded-[10px] border text-[15px]",
-              style: "border-color:#e5e9f0; color:#0B132D; background:#fff;" %>
+              class: "w-full px-4 py-3 rounded-[10px] border-hairline type-body-md text-ink-airbnb",
+              style: "background: var(--color-canvas);" %>
       </div>
 
-      <label class="flex items-start gap-3 text-[14px]" style="color:#475467;">
+      <label class="flex items-start gap-3 type-body-sm text-body-airbnb">
         <input type="checkbox" name="contact_inquiry[consent]" value="1" required style="margin-top:4px;">
         <span><%= t("contact.form.consent") %></span>
       </label>
@@ -83,7 +83,7 @@
       <% end %>
 
       <div class="pt-2">
-        <%= f.submit t("contact.form.submit"), class: "btn btn-grad", style: "border:0; cursor:pointer;" %>
+        <%= f.submit t("contact.form.submit"), class: "btn-rausch", style: "cursor:pointer;" %>
       </div>
     <% end %>
   </div>
