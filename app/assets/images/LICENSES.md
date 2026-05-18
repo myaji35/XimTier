@@ -19,14 +19,11 @@ All photos below are served under the **Unsplash License**
 (https://unsplash.com/license) — free to use, attribution is appreciated and
 recorded here. Photo IDs are the canonical Unsplash identifier.
 
-- manufacturing.jpg — Source: unsplash.com/photos/1565194481104-39d1ee1b8bcc · License: Unsplash · Subject: factory / production line
-- hospital.jpg     — Source: unsplash.com/photos/1538108149393-fbbd81895907 · License: Unsplash · Subject: hospital corridor / clinical
-- finance.jpg      — Source: unsplash.com/photos/1554224155-6726b3ff858f · License: Unsplash · Subject: trading floor / financial markets
-- retail.jpg       — Source: unsplash.com/photos/1481437156560-3205f6a55735 · License: Unsplash · Subject: retail aisle / commerce
-- logistics.jpg    — Source: unsplash.com/photos/1494412651409-8963ce7935a7 · License: Unsplash · Subject: shipping containers / port
-- energy.jpg       — Source: unsplash.com/photos/1466611653911-95081537e5b7 · License: Unsplash · Subject: power infrastructure / grid
-- smart_city.jpg   — Source: unsplash.com/photos/1480714378408-67cf0d13bc1b · License: Unsplash · Subject: urban skyline / smart infra
-- public.jpg       — Source: unsplash.com/photos/1541872703-74c5e44368f9 · License: Unsplash · Subject: public institution / civic
+**Current status (2026-05-18): no industry photos in production.**
+1st selection (8 Unsplash photos picked by AI from photo IDs) was rejected by the
+founder for being off-topic / dated / not aligned with each industry's modern
+2026 reality. Re-selection is pending and must go through visual approval
+before commit. See ISS-015.
 
 ## charts/
 
