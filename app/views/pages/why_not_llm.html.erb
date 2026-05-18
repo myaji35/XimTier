@@ -54,6 +54,52 @@
   </div>
 </section>
 
+<%# 02b 데이터: LLM POC 실패율 (Gartner 수치 인용) %>
+<section class="surface-canvas section-pad-compact">
+  <div class="wrap grid grid-cols-1 md:grid-cols-[1fr_1fr] items-center" style="gap:48px; max-width:1080px;">
+    <div>
+      <p class="type-uppercase-tag text-rausch">DATA</p>
+      <h2 class="type-display-lg mt-3">
+        <%= I18n.locale == :ko ? "엔터프라이즈 LLM POC 4번 중 3번이 production에 도달하지 못합니다." : "3 of 4 enterprise LLM POCs never reach production." %>
+      </h2>
+      <p class="type-body-md text-body-airbnb mt-5">
+        <%= I18n.locale == :ko ? "환각·감사 통과 불가·수치 검증 부재 — '왜 우리 도입은 성공 못 했지?'의 정량적 근거." : "Hallucination, audit-unfit, and missing numerical validation — the quantitative reason behind 'why didn't ours work?'" %>
+      </p>
+    </div>
+    <%= render ImageWithCaptionComponent.new(
+          src: "charts/gartner_llm_poc_failure.svg",
+          alt: "Gartner 2024 — 생성형 AI POC 75%가 기대 미달, 25%만 production 진입",
+          caption: I18n.locale == :ko ? "POC 성공률 25% vs 실패률 75%" : "25% reach prod · 75% fall short",
+          source: "Gartner 2024 — 수치 인용·자체 재작성",
+          tone: :color,
+          aspect: :auto
+        ) %>
+  </div>
+</section>
+
+<%# 02c 데이터: 4축 비교 레이더 %>
+<section class="surface-soft section-pad-compact">
+  <div class="wrap grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] items-center" style="gap:48px; max-width:1080px;">
+    <%= render ImageWithCaptionComponent.new(
+          src: "charts/chatgpt_vs_ximtier_radar.svg",
+          alt: "4축 비교 레이더 — 설명 가능성·수치적 증명·Reverse What-If·감사 통과에서 XimTier가 ChatGPT 대비 우위",
+          caption: I18n.locale == :ko ? "설명·증명·역산·감사 4축" : "Explain · Prove · Reverse · Audit",
+          source: "XimTier internal benchmark 2026-05",
+          tone: :color,
+          aspect: :auto
+        ) %>
+    <div>
+      <p class="type-uppercase-tag text-rausch">VS</p>
+      <h2 class="type-display-lg mt-3">
+        <%= I18n.locale == :ko ? "같은 입력, 다른 결과 — ChatGPT는 그럴듯한 설명, XimTier는 수치적 증명." : "Same input, different output — ChatGPT explains plausibly, XimTier proves numerically." %>
+      </h2>
+      <p class="type-body-md text-body-airbnb mt-5">
+        <%= I18n.locale == :ko ? "ChatGPT는 1축(설명 가능성)에서만 부분 점수. XimTier는 4축 모두에서 production-ready 수준." : "ChatGPT scores partially only on explainability. XimTier hits production-ready on all four axes." %>
+      </p>
+    </div>
+  </div>
+</section>
+
 <%# 03 두 적 (Canvas) %>
 <section class="surface-canvas section-pad">
   <div class="wrap" style="max-width:1080px;">

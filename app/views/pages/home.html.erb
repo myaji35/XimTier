@@ -121,13 +121,23 @@
 
 <%# ============ 04 Why Now (Canvas) ============ %>
 <section id="why-now" class="surface-canvas border-b-hairline" style="padding:60px 0;">
-  <div class="wrap" style="max-width:920px;">
-    <p class="type-uppercase-tag text-rausch"><%= t("why_now.eyebrow") %></p>
-    <h2 class="type-display-xl mt-3"><%= t("why_now.title") %></h2>
-    <p class="type-body-md text-body-airbnb mt-5"><%= t("why_now.body") %></p>
-    <div class="mt-6">
-      <a href="/<%= I18n.locale %>/why-not-llm" class="type-body-sm font-semibold text-rausch hover:underline"><%= t("why_now.cta") %></a>
+  <div class="wrap grid grid-cols-1 md:grid-cols-[1fr_1fr] items-center" style="gap:48px; max-width:1080px;">
+    <div>
+      <p class="type-uppercase-tag text-rausch"><%= t("why_now.eyebrow") %></p>
+      <h2 class="type-display-xl mt-3"><%= t("why_now.title") %></h2>
+      <p class="type-body-md text-body-airbnb mt-5"><%= t("why_now.body") %></p>
+      <div class="mt-6">
+        <a href="/<%= I18n.locale %>/why-not-llm" class="type-body-sm font-semibold text-rausch hover:underline"><%= t("why_now.cta") %></a>
+      </div>
     </div>
+    <%= render ImageWithCaptionComponent.new(
+          src: "charts/eu_ai_act_timeline.svg",
+          alt: "EU AI Act 2026-08-02 발효 및 한국 AI 기본법 2026-01-22 시행 타임라인 — 위반 시 €35M 또는 매출 7%",
+          caption: I18n.locale == :ko ? "오늘부터 EU AI Act 발효까지" : "From today to EU AI Act enforcement",
+          source: "EU 2024/1689 + 인공지능 기본법(법률 제20039호)",
+          tone: :color,
+          aspect: :auto
+        ) %>
   </div>
 </section>
 
