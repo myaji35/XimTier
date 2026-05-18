@@ -48,6 +48,8 @@
 
 # Kamal secrets (.kamal/secrets.example만 커밋)
 /.kamal/secrets
+/.kamal/secrets.save
+/.kamal/secrets.bak
 .claude/worktrees
 worktrees/
 .harness-worktree-meta
