@@ -24,34 +24,35 @@
 
       <%# Honeypot %>
       <div style="position:absolute;left:-9999px;" aria-hidden="true">
-        <label>Website (leave empty)<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+        <label for="demo_request_website">Website (leave empty)</label>
+        <input type="text" id="demo_request_website" name="website" tabindex="-1" autocomplete="off">
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label class="block text-[13px] font-medium mb-2" style="color:#0B132D;"><%= t("demo.form.name") %></label>
-          <input type="text" name="demo_request[name]" required maxlength="100" class="w-full px-4 py-3 rounded-[10px] border text-[15px]" style="border-color:#e5e9f0;color:#0B132D;background:#fff;">
+          <label for="demo_request_name" class="block text-[13px] font-medium mb-2" style="color:#0B132D;"><%= t("demo.form.name") %></label>
+          <input type="text" id="demo_request_name" name="demo_request[name]" required maxlength="100" class="w-full px-4 py-3 rounded-[10px] border text-[15px]" style="border-color:#e5e9f0;color:#0B132D;background:#fff;">
         </div>
         <div>
-          <label class="block text-[13px] font-medium mb-2" style="color:#0B132D;"><%= t("demo.form.email") %></label>
-          <input type="email" name="demo_request[email]" required class="w-full px-4 py-3 rounded-[10px] border text-[15px]" style="border-color:#e5e9f0;color:#0B132D;background:#fff;">
+          <label for="demo_request_email" class="block text-[13px] font-medium mb-2" style="color:#0B132D;"><%= t("demo.form.email") %></label>
+          <input type="email" id="demo_request_email" name="demo_request[email]" required class="w-full px-4 py-3 rounded-[10px] border text-[15px]" style="border-color:#e5e9f0;color:#0B132D;background:#fff;">
         </div>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label class="block text-[13px] font-medium mb-2" style="color:#0B132D;"><%= t("demo.form.company") %></label>
-          <input type="text" name="demo_request[company]" maxlength="100" class="w-full px-4 py-3 rounded-[10px] border text-[15px]" style="border-color:#e5e9f0;color:#0B132D;background:#fff;">
+          <label for="demo_request_company" class="block text-[13px] font-medium mb-2" style="color:#0B132D;"><%= t("demo.form.company") %></label>
+          <input type="text" id="demo_request_company" name="demo_request[company]" maxlength="100" class="w-full px-4 py-3 rounded-[10px] border text-[15px]" style="border-color:#e5e9f0;color:#0B132D;background:#fff;">
         </div>
         <div>
-          <label class="block text-[13px] font-medium mb-2" style="color:#0B132D;"><%= t("demo.form.role") %></label>
-          <input type="text" name="demo_request[role]" maxlength="100" class="w-full px-4 py-3 rounded-[10px] border text-[15px]" style="border-color:#e5e9f0;color:#0B132D;background:#fff;">
+          <label for="demo_request_role" class="block text-[13px] font-medium mb-2" style="color:#0B132D;"><%= t("demo.form.role") %></label>
+          <input type="text" id="demo_request_role" name="demo_request[role]" maxlength="100" class="w-full px-4 py-3 rounded-[10px] border text-[15px]" style="border-color:#e5e9f0;color:#0B132D;background:#fff;">
         </div>
       </div>
 
       <div>
-        <label class="block text-[13px] font-medium mb-2" style="color:#0B132D;"><%= t("demo.form.industry") %></label>
-        <select name="demo_request[industry]" class="w-full px-4 py-3 rounded-[10px] border text-[15px]" style="border-color:#e5e9f0;color:#0B132D;background:#fff;">
+        <label for="demo_request_industry" class="block text-[13px] font-medium mb-2" style="color:#0B132D;"><%= t("demo.form.industry") %></label>
+        <select id="demo_request_industry" name="demo_request[industry]" aria-label="<%= t("demo.form.industry") %>" class="w-full px-4 py-3 rounded-[10px] border text-[15px]" style="border-color:#e5e9f0;color:#0B132D;background:#fff;">
           <% User.industries.keys.each do |k| %>
             <option value="<%= k %>"><%= t("contact.industries.#{k}") %></option>
           <% end %>
@@ -59,23 +60,23 @@
       </div>
 
       <div>
-        <label class="block text-[13px] font-medium mb-2" style="color:#0B132D;"><%= t("demo.form.data_description") %></label>
-        <textarea name="demo_request[data_description]" required rows="5" maxlength="2000" placeholder="<%= t('demo.form.data_description_placeholder') %>" class="w-full px-4 py-3 rounded-[10px] border text-[15px]" style="border-color:#e5e9f0;color:#0B132D;background:#fff;"><%= @demo_request.data_description %></textarea>
+        <label for="demo_request_data_description" class="block text-[13px] font-medium mb-2" style="color:#0B132D;"><%= t("demo.form.data_description") %></label>
+        <textarea id="demo_request_data_description" name="demo_request[data_description]" required rows="5" maxlength="2000" placeholder="<%= t('demo.form.data_description_placeholder') %>" class="w-full px-4 py-3 rounded-[10px] border text-[15px]" style="border-color:#e5e9f0;color:#0B132D;background:#fff;"><%= @demo_request.data_description %></textarea>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label class="block text-[13px] font-medium mb-2" style="color:#0B132D;"><%= t("demo.form.data_file") %></label>
-          <input type="file" name="demo_request[data_file]" accept=".csv,.xlsx,.json,.txt,.pdf" class="w-full text-[13px]" style="color:#475467;">
+          <label for="demo_request_data_file" class="block text-[13px] font-medium mb-2" style="color:#0B132D;"><%= t("demo.form.data_file") %></label>
+          <input type="file" id="demo_request_data_file" name="demo_request[data_file]" accept=".csv,.xlsx,.json,.txt,.pdf" class="w-full text-[13px]" style="color:#475467;">
         </div>
         <div>
-          <label class="block text-[13px] font-medium mb-2" style="color:#0B132D;"><%= t("demo.form.preferred_at") %></label>
-          <input type="datetime-local" name="demo_request[preferred_at]" class="w-full px-4 py-3 rounded-[10px] border text-[15px]" style="border-color:#e5e9f0;color:#0B132D;background:#fff;">
+          <label for="demo_request_preferred_at" class="block text-[13px] font-medium mb-2" style="color:#0B132D;"><%= t("demo.form.preferred_at") %></label>
+          <input type="datetime-local" id="demo_request_preferred_at" name="demo_request[preferred_at]" class="w-full px-4 py-3 rounded-[10px] border text-[15px]" style="border-color:#e5e9f0;color:#0B132D;background:#fff;">
         </div>
       </div>
 
-      <label class="flex items-start gap-3 text-[14px]" style="color:#475467;">
-        <input type="checkbox" name="demo_request[consent]" value="1" required style="margin-top:4px;">
+      <label for="demo_request_consent" class="flex items-start gap-3 text-[14px]" style="color:#475467;">
+        <input type="checkbox" id="demo_request_consent" name="demo_request[consent]" value="1" required style="margin-top:4px;">
         <span><%= t("contact.form.consent") %></span>
       </label>
 
