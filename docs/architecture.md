@@ -4,6 +4,7 @@
 - **근거:** [`prd.md`](../../prd.md) §7 Data Model · [Pitch Deck v2](../../XAISimTier_PitchDeck_v2.md)
 - **관련 이슈:** XIM-9 (ARCH: 데이터 모델 ERD)
 - **상태:** Draft — 마이그레이션 적용 완료, 컨트롤러/시드 작성 단계
+- **📚 프로젝트 Wiki:** [`docs/wiki/INDEX.md`](./wiki/INDEX.md) — 모든 보고서·전략 문서 통합 인덱스
 
 ---
 
