@@ -15,7 +15,18 @@ Real-world industry photography. All images **must** be either Unsplash License,
 Pexels License, CC0, or public domain. No stock illustrations, no AI-generated images.
 All photos are rendered with a grayscale CSS filter (brand-dna v0.5.0 Airbnb tone).
 
-- (entries added as images are committed)
+All photos below are served under the **Unsplash License**
+(https://unsplash.com/license) — free to use, attribution is appreciated and
+recorded here. Photo IDs are the canonical Unsplash identifier.
+
+- manufacturing.jpg — Source: unsplash.com/photos/1565194481104-39d1ee1b8bcc · License: Unsplash · Subject: factory / production line
+- hospital.jpg     — Source: unsplash.com/photos/1538108149393-fbbd81895907 · License: Unsplash · Subject: hospital corridor / clinical
+- finance.jpg      — Source: unsplash.com/photos/1554224155-6726b3ff858f · License: Unsplash · Subject: trading floor / financial markets
+- retail.jpg       — Source: unsplash.com/photos/1481437156560-3205f6a55735 · License: Unsplash · Subject: retail aisle / commerce
+- logistics.jpg    — Source: unsplash.com/photos/1494412651409-8963ce7935a7 · License: Unsplash · Subject: shipping containers / port
+- energy.jpg       — Source: unsplash.com/photos/1466611653911-95081537e5b7 · License: Unsplash · Subject: power infrastructure / grid
+- smart_city.jpg   — Source: unsplash.com/photos/1480714378408-67cf0d13bc1b · License: Unsplash · Subject: urban skyline / smart infra
+- public.jpg       — Source: unsplash.com/photos/1541872703-74c5e44368f9 · License: Unsplash · Subject: public institution / civic
 
 ## charts/
 
