@@ -1,8 +1,24 @@
-<div class="case-visual">
-  <div class="layer grid-bg"></div>
-  <div class="layer flex items-center justify-center">
-    <div class="text-center" style="color:#94A3B8;">
-      <div class="label-mono">COMING SOON</div>
+<%# 산업 사진(industry/<key>.jpg)이 있으면 그것을 사용, 없으면 COMING SOON. %>
+<%# case_key는 케이스 컨트롤러에서 @case_key (manufacturing/hospital/finance ...)로 노출됨. %>
+<% photo_key = (@case_key || "").to_s %>
+<% photo_path = Rails.root.join("app/assets/images/industry/#{photo_key}.jpg") %>
+<% if photo_key.present? && photo_path.exist? %>
+  <figure class="overflow-hidden rounded-[12px] border-hairline-soft">
+    <img src="<%= asset_path("industry/#{photo_key}.jpg") %>"
+         alt="<%= @case && @case[:title] ? @case[:title] : photo_key.humanize %> 산업 현장"
+         loading="lazy" decoding="async"
+         style="aspect-ratio: 4/3; object-fit: cover; width: 100%; display: block; filter: grayscale(100%) contrast(1.05);">
+    <figcaption class="type-body-sm text-muted-airbnb px-3 py-2 border-t-hairline" style="background: var(--color-surface-soft);">
+      <span class="font-mono type-uppercase-tag">Source: Unsplash (license-free)</span>
+    </figcaption>
+  </figure>
+<% else %>
+  <div class="case-visual">
+    <div class="layer grid-bg"></div>
+    <div class="layer flex items-center justify-center">
+      <div class="text-center text-muted-airbnb">
+        <div class="font-mono type-uppercase-tag">COMING SOON</div>
+      </div>
     </div>
   </div>
-</div>
+<% end %>
