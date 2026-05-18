@@ -30,6 +30,51 @@
   --radius-card-lg: 18px;
   --radius-shell: 20px;
   --radius-pill: 999px;
+
+  /* === v0.5.0 Airbnb-system 토큰 (2026-05-18 리브랜딩) === */
+  /* 색 — Rausch + canvas + ink (단일 voltage) */
+  --color-rausch: #ff385c;
+  --color-rausch-active: #e00b41;
+  --color-rausch-disabled: #ffd1da;
+  --color-canvas: #ffffff;
+  --color-surface-soft: #f7f7f7;
+  --color-surface-strong: #f2f2f2;
+  --color-hairline: #dddddd;
+  --color-hairline-soft: #ebebeb;
+  --color-border-strong: #c1c1c1;
+  --color-ink-airbnb: #222222;
+  --color-body-airbnb: #3f3f3f;
+  --color-muted-airbnb: #6a6a6a;
+  --color-muted-soft-airbnb: #929292;
+  --color-on-primary: #ffffff;
+  --color-error-airbnb: #c13515;
+  --color-error-hover-airbnb: #b32505;
+  --color-legal-link: #428bff;
+
+  /* 라운드 — full pill 999px 추가 (기존 --radius-pill과 동의어, 시맨틱 분리) */
+  --radius-airbnb-sm: 8px;
+  --radius-airbnb-md: 14px;
+  --radius-airbnb-lg: 18px;
+  --radius-airbnb-xl: 32px;
+  --radius-airbnb-full: 9999px;
+
+  /* Spacing — 8px base 9단계 (기존 Tailwind spacing과 공존) */
+  --space-xxs: 2px;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-base: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-xxl: 48px;
+  --space-section: 64px;
+
+  /* Shadow — 단일 tier (Airbnb 시스템) */
+  --shadow-airbnb-card-hover: rgba(0,0,0,0.02) 0 0 0 1px, rgba(0,0,0,0.04) 0 2px 6px 0, rgba(0,0,0,0.1) 0 4px 8px 0;
+  --shadow-airbnb-scrim: rgba(0,0,0,0.5);
+
+  /* Font — Airbnb Cereal VF + Circular + Inter + Pretendard fallback */
+  --font-airbnb: "Airbnb Cereal VF", Circular, Inter, "Pretendard", "Pretendard Variable", -apple-system, BlinkMacSystemFont, system-ui, "Apple SD Gothic Neo", sans-serif;
 }
 
 html, body {
@@ -492,3 +537,195 @@ body[data-tweak-section="all-light"] .section-footer {
   }
   .cv-shap-bar { width: var(--shap-w, 50%); }
 }
+
+/* ============================================================
+ * v0.5.0 Airbnb-system 유틸리티 (2026-05-18 리브랜딩 - ISS-012a)
+ *   기존 .section-dark / .text-brand-grad / .btn-grad 클래스는
+ *   ISS-012b/c 단계에서 점진 교체 예정 — 지금은 공존.
+ *   사용 시점: 새 컴포넌트가 명시적으로 채택할 때만.
+ * ============================================================ */
+
+/* Surface */
+.surface-canvas { background: var(--color-canvas); color: var(--color-ink-airbnb); }
+.surface-soft   { background: var(--color-surface-soft); color: var(--color-ink-airbnb); }
+.surface-strong { background: var(--color-surface-strong); color: var(--color-ink-airbnb); }
+
+/* Text */
+.text-ink-airbnb      { color: var(--color-ink-airbnb); }
+.text-body-airbnb     { color: var(--color-body-airbnb); }
+.text-muted-airbnb    { color: var(--color-muted-airbnb); }
+.text-rausch          { color: var(--color-rausch); }
+.text-on-primary      { color: var(--color-on-primary); }
+
+/* Hairline border helpers */
+.border-hairline      { border: 1px solid var(--color-hairline); }
+.border-hairline-soft { border: 1px solid var(--color-hairline-soft); }
+.border-b-hairline    { border-bottom: 1px solid var(--color-hairline); }
+.border-t-hairline    { border-top: 1px solid var(--color-hairline); }
+
+/* Rausch buttons */
+.btn-rausch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-rausch);
+  color: var(--color-on-primary);
+  font-family: var(--font-airbnb);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.25;
+  padding: 14px 24px;
+  min-height: 48px;
+  border-radius: var(--radius-airbnb-sm);
+  border: 0;
+  cursor: pointer;
+  transition: background 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-rausch:hover,
+.btn-rausch:focus-visible {
+  background: var(--color-rausch-active);
+}
+.btn-rausch:disabled {
+  background: var(--color-rausch-disabled);
+  cursor: not-allowed;
+}
+.btn-rausch:focus-visible {
+  outline: 2px solid var(--color-ink-airbnb);
+  outline-offset: 2px;
+}
+
+.btn-secondary-airbnb {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-canvas);
+  color: var(--color-ink-airbnb);
+  border: 1px solid var(--color-ink-airbnb);
+  font-family: var(--font-airbnb);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.25;
+  padding: 14px 24px;
+  min-height: 48px;
+  border-radius: var(--radius-airbnb-sm);
+  cursor: pointer;
+  transition: background 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-secondary-airbnb:hover,
+.btn-secondary-airbnb:focus-visible {
+  background: var(--color-surface-soft);
+}
+
+.btn-tertiary-airbnb {
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  color: var(--color-ink-airbnb);
+  border: 0;
+  padding: 8px 12px;
+  font-family: var(--font-airbnb);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.25;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn-tertiary-airbnb:hover { text-decoration: underline; }
+
+.pill-rausch {
+  display: inline-flex;
+  align-items: center;
+  background: var(--color-rausch);
+  color: var(--color-on-primary);
+  font-family: var(--font-airbnb);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: var(--radius-airbnb-full);
+  border: 0;
+  cursor: pointer;
+}
+.pill-rausch:hover { background: var(--color-rausch-active); }
+
+/* Cards & shadow */
+.card-airbnb {
+  background: var(--color-canvas);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-airbnb-md);
+  padding: var(--space-lg);
+}
+.shadow-card-hover { box-shadow: var(--shadow-airbnb-card-hover); }
+.card-airbnb:hover { box-shadow: var(--shadow-airbnb-card-hover); }
+
+/* Search bar pill — Airbnb signature */
+.search-pill {
+  display: inline-flex;
+  align-items: center;
+  background: var(--color-canvas);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-airbnb-full);
+  box-shadow: var(--shadow-airbnb-card-hover);
+  min-height: 64px;
+}
+.search-orb {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-rausch);
+  color: var(--color-on-primary);
+  border: 0;
+  cursor: pointer;
+}
+.search-orb:hover { background: var(--color-rausch-active); }
+
+/* Typography presets — Airbnb 18단계 (필요한 것만 우선) */
+.type-rating-display { font-family: var(--font-airbnb); font-size: 64px; font-weight: 700; line-height: 1.1; letter-spacing: -1px; color: var(--color-ink-airbnb); }
+.type-display-xl     { font-family: var(--font-airbnb); font-size: 28px; font-weight: 700; line-height: 1.43; color: var(--color-ink-airbnb); }
+.type-display-lg     { font-family: var(--font-airbnb); font-size: 22px; font-weight: 500; line-height: 1.18; letter-spacing: -0.44px; color: var(--color-ink-airbnb); }
+.type-display-md     { font-family: var(--font-airbnb); font-size: 21px; font-weight: 700; line-height: 1.43; color: var(--color-ink-airbnb); }
+.type-display-sm     { font-family: var(--font-airbnb); font-size: 20px; font-weight: 600; line-height: 1.20; letter-spacing: -0.18px; color: var(--color-ink-airbnb); }
+.type-title-md       { font-family: var(--font-airbnb); font-size: 16px; font-weight: 600; line-height: 1.25; color: var(--color-ink-airbnb); }
+.type-body-md        { font-family: var(--font-airbnb); font-size: 16px; font-weight: 400; line-height: 1.5;  color: var(--color-ink-airbnb); }
+.type-body-sm        { font-family: var(--font-airbnb); font-size: 14px; font-weight: 400; line-height: 1.43; color: var(--color-ink-airbnb); }
+.type-caption        { font-family: var(--font-airbnb); font-size: 14px; font-weight: 500; line-height: 1.29; color: var(--color-ink-airbnb); }
+.type-badge          { font-family: var(--font-airbnb); font-size: 11px; font-weight: 600; line-height: 1.18; color: var(--color-ink-airbnb); }
+.type-uppercase-tag  { font-family: var(--font-airbnb); font-size: 8px;  font-weight: 700; line-height: 1.25; letter-spacing: 0.32px; text-transform: uppercase; color: var(--color-ink-airbnb); }
+
+/* Korean keep-all (한국어 어절 줄바꿈 — Airbnb 톤에도 유지) */
+.type-rating-display,
+.type-display-xl,
+.type-display-lg,
+.type-display-md,
+.type-display-sm,
+.type-title-md { word-break: keep-all; overflow-wrap: anywhere; }
+
+/* Guest-favorite-style floating badge over photo */
+.airbnb-floating-badge {
+  display: inline-block;
+  background: var(--color-canvas);
+  color: var(--color-ink-airbnb);
+  font-family: var(--font-airbnb);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: var(--radius-airbnb-full);
+  box-shadow: var(--shadow-airbnb-card-hover);
+}
+
+/* "NEW" uppercase tag for nav */
+.airbnb-new-tag {
+  display: inline-block;
+  background: var(--color-rausch);
+  color: var(--color-on-primary);
+  font-family: var(--font-airbnb);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.32px;
+  text-transform: uppercase;
+  padding: 3px 6px;
+  border-radius: var(--radius-airbnb-full);
+}
+

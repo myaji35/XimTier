@@ -398,7 +398,7 @@
       "description": "brand-dna v0.5.0 (Rausch #ff385c 단색 + 화이트 캔버스 + Cereal VF + Inter fallback)로 전체 컴포넌트 리스킨. Hero deep-navy section → canvas + 28px h1, brand-grad CSS 유틸 제거, application.css 토큰 매핑, IconComponent feather → hand_illustrated 1차 적용 보류(ISS-013 처리).",
       "agent": "agent-harness",
       "priority": "P1",
-      "status": "READY",
+      "status": "SPLIT",
       "depth": 0,
       "depends_on": [],
       "scope": [
@@ -417,7 +417,14 @@
         "brand-dna-v0.5",
         "airbnb-system"
       ],
-      "created_at": "2026-05-18T01:55:00Z"
+      "created_at": "2026-05-18T01:55:00Z",
+      "split_into": [
+        "ISS-012a",
+        "ISS-012b",
+        "ISS-012c"
+      ],
+      "split_at": "2026-05-18T03:55:00Z",
+      "split_reason": "417 매치 grep 결과 — 한 세션 안에 안전하게 완료 불가. 토큰 정의/유틸 추가 → 컴포넌트 리스킨 → 페이지 erb 교체 3단계로 분할."
     },
     {
       "id": "ISS-013",
@@ -447,6 +454,123 @@
         "viz-remap"
       ],
       "created_at": "2026-05-18T01:55:00Z"
+    },
+    {
+      "id": "ISS-012a",
+      "type": "REBRAND",
+      "title": "[REBRAND-1/3] application.css v0.5.0 토큰 + 유틸리티 클래스 추가",
+      "description": "@theme 블록에 Rausch/canvas/ink/hairline + 18단계 typography 변수 + 단일 shadow tier + Airbnb spacing/radius 토큰 추가. 새 유틸 클래스(.btn-rausch / .surface-canvas / .card-airbnb / .search-pill / .search-orb / .type-* / .airbnb-floating-badge / .airbnb-new-tag) 정의. 기존 .section-dark / .text-brand-grad / .btn-grad 등은 무수정 유지 — 즉시 렌더 영향 0.",
+      "agent": "agent-harness",
+      "priority": "P1",
+      "status": "COMPLETED",
+      "depth": 0,
+      "depends_on": [],
+      "scope": [
+        "app/assets/tailwind/application.css"
+      ],
+      "success_criteria": "신규 CSS 변수 :root에 등록 + 새 유틸 클래스 컴파일 + 기존 .section-dark/.text-brand-grad 렌더 회귀 0 + 콘솔 에러 0",
+      "tags": [
+        "REBRAND",
+        "P1",
+        "012-split-1of3",
+        "brand-dna-v0.5"
+      ],
+      "completed_at": "2026-05-18T03:55:00Z",
+      "result": {
+        "css_variables_added": [
+          "--color-rausch",
+          "--color-canvas",
+          "--color-ink-airbnb",
+          "--color-hairline",
+          "--shadow-airbnb-card-hover",
+          "--radius-airbnb-{sm,md,lg,xl,full}",
+          "--space-{xxs..section}",
+          "--font-airbnb"
+        ],
+        "utility_classes_added": [
+          ".btn-rausch",
+          ".btn-secondary-airbnb",
+          ".btn-tertiary-airbnb",
+          ".pill-rausch",
+          ".surface-{canvas,soft,strong}",
+          ".text-{ink,body,muted,rausch}-airbnb",
+          ".card-airbnb",
+          ".shadow-card-hover",
+          ".search-pill",
+          ".search-orb",
+          ".type-{rating-display,display-xl/lg/md/sm,title-md,body-md/sm,caption,badge,uppercase-tag}",
+          ".airbnb-floating-badge",
+          ".airbnb-new-tag"
+        ],
+        "regression": "0 (legacy .section-dark = rgb(11,19,45), .text-brand-grad = 135deg blue+teal 유지)",
+        "console_errors": 0,
+        "tailwind_build_time_ms": 190
+      },
+      "created_at": "2026-05-18T03:00:00Z"
+    },
+    {
+      "id": "ISS-012b",
+      "type": "REBRAND",
+      "title": "[REBRAND-2/3] Hero/CTA/Card/Logo 컴포넌트 리스킨",
+      "description": "4개 ViewComponent(hero/cta/card/brand_logo)의 erb/ruby를 v0.5.0 시스템(canvas + Rausch primary + ink 텍스트)로 교체. Hero는 section-dark 폐기 → canvas + 28px h1 + 아래에 search-pill or pill-rausch CTA. CTA는 .btn-rausch / .btn-secondary-airbnb 사용. Card는 .card-airbnb + .shadow-card-hover. Logo는 Rausch 워드마크 1차 검토 (X 4-blade 유지 여부는 후속).",
+      "agent": "agent-harness",
+      "priority": "P1",
+      "status": "READY",
+      "depth": 0,
+      "depends_on": [
+        "ISS-012a"
+      ],
+      "scope": [
+        "app/components/hero_component.html.erb",
+        "app/components/hero_component.rb",
+        "app/components/cta_component.html.erb",
+        "app/components/cta_component.rb",
+        "app/components/card_component.html.erb",
+        "app/components/card_component.rb",
+        "app/components/brand_logo_component.html.erb",
+        "app/components/brand_logo_component.rb"
+      ],
+      "success_criteria": "4 컴포넌트 모두 v0.5.0 클래스 사용 + 화이트 캔버스 hero + Rausch primary CTA + 콘솔 에러 0 + system spec PASS",
+      "tags": [
+        "REBRAND",
+        "P1",
+        "012-split-2of3",
+        "brand-dna-v0.5"
+      ],
+      "created_at": "2026-05-18T03:00:00Z"
+    },
+    {
+      "id": "ISS-012c",
+      "type": "REBRAND",
+      "title": "[REBRAND-3/3] 페이지 erb 417 매치 일괄 교체 + 10차 배포",
+      "description": "홈/use-cases/pricing/contact/demo/investors 등 모든 페이지 erb에서 .section-dark / .text-brand-grad / .btn-grad / xim_blue·teal_mint·deep_navy 색 hex 직참 → 새 v0.5.0 유틸로 교체. ISS-010 moat triangle / ISS-002 SHAP / ISS-003 Hero chips는 ISS-013에서 별도 처리. 10차 배포 + production 캐릭터 저니 재검증 + Lighthouse 회귀 없음 확인.",
+      "agent": "agent-harness",
+      "priority": "P1",
+      "status": "BACKLOG",
+      "depth": 0,
+      "depends_on": [
+        "ISS-012b"
+      ],
+      "scope": [
+        "app/views/pages/home.html.erb",
+        "app/views/pages/how_it_works.html.erb",
+        "app/views/pages/use_cases.html.erb",
+        "app/views/pages/pricing.html.erb",
+        "app/views/pages/contact.html.erb",
+        "app/views/pages/demo.html.erb",
+        "app/views/pages/case_study.html.erb",
+        "app/views/pages/why_not_llm.html.erb",
+        "app/views/layouts/application.html.erb"
+      ],
+      "success_criteria": "production ximtier.com 10차 배포 후 화이트 캔버스 + Rausch 단일 액센트로 외부 렌더 + Lighthouse Perf ≥ 85 + 캐릭터 저니 J1 production PASS",
+      "tags": [
+        "REBRAND",
+        "P1",
+        "012-split-3of3",
+        "brand-dna-v0.5",
+        "deploy"
+      ],
+      "created_at": "2026-05-18T03:00:00Z"
     }
   ],
   "hooks": {
@@ -485,8 +609,8 @@
     ]
   },
   "stats": {
-    "total_issues": 13,
-    "completed": 6,
+    "total_issues": 16,
+    "completed": 7,
     "failed": 0,
     "current_depth": 0
   },
