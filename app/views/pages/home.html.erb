@@ -119,24 +119,24 @@
   </div>
 </section>
 
-<%# ============ 04 Why Now (Light) ============ %>
-<section id="why-now" class="section-light" style="padding:60px 0; border-bottom:1px solid #e5e9f0;">
+<%# ============ 04 Why Now (Canvas) ============ %>
+<section id="why-now" class="surface-canvas border-b-hairline" style="padding:60px 0;">
   <div class="wrap" style="max-width:920px;">
-    <div class="eyebrow"><span class="dot"></span><%= t("why_now.eyebrow") %></div>
-    <h2 class="h-section mt-3"><%= t("why_now.title") %></h2>
-    <p class="lead mt-5" style="color:#475467;"><%= t("why_now.body") %></p>
+    <p class="type-uppercase-tag text-rausch"><%= t("why_now.eyebrow") %></p>
+    <h2 class="type-display-xl mt-3"><%= t("why_now.title") %></h2>
+    <p class="type-body-md text-body-airbnb mt-5"><%= t("why_now.body") %></p>
     <div class="mt-6">
-      <a href="/<%= I18n.locale %>/why-not-llm" class="text-[14px] font-semibold" style="color:#2563EB;"><%= t("why_now.cta") %></a>
+      <a href="/<%= I18n.locale %>/why-not-llm" class="type-body-sm font-semibold text-rausch hover:underline"><%= t("why_now.cta") %></a>
     </div>
   </div>
 </section>
 
-<%# ============ 03 Problem (Light) ============ %>
-<section id="problem" class="section-light section-pad">
+<%# ============ 03 Problem (Canvas) ============ %>
+<section id="problem" class="surface-canvas section-pad">
   <div class="wrap">
-    <div class="eyebrow"><span class="dot"></span><%= t("problem.eyebrow") %></div>
-    <h2 class="h-section mt-3" style="max-width:920px;"><%= t("problem.h1") %></h2>
-    <p class="lead mt-5" style="color:#475467; max-width:760px;"><%= t("problem.lead") %></p>
+    <p class="type-uppercase-tag text-rausch"><%= t("problem.eyebrow") %></p>
+    <h2 class="type-display-xl mt-3" style="max-width:920px;"><%= t("problem.h1") %></h2>
+    <p class="type-body-md text-body-airbnb mt-5" style="max-width:760px;"><%= t("problem.lead") %></p>
 
     <div class="mt-14 grid grid-cols-1 md:grid-cols-3" style="gap:24px;">
       <% %w[data_sovereignty numeric_calc regulation].each do |key| %>
@@ -179,20 +179,20 @@
   </div>
 </section>
 
-<%# ============ 05 Market indicators (Tinted) ============ %>
-<section class="section-tinted section-pad-compact">
+<%# ============ 05 Market indicators (Canvas) ============ %>
+<section class="surface-soft section-pad-compact">
   <div class="wrap">
-    <div class="eyebrow"><span class="dot"></span><%= t("market.eyebrow") %></div>
+    <p class="type-uppercase-tag text-rausch"><%= t("market.eyebrow") %></p>
     <div class="grid grid-cols-1 md:grid-cols-[1fr_1fr] mt-3" style="gap:48px; align-items:end;">
-      <h2 class="h-section" style="max-width:560px;"><%= t("market.h1") %></h2>
-      <p class="lead" style="color:#475467;"><%= t("market.lead") %></p>
+      <h2 class="type-display-xl" style="max-width:560px;"><%= t("market.h1") %></h2>
+      <p class="type-body-md text-body-airbnb"><%= t("market.lead") %></p>
     </div>
 
     <div class="mt-14 grid grid-cols-2 md:grid-cols-5" data-controller="count-up" style="gap:16px;">
       <% t("market.indicators").each do |ind| %>
-        <div class="rounded-[14px] p-5" style="background:#fff; border:1px solid #e5e9f0;">
-          <div class="text-[28px] font-bold text-brand-grad" data-count-up-target="value" style="line-height:1;"><%= ind[:value] %></div>
-          <div class="mt-2 text-[12px]" style="color:#697386;"><%= ind[:label] %></div>
+        <div class="card-airbnb shadow-card-hover" style="padding:20px;">
+          <div class="type-display-lg text-rausch" data-count-up-target="value" style="font-size:28px; line-height:1;"><%= ind[:value] %></div>
+          <div class="mt-2 type-body-sm text-muted-airbnb"><%= ind[:label] %></div>
         </div>
       <% end %>
     </div>
@@ -200,21 +200,22 @@
     <div class="mt-6 text-center">
       <%= link_to (I18n.locale == :ko ? "이 숫자들의 근거 보기 →" : "How these numbers are derived →"),
             market_path(locale: I18n.locale),
-            class: "text-[14px] font-semibold", style: "color:#2563EB;" %>
+            class: "type-body-sm font-semibold text-rausch hover:underline" %>
     </div>
   </div>
 </section>
 
-<%# ============ 06 Moat (Light) ============ %>
-<section id="moat" class="section-light section-pad">
+<%# ============ 06 Moat (Canvas) ============ %>
+<section id="moat" class="surface-canvas section-pad">
   <div class="wrap">
-    <div class="eyebrow"><span class="dot"></span><%= t("moat.eyebrow") %></div>
+    <p class="type-uppercase-tag text-rausch"><%= t("moat.eyebrow") %></p>
     <div class="grid grid-cols-1 md:grid-cols-[1fr_1fr] mt-3" style="gap:48px; align-items:end;">
-      <h2 class="h-section" style="max-width:560px;"><%= t("moat.h1") %></h2>
-      <p class="lead" style="color:#475467;"><%= t("moat.lead") %></p>
+      <h2 class="type-display-xl" style="max-width:560px;"><%= t("moat.h1") %></h2>
+      <p class="type-body-md text-body-airbnb"><%= t("moat.lead") %></p>
     </div>
 
     <div class="mt-16">
+      <%# MoatTriangleComponent 색 재맵핑은 ISS-013에서 처리 — 컨테이너만 캔버스로 %>
       <%= render MoatTriangleComponent.new(
             sovereignty: t("moat.triangle.points.sovereignty"),
             regulated:   t("moat.triangle.points.regulated"),
@@ -222,8 +223,8 @@
           ) %>
     </div>
 
-    <blockquote class="mt-12 pl-5" style="border-left:3px solid; border-image:linear-gradient(135deg,#2563EB,#00C8C8) 1; max-width:760px;">
-      <p class="text-[16px] italic" style="color:#475467;">"<%= t("moat.callout") %>"</p>
+    <blockquote class="mt-12 pl-5 border-l-4" style="border-color: var(--color-rausch); max-width:760px;">
+      <p class="type-body-md text-body-airbnb italic"><%= t("moat.callout") %></p>
     </blockquote>
   </div>
 </section>
