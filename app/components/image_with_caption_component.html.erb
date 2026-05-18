@@ -1,0 +1,12 @@
+<figure class="<%= figure_classes %>">
+  <img src="<%= asset_path(src) %>" alt="<%= alt %>" loading="lazy" decoding="async" style="<%= img_style %>">
+  <% if caption || source %>
+    <figcaption class="type-body-sm text-muted-airbnb px-3 py-2 border-t-hairline" style="background: var(--color-surface-soft);">
+      <% if caption %><span class="text-body-airbnb"><%= caption %></span><% end %>
+      <% if source %>
+        <% if caption %><span class="mx-1.5">·</span><% end %>
+        <span class="font-mono type-uppercase-tag">Source: <%= source %></span>
+      <% end %>
+    </figcaption>
+  <% end %>
+</figure>
