@@ -58,6 +58,13 @@ export default class extends Controller {
     const improvementPct = Math.round((1 - target / baseline) * 100)
     this.improvementTarget.textContent = `${improvementPct >= 0 ? '−' : '+'}${Math.abs(improvementPct)}%`
 
+    // a11y: update aria-valuenow + aria-valuetext for screen readers (VoiceOver)
+    this.sliderTarget.setAttribute("aria-valuenow", target.toFixed(2))
+    const ariaTpl = this.sliderTarget.dataset.ariaValuetextTemplate
+    if (ariaTpl) {
+      this.sliderTarget.setAttribute("aria-valuetext", ariaTpl.replace("%{value}", target.toFixed(2)))
+    }
+
     // Solve
     const totalAbs = this.VARS.reduce((s, v) => s + Math.abs(v.coef) * v.weight, 0)
     const solved = this.VARS.map(v => {

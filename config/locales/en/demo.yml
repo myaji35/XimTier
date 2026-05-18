@@ -11,6 +11,8 @@ en:
     baseline_compare_html: "Baseline <strong>%{baseline}%</strong>, target improvement <strong class='text-brand-grad'>%{improvement}</strong>"
     slider_min: "0.30%"
     slider_max: "3.00%"
+    slider_aria_label: "Target defect rate slider (0.30% to 3.00%)"
+    slider_aria_valuetext: "Target defect rate %{value} percent"
     algorithm_title: "Reverse Algorithm"
     algorithm_body_html: "Move the slider — the <strong>optimal combination of 5 process variables</strong> to hit your target is computed instantly on the right. Regression + SHAP."
     optimal_inputs_title: "Optimal Inputs"

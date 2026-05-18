@@ -11,6 +11,8 @@ ko:
     baseline_compare_html: "현재 베이스라인 <strong>%{baseline}%</strong> 대비 <strong class='text-brand-grad'>%{improvement}</strong> 개선 목표"
     slider_min: "0.30%"
     slider_max: "3.00%"
+    slider_aria_label: "목표 불량률 슬라이더 (0.30% ~ 3.00%)"
+    slider_aria_valuetext: "목표 불량률 %{value} 퍼센트"
     algorithm_title: "역산 (Reverse) 알고리즘"
     algorithm_body_html: "슬라이더를 움직이면 <strong>목표값에 도달하기 위한 5개 공정 변수의 최적 조합</strong>이 우측에 즉시 계산됩니다. 회귀 모델 + SHAP 기반."
     optimal_inputs_title: "최적 변수 역산 · Optimal Inputs"
