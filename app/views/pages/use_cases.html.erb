@@ -12,10 +12,18 @@
     </div>
 
     <div class="mt-14 grid grid-cols-1 md:grid-cols-2" style="gap:24px;">
+      <% industry_photos = %w[manufacturing hospital public smart_city finance retail logistics energy] %>
       <% %w[manufacturing hospital public smart_city finance retail logistics energy education telecom].each do |key| %>
         <% c = t("use_cases.cards.#{key}") %>
-        <article class="card-airbnb shadow-card-hover">
-          <div class="flex items-start gap-4">
+        <% has_photo = industry_photos.include?(key) %>
+        <article class="card-airbnb shadow-card-hover overflow-hidden" style="padding:0;">
+          <% if has_photo %>
+            <img src="<%= asset_path("industry/#{key}.jpg") %>"
+                 alt="<%= c[:title] %> 현장 이미지"
+                 loading="lazy" decoding="async"
+                 style="aspect-ratio: 16/9; object-fit: cover; width: 100%; display: block; filter: grayscale(100%) contrast(1.05);">
+          <% end %>
+          <div class="flex items-start gap-4" style="padding: var(--space-lg);">
             <div class="shrink-0 w-12 h-12 rounded-lg flex items-center justify-center border-hairline text-rausch">
               <%= render IconComponent.new(name: c[:icon], size: 22) %>
             </div>
