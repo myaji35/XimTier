@@ -390,6 +390,63 @@
         "interactive"
       ],
       "created_at": "2026-05-18T01:40:00Z"
+    },
+    {
+      "id": "ISS-012",
+      "type": "REBRAND",
+      "title": "[REBRAND] UI 컴포넌트 리스킨 — Airbnb-시스템 v0.5.0 적용",
+      "description": "brand-dna v0.5.0 (Rausch #ff385c 단색 + 화이트 캔버스 + Cereal VF + Inter fallback)로 전체 컴포넌트 리스킨. Hero deep-navy section → canvas + 28px h1, brand-grad CSS 유틸 제거, application.css 토큰 매핑, IconComponent feather → hand_illustrated 1차 적용 보류(ISS-013 처리).",
+      "agent": "agent-harness",
+      "priority": "P1",
+      "status": "READY",
+      "depth": 0,
+      "depends_on": [],
+      "scope": [
+        "app/assets/tailwind/application.css",
+        "app/views/pages/home.html.erb",
+        "app/views/layouts/application.html.erb",
+        "app/components/hero_component.html.erb",
+        "app/components/cta_component.html.erb",
+        "app/components/card_component.html.erb",
+        "app/components/brand_logo_component.html.erb"
+      ],
+      "success_criteria": "production 외부 ximtier.com 10차 배포 후 화이트 캔버스 + Rausch 단일 액센트로 렌더 + Lighthouse Perf ≥ 85 회귀 없음 + 캐릭터 저니 J1 통과",
+      "tags": [
+        "REBRAND",
+        "P1",
+        "brand-dna-v0.5",
+        "airbnb-system"
+      ],
+      "created_at": "2026-05-18T01:55:00Z"
+    },
+    {
+      "id": "ISS-013",
+      "type": "REBRAND",
+      "title": "[REBRAND-PHASE-2] 시각화 컴포넌트 색·모션 재맵핑 + 캐릭터 저니 재검증",
+      "description": "ISS-010 (moat triangle blue+teal) → Rausch 단색 또는 ink-only 재맵핑, ISS-002 (SHAP 양/음 teal/blue) → ink-fill + outline 의미적 분리, ISS-003 (Hero floating chips) Airbnb 정책 충돌 판단(정지 또는 유지). 캐릭터 저니 J1~J3 production 재검증.",
+      "agent": "agent-harness",
+      "priority": "P2",
+      "status": "BACKLOG",
+      "depth": 0,
+      "depends_on": [
+        "ISS-012"
+      ],
+      "scope": [
+        "app/components/shap_chart_component.html.erb",
+        "app/javascript/controllers/reverse_what_if_controller.js",
+        "app/components/moat_triangle_component.html.erb",
+        "app/javascript/controllers/moat_triangle_controller.js",
+        "app/assets/tailwind/application.css",
+        "app/components/icon_component.rb"
+      ],
+      "success_criteria": "SHAP 양/음 분리 새 방식 + moat triangle Rausch/ink 매핑 + Hero chips 정책 결정 + Playwright J1/J2/J3 production PASS + 콘솔 에러 0",
+      "tags": [
+        "REBRAND",
+        "P2",
+        "brand-dna-v0.5",
+        "viz-remap"
+      ],
+      "created_at": "2026-05-18T01:55:00Z"
     }
   ],
   "hooks": {
@@ -428,7 +485,7 @@
     ]
   },
   "stats": {
-    "total_issues": 11,
+    "total_issues": 13,
     "completed": 6,
     "failed": 0,
     "current_depth": 0

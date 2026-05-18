@@ -1,8 +1,8 @@
 {
   "_status": "active",
-  "_version": "0.4.0",
-  "_last_updated": "2026-05-14",
-  "_source": "PRD §8.1 + design.md + XAISimTier_PitchDeck_v2.md 톤 매칭 (XIM-10, 2026-05-14)",
+  "_version": "0.5.0",
+  "_last_updated": "2026-05-18",
+  "_source": "_design_ref/design.md (Airbnb-시스템 차용본) — 대표님 결정 2026-05-18 전면 리브랜딩",
 
   "_governance": {
     "owner": "강승식 (CTO)",
@@ -13,10 +13,9 @@
       "brand.tagline_en",
       "brand.positioning",
       "agenda",
-      "design_tokens.colors.xim_blue",
-      "design_tokens.colors.teal_mint",
-      "design_tokens.colors.deep_navy",
-      "design_tokens.gradients.brand",
+      "design_tokens.colors.primary",
+      "design_tokens.colors.ink",
+      "design_tokens.colors.canvas",
       "design_tokens.typography.font_heading",
       "design_tokens.typography.font_body",
       "anti_patterns"
@@ -34,12 +33,21 @@
     "change_log_path": "_workspace/brand-changelog.md",
     "lock_until": "2026-09-30",
     "frozen_principles": [
-      "X 심볼 4-blade 구조",
-      "Blue→Teal 135deg 그라디언트 방향",
       "'Decision Intelligence, Proven by Numbers' 포지셔닝",
       "agenda='LLM이 못 푸는 수치를, 우리가 증명한다'",
-      "voice 4어 (엔터프라이즈 신뢰, 테크 모던, 단호한 단언, 수치 우선)"
-    ]
+      "voice 4어 (엔터프라이즈 신뢰, 테크 모던, 단호한 단언, 수치 우선)",
+      "data visualization 우선 (Airbnb의 photography 대신 SHAP/Reverse What-If 인터랙티브)"
+    ],
+    "overridden_at_v05": {
+      "date": "2026-05-18",
+      "reason": "대표님 결정 — Airbnb 시스템(화이트 캔버스 + Rausch 단일 액센트 + Cereal VF) 차용. 이전 v0.4.0 (블루+티얼 듀얼톤 + 딥 네이비 헤로 + X 4-blade)은 폐기.",
+      "overridden_principles": [
+        "X 심볼 4-blade 구조 — Rausch 단색 워드마크로 대체 후속 검토",
+        "Blue→Teal 135deg 그라디언트 방향 — 단색 Rausch로 폐기",
+        "section_dark 딥 네이비 헤로 — 화이트 캔버스로 폐기"
+      ],
+      "rebrand_followup": "ISS-012, ISS-013 — 컴포넌트 리스킨"
+    }
   },
 
   "brand": {
@@ -59,148 +67,186 @@
     "신뢰감 (엔터프라이즈 의사결정에 걸 수 있는 무게)",
     "단호함 (가능성이 아닌 단정으로 말한다)",
     "수치 우선 (감각보다 측정치, 인상보다 SHAP/R²/p-value)",
-    "테크 모던 (Palantir·Stripe 톤, 친근함보다 정밀함)",
+    "정밀한 모던 (Airbnb-tier 화이트 캔버스 + 단일 액센트의 절제)",
     "조용한 우월감 (과시가 아닌 증명)"
   ],
 
   "anti_patterns": [
     "혁신적/최첨단/차세대 같은 공허한 형용사 사용",
     "이모지로 신뢰감을 대체 (CTA·헤드라인에 이모지 금지)",
-    "둥글둥글한 라운드(>20px) — XimTier는 정밀계측 도구, 캐주얼 SaaS가 아님",
-    "파스텔/그라디언트 남발 — 그라디언트는 X 심볼·핵심 수치·주요 CTA에만",
+    "Rausch(#ff385c) 외 액센트 색 추가 금지 — 단일 voltage 원칙",
+    "다중 그라데이션 남발 — 그라데이션 0개가 기본",
     "스톡 일러스트·AI 슬롭 이미지 (특히 보라색 그라디언트 배경의 추상 도형)",
     "느낌표 남발·과장 문구 (\"!!!\" \"놀라운\" \"마법 같은\")",
     "수치 없는 주장 (\"빠릅니다\" 대신 \"P95 280ms\", \"정확합니다\" 대신 \"R² 0.94\")",
     "LLM과 동급 경쟁 톤 — XimTier는 LLM의 보완재 (\"LLM 대신\"이 아닌 \"LLM이 못 푸는\")",
     "캐주얼/친구 같은 마이크로카피 (\"앗!\" \"오잉?\" \"같이 해봐요\")",
-    "단일 섹션 연속 (light→light→light) — 톤 교차 필수",
-    "고스트/유령 버튼만 사용 — 화면당 단호한 Primary CTA 1개 필수",
+    "고스트/유령 버튼만 사용 — 화면당 단호한 Primary CTA(Rausch) 1개 필수",
     "한국어 어절 잘림 (`word-break: keep-all` 미적용 헤딩)",
     "icon-only 버튼에 aria-label 누락 (접근성)",
-    "데모 영역이 정적 캡처 (Reverse What-If는 반드시 인터랙티브)"
+    "데모 영역이 정적 캡처 (Reverse What-If는 반드시 인터랙티브)",
+    "여러 단계 shadow tier — 단일 tier(card hover)만 사용",
+    "Pure black(#000) 사용 — ink(#222222)만"
   ],
 
   "design_tokens": {
     "colors": {
-      "xim_blue":      "#2563EB",
-      "xim_blue_deep": "#1d4ed8",
-      "xim_blue_soft": "#3b82f6",
-      "teal_mint":     "#00C8C8",
-      "deep_navy":     "#0B132D",
-      "deep_navy_2":   "#0e1838",
-      "near_black":    "#060c1f",
-      "ink":           "#0B132D",
-      "ink_2":         "#1f2937",
-      "slate":         "#697386",
-      "slate_2":       "#475467",
-      "light_gray":    "#F2F4F7",
-      "line":          "#e5e9f0",
-      "white":         "#ffffff",
+      "primary":           "#ff385c",
+      "primary_active":    "#e00b41",
+      "primary_disabled":  "#ffd1da",
+      "luxe":              "#460479",
+      "plus":              "#92174d",
 
-      "hero":          "#2563EB",
-      "text_primary":  "#0B132D",
-      "surface":       "#ffffff",
-      "surface_alt":   "#F2F4F7",
-      "surface_dark":  "#0B132D",
+      "canvas":            "#ffffff",
+      "surface_soft":      "#f7f7f7",
+      "surface_strong":    "#f2f2f2",
+
+      "hairline":          "#dddddd",
+      "hairline_soft":     "#ebebeb",
+      "border_strong":     "#c1c1c1",
+
+      "ink":               "#222222",
+      "body":              "#3f3f3f",
+      "muted":             "#6a6a6a",
+      "muted_soft":        "#929292",
+      "star_rating":       "#222222",
+      "on_primary":        "#ffffff",
+
+      "primary_error_text":       "#c13515",
+      "primary_error_text_hover": "#b32505",
+      "legal_link":               "#428bff",
+      "scrim":                    "#000000",
 
       "semantic": {
-        "section_light":   "#ffffff",
-        "section_tinted":  "#F2F4F7",
-        "section_dark":    "#0B132D",
-        "section_footer":  "#060c1f",
-        "text_on_light":   "#0B132D",
-        "text_on_dark":    "#e6e8f0",
-        "muted_on_light":  "#697386",
-        "muted_on_dark":   "#8a94ac",
-        "accent_blue":     "#2563EB",
-        "accent_teal":     "#00C8C8",
-        "success":         "#00C8C8",
-        "danger":          "#ef4444",
-        "warning":         "#f59e0b"
+        "section_canvas":  "#ffffff",
+        "section_soft":    "#f7f7f7",
+        "section_strong":  "#f2f2f2",
+        "text_on_canvas":  "#222222",
+        "muted_on_canvas": "#6a6a6a",
+        "accent":          "#ff385c",
+        "error":           "#c13515",
+        "success":         "#222222"
       }
     },
     "gradients": {
-      "brand":        "linear-gradient(135deg, #2563EB 0%, #00C8C8 100%)",
-      "brand_radial": "radial-gradient(circle at 30% 20%, rgba(37,99,235,0.35), transparent 60%), radial-gradient(circle at 80% 80%, rgba(0,200,200,0.25), transparent 55%)",
-      "x_top_left":   "linear-gradient(#3b82f6, #2563EB)",
-      "x_top_right":  "linear-gradient(#2563EB, #00C8C8)"
+      "_policy": "Airbnb 시스템은 그라데이션을 사용하지 않는다. 토큰을 비워둬서 사용 시 lint 경고가 뜨도록 한다.",
+      "brand":        null,
+      "brand_radial": null
     },
     "typography": {
-      "font_heading":     "Pretendard, 'Pretendard Variable', Inter, -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', sans-serif",
-      "font_body":        "Pretendard, 'Pretendard Variable', Inter, -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', sans-serif",
+      "font_heading":     "'Airbnb Cereal VF', Circular, Inter, -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', sans-serif",
+      "font_body":        "'Airbnb Cereal VF', Circular, Inter, -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', sans-serif",
       "font_mono":        "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
-      "font_family_sans": "Pretendard, 'Pretendard Variable', Inter, -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', sans-serif",
+      "font_family_sans": "'Airbnb Cereal VF', Circular, Inter, -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', sans-serif",
       "font_family_mono": "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
-      "font_kr":          "Pretendard, 'Pretendard Variable'",
-      "font_en":          "Inter, -apple-system, BlinkMacSystemFont, system-ui",
+      "font_substitute_oss": "Inter (Airbnb Cereal VF / Circular 미사용 환경 fallback)",
       "weights": { "light": 300, "regular": 400, "medium": 500, "semibold": 600, "bold": 700 },
       "scale": {
-        "h_display":  "clamp(40px, 6vw, 78px)",
-        "h_section":  "clamp(32px, 4.2vw, 52px)",
-        "h_card":     "22px",
-        "h_eye":      "13px",
-        "lead":       "clamp(16px, 1.4vw, 19px)",
-        "body":       "15px",
-        "small":      "13px"
+        "rating_display":  { "size": "64px",  "weight": 700, "line_height": 1.1,  "letter_spacing": "-1px" },
+        "display_xl":      { "size": "28px",  "weight": 700, "line_height": 1.43, "letter_spacing": "0" },
+        "display_lg":      { "size": "22px",  "weight": 500, "line_height": 1.18, "letter_spacing": "-0.44px" },
+        "display_md":      { "size": "21px",  "weight": 700, "line_height": 1.43, "letter_spacing": "0" },
+        "display_sm":      { "size": "20px",  "weight": 600, "line_height": 1.20, "letter_spacing": "-0.18px" },
+        "title_md":        { "size": "16px",  "weight": 600, "line_height": 1.25, "letter_spacing": "0" },
+        "title_sm":        { "size": "16px",  "weight": 500, "line_height": 1.25, "letter_spacing": "0" },
+        "body_md":         { "size": "16px",  "weight": 400, "line_height": 1.5,  "letter_spacing": "0" },
+        "body_sm":         { "size": "14px",  "weight": 400, "line_height": 1.43, "letter_spacing": "0" },
+        "caption":         { "size": "14px",  "weight": 500, "line_height": 1.29, "letter_spacing": "0" },
+        "caption_sm":      { "size": "13px",  "weight": 400, "line_height": 1.23, "letter_spacing": "0" },
+        "badge":           { "size": "11px",  "weight": 600, "line_height": 1.18, "letter_spacing": "0" },
+        "micro_label":     { "size": "12px",  "weight": 700, "line_height": 1.33, "letter_spacing": "0" },
+        "uppercase_tag":   { "size": "8px",   "weight": 700, "line_height": 1.25, "letter_spacing": "0.32px", "transform": "uppercase" },
+        "button_md":       { "size": "16px",  "weight": 500, "line_height": 1.25, "letter_spacing": "0" },
+        "button_sm":       { "size": "14px",  "weight": 500, "line_height": 1.29, "letter_spacing": "0" },
+        "link":            { "size": "14px",  "weight": 400, "line_height": 1.43, "letter_spacing": "0" },
+        "nav_link":        { "size": "16px",  "weight": 600, "line_height": 1.25, "letter_spacing": "0" }
       },
-      "tracking": {
-        "display":  "-0.03em",
-        "section":  "-0.025em",
-        "card":     "-0.01em",
-        "eyebrow":  "0.08em"
-      },
-      "line_height": { "display": 1.04, "section": 1.08, "body": 1.55 },
       "rules": {
         "kr_word_break": "keep-all",
         "kr_overflow_wrap": "anywhere",
         "tech_keywords_en": ["Reverse What-If", "SHAP", "R²", "p-value", "MAE", "RMSE", "Decision Intelligence", "Post-LLM"]
       }
     },
-    "radius": { "card": "14px", "card_lg": "18px", "demo_shell": "20px", "button": "999px" },
+    "radius": {
+      "sm":   "8px",
+      "md":   "14px",
+      "lg":   "18px",
+      "xl":   "32px",
+      "full": "9999px"
+    },
     "shape": {
-      "radius": "moderate",
-      "radius_scale": { "tight": "6px", "moderate": "14px", "soft": "18px", "pill": "999px" }
+      "radius": "soft",
+      "radius_scale": {
+        "sm":   "8px",
+        "md":   "14px",
+        "lg":   "18px",
+        "xl":   "32px",
+        "full": "9999px"
+      }
     },
     "shadow": {
-      "card_hover":     "0 10px 30px -12px rgba(11,19,45,0.18)",
-      "demo_shell":     "0 30px 60px -30px rgba(11,19,45,0.15)",
-      "cta_grad":       "0 8px 24px -8px rgba(37,99,235,0.55)",
-      "cta_grad_hover": "0 12px 28px -8px rgba(37,99,235,0.70)"
+      "_policy": "단일 tier만 사용. 일반 surface는 flat. card-hover/floating-dropdown만 below.",
+      "card_hover": "rgba(0,0,0,0.02) 0 0 0 1px, rgba(0,0,0,0.04) 0 2px 6px 0, rgba(0,0,0,0.1) 0 4px 8px 0",
+      "scrim":      "rgba(0,0,0,0.5)"
+    },
+    "spacing": {
+      "xxs":     "2px",
+      "xs":      "4px",
+      "sm":      "8px",
+      "md":      "12px",
+      "base":    "16px",
+      "lg":      "24px",
+      "xl":      "32px",
+      "xxl":     "48px",
+      "section": "64px"
     },
     "layout": {
-      "max_width":      "1240px",
-      "gutter":         "32px",
-      "section_pad_y":  "120px",
-      "section_pad_y_compact": "80px",
-      "grid_gap_card":  "24px",
-      "grid_gap_hero":  "60px"
+      "max_width":            "1280px",
+      "max_width_listing":    "1080px",
+      "max_width_wide":       "1440px",
+      "gutter":               "24px",
+      "section_pad_y":        "64px",
+      "section_pad_y_compact":"48px",
+      "grid_gap_card":        "16px",
+      "grid_gap_footer":      "24px"
     },
     "motion": {
       "duration_fast":   "150ms",
-      "duration_base":   "250ms",
-      "duration_slow":   "400ms",
+      "duration_base":   "200ms",
+      "duration_slow":   "300ms",
       "easing_standard": "cubic-bezier(0.4, 0, 0.2, 1)",
-      "hover_effect":    "lift",
-      "float_chip":      "5.5s ease-in-out infinite"
+      "hover_effect":    "elevation_lift",
+      "float_chip":      "none"
     },
     "personality": {
-      "icon_style":   "feather-outline",
-      "icon_weight":  1.75,
-      "corner_style": "moderate",
+      "icon_style":   "hand_illustrated",
+      "icon_weight":  1.5,
+      "icon_size_nav": "32px",
+      "corner_style": "soft",
       "density":      "comfortable",
-      "tone":         "precise"
+      "tone":         "warm_modern_precise"
     },
-    "breakpoints": { "mobile_max": "979px", "desktop_min": "980px" }
+    "breakpoints": {
+      "mobile_max":      "743px",
+      "tablet_min":      "744px",
+      "tablet_max":      "1127px",
+      "desktop_min":     "1128px",
+      "desktop_max":     "1440px",
+      "wide_min":        "1441px"
+    }
   },
 
   "ui_rules": {
     "primary_action_per_screen": "MUST_EXIST",
     "user_decision_clarity": "0.5s 안에 다음 행동 식별 가능",
-    "section_tone_alternation": "연속 동일 톤 금지 (light→dark 또는 light→tinted)",
-    "kpi_format": "숫자(굵게) + 단위(가늘게) + 출처(eyebrow 13px)",
-    "cta_hierarchy": "Primary(grad-blue) > Secondary(navy outline) > Ghost(text only) — 화면당 grad-blue 1개",
+    "section_tone_alternation": "canvas → surface_soft → canvas (밝은 톤 교차)",
+    "kpi_format": "숫자(굵게 ink) + 단위(가늘게) + 출처(caption muted)",
+    "cta_hierarchy": "Primary(Rausch fill) > Secondary(ink outline) > Tertiary(text only) — 화면당 Rausch Primary 1개",
     "logo_min_size": { "wordmark_px": 14, "symbol_px": 16 },
-    "image_policy": "Hero/주요 비주얼은 SVG/CSS로 (PNG 금지). 사진은 WebP + lazy."
+    "image_policy": "Hero/주요 비주얼은 SVG/CSS로. 사진은 WebP + lazy. 정적 captures보다 인터랙티브 시각화 우선.",
+    "touch_target_min_px": 48,
+    "elevation_policy": "flat 기본. card-hover + floating-dropdown에만 단일 shadow tier 적용.",
+    "color_voltage_policy": "Rausch는 화면당 1~2 moment만. 모든 헤드라인/본문은 ink, 모든 배경은 canvas."
   },
 
   "copy_voice": {
