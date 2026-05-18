@@ -1,7 +1,8 @@
 class BrandLogoComponent < ApplicationComponent
   attr_reader :variant, :size, :show_wordmark
 
-  # variant: :light (light bg, navy bottom blades) / :dark (dark bg, white bottom blades)
+  # variant: :light (canvas bg, ink wordmark) / :dark (dark bg, white wordmark)
+  # X 4-blade 심볼 유지 — Rausch 단색 워드마크 전환은 ISS-013 후속 결정 사항.
   def initialize(variant: :light, size: 28, show_wordmark: true)
     @variant = variant
     @size = size
@@ -13,6 +14,10 @@ class BrandLogoComponent < ApplicationComponent
   end
 
   def text_color_class
-    variant == :dark ? "text-white" : "text-[#0B132D]"
+    variant == :dark ? "text-white" : "text-ink-airbnb"
+  end
+
+  def wordmark_color_class
+    variant == :dark ? "text-white" : "text-ink-airbnb"
   end
 end

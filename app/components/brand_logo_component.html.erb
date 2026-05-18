@@ -1,8 +1,8 @@
-<span class="inline-flex items-center gap-2.5 <%= text_color_class %>" style="font-weight:700; font-size:19px; letter-spacing:-0.02em;">
+<span class="inline-flex items-center gap-2.5 <%= text_color_class %>" style="font-family: var(--font-airbnb); font-weight: 700; font-size: 19px; letter-spacing: -0.02em;">
   <svg width="<%= size %>" height="<%= size %>" viewBox="0 0 64 64" aria-hidden="true">
     <use href="#<%= symbol_id %>"/>
   </svg>
   <% if show_wordmark %>
-    <span>XimTier</span>
+    <span class="<%= wordmark_color_class %>">XimTier</span>
   <% end %>
 </span>

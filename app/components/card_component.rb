@@ -13,8 +13,8 @@ class CardComponent < ApplicationComponent
   end
 
   def card_classes
-    base = "rounded-xl border p-6 md:p-8 transition"
-    base += highlighted ? " border-[#2563EB] shadow-[0_10px_30px_-12px_rgba(11,19,45,0.18)] bg-white" : " border-[#e5e9f0] bg-white hover:border-[#2563EB] hover:shadow-[0_10px_30px_-12px_rgba(11,19,45,0.18)]"
-    base
+    classes = ["card-airbnb", "shadow-card-hover", "transition"]
+    classes << "ring-1 ring-[var(--color-rausch)]" if highlighted
+    classes.join(" ")
   end
 end
