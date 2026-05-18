@@ -1,8 +1,8 @@
 {
   "_status": "active",
-  "_version": "0.3.0",
-  "_last_updated": "2026-05-13",
-  "_source": "design.md (XimTier Homepage Design Spec) — 1차 적용 + brand 일원화 (2026-05-13)",
+  "_version": "0.4.0",
+  "_last_updated": "2026-05-14",
+  "_source": "PRD §8.1 + design.md + XAISimTier_PitchDeck_v2.md 톤 매칭 (XIM-10, 2026-05-14)",
 
   "_governance": {
     "owner": "강승식 (CTO)",
@@ -12,17 +12,22 @@
       "brand.tagline_ko",
       "brand.tagline_en",
       "brand.positioning",
+      "agenda",
       "design_tokens.colors.xim_blue",
       "design_tokens.colors.teal_mint",
       "design_tokens.colors.deep_navy",
       "design_tokens.gradients.brand",
-      "design_tokens.typography.font_family_sans"
+      "design_tokens.typography.font_heading",
+      "design_tokens.typography.font_body",
+      "anti_patterns"
     ],
     "auto_iterable": [
       "design_tokens.radius",
       "design_tokens.shadow",
       "design_tokens.motion",
       "design_tokens.layout",
+      "design_tokens.personality",
+      "emotional_tone",
       "page_priorities"
     ],
     "review_cadence": "주 1회 (목요일)",
@@ -32,6 +37,7 @@
       "X 심볼 4-blade 구조",
       "Blue→Teal 135deg 그라디언트 방향",
       "'Decision Intelligence, Proven by Numbers' 포지셔닝",
+      "agenda='LLM이 못 푸는 수치를, 우리가 증명한다'",
       "voice 4어 (엔터프라이즈 신뢰, 테크 모던, 단호한 단언, 수치 우선)"
     ]
   },
@@ -42,8 +48,37 @@
     "tagline_ko": "LLM이 못 푸는 수치를, 우리가 증명한다",
     "tagline_en": "We prove the numbers LLMs can't.",
     "positioning": "Decision Intelligence, Proven by Numbers",
+    "category": "Post-LLM Decision Intelligence Platform",
+    "narrative_anchor": "ChatGPT가 설명한다면, XimTier는 증명한다",
     "voice": ["엔터프라이즈 신뢰", "테크 모던", "단호한 단언", "수치 우선"]
   },
+
+  "agenda": "LLM이 못 푸는 수치를, 우리가 증명한다",
+
+  "emotional_tone": [
+    "신뢰감 (엔터프라이즈 의사결정에 걸 수 있는 무게)",
+    "단호함 (가능성이 아닌 단정으로 말한다)",
+    "수치 우선 (감각보다 측정치, 인상보다 SHAP/R²/p-value)",
+    "테크 모던 (Palantir·Stripe 톤, 친근함보다 정밀함)",
+    "조용한 우월감 (과시가 아닌 증명)"
+  ],
+
+  "anti_patterns": [
+    "혁신적/최첨단/차세대 같은 공허한 형용사 사용",
+    "이모지로 신뢰감을 대체 (CTA·헤드라인에 이모지 금지)",
+    "둥글둥글한 라운드(>20px) — XimTier는 정밀계측 도구, 캐주얼 SaaS가 아님",
+    "파스텔/그라디언트 남발 — 그라디언트는 X 심볼·핵심 수치·주요 CTA에만",
+    "스톡 일러스트·AI 슬롭 이미지 (특히 보라색 그라디언트 배경의 추상 도형)",
+    "느낌표 남발·과장 문구 (\"!!!\" \"놀라운\" \"마법 같은\")",
+    "수치 없는 주장 (\"빠릅니다\" 대신 \"P95 280ms\", \"정확합니다\" 대신 \"R² 0.94\")",
+    "LLM과 동급 경쟁 톤 — XimTier는 LLM의 보완재 (\"LLM 대신\"이 아닌 \"LLM이 못 푸는\")",
+    "캐주얼/친구 같은 마이크로카피 (\"앗!\" \"오잉?\" \"같이 해봐요\")",
+    "단일 섹션 연속 (light→light→light) — 톤 교차 필수",
+    "고스트/유령 버튼만 사용 — 화면당 단호한 Primary CTA 1개 필수",
+    "한국어 어절 잘림 (`word-break: keep-all` 미적용 헤딩)",
+    "icon-only 버튼에 aria-label 누락 (접근성)",
+    "데모 영역이 정적 캡처 (Reverse What-If는 반드시 인터랙티브)"
+  ],
 
   "design_tokens": {
     "colors": {
@@ -62,6 +97,12 @@
       "line":          "#e5e9f0",
       "white":         "#ffffff",
 
+      "hero":          "#2563EB",
+      "text_primary":  "#0B132D",
+      "surface":       "#ffffff",
+      "surface_alt":   "#F2F4F7",
+      "surface_dark":  "#0B132D",
+
       "semantic": {
         "section_light":   "#ffffff",
         "section_tinted":  "#F2F4F7",
@@ -72,17 +113,26 @@
         "muted_on_light":  "#697386",
         "muted_on_dark":   "#8a94ac",
         "accent_blue":     "#2563EB",
-        "accent_teal":     "#00C8C8"
+        "accent_teal":     "#00C8C8",
+        "success":         "#00C8C8",
+        "danger":          "#ef4444",
+        "warning":         "#f59e0b"
       }
     },
     "gradients": {
-      "brand": "linear-gradient(135deg, #2563EB 0%, #00C8C8 100%)",
-      "x_top_left":  "linear-gradient(#3b82f6, #2563EB)",
-      "x_top_right": "linear-gradient(#2563EB, #00C8C8)"
+      "brand":        "linear-gradient(135deg, #2563EB 0%, #00C8C8 100%)",
+      "brand_radial": "radial-gradient(circle at 30% 20%, rgba(37,99,235,0.35), transparent 60%), radial-gradient(circle at 80% 80%, rgba(0,200,200,0.25), transparent 55%)",
+      "x_top_left":   "linear-gradient(#3b82f6, #2563EB)",
+      "x_top_right":  "linear-gradient(#2563EB, #00C8C8)"
     },
     "typography": {
-      "font_family_sans": "Pretendard, 'Pretendard Variable', -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', sans-serif",
+      "font_heading":     "Pretendard, 'Pretendard Variable', Inter, -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', sans-serif",
+      "font_body":        "Pretendard, 'Pretendard Variable', Inter, -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', sans-serif",
+      "font_mono":        "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
+      "font_family_sans": "Pretendard, 'Pretendard Variable', Inter, -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', sans-serif",
       "font_family_mono": "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
+      "font_kr":          "Pretendard, 'Pretendard Variable'",
+      "font_en":          "Inter, -apple-system, BlinkMacSystemFont, system-ui",
       "weights": { "light": 300, "regular": 400, "medium": 500, "semibold": 600, "bold": 700 },
       "scale": {
         "h_display":  "clamp(40px, 6vw, 78px)",
@@ -99,13 +149,22 @@
         "card":     "-0.01em",
         "eyebrow":  "0.08em"
       },
-      "line_height": { "display": 1.04, "section": 1.08, "body": 1.55 }
+      "line_height": { "display": 1.04, "section": 1.08, "body": 1.55 },
+      "rules": {
+        "kr_word_break": "keep-all",
+        "kr_overflow_wrap": "anywhere",
+        "tech_keywords_en": ["Reverse What-If", "SHAP", "R²", "p-value", "MAE", "RMSE", "Decision Intelligence", "Post-LLM"]
+      }
     },
     "radius": { "card": "14px", "card_lg": "18px", "demo_shell": "20px", "button": "999px" },
+    "shape": {
+      "radius": "moderate",
+      "radius_scale": { "tight": "6px", "moderate": "14px", "soft": "18px", "pill": "999px" }
+    },
     "shadow": {
-      "card_hover":  "0 10px 30px -12px rgba(11,19,45,0.18)",
-      "demo_shell":  "0 30px 60px -30px rgba(11,19,45,0.15)",
-      "cta_grad":    "0 8px 24px -8px rgba(37,99,235,0.55)",
+      "card_hover":     "0 10px 30px -12px rgba(11,19,45,0.18)",
+      "demo_shell":     "0 30px 60px -30px rgba(11,19,45,0.15)",
+      "cta_grad":       "0 8px 24px -8px rgba(37,99,235,0.55)",
       "cta_grad_hover": "0 12px 28px -8px rgba(37,99,235,0.70)"
     },
     "layout": {
@@ -117,11 +176,50 @@
       "grid_gap_hero":  "60px"
     },
     "motion": {
-      "duration_fast": "150ms",
-      "duration_base": "250ms",
-      "easing_standard": "cubic-bezier(0.4, 0, 0.2, 1)"
+      "duration_fast":   "150ms",
+      "duration_base":   "250ms",
+      "duration_slow":   "400ms",
+      "easing_standard": "cubic-bezier(0.4, 0, 0.2, 1)",
+      "hover_effect":    "lift",
+      "float_chip":      "5.5s ease-in-out infinite"
+    },
+    "personality": {
+      "icon_style":   "feather-outline",
+      "icon_weight":  1.75,
+      "corner_style": "moderate",
+      "density":      "comfortable",
+      "tone":         "precise"
     },
     "breakpoints": { "mobile_max": "979px", "desktop_min": "980px" }
+  },
+
+  "ui_rules": {
+    "primary_action_per_screen": "MUST_EXIST",
+    "user_decision_clarity": "0.5s 안에 다음 행동 식별 가능",
+    "section_tone_alternation": "연속 동일 톤 금지 (light→dark 또는 light→tinted)",
+    "kpi_format": "숫자(굵게) + 단위(가늘게) + 출처(eyebrow 13px)",
+    "cta_hierarchy": "Primary(grad-blue) > Secondary(navy outline) > Ghost(text only) — 화면당 grad-blue 1개",
+    "logo_min_size": { "wordmark_px": 14, "symbol_px": 16 },
+    "image_policy": "Hero/주요 비주얼은 SVG/CSS로 (PNG 금지). 사진은 WebP + lazy."
+  },
+
+  "copy_voice": {
+    "headline_pattern": "동사로 끝나는 단언 (예: \"증명한다\", \"계산한다\", \"답한다\")",
+    "kpi_pattern": "수치 + 단위 + 비교 기준 (예: \"R² 0.94 (vs LLM 추론 0.61)\")",
+    "preferred_words": ["증명", "계산", "검증", "측정", "재현 가능", "Decision Intelligence", "Reverse What-If", "SHAP"],
+    "forbidden_words": ["혁신적", "최첨단", "차세대", "놀라운", "마법 같은", "혁명적", "획기적"],
+    "tone_examples": {
+      "good": [
+        "P95 280ms로 시뮬레이션 1회 완료",
+        "SHAP 기여도 ±0.03 정확도",
+        "EU AI Act Article 13 설명 가능성 요구 충족"
+      ],
+      "bad": [
+        "놀라운 속도로 분석합니다!",
+        "혁신적인 AI 기술",
+        "차세대 의사결정 플랫폼"
+      ]
+    }
   },
 
   "page_priorities": {
