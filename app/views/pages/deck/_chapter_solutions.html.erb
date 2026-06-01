@@ -4,11 +4,14 @@
     <h2 class="deck-h2" style="color:#222;margin-top:12px;"><%= t("deck.chapters.solutions.title") %></h2>
     <p class="deck-lead" style="color:#3f3f3f;">데이터 로딩 → AI 현황분석 → What-If / Reverse What-If 최적화 → AI 종합 최적화 보고서. 도메인별 실전 의사결정 가이드.</p>
     <div class="deck-grid deck-grid-2">
-      <% t("deck.chapters.solutions.items").each_with_index do |item, i| %>
-        <div class="deck-card">
+      <% items = t("deck.chapters.solutions.items") %>
+      <% slugs = %w[sol-meeting sol-survey sol-sns sol-festival sol-market sol-smb sol-clinic sol-maintenance sol-sns-product sol-survey-product] %>
+      <% items.each_with_index do |item, i| %>
+        <a class="deck-card deck-card-link" href="<%= deck_detail_path(slug: slugs[i], locale: I18n.locale) %>">
           <div class="deck-card-num"><%= "%02d" % (i+1) %></div>
           <div class="deck-card-title"><%= item %></div>
-        </div>
+          <div class="deck-card-more">자세히 →</div>
+        </a>
       <% end %>
     </div>
   </div>
