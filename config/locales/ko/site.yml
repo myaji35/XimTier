@@ -8,9 +8,9 @@ ko:
     positioning: Decision Intelligence, Proven by Numbers
     hero:
       eyebrow: Decision Intelligence · Regulated AI
-      headline_top: AI도
-      headline_bottom: 감사를 통과해야 한다.
-      subhead: "EU AI Act · 한국 AI 기본법 시대의 설명 가능한 의사결정 엔진. Not another LLM wrapper. Not another regression report. — Reverse What-If로 거꾸로 푸는 결정의 수학."
+      headline_top: 공장 라인은 추정으로
+      headline_bottom: 멈출 수 없다.
+      subhead: "XimTier는 불량률·수율을 5분 안에 수학적으로 역산합니다. 데이터는 한 발도 회사 밖으로 안 나갑니다."
       cta_demo: 5분 라이브 데모 보기
       cta_ir: IR 자료 다운로드 →
       chips:
@@ -65,14 +65,98 @@ ko:
         - { label: "프로덕션 검증",   value: "21차 무중단 배포" }
         - { label: "테스트 커버",     value: "RSpec 104 / 0 PASS" }
     mini_nav:
-      - { id: "fear",        label: "01 · Stakes" }
-      - { id: "why-now",     label: "02 · Why now" }
-      - { id: "problem",     label: "03 · Problem" }
-      - { id: "solution",    label: "04 · Solution" }
-      - { id: "moat",        label: "05 · Moat" }
-      - { id: "cta",         label: "06 · CTA" }
+      - { id: "fear",         label: "01 · Stakes" }
+      - { id: "why-now",      label: "02 · Why now" }
+      - { id: "problem",      label: "03 · Problem" }
+      - { id: "solution",     label: "04 · Solution" }
+      - { id: "prescription", label: "05 · Prescription" }
+      - { id: "sim-solution", label: "06 · SimSolution" }
+      - { id: "versus",       label: "07 · vs Giants" }
+      - { id: "moat",         label: "08 · Moat" }
+      - { id: "cta",          label: "09 · CTA" }
     footer:
       copyright: "© 2025 XimTier (Gagahoho, Inc.) · All rights reserved."
     regulation_strip:
       label: 규제 키워드
       keywords: ["EU AI Act 2026", "한국 AI 기본법", "AI Bill of Rights", "ISO/IEC 42001"]
+    prescription:
+      eyebrow: "// XimTier Prescription"
+      headline_top: "매출이 얼마일까를"
+      headline_strike: "묻지 마십시오."
+      headline_bottom: "목표를 달성하려면 어떤 변수를 통제해야 하는지"
+      headline_accent: "XimTier가 처방합니다."
+      sub: "기존 AI는 미래를 예측하지만, 결과를 바꿀 방법은 알려주지 않습니다. XimTier는 목표 Y를 입력하면 최적의 X 조합을 역산하는 — 세계 최초의 Reverse What-If 의사결정 엔진입니다."
+      before_label: "기존 방식 (Forward Prediction)"
+      before_flow: "입력 X  →  Black Box AI  →  결과 Y 예측  →  ???"
+      after_label: "XimTier 방식 (Reverse What-If)"
+      after_flow: "목표 Y 설정  →  XAI 엔진  →  최적 입력 X 조합 처방"
+      conclusion: "이것이 XimTier가 ‘분석기’가 아닌 ‘의사결정 엔진’인 이유입니다."
+    sim_solution:
+      eyebrow: "// SimSolution — 산업별 즉시 도입형 AI"
+      title: "하나의 강력한 공통 AI 엔진으로,"
+      title_accent: "전 산업의 KPI를 즉시 최적화합니다."
+      lead: "도메인 장벽을 허무는 5대 영역 × 10대 솔루션. 데이터만 올리면, 그날부터 의사결정이 시작됩니다."
+      categories:
+        - title: "AI 이슈 최적화"
+          items:
+            - { num: "01", label: "스마트 Meeting 분석",   desc: "공청회·회의록 → 패널별 찬반 감성 지식그래프" }
+            - { num: "02", label: "스마트 설문 분석",       desc: "과제간 상호 연계성·전략 우선 과제 자동 도출" }
+            - { num: "03", label: "스마트 SNS 분석",        desc: "키워드별 만족지수 + 카테고리별 시사점" }
+        - title: "스마트시티 운영"
+          items:
+            - { num: "04", label: "축제·행사 YX 최적화",    desc: "방문객수 증가를 위한 인력·시설·광고비 역산" }
+            - { num: "05", label: "전통시장·상권 YX 최적화", desc: "상권 매출 최적화 + 시민 반응 지수 결합" }
+        - title: "리테일·의료 최적화"
+          items:
+            - { num: "06", label: "소상공인·매장 YX 최적화", desc: "매장 성과 극대화 조합 자동 추천" }
+            - { num: "07", label: "광고형 병의원 YX 최적화", desc: "병원 광고비·진료시간·SNS 평판 최적화" }
+        - title: "제조 설비 최적화"
+          items:
+            - { num: "08", label: "설비 고장/예지보전 최적화", desc: "센서 데이터 → 고장 위험도 사전 처방" }
+        - title: "제품·서비스 개발"
+          items:
+            - { num: "09", label: "SNS 기반 제품 기능 개발",  desc: "고객 반응 → 매출 기여도 → 기능 우선순위" }
+            - { num: "10", label: "설문 기반 제품 기능 개발", desc: "프로파일별 만족지수 → 타겟별 기능 설계" }
+      footnote: "5대 영역 모두 동일한 Reverse What-If 엔진을 공유합니다 — 도메인이 바뀌어도 의사결정 방식은 동일합니다."
+    versus:
+      eyebrow: "// vs Global Giants"
+      title: "글로벌 거대 기업과의 경쟁:"
+      title_accent: "‘실행력’과 ‘사용성’의 압도적 우위"
+      headers: ["비교 항목", "XimTier", "SAS / SPSS", "DataRobot / H2O.ai", "Palantir", "Tableau"]
+      rows:
+        - { label: "의사결정 최적화 (Reverse What-If)", x: "매우 강함", others: ["거의 없음", "일부 제공", "거의 없음", "거의 없음"] }
+        - { label: "비전문가 사용성",                   x: "매우 강함", others: ["어려움",   "상대적으로 어려움", "어려움",   "어려움"] }
+        - { label: "XAI 설명 기능",                     x: "기본 내장", others: ["기본 내장", "제한적",          "제한적",   "제한적"] }
+        - { label: "구축 비용 / 속도",                  x: "낮음 / 매우 빠름", others: ["높음 / 보통", "매우 높음 / 느림", "매우 높음 / 느림", "매우 높음 / 느림"] }
+        - { label: "바이브코딩 연계",                   x: "매우 강함", others: ["거의 없음", "거의 없음",       "거의 없음", "거의 없음"] }
+      cta: "전체 비교 보고서 다운로드 →"
+    architecture:
+      eyebrow: "// Product Architecture"
+      title: "무한한 확장성을 가진"
+      title_accent: "3단 지능형 아키텍처"
+      lead: "데이터 탐색부터 의사결정 최적화까지, 하나의 통합 AI 엔진으로 연결됩니다. 데이터 과학자의 6개월이 XimTier에서는 단 몇 분으로 압축됩니다."
+      layers:
+        - tier: "TOP LAYER"
+          name: "XimSolution"
+          subtitle: "산업 특화 솔루션"
+          desc: "공공·행정·축제·상권·의료·제조·교육 등 도메인별로 즉시 적용 가능한 SaaS 솔루션."
+        - tier: "CORE LAYER"
+          name: "WhatDataAI"
+          subtitle: "AI 코어 엔진"
+          desc: "60종 알고리즘 경쟁, 설명가능 XAI, What-If / Reverse What-If 시뮬레이션을 수행하는 의사결정 엔진."
+        - tier: "BASE LAYER"
+          name: "통계 · 분석 엔진"
+          subtitle: "데이터 인프라"
+          desc: "데이터 탐색·정제·주소 좌표화부터 고급 분석까지 — 모든 분석의 기반 인프라."
+      footnote: "Action Automation(실행 자동화)을 넘어 Decision Optimization(의사결정 최적화)으로."
+    roadmap:
+      eyebrow: "// Optimization Roadmap"
+      title: "기반 구축부터 바이오 혁신까지,"
+      title_accent: "5단계 진화 로드맵"
+      lead: "목표(Y) 기반 역산 최적화 AI 플랫폼으로, 다양한 산업과 바이오 혁신까지 단계적으로 확장합니다."
+      phases:
+        - { num: "01", period: "2024", title: "기반 구축", desc: "WhatDataAI, Reverse What-If, 데이터 탐색·정제 — 핵심 엔진 고도화." }
+        - { num: "02", period: "2025", title: "플랫폼 확장", desc: "산업별 솔루션, 회의·설문·SNS 분석 — 도메인 범용 확장." }
+        - { num: "03", period: "2026", title: "지능 고도화", desc: "AI 분석 파이프라인 고도화, AI Agent 연계 — 자동·실시간 최적화." }
+        - { num: "04", period: "2027–2028", title: "생태계 확장", desc: "마켓·생태계 확장, API / SDK 개방 — 파트너 연결." }
+        - { num: "05", period: "2028–2030+", title: "바이오 혁신", desc: "유전자·신약, Reverse Bio-Design 엔진 — 신약·소재 역설계." }

@@ -8,9 +8,9 @@ en:
     positioning: Decision Intelligence, Proven by Numbers
     hero:
       eyebrow: Decision Intelligence · Regulated AI
-      headline_top: AI decisions
-      headline_bottom: that pass an audit.
-      subhead: "The explainable decision engine for the EU AI Act and Korea AI Framework era. Not another LLM wrapper. Not another regression report. — Reverse What-If solves the math of every decision."
+      headline_top: A production line can't be stopped
+      headline_bottom: on a guess.
+      subhead: "XimTier reverse-solves your defect rate and yield in 5 minutes — mathematically. Your data never leaves the building."
       cta_demo: See the 5-min Live Demo
       cta_ir: Download IR Deck →
       chips:
@@ -65,14 +65,98 @@ en:
         - { label: "Production",          value: "21 zero-downtime deploys" }
         - { label: "Test coverage",       value: "RSpec 104 / 0 PASS" }
     mini_nav:
-      - { id: "fear",        label: "01 · Stakes" }
-      - { id: "why-now",     label: "02 · Why now" }
-      - { id: "problem",     label: "03 · Problem" }
-      - { id: "solution",    label: "04 · Solution" }
-      - { id: "moat",        label: "05 · Moat" }
-      - { id: "cta",         label: "06 · CTA" }
+      - { id: "fear",         label: "01 · Stakes" }
+      - { id: "why-now",      label: "02 · Why now" }
+      - { id: "problem",      label: "03 · Problem" }
+      - { id: "solution",     label: "04 · Solution" }
+      - { id: "prescription", label: "05 · Prescription" }
+      - { id: "sim-solution", label: "06 · SimSolution" }
+      - { id: "versus",       label: "07 · vs Giants" }
+      - { id: "moat",         label: "08 · Moat" }
+      - { id: "cta",          label: "09 · CTA" }
     footer:
       copyright: "© 2025 XimTier (Gagahoho, Inc.) · All rights reserved."
     regulation_strip:
       label: Regulation
       keywords: ["EU AI Act 2026", "Korea AI Framework Act", "US AI Bill of Rights", "ISO/IEC 42001"]
+    prescription:
+      eyebrow: "// XimTier Prescription"
+      headline_top: "Don't ask"
+      headline_strike: "how much revenue will be."
+      headline_bottom: "Ask which variables to control to reach your target —"
+      headline_accent: "XimTier prescribes them."
+      sub: "Traditional AI predicts the future but can't tell you how to change the outcome. XimTier inverts the equation: input the target Y, and we reverse-solve for the optimal X — the world's first Reverse What-If decision engine."
+      before_label: "Traditional (Forward Prediction)"
+      before_flow: "Input X  →  Black Box AI  →  Predict Y  →  ???"
+      after_label: "XimTier (Reverse What-If)"
+      after_flow: "Set Target Y  →  XAI Engine  →  Prescribe Optimal X"
+      conclusion: "This is why XimTier is not an analyzer — it's a decision engine."
+    sim_solution:
+      eyebrow: "// SimSolution — Industry-Ready AI"
+      title: "One powerful core engine,"
+      title_accent: "optimizing KPIs across every industry."
+      lead: "Five domains, ten solutions, one decision engine. Upload your data — start deciding the same day."
+      categories:
+        - title: "AI Issue Optimization"
+          items:
+            - { num: "01", label: "Smart Meeting Analysis",   desc: "Hearings & minutes → panel sentiment graph" }
+            - { num: "02", label: "Smart Survey Analysis",    desc: "Auto-detect strategic priorities & inter-task links" }
+            - { num: "03", label: "Smart SNS Analysis",       desc: "Keyword satisfaction + category-level insights" }
+        - title: "Smart City Operations"
+          items:
+            - { num: "04", label: "Festival/Event YX Opt.",   desc: "Reverse-solve staff, venue, ad spend for visitors" }
+            - { num: "05", label: "Traditional Market YX",    desc: "District revenue + citizen sentiment combined" }
+        - title: "Retail · Healthcare"
+          items:
+            - { num: "06", label: "SMB / Storefront YX Opt.", desc: "Auto-recommend store performance combos" }
+            - { num: "07", label: "Clinic Advertising YX",    desc: "Ad spend × hours × SNS reputation tuned" }
+        - title: "Smart Factory"
+          items:
+            - { num: "08", label: "Equipment Failure / PdM",  desc: "Sensors → failure risk → prescriptive action" }
+        - title: "Product / Service"
+          items:
+            - { num: "09", label: "SNS-driven Feature R&D",   desc: "Customer signal → revenue → feature priority" }
+            - { num: "10", label: "Survey-driven Feature R&D", desc: "Profile satisfaction → target-fit features" }
+      footnote: "All five domains share the same Reverse What-If engine — the domain changes, the decision logic doesn't."
+    versus:
+      eyebrow: "// vs Global Giants"
+      title: "Decisive edge over global incumbents:"
+      title_accent: "Execution and usability."
+      headers: ["Capability", "XimTier", "SAS / SPSS", "DataRobot / H2O.ai", "Palantir", "Tableau"]
+      rows:
+        - { label: "Reverse What-If",                   x: "Very Strong", others: ["Almost none", "Partial", "Almost none", "Almost none"] }
+        - { label: "Non-expert usability",              x: "Very Strong", others: ["Difficult", "Moderate", "Difficult", "Difficult"] }
+        - { label: "XAI explanation",                   x: "Built-in",   others: ["Built-in",  "Limited",  "Limited",   "Limited"] }
+        - { label: "Build cost / speed",                x: "Low / Very Fast", others: ["High / Slow", "Very High / Slow", "Very High / Slow", "Very High / Slow"] }
+        - { label: "Vibe-coding integration",           x: "Very Strong", others: ["Almost none", "Almost none", "Almost none", "Almost none"] }
+      cta: "Download full comparison report →"
+    architecture:
+      eyebrow: "// Product Architecture"
+      title: "A 3-Tier Intelligence Architecture"
+      title_accent: "Built for Limitless Scale"
+      lead: "From data exploration to decision optimization — unified into a single AI engine. What takes a data scientist six months, XimTier compresses into minutes."
+      layers:
+        - tier: "TOP LAYER"
+          name: "XimSolution"
+          subtitle: "Industry Solutions"
+          desc: "Ready-to-apply SaaS solutions per domain — public sector, retail, healthcare, manufacturing, education and more."
+        - tier: "CORE LAYER"
+          name: "WhatDataAI"
+          subtitle: "AI Core Engine"
+          desc: "The decision engine: 60-algorithm competition, explainable XAI, and What-If / Reverse What-If simulation."
+        - tier: "BASE LAYER"
+          name: "Statistics · Analytics Engine"
+          subtitle: "Data Infrastructure"
+          desc: "From data exploration, cleansing and geocoding to advanced analytics — the foundation for every analysis."
+      footnote: "Beyond Action Automation — toward Decision Optimization."
+    roadmap:
+      eyebrow: "// Optimization Roadmap"
+      title: "From Foundation to Bio Innovation —"
+      title_accent: "a 5-Stage Evolution Roadmap"
+      lead: "A goal-driven (Y) reverse-optimization AI platform, expanding step by step across industries and into bio innovation."
+      phases:
+        - { num: "01", period: "2024", title: "Foundation", desc: "WhatDataAI, Reverse What-If, data exploration & cleansing — hardening the core engine." }
+        - { num: "02", period: "2025", title: "Platform Expansion", desc: "Industry solutions plus meeting, survey and SNS analytics — domain-wide reach." }
+        - { num: "03", period: "2026", title: "Intelligence Scale-up", desc: "Advanced AI analysis pipeline and AI Agent integration — automated, real-time optimization." }
+        - { num: "04", period: "2027–2028", title: "Ecosystem Growth", desc: "Marketplace and ecosystem expansion with open API / SDK — partner connectivity." }
+        - { num: "05", period: "2028–2030+", title: "Bio Innovation", desc: "Genomics & drug discovery via a Reverse Bio-Design engine — reverse-engineering new drugs and materials." }
