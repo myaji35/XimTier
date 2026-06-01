@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   # --- 다국어 라우팅 (/ko, /en) ---
   scope "(:locale)", locale: /ko|en/ do
     get "/", to: "pages#home", as: :home
+    get "/deck", to: "pages#deck", as: :deck
 
     # Marketing pages
     get "/problem",      to: "pages#problem"

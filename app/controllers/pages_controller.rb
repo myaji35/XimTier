@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   def home; end
+  def deck; end
   def problem; end
   def solution; end
   def how_it_works; end
