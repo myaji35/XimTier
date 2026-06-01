@@ -1,1 +1,31 @@
-<section id="analysis" class="deck-section"><!-- Task 6 --></section>
+<section id="analysis" class="deck-dark deck-section">
+  <div class="deck-wrap">
+    <span class="deck-chapter-no"><%= t("deck.chapters.analysis.no") %></span>
+    <h2 class="deck-h2" style="margin-top:12px;"><%= t("deck.chapters.analysis.title") %></h2>
+    <p class="deck-lead"><%= t("deck.chapters.analysis.lead") %></p>
+
+    <h3 style="color:#00C8C8;font-size:13px;margin-top:36px;font-family:ui-monospace,monospace;letter-spacing:1px;">// AI 분석 파이프라인 5단계</h3>
+    <div class="deck-grid deck-grid-5">
+      <% t("deck.chapters.analysis.pipeline").each_with_index do |step, i| %>
+        <div class="deck-card">
+          <div class="deck-card-num" style="color:#00C8C8;font-size:18px;"><%= i+1 %></div>
+          <div class="deck-card-title" style="font-size:13px;"><%= step %></div>
+        </div>
+      <% end %>
+    </div>
+
+    <h3 style="color:#00C8C8;font-size:13px;margin-top:36px;font-family:ui-monospace,monospace;letter-spacing:1px;">// 분석 종류와 방법</h3>
+    <div class="deck-grid deck-grid-4">
+      <% t("deck.chapters.analysis.methods").each do |m| %>
+        <div class="deck-card"><div class="deck-card-title" style="font-size:13px;"><%= m %></div></div>
+      <% end %>
+    </div>
+
+    <h3 style="color:#00C8C8;font-size:13px;margin-top:36px;font-family:ui-monospace,monospace;letter-spacing:1px;">// Xim4Reporting</h3>
+    <div class="deck-grid deck-grid-3">
+      <% t("deck.chapters.analysis.reporting").each do |r| %>
+        <div class="deck-card"><div class="deck-card-title" style="font-size:13px;"><%= r %></div></div>
+      <% end %>
+    </div>
+  </div>
+</section>

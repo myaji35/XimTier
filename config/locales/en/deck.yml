@@ -36,7 +36,10 @@ en:
       analysis:
         no: "03"
         title: "AI Analytics Solution"
-        items: ["AI analysis pipeline", "Analysis types & methods", "Xim4Reporting"]
+        lead: "Beyond a stats tool — one-stop from data exploration to optimization simulation and AI Q&A. 60+ competing algorithms plus Reverse What-If lets non-experts optimize."
+        pipeline: ["Variable selection & derived features", "Variable understanding & XAI confirmation", "Algorithm competition & live validation", "Predict/simulate XY optimization", "AI Q&A (Knowledge Graph & GraphRAG)"]
+        methods: ["Regression (32 algorithms)", "Discriminant (17)", "Multi-class (17)", "Time-series (61)"]
+        reporting: ["On-demand performance evaluation", "On-demand What-If Analysis", "On-demand Reverse What-If Analysis"]
       solutions:
         no: "04"
         title: "AI One-Stop Solutions"

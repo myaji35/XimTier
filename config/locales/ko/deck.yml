@@ -36,7 +36,10 @@ ko:
       analysis:
         no: "03"
         title: "AI 통계분석 솔루션"
-        items: ["AI 분석 파이프라인", "AI 분석 종류와 방법", "Xim4Reporting"]
+        lead: "단순 통계 도구를 넘어 데이터 탐색부터 최적화 시뮬레이션·AI Q&A까지 원스톱. 60여 종 알고리즘 경쟁 + Reverse What-If로 비전문가도 업무 최적화."
+        pipeline: ["변수 선정·파생데이터 생성", "변수 이해·XAI 변수 확정", "알고리즘 경쟁·실시간 검증", "예측·시뮬레이션 XY 최적화", "AI Q&A (Knowledge Graph & GraphRAG)"]
+        methods: ["회귀분석 (32개 알고리즘)", "판별분석 (17개)", "다중분류분석 (17개)", "시계열분석 (61개)"]
+        reporting: ["수시 성능 평가 분석", "수시 What-If Analysis", "수시 Reverse What-If Analysis"]
       solutions:
         no: "04"
         title: "AI One-Stop 솔루션"
