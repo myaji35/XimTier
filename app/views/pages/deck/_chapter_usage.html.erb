@@ -1,1 +1,25 @@
-<section id="usage" class="deck-section"><!-- Task 8 --></section>
+<section id="usage" class="deck-dark deck-section">
+  <div class="deck-wrap">
+    <span class="deck-chapter-no"><%= t("deck.chapters.usage.no") %></span>
+    <h2 class="deck-h2" style="margin-top:12px;"><%= t("deck.chapters.usage.title") %></h2>
+    <div class="deck-grid deck-grid-4">
+      <% t("deck.chapters.usage.items").each_with_index do |item, i| %>
+        <div class="deck-card">
+          <div class="deck-card-num" style="color:#00C8C8;"><%= "%02d" % (i+1) %></div>
+          <div class="deck-card-title" style="color:#fff;"><%= item %></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<%# 최종 CTA %>
+<section class="deck-dark deck-section" style="text-align:center;padding-top:30px;border-top:1px solid rgba(255,255,255,0.08);">
+  <div class="deck-wrap">
+    <h2 class="deck-h2" style="margin:0 auto;max-width:680px;"><%= I18n.locale == :ko ? "비전문가도 5분 안에 의사결정을 끝냅니다." : "Even non-experts finish a decision in 5 minutes." %></h2>
+    <div class="deck-hero-cta" style="justify-content:center;">
+      <a href="<%= demo_path(locale: I18n.locale) %>" class="deck-btn-primary"><%= t("deck.hero.cta_demo") %></a>
+      <a href="<%= contact_path(locale: I18n.locale) %>" class="deck-btn-ghost"><%= t("deck.hero.cta_contact") %></a>
+    </div>
+  </div>
+</section>
