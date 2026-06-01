@@ -1,1 +1,16 @@
-<section id="data" class="deck-section"><!-- Task 5 --></section>
+<section id="data" class="deck-light deck-section">
+  <div class="deck-wrap">
+    <span class="deck-chapter-no" style="background:var(--blue);color:#fff;"><%= t("deck.chapters.data.no") %></span>
+    <h2 class="deck-h2" style="color:#222;margin-top:12px;"><%= t("deck.chapters.data.title") %></h2>
+    <div class="deck-grid deck-grid-4">
+      <% items = t("deck.chapters.data.items"); descs = t("deck.chapters.data.descs") %>
+      <% items.each_with_index do |item, i| %>
+        <div class="deck-card">
+          <div class="deck-card-num"><%= "%02d" % (i+1) %></div>
+          <div class="deck-card-title"><%= item %></div>
+          <div class="deck-card-desc"><%= descs[i] %></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

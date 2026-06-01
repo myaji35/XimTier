@@ -24,6 +24,15 @@ en:
         no: "02"
         title: "Data Exploration"
         items: ["Data exploration", "WhatDataAI analysis", "Address XY cleansing", "AI exploratory charts", "AI text exploration", "Thematic map analysis", "AI insight report", "AI Target YX optimization"]
+        descs:
+          - "Descriptive stats and correlation heatmaps for loaded data"
+          - "Auto-recommends usable AI algorithms (regression, discriminant, multi-class, time-series) and X/Y variables"
+          - "Geocoding via Kakao API + trained address model: lat/long + standard admin region parsing"
+          - "24 individual / 22 auto chart types: basic, distribution, relational, advanced"
+          - "Word cloud analysis for tables and unstructured documents"
+          - "Thematic maps: 5 admin boundary types, 7 grid/hexagon levels, VWorld & OpenStreetMap"
+          - "Natural-language query on a knowledge graph → auto report with charts, maps, implications (no hallucination)"
+          - "60-algorithm competition + What-If / Reverse What-If goal-seeking optimization"
       analysis:
         no: "03"
         title: "AI Analytics Solution"
