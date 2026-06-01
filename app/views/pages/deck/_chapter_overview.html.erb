@@ -1,1 +1,31 @@
-<section id="overview" class="deck-section"><!-- Task 4 --></section>
+<%# Hero %>
+<section class="deck-hero deck-section" id="overview">
+  <div class="deck-wrap">
+    <div class="deck-eyebrow">// <%= t("deck.hero.eyebrow") %></div>
+    <h1 class="deck-hero-title">
+      <%= t("deck.hero.title_top") %>
+      <span class="deck-grad"><%= t("deck.hero.title_accent") %></span>
+    </h1>
+    <p class="deck-lead" style="color:#a7b1c7;"><%= t("deck.hero.lead") %></p>
+    <div class="deck-hero-cta">
+      <a href="<%= demo_path(locale: I18n.locale) %>" class="deck-btn-primary"><%= t("deck.hero.cta_demo") %></a>
+      <a href="<%= contact_path(locale: I18n.locale) %>" class="deck-btn-ghost"><%= t("deck.hero.cta_contact") %></a>
+    </div>
+  </div>
+</section>
+
+<%# 01 메뉴 구성 개요 %>
+<section class="deck-dark">
+  <div class="deck-wrap">
+    <span class="deck-chapter-no"><%= t("deck.chapters.overview.no") %></span>
+    <h2 class="deck-h2" style="margin-top:12px;"><%= t("deck.chapters.overview.title") %></h2>
+    <div class="deck-grid deck-grid-3">
+      <% t("deck.chapters.overview.items").each_with_index do |item, i| %>
+        <div class="deck-card">
+          <div class="deck-card-num"><%= "%02d" % (i+1) %></div>
+          <div class="deck-card-title"><%= item %></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
