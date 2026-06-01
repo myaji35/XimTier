@@ -144,6 +144,109 @@ module DeckHelper
         { h: "설문 평점 + 타깃 도출", body: "Y 성과와 설문 프로파일 분석, AI 지식그래프와 시사점 도출." },
         { h: "제품 기능 최적화", body: "매출 기여도 따른 기능 강화, 타깃 맞춤 최적 기능, 연구개발비·원가 최적화." }
       ]
+    },
+    "ov-menu" => {
+      title: "주요 메뉴 구성 개요", chapter: "01 메뉴 구성 개요", slides: [4],
+      lead: "XimTier는 데이터 탐색 → AI 분석 → What-If·Reverse What-If 최적화 → 자동 보고서 → AI Q&A까지 지원하는 One-Stop AI 의사결정 플랫폼입니다.",
+      sections: [
+        { h: "3대 주요 메뉴", body: "① 데이터 탐색과 One-Stop 시각화 ② 통계 분석 방법론 표준화 + 최적화 ③ 도메인 확장성 높은 범용 SaaS." },
+        { h: "판매 방식", body: "① 기본형 SaaS → ② 산업별 특화 AI 솔루션 → ③ 바이브코딩(Vibe Coding) 기반 구축 서비스." }
+      ]
+    },
+    "ov-highlights" => {
+      title: "XimTier 특징 요약", chapter: "01 메뉴 구성 개요", slides: [4],
+      lead: "단순 통계툴이 아니라 데이터 탐색 → AI 분석 → 최적화 시뮬레이션 → 보고서 → AI Q&A까지 한 번에 수행하는 통합형 AI 의사결정 엔진입니다.",
+      sections: [
+        { h: "핵심 경쟁력 4가지", body: "① 분석이 아니라 '의사결정 최적화' ② Reverse What-If 기반 목표 달성형 AI ③ 비전문가 중심 설계 ④ 범용 AI 엔진 + 산업별 확장." },
+        { h: "글로벌 경쟁력", body: "SAS·SPSS, DataRobot·H2O.ai, Palantir, Tableau·Power BI, Databricks, McKinsey 대비 비전문가 사용성·Reverse What-If·구축속도·비용 우위." }
+      ]
+    },
+    "ov-tech" => {
+      title: "XimTier 핵심 기술력", chapter: "01 메뉴 구성 개요", slides: [5],
+      lead: "AI가 데이터를 이해하고 최적의 전략을 제시 — 더 빠르고 더 정확한 의사결정을 지원합니다.",
+      sections: [
+        { h: "6단계 워크플로우", body: "① 지능형 스캔·스마트 탐색 ② 3대 스마트 분석(Meeting·설문·SNS) ③ 60여 종 알고리즘 실시간 경쟁 ④ Reverse What-If 목표 설정 최적화 ⑤ 설명가능 XAI & AI Q&A ⑥ 최적화 의사결정·실행 가이드." },
+        { h: "자연어 Q&A + 음성 질의", body: "지식그래프 리포트 + 음성 질의 대화형 답변 기능." }
+      ]
+    },
+    "ov-summary" => {
+      title: "메뉴 요약", chapter: "01 메뉴 구성 개요", slides: [6],
+      lead: "데이터 탐색 개요부터 AI 통계 분석 솔루션, XimSolution, 핵심 서비스까지 전체 메뉴를 요약합니다.",
+      sections: [
+        { h: "AI 통계 분석 솔루션", body: "60여 종 알고리즘 경쟁 + 목표 자동 설정 + Reverse What-If로 비전문가도 스마트한 업무 최적화." }
+      ]
+    },
+    "ov-architecture" => {
+      title: "기술 구조와 서비스 방식", chapter: "01 메뉴 구성 개요", slides: [10],
+      lead: "무한한 확장성을 가진 3단 지능형 아키텍처. 데이터 탐색부터 의사결정 최적화까지 하나의 통합 AI 엔진으로 연결됩니다.",
+      sections: [
+        { h: "3단 아키텍처", body: "TOP: XimSolution(산업 특화) / CORE: WhatDataAI(60종 알고리즘·XAI·What-If) / BASE: 통계·분석 엔진(데이터 인프라)." },
+        { h: "Agentic AI와 비교", body: "Agentic AI는 실행의 손발(Action Automation), XimTier는 의사결정의 두뇌(Decision Optimization)." }
+      ]
+    },
+    "ov-roadmap" => {
+      title: "XimTier 최적화 로드맵", chapter: "01 메뉴 구성 개요", slides: [17],
+      lead: "목표(Y) 기반 역산 최적화 AI 플랫폼으로 다양한 산업과 바이오 혁신까지 단계적으로 확장합니다.",
+      sections: [
+        { h: "5단계 진화", body: "01 기반 구축(2024) → 02 플랫폼 확장(2025) → 03 지능 고도화(2026) → 04 생태계 확장(2027–2028) → 05 바이오 혁신(2028–2030+, Reverse Bio-Design)." }
+      ]
+    },
+    "ov-impact" => {
+      title: "XimTier 활용과 효과", chapter: "01 메뉴 구성 개요", slides: [18],
+      lead: "교육·산업 분야별 XimTier의 역할과 유용성. 생각하는 힘을 길러주는 AI 기반 플랫폼.",
+      sections: [
+        { h: "분야별 활용", body: "초·중·고, 대학, 기업/공공/취업까지 교육 활용. 13개 산업 분야별 역할과 유용성(행정·제조·상권·병원·SNS·설문·바이오 등)." }
+      ]
+    },
+    "an-pipeline" => {
+      title: "AI 분석 파이프라인", chapter: "03 AI 통계분석 솔루션", slides: [34],
+      lead: "통계 4종(회귀·판별·다중분류·시계열)의 AI 분석 파이프라인 5단계를 지원합니다.",
+      sections: [
+        { h: "5단계", body: "① 변수 선정·파생데이터(Lag·Log) ② 변수 이해·XAI 변수 확정(중요도·랜덤·트리) ③ 60종 알고리즘 경쟁·실시간 검증 ④ 예측·시뮬레이션 XY 최적화(What-If·Reverse What-If) ⑤ AI Q&A(Knowledge Graph & GraphRAG)." }
+      ]
+    },
+    "an-methods" => {
+      title: "AI 분석 종류와 방법", chapter: "03 AI 통계분석 솔루션", slides: [52],
+      lead: "회귀·판별·다중분류·시계열 4종 분석. 각각 What-If와 Reverse What-If 시뮬레이션을 지원합니다.",
+      sections: [
+        { h: "4종 분석 + 알고리즘 수", body: "회귀분석 32개 / 판별분석 17개 / 다중분류분석 17개 / 시계열분석 61개. 시계열 변수 500개+ 자동 생성." },
+        { h: "공통 흐름", body: "알고리즘 선정 → 학습·검증 → 최우수 선정 → AI 자연어 해석 → Simulation(What-If / Reverse What-If, ROI)." }
+      ]
+    },
+    "an-reporting" => {
+      title: "Xim4Reporting", chapter: "03 AI 통계분석 솔루션", slides: [56],
+      lead: "별도 전산시스템 구축 없이 나만의 AI 의사결정 시스템. 통계 비전공자도 현장에서 바로 사용 가능합니다.",
+      sections: [
+        { h: "3종 리포트", body: "① 수시 성능 평가 분석(HTML·PDF) ② 수시 What-If Analysis ③ 수시 Reverse What-If Analysis(ROI 평가)." }
+      ]
+    },
+    "us-ax" => {
+      title: "AX 활용성 강화 방안", chapter: "05 업무 활용 방안", slides: [72],
+      lead: "XimTier로 실무형 의사결정 혁신. 분석의 벽에 갇힌 의사결정을 'What-if 시뮬레이션'으로 결정 중심 역량으로 강화합니다.",
+      sections: [
+        { h: "LLM + XimTier 결합", body: "LLM(과거 검색) + XimTier(미래 예측) 결합으로 종합적 의사결정 전문가 양성." }
+      ]
+    },
+    "us-platform" => {
+      title: "데이터 기반의 AI 의사결정 플랫폼", chapter: "05 업무 활용 방안", slides: [73],
+      lead: "심티어의 핵심 예시 — ROI 기반 AI 분석 자동화 플랫폼. 복잡한 데이터에서 실행 가능한 인사이트를 도출합니다.",
+      sections: [
+        { h: "Auto 지식그래프 + GPT 보고서", body: "Auto 지식그래프 생성 → AI 탐색 차트 기반 Auto GPT 보고서 출력. What-If + Reverse What-If Analysis." }
+      ]
+    },
+    "us-domain" => {
+      title: "분야별 활용과 기대효과", chapter: "05 업무 활용 방안", slides: [74],
+      lead: "산업별 맞춤 활용과 미래 가치. AI 분석·시뮬레이션·AI Q&A를 한 화면에서 수행하는 통합 의사결정 플랫폼.",
+      sections: [
+        { h: "기대효과", body: "Reverse What-If 의사결정 최적화, 비전문가 사용성 자동화, 데이터 기반 신뢰 확보(No Hallucination), 구축 속도·비용 우위." }
+      ]
+    },
+    "us-custom" => {
+      title: "맞춤형 서비스 방안", chapter: "05 업무 활용 방안", slides: [75],
+      lead: "이기종 데이터 초융합과 바이브코딩(Vibe Coding)을 통한 초연결로 고객 맞춤 AI 솔루션을 빠르고 저렴하게 제공합니다.",
+      sections: [
+        { h: "5단계 흐름", body: "01 데이터 수집 → 02 데이터 융합(Fusion Core) → 03 분석·모델링 → 04 초고속 커스터마이징 → 05 맞춤형 서비스 제공. 구축 70%↓, 비용 50%↓." }
+      ]
     }
   }.freeze
 

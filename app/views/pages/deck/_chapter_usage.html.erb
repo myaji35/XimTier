@@ -3,11 +3,13 @@
     <span class="deck-chapter-no"><%= t("deck.chapters.usage.num") %></span>
     <h2 class="deck-h2" style="margin-top:12px;"><%= t("deck.chapters.usage.title") %></h2>
     <div class="deck-grid deck-grid-4">
+      <% slugs = %w[us-ax us-platform us-domain us-custom] %>
       <% t("deck.chapters.usage.items").each_with_index do |item, i| %>
-        <div class="deck-card">
+        <a class="deck-card deck-card-link" href="<%= deck_detail_path(slug: slugs[i], locale: I18n.locale) %>">
           <div class="deck-card-num" style="color:#00C8C8;"><%= "%02d" % (i+1) %></div>
           <div class="deck-card-title" style="color:#fff;"><%= item %></div>
-        </div>
+          <div class="deck-card-more" style="color:#00C8C8;">자세히 →</div>
+        </a>
       <% end %>
     </div>
   </div>

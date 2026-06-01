@@ -20,11 +20,13 @@
     <span class="deck-chapter-no"><%= t("deck.chapters.overview.num") %></span>
     <h2 class="deck-h2" style="margin-top:12px;"><%= t("deck.chapters.overview.title") %></h2>
     <div class="deck-grid deck-grid-3">
+      <% slugs = %w[ov-menu ov-highlights ov-tech ov-summary ov-architecture ov-roadmap ov-impact] %>
       <% t("deck.chapters.overview.items").each_with_index do |item, i| %>
-        <div class="deck-card">
+        <a class="deck-card deck-card-link" href="<%= deck_detail_path(slug: slugs[i], locale: I18n.locale) %>">
           <div class="deck-card-num"><%= "%02d" % (i+1) %></div>
           <div class="deck-card-title"><%= item %></div>
-        </div>
+          <div class="deck-card-more">자세히 →</div>
+        </a>
       <% end %>
     </div>
   </div>

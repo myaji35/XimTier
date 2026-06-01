@@ -27,5 +27,11 @@
         <div class="deck-card"><div class="deck-card-title" style="font-size:13px;"><%= r %></div></div>
       <% end %>
     </div>
+
+    <div style="margin-top:36px;display:flex;gap:12px;flex-wrap:wrap;">
+      <a class="deck-card-more" style="color:#00C8C8;text-decoration:none;border:1px solid rgba(0,200,200,0.3);padding:8px 16px;border-radius:8px;" href="<%= deck_detail_path(slug: 'an-pipeline', locale: I18n.locale) %>">AI 분석 파이프라인 자세히 →</a>
+      <a class="deck-card-more" style="color:#00C8C8;text-decoration:none;border:1px solid rgba(0,200,200,0.3);padding:8px 16px;border-radius:8px;" href="<%= deck_detail_path(slug: 'an-methods', locale: I18n.locale) %>">분석 종류와 방법 자세히 →</a>
+      <a class="deck-card-more" style="color:#00C8C8;text-decoration:none;border:1px solid rgba(0,200,200,0.3);padding:8px 16px;border-radius:8px;" href="<%= deck_detail_path(slug: 'an-reporting', locale: I18n.locale) %>">Xim4Reporting 자세히 →</a>
+    </div>
   </div>
 </section>
