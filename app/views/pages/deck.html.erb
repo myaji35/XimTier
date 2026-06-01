@@ -1,2 +1,51 @@
 <% content_for :title, "XimTier — 메뉴 구성과 구현 화면" %>
-<h1>DECK PLACEHOLDER</h1>
+
+<style>
+  .deck-root { --navy:#0a1124; --navy2:#16325C; --teal:#00C8C8; --blue:#2563EB; scroll-behavior:smooth; }
+  .deck-root * { box-sizing:border-box; }
+  .deck-nav { position:sticky; top:0; z-index:50; background:rgba(10,17,36,0.92); backdrop-filter:blur(8px); border-bottom:1px solid rgba(255,255,255,0.08); }
+  .deck-nav-inner { max-width:1140px; margin:0 auto; display:flex; align-items:center; gap:24px; padding:14px 20px; }
+  .deck-brand { color:#fff; font-weight:800; font-size:18px; text-decoration:none; letter-spacing:-0.3px; }
+  .deck-nav-links { display:flex; gap:18px; margin-left:8px; flex:1; flex-wrap:wrap; }
+  .deck-nav-links a { color:#a7b1c7; text-decoration:none; font-size:13px; font-weight:600; }
+  .deck-nav-links a:hover { color:#00C8C8; }
+  .deck-cta { background:linear-gradient(135deg,var(--blue),var(--teal)); color:#fff; padding:8px 16px; border-radius:8px; text-decoration:none; font-size:13px; font-weight:700; white-space:nowrap; }
+  .deck-section { scroll-margin-top:70px; }
+  .deck-dark { background:var(--navy); color:#fff; padding:80px 0; }
+  .deck-light { background:#fff; color:#222; padding:72px 0; }
+  .deck-wrap { max-width:1140px; margin:0 auto; padding:0 20px; }
+  .deck-eyebrow { font-family:ui-monospace,monospace; font-size:12px; letter-spacing:2px; color:var(--teal); }
+  .deck-h2 { font-size:30px; font-weight:800; line-height:1.2; margin:10px 0 0; word-break:keep-all; }
+  .deck-dark .deck-h2 { color:#fff; }
+  .deck-grad { background:linear-gradient(135deg,var(--blue),var(--teal)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+  .deck-lead { font-size:16px; line-height:1.6; margin-top:16px; max-width:780px; }
+  .deck-dark .deck-lead { color:#a7b1c7; }
+  .deck-light .deck-lead { color:#3f3f3f; }
+  .deck-chapter-no { display:inline-block; background:var(--teal); color:var(--navy); font-weight:800; font-size:12px; padding:3px 10px; border-radius:4px; }
+  .deck-grid { display:grid; gap:16px; margin-top:32px; }
+  .deck-grid-2 { grid-template-columns:repeat(2,1fr); }
+  .deck-grid-3 { grid-template-columns:repeat(3,1fr); }
+  .deck-grid-4 { grid-template-columns:repeat(4,1fr); }
+  .deck-card { border:1px solid #ececec; border-radius:12px; padding:20px; background:#fff; }
+  .deck-card-num { font-family:ui-monospace,monospace; font-size:11px; color:var(--blue); font-weight:700; }
+  .deck-card-title { font-size:15px; font-weight:700; margin-top:6px; color:#222; }
+  .deck-card-desc { font-size:12.5px; color:#717171; line-height:1.55; margin-top:6px; }
+  .deck-dark .deck-card { background:rgba(255,255,255,0.04); border-color:rgba(255,255,255,0.1); }
+  .deck-dark .deck-card-title { color:#fff; }
+  .deck-dark .deck-card-desc { color:#a7b1c7; }
+  .deck-hero { background:radial-gradient(800px 500px at 80% 10%, rgba(0,200,200,0.12), transparent 60%), var(--navy); padding:110px 0 90px; }
+  .deck-hero-title { font-size:46px; font-weight:800; line-height:1.12; color:#fff; word-break:keep-all; }
+  .deck-hero-cta { display:inline-flex; gap:12px; margin-top:28px; }
+  .deck-btn-primary { background:linear-gradient(135deg,var(--blue),var(--teal)); color:#fff; padding:13px 26px; border-radius:10px; text-decoration:none; font-weight:700; }
+  .deck-btn-ghost { border:1px solid rgba(255,255,255,0.3); color:#fff; padding:13px 26px; border-radius:10px; text-decoration:none; font-weight:600; }
+  @media (max-width:820px){ .deck-grid-2,.deck-grid-3,.deck-grid-4{grid-template-columns:1fr;} .deck-hero-title{font-size:32px;} .deck-nav-links{display:none;} }
+</style>
+
+<div class="deck-root" id="deck-top">
+  <%= render "pages/deck/nav" %>
+  <%= render "pages/deck/chapter_overview" %>
+  <%= render "pages/deck/chapter_data" %>
+  <%= render "pages/deck/chapter_analysis" %>
+  <%= render "pages/deck/chapter_solutions" %>
+  <%= render "pages/deck/chapter_usage" %>
+</div>

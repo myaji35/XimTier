@@ -1,0 +1,13 @@
+<nav class="deck-nav">
+  <div class="deck-nav-inner">
+    <a href="#deck-top" class="deck-brand"><%= t("deck.brand") %></a>
+    <div class="deck-nav-links">
+      <a href="#overview"><%= t("deck.nav.overview") %></a>
+      <a href="#data"><%= t("deck.nav.data") %></a>
+      <a href="#analysis"><%= t("deck.nav.analysis") %></a>
+      <a href="#solutions"><%= t("deck.nav.solutions") %></a>
+      <a href="#usage"><%= t("deck.nav.usage") %></a>
+    </div>
+    <a href="<%= demo_path(locale: I18n.locale) %>" class="deck-cta"><%= t("deck.hero.cta_demo") %></a>
+  </div>
+</nav>
