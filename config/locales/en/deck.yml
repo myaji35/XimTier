@@ -1,0 +1,38 @@
+en:
+  deck:
+    brand: XimTier
+    brand_sub: Explainable AI Simulation frontier
+    hero:
+      eyebrow: "AI Decision Optimization Platform"
+      title_top: "Not analysis, but"
+      title_accent: "Decision Optimization"
+      lead: "A One-Stop AI decision platform: data exploration → AI analysis → What-If / Reverse What-If optimization → auto reports → AI Q&A, all in one flow."
+      cta_demo: "Request a demo"
+      cta_contact: "Contact us"
+    nav:
+      overview: "Overview"
+      data: "Data Exploration"
+      analysis: "AI Analytics"
+      solutions: "One-Stop Solutions"
+      usage: "Use Cases"
+    chapters:
+      overview:
+        no: "01"
+        title: "Menu Overview"
+        items: ["Menu structure overview", "XimTier highlights", "Core technology", "Menu summary", "Architecture & service model", "Optimization roadmap", "Impact & outcomes"]
+      data:
+        no: "02"
+        title: "Data Exploration"
+        items: ["Data exploration", "WhatDataAI analysis", "Address XY cleansing", "AI exploratory charts", "AI text exploration", "Thematic map analysis", "AI insight report", "AI Target YX optimization"]
+      analysis:
+        no: "03"
+        title: "AI Analytics Solution"
+        items: ["AI analysis pipeline", "Analysis types & methods", "Xim4Reporting"]
+      solutions:
+        no: "04"
+        title: "AI One-Stop Solutions"
+        items: ["AI Smart Meeting analysis", "AI Smart survey analysis", "AI Smart SNS analysis", "AI Festival/Event YX optimization", "AI Traditional market/Retail YX optimization", "AI Small business/Store YX optimization", "AI Ad-driven clinic YX optimization", "AI Equipment failure/Predictive maintenance YX optimization", "AI SNS-based product development YX optimization", "AI Survey-based product development YX optimization"]
+      usage:
+        no: "05"
+        title: "Use Cases"
+        items: ["AX adoption enablement", "Data-driven AI decision platform", "Impact by domain", "Custom service approach"]

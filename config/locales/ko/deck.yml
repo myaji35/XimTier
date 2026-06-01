@@ -1,0 +1,38 @@
+ko:
+  deck:
+    brand: XimTier
+    brand_sub: Explainable AI Simulation frontier
+    hero:
+      eyebrow: "AI 의사결정 최적화 플랫폼"
+      title_top: "분석이 아니라"
+      title_accent: "의사결정 최적화"
+      lead: "데이터 탐색 → AI 분석 → What-If·Reverse What-If 최적화 → 자동 보고서 → AI Q&A까지 한 번에 수행하는 One-Stop AI 의사결정 플랫폼"
+      cta_demo: "데모 신청"
+      cta_contact: "문의하기"
+    nav:
+      overview: "메뉴 구성 개요"
+      data: "데이터 탐색"
+      analysis: "AI 통계분석"
+      solutions: "One-Stop 솔루션"
+      usage: "업무 활용"
+    chapters:
+      overview:
+        no: "01"
+        title: "메뉴 구성 개요"
+        items: ["주요 메뉴 구성 개요", "XimTier 특징 요약", "XimTier 핵심 기술력", "메뉴 요약", "기술 구조와 서비스 방식", "XimTier 최적화 로드맵", "XimTier 활용과 효과"]
+      data:
+        no: "02"
+        title: "데이터 탐색"
+        items: ["데이터 탐색", "WhatDataAI 분석", "주소 XY 정제", "AI 탐색 차트", "AI 텍스트 탐색 분석", "주제도 분석", "AI 종합 인사이트 리포트", "AI Target YX 최적화"]
+      analysis:
+        no: "03"
+        title: "AI 통계분석 솔루션"
+        items: ["AI 분석 파이프라인", "AI 분석 종류와 방법", "Xim4Reporting"]
+      solutions:
+        no: "04"
+        title: "AI One-Stop 솔루션"
+        items: ["AI 스마트 Meeting 분석", "AI 스마트 설문 분석", "AI 스마트 SNS 분석", "AI 축제/행사 YX 최적화", "AI 전통시장/상권 YX 최적화", "AI 소상공인/매장 YX 최적화", "AI 광고형 병의원 YX 최적화", "AI 설비고장/예지보전 YX 최적화", "AI SNS 기반 제품 기능 개발 YX 최적화", "AI 설문 기반 제품 기능 개발 YX 최적화"]
+      usage:
+        no: "05"
+        title: "업무 활용 방안"
+        items: ["AX 활용성 강화 방안", "데이터 기반의 AI 의사결정 플랫폼", "분야별 활용과 기대효과", "맞춤형 서비스 방안"]
