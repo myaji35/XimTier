@@ -1,6 +1,12 @@
 class PagesController < ApplicationController
   def home; end
   def deck; end
+
+  def deck_detail
+    @slug = params[:slug]
+    @detail = helpers.deck_detail(@slug)
+    redirect_to deck_path(locale: I18n.locale) and return unless @detail
+  end
   def problem; end
   def solution; end
   def how_it_works; end

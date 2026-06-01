@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   scope "(:locale)", locale: /ko|en/ do
     get "/", to: "pages#home", as: :home
     get "/deck", to: "pages#deck", as: :deck
+    get "/deck/:slug", to: "pages#deck_detail", as: :deck_detail
 
     # Marketing pages
     get "/problem",      to: "pages#problem"
