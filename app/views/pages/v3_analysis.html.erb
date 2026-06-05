@@ -13,177 +13,159 @@
 }
 .v3-wrap { max-width:1160px; margin:0 auto; padding:0 24px; }
 .v3-eyebrow { font-family:var(--font-mono); font-size:11px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:var(--c-teal); margin-bottom:16px; }
+.v3-grad-text { background:var(--grad-teal); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+/* Hero */
 .v3-hero { background:var(--c-navy); padding:100px 0 72px; position:relative; overflow:hidden; }
 .v3-hero::before { content:''; position:absolute; inset:0; background:radial-gradient(800px 500px at 75% 20%,rgba(0,200,200,0.12),transparent 60%),radial-gradient(600px 400px at 10% 85%,rgba(37,99,235,0.16),transparent 60%); pointer-events:none; }
 .v3-hero__inner { position:relative; }
+.v3-hero__back { display:inline-block; font-size:13px; color:#7a8aab; text-decoration:none; margin-bottom:24px; }
+.v3-hero__back:hover { color:#fff; }
 .v3-hero__headline { font-size:clamp(28px,4vw,50px); font-weight:700; line-height:1.22; color:#fff; word-break:keep-all; margin:0 0 20px; max-width:700px; }
-.v3-hero__sub { font-size:17px; line-height:1.7; color:#a7b1c7; max-width:560px; margin:0 0 36px; word-break:keep-all; }
+.v3-hero__sub { font-size:17px; line-height:1.7; color:#a7b1c7; max-width:560px; margin:0; word-break:keep-all; }
+
+/* Sections */
 .v3-section { padding:88px 0; }
-.v3-section--dark { background:var(--c-navy); color:#fff; }
 .v3-section--alt { background:#f7f8fa; }
+.v3-section--dark { background:var(--c-navy); color:#fff; }
 .v3-section__eyebrow { font-family:var(--font-mono); font-size:11px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:var(--c-teal); margin-bottom:14px; }
 .v3-section__title { font-size:clamp(22px,3vw,36px); font-weight:700; color:var(--c-ink); line-height:1.25; margin:0 0 14px; word-break:keep-all; }
 .v3-section--dark .v3-section__title { color:#fff; }
 .v3-section__lead { font-size:16px; line-height:1.75; color:var(--c-muted); max-width:620px; word-break:keep-all; }
 .v3-section--dark .v3-section__lead { color:#a7b1c7; }
-/* pipeline steps */
-.v3-pipeline { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-top:44px; position:relative; }
-@media(max-width:900px){ .v3-pipeline { grid-template-columns:1fr 1fr; } }
-@media(max-width:480px){ .v3-pipeline { grid-template-columns:1fr; } }
-.v3-pipe-step { background:rgba(255,255,255,0.045); border:1px solid rgba(255,255,255,0.09); border-radius:14px; padding:22px 18px; position:relative; }
-.v3-pipe-step--active { border-color:rgba(0,200,200,0.4); background:rgba(0,200,200,0.07); }
-.v3-pipe-num { font-family:var(--font-mono); font-size:10px; font-weight:700; color:var(--c-teal); letter-spacing:0.14em; margin-bottom:10px; }
-.v3-pipe-title { font-size:13px; font-weight:700; color:#fff; margin-bottom:6px; word-break:keep-all; line-height:1.4; }
-.v3-pipe-desc { font-size:11.5px; color:#7a8aab; line-height:1.5; word-break:keep-all; }
-/* algo grid */
-.v3-algo-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:44px; }
-@media(max-width:860px){ .v3-algo-grid { grid-template-columns:repeat(2,1fr); } }
-@media(max-width:480px){ .v3-algo-grid { grid-template-columns:1fr; } }
-.v3-algo-card { background:rgba(37,99,235,0.1); border:1px solid rgba(37,99,235,0.25); border-radius:14px; padding:24px 20px; text-align:center; }
-.v3-algo-count { font-family:var(--font-mono); font-size:32px; font-weight:700; color:var(--c-teal); margin-bottom:8px; }
-.v3-algo-name { font-size:14px; font-weight:700; color:#fff; margin-bottom:6px; word-break:keep-all; }
-.v3-algo-desc { font-size:12px; color:#7a8aab; word-break:keep-all; line-height:1.5; }
-/* reporting */
-.v3-report-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:44px; }
-@media(max-width:700px){ .v3-report-grid { grid-template-columns:1fr; } }
-.v3-report-card { background:rgba(255,255,255,0.045); border:1px solid rgba(255,255,255,0.09); border-radius:14px; padding:24px 20px; }
-.v3-report-card__icon { font-size:10px; font-family:var(--font-mono); color:var(--c-teal); letter-spacing:0.14em; text-transform:uppercase; margin-bottom:10px; }
-.v3-report-card__title { font-size:14px; font-weight:700; color:#fff; margin-bottom:8px; word-break:keep-all; }
-.v3-report-card__desc { font-size:12.5px; color:#7a8aab; line-height:1.6; word-break:keep-all; }
-/* slide */
-.v3-slide-img { border-radius:16px; overflow:hidden; box-shadow:0 20px 60px -10px rgba(0,0,0,0.35); margin-top:40px; }
-.v3-slide-img img { width:100%; height:auto; display:block; }
-.v3-slides-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:40px; }
-@media(max-width:700px){ .v3-slides-row { grid-template-columns:1fr; } }
-/* bar */
-.v3-bar { padding:40px 0; border-top:1px solid var(--c-hairline); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; }
+
+/* 5-step dark pipeline */
+.v3-pipeline { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-top:44px; }
+@media(max-width:900px){ .v3-pipeline { grid-template-columns:repeat(3,1fr); } }
+@media(max-width:560px){ .v3-pipeline { grid-template-columns:1fr 1fr; } }
+.v3-pipe-step { background:rgba(255,255,255,0.045); border:1px solid rgba(255,255,255,0.09); border-radius:14px; padding:22px 18px; }
+.v3-pipe-step__num { font-family:var(--font-mono); font-size:11px; font-weight:700; color:var(--c-teal); margin-bottom:10px; }
+.v3-pipe-step__title { font-size:13px; font-weight:700; color:#fff; line-height:1.4; word-break:keep-all; }
+
+/* analysis-type 4-col */
+.v3-types { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:44px; }
+@media(max-width:800px){ .v3-types { grid-template-columns:repeat(2,1fr); } }
+@media(max-width:480px){ .v3-types { grid-template-columns:1fr; } }
+.v3-type-card { background:var(--c-canvas); border:1px solid var(--c-hairline); border-radius:14px; padding:28px 22px; text-align:center; transition:box-shadow 0.15s,transform 0.15s; }
+.v3-type-card:hover { box-shadow:0 8px 24px rgba(0,0,0,0.08); transform:translateY(-2px); }
+.v3-type-card__name { font-size:15px; font-weight:700; color:var(--c-ink); margin-bottom:8px; word-break:keep-all; }
+.v3-type-card__count { font-family:var(--font-mono); font-size:28px; font-weight:700; background:var(--grad-teal); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.v3-type-card__unit { font-size:12px; color:var(--c-muted); margin-top:4px; }
+
+/* reporting chips */
+.v3-chips { display:flex; flex-wrap:wrap; gap:12px; margin-top:36px; }
+.v3-chip { display:inline-block; padding:10px 20px; background:rgba(0,200,200,0.1); border:1px solid rgba(0,200,200,0.3); border-radius:999px; font-size:13px; font-weight:600; color:var(--c-teal); word-break:keep-all; }
+
+/* CTA */
+.v3-cta-section { background:var(--c-navy); padding:72px 0; }
+.v3-cta-section__inner { text-align:center; }
+.v3-cta-section__title { font-size:clamp(22px,3vw,34px); font-weight:700; color:#fff; margin:0 0 12px; word-break:keep-all; }
+.v3-cta-section__lead { font-size:15px; color:#a7b1c7; margin:0 0 32px; word-break:keep-all; }
+.v3-cta-btns { display:flex; flex-wrap:wrap; gap:14px; justify-content:center; }
 .v3-btn-primary { display:inline-block; padding:14px 28px; background:var(--c-rausch); color:#fff; font-size:14px; font-weight:700; border-radius:10px; text-decoration:none; transition:opacity 0.15s,transform 0.15s; box-shadow:0 8px 24px -4px rgba(255,56,92,0.4); }
 .v3-btn-primary:hover { opacity:0.88; transform:translateY(-1px); }
-.v3-back { font-size:14px; color:var(--c-muted); text-decoration:none; }
-.v3-back:hover { color:var(--c-ink); }
+.v3-btn-ghost { display:inline-block; padding:13px 24px; background:transparent; color:#a7b1c7; font-size:14px; font-weight:600; border-radius:10px; text-decoration:none; border:1px solid rgba(255,255,255,0.18); transition:border-color 0.15s,color 0.15s; }
+.v3-btn-ghost:hover { border-color:rgba(255,255,255,0.45); color:#fff; }
 </style>
 
 <!-- Hero -->
 <section class="v3-hero">
   <div class="v3-wrap">
     <div class="v3-hero__inner">
+      <a href="<%= root_path(locale: I18n.locale) %>" class="v3-hero__back">← XimTier 홈</a>
       <div class="v3-eyebrow">Chapter 03</div>
       <h1 class="v3-hero__headline">AI 통계분석 솔루션</h1>
-      <p class="v3-hero__sub">변수 선정부터 예측·시뮬레이션까지 5단계 AI 분석 파이프라인. 회귀·판별·다중분류·시계열 127개 알고리즘이 동시 경쟁하여 최적 모델을 선정합니다.</p>
+      <p class="v3-hero__sub">60여 종 알고리즘이 경쟁하고, 목표를 입력하면 최적 변수 조합을 역산합니다.</p>
     </div>
   </div>
 </section>
 
-<!-- AI 분석 파이프라인 5단계 -->
+<!-- Section A: 5단계 파이프라인 -->
 <section class="v3-section v3-section--dark">
   <div class="v3-wrap">
-    <div class="v3-section__eyebrow">AI Analysis Pipeline</div>
+    <div class="v3-section__eyebrow">Analysis Pipeline</div>
     <h2 class="v3-section__title">AI 분석 파이프라인 5단계</h2>
-    <p class="v3-section__lead">각 단계는 이전 단계의 결과를 자동으로 이어받아 분석 품질을 높입니다.</p>
+    <p class="v3-section__lead">변수 선정부터 AI Q&A까지, 일관된 흐름으로 의사결정을 완성합니다.</p>
     <div class="v3-pipeline">
-      <div class="v3-pipe-step v3-pipe-step--active">
-        <div class="v3-pipe-num">STEP 01</div>
-        <div class="v3-pipe-title">변수 선정 및 파생 데이터</div>
-        <div class="v3-pipe-desc">AI가 목표 변수와 입력 변수를 자동 선정하고 파생 변수를 생성합니다.</div>
+      <div class="v3-pipe-step">
+        <div class="v3-pipe-step__num">STEP 01</div>
+        <div class="v3-pipe-step__title">변수 선정·파생데이터</div>
       </div>
       <div class="v3-pipe-step">
-        <div class="v3-pipe-num">STEP 02</div>
-        <div class="v3-pipe-title">변수 이해 및 XAI</div>
-        <div class="v3-pipe-desc">SHAP·LIME 기반 XAI로 각 변수의 기여도와 영향 방향을 설명합니다.</div>
+        <div class="v3-pipe-step__num">STEP 02</div>
+        <div class="v3-pipe-step__title">변수 이해·XAI 변수 확정</div>
       </div>
       <div class="v3-pipe-step">
-        <div class="v3-pipe-num">STEP 03</div>
-        <div class="v3-pipe-title">알고리즘 경쟁 및 검증</div>
-        <div class="v3-pipe-desc">127개 알고리즘이 동시 경쟁하여 최적 모델을 자동 선정하고 교차 검증합니다.</div>
+        <div class="v3-pipe-step__num">STEP 03</div>
+        <div class="v3-pipe-step__title">알고리즘 경쟁·실시간 검증</div>
       </div>
       <div class="v3-pipe-step">
-        <div class="v3-pipe-num">STEP 04</div>
-        <div class="v3-pipe-title">예측·시뮬레이션 XY 최적화</div>
-        <div class="v3-pipe-desc">What-If·Reverse What-If 시뮬레이션으로 목표 달성 최적 조건을 역산합니다.</div>
+        <div class="v3-pipe-step__num">STEP 04</div>
+        <div class="v3-pipe-step__title">예측·시뮬레이션 XY 최적화</div>
       </div>
       <div class="v3-pipe-step">
-        <div class="v3-pipe-num">STEP 05</div>
-        <div class="v3-pipe-title">AI Q&A GraphRAG</div>
-        <div class="v3-pipe-desc">분석 결과에 대해 자연어로 질문하면 GraphRAG 기반 AI가 정밀하게 답변합니다.</div>
+        <div class="v3-pipe-step__num">STEP 05</div>
+        <div class="v3-pipe-step__title">AI Q&A (Knowledge Graph &amp; GraphRAG)</div>
       </div>
-    </div>
-    <div class="v3-slide-img">
-      <img src="/deck-slides/slide-34.jpg" alt="AI 분석 파이프라인">
     </div>
   </div>
 </section>
 
-<!-- 4종 분석 알고리즘 -->
-<section class="v3-section v3-section--dark" style="padding-top:0;">
+<!-- Section B: 분석 종류 -->
+<section class="v3-section">
   <div class="v3-wrap">
-    <div class="v3-section__eyebrow">Algorithm Competition</div>
-    <h2 class="v3-section__title">4종 분석, 127개 알고리즘</h2>
-    <p class="v3-section__lead">분석 목적에 따라 최적 알고리즘 유형을 자동 선택하고 내부 경쟁으로 최고 성능 모델을 확보합니다.</p>
-    <div class="v3-algo-grid">
-      <div class="v3-algo-card">
-        <div class="v3-algo-count">32</div>
-        <div class="v3-algo-name">회귀 분석</div>
-        <div class="v3-algo-desc">연속형 수치 예측 — 매출·수요·가격 등 정량 목표 최적화</div>
+    <div class="v3-section__eyebrow">Analysis Types</div>
+    <h2 class="v3-section__title">분석 종류</h2>
+    <p class="v3-section__lead">목적에 맞는 분석 유형을 선택하면 적합한 알고리즘 경쟁이 즉시 시작됩니다.</p>
+    <div class="v3-types">
+      <div class="v3-type-card">
+        <div class="v3-type-card__name">회귀분석</div>
+        <div class="v3-type-card__count">32</div>
+        <div class="v3-type-card__unit">알고리즘</div>
       </div>
-      <div class="v3-algo-card">
-        <div class="v3-algo-count">17</div>
-        <div class="v3-algo-name">판별 분석</div>
-        <div class="v3-algo-desc">이진 분류 — 불량/정상, 이탈/유지, 성공/실패 판별</div>
+      <div class="v3-type-card">
+        <div class="v3-type-card__name">판별분석</div>
+        <div class="v3-type-card__count">17</div>
+        <div class="v3-type-card__unit">알고리즘</div>
       </div>
-      <div class="v3-algo-card">
-        <div class="v3-algo-count">17</div>
-        <div class="v3-algo-name">다중분류 분석</div>
-        <div class="v3-algo-desc">3개 이상 범주 분류 — 고객 등급, 제품 유형, 시장 세분화</div>
+      <div class="v3-type-card">
+        <div class="v3-type-card__name">다중분류분석</div>
+        <div class="v3-type-card__count">17</div>
+        <div class="v3-type-card__unit">알고리즘</div>
       </div>
-      <div class="v3-algo-card">
-        <div class="v3-algo-count">61</div>
-        <div class="v3-algo-name">시계열 분석</div>
-        <div class="v3-algo-desc">시간 패턴 예측 — 수요 예측, 이상 감지, 계절성 분해</div>
+      <div class="v3-type-card">
+        <div class="v3-type-card__name">시계열분석</div>
+        <div class="v3-type-card__count">61</div>
+        <div class="v3-type-card__unit">알고리즘</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Xim4Reporting -->
-<section class="v3-section v3-section--dark" style="padding-top:0;">
+<!-- Section C: Xim4Reporting -->
+<section class="v3-section v3-section--alt">
   <div class="v3-wrap">
     <div class="v3-section__eyebrow">Xim4Reporting</div>
-    <h2 class="v3-section__title">Xim4Reporting — 수시 자동 보고</h2>
-    <p class="v3-section__lead">모델 배포 후에도 성능을 지속 모니터링하고 What-If 결과를 자동으로 보고서화합니다.</p>
-    <div class="v3-report-grid">
-      <div class="v3-report-card">
-        <div class="v3-report-card__icon">Report 01</div>
-        <div class="v3-report-card__title">수시 성능 평가</div>
-        <div class="v3-report-card__desc">배포된 모델의 정확도·정밀도·재현율을 주기적으로 자동 평가하고 성능 저하를 조기에 감지합니다.</div>
-      </div>
-      <div class="v3-report-card">
-        <div class="v3-report-card__icon">Report 02</div>
-        <div class="v3-report-card__title">수시 What-If 보고</div>
-        <div class="v3-report-card__desc">입력 조건 변경에 따른 예측 결과 변화를 자동으로 시뮬레이션하고 의사결정 시나리오를 보고서화합니다.</div>
-      </div>
-      <div class="v3-report-card">
-        <div class="v3-report-card__icon">Report 03</div>
-        <div class="v3-report-card__title">수시 Reverse What-If 보고</div>
-        <div class="v3-report-card__desc">목표값을 먼저 설정하면 AI가 달성 조건을 역으로 계산하여 실행 가능한 전략을 자동 제시합니다.</div>
-      </div>
-    </div>
-    <div class="v3-slides-row">
-      <div class="v3-slide-img" style="margin-top:0;">
-        <img src="/deck-slides/slide-52.jpg" alt="Xim4Reporting 성능 평가">
-      </div>
-      <div class="v3-slide-img" style="margin-top:0;">
-        <img src="/deck-slides/slide-56.jpg" alt="Reverse What-If 보고">
-      </div>
+    <h2 class="v3-section__title">수시 성능 평가와 자동 보고</h2>
+    <p class="v3-section__lead">분석 완료 후에도 언제든 성능을 평가하고, What-If 결과를 자동으로 보고서화합니다.</p>
+    <div class="v3-chips">
+      <span class="v3-chip">수시 성능 평가</span>
+      <span class="v3-chip">수시 What-If</span>
+      <span class="v3-chip">수시 Reverse What-If</span>
     </div>
   </div>
 </section>
 
-<!-- Bottom CTA -->
-<section class="v3-section" style="padding:60px 0;">
+<!-- CTA -->
+<section class="v3-cta-section">
   <div class="v3-wrap">
-    <div class="v3-bar">
-      <%= link_to "← 홈으로", home_path(locale: I18n.locale), class: "v3-back" %>
-      <%= link_to "데모 신청", demo_path(locale: I18n.locale), class: "v3-btn-primary" %>
+    <div class="v3-cta-section__inner">
+      <h2 class="v3-cta-section__title">60종 알고리즘을 직접 경험해보세요</h2>
+      <p class="v3-cta-section__lead">데모에서 실제 데이터로 알고리즘 경쟁을 실행해볼 수 있습니다.</p>
+      <div class="v3-cta-btns">
+        <%= link_to "데모 신청", demo_path(locale: I18n.locale), class: "v3-btn-primary" %>
+        <%= link_to "문의하기", contact_path(locale: I18n.locale), class: "v3-btn-ghost" %>
+      </div>
     </div>
   </div>
 </section>
