@@ -275,7 +275,10 @@
   grid-template-columns: 60px 1fr 1fr;
   gap: 16px;
   align-items: center;
+  text-decoration: none;
+  transition: transform 0.15s, box-shadow 0.15s;
 }
+.v3-arch-layer:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.28); }
 @media (max-width: 600px) { .v3-arch-layer { grid-template-columns: 1fr; } }
 .v3-arch-layer--top  { background: #1e2a4a; border: 1px solid rgba(37,99,235,0.3); }
 .v3-arch-layer--core { background: #132640; border: 1px solid rgba(0,200,200,0.3); }
@@ -314,13 +317,15 @@
 @media (max-width: 1000px) { .v3-solutions-grid { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 620px)  { .v3-solutions-grid { grid-template-columns: repeat(2, 1fr); } }
 .v3-sol-card {
+  display: block;
+  text-decoration: none;
   background: var(--c-canvas);
   border: 1px solid var(--c-hairline);
   border-radius: 14px;
   padding: 22px 18px;
-  transition: box-shadow 0.15s, transform 0.15s;
+  transition: box-shadow 0.15s, transform 0.15s, border-color 0.15s;
 }
-.v3-sol-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); transform: translateY(-2px); }
+.v3-sol-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); transform: translateY(-2px); border-color: rgba(0,200,200,0.45); }
 .v3-sol-idx {
   font-family: var(--font-mono);
   font-size: 10px;
@@ -537,16 +542,17 @@
     <h2 class="v3-section__title"><%= t("v3.arch.title") %></h2>
 
     <div class="v3-arch-stack">
+      <% arch_slugs = ["arch_top", "arch_core", "arch_base"] %>
       <% t("v3.arch.layers").each_with_index do |layer, i| %>
         <% tier_class = ["top","core","base"][i] %>
-        <div class="v3-arch-layer v3-arch-layer--<%= tier_class %>">
+        <%= link_to v3_detail_path(slug: arch_slugs[i], locale: I18n.locale), class: "v3-arch-layer v3-arch-layer--#{tier_class}" do %>
           <div class="v3-arch-tier"><%= layer[:tier] %></div>
           <div>
             <div class="v3-arch-name"><%= layer[:name] %></div>
             <div class="v3-arch-subtitle"><%= layer[:subtitle] %></div>
           </div>
           <div class="v3-arch-desc"><%= layer[:desc] %></div>
-        </div>
+        <% end %>
       <% end %>
     </div>
   </div>
@@ -561,11 +567,12 @@
     <h2 class="v3-section__title" style="color: var(--c-ink);"><%= t("v3.solutions.title") %></h2>
 
     <div class="v3-solutions-grid">
+      <% sol_slugs = %w[sol_meeting sol_survey sol_sns sol_festival sol_market sol_store sol_clinic sol_maintenance sol_sns_product sol_survey_product] %>
       <% t("v3.solutions.items").each_with_index do |item, i| %>
-        <div class="v3-sol-card">
+        <%= link_to v3_detail_path(slug: sol_slugs[i], locale: I18n.locale), class: "v3-sol-card" do %>
           <div class="v3-sol-idx"><%= sprintf("%02d", i + 1) %></div>
           <div class="v3-sol-name"><%= item %></div>
-        </div>
+        <% end %>
       <% end %>
     </div>
   </div>

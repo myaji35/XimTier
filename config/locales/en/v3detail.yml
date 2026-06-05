@@ -328,3 +328,139 @@ en:
         - { head: "5-Step Service Process", body: "01 Collect → 02 Fuse → 03 Model → 04 Hyper-connect → 05 Serve." }
         - { head: "Expected Effects", body: "Hyper-fast build (70% shorter), cost savings (up to 50% lower), high accuracy, scalability & flexibility, customer success." }
       result: "The fastest, most efficient tailored AI solution"
+
+    # ───────────────────────── Chapter 04 · AI One-Stop Solutions (10) ─────────────────────────
+    sol_meeting:
+      chapter: "04 One-Stop Solutions"
+      slide: "61"
+      back_path: "solutions"
+      eyebrow: "SOL 01 · AI Smart Meeting Analytics"
+      title: "AI Smart Meeting Analytics"
+      summary: "From natural-language meeting minutes (hearings, business meetings), auto-derives panel-level key issues and importance → optimizes core issues via a panel/issue sentiment knowledge graph (What-if and Reverse What-if)."
+      stats: []
+      blocks:
+        - { head: "AI Status Analysis", body: "Auto-derives key issues per panel from loaded minutes." }
+        - { head: "Key-Issue Selection", body: "Visualizes panel pro/con on key issues and selects critical issues automatically." }
+        - { head: "Issue Optimization Guide", body: "Runs What-if and Reverse What-if on a panel × issue sentiment knowledge graph." }
+      result: "Shorter negotiation, lower consensus-failure rate, optimized policy"
+
+    sol_survey:
+      chapter: "04 One-Stop Solutions"
+      slide: "62"
+      back_path: "solutions"
+      eyebrow: "SOL 02 · AI Smart Survey Analytics"
+      title: "AI Smart Survey Analytics"
+      summary: "Auto-preprocesses survey raw data (text, 2-row headers) → auto-selects inter-task connectivity and importance to derive priority strategic tasks and optimal targets."
+      stats: []
+      blocks:
+        - { head: "Base Statistics", body: "Auto-computes respondent status and per-question analysis." }
+        - { head: "Priority Tasks & Optimal Targets", body: "Derives priority tasks via inter-task connectivity and target characteristics." }
+        - { head: "AI Optimal Execution Plan", body: "Derives strategic analysis results from an integrated survey knowledge graph." }
+      result: "Budget efficiency via survey-data reuse"
+
+    sol_sns:
+      chapter: "04 One-Stop Solutions"
+      slide: "63"
+      back_path: "solutions"
+      eyebrow: "SOL 03 · AI Smart SNS Analytics"
+      title: "AI Smart SNS Analytics"
+      summary: "From SNS raw data, auto-extracts keywords and computes category-wise sentiment satisfaction → derives combined AI implications for management, policy, and strategy improvement."
+      stats: []
+      blocks:
+        - { head: "Keyword Satisfaction", body: "Auto-extracts SNS keywords and computes satisfaction per keyword." }
+        - { head: "Category Strategy", body: "Derives category-wise satisfaction and strategy to select priority tasks and targets." }
+        - { head: "AI Implications", body: "Surfaces management/policy/strategy implications from combined SNS output." }
+      result: "Citizen/customer-oriented management and policy"
+
+    sol_festival:
+      chapter: "04 One-Stop Solutions"
+      slide: "64"
+      back_path: "solutions"
+      eyebrow: "SOL 04 · AI Festival/Event YX Optimization"
+      title: "AI Festival/Event YX Optimization"
+      summary: "From raw data such as festival visitors (Y) and X variables (staff/facility ops, promotion, SNS reputation, weather), analyzes Y–X relationships and policy implications → optimization such as Reverse What-if to increase visitors."
+      stats: []
+      blocks:
+        - { head: "Y–X Relationship Analysis", body: "Analyzes Y performance vs X, SNS satisfaction strategy, and knowledge-graph implications." }
+        - { head: "AI What-if & Optimization", body: "Provides What-if, Reverse What-if, and an AI optimization report." }
+      result: "Optimal operation of facilities, services, and ad spend"
+
+    sol_market:
+      chapter: "04 One-Stop Solutions"
+      slide: "65"
+      back_path: "solutions"
+      eyebrow: "SOL 05 · AI Traditional Market/District YX Optimization"
+      title: "AI Traditional Market/District YX Optimization"
+      summary: "From raw data such as market/district visitors (Y) and X variables (staff/facility ops, promotion, SNS reputation, weather), analyzes Y–X relationships and policy implications → optimization such as Reverse What-if to increase visitors."
+      stats: []
+      blocks:
+        - { head: "Y–X Relationship Analysis", body: "Analyzes Y performance vs X, SNS satisfaction strategy, and knowledge-graph implications." }
+        - { head: "AI What-if & Optimization", body: "Provides What-if, Reverse What-if, and an AI optimization report." }
+      result: "Optimal operation of facilities, services, and ad spend"
+
+    sol_store:
+      chapter: "04 One-Stop Solutions"
+      slide: "66"
+      back_path: "solutions"
+      eyebrow: "SOL 06 · AI Small Business/Store YX Optimization"
+      title: "AI Small Business/Store YX Optimization"
+      summary: "From raw data such as small-business sales (Y) and X variables (staff/facility ops, promotion, SNS reputation, weather), analyzes Y–X relationships and operational implications → optimization such as Reverse What-if to increase sales."
+      stats: []
+      blocks:
+        - { head: "Y–X Relationship Analysis", body: "Analyzes Y performance vs X, SNS satisfaction strategy, and knowledge-graph implications." }
+        - { head: "AI What-if & Optimization", body: "Provides What-if, Reverse What-if, and an AI optimization report." }
+      result: "Optimal operation of staff, facilities, services, and ad spend"
+
+    sol_clinic:
+      chapter: "04 One-Stop Solutions"
+      slide: "67"
+      back_path: "solutions"
+      eyebrow: "SOL 07 · AI Advertising Clinic YX Optimization"
+      title: "AI Advertising-Based Medical Clinic YX Optimization"
+      summary: "From raw data such as clinic visitor revenue (Y) and X variables (staff/facility ops, promotion, SNS reputation, weather), analyzes Y–X relationships and policy implications → optimization such as Reverse What-if to increase visitors."
+      stats: []
+      blocks:
+        - { head: "Y–X Relationship Analysis", body: "Analyzes Y performance vs X, SNS satisfaction strategy, and knowledge-graph implications." }
+        - { head: "AI What-if & Optimization", body: "Provides What-if, Reverse What-if, and an AI optimization report." }
+      result: "Optimal operation of facilities, services, and ad spend"
+
+    sol_maintenance:
+      chapter: "04 One-Stop Solutions"
+      slide: "68"
+      back_path: "solutions"
+      eyebrow: "SOL 08 · AI Equipment Failure/Predictive Maintenance YX Optimization"
+      title: "AI Equipment Failure/Predictive Maintenance YX Optimization"
+      summary: "From raw data such as equipment failure/maintenance (Y) and X variables (equipment ops, maintenance activity, equipment condition/failure, ambient conditions), analyzes Y–X relationships and policy implications → optimization such as Reverse What-if to reduce failure rate."
+      stats: []
+      blocks:
+        - { head: "Y–X Relationship Analysis", body: "Analyzes Y performance vs X, IoT-sensor failure-rate location analysis, and knowledge-graph implications." }
+        - { head: "AI What-if & Optimization", body: "Provides What-if, Reverse What-if, and an AI optimization report." }
+      result: "Budget savings and optimal operation to minimize failures"
+
+    sol_sns_product:
+      chapter: "04 One-Stop Solutions"
+      slide: "69"
+      back_path: "solutions"
+      eyebrow: "SOL 09 · AI SNS-Based Product Development"
+      title: "AI SNS-Based Product Development YX Optimization"
+      summary: "From raw SNS data and profile-wise sales (age/job/income), computes profile-wise SNS sentiment satisfaction → optimizes product feature development considering SNS customer response."
+      stats: []
+      blocks:
+        - { head: "Y & SNS Profile Analysis", body: "Analyzes profile-wise SNS sentiment satisfaction and sales (Y)." }
+        - { head: "Satisfaction & Target", body: "Derives target customers from satisfaction and presents knowledge-graph implications." }
+        - { head: "AI What-if & Optimization", body: "Optimizes feature development with What-if and Reverse What-if." }
+      result: "Feature reinforcement by sales contribution, target-tailored features, cost optimization"
+
+    sol_survey_product:
+      chapter: "04 One-Stop Solutions"
+      slide: "70"
+      back_path: "solutions"
+      eyebrow: "SOL 10 · AI Survey-Based Product Development"
+      title: "AI Survey-Based Product Development YX Optimization"
+      summary: "From raw survey data and profile-wise sales (age/job/income), computes profile-wise satisfaction → optimizes product feature development considering survey respondent response."
+      stats: []
+      blocks:
+        - { head: "Y & Survey Profile Analysis", body: "Analyzes profile-wise survey-item ratings and sales (Y)." }
+        - { head: "Ratings & Target", body: "Derives target customers from ratings and presents knowledge-graph implications." }
+        - { head: "AI What-if & Optimization", body: "Optimizes feature development with What-if and Reverse What-if." }
+      result: "Feature reinforcement by sales contribution, target-tailored features, cost optimization"

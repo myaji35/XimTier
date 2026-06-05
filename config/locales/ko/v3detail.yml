@@ -328,3 +328,139 @@ ko:
         - { head: "5단계 맞춤형 서비스 프로세스", body: "01 데이터 수집 → 02 데이터 융합 → 03 분석·모델링 → 04 초고속 연결 → 05 맞춤형 서비스 제공." }
         - { head: "기대 효과", body: "초고속 구축(구축 기간 70% 단축) · 비용 절감(개발/운영 비용 최대 50% 절감) · 높은 정확도 · 확장성 & 유연성 · 고객 성공 극대화." }
       result: "가장 빠르고 효율적인 고객 맞춤형 AI 솔루션 제공"
+
+    # ───────────────────────── Chapter 04 · AI One-Stop 솔루션 (10종) ─────────────────────────
+    sol_meeting:
+      chapter: "04 One-Stop 솔루션"
+      slide: "61"
+      back_path: "solutions"
+      eyebrow: "SOL 01 · AI 스마트 Meeting 분석"
+      title: "AI 스마트 Meeting 분석"
+      summary: "공청회·업무 회의 등 자연어 회의록 로딩 시, 자연어 분석 기반의 패널별 핵심 이슈와 중요도 자동 산출 → 패널-이슈별 찬반 감성 지식그래프 기반의 핵심 이슈 최적화 도출 지원(What-if 분석과 Reverse What-if 분석)"
+      stats: []
+      blocks:
+        - { head: "AI 현황 분석", body: "AI 이슈 사안 자동 도출 — 회의록을 로딩하면 패널별 핵심 이슈를 자동 산출." }
+        - { head: "AI 중요 핵심이슈 선별", body: "패널 핵심이슈 찬반 시각화·이슈 사안별 패널 찬반 도출로 중요 핵심이슈를 자동 선별." }
+        - { head: "AI 핵심 이슈 최적화 가이드", body: "패널 × 사안별 찬반 감성 지식그래프 기반으로 What-if·Reverse What-if 분석을 수행." }
+      result: "협의 시간 단축·합의 실패율 감소·정책 최적화 도출 지원"
+
+    sol_survey:
+      chapter: "04 One-Stop 솔루션"
+      slide: "62"
+      back_path: "solutions"
+      eyebrow: "SOL 02 · AI 스마트 설문 분석"
+      title: "AI 스마트 설문 분석"
+      summary: "설문 원시 데이터 로딩 시 문자·2열 헤더 등 전처리 자동 수행 → AI 기반의 과제 간 상호 연계성과 중요도를 자동 선별하여 전략 우선 과제 도출과 최적 타깃 선별"
+      stats: []
+      blocks:
+        - { head: "기초 통계", body: "설문응답자 현황·문항별 분석을 자동 산출." }
+        - { head: "전략 우선과제 도출과 최적 타깃 선별", body: "과제 간 상호 연계성과 타깃 특성 분석으로 전략 우선 과제를 도출." }
+        - { head: "AI 전략과제별 최적 실행(안) 도출", body: "AI 설문 통합 지식그래프 기반으로 AI 전략 종합 분석 결과를 도출." }
+      result: "설문 자료 재활용으로 예산 효율성 제고 (K-AI 스마트도시 선도 지원)"
+
+    sol_sns:
+      chapter: "04 One-Stop 솔루션"
+      slide: "63"
+      back_path: "solutions"
+      eyebrow: "SOL 03 · AI 스마트 SNS 분석"
+      title: "AI 스마트 SNS 분석"
+      summary: "SNS 원시 데이터 로딩 시, SNS 키워드 자동 추출과 카테고리별 감성 만족지수 산출 지원 → 경영·정책·전략 개선을 위한 AI 종합 시사점 도출 지원"
+      stats: []
+      blocks:
+        - { head: "SNS 키워드별 만족지수 산출", body: "SNS 키워드를 자동 추출하고 키워드별 감성 만족지수를 산출." }
+        - { head: "카테고리별 전략 도출", body: "카테고리별 만족지수와 전략을 도출하여 전략 우선과제와 최적 타깃을 선별." }
+        - { head: "AI 종합 시사점 도출", body: "AI SNS 종합 시사점 출력 결과로 경영·정책·전략 개선 시사점을 제시." }
+      result: "시민·고객 지향적인 경영/정책 수립 방안 지원"
+
+    sol_festival:
+      chapter: "04 One-Stop 솔루션"
+      slide: "64"
+      back_path: "solutions"
+      eyebrow: "SOL 04 · AI 축제/행사 YX 최적화"
+      title: "AI 축제/행사 YX 최적화"
+      summary: "축제 방문객수 등 Y성과, X변수(인력 및 시설 운영, 광고 등 프로모션, SNS 평판, 날씨 등 환경) 등 원시 데이터 로딩 시, Y성과와 X변수와의 연관 등 현상 분석과 정책 시사점 도출 → 방문객수 증가를 위한 Reverse What-if 등 최적화 분석"
+      stats: []
+      blocks:
+        - { head: "Y성과와 X변수 연관 분석", body: "Y 성과와 X변수 분석·SNS 만족지수와 전략 도출·AI 지식그래프와 시사점을 도출." }
+        - { head: "AI What-if 분석과 최적화 도출", body: "What-if 분석·Reverse What-if 분석·AI 종합 최적화 보고서를 제공." }
+      result: "시설·서비스·광고비 최적 운영 방안 마련 활용"
+
+    sol_market:
+      chapter: "04 One-Stop 솔루션"
+      slide: "65"
+      back_path: "solutions"
+      eyebrow: "SOL 05 · AI 전통시장/상권 YX 최적화"
+      title: "AI 전통시장/상권 YX 최적화"
+      summary: "전통시장/상권 방문객수 등 Y성과, X변수(인력 및 시설 운영, 광고 등 프로모션, SNS 평판, 날씨 등 환경) 등 원시 데이터 로딩 시, Y성과와 X변수와의 연관 등 현상 분석과 정책 시사점 도출 → 방문객수 증가를 위한 Reverse What-if 등 최적화 분석"
+      stats: []
+      blocks:
+        - { head: "Y성과와 X변수 연관 분석", body: "Y 성과와 X변수 분석·SNS 만족지수와 전략 도출·AI 지식그래프와 시사점을 도출." }
+        - { head: "AI What-if 분석과 최적화 도출", body: "What-if 분석·Reverse What-if 분석·AI 종합 최적화 보고서를 제공." }
+      result: "시설·서비스·광고비 최적 운영 방안 마련 활용"
+
+    sol_store:
+      chapter: "04 One-Stop 솔루션"
+      slide: "66"
+      back_path: "solutions"
+      eyebrow: "SOL 06 · AI 소상공인/매장 YX 최적화"
+      title: "AI 소상공인/매장 YX 최적화"
+      summary: "소상공인 매출액 등 Y성과, X변수(인력 및 시설 운영, 광고 등 프로모션, SNS 평판, 날씨 등 환경) 등 원시 데이터 로딩 시, Y성과와 X변수와의 연관 등 현상 분석과 운영 시사점 도출 → 매출액 증가를 위한 Reverse What-if 등 최적화 분석"
+      stats: []
+      blocks:
+        - { head: "Y성과와 X변수 연관 분석", body: "Y 성과와 X변수 분석·SNS 만족지수와 전략 도출·AI 지식그래프와 시사점을 도출." }
+        - { head: "AI What-if 분석과 최적화 도출", body: "What-if 분석·Reverse What-if 분석·AI 종합 최적화 보고서를 제공." }
+      result: "인력·시설·서비스·광고비 최적 운영 방안 마련 활용"
+
+    sol_clinic:
+      chapter: "04 One-Stop 솔루션"
+      slide: "67"
+      back_path: "solutions"
+      eyebrow: "SOL 07 · AI 광고형 병의원 YX 최적화"
+      title: "AI 광고형 병의원 YX 최적화"
+      summary: "광고형 병의원 방문객 매출 등 Y성과, X변수(인력 및 시설 운영, 광고 등 프로모션, SNS 평판, 날씨 등 환경) 등 원시 데이터 로딩 시, Y성과와 X변수와의 연관 등 현상 분석과 정책 시사점 도출 → 방문객수 증가를 위한 Reverse What-if 등 최적화 분석"
+      stats: []
+      blocks:
+        - { head: "Y성과와 X변수 연관 분석", body: "Y 성과와 X변수 분석·SNS 만족지수와 전략 도출·AI 지식그래프와 시사점을 도출." }
+        - { head: "AI What-if 분석과 최적화 도출", body: "What-if 분석·Reverse What-if 분석·AI 종합 최적화 보고서를 제공." }
+      result: "시설·서비스·광고비 최적 운영 방안 마련 활용"
+
+    sol_maintenance:
+      chapter: "04 One-Stop 솔루션"
+      slide: "68"
+      back_path: "solutions"
+      eyebrow: "SOL 08 · AI 설비고장/예지보전 YX 최적화"
+      title: "AI 설비고장/예지보전 YX 최적화"
+      summary: "제조 설비 고장/예지보전 등 Y성과, X변수(설비 운영, 정비활동, 설비 상태품질/고장, 기온 등 외부 환경) 등 원시 데이터 로딩 시, Y성과와 X변수와의 연관 등 현상 분석과 정책 시사점 도출 → 고장률 감소를 위한 Reverse What-if 등 최적화 분석"
+      stats: []
+      blocks:
+        - { head: "Y성과와 X변수 연관 분석", body: "Y 성과와 X변수 분석·IoT 센싱별 고장률 위치 분석·AI 지식그래프와 시사점을 도출." }
+        - { head: "AI What-if 분석과 최적화 도출", body: "What-if 분석·Reverse What-if 분석·AI 종합 최적화 보고서를 제공." }
+      result: "고장률 최소화를 위한 예산절감과 최적 운영 방안 마련 활용"
+
+    sol_sns_product:
+      chapter: "04 One-Stop 솔루션"
+      slide: "69"
+      back_path: "solutions"
+      eyebrow: "SOL 09 · AI SNS 기반 제품 기능 개발"
+      title: "AI SNS 기반 제품 기능 개발 YX 최적화"
+      summary: "프로파일(성연령·직업·소득)별 매출 등 Y성과, SNS 원시 데이터 로딩 시, 프로파일별 SNS 감성 만족지수 산출 지원 → SNS 고객의 반응을 고려한 제품 기능 개발 최적화 수행"
+      stats: []
+      blocks:
+        - { head: "Y성과와 SNS 프로파일 분석", body: "프로파일별 SNS 감성 만족지수와 매출 등 Y성과를 분석." }
+        - { head: "SNS 만족지수와 타깃 도출", body: "SNS 만족지수 기반으로 타깃 고객을 도출하고 AI 지식그래프 시사점을 제시." }
+        - { head: "AI What-if 분석과 최적화 도출", body: "What-if·Reverse What-if 분석으로 제품 기능 개발을 최적화." }
+      result: "매출 기여도에 따른 기능 강화·타깃 고객 맞춤형 최적 기능 구현·원가 최적화"
+
+    sol_survey_product:
+      chapter: "04 One-Stop 솔루션"
+      slide: "70"
+      back_path: "solutions"
+      eyebrow: "SOL 10 · AI 설문 기반 제품 기능 개발"
+      title: "AI 설문 기반 제품 기능 개발 YX 최적화"
+      summary: "프로파일(성연령·직업·소득)별 매출 등 Y성과, 설문 원시 데이터 로딩 시, 프로파일별 만족지수 산출 지원 → 설문 응답자 고객의 반응을 고려한 제품 기능 개발 최적화 수행"
+      stats: []
+      blocks:
+        - { head: "Y성과와 설문 프로파일 분석", body: "프로파일별 설문항목별 평점과 매출 등 Y성과를 분석." }
+        - { head: "설문 평점과 타깃 도출", body: "설문 평점 기반으로 타깃 고객을 도출하고 AI 지식그래프 시사점을 제시." }
+        - { head: "AI What-if 분석과 최적화 도출", body: "What-if·Reverse What-if 분석으로 제품 기능 개발을 최적화." }
+      result: "매출 기여도에 따른 기능 강화·타깃 고객 맞춤형 최적 기능 구현·원가 최적화"

@@ -32,10 +32,12 @@
 /* 2-col solution grid */
 .v3-sol-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:44px; }
 @media(max-width:640px){ .v3-sol-grid { grid-template-columns:1fr; } }
-.v3-sol-card { background:var(--c-canvas); border:1px solid var(--c-hairline); border-radius:14px; padding:24px 22px; transition:box-shadow 0.15s,transform 0.15s; }
-.v3-sol-card:hover { box-shadow:0 8px 24px rgba(0,0,0,0.08); transform:translateY(-2px); }
+.v3-sol-card { display:block; text-decoration:none; background:var(--c-canvas); border:1px solid var(--c-hairline); border-radius:14px; padding:24px 22px; transition:box-shadow 0.15s,transform 0.15s,border-color 0.15s; }
+.v3-sol-card:hover { box-shadow:0 8px 24px rgba(0,0,0,0.08); transform:translateY(-2px); border-color:rgba(0,200,200,0.45); }
 .v3-sol-card__idx { font-family:var(--font-mono); font-size:10px; font-weight:700; letter-spacing:0.12em; color:var(--c-teal); margin-bottom:10px; }
 .v3-sol-card__name { font-size:15px; font-weight:700; color:var(--c-ink); word-break:keep-all; }
+.v3-sol-card__more { font-family:var(--font-mono); font-size:10px; font-weight:700; letter-spacing:0.08em; color:var(--c-teal); margin-top:12px; opacity:0; transition:opacity 0.15s; }
+.v3-sol-card:hover .v3-sol-card__more { opacity:1; }
 
 /* CTA */
 .v3-cta-section { background:var(--c-navy); padding:72px 0; }
@@ -68,46 +70,24 @@
     <h2 class="v3-section__title">10가지 도메인 솔루션</h2>
     <p class="v3-section__lead">각 솔루션은 데이터 로딩부터 보고서 출력까지 One-Stop으로 완결됩니다.</p>
     <div class="v3-sol-grid">
-      <div class="v3-sol-card">
-        <div class="v3-sol-card__idx">SOL 01</div>
-        <div class="v3-sol-card__name">AI 스마트 Meeting 분석</div>
-      </div>
-      <div class="v3-sol-card">
-        <div class="v3-sol-card__idx">SOL 02</div>
-        <div class="v3-sol-card__name">AI 스마트 설문 분석</div>
-      </div>
-      <div class="v3-sol-card">
-        <div class="v3-sol-card__idx">SOL 03</div>
-        <div class="v3-sol-card__name">AI 스마트 SNS 분석</div>
-      </div>
-      <div class="v3-sol-card">
-        <div class="v3-sol-card__idx">SOL 04</div>
-        <div class="v3-sol-card__name">AI 축제·행사 YX 최적화</div>
-      </div>
-      <div class="v3-sol-card">
-        <div class="v3-sol-card__idx">SOL 05</div>
-        <div class="v3-sol-card__name">AI 전통시장·상권 YX 최적화</div>
-      </div>
-      <div class="v3-sol-card">
-        <div class="v3-sol-card__idx">SOL 06</div>
-        <div class="v3-sol-card__name">AI 소상공인·매장 YX 최적화</div>
-      </div>
-      <div class="v3-sol-card">
-        <div class="v3-sol-card__idx">SOL 07</div>
-        <div class="v3-sol-card__name">AI 광고형 병의원 YX 최적화</div>
-      </div>
-      <div class="v3-sol-card">
-        <div class="v3-sol-card__idx">SOL 08</div>
-        <div class="v3-sol-card__name">AI 설비고장·예지보전 YX 최적화</div>
-      </div>
-      <div class="v3-sol-card">
-        <div class="v3-sol-card__idx">SOL 09</div>
-        <div class="v3-sol-card__name">AI SNS 기반 제품 기능 개발</div>
-      </div>
-      <div class="v3-sol-card">
-        <div class="v3-sol-card__idx">SOL 10</div>
-        <div class="v3-sol-card__name">AI 설문 기반 제품 기능 개발</div>
-      </div>
+      <% [
+        ["SOL 01", "AI 스마트 Meeting 분석", "sol_meeting"],
+        ["SOL 02", "AI 스마트 설문 분석", "sol_survey"],
+        ["SOL 03", "AI 스마트 SNS 분석", "sol_sns"],
+        ["SOL 04", "AI 축제·행사 YX 최적화", "sol_festival"],
+        ["SOL 05", "AI 전통시장·상권 YX 최적화", "sol_market"],
+        ["SOL 06", "AI 소상공인·매장 YX 최적화", "sol_store"],
+        ["SOL 07", "AI 광고형 병의원 YX 최적화", "sol_clinic"],
+        ["SOL 08", "AI 설비고장·예지보전 YX 최적화", "sol_maintenance"],
+        ["SOL 09", "AI SNS 기반 제품 기능 개발", "sol_sns_product"],
+        ["SOL 10", "AI 설문 기반 제품 기능 개발", "sol_survey_product"],
+      ].each do |idx, name, slug| %>
+        <%= link_to v3_detail_path(slug: slug, locale: I18n.locale), class: "v3-sol-card" do %>
+          <div class="v3-sol-card__idx"><%= idx %></div>
+          <div class="v3-sol-card__name"><%= name %></div>
+          <div class="v3-sol-card__more">상세 보기 →</div>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </section>
