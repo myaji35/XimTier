@@ -1,0 +1,451 @@
+<% content_for :title, "#{t('site.brand')} — #{t('site.positioning')}" %>
+
+<%= render "shared/mini_nav" %>
+
+<%# ============ 01 Hero (Deep Navy) ============ %>
+<section class="section-dark relative overflow-hidden" style="padding:140px 0 120px;">
+  <%# radial blue/teal glow %>
+  <div class="absolute inset-0 pointer-events-none" style="
+      background:
+        radial-gradient(900px 500px at 85% 30%, rgba(0,200,200,0.14), transparent 60%),
+        radial-gradient(800px 600px at 10% 80%, rgba(37,99,235,0.22), transparent 60%);
+    "></div>
+
+  <div class="wrap relative grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr]" style="gap:60px; align-items:center;">
+    <%# Left: Headline + CTA + 4 pillars %>
+    <div>
+      <div class="eyebrow"><span class="dot"></span><%= t("site.hero.eyebrow") %></div>
+
+      <h1 class="h-display" style="color:#fff; word-break:keep-all; overflow-wrap:break-word;">
+        <%= t("site.hero.headline_top") %><br>
+        <span class="text-brand-grad"><%= t("site.hero.headline_bottom") %></span>
+      </h1>
+
+      <p class="lead mt-6" style="color:#a7b1c7; max-width:560px;">
+        <%= t("site.hero.subhead") %>
+      </p>
+
+      <div class="mt-9 flex flex-wrap items-center" style="gap:24px;">
+        <%= link_to t("site.hero.cta_demo"), demo_path(locale: I18n.locale),
+              class: "btn btn-grad cta-primary",
+              style: "padding:16px 28px; font-size:15px; font-weight:600; box-shadow:0 12px 28px -8px rgba(0,200,200,0.4);" %>
+        <%= link_to t("site.hero.cta_ir"),   investors_path(locale: I18n.locale),
+              class: "text-[14px] font-semibold cta-secondary",
+              style: "color:#a7b1c7;" %>
+      </div>
+
+      <%# 4 Pillars %>
+      <div class="mt-14 grid grid-cols-2 md:grid-cols-4" style="gap:14px;">
+        <% t("site.hero.pillars").each do |pillar| %>
+          <div class="rounded-[12px] p-4" style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);">
+            <div class="font-mono text-[10px]" style="color:#00C8C8; letter-spacing:0.12em;">PILLAR</div>
+            <div class="mt-1 text-[14px] font-semibold" style="color:#fff;"><%= pillar[:label] %></div>
+            <div class="mt-0.5 text-[12px]" style="color:#8a94ac;"><%= pillar[:desc] %></div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <%# Right: X-mark + floating data chips %>
+    <div class="relative hidden lg:block" style="min-height:440px;">
+      <%# Giant X-mark glow %>
+      <div class="absolute" style="left:50%; top:50%; transform:translate(-50%,-50%); width:280px; height:280px; opacity:0.95;">
+        <svg viewBox="0 0 64 64" width="100%" height="100%"><use href="#x-mark-light"/></svg>
+      </div>
+
+      <%# Floating data chips %>
+      <% t("site.hero.chips").each_with_index do |chip, i| %>
+        <% positions = ["left:8%; top:8%;", "right:6%; top:18%;", "left:4%; bottom:18%;", "right:8%; bottom:8%;"] %>
+        <div class="absolute inline-flex items-center font-mono text-[12px] float-chip float-chip-<%= i + 1 %>" style="
+              <%= positions[i] %>
+              gap:8px;
+              padding:10px 14px;
+              border-radius:999px;
+              background: rgba(255,255,255,0.06);
+              border: 1px solid rgba(255,255,255,0.12);
+              backdrop-filter: blur(12px);
+              color: #e6e8f0;
+            ">
+          <span style="width:8px; height:8px; border-radius:50%; background:linear-gradient(135deg,#2563EB,#00C8C8);"></span>
+          <span><%= chip[:label] %> <span style="color:#00C8C8;"><%= chip[:value] %></span></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <%# Reference logos marquee — 좌→우 흐름 (Hero 하단 풀폭) %>
+  <div class="wrap relative mt-16">
+    <div class="font-mono text-[10px] mb-4" style="color:#697386; letter-spacing:0.18em; text-transform:uppercase;">
+      // <%= t("site.hero.references.label") %>
+    </div>
+  </div>
+  <div class="relative logo-marquee mt-1" aria-label="<%= t('site.hero.references.label') %>">
+    <div class="logo-marquee__track" style="padding:8px 0;">
+      <% logos = t("site.hero.references.items") %>
+      <% (logos + logos).each do |name| %>
+        <span class="logo-marquee__item"><%= name %></span>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<%# ============ 03 Fear-fact KPI 거대 (€35M / D-Day / 100%) ============ %>
+<section id="fear" class="section-dark" style="padding:44px 0; border-top:1px solid rgba(255,255,255,0.08); border-bottom:1px solid rgba(255,255,255,0.08); background:#060c1f;">
+  <div class="wrap grid grid-cols-1 md:grid-cols-3" style="gap:32px;">
+    <%# 1) EU 벌금 %>
+    <div class="flex flex-col" style="padding:0 12px;">
+      <div class="font-mono text-[10px]" style="color:#EF4444; letter-spacing:0.18em;">// EU AI ACT</div>
+      <div class="mt-3" style="font-size:42px; font-weight:800; line-height:1; color:#fff; letter-spacing:-0.02em;">
+        <%= t("site.fear_strip.eu_amount") %>
+      </div>
+      <div class="mt-3 text-[12px]" style="color:#8a94ac; line-height:1.55;"><%= t("site.fear_strip.eu") %></div>
+    </div>
+    <%# 2) D-Day %>
+    <div class="flex flex-col" style="padding:0 12px;">
+      <div class="font-mono text-[10px]" style="color:#F59E0B; letter-spacing:0.18em;">// KR AI ACT</div>
+      <div class="mt-3" style="font-size:42px; font-weight:800; line-height:1; color:#fff; letter-spacing:-0.02em;">
+        <%= t("site.fear_strip.kr_status") %>
+      </div>
+      <div class="mt-3 text-[12px]" style="color:#8a94ac; line-height:1.55;"><%= t("site.fear_strip.kr") %></div>
+    </div>
+    <%# 3) 100% %>
+    <div class="flex flex-col" style="padding:0 12px;">
+      <div class="font-mono text-[10px]" style="color:#00C8C8; letter-spacing:0.18em;">// AUDIT</div>
+      <div class="mt-3" style="font-size:42px; font-weight:800; line-height:1; color:#fff; letter-spacing:-0.02em;">
+        <span class="text-brand-grad"><%= t("site.fear_strip.audit_status") %></span>
+      </div>
+      <div class="mt-3 text-[12px]" style="color:#8a94ac; line-height:1.55;"><%= t("site.fear_strip.audit") %></div>
+    </div>
+  </div>
+</section>
+
+<%# ============ 04 Why Now (Canvas) ============ %>
+<section id="why-now" class="surface-canvas border-b-hairline" style="padding:60px 0;">
+  <div class="wrap grid grid-cols-1 md:grid-cols-[1fr_1fr] items-center" style="gap:48px; max-width:1080px;">
+    <div>
+      <p class="type-uppercase-tag text-rausch"><%= t("why_now.eyebrow") %></p>
+      <h2 class="type-display-xl mt-3"><%= t("why_now.title") %></h2>
+      <p class="type-body-md text-body-airbnb mt-5"><%= t("why_now.body") %></p>
+      <div class="mt-6">
+        <a href="/<%= I18n.locale %>/why-not-llm" class="type-body-sm font-semibold text-rausch hover:underline"><%= t("why_now.cta") %></a>
+      </div>
+    </div>
+    <%= render ImageWithCaptionComponent.new(
+          src: "charts/eu_ai_act_timeline.svg",
+          alt: "EU AI Act 2026-08-02 발효 및 한국 AI 기본법 2026-01-22 시행 타임라인 — 위반 시 €35M 또는 매출 7%",
+          caption: I18n.locale == :ko ? "오늘부터 EU AI Act 발효까지" : "From today to EU AI Act enforcement",
+          source: "EU 2024/1689 + 인공지능 기본법(법률 제20039호)",
+          tone: :color,
+          aspect: :auto
+        ) %>
+  </div>
+</section>
+
+<%# ============ 03 Problem (Canvas) ============ %>
+<section id="problem" class="surface-canvas section-pad">
+  <div class="wrap">
+    <p class="type-uppercase-tag text-rausch"><%= t("problem.eyebrow") %></p>
+    <h2 class="type-display-xl mt-3" style="max-width:920px;"><%= t("problem.h1") %></h2>
+    <p class="type-body-md text-body-airbnb mt-5" style="max-width:760px;"><%= t("problem.lead") %></p>
+
+    <div class="mt-14 grid grid-cols-1 md:grid-cols-3" style="gap:24px;">
+      <% %w[data_sovereignty numeric_calc regulation].each do |key| %>
+        <% c = t("problem.cards.#{key}") %>
+        <%= render CardComponent.new(
+              icon: c[:icon],
+              eyebrow: c[:eyebrow],
+              title: c[:title],
+              body: c[:body],
+              quote: c[:quote],
+              stat_value: c[:stat_value],
+              stat_label: c[:stat_label]
+            ) %>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<%# ============ 04 Solution (Dark) ============ %>
+<section id="solution" class="section-dark section-pad">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span><%= t("solution.eyebrow") %></div>
+    <h2 class="h-section mt-3" style="color:#fff; max-width:920px;"><%= t("solution.h1") %></h2>
+    <p class="lead mt-5" style="color:#a7b1c7; max-width:760px;"><%= t("solution.lead") %></p>
+
+    <blockquote class="mt-10 pl-5" style="border-left:3px solid; border-image:linear-gradient(135deg,#2563EB,#00C8C8) 1; max-width:720px;">
+      <p class="text-[18px] italic" style="color:#e6e8f0;">"<%= t("solution.callout") %>"</p>
+    </blockquote>
+
+    <%# 5-step workflow %>
+    <div class="mt-16">
+      <div class="font-mono text-[11px] mb-4" style="color:#00C8C8; letter-spacing:0.14em;">// 5-STEP WORKFLOW</div>
+      <%= render WorkflowStepsComponent.new(steps: t("workflow.steps"), tone: :dark) %>
+    </div>
+
+    <div class="mt-10">
+      <%= link_to t("site.nav.how_it_works") + " →", how_it_works_path(locale: I18n.locale),
+            class: "btn btn-ghost" %>
+    </div>
+  </div>
+</section>
+
+<%# ============ 04b Prescription (Reverse What-If 임팩트) ============ %>
+<section id="prescription" class="section-dark relative overflow-hidden" style="padding:120px 0; border-top:1px solid rgba(255,255,255,0.08);">
+  <div class="absolute inset-0 pointer-events-none" style="
+      background:
+        radial-gradient(700px 420px at 80% 20%, rgba(0,200,200,0.10), transparent 60%),
+        radial-gradient(900px 600px at 15% 90%, rgba(37,99,235,0.18), transparent 60%);
+    "></div>
+
+  <div class="wrap relative">
+    <div class="eyebrow"><span class="dot"></span><%= t("site.prescription.eyebrow") %></div>
+
+    <h2 class="h-display mt-4" style="color:#fff; max-width:980px; word-break:keep-all; line-height:1.15;">
+      <%= t("site.prescription.headline_top") %>
+      <span style="text-decoration: line-through; text-decoration-color: rgba(239,68,68,0.7); text-decoration-thickness:3px; color:#9aa3b8;">
+        <%= t("site.prescription.headline_strike") %>
+      </span><br>
+      <%= t("site.prescription.headline_bottom") %>
+      <span class="text-brand-grad"><%= t("site.prescription.headline_accent") %></span>
+    </h2>
+
+    <p class="lead mt-8" style="color:#a7b1c7; max-width:820px;">
+      <%= t("site.prescription.sub") %>
+    </p>
+
+    <%# Before / After contrast %>
+    <div class="mt-14 grid grid-cols-1 md:grid-cols-2" style="gap:24px;">
+      <%# BEFORE - 회색톤 %>
+      <div class="rounded-[16px] p-7" style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08);">
+        <div class="font-mono text-[10px]" style="color:#9aa3b8; letter-spacing:0.18em;">// TRADITIONAL</div>
+        <div class="mt-2 text-[14px] font-semibold" style="color:#cdd3e0;"><%= t("site.prescription.before_label") %></div>
+        <div class="mt-5 font-mono text-[14px] leading-relaxed" style="color:#8a94ac;">
+          <%= t("site.prescription.before_flow") %>
+        </div>
+      </div>
+
+      <%# AFTER - 그라데이션 강조 %>
+      <div class="rounded-[16px] p-7 relative" style="background:linear-gradient(135deg, rgba(37,99,235,0.18), rgba(0,200,200,0.12)); border:1px solid rgba(0,200,200,0.35); box-shadow:0 16px 40px -16px rgba(0,200,200,0.30);">
+        <div class="font-mono text-[10px]" style="color:#00C8C8; letter-spacing:0.18em;">// XIMTIER · REVERSE WHAT-IF</div>
+        <div class="mt-2 text-[14px] font-semibold" style="color:#fff;"><%= t("site.prescription.after_label") %></div>
+        <div class="mt-5 font-mono text-[14px] leading-relaxed" style="color:#e6e8f0;">
+          <%= t("site.prescription.after_flow") %>
+        </div>
+      </div>
+    </div>
+
+    <blockquote class="mt-12 pl-5" style="border-left:3px solid; border-image:linear-gradient(135deg,#2563EB,#00C8C8) 1; max-width:880px;">
+      <p class="text-[20px] font-semibold italic" style="color:#fff;">
+        "<%= t("site.prescription.conclusion") %>"
+      </p>
+    </blockquote>
+  </div>
+</section>
+
+<%# ============ 04c SimSolution — 산업별 10대 솔루션 (Canvas) ============ %>
+<section id="sim-solution" class="surface-canvas section-pad">
+  <div class="wrap">
+    <p class="type-uppercase-tag text-rausch"><%= t("site.sim_solution.eyebrow") %></p>
+    <h2 class="type-display-xl mt-3" style="max-width:920px;">
+      <%= t("site.sim_solution.title") %>
+      <span class="text-brand-grad"><%= t("site.sim_solution.title_accent") %></span>
+    </h2>
+    <p class="type-body-md text-body-airbnb mt-5" style="max-width:760px;"><%= t("site.sim_solution.lead") %></p>
+
+    <%# 5대 카테고리 카드 그리드 %>
+    <div class="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3" style="gap:20px;">
+      <% t("site.sim_solution.categories").each_with_index do |cat, ci| %>
+        <div class="card-airbnb shadow-card-hover" style="padding:24px;">
+          <div class="font-mono text-[10px] text-rausch" style="letter-spacing:0.14em;">CATEGORY <%= "%02d" % (ci + 1) %></div>
+          <div class="mt-2 type-display-sm" style="font-size:18px; font-weight:700; line-height:1.3;"><%= cat[:title] %></div>
+          <div class="mt-5 flex flex-col" style="gap:14px;">
+            <% cat[:items].each do |item| %>
+              <div class="flex items-start" style="gap:12px;">
+                <div class="font-mono text-[11px] font-bold flex-shrink-0" style="color:#00C8C8; min-width:24px;"><%= item[:num] %></div>
+                <div>
+                  <div class="text-[14px] font-semibold" style="color:#222;"><%= item[:label] %></div>
+                  <div class="mt-0.5 text-[12px]" style="color:#717171; line-height:1.5;"><%= item[:desc] %></div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <p class="mt-10 type-body-sm text-muted-airbnb italic" style="max-width:760px;">
+      ※ <%= t("site.sim_solution.footnote") %>
+    </p>
+  </div>
+</section>
+
+<%# ============ 04d Versus — 글로벌 경쟁사 비교표 (Dark) ============ %>
+<section id="versus" class="section-dark section-pad">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span><%= t("site.versus.eyebrow") %></div>
+    <h2 class="h-section mt-3" style="color:#fff; max-width:920px;">
+      <%= t("site.versus.title") %>
+      <span class="text-brand-grad"><%= t("site.versus.title_accent") %></span>
+    </h2>
+
+    <div class="mt-12 overflow-x-auto rounded-[16px]" style="border:1px solid rgba(255,255,255,0.10); background:rgba(255,255,255,0.02);">
+      <table class="w-full" style="border-collapse:collapse; min-width:760px;">
+        <thead>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.10);">
+            <% t("site.versus.headers").each_with_index do |h, i| %>
+              <th class="text-left p-4 font-mono text-[11px]" style="
+                  color:<%= i == 1 ? '#00C8C8' : '#8a94ac' %>;
+                  letter-spacing:0.14em;
+                  <%= i == 1 ? 'background:rgba(0,200,200,0.06);' : '' %>
+                "><%= h %></th>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <% t("site.versus.rows").each do |row| %>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+              <td class="p-4 text-[14px] font-semibold" style="color:#e6e8f0;"><%= row[:label] %></td>
+              <td class="p-4 text-[14px] font-bold" style="color:#fff; background:rgba(0,200,200,0.06);">
+                <span class="inline-flex items-center" style="gap:6px;">
+                  <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:linear-gradient(135deg,#2563EB,#00C8C8);"></span>
+                  <%= row[:x] %>
+                </span>
+              </td>
+              <% row[:others].each do |val| %>
+                <td class="p-4 text-[13px]" style="color:#8a94ac;"><%= val %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-8">
+      <%= link_to t("site.versus.cta"), investors_path(locale: I18n.locale),
+            class: "text-[14px] font-semibold",
+            style: "color:#00C8C8;" %>
+    </div>
+  </div>
+</section>
+
+<%# ============ 04e Architecture — 3단 지능형 아키텍처 (Canvas) ============ %>
+<section id="architecture" class="surface-canvas section-pad">
+  <div class="wrap">
+    <p class="type-uppercase-tag text-rausch"><%= t("site.architecture.eyebrow") %></p>
+    <h2 class="type-display-xl mt-3" style="max-width:920px;">
+      <%= t("site.architecture.title") %>
+      <span class="text-brand-grad"><%= t("site.architecture.title_accent") %></span>
+    </h2>
+    <p class="type-body-md text-body-airbnb mt-5" style="max-width:760px;"><%= t("site.architecture.lead") %></p>
+
+    <%# 3단 스택 — TOP → CORE → BASE %>
+    <div class="mt-14 flex flex-col" style="gap:16px; max-width:920px;">
+      <% t("site.architecture.layers").each_with_index do |layer, i| %>
+        <div class="card-airbnb shadow-card-hover" style="padding:24px 28px;">
+          <div class="grid grid-cols-1 md:grid-cols-[200px_1fr]" style="gap:20px; align-items:start;">
+            <div>
+              <div class="font-mono text-[10px] text-rausch" style="letter-spacing:0.14em;"><%= layer[:tier] %></div>
+              <div class="mt-2 type-display-sm" style="font-size:20px; font-weight:700; line-height:1.2; color:#222;"><%= layer[:name] %></div>
+              <div class="mt-1 text-[13px] font-semibold" style="color:#717171;"><%= layer[:subtitle] %></div>
+            </div>
+            <p class="type-body-sm text-body-airbnb" style="line-height:1.6;"><%= layer[:desc] %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <p class="mt-10 type-body-sm text-muted-airbnb italic" style="max-width:760px;">
+      ※ <%= t("site.architecture.footnote") %>
+    </p>
+  </div>
+</section>
+
+<%# ============ 05 Market indicators (Canvas) ============ %>
+<section class="surface-soft section-pad-compact">
+  <div class="wrap">
+    <p class="type-uppercase-tag text-rausch"><%= t("market.eyebrow") %></p>
+    <div class="grid grid-cols-1 md:grid-cols-[1fr_1fr] mt-3" style="gap:48px; align-items:end;">
+      <h2 class="type-display-xl" style="max-width:560px;"><%= t("market.h1") %></h2>
+      <p class="type-body-md text-body-airbnb"><%= t("market.lead") %></p>
+    </div>
+
+    <div class="mt-14 grid grid-cols-2 md:grid-cols-5" data-controller="count-up" style="gap:16px;">
+      <% t("market.indicators").each do |ind| %>
+        <div class="card-airbnb shadow-card-hover" style="padding:20px;">
+          <div class="type-display-lg text-rausch" data-count-up-target="value" style="font-size:28px; line-height:1;"><%= ind[:value] %></div>
+          <div class="mt-2 type-body-sm text-muted-airbnb"><%= ind[:label] %></div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="mt-6 text-center">
+      <%= link_to (I18n.locale == :ko ? "이 숫자들의 근거 보기 →" : "How these numbers are derived →"),
+            market_path(locale: I18n.locale),
+            class: "type-body-sm font-semibold text-rausch hover:underline" %>
+    </div>
+  </div>
+</section>
+
+<%# ============ 06 Moat (Canvas) ============ %>
+<section id="moat" class="surface-canvas section-pad">
+  <div class="wrap">
+    <p class="type-uppercase-tag text-rausch"><%= t("moat.eyebrow") %></p>
+    <div class="grid grid-cols-1 md:grid-cols-[1fr_1fr] mt-3" style="gap:48px; align-items:end;">
+      <h2 class="type-display-xl" style="max-width:560px;"><%= t("moat.h1") %></h2>
+      <p class="type-body-md text-body-airbnb"><%= t("moat.lead") %></p>
+    </div>
+
+    <div class="mt-16">
+      <%# MoatTriangleComponent 색 재맵핑은 ISS-013에서 처리 — 컨테이너만 캔버스로 %>
+      <%= render MoatTriangleComponent.new(
+            sovereignty: t("moat.triangle.points.sovereignty"),
+            regulated:   t("moat.triangle.points.regulated"),
+            reverse:     t("moat.triangle.points.reverse")
+          ) %>
+    </div>
+
+    <blockquote class="mt-12 pl-5 border-l-4" style="border-color: var(--color-rausch); max-width:760px;">
+      <p class="type-body-md text-body-airbnb italic"><%= t("moat.callout") %></p>
+    </blockquote>
+  </div>
+</section>
+
+<%# ============ 06b Roadmap — 5단계 최적화 로드맵 (Dark) ============ %>
+<section id="roadmap" class="section-dark section-pad">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span><%= t("site.roadmap.eyebrow") %></div>
+    <h2 class="h-section mt-3" style="color:#fff; max-width:920px;">
+      <%= t("site.roadmap.title") %>
+      <span class="text-brand-grad"><%= t("site.roadmap.title_accent") %></span>
+    </h2>
+    <p class="lead mt-5" style="color:#a7b1c7; max-width:760px;"><%= t("site.roadmap.lead") %></p>
+
+    <%# 5단계 타임라인 카드 %>
+    <div class="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5" style="gap:16px;">
+      <% t("site.roadmap.phases").each do |ph| %>
+        <div class="rounded-[16px] p-6" style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08);">
+          <div class="font-mono text-[22px] font-bold" style="color:#00C8C8;"><%= ph[:num] %></div>
+          <div class="mt-2 font-mono text-[11px]" style="color:#8a94ac; letter-spacing:0.10em;"><%= ph[:period] %></div>
+          <div class="mt-4 text-[16px] font-semibold" style="color:#fff;"><%= ph[:title] %></div>
+          <div class="mt-3 text-[13px]" style="color:#a7b1c7; line-height:1.6;"><%= ph[:desc] %></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<%# ============ 07 CTA strip (Deep Navy) ============ %>
+<section id="cta" class="section-dark section-pad-compact relative overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none" style="
+      background: radial-gradient(700px 400px at 50% 50%, rgba(37,99,235,0.22), transparent 60%);
+    "></div>
+  <div class="wrap relative text-center">
+    <h2 class="h-section" style="color:#fff; max-width:760px; margin:0 auto;">
+      <%= I18n.locale == :ko ? "비전문가도 5분 안에 의사결정을 끝냅니다." : "Even non-experts finish a decision in 5 minutes." %>
+    </h2>
+    <div class="mt-8 flex justify-center flex-wrap" style="gap:12px;">
+      <%= link_to t("site.hero.cta_demo"), demo_path(locale: I18n.locale),    class: "btn btn-grad" %>
+      <%= link_to t("site.nav.contact"),   contact_path(locale: I18n.locale), class: "btn btn-ghost" %>
+    </div>
+  </div>
+</section>
