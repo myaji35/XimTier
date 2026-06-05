@@ -1,0 +1,211 @@
+<% content_for :title, "메뉴 구성 개요 — XimTier" %>
+
+<div class="v3-root">
+<style>
+.v3-root {
+  --c-rausch:   #ff385c;
+  --c-canvas:   #ffffff;
+  --c-ink:      #222222;
+  --c-body:     #3f3f3f;
+  --c-muted:    #6a6a6a;
+  --c-hairline: #dddddd;
+  --c-navy:     #0a1124;
+  --c-navy2:    #16325c;
+  --c-teal:     #00c8c8;
+  --c-blue:     #2563eb;
+  --grad-teal:  linear-gradient(135deg, #2563eb, #00c8c8);
+  --font-sans:  'Airbnb Cereal VF', Circular, Inter, system-ui, 'Apple SD Gothic Neo', sans-serif;
+  --font-mono:  'JetBrains Mono', ui-monospace, monospace;
+  font-family: var(--font-sans);
+  color: var(--c-body);
+}
+.v3-wrap { max-width:1160px; margin:0 auto; padding:0 24px; }
+.v3-eyebrow { font-family:var(--font-mono); font-size:11px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:var(--c-teal); margin-bottom:16px; }
+.v3-hero { background:var(--c-navy); padding:100px 0 72px; position:relative; overflow:hidden; }
+.v3-hero::before { content:''; position:absolute; inset:0; background: radial-gradient(800px 500px at 75% 20%, rgba(0,200,200,0.12), transparent 60%), radial-gradient(600px 400px at 10% 85%, rgba(37,99,235,0.16), transparent 60%); pointer-events:none; }
+.v3-hero__inner { position:relative; }
+.v3-hero__headline { font-size:clamp(28px,4vw,50px); font-weight:700; line-height:1.22; color:#fff; word-break:keep-all; margin:0 0 20px; max-width:700px; }
+.v3-hero__sub { font-size:17px; line-height:1.7; color:#a7b1c7; max-width:560px; margin:0 0 36px; word-break:keep-all; }
+.v3-grad-text { background:var(--grad-teal); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.v3-section { padding:88px 0; }
+.v3-section--alt { background:#f7f8fa; }
+.v3-section--dark { background:var(--c-navy); color:#fff; }
+.v3-section__eyebrow { font-family:var(--font-mono); font-size:11px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:var(--c-teal); margin-bottom:14px; }
+.v3-section__title { font-size:clamp(22px,3vw,36px); font-weight:700; color:var(--c-ink); line-height:1.25; margin:0 0 14px; word-break:keep-all; }
+.v3-section--dark .v3-section__title { color:#fff; }
+.v3-section__lead { font-size:16px; line-height:1.75; color:var(--c-muted); max-width:620px; word-break:keep-all; }
+.v3-section--dark .v3-section__lead { color:#a7b1c7; }
+/* 6-step grid */
+.v3-steps { display:grid; grid-template-columns:repeat(6,1fr); gap:12px; margin-top:44px; }
+@media(max-width:1040px){ .v3-steps { grid-template-columns:repeat(3,1fr); } }
+@media(max-width:600px){ .v3-steps { grid-template-columns:repeat(2,1fr); } }
+.v3-step { background:rgba(255,255,255,0.045); border:1px solid rgba(255,255,255,0.09); border-radius:14px; padding:20px 16px; }
+.v3-step__num { font-family:var(--font-mono); font-size:11px; font-weight:700; color:var(--c-teal); margin-bottom:10px; }
+.v3-step__title { font-size:13px; font-weight:700; color:#fff; line-height:1.4; margin-bottom:6px; word-break:keep-all; }
+.v3-step__desc { font-size:11.5px; color:#7a8aab; line-height:1.5; word-break:keep-all; }
+/* arch stack */
+.v3-arch-stack { display:flex; flex-direction:column; gap:4px; margin-top:44px; max-width:780px; margin-left:auto; margin-right:auto; }
+.v3-arch-layer { border-radius:14px; padding:28px 32px; }
+.v3-arch-layer--top { background:linear-gradient(135deg,rgba(37,99,235,0.18),rgba(0,200,200,0.12)); border:1px solid rgba(0,200,200,0.28); }
+.v3-arch-layer--mid { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); }
+.v3-arch-layer--base { background:rgba(37,99,235,0.12); border:1px solid rgba(37,99,235,0.28); }
+.v3-arch-label { font-family:var(--font-mono); font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--c-teal); margin-bottom:8px; }
+.v3-arch-name { font-size:15px; font-weight:700; color:#fff; margin-bottom:4px; }
+.v3-arch-desc { font-size:13px; color:#7a8aab; word-break:keep-all; }
+/* roadmap */
+.v3-roadmap { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-top:44px; }
+@media(max-width:900px){ .v3-roadmap { grid-template-columns:repeat(3,1fr); } }
+@media(max-width:560px){ .v3-roadmap { grid-template-columns:1fr 1fr; } }
+.v3-roadmap-item { background:rgba(255,255,255,0.045); border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:18px 16px; }
+.v3-roadmap-item--active { border-color:rgba(0,200,200,0.4); background:rgba(0,200,200,0.08); }
+.v3-roadmap-year { font-family:var(--font-mono); font-size:11px; font-weight:700; color:var(--c-teal); margin-bottom:8px; }
+.v3-roadmap-label { font-size:12px; font-weight:700; color:#fff; margin-bottom:4px; word-break:keep-all; }
+.v3-roadmap-desc { font-size:11px; color:#7a8aab; line-height:1.5; word-break:keep-all; }
+/* slide image */
+.v3-slide-img { border-radius:16px; overflow:hidden; box-shadow:0 20px 60px -10px rgba(0,0,0,0.35); margin-top:40px; }
+.v3-slide-img img { width:100%; height:auto; display:block; }
+/* back-cta bar */
+.v3-bar { padding:40px 0; border-top:1px solid var(--c-hairline); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; }
+.v3-btn-primary { display:inline-block; padding:14px 28px; background:var(--c-rausch); color:#fff; font-size:14px; font-weight:700; border-radius:10px; text-decoration:none; transition:opacity 0.15s,transform 0.15s; box-shadow:0 8px 24px -4px rgba(255,56,92,0.4); }
+.v3-btn-primary:hover { opacity:0.88; transform:translateY(-1px); }
+.v3-back { font-size:14px; color:var(--c-muted); text-decoration:none; }
+.v3-back:hover { color:var(--c-ink); }
+</style>
+
+<!-- Hero -->
+<section class="v3-hero">
+  <div class="v3-wrap">
+    <div class="v3-hero__inner">
+      <div class="v3-eyebrow">Chapter 01</div>
+      <h1 class="v3-hero__headline">메뉴 구성 개요</h1>
+      <p class="v3-hero__sub">XimTier의 핵심 기술력과 전체 플랫폼 아키텍처를 한눈에 파악합니다. 데이터 수집부터 AI 최적화까지 6단계 워크플로우와 3단 구조를 설명합니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 6단계 핵심 기술력 -->
+<section class="v3-section v3-section--dark">
+  <div class="v3-wrap">
+    <div class="v3-section__eyebrow">Core Technology</div>
+    <h2 class="v3-section__title">XimTier 핵심 기술력 6단계</h2>
+    <p class="v3-section__lead">데이터 준비부터 AI 자동화 보고서까지, 6단계 파이프라인으로 완전 자동화합니다.</p>
+    <div class="v3-steps">
+      <div class="v3-step">
+        <div class="v3-step__num">STEP 01</div>
+        <div class="v3-step__title">데이터 수집 및 정제</div>
+        <div class="v3-step__desc">다양한 소스의 데이터를 수집하고 AI 기반으로 정제·표준화합니다.</div>
+      </div>
+      <div class="v3-step">
+        <div class="v3-step__num">STEP 02</div>
+        <div class="v3-step__title">WhatDataAI 탐색 분석</div>
+        <div class="v3-step__desc">변수 분포·결측·이상치를 자동 탐색하고 핵심 인사이트를 도출합니다.</div>
+      </div>
+      <div class="v3-step">
+        <div class="v3-step__num">STEP 03</div>
+        <div class="v3-step__title">알고리즘 경쟁 검증</div>
+        <div class="v3-step__desc">100+ 알고리즘이 동시 경쟁하여 최적 모델을 자동 선정합니다.</div>
+      </div>
+      <div class="v3-step">
+        <div class="v3-step__num">STEP 04</div>
+        <div class="v3-step__title">XAI 변수 이해</div>
+        <div class="v3-step__desc">SHAP·LIME 기반 설명 가능 AI로 의사결정 근거를 명확히 합니다.</div>
+      </div>
+      <div class="v3-step">
+        <div class="v3-step__num">STEP 05</div>
+        <div class="v3-step__title">What-If 시뮬레이션</div>
+        <div class="v3-step__desc">예측·시뮬레이션과 Reverse What-If로 목표 달성 조건을 역산합니다.</div>
+      </div>
+      <div class="v3-step">
+        <div class="v3-step__num">STEP 06</div>
+        <div class="v3-step__title">AI 자동화 보고서</div>
+        <div class="v3-step__desc">Xim4Reporting이 수시 성능평가·What-If 결과를 자동으로 보고서화합니다.</div>
+      </div>
+    </div>
+    <div class="v3-slide-img">
+      <img src="/deck-slides/slide-05.jpg" alt="XimTier 핵심 기술력 6단계">
+    </div>
+  </div>
+</section>
+
+<!-- 3단 아키텍처 -->
+<section class="v3-section v3-section--dark" style="padding-top:0;">
+  <div class="v3-wrap">
+    <div class="v3-section__eyebrow">Architecture</div>
+    <h2 class="v3-section__title">3단 플랫폼 아키텍처</h2>
+    <p class="v3-section__lead">TOP XimSolution — CORE WhatDataAI — BASE 통계·분석 엔진으로 구성된 계층 구조로 안정성과 확장성을 동시에 확보합니다.</p>
+    <div class="v3-arch-stack">
+      <div class="v3-arch-layer v3-arch-layer--top">
+        <div class="v3-arch-label">TOP</div>
+        <div class="v3-arch-name">XimSolution</div>
+        <div class="v3-arch-desc">산업별 AI One-Stop 솔루션 레이어 — Meeting·설문·SNS·상권·설비 등 10종 솔루션 제공</div>
+      </div>
+      <div class="v3-arch-layer v3-arch-layer--mid">
+        <div class="v3-arch-label">CORE</div>
+        <div class="v3-arch-name">WhatDataAI</div>
+        <div class="v3-arch-desc">데이터 탐색·AI 탐색 차트·텍스트 분석·주제도 분석·AI 종합 인사이트 리포트 등 8가지 탐색 도구</div>
+      </div>
+      <div class="v3-arch-layer v3-arch-layer--base">
+        <div class="v3-arch-label">BASE</div>
+        <div class="v3-arch-name">통계·분석 엔진</div>
+        <div class="v3-arch-desc">회귀 32개·판별 17개·다중분류 17개·시계열 61개 — 127개 알고리즘 경쟁 최적화 엔진</div>
+      </div>
+    </div>
+    <div class="v3-slide-img" style="margin-top:32px;">
+      <img src="/deck-slides/slide-10.jpg" alt="3단 플랫폼 아키텍처">
+    </div>
+  </div>
+</section>
+
+<!-- 5단계 로드맵 -->
+<section class="v3-section v3-section--dark" style="padding-top:0;">
+  <div class="v3-wrap">
+    <div class="v3-section__eyebrow">Roadmap</div>
+    <h2 class="v3-section__title">5단계 최적화 로드맵</h2>
+    <p class="v3-section__lead">2024년 기반 구축부터 2030년 이후 바이오 혁신까지, 단계적으로 AI 분석 역량을 확장합니다.</p>
+    <div class="v3-roadmap">
+      <div class="v3-roadmap-item v3-roadmap-item--active">
+        <div class="v3-roadmap-year">2024</div>
+        <div class="v3-roadmap-label">기반 구축</div>
+        <div class="v3-roadmap-desc">핵심 엔진 완성 및 플랫폼 안정화</div>
+      </div>
+      <div class="v3-roadmap-item">
+        <div class="v3-roadmap-year">2025–26</div>
+        <div class="v3-roadmap-label">솔루션 확장</div>
+        <div class="v3-roadmap-desc">산업별 10종 솔루션 고도화 및 상용화</div>
+      </div>
+      <div class="v3-roadmap-item">
+        <div class="v3-roadmap-year">2027</div>
+        <div class="v3-roadmap-label">생태계 연동</div>
+        <div class="v3-roadmap-desc">외부 데이터·API 연동 및 파트너 확장</div>
+      </div>
+      <div class="v3-roadmap-item">
+        <div class="v3-roadmap-year">2028–29</div>
+        <div class="v3-roadmap-label">글로벌 진출</div>
+        <div class="v3-roadmap-desc">해외 시장 진입 및 다국어 플랫폼 운영</div>
+      </div>
+      <div class="v3-roadmap-item">
+        <div class="v3-roadmap-year">2030+</div>
+        <div class="v3-roadmap-label">바이오 혁신</div>
+        <div class="v3-roadmap-desc">바이오·헬스케어 도메인 AI 분석 선도</div>
+      </div>
+    </div>
+    <div class="v3-slide-img" style="margin-top:32px;">
+      <img src="/deck-slides/slide-17.jpg" alt="5단계 최적화 로드맵">
+    </div>
+    <div class="v3-slide-img" style="margin-top:16px;">
+      <img src="/deck-slides/slide-04.jpg" alt="메뉴 구성 개요">
+    </div>
+  </div>
+</section>
+
+<!-- Bottom CTA -->
+<section class="v3-section" style="padding:60px 0;">
+  <div class="v3-wrap">
+    <div class="v3-bar">
+      <%= link_to "← 홈으로", home_path(locale: I18n.locale), class: "v3-back" %>
+      <%= link_to "데모 신청", demo_path(locale: I18n.locale), class: "v3-btn-primary" %>
+    </div>
+  </div>
+</section>
+
+</div>

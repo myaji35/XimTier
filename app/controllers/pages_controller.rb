@@ -29,4 +29,10 @@ class PagesController < ApplicationController
   def terms; end
   def contact; end
   def demo; end
+
+  def v3_overview; end
+  def v3_data; end
+  def v3_analysis; end
+  def v3_solutions; end
+  def v3_usage; end
 end

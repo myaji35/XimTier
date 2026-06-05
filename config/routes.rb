@@ -47,6 +47,13 @@ Rails.application.routes.draw do
     get  "/demo", to: "demo_requests#new",    as: :demo
     post "/demo", to: "demo_requests#create"
 
+    # v3 Chapter pages
+    get "/v3/overview",  to: "pages#v3_overview",  as: :v3_overview
+    get "/v3/data",      to: "pages#v3_data",      as: :v3_data
+    get "/v3/analysis",  to: "pages#v3_analysis",  as: :v3_analysis
+    get "/v3/solutions", to: "pages#v3_solutions", as: :v3_solutions
+    get "/v3/usage",     to: "pages#v3_usage",     as: :v3_usage
+
     # 사용자 대시보드 (Devise 로그인 필요)
     get "/dashboard", to: "dashboards#show", as: :dashboard
     resources :demo_requests, only: [], path: "demo-requests" do
