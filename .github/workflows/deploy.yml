@@ -104,7 +104,7 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         run: |
           mkdir -p .kamal
-          cat > .kamal/secrets <<'SECRETS'
+          cat > .kamal/secrets <<SECRETS
           RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
           KAMAL_REGISTRY_PASSWORD=${KAMAL_REGISTRY_PASSWORD}
           SMTP_USERNAME=${SMTP_USERNAME}
