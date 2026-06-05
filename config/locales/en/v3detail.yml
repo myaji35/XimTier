@@ -1,0 +1,330 @@
+en:
+  v3detail_ui:
+    capabilities: "Capabilities"
+    result: "Result"
+    evidence_eyebrow: "PPTX Evidence"
+    evidence_title: "Source Evidence"
+    evidence_note: "Source — XimTier menu PPTX · Slide %{slide}"
+    slide_alt: "%{title} original slide"
+    cta_title: "See it for yourself"
+    cta_demo: "Request a Demo"
+    back_to: "Back to %{chapter}"
+  v3detail:
+    # ───────────────────────── Chapter 02 · Data Exploration (8 features) ─────────────────────────
+    data_explore:
+      chapter: "02 Data Exploration"
+      slide: "06 · 23"
+      back_path: "data"
+      eyebrow: "01 · Data Exploration"
+      title: "Data Exploration"
+      summary: "Automatically surfaces key fields, per-field descriptive statistics, technical statistics, and a correlation heatmap from loaded data → one-stop analysis of data structure and field relationships."
+      stats:
+        - { value: "500", unit: "rows", label: "Sample dataset rows" }
+        - { value: "26", unit: "cols", label: "Analysis fields" }
+        - { value: "0.47", unit: "MB", label: "Data size" }
+        - { value: "0", unit: "", label: "Missing values" }
+      blocks:
+        - { head: "Dataset Overview", body: "Summarizes rows, columns, missing values, and memory usage on load, plus per-column data type, missing ratio, and unique count." }
+        - { head: "Descriptive Statistics", body: "Auto-computes mean, std, min, max, and quartiles across all fields, downloadable as CSV." }
+        - { head: "Categorical Statistics", body: "Provides group-wise frequency and composition for categorical variables." }
+        - { head: "Correlation Analysis", body: "Generates a correlation heatmap across numeric fields to reveal relationships at a glance." }
+      result: "One-stop analysis of data structure and relationships"
+
+    whatdataai:
+      chapter: "02 Data Exploration"
+      slide: "06 · 24"
+      back_path: "data"
+      eyebrow: "02 · WhatDataAI Analysis"
+      title: "WhatDataAI Analysis"
+      summary: "Analyzes data fields to auto-recommend applicable AI algorithms (regression, discriminant, multi-class, time-series) and usable Y/X variables → tells you what you can do with your data and which data matters most."
+      stats:
+        - { value: "62", unit: "", label: "Regression-ready Y variables" }
+        - { value: "62", unit: "", label: "Time-series-ready Y variables" }
+        - { value: "4", unit: "", label: "Analysis families" }
+      blocks:
+        - { head: "Y-variable Performance", body: "Pre-computes predictive performance per candidate Y variable across regression / discriminant / multi-class / time-series." }
+        - { head: "Algorithm Applicability", body: "Compares usable Y-variable counts per analysis family in a bar chart." }
+        - { head: "Combined Results", body: "Summarizes applicability across the four families and presents a variable relationship graph." }
+        - { head: "Recommendations", body: "Suggests optimization targets, noise-variable removal, and key X-variable candidates." }
+      result: "New business opportunities · cost reduction · revenue creation"
+
+    address_xy:
+      chapter: "02 Data Exploration"
+      slide: "06 · 25"
+      back_path: "data"
+      eyebrow: "03 · Address XY Refinement"
+      title: "Address XY Refinement"
+      summary: "Refines address fields using the Kakao API and an internal learned-address base to parse latitude/longitude and standard administrative regions → cuts preprocessing time for thematic maps and charts."
+      stats:
+        - { value: "500", unit: "", label: "Total records" }
+        - { value: "408", unit: "", label: "Refinable records" }
+        - { value: "92", unit: "", label: "API calls required" }
+      blocks:
+        - { head: "Kakao REST API", body: "Converts addresses to coordinates after registering a Kakao Map API key; an internal address dictionary minimizes API calls." }
+        - { head: "Standard Region Parsing", body: "Decomposes addresses into standard administrative names (province, city/county, dong) with auto-generated geocoded columns." }
+        - { head: "Conversion Tracking", body: "Shows 408 refinable and 92 API-required out of 500 records to predict conversion cost up front." }
+      result: "One-stop analysis foundation — reduced preprocessing time"
+
+    explore_chart:
+      chapter: "02 Data Exploration"
+      slide: "06 · 26 · 27"
+      back_path: "data"
+      eyebrow: "04 · AI Exploration Charts"
+      title: "AI Exploration Charts"
+      summary: "Individual charts support ~24 types (basic, distribution/statistics, relationship, advanced, word cloud). Automatic charting generates 22 types from X/Y/Z axis variable inputs."
+      stats:
+        - { value: "24", unit: "", label: "Individual charts" }
+        - { value: "22", unit: "", label: "Automatic charts" }
+        - { value: "3", unit: "axes", label: "X · Y · Z variables" }
+      blocks:
+        - { head: "Individual Charts (24)", body: "Basic (bar, line, area, pie, donut), distribution/statistics (histogram, box, violin, QQ), relationship (scatter, scatter matrix, heatmap), advanced (3D scatter, radar, treemap)." }
+        - { head: "Automatic Charts (22)", body: "Set X/Y/Z axes, aggregation, binning, and outlier handling to auto-generate charts by category." }
+        - { head: "Faster Chart Building", body: "Auto-guides optimal chart composition for the data, saving both ideation and production time." }
+      result: "Easy visualization for reports from your data"
+
+    text_explore:
+      chapter: "02 Data Exploration"
+      slide: "06 · 28"
+      back_path: "data"
+      eyebrow: "05 · AI Text Exploration"
+      title: "AI Text Exploration"
+      summary: "Supports table word clouds and unstructured-document word clouds → improves understanding of documents and fields → shortens analysis time and surfaces insights."
+      stats:
+        - { value: "2", unit: "types", label: "Table · unstructured word clouds" }
+        - { value: "PDF·DOCX·PPTX·Image", unit: "", label: "Supported inputs" }
+      blocks:
+        - { head: "Table Word Cloud", body: "Generates frequency-based word clouds from text fields to grasp field contents intuitively." }
+        - { head: "Unstructured Document Word Cloud", body: "Upload PDF/Word/PowerPoint/image or paste text → morpheme analysis and stopword editing → word cloud." }
+        - { head: "Relationship Graph", body: "Visualizes keyword relationships extracted from text as a network graph." }
+      result: "Shorter analysis time and insight discovery"
+
+    thematic_map:
+      chapter: "02 Data Exploration"
+      slide: "06 · 29"
+      back_path: "data"
+      eyebrow: "06 · Thematic Map Analysis"
+      title: "Thematic Map Analysis"
+      summary: "Auto-loads domestic and global maps from your data and reveals geographic distribution → spatial analysis for use cases such as balanced regional development."
+      stats:
+        - { value: "5", unit: "", label: "Administrative boundaries" }
+        - { value: "7", unit: "", label: "Grid/hex boundaries (100m–10km)" }
+        - { value: "4", unit: "types", label: "Point · grid/hex · boundary · integrated" }
+      blocks:
+        - { head: "Base Maps", body: "VWorld maps (base, satellite, hybrid) for Korea; OpenStreetMap for overseas." }
+        - { head: "Standard Boundaries", body: "5 administrative boundaries + 7 grid/hex boundaries (100m, 250m, 500m, 1km, 2km, 5km, 10km)." }
+        - { head: "Map Types", body: "Point (mark, bubble, heatmap, marker cluster), grid/hex, administrative-area (bar, pie, violin, treemap, layer, polar, density, choropleth), integrated." }
+      result: "Spatial analysis for balanced regional development"
+
+    insight_report:
+      chapter: "02 Data Exploration"
+      slide: "06 · 30"
+      back_path: "data"
+      eyebrow: "07 · AI Insight Report"
+      title: "AI Insight Report"
+      summary: "Ask in natural language over a knowledge graph and GPT recommends charts, maps, implications, and policy suggestions → auto-generates a combined report including What-if / Reverse What-if analysis."
+      stats:
+        - { value: "No", unit: "", label: "Hallucination" }
+        - { value: "Graph", unit: "based", label: "Decision intelligence AI" }
+      blocks:
+        - { head: "Natural-Language Query", body: "e.g., \"Analyze variables correlated with quarantine complaints in Gimhae, identify monthly and spatial patterns, and propose ways to cut complaints by 50%.\"" }
+        - { head: "GPT Auto Report", body: "Auto-generates GPT analysis charts, spatial materials, and a results report combining charts, maps, statistics, What-if and Reverse What-if." }
+        - { head: "Data-Grounded, No Hallucination", body: "Top-tier auto charts and composite maps, LLM-driven policy derivation — all grounded in data to prevent hallucination." }
+      result: "Evidence-based administrative support (data-grounded LLM)"
+
+    target_yx:
+      chapter: "02 Data Exploration"
+      slide: "06 · 31"
+      back_path: "data"
+      eyebrow: "08 · AI Target YX Optimization"
+      title: "AI Target YX Optimization"
+      summary: "Auto-selects the best algorithm for Y and picks improvement-target groups → supports What-if and Reverse What-if (auto-recommends optimal X combinations for a target Y; predicts Y change from X change)."
+      stats:
+        - { value: "60", unit: "", label: "Competing algorithms" }
+        - { value: "Bottom 20%", unit: "", label: "Improvement-target group" }
+        - { value: "Top 20%", unit: "", label: "Benchmark group" }
+      blocks:
+        - { head: "Best-Algorithm Selection", body: "Auto-selects the best algorithm for the Y variable from ~60 competing algorithms." }
+        - { head: "Target Group Selection", body: "Derives increase/decrease plans for specific records (city, district, store, factory, person, machine) by overall average, bottom 20%, top 20%." }
+        - { head: "What-if Analysis", body: "Predicts Y from X change; simulates Y when controllable X variables are adjusted." }
+        - { head: "Reverse What-if Analysis", body: "Sets a target Y and reverse-solves the optimal X combination, with an AI summary (GPT report)." }
+      result: "Risk and performance optimization across cities, facilities, sales, failures, and disasters"
+
+    # ───────────────────────── Chapter 01 · Overview (Architecture 3 layers) ─────────────────────────
+    arch_top:
+      chapter: "01 Overview"
+      slide: "10"
+      back_path: "overview"
+      eyebrow: "TOP LAYER"
+      title: "XimSolution"
+      summary: "Industry-specific SaaS solutions ready to deploy — packaged AI decision solutions for public, manufacturing, retail, healthcare, marketing, and education."
+      stats:
+        - { value: "10", unit: "", label: "Industry solutions" }
+        - { value: "6", unit: "", label: "Public·Mfg·Retail·Health·Mktg·Edu" }
+      blocks:
+        - { head: "Industry Packages", body: "Pre-built for smart city/public, manufacturing/predictive maintenance, retail/district optimization, marketing/SNS/survey, healthcare/education/meeting." }
+        - { head: "Instant SaaS", body: "Pre-configured AI decision packages usable immediately without separate setup." }
+      result: "Industry scalability and fast deployment"
+
+    arch_core:
+      chapter: "01 Overview"
+      slide: "10"
+      back_path: "overview"
+      eyebrow: "CORE LAYER"
+      title: "WhatDataAI"
+      summary: "Decision engine with 60 algorithms and XAI — auto-selects the best model for the data and reverse-solves the optimal X for a target Y."
+      stats:
+        - { value: "60", unit: "", label: "Auto-competing algorithms" }
+        - { value: "XAI", unit: "", label: "Explainable AI modeling" }
+      blocks:
+        - { head: "60 Auto-Competing Algorithms", body: "An AI engine that auto-selects the optimal model for the data's characteristics." }
+        - { head: "XAI Modeling", body: "Explainable AI presents variable influence and model rationale transparently, even for non-experts." }
+        - { head: "Reverse What-if Optimization", body: "The core differentiator that reverse-solves the optimal X combination for a target Y." }
+      result: "Goal-driven decisions — What-if · Reverse What-if"
+
+    arch_base:
+      chapter: "01 Overview"
+      slide: "10"
+      back_path: "overview"
+      eyebrow: "BASE LAYER"
+      title: "Statistics & Analytics Engine"
+      summary: "Full support from data exploration to advanced analysis — a robust, standardized data infrastructure for integrating, exploring, visualizing, and analyzing structured and unstructured data."
+      stats:
+        - { value: "Structured+Unstructured", unit: "", label: "Data integration" }
+      blocks:
+        - { head: "Exploration & Cleaning", body: "Standardized infrastructure for collection, cleaning, coordinate parsing, and base statistics." }
+        - { head: "Statistics & Visualization", body: "Base and technical statistics, correlation analysis, and chart visualization foundation." }
+        - { head: "Report Automation", body: "Foundation for auto-generating reports from spatial and text analysis." }
+      result: "Full support from exploration to advanced analysis"
+
+    # ───────────────────────── Chapter 03 · Analysis Pipeline (5 steps) ─────────────────────────
+    pipe_var:
+      chapter: "03 AI Statistical Analysis"
+      slide: "34"
+      back_path: "analysis"
+      eyebrow: "STEP 01"
+      title: "Variable Selection & Derived Data"
+      summary: "Selects Y and X variables and derives time-Lag and Log derived variables for forecast stabilization."
+      stats: []
+      blocks:
+        - { head: "Variable Selection", body: "Selects Y and X variables for analysis." }
+        - { head: "Time-Lag Derivation", body: "Sets date-based time-Lag derived variables to stabilize time-series forecasts." }
+        - { head: "Log Derivation", body: "Derives and confirms Log variables for forecast stabilization." }
+      result: "Variable confirmation and derived data"
+
+    pipe_xai:
+      chapter: "03 AI Statistical Analysis"
+      slide: "34"
+      back_path: "analysis"
+      eyebrow: "STEP 02"
+      title: "Variable Understanding & XAI Confirmation"
+      summary: "Derives explainable, high-performance X-variable combinations for the Y variable via statistical importance, distribution-bin random tests, and tree-based validity analysis."
+      stats: []
+      blocks:
+        - { head: "Explainable X Combination", body: "Derives X combinations that are both explainable and performant for the Y variable." }
+        - { head: "Statistical Importance", body: "Evaluates importance via distribution-bin random testing." }
+        - { head: "Tree-Based Validity", body: "Confirms the visual/semantic validity of variable derivation with tree-based analysis." }
+      result: "Reduced analysis variable set"
+
+    pipe_compete:
+      chapter: "03 AI Statistical Analysis"
+      slide: "34"
+      back_path: "analysis"
+      eyebrow: "STEP 03"
+      title: "Algorithm Competition & Real-Time Validation"
+      summary: "Selects the best algorithm for the data via competition among ~60 algorithms → tests performance over real-time horizons and derives optimal training periods."
+      stats:
+        - { value: "60", unit: "+", label: "Competing AI algorithms" }
+      blocks:
+        - { head: "Algorithm Competition", body: "Selects the best algorithm for the data via competition among ~60 algorithms." }
+        - { head: "Real-Time Validation", body: "Tests algorithm performance over real-time horizons and derives optimal training periods." }
+      result: "Model optimization (algorithm, training period, validation)"
+
+    pipe_optimize:
+      chapter: "03 AI Statistical Analysis"
+      slide: "34"
+      back_path: "analysis"
+      eyebrow: "STEP 04"
+      title: "Prediction & Simulation-Based X·Y Optimization"
+      summary: "Predicts Y from X change (What-if) → recommends the optimal X combination to move current Y to target Y (Reverse What-if / Goal-Seeking X Optimization) — ROI optimization."
+      stats: []
+      blocks:
+        - { head: "What-if Analysis", body: "Predicts Y from X change." }
+        - { head: "Reverse What-if Analysis", body: "Recommends the optimal X combination to reach a target Y (Goal-Seeking X Optimization)." }
+        - { head: "ROI Optimization", body: "Optimizes the variable combination from an ROI perspective to prioritize execution." }
+      result: "Real-time X & Y variable optimization"
+
+    pipe_qa:
+      chapter: "03 AI Statistical Analysis"
+      slide: "34"
+      back_path: "analysis"
+      eyebrow: "STEP 05"
+      title: "AI Q&A (Knowledge Graph & GraphRAG)"
+      summary: "Knowledge Graph & GraphRAG support → lets ChatGPT analyze pipeline results comprehensively, integrating multiple results to compare with prior analyses and suggest improvements."
+      stats: []
+      blocks:
+        - { head: "Knowledge Graph Q&A", body: "Structures analysis results into a knowledge graph to answer natural-language questions." }
+        - { head: "GraphRAG Integration", body: "Integrates multiple results to surface differences and improvements versus prior analyses." }
+      result: "Integrated insight for decision-making"
+
+    # ───────────────────────── Chapter 05 · Business Application ─────────────────────────
+    ax_strength:
+      chapter: "05 Business Application"
+      slide: "72"
+      back_path: "usage"
+      eyebrow: "01 · AX Enablement"
+      title: "AX Enablement"
+      summary: "AX enablement: practical decision innovation with XimTier — breaks the analysis barrier and connects data to action through an AI-simulation 'decision support platform.'"
+      stats: []
+      blocks:
+        - { head: "Decisions Stuck Behind Analysis", body: "Solves the reality of high technical barriers and 'reports done, but what next?' paralysis." }
+        - { head: "Decision-Centered Capability", body: "Auto analysis reports remove technical barriers; auto AI reporting, What-if simulation, and LLM-linked evidence reports." }
+        - { head: "Synergy of Knowledge & Decision", body: "Combines past search (LLM) with future prediction (XimTier) to develop holistic decision experts." }
+      result: "Maximizes practical capability and organizational AX adoption"
+
+    decision_platform:
+      chapter: "05 Business Application"
+      slide: "73"
+      back_path: "usage"
+      eyebrow: "02 · Data-Driven AI Decision Platform"
+      title: "Data-Driven AI Decision Platform"
+      summary: "XimTier's core example: an ROI-based AI analytics automation platform — from analysis to report automation, surfacing actionable insights fast (Data to Action, Decision to Results)."
+      stats: []
+      blocks:
+        - { head: "ROI-Based AI Analysis", body: "Automates What-if and Reverse What-if from an ROI perspective to derive actionable insight." }
+        - { head: "Auto Knowledge Graph", body: "Auto-generates a knowledge graph through regression variable selection and derived data." }
+        - { head: "Auto GPT Report", body: "Auto-outputs GPT analysis charts, spatial materials, and a GPT results report." }
+      result: "From data to execution — Decision to Results"
+
+    field_effects:
+      chapter: "05 Business Application"
+      slide: "74"
+      back_path: "usage"
+      eyebrow: "03 · Sector Applications & Effects"
+      title: "Sector Applications & Expected Effects"
+      summary: "XimTier solutions: industry-tailored applications and future value — an integrated decision platform spanning exploration, AI analysis, optimization simulation, and AI Q&A."
+      stats:
+        - { value: "6", unit: "", label: "Smart city·retail·factory·marketing·ESG·health" }
+        - { value: "7", unit: "", label: "Core expected effects" }
+      blocks:
+        - { head: "Sector Applications", body: "Smart city/public, smart retail/health, smart factory/product, marketing/CX, ESG/environment/energy." }
+        - { head: "Core Expected Effects", body: "Reverse What-if decision optimization, non-expert usability/automation, data-grounded trust (No Hallucination), efficiency/productivity gains, strategic decision culture." }
+        - { head: "General-Purpose AI Engine", body: "WhatDataAI diagnosis, SNS/survey/meeting issue optimization, 60+ competing algorithms, Reverse What-if, Voice & Text Q&A Copilot, XAI, security/governance, cloud/on-prem." }
+      result: "Industry-tailored value — Decision to Action"
+
+    custom_service:
+      chapter: "05 Business Application"
+      slide: "75"
+      back_path: "usage"
+      eyebrow: "04 · Tailored Service"
+      title: "Tailored Service"
+      summary: "Hyper-connection through heterogeneous data super-fusion and Vibe Coding — integrates structured/unstructured data and delivers tailored AI solutions far faster and cheaper than global competitors."
+      stats:
+        - { value: "70", unit: "% faster", label: "Vibe Coding build time" }
+        - { value: "50", unit: "% lower", label: "Dev/ops cost (up to)" }
+        - { value: "5", unit: "steps", label: "Collect→fuse→model→connect→serve" }
+      blocks:
+        - { head: "Data Super-Fusion (Fusion Core)", body: "Integrates structured (ERP/CRM, IoT, stats, transactions) and unstructured data (reports, email, image/video, SNS/reviews) via a fusion engine." }
+        - { head: "Vibe-Coding Build", body: "Combines numbers and text for full contextual/correlational understanding; builds faster and cheaper than global competitors via Vibe-Coding system integration." }
+        - { head: "5-Step Service Process", body: "01 Collect → 02 Fuse → 03 Model → 04 Hyper-connect → 05 Serve." }
+        - { head: "Expected Effects", body: "Hyper-fast build (70% shorter), cost savings (up to 50% lower), high accuracy, scalability & flexibility, customer success." }
+      result: "The fastest, most efficient tailored AI solution"

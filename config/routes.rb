@@ -53,6 +53,8 @@ Rails.application.routes.draw do
     get "/v3/analysis",  to: "pages#v3_analysis",  as: :v3_analysis
     get "/v3/solutions", to: "pages#v3_solutions", as: :v3_solutions
     get "/v3/usage",     to: "pages#v3_usage",     as: :v3_usage
+    # v3 항목별 PPTX 근거 상세 (drill-down)
+    get "/v3/detail/:slug", to: "pages#v3_detail", as: :v3_detail
 
     # 사용자 대시보드 (Devise 로그인 필요)
     get "/dashboard", to: "dashboards#show", as: :dashboard

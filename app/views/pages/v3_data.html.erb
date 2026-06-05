@@ -35,11 +35,13 @@
 .v3-cards { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:44px; }
 @media(max-width:900px){ .v3-cards { grid-template-columns:repeat(2,1fr); } }
 @media(max-width:480px){ .v3-cards { grid-template-columns:1fr; } }
-.v3-card { background:var(--c-canvas); border:1px solid var(--c-hairline); border-radius:14px; padding:24px 20px; transition:box-shadow 0.15s,transform 0.15s; }
-.v3-card:hover { box-shadow:0 8px 24px rgba(0,0,0,0.08); transform:translateY(-2px); }
+.v3-card { display:block; text-decoration:none; background:var(--c-canvas); border:1px solid var(--c-hairline); border-radius:14px; padding:24px 20px; transition:box-shadow 0.15s,transform 0.15s,border-color 0.15s; position:relative; }
+.v3-card:hover { box-shadow:0 8px 24px rgba(0,0,0,0.08); transform:translateY(-2px); border-color:rgba(0,200,200,0.45); }
 .v3-card__num { font-family:var(--font-mono); font-size:10px; font-weight:700; letter-spacing:0.12em; color:var(--c-teal); margin-bottom:10px; }
 .v3-card__title { font-size:14px; font-weight:700; color:var(--c-ink); margin-bottom:6px; word-break:keep-all; }
 .v3-card__desc { font-size:12.5px; color:var(--c-muted); line-height:1.6; word-break:keep-all; }
+.v3-card__more { font-family:var(--font-mono); font-size:10px; font-weight:700; letter-spacing:0.08em; color:var(--c-teal); margin-top:14px; opacity:0; transition:opacity 0.15s; }
+.v3-card:hover .v3-card__more { opacity:1; }
 
 /* CTA */
 .v3-cta-section { background:var(--c-navy); padding:72px 0; }
@@ -72,46 +74,23 @@
     <h2 class="v3-section__title">8가지 탐색 기능</h2>
     <p class="v3-section__lead">데이터 업로드 즉시 자동으로 수행되는 탐색 파이프라인입니다.</p>
     <div class="v3-cards">
-      <div class="v3-card">
-        <div class="v3-card__num">01</div>
-        <div class="v3-card__title">데이터 탐색</div>
-        <div class="v3-card__desc">기초·기술 통계, 상관관계 히트맵 자동 생성</div>
-      </div>
-      <div class="v3-card">
-        <div class="v3-card__num">02</div>
-        <div class="v3-card__title">WhatDataAI 분석</div>
-        <div class="v3-card__desc">활용 가능 AI 알고리즘·변수 자동 추천</div>
-      </div>
-      <div class="v3-card">
-        <div class="v3-card__num">03</div>
-        <div class="v3-card__title">주소 XY 정제</div>
-        <div class="v3-card__desc">주소→위경도 좌표·행정구역 자동 파싱</div>
-      </div>
-      <div class="v3-card">
-        <div class="v3-card__num">04</div>
-        <div class="v3-card__title">AI 탐색 차트</div>
-        <div class="v3-card__desc">개별 24종·자동 22종 차트 생성</div>
-      </div>
-      <div class="v3-card">
-        <div class="v3-card__num">05</div>
-        <div class="v3-card__title">AI 텍스트 탐색</div>
-        <div class="v3-card__desc">워드클라우드·비정형 텍스트 자동 분석</div>
-      </div>
-      <div class="v3-card">
-        <div class="v3-card__num">06</div>
-        <div class="v3-card__title">주제도 분석</div>
-        <div class="v3-card__desc">행정경계·격자·헥사곤 기반 공간 주제도</div>
-      </div>
-      <div class="v3-card">
-        <div class="v3-card__num">07</div>
-        <div class="v3-card__title">AI 종합 인사이트 리포트</div>
-        <div class="v3-card__desc">자연어 질의→자동 리포트 생성. No 환각.</div>
-      </div>
-      <div class="v3-card">
-        <div class="v3-card__num">08</div>
-        <div class="v3-card__title">AI Target YX 최적화</div>
-        <div class="v3-card__desc">60종 경쟁 + Reverse What-If 역산</div>
-      </div>
+      <% [
+        ["01", "데이터 탐색", "기초·기술 통계, 상관관계 히트맵 자동 생성", "data_explore"],
+        ["02", "WhatDataAI 분석", "활용 가능 AI 알고리즘·변수 자동 추천", "whatdataai"],
+        ["03", "주소 XY 정제", "주소→위경도 좌표·행정구역 자동 파싱", "address_xy"],
+        ["04", "AI 탐색 차트", "개별 24종·자동 22종 차트 생성", "explore_chart"],
+        ["05", "AI 텍스트 탐색", "워드클라우드·비정형 텍스트 자동 분석", "text_explore"],
+        ["06", "주제도 분석", "행정경계·격자·헥사곤 기반 공간 주제도", "thematic_map"],
+        ["07", "AI 종합 인사이트 리포트", "자연어 질의→자동 리포트 생성. No 환각.", "insight_report"],
+        ["08", "AI Target YX 최적화", "60종 경쟁 + Reverse What-If 역산", "target_yx"],
+      ].each do |num, title, desc, slug| %>
+        <%= link_to v3_detail_path(slug: slug, locale: I18n.locale), class: "v3-card" do %>
+          <div class="v3-card__num"><%= num %></div>
+          <div class="v3-card__title"><%= title %></div>
+          <div class="v3-card__desc"><%= desc %></div>
+          <div class="v3-card__more">상세 보기 →</div>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </section>

@@ -1,0 +1,330 @@
+ko:
+  v3detail_ui:
+    capabilities: "세부 기능"
+    result: "Result"
+    evidence_eyebrow: "PPTX Evidence"
+    evidence_title: "원본 자료 근거"
+    evidence_note: "출처 — XimTier 메뉴 구성 PPTX · Slide %{slide}"
+    slide_alt: "%{title} 원본 슬라이드"
+    cta_title: "직접 확인해보세요"
+    cta_demo: "데모 신청"
+    back_to: "%{chapter}로"
+  v3detail:
+    # ───────────────────────── Chapter 02 · 데이터 탐색 (8대 기능) ─────────────────────────
+    data_explore:
+      chapter: "02 데이터 탐색"
+      slide: "06 · 23"
+      back_path: "data"
+      eyebrow: "01 · 데이터 탐색"
+      title: "데이터 탐색"
+      summary: "사용자 로딩 데이터의 주요 필드와 필드별 기초 통계, 기술 통계와 상관관계 히트맵 지원 → 로딩된 데이터의 기초 통계와 필드 간 상관관계 등 관계 분석 지원 → 원스톱 데이터 구조와 관계 분석 지원"
+      stats:
+        - { value: "500", unit: "행", label: "샘플 데이터 행 수" }
+        - { value: "26", unit: "컬럼", label: "분석 필드 수" }
+        - { value: "0.47", unit: "MB", label: "데이터 용량" }
+        - { value: "0", unit: "건", label: "결측값" }
+      blocks:
+        - { head: "데이터 기본 정보", body: "행 수·컬럼 수·결측값·메모리 사용량을 로딩 즉시 요약. 주요 컬럼과 컬럼별 데이터 타입·결측 비율·고유값 수를 자동 산출." }
+        - { head: "기술 통계", body: "전 필드의 평균·표준편차·최소·최대·사분위 등 기술 통계를 자동 계산하고 CSV로 다운로드." }
+        - { head: "범주형 컬럼 통계", body: "범주형 변수의 그룹별 빈도·구성비를 별도 표로 제공." }
+        - { head: "상관관계 분석", body: "수치형 필드 간 상관계수 히트맵을 자동 생성하여 필드 간 관계를 한눈에 파악." }
+      result: "원스톱 데이터 구조와 관계 분석 지원"
+
+    whatdataai:
+      chapter: "02 데이터 탐색"
+      slide: "06 · 24"
+      back_path: "data"
+      eyebrow: "02 · WhatDataAI 분석"
+      title: "WhatDataAI 분석"
+      summary: "입력된 데이터의 필드를 분석하여 활용 가능한 AI 알고리즘(회귀·판별·다중분류·시계열 분석)과 활용 가능한 Y변수와 X변수를 자동 추천 → 우리 데이터로 무엇을 할 수 있고, 어떤 데이터가 중요한 데이터인지 파악 지원"
+      stats:
+        - { value: "62", unit: "개", label: "회귀 활용 가능 Y변수" }
+        - { value: "62", unit: "개", label: "시계열 활용 가능 Y변수" }
+        - { value: "4", unit: "종", label: "분석 계열(회귀·판별·다중분류·시계열)" }
+      blocks:
+        - { head: "Y변수별 예측 성능 분석", body: "각 Y변수 후보에 대해 회귀·판별·다중분류·시계열별 예측 성능을 사전 산출하여 표로 제시." }
+        - { head: "알고리즘 종류별 활용 가능성 검토", body: "분석 계열별로 활용 가능한 Y변수 수를 막대그래프로 비교 — 회귀 62 / 판별 / 다중분류 / 시계열 62." }
+        - { head: "종합 분석 결과", body: "회귀·판별·다중분류·시계열 4계열의 활용 가능성을 종합 카드로 요약. 변수 간 관계 그래프로 핵심 변수 구조 제시." }
+        - { head: "종합 권장 사항", body: "최적화 권장 분야·노이즈 변수 제거·핵심 X변수 후보를 제안하여 '무엇을 할 수 있는지' 안내." }
+      result: "새로운 비즈니스 창출 기회 확보 · 예산절감 · 수익 창출"
+
+    address_xy:
+      chapter: "02 데이터 탐색"
+      slide: "06 · 25"
+      back_path: "data"
+      eyebrow: "03 · 주소 XY 정제"
+      title: "주소 XY 정제"
+      summary: "사용자 로딩 데이터의 주소 필드를 기반으로 주소정제 (카카오 API 활용과 내부 학습 주소 기반의 위경도 좌표 및 행정구역 표준 파싱 지원) → 위경도 좌표와 표준 행정지역명 도출 자동화로 주제도 제작과 차트 분석을 위한 전처리 시간 축소"
+      stats:
+        - { value: "500", unit: "건", label: "전체 데이터 건수" }
+        - { value: "408", unit: "건", label: "정제 가능 건수" }
+        - { value: "92", unit: "건", label: "API 호출 필요" }
+      blocks:
+        - { head: "카카오 REST API 연동", body: "카카오맵 API 키 등록 후 주소 → 위경도 변환을 실행. 내부 학습 주소 사전으로 API 호출 건수를 최소화." }
+        - { head: "표준 행정구역 파싱", body: "주소를 시도·시군구·행정동·법정동 등 표준 행정지역명으로 분해(geocoded 컬럼 자동 생성)." }
+        - { head: "변환 현황 추적", body: "전체 500건 중 정제 가능 408건·API 호출 필요 92건을 사전 표시하여 변환 비용을 예측." }
+      result: "원스톱 분석 기반 지원 — 주제도·차트 전처리 시간 축소"
+
+    explore_chart:
+      chapter: "02 데이터 탐색"
+      slide: "06 · 26 · 27"
+      back_path: "data"
+      eyebrow: "04 · AI 탐색 차트"
+      title: "AI 탐색 차트"
+      summary: "개별 차트는 기본형·분포통계·관계분석·고급시각화·워드클라우드(텍스트분석) 약 24종 지원 → 데이터를 기준으로 다양한 차트를 쉽게 시각화. 자동 차트 분석은 X축·Y축·Z축 변수를 입력하면 종류별로 차트 22종 자동 생성."
+      stats:
+        - { value: "24", unit: "종", label: "개별 차트(직접 제작)" }
+        - { value: "22", unit: "종", label: "자동 차트(X·Y·Z 입력)" }
+        - { value: "3", unit: "축", label: "X · Y · Z 변수 설정" }
+      blocks:
+        - { head: "개별 차트 만들기 (24종)", body: "기본 차트(막대·선·영역·파이·도넛), 분포/통계 차트(히스토그램·박스플롯·바이올린·QQ플롯), 관계 분석(산점도·산점도매트릭스·위신차트·히트맵), 고급 시각화(3D산점도·레이더·트리맵)." }
+        - { head: "자동 차트 분석 (22종)", body: "X축·Y축·Z축 변수와 집계 방식·구간화·이상치 방지를 설정하면 기본/관계분석/분포통계/고급시각화 종류별로 차트를 자동 생성." }
+        - { head: "차트 제작 시간 단축", body: "데이터 특성에 맞는 최적 차트 구성을 자동 가이드하여 차트 제작 아이디어와 제작 시간을 동시에 절감." }
+      result: "데이터 기준 다양한 차트를 쉽게 시각화하여 보고서 사용 지원"
+
+    text_explore:
+      chapter: "02 데이터 탐색"
+      slide: "06 · 28"
+      back_path: "data"
+      eyebrow: "05 · AI 텍스트 탐색 분석"
+      title: "AI 텍스트 탐색 분석"
+      summary: "사용자 로딩 데이터를 기준으로 테이블 워드클라우드와 비정형 문서 워드 클라우드 분석 지원 → 문서와 필드에 대한 이해도 제고 지원 → 텍스트 데이터 특성에 대한 시각적 이해도 제고 // 분석 이해도 시간 단축과 분석 인사이트 도출 지원"
+      stats:
+        - { value: "2", unit: "유형", label: "테이블 · 비정형 문서 워드클라우드" }
+        - { value: "PDF·DOCX·PPTX·이미지", unit: "", label: "지원 입력 파일" }
+      blocks:
+        - { head: "테이블 워드클라우드", body: "로딩된 데이터의 텍스트 필드를 기준으로 빈도 기반 워드클라우드를 생성하여 필드 내용을 직관적으로 파악." }
+        - { head: "비정형 문서 워드클라우드", body: "PDF·Word·PowerPoint·이미지 파일을 드래그 업로드하거나 텍스트 직접 입력으로 추출 → 형태소 분석 설정·불용어 편집 후 워드클라우드 생성." }
+        - { head: "관계 그래프 시각화", body: "텍스트에서 추출한 핵심 키워드 간 관계를 네트워크 그래프로 시각화하여 문서 구조를 이해." }
+      result: "분석 이해도 시간 단축과 분석 인사이트 도출 지원"
+
+    thematic_map:
+      chapter: "02 데이터 탐색"
+      slide: "06 · 29"
+      back_path: "data"
+      eyebrow: "06 · 주제도 분석"
+      title: "주제도 분석"
+      summary: "주제도 분석은 국내 및 전 세계 지도 자동 로딩(보유 데이터 기준)과 지리적 데이터 분포 특성을 쉽게 파악할 수 있도록 지원 → 데이터의 지역적인 분포 특성 등 공간 특성 분석 지원 // 지역 균형 발전 분석 등 활용"
+      stats:
+        - { value: "5", unit: "종", label: "행정 경계(시도·시군구·행정동·법정동·기초구역)" }
+        - { value: "7", unit: "종", label: "격자·헥사곤 경계(100m~10km)" }
+        - { value: "4", unit: "유형", label: "위치/포인트 · 격자/헥사곤 · 행정경계 · 통합" }
+      blocks:
+        - { head: "배경 지도", body: "국내는 VWorld 지도(기본도·위성도·위성 하이브리드), 해외는 오픈스트리트맵을 자동 로딩." }
+        - { head: "전국 표준 경계 지원", body: "행정 경계 5종(시도·시군구·행정동·법정동·기초구역) + 격자·헥사곤 경계 7종(100m·250m·500m·1km·2km·5km·10km) 지원." }
+        - { head: "주제도 유형", body: "위치/포인트 주제도(마크·버블·히트맵·마커클러스터), 격자/헥사곤 주제도, 행정공간 영역 주제도(막대·파이·바이올린·트리맵·레이어·폴라·영역밀도·코로플레스), 통합 주제도." }
+      result: "지역 균형 발전 분석 등 공간 특성 분석 활용"
+
+    insight_report:
+      chapter: "02 데이터 탐색"
+      slide: "06 · 30"
+      back_path: "data"
+      eyebrow: "07 · AI 종합 인사이트 리포트"
+      title: "AI 종합 인사이트 리포트"
+      summary: "사용자 로딩 데이터를 기준으로 지식그래프 기반에서 자연어를 질의하면 해당 주제에 맞는 차트·주제도·시사점·정책 제언을 GPT 추천 → GPT 추천 정보 기반의 차트·주제도·통계 분석·What-if 분석·Reverse What-if 분석 등이 포함된 종합 리포트 자동 출력 지원"
+      stats:
+        - { value: "No", unit: "환각", label: "Hallucination 차단" }
+        - { value: "Graph", unit: "기반", label: "지식그래프 의사결정 AI" }
+      blocks:
+        - { head: "자연어 질의", body: "예) \"김해시 방역민원수와 상관성 높은 변수를 분석하고, 발생 월과 지역적인 발생 공간 특성을 분석해 줘. 위험시기에 대처 방안을 마련해 주고, 방역민원수를 50% 줄일 수 있는 방안도 제시해 줘!\"" }
+        - { head: "GPT Auto 출력 보고서", body: "GPT 분석 활용 차트와 공간 분석 자료 + GPT 분석 결과 보고서를 자동 생성. 차트·주제도·통계·What-if·Reverse What-if 분석을 한 문서에 통합." }
+        - { head: "데이터 기반 No 환각", body: "세계 최상위 AI 자동 차트·복합 주제도 생성, LLM 기반 정책 자동 도출 — 모든 결과를 데이터 근거에 묶어 환각을 차단." }
+      result: "명확한 근거 기반의 행정 추진 기반 지원 (Data 기반 LLM · AI 정책 의사결정 플랫폼)"
+
+    target_yx:
+      chapter: "02 데이터 탐색"
+      slide: "06 · 31"
+      back_path: "data"
+      eyebrow: "08 · AI Target YX 최적화"
+      title: "AI Target YX 최적화"
+      summary: "Y기준 최우수 알고리즘 자동 선정과 개선 대상 Target 집단 선정 → What-if 분석과 Reverse What-if 분석 지원 (목표 Y 달성을 위한 최적 X 조합 자동 추천, X변수 변화 시 Y 변화 값 예측 지원)"
+      stats:
+        - { value: "60", unit: "종", label: "알고리즘 경쟁" }
+        - { value: "하위 20%", unit: "", label: "개선 대상 Target 군" }
+        - { value: "상위 20%", unit: "", label: "벤치마크 Target 군" }
+      blocks:
+        - { head: "Y기준 최우수 알고리즘 자동 선별", body: "약 60종 알고리즘 경쟁을 기반으로 Y변수에 가장 적합한 최우수 알고리즘을 자동 선정." }
+        - { head: "개선 대상 Target 군 선정", body: "전체 평균·하위 20%·상위 20% 기준으로 특정 레코드(도시·행정동·상권·점포·공장·사람·기계·장비 등)의 증감 방안을 도출." }
+        - { head: "What-if 분석", body: "X변수 변화 → Y변수 예측. 통제 가능한 X변수를 조정했을 때의 Y 변화를 시뮬레이션." }
+        - { head: "Reverse What-if 분석", body: "Y 목표 설정 → X변수 최적 조합 추천. 목표 달성을 위한 최적 변수 조합을 역산하고 AI 종합 의견(GPT 분석 보고서)으로 제시." }
+      result: "도시·시설·매출·고장·재난 등 다양한 영역의 위험도·성과 최적화 활용"
+
+    # ───────────────────────── Chapter 01 · 메뉴 구성 개요 (아키텍처 3레이어) ─────────────────────────
+    arch_top:
+      chapter: "01 메뉴 구성 개요"
+      slide: "10"
+      back_path: "overview"
+      eyebrow: "TOP LAYER"
+      title: "XimSolution"
+      summary: "도메인별 즉시 적용 가능한 SaaS 솔루션 — 공공·제조·유통·의료·마케팅·교육 등 다양한 산업의 비즈니스 문제를 해결하는 특화 솔루션 제공"
+      stats:
+        - { value: "10", unit: "종", label: "산업 특화 솔루션" }
+        - { value: "6", unit: "분야", label: "공공·제조·유통·의료·마케팅·교육" }
+      blocks:
+        - { head: "산업 특화 패키지", body: "스마트시티/공공행정, 제조·설비 예지보전, 유통·상권 최적화, 마케팅/SNS/설문 분석, 의료·교육·Meeting 분석을 사전 구성." }
+        - { head: "즉시 적용 SaaS", body: "도메인별 사전 구성된 AI 의사결정 패키지로 별도 구축 없이 즉시 활용." }
+      result: "산업별 확장성과 빠른 구축"
+
+    arch_core:
+      chapter: "01 메뉴 구성 개요"
+      slide: "10"
+      back_path: "overview"
+      eyebrow: "CORE LAYER"
+      title: "WhatDataAI"
+      summary: "60종 알고리즘과 XAI 기반 의사결정 엔진 — 데이터 특성에 맞는 최적 모델을 자동 선정하고, Reverse What-if로 목표 달성을 위한 최적 X를 제시"
+      stats:
+        - { value: "60", unit: "종", label: "알고리즘 자동 경쟁" }
+        - { value: "XAI", unit: "", label: "설명 가능 AI 모델링" }
+      blocks:
+        - { head: "60종 알고리즘 자동 경쟁", body: "데이터 특성에 맞는 최적 모델을 자동으로 선정하는 AI 엔진." }
+        - { head: "XAI 모델링", body: "설명 가능 AI로 변수의 영향력과 모델 근거를 비전문가에게도 투명하게 제시." }
+        - { head: "Reverse What-if · 시뮬레이션 최적화", body: "목표 Y 달성을 위한 최적 X 조합을 역산하는 핵심 차별화 엔진." }
+      result: "목표 중심 의사결정 — What-if · Reverse What-if"
+
+    arch_base:
+      chapter: "01 메뉴 구성 개요"
+      slide: "10"
+      back_path: "overview"
+      eyebrow: "BASE LAYER"
+      title: "통계 및 분석 엔진 (데이터 인프라)"
+      summary: "데이터 탐색부터 고급 분석까지 완벽 지원 — 정형/비정형 데이터 통합, 탐색, 시각화, 통계 분석을 위한 강력하고 표준화된 데이터 인프라"
+      stats:
+        - { value: "정형+비정형", unit: "", label: "데이터 통합" }
+      blocks:
+        - { head: "데이터 탐색·정제", body: "수집·정제·좌표 파싱·기초 통계를 위한 표준화된 인프라." }
+        - { head: "통계 분석·시각화", body: "기초·기술 통계와 상관 분석, 다양한 차트 시각화 기반 제공." }
+        - { head: "보고서 자동화", body: "공간/텍스트 분석 결과를 보고서로 자동 생성하는 기반." }
+      result: "데이터 탐색부터 고급 분석까지 완벽 지원"
+
+    # ───────────────────────── Chapter 03 · AI 통계분석 솔루션 (파이프라인 5단계) ─────────────────────────
+    pipe_var:
+      chapter: "03 AI 통계분석 솔루션"
+      slide: "34"
+      back_path: "analysis"
+      eyebrow: "STEP 01"
+      title: "변수 선정과 파생데이터 생성"
+      summary: "분석용 Y변수와 X변수를 선정하고, 날짜 기반의 시간 Lag 파생변수 설정과 예측 안정화를 위한 Log 파생 변수를 도출 및 확정 지원"
+      stats: []
+      blocks:
+        - { head: "변수 선정", body: "분석용 Y변수와 X변수를 선정." }
+        - { head: "시간 Lag 파생변수", body: "날짜 기반의 시간 Lag 파생변수를 설정하여 시계열 예측 안정화." }
+        - { head: "Log 파생변수", body: "예측 안정화를 위한 Log 파생 변수를 도출 및 확정." }
+      result: "변수 확정과 파생데이터 생성"
+
+    pipe_xai:
+      chapter: "03 AI 통계분석 솔루션"
+      slide: "34"
+      back_path: "analysis"
+      eyebrow: "STEP 02"
+      title: "변수 이해와 XAI 변수 확정"
+      summary: "Y변수 기준의 설명 가능하면서 최적 성능이 가능한 X변수 조합 도출 → 통계학적 중요도 기반·데이터 분포 구간별 랜덤 테스트 기반, 변수 도출의 시각적 의미 타당성 지원을 위한 트리 기반 등 분석을 통한 최적의 X변수 도출 및 확정"
+      stats: []
+      blocks:
+        - { head: "설명 가능 X변수 조합", body: "Y변수 기준으로 설명 가능하면서 최적 성능이 가능한 X변수 조합을 도출." }
+        - { head: "통계학적 중요도", body: "데이터 분포 구간별 랜덤 테스트 기반으로 변수 중요도를 평가." }
+        - { head: "트리 기반 타당성", body: "변수 도출의 시각적 의미 타당성을 트리 기반 분석으로 확인." }
+      result: "분석용 변수 축소"
+
+    pipe_compete:
+      chapter: "03 AI 통계분석 솔루션"
+      slide: "34"
+      back_path: "analysis"
+      eyebrow: "STEP 03"
+      title: "알고리즘 경쟁과 실시간 검증"
+      summary: "약 60여 종의 AI 알고리즘 간 경쟁을 통한 데이터 특성에 맞는 최적 알고리즘 선정 지원 → 실전용 시간흐름에 따른 알고리즘 성능 테스트와 최적 학습 기간 도출 지원"
+      stats:
+        - { value: "60", unit: "여 종", label: "AI 알고리즘 경쟁" }
+      blocks:
+        - { head: "알고리즘 경쟁", body: "약 60여 종 AI 알고리즘 간 경쟁을 통해 데이터 특성에 맞는 최적 알고리즘을 선정." }
+        - { head: "실시간 성능 검증", body: "실전용 시간흐름에 따른 알고리즘 성능 테스트와 최적 학습 기간을 도출." }
+      result: "모델 최적화(알고리즘·학습 기간·실전 검증)"
+
+    pipe_optimize:
+      chapter: "03 AI 통계분석 솔루션"
+      slide: "34"
+      back_path: "analysis"
+      eyebrow: "STEP 04"
+      title: "예측·시뮬레이션 기반 X·Y 최적화"
+      summary: "X변수 변화 시 Y예측 지원(What-if Analysis) → 현재 Y를 목표 Y로 변경을 위한 최적 X변수 조합 추천(Reverse What-if Analysis // Goal-Seeking X Optimization) – ROI 최적화 지원"
+      stats: []
+      blocks:
+        - { head: "What-if Analysis", body: "X변수 변화 시 Y예측을 지원." }
+        - { head: "Reverse What-if Analysis", body: "현재 Y를 목표 Y로 변경하기 위한 최적 X변수 조합을 추천(Goal-Seeking X Optimization)." }
+        - { head: "ROI 최적화", body: "최적 변수 조합을 ROI 관점에서 최적화하여 실행 우선순위를 제시." }
+      result: "실시간 X & Y 변수 최적화 지원"
+
+    pipe_qa:
+      chapter: "03 AI 통계분석 솔루션"
+      slide: "34"
+      back_path: "analysis"
+      eyebrow: "STEP 05"
+      title: "AI Q&A (Knowledge Graph & GraphRAG)"
+      summary: "Knowledge Graph & GraphRAG 지원 → AI 분석 파이프라인의 결과를 ChatGPT에게 종합적인 특성 분석을 할 수 있도록 지원(멀티 결과를 통합하여 이전 분석과 타 분석과의 차이 및 개선 방안 등 AI 질의 지원)"
+      stats: []
+      blocks:
+        - { head: "Knowledge Graph 기반 Q&A", body: "분석 결과를 지식그래프로 구조화하여 자연어 질의에 답변." }
+        - { head: "GraphRAG 통합", body: "멀티 분석 결과를 통합하여 이전 분석·타 분석과의 차이 및 개선 방안을 AI가 제시." }
+      result: "의사결정을 위한 통합 인사이트 지원"
+
+    # ───────────────────────── Chapter 05 · 업무 활용 방안 ─────────────────────────
+    ax_strength:
+      chapter: "05 업무 활용 방안"
+      slide: "72"
+      back_path: "usage"
+      eyebrow: "01 · AX 활용성 강화 방안"
+      title: "AX 활용성 강화 방안"
+      summary: "AX 활용성 강화 방안 : XimTier로 실무형 의사결정 혁신 — 교육생의 분석 벽을 허물고, 데이터부터 실행까지 연결하는 AI 시뮬레이션 기반 '결정 지원 플랫폼'"
+      stats: []
+      blocks:
+        - { head: "분석의 벽에 갇힌 의사결정", body: "이론의 벽(높은 기술 장벽과 학습 부담)과 분석에서 멈춤(보고서 제작은 가능하지만, 그래서 무엇을 해야 할까?)이라는 교육생의 현실을 해결." }
+        - { head: "XimTier 기반의 '결정' 중심 역량 강화", body: "자동 분석 리포트로 기술 장벽 해소 · 자동 AI 리포팅(데이터 학습 없이 인사이트 도출) · What-if 시뮬레이션 · 근거 기반 리포트(LLM 연계)." }
+        - { head: "기대 효과 — 지식과 결정의 시너지", body: "과거 검색(LLM)과 미래 예측(XimTier)을 결합하여 종합적인 의사결정 전문가를 양성. LLM 연계로 완성되는 지식과 결정의 시너지." }
+      result: "교육생의 실무 역량과 조직의 AX 활용도를 극대화"
+
+    decision_platform:
+      chapter: "05 업무 활용 방안"
+      slide: "73"
+      back_path: "usage"
+      eyebrow: "02 · 데이터 기반의 AI 의사결정 플랫폼"
+      title: "데이터 기반의 AI 의사결정 플랫폼"
+      summary: "심티어의 핵심 예시: ROI 기반 AI 분석 자동화 플랫폼 — AI 분석부터 보고서 자동화까지, 복잡한 데이터에서 실행 가능한 인사이트를 빠르게 도출 (Data to Action, Decision to Results)"
+      stats: []
+      blocks:
+        - { head: "ROI 기반의 AI 분석", body: "What-if Analysis와 Reverse What-if Analysis를 ROI 관점에서 자동화하여 실행 가능한 인사이트를 도출." }
+        - { head: "Auto 지식그래프 생성", body: "회귀분석 변수 선택과 파생데이터 생성을 거쳐 Auto 지식그래프를 자동 생성." }
+        - { head: "AI 탐색 차트 분석의 Auto GPT 보고서", body: "GPT Auto 출력 보고서로 GPT 분석 활용 차트·공간 분석 자료와 GPT 분석 결과 보고서를 자동 출력." }
+      result: "데이터에서 실행까지 — Decision to Results"
+
+    field_effects:
+      chapter: "05 업무 활용 방안"
+      slide: "74"
+      back_path: "usage"
+      eyebrow: "03 · 분야별 활용과 기대효과"
+      title: "분야별 활용과 기대효과"
+      summary: "심티어(XimTier) 솔루션 : 산업별 맞춤 활용과 미래 가치 — 단순한 통계 도구를 넘어 데이터 탐색부터 AI 분석, 최적화 시뮬레이션, AI Q&A까지 한 번에 수행하는 통합 의사결정 플랫폼"
+      stats:
+        - { value: "6", unit: "산업", label: "스마트시티·리테일·팩토리·마케팅·ESG·의료" }
+        - { value: "7", unit: "효과", label: "핵심 기대효과(Expected Effects)" }
+      blocks:
+        - { head: "산업분야별 스마트 활용", body: "스마트시티·공공행정, 스마트 리테일·의료, 스마트팩토리·제품개발, 마케팅·고객경험, ESG·환경·에너지 등 산업별 맞춤 활용." }
+        - { head: "핵심 기대효과", body: "Reverse What-if 기반 의사결정 최적화, 비전문가를 위한 사용성·자동화, 데이터 기반 신뢰 확보(No Hallucination), 업무 효율성·생산성 향상, 전략적 의사결정 문화 정착." }
+        - { head: "심티어 범용 AI 엔진", body: "WhatDataAI 데이터 진단, SNS·설문·회의 3대 이슈 최적화, 60여 종 알고리즘 자동 경쟁, Reverse What-if 최적화, Voice & Text Q&A Copilot, XAI, 보안·거버넌스, 클라우드·온프레미스." }
+      result: "산업별 맞춤 활용과 미래 가치 — Decision to Action"
+
+    custom_service:
+      chapter: "05 업무 활용 방안"
+      slide: "75"
+      back_path: "usage"
+      eyebrow: "04 · 맞춤형 서비스 방안"
+      title: "맞춤형 서비스 방안"
+      summary: "이기종 데이터 초융합과 바이브코딩(Vibe Coding)을 통한 초연결 — 정형·비정형 데이터를 통합하고, 바이브코딩 기반 시스템 연계로 글로벌 경쟁사 대비 월등히 빠르고 저렴한 고객 맞춤형 AI 솔루션을 제공"
+      stats:
+        - { value: "70", unit: "% 단축", label: "바이브코딩 기반 구축 기간" }
+        - { value: "50", unit: "% 절감", label: "맞춤형 자동화 개발·운영 비용(최대)" }
+        - { value: "5", unit: "단계", label: "수집→융합→분석·모델링→초고속 연결→서비스" }
+      blocks:
+        - { head: "데이터 초융합 (Fusion Core)", body: "정형 데이터(ERP/CRM·IoT 센서·통계/수치·거래/운영)와 비정형 데이터(보고서/계약서·이메일·이미지/영상·SNS/리뷰)를 융합 엔진으로 통합." }
+        - { head: "바이브코딩 기반 초고속 구축", body: "수치와 텍스트의 결합으로 입체적 맥락·상관관계를 완벽 파악. 바이브코딩 기반 시스템 연계로 글로벌 경쟁사 대비 빠르고 저렴하게 구축." }
+        - { head: "5단계 맞춤형 서비스 프로세스", body: "01 데이터 수집 → 02 데이터 융합 → 03 분석·모델링 → 04 초고속 연결 → 05 맞춤형 서비스 제공." }
+        - { head: "기대 효과", body: "초고속 구축(구축 기간 70% 단축) · 비용 절감(개발/운영 비용 최대 50% 절감) · 높은 정확도 · 확장성 & 유연성 · 고객 성공 극대화." }
+      result: "가장 빠르고 효율적인 고객 맞춤형 AI 솔루션 제공"

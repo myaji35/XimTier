@@ -36,7 +36,10 @@
 
 /* 3-layer arch */
 .v3-arch-stack { display:flex; flex-direction:column; gap:4px; margin-top:44px; max-width:780px; margin-left:auto; margin-right:auto; }
-.v3-arch-layer { border-radius:14px; padding:28px 32px; }
+.v3-arch-layer { display:block; text-decoration:none; border-radius:14px; padding:28px 32px; transition:transform 0.15s,box-shadow 0.15s; position:relative; }
+.v3-arch-layer:hover { transform:translateY(-2px); box-shadow:0 10px 30px rgba(0,0,0,0.28); }
+.v3-arch-more { font-family:var(--font-mono); font-size:10px; font-weight:700; letter-spacing:0.08em; color:var(--c-teal); margin-top:12px; opacity:0; transition:opacity 0.15s; }
+.v3-arch-layer:hover .v3-arch-more { opacity:1; }
 .v3-arch-layer--top  { background:linear-gradient(135deg,rgba(37,99,235,0.18),rgba(0,200,200,0.12)); border:1px solid rgba(0,200,200,0.28); }
 .v3-arch-layer--core { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); }
 .v3-arch-layer--base { background:rgba(37,99,235,0.12); border:1px solid rgba(37,99,235,0.28); }
@@ -85,21 +88,24 @@
     <h2 class="v3-section__title">3단 지능형 아키텍처</h2>
     <p class="v3-section__lead">산업 특화 솔루션부터 통계 엔진까지, 세 개 레이어가 유기적으로 연결됩니다.</p>
     <div class="v3-arch-stack">
-      <div class="v3-arch-layer v3-arch-layer--top">
+      <%= link_to v3_detail_path(slug: "arch_top", locale: I18n.locale), class: "v3-arch-layer v3-arch-layer--top" do %>
         <div class="v3-arch-label">Top Layer</div>
         <div class="v3-arch-name">XimSolution</div>
         <div class="v3-arch-desc">산업 특화 솔루션 — 도메인별 사전 구성된 AI 의사결정 패키지</div>
-      </div>
-      <div class="v3-arch-layer v3-arch-layer--core">
+        <div class="v3-arch-more">상세 보기 →</div>
+      <% end %>
+      <%= link_to v3_detail_path(slug: "arch_core", locale: I18n.locale), class: "v3-arch-layer v3-arch-layer--core" do %>
         <div class="v3-arch-label">Core Layer</div>
         <div class="v3-arch-name">WhatDataAI</div>
         <div class="v3-arch-desc">60종 알고리즘 · XAI 변수 이해 · What-If / Reverse What-If 최적화</div>
-      </div>
-      <div class="v3-arch-layer v3-arch-layer--base">
+        <div class="v3-arch-more">상세 보기 →</div>
+      <% end %>
+      <%= link_to v3_detail_path(slug: "arch_base", locale: I18n.locale), class: "v3-arch-layer v3-arch-layer--base" do %>
         <div class="v3-arch-label">Base Layer</div>
         <div class="v3-arch-name">통계·분석 엔진</div>
         <div class="v3-arch-desc">데이터 인프라 — 수집·정제·좌표 파싱·기초 통계·시각화 기반</div>
-      </div>
+        <div class="v3-arch-more">상세 보기 →</div>
+      <% end %>
     </div>
   </div>
 </section>
@@ -112,28 +118,28 @@
     <div class="v3-roadmap">
       <div class="v3-roadmap-item">
         <div class="v3-roadmap-year">01 · 2024</div>
-        <div class="v3-roadmap-label">기반 구축</div>
-        <div class="v3-roadmap-desc">핵심 분석 엔진·데이터 파이프라인 완성</div>
+        <div class="v3-roadmap-label">기반 구축 단계</div>
+        <div class="v3-roadmap-desc">핵심 엔진 및 데이터 기반 구축 — WhatDataAI 엔진 고도화·Reverse What-if 엔진 개발</div>
       </div>
       <div class="v3-roadmap-item v3-roadmap-item--active">
         <div class="v3-roadmap-year">02 · 2025</div>
-        <div class="v3-roadmap-label">플랫폼 확장</div>
-        <div class="v3-roadmap-desc">60종 알고리즘·XAI·자동 보고서 고도화</div>
+        <div class="v3-roadmap-label">플랫폼 확장 단계</div>
+        <div class="v3-roadmap-desc">산업별 솔루션 및 의사결정 최적화 — 산업별 최적화 솔루션·회의·의사결정 최적화</div>
       </div>
       <div class="v3-roadmap-item">
         <div class="v3-roadmap-year">03 · 2026</div>
-        <div class="v3-roadmap-label">지능 고도화</div>
-        <div class="v3-roadmap-desc">GraphRAG Q&A·멀티모달 데이터 지원</div>
+        <div class="v3-roadmap-label">지능 고도화 단계</div>
+        <div class="v3-roadmap-desc">AI 최적화 고도화 및 자동 실행 지원 — AI 최적화 엔진·AI Agent & 자동 실행 연계</div>
       </div>
       <div class="v3-roadmap-item">
-        <div class="v3-roadmap-year">04 · 2027–28</div>
-        <div class="v3-roadmap-label">생태계 확장</div>
-        <div class="v3-roadmap-desc">파트너 API·업종별 플러그인 생태계</div>
+        <div class="v3-roadmap-year">04 · 2027–2028</div>
+        <div class="v3-roadmap-label">생태계 확장 단계</div>
+        <div class="v3-roadmap-desc">파트너 생태계 및 글로벌 확장 — 파트너 생태계 구축·글로벌 확장</div>
       </div>
       <div class="v3-roadmap-item">
-        <div class="v3-roadmap-year">05 · 2028–30+</div>
-        <div class="v3-roadmap-label">바이오 혁신</div>
-        <div class="v3-roadmap-desc">임상·유전체 데이터 기반 정밀의료 AI</div>
+        <div class="v3-roadmap-year">05 · 2028–2030+</div>
+        <div class="v3-roadmap-label">바이오 혁신 단계</div>
+        <div class="v3-roadmap-desc">바이오·정밀의료·신약 최적화 확장 — 유전자·단백질·경로 분석·Reverse Bio-Design 엔진</div>
       </div>
     </div>
   </div>

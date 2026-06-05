@@ -38,9 +38,12 @@
 .v3-pipeline { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-top:44px; }
 @media(max-width:900px){ .v3-pipeline { grid-template-columns:repeat(3,1fr); } }
 @media(max-width:560px){ .v3-pipeline { grid-template-columns:1fr 1fr; } }
-.v3-pipe-step { background:rgba(255,255,255,0.045); border:1px solid rgba(255,255,255,0.09); border-radius:14px; padding:22px 18px; }
+.v3-pipe-step { display:block; text-decoration:none; background:rgba(255,255,255,0.045); border:1px solid rgba(255,255,255,0.09); border-radius:14px; padding:22px 18px; transition:transform 0.15s,border-color 0.15s,background 0.15s; }
+.v3-pipe-step:hover { transform:translateY(-2px); border-color:rgba(0,200,200,0.4); background:rgba(0,200,200,0.08); }
 .v3-pipe-step__num { font-family:var(--font-mono); font-size:11px; font-weight:700; color:var(--c-teal); margin-bottom:10px; }
 .v3-pipe-step__title { font-size:13px; font-weight:700; color:#fff; line-height:1.4; word-break:keep-all; }
+.v3-pipe-step__more { font-family:var(--font-mono); font-size:9px; font-weight:700; letter-spacing:0.08em; color:var(--c-teal); margin-top:12px; opacity:0; transition:opacity 0.15s; }
+.v3-pipe-step:hover .v3-pipe-step__more { opacity:1; }
 
 /* analysis-type 4-col */
 .v3-types { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:44px; }
@@ -87,26 +90,19 @@
     <h2 class="v3-section__title">AI 분석 파이프라인 5단계</h2>
     <p class="v3-section__lead">변수 선정부터 AI Q&A까지, 일관된 흐름으로 의사결정을 완성합니다.</p>
     <div class="v3-pipeline">
-      <div class="v3-pipe-step">
-        <div class="v3-pipe-step__num">STEP 01</div>
-        <div class="v3-pipe-step__title">변수 선정·파생데이터</div>
-      </div>
-      <div class="v3-pipe-step">
-        <div class="v3-pipe-step__num">STEP 02</div>
-        <div class="v3-pipe-step__title">변수 이해·XAI 변수 확정</div>
-      </div>
-      <div class="v3-pipe-step">
-        <div class="v3-pipe-step__num">STEP 03</div>
-        <div class="v3-pipe-step__title">알고리즘 경쟁·실시간 검증</div>
-      </div>
-      <div class="v3-pipe-step">
-        <div class="v3-pipe-step__num">STEP 04</div>
-        <div class="v3-pipe-step__title">예측·시뮬레이션 XY 최적화</div>
-      </div>
-      <div class="v3-pipe-step">
-        <div class="v3-pipe-step__num">STEP 05</div>
-        <div class="v3-pipe-step__title">AI Q&A (Knowledge Graph &amp; GraphRAG)</div>
-      </div>
+      <% [
+        ["STEP 01", "변수 선정·파생데이터", "pipe_var"],
+        ["STEP 02", "변수 이해·XAI 변수 확정", "pipe_xai"],
+        ["STEP 03", "알고리즘 경쟁·실시간 검증", "pipe_compete"],
+        ["STEP 04", "예측·시뮬레이션 XY 최적화", "pipe_optimize"],
+        ["STEP 05", "AI Q&A (Knowledge Graph & GraphRAG)", "pipe_qa"],
+      ].each do |num, title, slug| %>
+        <%= link_to v3_detail_path(slug: slug, locale: I18n.locale), class: "v3-pipe-step" do %>
+          <div class="v3-pipe-step__num"><%= num %></div>
+          <div class="v3-pipe-step__title"><%= title %></div>
+          <div class="v3-pipe-step__more">상세 →</div>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </section>

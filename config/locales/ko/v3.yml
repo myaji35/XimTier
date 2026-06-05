@@ -104,5 +104,25 @@ ko:
             - "최고가"
             - "중고가"
 
+    # PPTX「1. 주요 메뉴 구성 개요」비교표 원문 (10항목, XimTier vs 글로벌 경쟁사) — v3 overview/detail 전용
+    versus_pptx:
+      eyebrow: "경쟁사 비교"
+      title: "XimTier가 다른 이유"
+      lead: "글로벌 분석 플랫폼(SAS · DataRobot · Palantir · Tableau 등)과 10개 항목을 직접 비교했습니다. 설명이 아니라 표로 증명합니다."
+      col_self: "XimTier"
+      col_other: "글로벌 경쟁사"
+      note: "출처 — XimTier 메뉴 구성 PPTX「1. 주요 메뉴 구성 개요」비교표"
+      rows:
+        - { label: "비전문가 사용성", x: "매우 강함", o: "상대적으로 어려움" }
+        - { label: "What-If", x: "강함", o: "일부 제공" }
+        - { label: "Reverse What-If", x: "강함", o: "거의 없음" }
+        - { label: "XAI 설명", x: "기본 내장", o: "제한적" }
+        - { label: "산업별 즉시 적용", x: "강함", o: "별도 구축 필요" }
+        - { label: "정형·비정형 통합", x: "가능", o: "일부만 가능" }
+        - { label: "AI Q&A 통합", x: "가능", o: "제한적" }
+        - { label: "구축 비용", x: "상대적으로 낮음", o: "매우 높음" }
+        - { label: "구축 속도", x: "매우 빠름", o: "느림" }
+        - { label: "바이브코딩 연계", x: "매우 강함", o: "거의 없음" }
+
     cta:
       title: "비전문가도 5분 안에 의사결정을 끝냅니다"

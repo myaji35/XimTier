@@ -35,4 +35,10 @@ class PagesController < ApplicationController
   def v3_analysis; end
   def v3_solutions; end
   def v3_usage; end
+
+  def v3_detail
+    @slug = params[:slug].to_s
+    @detail = I18n.t("v3detail.#{@slug.tr('-', '_')}", default: nil)
+    redirect_to v3_overview_path(locale: I18n.locale) and return if @detail.nil?
+  end
 end

@@ -1,0 +1,164 @@
+<% content_for :title, @detail[:title] %>
+<%
+  back = @detail[:back_path].to_s
+  back_path = case back
+    when "data"      then v3_data_path(locale: I18n.locale)
+    when "overview"  then v3_overview_path(locale: I18n.locale)
+    when "analysis"  then v3_analysis_path(locale: I18n.locale)
+    when "solutions" then v3_solutions_path(locale: I18n.locale)
+    when "usage"     then v3_usage_path(locale: I18n.locale)
+    else v3_overview_path(locale: I18n.locale)
+  end
+  stats  = Array(@detail[:stats])
+  blocks = Array(@detail[:blocks])
+%>
+<div class="v3-root">
+<style>
+.v3-root {
+  --c-rausch:#ff385c; --c-canvas:#ffffff; --c-ink:#222222; --c-body:#3f3f3f;
+  --c-muted:#6a6a6a; --c-hairline:#dddddd; --c-navy:#0a1124; --c-navy2:#16325c;
+  --c-teal:#00c8c8; --c-blue:#2563eb;
+  --grad-teal:linear-gradient(135deg,#2563eb,#00c8c8);
+  --font-sans:'Airbnb Cereal VF',Circular,Inter,system-ui,'Apple SD Gothic Neo',sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,monospace;
+  font-family:var(--font-sans); color:var(--c-body);
+}
+.v3-wrap { max-width:1100px; margin:0 auto; padding:0 24px; }
+.v3d-eyebrow { font-family:var(--font-mono); font-size:11px; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:var(--c-teal); margin-bottom:14px; }
+
+/* Hero */
+.v3d-hero { background:var(--c-navy); padding:88px 0 64px; position:relative; overflow:hidden; }
+.v3d-hero::before { content:''; position:absolute; inset:0; background:radial-gradient(800px 500px at 78% 18%,rgba(0,200,200,0.12),transparent 60%),radial-gradient(600px 400px at 8% 88%,rgba(37,99,235,0.16),transparent 60%); pointer-events:none; }
+.v3d-hero__inner { position:relative; }
+.v3d-back { display:inline-flex; align-items:center; gap:6px; font-size:13px; color:#7a8aab; text-decoration:none; margin-bottom:22px; }
+.v3d-back:hover { color:#fff; }
+.v3d-chapter { font-family:var(--font-mono); font-size:11px; letter-spacing:0.14em; color:#7a8aab; margin-bottom:10px; }
+.v3d-title { font-size:clamp(28px,4vw,44px); font-weight:700; line-height:1.2; color:#fff; word-break:keep-all; margin:0 0 18px; }
+.v3d-summary { font-size:16px; line-height:1.8; color:#a7b1c7; max-width:760px; word-break:keep-all; overflow-wrap:anywhere; margin:0; }
+
+/* Stats (근거 수치) */
+.v3d-stats { display:flex; flex-wrap:wrap; gap:14px; margin-top:34px; position:relative; }
+.v3d-stat { flex:1 1 150px; background:rgba(255,255,255,0.05); border:1px solid rgba(0,200,200,0.22); border-radius:14px; padding:20px 22px; }
+.v3d-stat__value { font-family:var(--font-mono); font-weight:700; line-height:1; background:var(--grad-teal); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; font-size:clamp(22px,3vw,32px); }
+.v3d-stat__unit { font-family:var(--font-mono); font-size:13px; font-weight:700; color:var(--c-teal); margin-left:3px; }
+.v3d-stat__label { font-size:12px; color:#a7b1c7; margin-top:8px; line-height:1.5; word-break:keep-all; }
+
+/* Detail blocks */
+.v3d-section { padding:72px 0; }
+.v3d-section__eyebrow { font-family:var(--font-mono); font-size:11px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:var(--c-teal); margin-bottom:14px; }
+.v3d-section__title { font-size:clamp(20px,2.6vw,28px); font-weight:700; color:var(--c-ink); margin:0 0 28px; word-break:keep-all; }
+.v3d-blocks { display:flex; flex-direction:column; gap:0; border-top:1px solid var(--c-hairline); }
+.v3d-block { display:grid; grid-template-columns:260px 1fr; gap:24px; padding:24px 0; border-bottom:1px solid var(--c-hairline); align-items:start; }
+@media(max-width:680px){ .v3d-block { grid-template-columns:1fr; gap:8px; } }
+.v3d-block__head { font-size:16px; font-weight:700; color:var(--c-ink); word-break:keep-all; }
+.v3d-block__body { font-size:14.5px; line-height:1.75; color:var(--c-body); word-break:keep-all; overflow-wrap:anywhere; }
+
+/* Result callout */
+.v3d-result { margin-top:36px; background:#f7f8fa; border-left:3px solid var(--c-teal); border-radius:0 12px 12px 0; padding:20px 24px; }
+.v3d-result__label { font-family:var(--font-mono); font-size:10px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--c-teal); margin-bottom:6px; }
+.v3d-result__text { font-size:15px; font-weight:700; color:var(--c-ink); word-break:keep-all; }
+
+/* PPTX slide evidence */
+.v3d-evidence { background:var(--c-navy); padding:64px 0; }
+.v3d-evidence__eyebrow { font-family:var(--font-mono); font-size:11px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:var(--c-teal); margin-bottom:12px; }
+.v3d-evidence__title { font-size:20px; font-weight:700; color:#fff; margin:0 0 6px; }
+.v3d-evidence__note { font-size:12px; color:#7a8aab; margin:0 0 24px; font-family:var(--font-mono); }
+.v3d-slides { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; }
+.v3d-slide-fig { margin:0; }
+.v3d-slide-img { width:100%; border-radius:12px; border:1px solid rgba(255,255,255,0.12); display:block; }
+.v3d-slide-cap { font-family:var(--font-mono); font-size:11px; color:#7a8aab; margin-top:8px; }
+
+/* CTA */
+.v3d-cta { background:var(--c-navy2); padding:64px 0; text-align:center; }
+.v3d-cta__title { font-size:clamp(20px,2.6vw,28px); font-weight:700; color:#fff; margin:0 0 24px; word-break:keep-all; }
+.v3d-cta__btns { display:flex; flex-wrap:wrap; gap:14px; justify-content:center; }
+.v3d-btn-primary { display:inline-block; padding:14px 28px; background:var(--c-rausch); color:#fff; font-size:14px; font-weight:700; border-radius:10px; text-decoration:none; transition:opacity 0.15s,transform 0.15s; box-shadow:0 8px 24px -4px rgba(255,56,92,0.4); }
+.v3d-btn-primary:hover { opacity:0.88; transform:translateY(-1px); }
+.v3d-btn-ghost { display:inline-block; padding:13px 24px; background:transparent; color:#a7b1c7; font-size:14px; font-weight:600; border-radius:10px; text-decoration:none; border:1px solid rgba(255,255,255,0.2); transition:border-color 0.15s,color 0.15s; }
+.v3d-btn-ghost:hover { border-color:rgba(255,255,255,0.45); color:#fff; }
+</style>
+
+<!-- Hero -->
+<section class="v3d-hero">
+  <div class="v3-wrap">
+    <div class="v3d-hero__inner">
+      <a href="<%= back_path %>" class="v3d-back">← <%= @detail[:chapter] %></a>
+      <div class="v3d-chapter"><%= @detail[:eyebrow] %></div>
+      <h1 class="v3d-title"><%= @detail[:title] %></h1>
+      <p class="v3d-summary"><%= @detail[:summary] %></p>
+
+      <% if stats.any? %>
+        <div class="v3d-stats">
+          <% stats.each do |s| %>
+            <div class="v3d-stat">
+              <div>
+                <span class="v3d-stat__value"><%= s[:value] %></span><% if s[:unit].present? %><span class="v3d-stat__unit"><%= s[:unit] %></span><% end %>
+              </div>
+              <div class="v3d-stat__label"><%= s[:label] %></div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<!-- Detail blocks -->
+<% if blocks.any? %>
+<section class="v3d-section">
+  <div class="v3-wrap">
+    <div class="v3d-section__eyebrow">Capabilities</div>
+    <h2 class="v3d-section__title"><%= t("v3detail_ui.capabilities") %></h2>
+    <div class="v3d-blocks">
+      <% blocks.each do |b| %>
+        <div class="v3d-block">
+          <div class="v3d-block__head"><%= b[:head] %></div>
+          <div class="v3d-block__body"><%= b[:body] %></div>
+        </div>
+      <% end %>
+    </div>
+
+    <% if @detail[:result].present? %>
+      <div class="v3d-result">
+        <div class="v3d-result__label"><%= t("v3detail_ui.result") %></div>
+        <div class="v3d-result__text"><%= @detail[:result] %></div>
+      </div>
+    <% end %>
+  </div>
+</section>
+<% end %>
+
+<!-- PPTX slide evidence -->
+<% slide_nums = @detail[:slide].to_s.split("·").map(&:strip).reject(&:blank?)
+   slide_files = slide_nums.map { |n| "deck-slides/slide-#{format('%02d', n.to_i)}.jpg" }
+                            .select { |f| File.exist?(Rails.root.join("public", f)) } %>
+<% if slide_files.any? %>
+<section class="v3d-evidence">
+  <div class="v3-wrap">
+    <div class="v3d-evidence__eyebrow"><%= t("v3detail_ui.evidence_eyebrow") %></div>
+    <h2 class="v3d-evidence__title"><%= t("v3detail_ui.evidence_title") %></h2>
+    <p class="v3d-evidence__note"><%= t("v3detail_ui.evidence_note", slide: @detail[:slide]) %></p>
+    <div class="v3d-slides">
+      <% slide_files.each_with_index do |f, i| %>
+        <figure class="v3d-slide-fig">
+          <img src="/<%= f %>" alt="<%= t("v3detail_ui.slide_alt", title: @detail[:title]) %>" class="v3d-slide-img" loading="lazy">
+          <figcaption class="v3d-slide-cap">Slide <%= slide_nums[i] %></figcaption>
+        </figure>
+      <% end %>
+    </div>
+  </div>
+</section>
+<% end %>
+
+<!-- CTA -->
+<section class="v3d-cta">
+  <div class="v3-wrap">
+    <h2 class="v3d-cta__title"><%= t("v3detail_ui.cta_title") %></h2>
+    <div class="v3d-cta__btns">
+      <%= link_to t("v3detail_ui.cta_demo"), demo_path(locale: I18n.locale), class: "v3d-btn-primary" %>
+      <a href="<%= back_path %>" class="v3d-btn-ghost">← <%= t("v3detail_ui.back_to", chapter: @detail[:chapter]) %></a>
+    </div>
+  </div>
+</section>
+
+</div>
