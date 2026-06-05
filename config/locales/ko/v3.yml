@@ -1,0 +1,108 @@
+ko:
+  v3:
+    hero:
+      headline: "AI가 데이터를 이해하고, 최적의 전략을 제시합니다"
+      sub: "더 빠르고 더 정확한 의사결정을 지원하는 스마트 AI 핵심 기술력"
+      cta_demo: "데모 신청하기"
+      cta_contact: "문의하기"
+      footer_note: "자연어 Q&A 지향 리포트 · 음성 질의 대화형 답변 — 심티어만의 차별화 가치"
+      steps:
+        - n: "01"
+          title: "지능형 스캔·스마트 탐색"
+          desc: "WhatDataAI 진단 시스템"
+        - n: "02"
+          title: "3대 스마트 분석"
+          desc: "Meeting · 설문 · SNS"
+        - n: "03"
+          title: "60여 종 알고리즘 실시간 경쟁"
+          desc: "최적 모델 자동 선정"
+        - n: "04"
+          title: "핵심 Reverse What-If"
+          desc: "목표 설정 최적화"
+        - n: "05"
+          title: "비전문가 중심 XAI & AI Q&A"
+          desc: "설명 가능한 AI 분석"
+        - n: "06"
+          title: "최적화 의사결정 & 실행 가이드"
+          desc: "즉시 실행 가능한 전략 제시"
+
+    reverse:
+      eyebrow: "REVERSE WHAT-IF"
+      title: "분석이 아니라"
+      title_accent: "의사결정 최적화"
+      lead: "목표(Y)를 입력하면 최적 변수(X) 조합을 역산합니다. 경쟁사엔 거의 없는 차별점 — XimTier만의 고유 기술입니다."
+
+    arch:
+      eyebrow: "3단 아키텍처"
+      title: "설계부터 다릅니다"
+      layers:
+        - tier: "TOP"
+          name: "XimSolution"
+          subtitle: "산업 특화 솔루션"
+          desc: "10종 산업별 맞춤 AI 의사결정 솔루션"
+        - tier: "CORE"
+          name: "WhatDataAI"
+          subtitle: "분석 지능 엔진"
+          desc: "60종 알고리즘 · XAI · Reverse What-If 핵심 엔진"
+        - tier: "BASE"
+          name: "통계·분석 엔진"
+          subtitle: "데이터 인프라"
+          desc: "온프레미스 데이터 처리 · 통계 기반 안정적 인프라"
+
+    solutions:
+      eyebrow: "10종 산업 솔루션"
+      title: "어떤 산업에도 즉시 적용"
+      items:
+        - "AI 스마트 Meeting 분석"
+        - "AI 설문 분석"
+        - "AI SNS 분석"
+        - "축제·행사 인사이트"
+        - "전통시장·상권 분석"
+        - "소상공인·매장 최적화"
+        - "광고형 병의원 솔루션"
+        - "설비고장·예지보전"
+        - "SNS 기반 제품개발"
+        - "설문 기반 제품개발"
+
+    versus:
+      eyebrow: "경쟁사 비교"
+      title: "XimTier가 다른 이유"
+      headers:
+        - "기능"
+        - "XimTier"
+        - "SAS"
+        - "DataRobot"
+        - "Palantir"
+        - "Tableau"
+      rows:
+        - label: "Reverse What-If"
+          x: "핵심 기능"
+          others:
+            - "없음"
+            - "제한적"
+            - "없음"
+            - "없음"
+        - label: "비전문가 사용성"
+          x: "5분 즉시 사용"
+          others:
+            - "전문가 필요"
+            - "중간"
+            - "전문가 필요"
+            - "보통"
+        - label: "구축 속도"
+          x: "수일 이내"
+          others:
+            - "수개월"
+            - "수주"
+            - "수개월+"
+            - "수주"
+        - label: "비용"
+          x: "합리적"
+          others:
+            - "고가"
+            - "고가"
+            - "최고가"
+            - "중고가"
+
+    cta:
+      title: "비전문가도 5분 안에 의사결정을 끝냅니다"

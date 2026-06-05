@@ -1,0 +1,108 @@
+en:
+  v3:
+    hero:
+      headline: "AI understands your data and delivers the optimal strategy"
+      sub: "Smart AI core technology for faster and more accurate decision-making"
+      cta_demo: "Request a Demo"
+      cta_contact: "Contact Us"
+      footer_note: "Natural language Q&A reports · Voice-driven conversational answers — XimTier's unique differentiator"
+      steps:
+        - n: "01"
+          title: "Intelligent Scan & Smart Search"
+          desc: "WhatDataAI Diagnostic System"
+        - n: "02"
+          title: "3 Smart Analytics"
+          desc: "Meeting · Survey · SNS"
+        - n: "03"
+          title: "60+ Algorithms Competing in Real Time"
+          desc: "Automatic best-model selection"
+        - n: "04"
+          title: "Core Reverse What-If"
+          desc: "Goal-based optimization"
+        - n: "05"
+          title: "XAI & AI Q&A for Non-Experts"
+          desc: "Explainable AI analysis"
+        - n: "06"
+          title: "Optimized Decision & Action Guide"
+          desc: "Ready-to-execute strategy"
+
+    reverse:
+      eyebrow: "REVERSE WHAT-IF"
+      title: "Not analysis —"
+      title_accent: "Decision optimization"
+      lead: "Input your goal (Y) and XimTier reverse-solves the optimal variable combination (X). A differentiator almost no competitor offers — XimTier's proprietary technology."
+
+    arch:
+      eyebrow: "3-TIER ARCHITECTURE"
+      title: "Designed differently from the ground up"
+      layers:
+        - tier: "TOP"
+          name: "XimSolution"
+          subtitle: "Industry-Specific Solutions"
+          desc: "10 industry-tailored AI decision solutions"
+        - tier: "CORE"
+          name: "WhatDataAI"
+          subtitle: "Analytic Intelligence Engine"
+          desc: "60+ algorithms · XAI · Reverse What-If core engine"
+        - tier: "BASE"
+          name: "Statistics & Analytics Engine"
+          subtitle: "Data Infrastructure"
+          desc: "On-premise data processing · statistically grounded stable infrastructure"
+
+    solutions:
+      eyebrow: "10 INDUSTRY SOLUTIONS"
+      title: "Ready for any industry, immediately"
+      items:
+        - "AI Smart Meeting Analytics"
+        - "AI Survey Analytics"
+        - "AI SNS Analytics"
+        - "Festival & Event Insights"
+        - "Traditional Market & District Analytics"
+        - "Small Business & Store Optimization"
+        - "Advertising-Based Medical Clinic Solution"
+        - "Equipment Failure & Predictive Maintenance"
+        - "SNS-Based Product Development"
+        - "Survey-Based Product Development"
+
+    versus:
+      eyebrow: "COMPETITIVE COMPARISON"
+      title: "Why XimTier is different"
+      headers:
+        - "Feature"
+        - "XimTier"
+        - "SAS"
+        - "DataRobot"
+        - "Palantir"
+        - "Tableau"
+      rows:
+        - label: "Reverse What-If"
+          x: "Core feature"
+          others:
+            - "None"
+            - "Limited"
+            - "None"
+            - "None"
+        - label: "Non-expert usability"
+          x: "5-min ready"
+          others:
+            - "Expert required"
+            - "Moderate"
+            - "Expert required"
+            - "Average"
+        - label: "Deployment speed"
+          x: "Days"
+          others:
+            - "Months"
+            - "Weeks"
+            - "Months+"
+            - "Weeks"
+        - label: "Cost"
+          x: "Reasonable"
+          others:
+            - "High"
+            - "High"
+            - "Very high"
+            - "Mid-high"
+
+    cta:
+      title: "Even non-experts make decisions in under 5 minutes"
