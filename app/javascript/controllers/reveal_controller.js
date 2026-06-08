@@ -10,6 +10,7 @@ export default class extends Controller {
   static targets = ["item"]
   static values = {
     stagger: { type: Number, default: 80 },
+    baseDelay: { type: Number, default: 0 },
     once: { type: Boolean, default: true }
   }
 
@@ -43,7 +44,7 @@ export default class extends Controller {
 
   reveal() {
     this.items.forEach((el, i) => {
-      el.style.transitionDelay = `${i * this.staggerValue}ms`
+      el.style.transitionDelay = `${this.baseDelayValue + i * this.staggerValue}ms`
       el.classList.add("is-in")
     })
   }

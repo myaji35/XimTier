@@ -8,7 +8,8 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["step"]
   static values = {
-    stagger: { type: Number, default: 90 }
+    stagger: { type: Number, default: 140 },
+    baseDelay: { type: Number, default: 0 }
   }
 
   connect() {
@@ -45,13 +46,13 @@ export default class extends Controller {
 
   run() {
     this.steps.forEach((el, i) => {
-      el.style.transitionDelay = `${i * this.staggerValue}ms`
+      el.style.transitionDelay = `${this.baseDelayValue + i * this.staggerValue}ms`
       el.classList.add("is-in")
     })
 
-    // 모든 step 등장 후 마지막(행동 결정) step에 voltage 펄스 1회
+    // 모든 step 등장 후 마지막(행동 결정) step에 voltage 펄스
     const last = this.steps[this.steps.length - 1]
-    const delay = this.steps.length * this.staggerValue + 200
+    const delay = this.baseDelayValue + this.steps.length * this.staggerValue + 300
     this.timer = setTimeout(() => last.classList.add("is-pulse"), delay)
   }
 }
