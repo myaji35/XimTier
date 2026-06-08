@@ -410,31 +410,84 @@
   gap: 16px;
   justify-content: center;
 }
+
+/* ─── Scroll Reveal Motion (데이터 → 액션 수렴) ──────────────────── */
+/* 진입 1회 fade-up. brand-dna 한도: 280ms / translateY 14px / 표준 easing. */
+.v3-reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 280ms cubic-bezier(0.4, 0, 0.2, 1),
+              transform 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform;
+}
+.v3-reveal.is-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* table row는 transform 제약 → opacity만으로 reveal */
+tr.v3-reveal { transform: none; }
+tr.v3-reveal.is-in { transform: none; }
+
+/* 히어로 6-step: 좌→우 수렴 등장 */
+.v3-step.v3-reveal {
+  transform: translateY(14px) scale(0.98);
+}
+.v3-step.v3-reveal.is-in {
+  transform: translateY(0) scale(1);
+}
+/* 마지막 step(행동 결정) voltage 펄스 — 1회, 무한루프 아님 */
+.v3-step.is-pulse {
+  animation: v3-voltage 700ms cubic-bezier(0.4, 0, 0.2, 1) 1;
+}
+@keyframes v3-voltage {
+  0%   { box-shadow: 0 0 0 0 rgba(255, 56, 92, 0); }
+  35%  { box-shadow: 0 0 0 3px rgba(255, 56, 92, 0.35); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 56, 92, 0); }
+}
+
+/* Reverse What-If 다이어그램: GOAL→화살표→X 역산 흐름 */
+.v3-diagram-arrow.v3-reveal.is-in svg { animation: v3-arrow-drop 300ms cubic-bezier(0.4, 0, 0.2, 1) 1; }
+@keyframes v3-arrow-drop {
+  0%   { transform: translateY(-6px); opacity: 0.3; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* CTA Primary 펄스 — 진입 시 1회 */
+.v3-cta .v3-btn-primary.is-pulse {
+  animation: v3-voltage 700ms cubic-bezier(0.4, 0, 0.2, 1) 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v3-reveal { opacity: 1; transform: none; transition: none; }
+  .v3-step.is-pulse,
+  .v3-diagram-arrow.is-in svg,
+  .v3-cta .v3-btn-primary.is-pulse { animation: none; }
+}
 </style>
 
 <%# ═══════════════════════════════════════════════════════════════ %>
 <%# SECTION 1 — HERO (Dark Navy, Slide 5)                          %>
 <%# ═══════════════════════════════════════════════════════════════ %>
-<section class="v3-hero">
+<section class="v3-hero" data-controller="reveal" data-reveal-stagger-value="110">
   <div class="v3-wrap v3-hero__inner">
 
-    <div class="v3-eyebrow">핵심 기술력 · AI Decision Intelligence</div>
+    <div class="v3-eyebrow v3-reveal" data-reveal-target="item">핵심 기술력 · AI Decision Intelligence</div>
 
-    <h1 class="v3-hero__headline">
+    <h1 class="v3-hero__headline v3-reveal" data-reveal-target="item">
       <%= t("v3.hero.headline") %>
     </h1>
 
-    <p class="v3-hero__sub"><%= t("v3.hero.sub") %></p>
+    <p class="v3-hero__sub v3-reveal" data-reveal-target="item"><%= t("v3.hero.sub") %></p>
 
-    <div class="v3-hero__ctas">
+    <div class="v3-hero__ctas v3-reveal" data-reveal-target="item">
       <%= link_to t("v3.hero.cta_demo"),    demo_path(locale: I18n.locale),    class: "v3-btn-primary" %>
       <%= link_to t("v3.hero.cta_contact"), contact_path(locale: I18n.locale), class: "v3-btn-ghost" %>
     </div>
 
-    <%# 6-Step Workflow %>
-    <div class="v3-workflow">
+    <%# 6-Step Workflow — 데이터→액션 수렴 연출 %>
+    <div class="v3-workflow" data-controller="converge">
       <% t("v3.hero.steps").each do |step| %>
-        <div class="v3-step">
+        <div class="v3-step v3-reveal" data-converge-target="step">
           <div class="v3-step__num"><%= step[:n] %></div>
           <div class="v3-step__title"><%= step[:title] %></div>
           <div class="v3-step__desc"><%= step[:desc] %></div>
@@ -452,12 +505,12 @@
 <%# ═══════════════════════════════════════════════════════════════ %>
 <%# SECTION 2 — Reverse What-If                                     %>
 <%# ═══════════════════════════════════════════════════════════════ %>
-<section class="v3-section">
+<section class="v3-section" data-controller="reveal" data-reveal-stagger-value="120">
   <div class="v3-wrap">
     <div class="v3-reverse__grid">
 
       <%# Left: text %>
-      <div>
+      <div class="v3-reveal" data-reveal-target="item">
         <div class="v3-eyebrow" style="color: var(--c-blue);">
           <%= t("v3.reverse.eyebrow") %>
         </div>
@@ -470,11 +523,11 @@
         </p>
       </div>
 
-      <%# Right: diagram %>
+      <%# Right: diagram — GOAL → 화살표 → X 역산 흐름 %>
       <div class="v3-reverse__diagram">
         <div class="v3-reverse__diagram-inner">
 
-          <div class="v3-diagram-row">
+          <div class="v3-diagram-row v3-reveal" data-reveal-target="item">
             <div class="v3-diagram-label">GOAL</div>
             <div class="v3-diagram-pill v3-diagram-pill--goal">
               <% if I18n.locale.to_s == "ko" %>
@@ -485,17 +538,17 @@
             </div>
           </div>
 
-          <div class="v3-diagram-arrow">
+          <div class="v3-diagram-arrow v3-reveal" data-reveal-target="item">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <path d="M12 5v14M5 12l7 7 7-7"/>
             </svg>
           </div>
 
-          <div style="font-family: var(--font-mono); font-size: 11px; color: #5a6880; margin-bottom: 10px;">
+          <div class="v3-reveal" data-reveal-target="item" style="font-family: var(--font-mono); font-size: 11px; color: #5a6880; margin-bottom: 10px;">
             Reverse What-If →
           </div>
 
-          <div class="v3-diagram-row">
+          <div class="v3-diagram-row v3-reveal" data-reveal-target="item">
             <div class="v3-diagram-label">X₁</div>
             <div class="v3-diagram-pill v3-diagram-pill--result">
               <% if I18n.locale.to_s == "ko" %>
@@ -505,7 +558,7 @@
               <% end %>
             </div>
           </div>
-          <div class="v3-diagram-row">
+          <div class="v3-diagram-row v3-reveal" data-reveal-target="item">
             <div class="v3-diagram-label">X₂</div>
             <div class="v3-diagram-pill v3-diagram-pill--result">
               <% if I18n.locale.to_s == "ko" %>
@@ -515,7 +568,7 @@
               <% end %>
             </div>
           </div>
-          <div class="v3-diagram-row">
+          <div class="v3-diagram-row v3-reveal" data-reveal-target="item">
             <div class="v3-diagram-label">X₃</div>
             <div class="v3-diagram-pill v3-diagram-pill--result">
               <% if I18n.locale.to_s == "ko" %>
@@ -536,16 +589,16 @@
 <%# ═══════════════════════════════════════════════════════════════ %>
 <%# SECTION 3 — 3-Tier Architecture                                 %>
 <%# ═══════════════════════════════════════════════════════════════ %>
-<section class="v3-section v3-section--dark">
+<section class="v3-section v3-section--dark" data-controller="reveal" data-reveal-stagger-value="110">
   <div class="v3-wrap">
-    <div class="v3-eyebrow"><%= t("v3.arch.eyebrow") %></div>
-    <h2 class="v3-section__title"><%= t("v3.arch.title") %></h2>
+    <div class="v3-eyebrow v3-reveal" data-reveal-target="item"><%= t("v3.arch.eyebrow") %></div>
+    <h2 class="v3-section__title v3-reveal" data-reveal-target="item"><%= t("v3.arch.title") %></h2>
 
     <div class="v3-arch-stack">
       <% arch_slugs = ["arch_top", "arch_core", "arch_base"] %>
       <% t("v3.arch.layers").each_with_index do |layer, i| %>
         <% tier_class = ["top","core","base"][i] %>
-        <%= link_to v3_detail_path(slug: arch_slugs[i], locale: I18n.locale), class: "v3-arch-layer v3-arch-layer--#{tier_class}" do %>
+        <%= link_to v3_detail_path(slug: arch_slugs[i], locale: I18n.locale), class: "v3-arch-layer v3-arch-layer--#{tier_class} v3-reveal", data: { reveal_target: "item" } do %>
           <div class="v3-arch-tier"><%= layer[:tier] %></div>
           <div>
             <div class="v3-arch-name"><%= layer[:name] %></div>
@@ -561,15 +614,15 @@
 <%# ═══════════════════════════════════════════════════════════════ %>
 <%# SECTION 4 — 10 Industry Solutions                               %>
 <%# ═══════════════════════════════════════════════════════════════ %>
-<section class="v3-section v3-section--alt">
+<section class="v3-section v3-section--alt" data-controller="reveal" data-reveal-stagger-value="45">
   <div class="v3-wrap">
-    <div class="v3-eyebrow"><%= t("v3.solutions.eyebrow") %></div>
-    <h2 class="v3-section__title" style="color: var(--c-ink);"><%= t("v3.solutions.title") %></h2>
+    <div class="v3-eyebrow v3-reveal" data-reveal-target="item"><%= t("v3.solutions.eyebrow") %></div>
+    <h2 class="v3-section__title v3-reveal" data-reveal-target="item" style="color: var(--c-ink);"><%= t("v3.solutions.title") %></h2>
 
     <div class="v3-solutions-grid">
       <% sol_slugs = %w[sol_meeting sol_survey sol_sns sol_festival sol_market sol_store sol_clinic sol_maintenance sol_sns_product sol_survey_product] %>
       <% t("v3.solutions.items").each_with_index do |item, i| %>
-        <%= link_to v3_detail_path(slug: sol_slugs[i], locale: I18n.locale), class: "v3-sol-card" do %>
+        <%= link_to v3_detail_path(slug: sol_slugs[i], locale: I18n.locale), class: "v3-sol-card v3-reveal", data: { reveal_target: "item" } do %>
           <div class="v3-sol-idx"><%= sprintf("%02d", i + 1) %></div>
           <div class="v3-sol-name"><%= item %></div>
         <% end %>
@@ -581,10 +634,10 @@
 <%# ═══════════════════════════════════════════════════════════════ %>
 <%# SECTION 5 — Competitor Comparison                               %>
 <%# ═══════════════════════════════════════════════════════════════ %>
-<section class="v3-section">
+<section class="v3-section" data-controller="reveal" data-reveal-stagger-value="70">
   <div class="v3-wrap">
-    <div class="v3-eyebrow"><%= t("v3.versus.eyebrow") %></div>
-    <h2 class="v3-section__title"><%= t("v3.versus.title") %></h2>
+    <div class="v3-eyebrow v3-reveal" data-reveal-target="item"><%= t("v3.versus.eyebrow") %></div>
+    <h2 class="v3-section__title v3-reveal" data-reveal-target="item"><%= t("v3.versus.title") %></h2>
 
     <div style="overflow-x: auto; margin-top: 0;">
       <table class="v3-versus-table">
@@ -597,7 +650,7 @@
         </thead>
         <tbody>
           <% t("v3.versus.rows").each do |row| %>
-            <tr>
+            <tr class="v3-reveal" data-reveal-target="item">
               <td><%= row[:label] %></td>
               <td><%= row[:x] %></td>
               <% row[:others].each do |o| %>
@@ -614,11 +667,11 @@
 <%# ═══════════════════════════════════════════════════════════════ %>
 <%# SECTION 6 — CTA                                                 %>
 <%# ═══════════════════════════════════════════════════════════════ %>
-<section class="v3-cta">
+<section class="v3-cta" data-controller="reveal converge" data-reveal-stagger-value="100">
   <div class="v3-wrap v3-cta__inner">
-    <h2 class="v3-cta__title"><%= t("v3.cta.title") %></h2>
-    <div class="v3-cta__btns">
-      <%= link_to t("v3.hero.cta_demo"),    demo_path(locale: I18n.locale),    class: "v3-btn-primary" %>
+    <h2 class="v3-cta__title v3-reveal" data-reveal-target="item"><%= t("v3.cta.title") %></h2>
+    <div class="v3-cta__btns v3-reveal" data-reveal-target="item">
+      <%= link_to t("v3.hero.cta_demo"),    demo_path(locale: I18n.locale),    class: "v3-btn-primary", data: { converge_target: "step" } %>
       <%= link_to t("v3.hero.cta_contact"), contact_path(locale: I18n.locale), class: "v3-btn-ghost" %>
     </div>
   </div>
