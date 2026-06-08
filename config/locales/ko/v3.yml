@@ -1,7 +1,7 @@
 ko:
   v3:
     hero:
-      headline: "AI가 분석하고, XimTier는 행동을 결정합니다"
+      headline: "AI가 분석하고,\nXimTier는 행동을 결정합니다"
       sub: "데이터 · AGI · 에이전트 · 로봇을 연결하여 목표 달성의 최적 조합을 찾습니다"
       cta_demo: "데모 신청하기"
       cta_contact: "문의하기"
