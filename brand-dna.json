@@ -216,7 +216,13 @@
       "duration_slow":   "300ms",
       "easing_standard": "cubic-bezier(0.4, 0, 0.2, 1)",
       "hover_effect":    "elevation_lift",
-      "float_chip":      "none"
+      "float_chip":      "none",
+      "hero_motion_exception": {
+        "allowed": true,
+        "scope": "히어로(.v3-hero) 배경 한정",
+        "rationale": "카피 'AI가 분석하고, XimTier는 행동을 결정합니다 / 데이터·AGI·에이전트·로봇을 연결' 의미를 살아 움직이는 데이터→분석코어→행동타겟 수렴 모션그래픽으로 시각화. 대표님 명시 결정 2026-06-08.",
+        "constraints": "기존 색 토큰(teal/blue/rausch)만 사용, 보라색·AI슬롭 추상도형 금지, prefers-reduced-motion 시 정지, 탭 비활성 시 정지. float_chip:none 규칙은 히어로 외 전 섹션에 계속 적용."
+      }
     },
     "personality": {
       "icon_style":   "hand_illustrated",
