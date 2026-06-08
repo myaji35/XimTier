@@ -67,6 +67,9 @@ en:
     versus:
       eyebrow: "COMPETITIVE COMPARISON"
       title: "Why XimTier is different"
+      banner_tag: "PRE-PALANTIR POSITIONING"
+      banner_title: "XimTier doesn't compete with Palantir — it owns the stage before Palantir begins"
+      banner_body: "Half the cost of adopting a large data platform goes to \"Data Readiness.\" XimTier is the \"AX Feasibility Scanner\" that diagnoses adoption feasibility on your data as-is within an hour and lays out the roadmap — claiming the empty space before ontology buildout."
       headers:
         - "Feature"
         - "XimTier"

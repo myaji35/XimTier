@@ -353,6 +353,39 @@
 }
 
 /* ─── Versus ───────────────────────────────────────────────────── */
+/* Pre-Palantir 포지셔닝 배너 */
+.v3-prepalantir {
+  margin-top: 28px;
+  padding: 24px 28px;
+  background: var(--c-surface, #f7f7f7);
+  border: 1px solid var(--c-hairline);
+  border-left: 4px solid var(--c-teal);
+  border-radius: 16px;
+}
+.v3-prepalantir__tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--c-teal);
+  margin-bottom: 10px;
+}
+.v3-prepalantir__title {
+  font-size: clamp(17px, 2vw, 21px);
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--c-ink);
+  word-break: keep-all;
+  margin-bottom: 10px;
+}
+.v3-prepalantir__body {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--c-body);
+  word-break: keep-all;
+  margin: 0;
+  max-width: 760px;
+}
 .v3-versus-table {
   width: 100%;
   border-collapse: collapse;
@@ -652,6 +685,13 @@ tr.v3-reveal.is-in { transform: none; }
   <div class="v3-wrap">
     <div class="v3-eyebrow v3-reveal" data-reveal-target="item"><%= t("v3.versus.eyebrow") %></div>
     <h2 class="v3-section__title v3-reveal" data-reveal-target="item"><%= t("v3.versus.title") %></h2>
+
+    <%# Pre-Palantir 포지셔닝 배너 %>
+    <div class="v3-prepalantir v3-reveal" data-reveal-target="item">
+      <div class="v3-prepalantir__tag"><%= t("v3.versus.banner_tag") %></div>
+      <div class="v3-prepalantir__title"><%= t("v3.versus.banner_title") %></div>
+      <p class="v3-prepalantir__body"><%= t("v3.versus.banner_body") %></p>
+    </div>
 
     <div style="overflow-x: auto; margin-top: 0;">
       <table class="v3-versus-table">

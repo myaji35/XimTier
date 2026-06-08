@@ -67,6 +67,9 @@ ko:
     versus:
       eyebrow: "경쟁사 비교"
       title: "XimTier가 다른 이유"
+      banner_tag: "PRE-PALANTIR POSITIONING"
+      banner_title: "XimTier는 Palantir와 경쟁하지 않습니다 — Palantir가 시작하기 전 단계를 담당합니다"
+      banner_body: "거대 데이터 플랫폼 도입 비용의 절반은 \"준비(Data Readiness)\"에 쓰입니다. XimTier는 현재 데이터 그대로 1시간 내 도입 타당성을 진단하고 로드맵을 제시하는 \"AX Feasibility Scanner\" — 온톨로지 구축 이전의 빈 자리를 차지합니다."
       headers:
         - "기능"
         - "XimTier"
