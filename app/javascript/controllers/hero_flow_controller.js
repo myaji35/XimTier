@@ -132,22 +132,26 @@ export default class extends Controller {
     })
     this.lines = new THREE.LineSegments(lineGeo, lineMat)
     this.scene.add(this.lines)
+    this.points.position.x = 1.6
+    this.lines.position.x = 1.6
 
     // 분석 코어 글로우 (우측, 카피 정렬) + 행동(Rausch) 펄스
     const coreMat = new THREE.SpriteMaterial({
-      color: 0x00c8c8, transparent: true, opacity: 0.9, blending: THREE.AdditiveBlending
+      map: this.makeGlowTexture(0x00c8c8), transparent: true, opacity: 0.9,
+      blending: THREE.AdditiveBlending, depthWrite: false
     })
     this.core = new THREE.Sprite(coreMat)
     this.core.position.set(2.2, -0.2, 0.5)
-    this.core.scale.set(0.9, 0.9, 1)
+    this.core.scale.set(2.0, 2.0, 1)
     this.scene.add(this.core)
 
     const actionMat = new THREE.SpriteMaterial({
-      color: 0xff385c, transparent: true, opacity: 0.0, blending: THREE.AdditiveBlending
+      map: this.makeGlowTexture(0xff385c), transparent: true, opacity: 0.0,
+      blending: THREE.AdditiveBlending, depthWrite: false
     })
     this.action = new THREE.Sprite(actionMat)
     this.action.position.set(2.2, -1.1, 0.5)
-    this.action.scale.set(0.4, 0.4, 1)
+    this.action.scale.set(0.9, 0.9, 1)
     this.scene.add(this.action)
 
     return true
@@ -192,7 +196,7 @@ export default class extends Controller {
     // 2) 분석 코어 맥동 (응축)
     const pulse = 0.5 + 0.5 * Math.sin(t * 0.05)
     if (this.core) {
-      const sc = 0.8 + pulse * 0.35
+      const sc = 1.8 + pulse * 0.6
       this.core.scale.set(sc, sc, 1)
       this.core.material.opacity = 0.55 + pulse * 0.35
     }
@@ -201,7 +205,7 @@ export default class extends Controller {
     if (this.action) {
       const phase = (t % 150) / 150
       this.action.material.opacity = phase < 0.4 ? (0.4 - phase) * 1.8 : 0
-      const asc = 0.4 + (phase < 0.4 ? phase * 0.8 : 0)
+      const asc = 0.9 + (phase < 0.4 ? phase * 1.4 : 0)
       this.action.scale.set(asc, asc, 1)
     }
 
@@ -217,5 +221,26 @@ export default class extends Controller {
   // WebGL 미지원 시: 기존 ::before 그라데이션 글로우만 남기고 캔버스는 비움
   drawFallback() {
     this.canvas.style.display = "none"
+  }
+
+  // 부드러운 원형 글로우 텍스처 (Sprite용) — color는 0xRRGGBB
+  makeGlowTexture(color) {
+    const size = 128
+    const cv = document.createElement("canvas")
+    cv.width = cv.height = size
+    const g = cv.getContext("2d")
+    const r = size / 2
+    const grad = g.createRadialGradient(r, r, 0, r, r, r)
+    const hex = "#" + color.toString(16).padStart(6, "0")
+    grad.addColorStop(0, hex)
+    grad.addColorStop(0.25, hex)
+    grad.addColorStop(1, "rgba(0,0,0,0)")
+    g.fillStyle = grad
+    g.beginPath()
+    g.arc(r, r, r, 0, Math.PI * 2)
+    g.fill()
+    const tex = new THREE.CanvasTexture(cv)
+    tex.needsUpdate = true
+    return tex
   }
 }
