@@ -83,6 +83,10 @@ export default class extends Controller {
     this.stop()
     if (this._onResize) window.removeEventListener("resize", this._onResize)
     if (this._onVisibility) document.removeEventListener("visibilitychange", this._onVisibility)
+    if (this.points) { this.points.geometry.dispose(); this.points.material.dispose() }
+    if (this.lines) { this.lines.geometry.dispose(); this.lines.material.dispose() }
+    if (this.core) { if (this.core.material.map) this.core.material.map.dispose(); this.core.material.dispose() }
+    if (this.action) { if (this.action.material.map) this.action.material.map.dispose(); this.action.material.dispose() }
     if (this.renderer) { this.renderer.dispose(); this.renderer = null }
   }
 
