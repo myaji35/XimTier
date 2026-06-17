@@ -1,33 +1,76 @@
 import { Controller } from "@hotwired/stimulus"
+import * as THREE from "three"
 
-// HeroFlow — 히어로 배경 "데이터 → 분석 → 행동 수렴" 모션그래픽 (지속 루프)
-// 카피 "AI가 분석하고, XimTier는 행동을 결정합니다 / 데이터·AGI·에이전트·로봇을 연결"의 시각화.
-// 데이터 입자가 사방에서 흘러 들어와 '분석 코어'로 빨려들고,
-// 코어가 응축한 신호가 하나의 '행동(Action) 타겟'(Rausch)으로 수렴·발사한다.
-// canvas 2D. 기존 색 토큰만 사용. prefers-reduced-motion / 탭 비활성 시 정지.
+// HeroFlow — 히어로 배경 "뇌 네트워크 + 데이터→분석→행동 수렴" 모션그래픽 (Three.js)
+// 청록 뇌 형태 파티클 네트워크가 살아 숨쉬고, 노드 일부가 '분석 코어'로 점화·수렴해
+// Rausch '행동' 펄스를 발사한다. 카피 "AI가 분석하고, XimTier는 행동을 결정합니다"의 시각화.
+// 기존 색 토큰만 사용. prefers-reduced-motion / 탭 비활성 시 정지. WebGL 미지원 시 정적 폴백.
 // brand-dna.json design_tokens.motion.hero_motion_exception 으로 히어로 한정 허용.
+
+// ── 뇌 노드 좌표 생성 (순수 함수, 테스트 대상) ───────────────────
+// 좌우 반구 실루엣을 따라 노드를 분포시킨다. 결정론적(seed)으로 생성해 테스트 가능.
+export function buildBrainPositions(count, seed = 1) {
+  const positions = []
+  let s = seed
+  const rng = () => { s = (s * 9301 + 49297) % 233280; return s / 233280 }
+  for (let i = 0; i < count; i++) {
+    // 두 반구: 좌/우로 약간 분리된 타원체 셸
+    const side = i % 2 === 0 ? 1 : -1
+    const u = rng() * Math.PI * 2
+    const v = Math.acos(2 * rng() - 1)
+    // 셸 두께(0.78~1.0)로 표면 근처에 집중 → 윤곽이 보이게
+    const rr = 0.78 + rng() * 0.22
+    const x = side * (1.05 + Math.sin(v) * Math.cos(u) * 0.95) * rr
+    const y = Math.cos(v) * 1.15 * rr
+    const z = Math.sin(v) * Math.sin(u) * 0.95 * rr
+    positions.push(x, y, z)
+  }
+  return positions
+}
+
+// ── 인접 노드 엣지 인덱스 생성 (순수 함수, 테스트 대상) ──────────
+// 각 노드에서 가장 가까운 maxLinks개 노드와 연결. 거리 임계값 이내만.
+export function buildEdges(positions, maxLinks = 2, threshold = 0.6) {
+  const n = positions.length / 3
+  const edges = []
+  for (let i = 0; i < n; i++) {
+    const ix = positions[i * 3], iy = positions[i * 3 + 1], iz = positions[i * 3 + 2]
+    let links = 0
+    for (let j = i + 1; j < n && links < maxLinks; j++) {
+      const dx = ix - positions[j * 3]
+      const dy = iy - positions[j * 3 + 1]
+      const dz = iz - positions[j * 3 + 2]
+      if (dx * dx + dy * dy + dz * dz < threshold * threshold) {
+        edges.push(i, j)
+        links++
+      }
+    }
+  }
+  return edges
+}
+
 export default class extends Controller {
   static targets = ["canvas"]
 
   connect() {
     this.canvas = this.hasCanvasTarget ? this.canvasTarget : this.element
-    this.ctx = this.canvas.getContext("2d")
     this.dpr = Math.min(window.devicePixelRatio || 1, 2)
-    this.particles = []
-    this.signals = []
     this.tick = 0
+
+    if (!this.initThree()) {
+      this.drawFallback()
+      return
+    }
 
     this.resize()
     this._onResize = () => this.resize()
     window.addEventListener("resize", this._onResize)
 
     if (this.prefersReducedMotion()) {
-      this.seed(true)
-      this.drawStaticFrame()
+      this.renderOnce()
       return
     }
 
-    this.seed(false)
     this._onVisibility = () => {
       if (document.hidden) this.stop()
       else this.start()
@@ -38,60 +81,89 @@ export default class extends Controller {
 
   disconnect() {
     this.stop()
-    window.removeEventListener("resize", this._onResize)
+    if (this._onResize) window.removeEventListener("resize", this._onResize)
     if (this._onVisibility) document.removeEventListener("visibilitychange", this._onVisibility)
+    if (this.renderer) { this.renderer.dispose(); this.renderer = null }
   }
 
   prefersReducedMotion() {
     return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches
   }
 
-  // ── 좌표 / 색 ──────────────────────────────────────────────
+  // ── Three.js 씬 셋업 ────────────────────────────────────────
+  initThree() {
+    try {
+      this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, alpha: true, antialias: true })
+    } catch (e) {
+      return false
+    }
+    if (!this.renderer || !this.renderer.getContext()) return false
+
+    this.scene = new THREE.Scene()
+    this.camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100)
+    this.camera.position.set(0, 0, 6.2)
+
+    const NODES = Math.max(180, Math.min(560, Math.round(window.innerWidth / 3)))
+    const pos = buildBrainPositions(NODES, 7)
+    this.nodeCount = NODES
+
+    // 노드 (THREE.Points)
+    const nodeGeo = new THREE.BufferGeometry()
+    nodeGeo.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3))
+    const nodeMat = new THREE.PointsMaterial({
+      color: 0x00c8c8, size: 0.045, transparent: true, opacity: 0.85,
+      blending: THREE.AdditiveBlending, depthWrite: false
+    })
+    this.points = new THREE.Points(nodeGeo, nodeMat)
+    this.scene.add(this.points)
+
+    // 엣지 (THREE.LineSegments)
+    const edges = buildEdges(pos, 2, 0.62)
+    const linePos = []
+    for (let k = 0; k < edges.length; k += 2) {
+      const a = edges[k] * 3, b = edges[k + 1] * 3
+      linePos.push(pos[a], pos[a + 1], pos[a + 2], pos[b], pos[b + 1], pos[b + 2])
+    }
+    const lineGeo = new THREE.BufferGeometry()
+    lineGeo.setAttribute("position", new THREE.Float32BufferAttribute(linePos, 3))
+    const lineMat = new THREE.LineBasicMaterial({
+      color: 0x2563eb, transparent: true, opacity: 0.22,
+      blending: THREE.AdditiveBlending, depthWrite: false
+    })
+    this.lines = new THREE.LineSegments(lineGeo, lineMat)
+    this.scene.add(this.lines)
+
+    // 분석 코어 글로우 (우측, 카피 정렬) + 행동(Rausch) 펄스
+    const coreMat = new THREE.SpriteMaterial({
+      color: 0x00c8c8, transparent: true, opacity: 0.9, blending: THREE.AdditiveBlending
+    })
+    this.core = new THREE.Sprite(coreMat)
+    this.core.position.set(2.2, -0.2, 0.5)
+    this.core.scale.set(0.9, 0.9, 1)
+    this.scene.add(this.core)
+
+    const actionMat = new THREE.SpriteMaterial({
+      color: 0xff385c, transparent: true, opacity: 0.0, blending: THREE.AdditiveBlending
+    })
+    this.action = new THREE.Sprite(actionMat)
+    this.action.position.set(2.2, -1.1, 0.5)
+    this.action.scale.set(0.4, 0.4, 1)
+    this.scene.add(this.action)
+
+    return true
+  }
+
   resize() {
     const r = this.canvas.getBoundingClientRect()
     this.w = r.width
     this.h = r.height
-    this.canvas.width = this.w * this.dpr
-    this.canvas.height = this.h * this.dpr
-    this.ctx.setTransform(this.dpr, 0, 0, this.dpr, 0, 0)
-    // 분석 코어: 우상단 (그라데이션 글로우와 정렬)
-    this.core = { x: this.w * 0.74, y: this.h * 0.42 }
-    // 행동 타겟: 코어 아래쪽으로 수렴 발사 지점
-    this.target = { x: this.w * 0.74, y: this.h * 0.72 }
+    if (!this.renderer) return
+    this.renderer.setPixelRatio(this.dpr)
+    this.renderer.setSize(this.w, this.h, false)
+    this.camera.aspect = this.w / this.h
+    this.camera.updateProjectionMatrix()
   }
 
-  colors() {
-    return ["rgba(0,200,200,", "rgba(37,99,235,", "rgba(120,180,255,"]
-  }
-
-  rand(a, b) { return a + (this.tick * 9301 + this.particles.length * 49297) % 233280 / 233280 * (b - a) }
-
-  seed(reduced) {
-    const n = reduced ? 26 : Math.round(Math.min(64, this.w / 16))
-    const cols = this.colors()
-    for (let i = 0; i < n; i++) {
-      this.particles.push(this.makeParticle(cols, i, reduced))
-    }
-  }
-
-  makeParticle(cols, i, fixed) {
-    // 화면 가장자리 어딘가에서 출발 → 코어로 향함
-    const edge = (i * 0.137) % 1
-    const px = edge < 0.5 ? this.w * (edge * 1.6) : this.w * (edge - 0.3)
-    const py = i % 2 === 0 ? this.h * ((i % 7) / 7) : this.h * (0.2 + (i % 5) / 7)
-    return {
-      x: px, y: py,
-      sx: px, sy: py,
-      c: cols[i % cols.length],
-      r: 1 + (i % 3) * 0.7,
-      // 0→1 진행도. 코어 도달 후 리셋. fixed면 중간값 고정(정적 프레임용)
-      t: fixed ? (i % 10) / 10 : (i % 10) / 10,
-      speed: 0.0016 + (i % 5) * 0.0006,
-      drift: (i % 2 ? 1 : -1) * (8 + (i % 4) * 6)
-    }
-  }
-
-  // ── 루프 ───────────────────────────────────────────────────
   start() {
     if (this.raf) return
     const loop = () => {
@@ -107,95 +179,43 @@ export default class extends Controller {
 
   step() {
     this.tick++
-    const ctx = this.ctx
-    ctx.clearRect(0, 0, this.w, this.h)
+    const t = this.tick
 
-    // 1) 입자: 출발점 → 코어로 곡선 수렴 (데이터가 분석으로 빨려듦)
-    for (const p of this.particles) {
-      p.t += p.speed
-      if (p.t >= 1) {
-        // 코어 도달 → 신호 발생(행동 타겟으로 발사) + 입자 리셋
-        if (this.signals.length < 40) this.spawnSignal()
-        p.t = 0
-        p.x = p.sx; p.y = p.sy
-        continue
-      }
-      const ease = p.t * p.t * (3 - 2 * p.t)
-      // 곡선: 출발 → 코어, 약간의 drift로 흐르는 느낌
-      const cx = (p.sx + this.core.x) / 2 + p.drift
-      const cy = (p.sy + this.core.y) / 2 - p.drift
-      const mt = 1 - ease
-      p.x = mt * mt * p.sx + 2 * mt * ease * cx + ease * ease * this.core.x
-      p.y = mt * mt * p.sy + 2 * mt * ease * cy + ease * ease * this.core.y
-
-      const alpha = 0.12 + ease * 0.5
-      ctx.beginPath()
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
-      ctx.fillStyle = p.c + alpha + ")"
-      ctx.fill()
-      // 코어 근처 연결선(분석으로 합류)
-      if (ease > 0.55) {
-        ctx.beginPath()
-        ctx.moveTo(p.x, p.y)
-        ctx.lineTo(this.core.x, this.core.y)
-        ctx.strokeStyle = p.c + (ease - 0.55) * 0.4 + ")"
-        ctx.lineWidth = 0.6
-        ctx.stroke()
-      }
+    // 1) 뇌 전체가 천천히 회전 (살아있는 느낌)
+    if (this.points) {
+      this.points.rotation.y = Math.sin(t * 0.0016) * 0.35
+      this.lines.rotation.y = this.points.rotation.y
+      this.points.rotation.x = Math.sin(t * 0.0011) * 0.12
+      this.lines.rotation.x = this.points.rotation.x
     }
 
-    // 2) 분석 코어: 맥동하는 빛 (응축)
-    const pulse = 0.5 + 0.5 * Math.sin(this.tick * 0.05)
-    const coreR = 6 + pulse * 4
-    const g = ctx.createRadialGradient(this.core.x, this.core.y, 0, this.core.x, this.core.y, coreR * 3)
-    g.addColorStop(0, "rgba(0,200,200," + (0.5 + pulse * 0.3) + ")")
-    g.addColorStop(1, "rgba(0,200,200,0)")
-    ctx.fillStyle = g
-    ctx.beginPath()
-    ctx.arc(this.core.x, this.core.y, coreR * 3, 0, Math.PI * 2)
-    ctx.fill()
-
-    // 3) 신호: 코어 → 행동 타겟으로 발사 (분석 결과가 '행동'으로 수렴)
-    for (let i = this.signals.length - 1; i >= 0; i--) {
-      const s = this.signals[i]
-      s.t += 0.022
-      if (s.t >= 1) { this.signals.splice(i, 1); this.targetHit = this.tick; continue }
-      const e = s.t * s.t
-      const x = this.core.x + (this.target.x - this.core.x) * e
-      const y = this.core.y + (this.target.y - this.core.y) * e
-      ctx.beginPath()
-      ctx.moveTo(x, y)
-      ctx.lineTo(this.core.x + (this.target.x - this.core.x) * (e - 0.06), this.core.y + (this.target.y - this.core.y) * (e - 0.06))
-      ctx.strokeStyle = "rgba(255,56,92," + (0.7 - s.t * 0.4) + ")"
-      ctx.lineWidth = 1.6
-      ctx.stroke()
+    // 2) 분석 코어 맥동 (응축)
+    const pulse = 0.5 + 0.5 * Math.sin(t * 0.05)
+    if (this.core) {
+      const sc = 0.8 + pulse * 0.35
+      this.core.scale.set(sc, sc, 1)
+      this.core.material.opacity = 0.55 + pulse * 0.35
     }
 
-    // 4) 행동 타겟: 신호 도달 시 Rausch 링이 퍼짐 ("행동 결정")
-    const since = this.tick - (this.targetHit || -999)
-    if (since < 40) {
-      const tr = since / 40
-      ctx.beginPath()
-      ctx.arc(this.target.x, this.target.y, 4 + tr * 22, 0, Math.PI * 2)
-      ctx.strokeStyle = "rgba(255,56,92," + (0.55 * (1 - tr)) + ")"
-      ctx.lineWidth = 1.5
-      ctx.stroke()
+    // 3) 주기적 '행동' 발사 (분석 → 행동 수렴, 약 2.5초 주기)
+    if (this.action) {
+      const phase = (t % 150) / 150
+      this.action.material.opacity = phase < 0.4 ? (0.4 - phase) * 1.8 : 0
+      const asc = 0.4 + (phase < 0.4 ? phase * 0.8 : 0)
+      this.action.scale.set(asc, asc, 1)
     }
-    // 타겟 코어 점
-    ctx.beginPath()
-    ctx.arc(this.target.x, this.target.y, 3.2, 0, Math.PI * 2)
-    ctx.fillStyle = "rgba(255,56,92,0.9)"
-    ctx.fill()
+
+    this.renderer.render(this.scene, this.camera)
   }
 
-  spawnSignal() {
-    this.signals.push({ t: 0 })
-  }
-
-  drawStaticFrame() {
-    // reduced-motion: 한 프레임만 그려 정적 다이어그램처럼 보이게
+  renderOnce() {
     this.tick = 30
     this.step()
     this.stop()
+  }
+
+  // WebGL 미지원 시: 기존 ::before 그라데이션 글로우만 남기고 캔버스는 비움
+  drawFallback() {
+    this.canvas.style.display = "none"
   }
 }
