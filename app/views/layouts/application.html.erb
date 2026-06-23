@@ -75,10 +75,8 @@
         </nav>
 
         <div class="flex items-center" style="gap:10px;">
-          <%= link_to t("site.nav.contact"), contact_path(locale: I18n.locale), class: "btn-tertiary-airbnb", style: "padding:9px 16px;font-size:13px;min-height:auto;" %>
           <%# XimTier SaaS 분석 도구 로그인 연동 (XIMTIER_SAAS_URL 환경변수) %>
-          <%= link_to t("site.nav.login", default: "로그인"), ximtier_saas_login_url, class: "btn-tertiary-airbnb", style: "padding:9px 16px;font-size:13px;min-height:auto;" %>
-          <%= link_to t("site.nav.demo"),    demo_path(locale: I18n.locale),    class: "btn-rausch", style: "padding:9px 18px;font-size:13px;min-height:auto;" %>
+          <%= link_to t("site.nav.login", default: "로그인"), ximtier_saas_login_url, class: "btn-rausch", style: "padding:9px 18px;font-size:13px;min-height:auto;" %>
           <span class="hidden md:inline border-hairline-soft" style="height:14px;width:1px;"></span>
           <%= link_to "KO", home_path(locale: :ko), class: "text-[12px] font-semibold #{I18n.locale == :ko ? 'text-rausch' : 'text-muted-airbnb hover:text-ink-airbnb'} transition" %>
           <%= link_to "EN", home_path(locale: :en), class: "text-[12px] font-semibold #{I18n.locale == :en ? 'text-rausch' : 'text-muted-airbnb hover:text-ink-airbnb'} transition" %>
