@@ -1,0 +1,32 @@
+# i18n-tasks finds and manages missing and unused translations.
+# https://github.com/glebm/i18n-tasks
+#
+# 이 프로젝트는 번역을 config/locales/<locale>/<feature>.yml 하위 디렉토리로 분리한다.
+# 기본 read 경로(config/locales/%{locale}.yml)만으로는 이 파일들을 읽지 못해
+# i18n-tasks가 모든 키를 "누락"으로 오판한다. 앱(config/application.rb)의
+# load_path 및 available_locales와 동일하게 맞춘다.
+
+base_locale: ko
+locales: [ko, en]
+
+data:
+  read:
+    - config/locales/%{locale}.yml
+    - config/locales/%{locale}/*.yml
+    - config/locales/devise.%{locale}.yml
+
+  # write 시 키를 feature별 파일로 라우팅 (수동 관리이므로 기본 라우팅만 둔다)
+  write:
+    - config/locales/%{locale}.yml
+
+search:
+  paths:
+    - app/
+
+ignore_unused:
+  # Rails 신규 앱 기본 샘플 키 (실사용 없음)
+  - hello
+
+ignore_missing:
+  # devise 번역은 devise gem이 자체 제공/관리
+  - 'devise.*'

@@ -50,6 +50,7 @@ ko:
       investors: 투자자
       contact: 문의하기
       demo: 데모 신청
+      login: 로그인
     fear_strip:
       eu: "EU AI Act 위반 시 최대 벌금"
       eu_amount: "€35M"
