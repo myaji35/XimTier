@@ -58,6 +58,8 @@ env:
     SOLID_QUEUE_IN_PUMA: true
     RAILS_ENV: production
     PORT: "3000"
+    # XimTier SaaS 분석 게이트웨이 — 헤더 로그인 버튼 연결 대상
+    XIMTIER_SAAS_URL: https://ximtier-saas.158.247.235.31.nip.io
     WEB_CONCURRENCY: "1"
     RAILS_SERVE_STATIC_FILES: "true"
     RAILS_LOG_TO_STDOUT: "true"
