@@ -36,6 +36,13 @@ class IconComponent < ApplicationComponent
     chart: <<~SVG,
       <path d="M4 19h16M6 16v-5M10 16V8M14 16v-3M18 16V6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"/>
     SVG
+    menu: <<~SVG,
+      <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+    SVG
+    layers: <<~SVG
+      <path d="M12 3l9 5-9 5-9-5 9-5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" fill="none"/>
+      <path d="M3 13l9 5 9-5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" fill="none"/>
+    SVG
   }.freeze
 
   def initialize(name:, size: 24)

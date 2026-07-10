@@ -60,19 +60,24 @@
   <body class="surface-canvas">
     <%= render "shared/brand_svg_defs" %>
 
-    <header class="nav-sticky">
+    <% nav_links = [
+         [t("v3nav.overview"),  v3_overview_path(locale: I18n.locale)],
+         [t("v3nav.data"),      v3_data_path(locale: I18n.locale)],
+         [t("v3nav.analysis"),  v3_analysis_path(locale: I18n.locale)],
+         [t("v3nav.solutions"), v3_solutions_path(locale: I18n.locale)],
+         [t("v3nav.usage"),     v3_usage_path(locale: I18n.locale)],
+         [t("v3nav.cases"),     case_studies_path(locale: I18n.locale)]
+       ] %>
+    <header class="nav-sticky" data-controller="nav-menu">
       <div class="wrap flex items-center justify-between" style="height:68px;">
         <%= link_to home_path(locale: I18n.locale), class: "no-underline" do %>
           <%= render BrandLogoComponent.new(variant: :light, size: 28) %>
         <% end %>
 
         <nav class="hidden md:flex items-center" style="gap:30px;">
-          <%= link_to t("v3nav.overview"),  v3_overview_path(locale: I18n.locale),  class: "type-body-sm text-body-airbnb hover:text-ink-airbnb transition" %>
-          <%= link_to t("v3nav.data"),      v3_data_path(locale: I18n.locale),      class: "type-body-sm text-body-airbnb hover:text-ink-airbnb transition" %>
-          <%= link_to t("v3nav.analysis"),  v3_analysis_path(locale: I18n.locale),  class: "type-body-sm text-body-airbnb hover:text-ink-airbnb transition" %>
-          <%= link_to t("v3nav.solutions"), v3_solutions_path(locale: I18n.locale), class: "type-body-sm text-body-airbnb hover:text-ink-airbnb transition" %>
-          <%= link_to t("v3nav.usage"),     v3_usage_path(locale: I18n.locale),     class: "type-body-sm text-body-airbnb hover:text-ink-airbnb transition" %>
-          <%= link_to t("v3nav.cases"),     case_studies_path(locale: I18n.locale), class: "type-body-sm text-body-airbnb hover:text-ink-airbnb transition" %>
+          <% nav_links.each do |label, path| %>
+            <%= link_to label, path, class: "type-body-sm text-body-airbnb hover:text-ink-airbnb transition" %>
+          <% end %>
         </nav>
 
         <div class="flex items-center" style="gap:10px;">
@@ -81,8 +86,29 @@
           <span class="hidden md:inline border-hairline-soft" style="height:14px;width:1px;"></span>
           <%= link_to "KO", home_path(locale: :ko), class: "text-[12px] font-semibold #{I18n.locale == :ko ? 'text-rausch' : 'text-muted-airbnb hover:text-ink-airbnb'} transition" %>
           <%= link_to "EN", home_path(locale: :en), class: "text-[12px] font-semibold #{I18n.locale == :en ? 'text-rausch' : 'text-muted-airbnb hover:text-ink-airbnb'} transition" %>
+
+          <%# 모바일 햄버거 버튼 (md 미만에서만 노출) %>
+          <button type="button" class="md:hidden inline-flex items-center justify-center"
+                  style="width:38px;height:38px;margin-left:2px;color:var(--color-ink,#222);"
+                  data-action="nav-menu#toggle" aria-label="메뉴 열기">
+            <%= render IconComponent.new(name: "menu", size: 22) %>
+          </button>
         </div>
       </div>
+
+      <%# 모바일 드롭다운 패널 %>
+      <nav class="md:hidden hidden border-t border-hairline" data-nav-menu-target="panel"
+           style="background:var(--color-canvas,#fff);">
+        <div class="wrap flex flex-col" style="padding:8px 0;">
+          <% nav_links.each do |label, path| %>
+            <%= link_to label, path,
+                  class: "type-body-md text-ink-airbnb hover:text-rausch transition",
+                  style: "padding:12px 4px;border-bottom:1px solid var(--color-hairline-soft,#ebebeb);" %>
+          <% end %>
+          <%= link_to t("site.nav.login", default: "로그인"), ximtier_saas_login_url,
+                class: "type-body-md font-semibold text-rausch", style: "padding:14px 4px;" %>
+        </div>
+      </nav>
     </header>
 
     <main>
