@@ -7,3 +7,6 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+# 사례·미디어 갤러리 예시 데이터
+load Rails.root.join("db/seeds/case_studies.rb")
