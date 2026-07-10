@@ -25,6 +25,13 @@ Rails.application.routes.draw do
     get "/use-cases",    to: "pages#use_cases",    as: :use_cases
     get "/cases/:slug",  to: "pages#case_study",   as: :case_study,
         constraints: { slug: /manufacturing|hospital|public|smart-city|finance|retail|logistics|energy|education|telecom/ }
+
+    # Cases 갤러리 (사례·홍보 미디어) — 운영자 등록 / 누구나 열람
+    get  "/cases",              to: "case_studies#index",   as: :case_studies
+    get  "/cases/:slug/gallery", to: "case_studies#show",    as: :case_gallery
+    post "/cases/:slug/like",    to: "case_studies#toggle_like", as: :case_like
+    post "/cases/:slug/comments", to: "case_studies#create_comment", as: :case_comments
+
     get "/pricing",      to: "pages#pricing"
     get "/platform-api", to: "pages#platform_api", as: :platform_api
 

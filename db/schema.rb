@@ -10,10 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_12_105811) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "pg_catalog.plpgsql"
-
+ActiveRecord::Schema[8.1].define(version: 2026_07_10_120003) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -49,7 +46,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_12_105811) do
     t.bigint "user_id"
     t.bigint "visit_id"
     t.index ["name", "time"], name: "index_ahoy_events_on_name_and_time"
-    # SQLite 호환을 위해 jsonb_path_ops/gin 인덱스 제거 (PostgreSQL 전용)
     t.index ["user_id"], name: "index_ahoy_events_on_user_id"
     t.index ["visit_id"], name: "index_ahoy_events_on_visit_id"
   end
@@ -83,6 +79,60 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_12_105811) do
     t.index ["user_id"], name: "index_ahoy_visits_on_user_id"
     t.index ["visit_token"], name: "index_ahoy_visits_on_visit_token", unique: true
     t.index ["visitor_token", "started_at"], name: "index_ahoy_visits_on_visitor_token_and_started_at"
+  end
+
+  create_table "case_comments", force: :cascade do |t|
+    t.string "author_name", null: false
+    t.text "body", null: false
+    t.integer "case_study_id", null: false
+    t.datetime "created_at", null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "updated_at", null: false
+    t.index ["case_study_id", "status"], name: "index_case_comments_on_case_study_id_and_status"
+    t.index ["case_study_id"], name: "index_case_comments_on_case_study_id"
+  end
+
+  create_table "case_likes", force: :cascade do |t|
+    t.integer "case_study_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "visitor_token", null: false
+    t.index ["case_study_id", "visitor_token"], name: "index_case_likes_on_case_study_id_and_visitor_token", unique: true
+    t.index ["case_study_id"], name: "index_case_likes_on_case_study_id"
+  end
+
+  create_table "case_media", force: :cascade do |t|
+    t.text "caption"
+    t.integer "case_study_id", null: false
+    t.datetime "created_at", null: false
+    t.text "embed_html"
+    t.integer "kind", default: 0, null: false
+    t.integer "position", default: 0, null: false
+    t.string "title"
+    t.datetime "updated_at", null: false
+    t.string "youtube_url"
+    t.index ["case_study_id", "position"], name: "index_case_media_on_case_study_id_and_position"
+    t.index ["case_study_id"], name: "index_case_media_on_case_study_id"
+  end
+
+  create_table "case_studies", force: :cascade do |t|
+    t.text "body_html_en"
+    t.text "body_html_ko"
+    t.datetime "created_at", null: false
+    t.string "industry"
+    t.integer "likes_count", default: 0, null: false
+    t.integer "position", default: 0, null: false
+    t.boolean "published", default: false, null: false
+    t.datetime "published_at"
+    t.string "slug", null: false
+    t.text "summary_en"
+    t.text "summary_ko"
+    t.string "title_en"
+    t.string "title_ko", null: false
+    t.datetime "updated_at", null: false
+    t.index ["position"], name: "index_case_studies_on_position"
+    t.index ["published", "published_at"], name: "index_case_studies_on_published_and_published_at"
+    t.index ["slug"], name: "index_case_studies_on_slug", unique: true
   end
 
   create_table "comments", force: :cascade do |t|
@@ -167,6 +217,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_12_105811) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "case_comments", "case_studies"
+  add_foreign_key "case_likes", "case_studies"
+  add_foreign_key "case_media", "case_studies"
   add_foreign_key "comments", "demo_requests"
   add_foreign_key "comments", "users"
   add_foreign_key "demo_requests", "users"

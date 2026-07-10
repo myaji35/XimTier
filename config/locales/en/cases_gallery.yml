@@ -1,0 +1,26 @@
+en:
+  cases_gallery:
+    eyebrow: "CASES & MEDIA"
+    h1: "Cases & Promotional Content"
+    lead: "Explore XimTier's real-world cases, videos, and resources all in one place."
+    sort_recent: "Newest"
+    sort_likes: "Most liked"
+    empty: "No cases published yet. New content is coming soon."
+    back: "All cases"
+    download_pdf: "Download PDF"
+    like: "Like"
+    liked: "Unlike"
+    likes_unit: "people like this"
+    comments: "Comments"
+    comment_submitted: "Your comment has been submitted and will appear after review."
+    name_ph: "Name"
+    comment_ph: "Write a comment (published after review)"
+    comment_submit: "Post comment"
+    no_comments: "Be the first to comment."
+  date:
+    formats:
+      long: "%B %-d, %Y"
+      short: "%m/%d"
+  time:
+    formats:
+      short: "%Y.%m.%d %H:%M"

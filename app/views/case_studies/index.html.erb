@@ -1,0 +1,69 @@
+<% content_for :title, "#{t('cases_gallery.h1', default: '사례·미디어')} — #{t('site.brand')}" %>
+
+<section class="surface-canvas section-pad">
+  <div class="wrap">
+    <p class="type-uppercase-tag text-rausch"><%= t("cases_gallery.eyebrow", default: "CASES & MEDIA") %></p>
+    <h1 class="type-display-xl mt-3" style="max-width:920px;"><%= t("cases_gallery.h1", default: "사례와 홍보 콘텐츠") %></h1>
+    <p class="type-body-md text-body-airbnb mt-5" style="max-width:760px;"><%= t("cases_gallery.lead", default: "XimTier의 실제 활용 사례와 영상·자료를 한 곳에서 만나보세요.") %></p>
+
+    <%# 정렬 탭 %>
+    <div class="mt-8 flex items-center" style="gap:8px;">
+      <%= link_to t("cases_gallery.sort_recent", default: "최신순"),
+            case_studies_path(locale: I18n.locale, sort: "recent"),
+            class: "type-body-sm px-4 py-2 rounded-full #{@sort == 'recent' ? 'bg-rausch text-white' : 'border-hairline text-body-airbnb hover:text-ink-airbnb'}" %>
+      <%= link_to t("cases_gallery.sort_likes", default: "좋아요순"),
+            case_studies_path(locale: I18n.locale, sort: "likes"),
+            class: "type-body-sm px-4 py-2 rounded-full #{@sort == 'likes' ? 'bg-rausch text-white' : 'border-hairline text-body-airbnb hover:text-ink-airbnb'}" %>
+    </div>
+
+    <% if @cases.any? %>
+      <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style="gap:24px;">
+        <% @cases.each do |c| %>
+          <%= link_to case_gallery_path(locale: I18n.locale, slug: c.slug), class: "no-underline group" do %>
+            <article class="card-airbnb shadow-card-hover h-full flex flex-col" style="padding:0;overflow:hidden;">
+              <%# 썸네일: hero_image > 유튜브 썸네일 > 플레이스홀더 %>
+              <div class="relative w-full" style="aspect-ratio:16/9;background:var(--color-surface-soft, #f7f7f7);">
+                <% if c.hero_image.attached? %>
+                  <%= image_tag c.hero_image, class: "w-full h-full object-cover", loading: "lazy", alt: c.title %>
+                <% elsif (yid = c.thumbnail_youtube_id) %>
+                  <%= image_tag "https://i.ytimg.com/vi/#{yid}/hqdefault.jpg", class: "w-full h-full object-cover", loading: "lazy", alt: c.title %>
+                <% else %>
+                  <div class="w-full h-full flex items-center justify-center text-muted-airbnb">
+                    <%= render IconComponent.new(name: "layers", size: 32) %>
+                  </div>
+                <% end %>
+                <%# 매체 배지 %>
+                <div class="absolute" style="top:10px;left:10px;display:flex;gap:6px;">
+                  <% c.case_media.map(&:kind).uniq.each do |k| %>
+                    <span class="font-mono airbnb-floating-badge" style="padding:3px 8px;font-size:11px;letter-spacing:0.05em;text-transform:uppercase;"><%= k %></span>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="flex-1 flex flex-col" style="padding:18px 20px 20px;">
+                <% if c.industry.present? %>
+                  <div class="font-mono type-uppercase-tag text-rausch">// <%= c.industry.upcase %></div>
+                <% end %>
+                <h3 class="type-display-sm mt-2 group-hover:text-rausch transition"><%= c.title %></h3>
+                <p class="type-body-sm text-body-airbnb mt-2" style="line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;"><%= c.summary %></p>
+
+                <div class="mt-auto pt-4 flex items-center justify-between">
+                  <span class="type-body-sm text-muted-airbnb">
+                    <%= l(c.published_at.to_date, format: :long) if c.published_at %>
+                  </span>
+                  <span class="type-body-sm text-muted-airbnb flex items-center" style="gap:5px;">
+                    <%= render IconComponent.new(name: "heart", size: 15) %><%= c.likes_count %>
+                  </span>
+                </div>
+              </div>
+            </article>
+          <% end %>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="mt-16 text-center">
+        <p class="type-body-md text-muted-airbnb"><%= t("cases_gallery.empty", default: "아직 등록된 사례가 없습니다. 곧 새로운 콘텐츠로 찾아뵙겠습니다.") %></p>
+      </div>
+    <% end %>
+  </div>
+</section>

@@ -1,0 +1,26 @@
+ko:
+  cases_gallery:
+    eyebrow: "CASES & MEDIA"
+    h1: "사례와 홍보 콘텐츠"
+    lead: "XimTier의 실제 활용 사례와 영상·자료를 한 곳에서 만나보세요."
+    sort_recent: "최신순"
+    sort_likes: "좋아요순"
+    empty: "아직 등록된 사례가 없습니다. 곧 새로운 콘텐츠로 찾아뵙겠습니다."
+    back: "사례 목록"
+    download_pdf: "PDF 내려받기"
+    like: "좋아요"
+    liked: "좋아요 취소"
+    likes_unit: "명이 좋아합니다"
+    comments: "댓글"
+    comment_submitted: "댓글이 등록되었습니다. 검토 후 게시됩니다."
+    name_ph: "이름"
+    comment_ph: "댓글을 입력하세요 (검토 후 게시됩니다)"
+    comment_submit: "댓글 등록"
+    no_comments: "첫 번째 댓글을 남겨보세요."
+  date:
+    formats:
+      long: "%Y년 %-m월 %-d일"
+      short: "%m/%d"
+  time:
+    formats:
+      short: "%Y.%m.%d %H:%M"
