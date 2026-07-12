@@ -1,0 +1,140 @@
+---
+ko:
+  avo:
+    action_ran_successfully: 액션을 실행했습니다!
+    actions: 액션
+    add_filter: 필터 추가
+    and_x_other_resources: 외 %{count}개 리소스
+    applied: 적용됨
+    are_you_sure: 정말 진행할까요?
+    are_you_sure_detach_item: 이 %{item} 연결을 해제할까요?
+    are_you_sure_you_want_to_run_this_option: 이 액션을 실행할까요?
+    attach: 연결
+    attach_and_attach_another: 연결 후 계속 연결
+    attach_item: "%{item} 연결"
+    attachment_class_attached: "%{attachment_class} 연결됨."
+    attachment_class_detached: "%{attachment_class} 연결 해제됨."
+    attachment_destroyed: 첨부 삭제됨
+    attachment_failed: "%{attachment_class} 연결 실패"
+    cancel: 취소
+    choose_a_country: 국가 선택
+    choose_an_option: 옵션 선택
+    choose_item: "%{item} 선택"
+    clear_value: 값 지우기
+    click_to_reveal_filters: 클릭하여 필터 표시
+    close: 닫기
+    close_modal: 모달 닫기
+    confirm: 확인
+    copy: 복사
+    create_new_item: "%{item} 새로 만들기"
+    created_at_timestamp: "%{created_at} 생성"
+    dashboard: 대시보드
+    dashboards: 대시보드
+    default_scope: 전체
+    delete: 삭제
+    delete_file: 파일 삭제
+    delete_item: "%{item} 삭제"
+    detach_item: "%{item} 연결 해제"
+    details: 상세
+    download: 다운로드
+    download_file: 파일 다운로드
+    download_item: "%{item} 다운로드"
+    edit: 편집
+    edit_item: "%{item} 편집"
+    empty_dashboard_message: 이 대시보드에 카드를 추가하세요
+    failed: 실패
+    failed_to_find_attachment: 첨부를 찾지 못했습니다
+    failed_to_load: 불러오기 실패
+    'false': '거짓'
+    file:
+      one: 파일
+      other: 파일
+    filter_by: 필터 기준
+    filters: 필터
+    go_back: 뒤로
+    grid_view: 그리드 보기
+    hide_content: 내용 숨기기
+    home: 홈
+    key_value_field:
+      add_row: 행 추가
+      delete_row: 행 삭제
+      key: 키
+      reorder_row: 행 순서 변경
+      value: 값
+    less_content: 간략히 보기
+    list_is_empty: 목록이 비어 있습니다
+    loading: 불러오는 중
+    media_library:
+      title: 미디어 라이브러리
+    more: 더보기
+    more_content: 자세히 보기
+    more_records_available: 더 많은 레코드가 있습니다.
+    nested:
+      add_new_item: "%{item} 새로 추가"
+    new: 새로 만들기
+    next_page: 다음 페이지
+    no_cancel: 아니요, 취소
+    no_cards_present: 표시할 카드가 없습니다
+    no_item_found: 레코드가 없습니다
+    no_options_available: 사용 가능한 옵션이 없습니다
+    no_related_item_found: 관련 레코드가 없습니다
+    not_authorized: 이 작업을 수행할 권한이 없습니다.
+    number_of_items:
+      one: "%{item} 1개"
+      other: "%{item} %{count}개"
+      zero: "%{item} 없음"
+    oops_nothing_found: 앗! 아무것도 찾지 못했습니다...
+    order:
+      higher: 위로 이동
+      lower: 아래로 이동
+      reorder_record: 순서 변경
+      to_bottom: 맨 아래로
+      to_top: 맨 위로
+    per_page: 페이지당
+    prev_page: 이전 페이지
+    records_selected_from_all_pages_html: 모든 페이지의 전체 레코드가 선택됨
+    remove_selection: 선택 해제
+    reset: 초기화
+    reset_filters: 필터 초기화
+    resource_created: 레코드가 생성되었습니다
+    resource_destroyed: 레코드가 삭제되었습니다
+    resource_updated: 레코드가 수정되었습니다
+    resources: 리소스
+    run: 실행
+    save: 저장
+    search:
+      cancel_button: 취소
+      placeholder: 검색
+    select_all: 전체 선택
+    select_all_matching: 일치 항목 전체 선택
+    select_item: 항목 선택
+    show_content: 내용 보기
+    sign_out: 로그아웃
+    sort_asc: 오름차순 정렬
+    sort_desc: 내림차순 정렬
+    sort_reset: 정렬 초기화
+    switch_to_view: "%{view_type} 보기로 전환"
+    table_view: 테이블 보기
+    this_field_has_attachments_disabled: 이 필드는 첨부가 비활성화되어 있습니다.
+    tools: 도구
+    'true': '참'
+    type_to_search: 검색어를 입력하세요.
+    unauthorized: 권한 없음
+    undo: 실행 취소
+    updated_at_timestamp: "%{updated_at} 수정"
+    view: 보기
+    view_item: "%{item} 보기"
+    visit_record_on_external_path: 외부 경로에서 레코드 보기
+    was_successfully_created: 생성되었습니다
+    was_successfully_updated: 수정되었습니다
+    x_items_more:
+      one: 1개 더
+      other: "%{count}개 더"
+      zero: 더 없음
+    x_records_selected_from_a_total_of_x_html: <span class="font-bold text-gray-700">%{selected}</span>개 선택됨 (이 페이지, 총 <span class="font-bold text-gray-700">%{count}</span>개 중)
+    x_records_selected_from_all_pages_html: 모든 페이지에서 <span class="font-bold text-gray-700">%{count}</span>개 선택됨
+    x_records_selected_from_page_html: 이 페이지에서 <span class="font-bold text-gray-700">%{selected}</span>개 선택됨
+    yes_confirm: 네, 확실합니다
+    you_cant_upload_new_resource: 레코드를 저장하기 전에는 Trix 편집기에 파일을 업로드할 수 없습니다.
+    you_havent_set_attachment_key: 이 Trix 필드에 `attachment_key`를 설정하지 않았습니다.
+    you_missed_something_check_form: 누락된 항목이 있을 수 있습니다. 폼을 확인해 주세요.
