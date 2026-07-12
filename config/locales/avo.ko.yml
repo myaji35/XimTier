@@ -1,6 +1,16 @@
 ---
 ko:
   avo:
+    resource_translations:
+      case_study:
+        one: 사례 콘텐츠
+        other: 사례 콘텐츠
+      case_medium:
+        one: 사례 미디어
+        other: 사례 미디어
+      case_comment:
+        one: 사례 댓글
+        other: 사례 댓글
     action_ran_successfully: 액션을 실행했습니다!
     actions: 액션
     add_filter: 필터 추가
