@@ -4,9 +4,13 @@ class Admin::WikisController < ApplicationController
   # Basic Auth 가 1차 게이트이므로 update_roadmap JSON POST에만 CSRF skip.
   skip_before_action :verify_authenticity_token, only: [:update_roadmap]
 
+  # 비밀번호는 credentials에서만 읽는다. 폴백을 두지 않는 것이 핵심 —
+  # 미설정 시 조용히 약한 값으로 동작하는 대신 부팅을 실패시킨다.
+  # (http_basic_authenticate_with 내부는 이미 secure_compare로 비교한다)
   http_basic_authenticate_with(
     name: "admin",
-    password: ENV.fetch("ADMIN_WIKI_PASSWORD", "gmldnjs!00")
+    password: Rails.application.credentials.dig(:admin_wiki, :password) ||
+              raise("admin_wiki.password 미설정 — bin/set-admin-wiki-pw 로 설정할 것")
   )
 
   helper_method :parse_month_view

@@ -1,0 +1,96 @@
+#!/usr/bin/env ruby
+# 관리자 위키 비밀번호를 Rails credentials에 안전하게 저장한다.
+# 사용법: bin/set-admin-wiki-pw
+#
+# 왜 이 스크립트인가:
+#   - 셸을 거치지 않아 zsh 히스토리 확장(!) 문제가 없다
+#   - 에디터를 거치지 않아 YAML 들여쓰기 실수가 없다
+#   - 입력값이 화면·셸 히스토리·프로세스 목록 어디에도 남지 않는다
+#   - 기존 credentials 내용을 보존한 채 admin_wiki 항목만 병합한다
+
+require "io/console"
+require "yaml"
+require "fileutils"
+require "active_support"
+require "active_support/core_ext/object/deep_dup"   # 없으면 deep_dup이 NoMethodError → 기존 키 유실
+require "active_support/core_ext/hash/deep_merge"
+require "active_support/core_ext/hash/keys"
+require "active_support/encrypted_configuration"
+
+APP_ROOT = File.expand_path("..", __dir__)
+Dir.chdir(APP_ROOT)
+
+key_path = "config/master.key"
+enc_path = "config/credentials.yml.enc"
+
+unless File.exist?(key_path)
+  abort "❌ #{key_path} 없음. RAILS_MASTER_KEY 환경변수를 쓰는 구성이면 이 스크립트는 사용 불가."
+end
+
+creds = ActiveSupport::EncryptedConfiguration.new(
+  config_path: enc_path,
+  key_path: key_path,
+  env_key: "RAILS_MASTER_KEY",
+  raise_if_missing_key: true
+)
+
+# 입력 (에코 없음). 파이프·리다이렉트로는 받지 않는다 — 값이 히스토리·로그에 남을 수 있으므로.
+unless $stdin.tty?
+  abort "❌ 터미널에서 직접 실행할 것. 파이프/리다이렉트 입력은 값이 로그에 남아 허용하지 않는다."
+end
+
+print "새 관리자 위키 비밀번호: "
+pw = $stdin.noecho(&:gets)&.chomp
+puts
+print "확인을 위해 한 번 더: "
+pw2 = $stdin.noecho(&:gets)&.chomp
+puts
+
+abort "❌ 입력이 비어 있음. 중단." if pw.nil? || pw.empty?
+abort "❌ 두 입력이 다름. 중단." unless pw == pw2
+if pw.length < 12
+  warn "⚠️  12자 미만입니다. 계속하려면 Enter, 중단하려면 Ctrl+C"
+  $stdin.gets
+end
+
+# 기존 내용 보존하며 병합
+# 주의: 여기서 rescue로 {}를 쓰면 기존 키가 통째로 날아간다. 실패는 즉시 중단이 옳다.
+current = creds.config
+unless current.is_a?(Hash)
+  abort "❌ credentials 복호화 결과가 Hash가 아님 (#{current.class}). 중단."
+end
+
+before_keys = current.keys
+merged = current.deep_dup
+merged[:admin_wiki] = (merged[:admin_wiki] || {}).merge(password: pw)
+
+# 쓰기 전 자가 검증 — 기존 키가 하나라도 사라지면 쓰지 않는다
+lost = before_keys - merged.keys
+abort "❌ 병합 중 기존 키 유실 감지: #{lost.inspect}. 쓰지 않고 중단." unless lost.empty?
+
+# 백업 후 쓰기
+backup = "config/credentials.yml.enc.bak.#{Time.now.to_i}"
+FileUtils.cp(enc_path, backup) if File.exist?(enc_path)
+
+creds.write(merged.deep_stringify_keys.to_yaml)
+
+# 검증 — 재복호화해서 (1) 새 값 (2) 기존 키 보존 둘 다 확인
+verify = ActiveSupport::EncryptedConfiguration.new(
+  config_path: enc_path, key_path: key_path,
+  env_key: "RAILS_MASTER_KEY", raise_if_missing_key: true
+)
+after = verify.config
+stored = after.dig(:admin_wiki, :password)
+lost_after = before_keys - after.keys
+
+if stored != pw
+  FileUtils.cp(backup, enc_path) if backup && File.exist?(backup)
+  abort "❌ 저장 검증 실패 — 백업에서 롤백함."
+elsif !lost_after.empty?
+  FileUtils.cp(backup, enc_path) if backup && File.exist?(backup)
+  abort "❌ 기존 키 유실(#{lost_after.inspect}) — 백업에서 롤백함."
+else
+  puts "✅ credentials에 저장 완료 (#{pw.length}자)"
+  puts "   보존 확인된 기존 키: #{(after.keys - [:admin_wiki]).inspect}"
+  puts "   백업: #{backup}"
+end

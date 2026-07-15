@@ -60,3 +60,6 @@ package-lock.json
 # roadmap.yml 자동 백업 (저장 시 생성, 추적 안 함)
 /config/roadmap.yml.bak.*
 .superpowers/
+
+# credentials 백업 (bin/set-admin-wiki-pw 생성)
+config/credentials.yml.enc.bak.*

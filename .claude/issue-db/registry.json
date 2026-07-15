@@ -464,7 +464,9 @@
       "priority": "P1",
       "status": "COMPLETED",
       "depth": 0,
-      "depends_on": ["ISS-012c"],
+      "depends_on": [
+        "ISS-012c"
+      ],
       "scope": [
         "app/components/image_with_caption_component.rb",
         "app/components/image_with_caption_component.html.erb",
@@ -480,13 +482,24 @@
         "infra": "ImageWithCaption(alt 강제+source 슬롯+grayscale 기본) + LICENSES.md(저작권 콘텐츠 screenshot 금지 정책)",
         "industry_photos": "8 Unsplash 사진 자체 호스팅 (~2.5MB total) + 출처 명시",
         "charts": "3 self-authored SVG (Gartner LLM POC 75%/EU AI Act timeline/ChatGPT vs XimTier radar) — 모두 Rausch+ink 토큰",
-        "pages_updated": ["use_cases(8 cards)", "home(Why Now 2-col)", "why_not_llm(데이터 02b+02c)", "case_study(fallback)"],
+        "pages_updated": [
+          "use_cases(8 cards)",
+          "home(Why Now 2-col)",
+          "why_not_llm(데이터 02b+02c)",
+          "case_study(fallback)"
+        ],
         "deployed_commit": "8d43b748e8f3832188a62e1e70b89551db636c5a",
         "deploy_duration_sec": 221.8,
         "production_smoke": "11/11 pages 200 OK, 차트+사진 모두 fingerprinted asset로 production 확인",
         "anti_pattern_check": "스톡 일러스트/AI 슬롭 0, Rausch 외 액센트 0, 출처 미명시 차트 0"
       },
-      "tags": ["CONTENT", "P1", "brand-dna-v0.5", "images", "data-viz"],
+      "tags": [
+        "CONTENT",
+        "P1",
+        "brand-dna-v0.5",
+        "images",
+        "data-viz"
+      ],
       "created_at": "2026-05-18T06:00:00Z",
       "completed_at": "2026-05-18T06:32:00Z"
     },
@@ -589,10 +602,22 @@
         "deploy_duration_sec": 214.8,
         "deploy_method": "kamal deploy → Vultr ICN (158.247.235.31)",
         "production_smoke_matrix": "10/10 200 OK (ko/en, home/why-not-llm/how-it-works/use-cases/pricing/contact/demo/case_study)",
-        "production_verified_classes": ["surface-canvas", "type-display-xl", "text-ink-airbnb", "border-hairline"],
+        "production_verified_classes": [
+          "surface-canvas",
+          "type-display-xl",
+          "text-ink-airbnb",
+          "border-hairline"
+        ],
         "production_verified_text": "ChatGPT는 설명합니다.<br>XimTier는 증명합니다. (강제 줄바꿈 반영)",
         "lighthouse_pending": "production 안정화 후 별도 측정",
-        "deferred_to_iss013": ["Hero deep-navy + floating chips(ISS-003)", "fear strip dark", "Solution dark + WorkflowSteps tone:dark", "일부 dark CTA strip", "MoatTriangle 내부 색(ISS-010)", "SHAP partial(ISS-002)"]
+        "deferred_to_iss013": [
+          "Hero deep-navy + floating chips(ISS-003)",
+          "fear strip dark",
+          "Solution dark + WorkflowSteps tone:dark",
+          "일부 dark CTA strip",
+          "MoatTriangle 내부 색(ISS-010)",
+          "SHAP partial(ISS-002)"
+        ]
       },
       "depth": 0,
       "depends_on": [
@@ -618,6 +643,75 @@
         "deploy"
       ],
       "created_at": "2026-05-18T03:00:00Z"
+    },
+    {
+      "id": "ISS-015",
+      "type": "FIX_BUG",
+      "title": "[SECURITY] 관리자 위키 Basic Auth 비밀번호 하드코딩 폴백 제거",
+      "description": "app/controllers/admin/wikis_controller.rb:9 에서 password: ENV.fetch(\"ADMIN_WIKI_PASSWORD\", \"<하드코딩된값>\") 형태로 폴백이 걸려 있다.\n\n【위험】\n1. ADMIN_WIKI_PASSWORD가 config/·.kamal/ 어디에도 설정돼 있지 않아, 운영에서 실제로 쓰이는 값이 이 하드코딩 폴백이다.\n2. 해당 값이 커밋 d3173f1에 평문으로 박제되어 저장소 접근자 누구나 읽을 수 있다.\n3. 이 컨트롤러는 주석대로 Devise를 우회하는 경로이고(Basic Auth가 1차 게이트), update_roadmap은 CSRF 검증까지 skip한다. 즉 이 비밀번호 하나가 유일한 방어선이다.\n\n【조치】\n1. (대표님 직접) 콘솔에서 비밀번호 값 폐기·교체 → kamal secrets 또는 Rails credentials로 주입. 이미 유출된 값이므로 코드 수정만으로는 불충분하며 값 자체를 폐기해야 한다.\n2. (에이전트) 폴백 제거: ENV.fetch(\"ADMIN_WIKI_PASSWORD\") — 미설정 시 부팅 실패하도록.\n   조용히 유출된 값으로 동작하는 상태를 구조적으로 불가능하게 만드는 것이 목적.\n3. (에이전트) http_basic_authenticate_with 대신 ActiveSupport::SecurityUtils.secure_compare 기반 비교로 전환 (타이밍 공격 차단).\n4. (에이전트) 부팅·로그인 검증 후 완료 보고.\n\n【근거】\n- 전역 CLAUDE.md 시크릿 관리 규칙 (2026-06 Gemini 키 유출 사고 이후 수립): '키는 환경변수/kamal secrets/Rails credentials만 사용 — 코드에 직접 박지 않는다'\n- 2026-07-15 회원관리 감사 중 발견 (saas-member-standard 스킬 베이스라인 테스트)\n- decision-list.md 7.2: '폴백 제거 → 미설정 시 부팅 실패가 정답'\n\n【주의】 git 히스토리 재작성(filter-repo)은 협업자 전체에 영향 → 별도 판단. 새 값으로 교체하면 옛 값이 무의미해지므로 통상 불필요.",
+      "priority": "P0",
+      "status": "DONE",
+      "assign_to": "agent-harness",
+      "depth": 0,
+      "retry_count": 0,
+      "parent_id": null,
+      "depends_on": [],
+      "created_at": "2026-07-15T05:05:53Z",
+      "started_at": "2026-07-15T06:03:17Z",
+      "completed_at": "2026-07-15T06:03:17Z",
+      "result": {
+        "fixed": true,
+        "files_changed": [
+          "app/controllers/admin/wikis_controller.rb",
+          "spec/requests/admin_wiki_auth_spec.rb (신규)",
+          "bin/set-admin-wiki-pw (신규)"
+        ],
+        "change": "ENV.fetch 2인자 폴백 제거 → credentials.dig(:admin_wiki,:password), 미설정 시 raise",
+        "secure_compare": "http_basic_authenticate_with 내부가 이미 secure_compare 사용 — 추가 변경 불필요",
+        "user_action_done": "대표님이 credentials에 새 비밀번호 설정 완료 (값 미공유)",
+        "tests": {
+          "passed": true,
+          "total": 5,
+          "failed_count": 0,
+          "cases": [
+            "credentials 설정됨",
+            "무인증 401",
+            "오답 401",
+            "정답 접속성공",
+            "폴백 회귀방지"
+          ]
+        },
+        "verified": "실제 HTTP 요청 통합 테스트 + 잘못된 마스터키로 안전장치(부팅실패) 확인"
+      },
+      "source": "saas-member-standard/audit",
+      "payload": {
+        "files": [
+          "app/controllers/admin/wikis_controller.rb"
+        ],
+        "scope_dir": "app/controllers/admin",
+        "member_area": "admin_auth",
+        "source_skill": "saas-member-standard",
+        "requires_user_confirm": true,
+        "confirm_category": "SECURITY",
+        "confirm_question": "비밀번호 값 교체(콘솔/kamal secrets)를 완료하셨습니까? 완료 시 이 이슈를 READY로 전환하여 폴백 제거 + secure_compare 적용을 진행합니다. 값 자체는 에이전트에게 알려주지 마십시오.",
+        "user_action_required": [
+          "1) 콘솔에서 기존 비밀번호 폐기",
+          "2) read -s 'pw?새 비밀번호: ' && echo \"ADMIN_WIKI_PASSWORD=$pw\" >> .kamal/secrets && unset pw",
+          "3) .kamal/secrets 가 .gitignore 에 있는지 확인",
+          "4) kamal env push"
+        ]
+      },
+      "spawn_rules": [
+        {
+          "condition": "implemented",
+          "new_issue": {
+            "title": "[xaisimtier] 관리자 위키 접근 경로 인가 검증 (Devise 우회 경로 점검)",
+            "type": "RUN_TESTS",
+            "priority": "P1",
+            "assign_to": "test-harness"
+          }
+        }
+      ]
     }
   ],
   "hooks": {
