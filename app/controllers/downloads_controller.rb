@@ -34,6 +34,9 @@ class DownloadsController < ApplicationController
 
     if @download.save
       DownloadMailer.link(@download).deliver_later
+      # 데모 신청·문의는 관리자 알림이 있는데 IR 만 없었다. 자료는 자동으로 나가지만
+      # 누가 받아갔는지 모르면 후속 연락 타이밍을 놓친다. — 2026-07-16
+      DownloadMailer.admin_notification(@download).deliver_later
       redirect_to investors_path(locale: I18n.locale, sent: 1)
     else
       render "pages/investors", status: :unprocessable_entity

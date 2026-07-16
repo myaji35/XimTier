@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe "IR Download flow", type: :request do
   include ActiveJob::TestHelper
 
-  it "POST /ko/company/investors — Download 저장 + 토큰 발급 + 메일 1통" do
+  it "POST /ko/company/investors — Download 저장 + 토큰 발급 + 메일 2통(신청자 자료 + 관리자 알림)" do
     perform_enqueued_jobs do
       expect {
         post "/ko/company/investors", params: {
@@ -17,7 +17,7 @@ RSpec.describe "IR Download flow", type: :request do
           }
         }
       }.to change(Download, :count).by(1)
-        .and change { ActionMailer::Base.deliveries.size }.by(1)
+        .and change { ActionMailer::Base.deliveries.size }.by(2)
     end
 
     expect(response).to redirect_to(/sent=1/)
@@ -84,6 +84,70 @@ RSpec.describe "IR 메일의 시장 근거 안내", type: :request do
     text = mail.text_part ? mail.text_part.body.decoded : mail.body.decoded
     expect(text).to include("/en/company/market")
     expect(text).to include("See the market evidence")
+    expect(text).not_to include("translation missing")
+  end
+end
+
+# IR 신청이 오면 대표님께 알린다. 자료는 이미 자동 발송된 뒤이고,
+# 이 알림의 목적은 "누가 받아갔는지" 를 놓치지 않는 것이다.
+# 데모 신청·문의는 알림이 있는데 IR 만 없었다. — 2026-07-16
+RSpec.describe "IR 신청 관리자 알림", type: :request do
+  include ActiveJob::TestHelper
+
+  def apply(email:, name: "신청자", company: "회사")
+    perform_enqueued_jobs do
+      post "/ko/company/investors", params: {
+        download: { name: name, email: email, company: company,
+                    role: "심사역", asset: "ir_deck_ko", consent: "1" }
+      }
+    end
+  end
+
+  def admin_mail
+    ActionMailer::Base.deliveries.find { |m| m.to.include?("admin@ximtier.io") }
+  end
+
+  it "신청하면 관리자에게 알림이 간다" do
+    apply(email: "someone@somewhere.co.kr")
+    expect(admin_mail).to be_present
+  end
+
+  it "신청자에게 가는 자료 메일과는 별개다" do
+    apply(email: "someone@somewhere.co.kr")
+    expect(ActionMailer::Base.deliveries.map(&:to).flatten)
+      .to include("someone@somewhere.co.kr", "admin@ximtier.io")
+  end
+
+  describe "제목만 보고 우선순위를 알 수 있다" do
+    it "VC 도메인이면 제목에 표시된다" do
+      apply(email: "partner@theventures.co.kr", name: "이수정", company: "더벤처스")
+      expect(admin_mail.subject).to include("VC")
+      expect(admin_mail.subject).to include("이수정")
+    end
+
+    it "무료메일이면 미판별로 표시된다" do
+      apply(email: "someone@gmail.com")
+      expect(admin_mail.subject).to include("미판별")
+    end
+
+    it "회사 도메인이면 법인으로 표시된다" do
+      apply(email: "exec@hyundai-sme.com")
+      expect(admin_mail.subject).to include("법인")
+    end
+  end
+
+  it "신청 기록에 분류가 저장된다" do
+    apply(email: "partner@theventures.co.kr")
+    expect(Download.find_by(email: "partner@theventures.co.kr").investor_kind).to eq("vc")
+  end
+
+  it "알림 본문에 판단에 필요한 정보가 담긴다" do
+    apply(email: "partner@theventures.co.kr", name: "이수정", company: "더벤처스")
+    text = admin_mail.text_part ? admin_mail.text_part.body.decoded : admin_mail.body.decoded
+
+    expect(text).to include("이수정")
+    expect(text).to include("더벤처스")
+    expect(text).to include("partner@theventures.co.kr")
     expect(text).not_to include("translation missing")
   end
 end

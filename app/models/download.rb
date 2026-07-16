@@ -14,8 +14,14 @@ class Download < ApplicationRecord
   validates :locale, inclusion: { in: %w[ko en] }
 
   before_validation :ensure_token, on: :create
+  before_validation :classify_investor
 
   scope :recent, -> { order(created_at: :desc) }
+  scope :investors, -> { where(investor_kind: %w[vc company]) }
+
+  def investor_label
+    InvestorClassifier.call(email).label
+  end
 
   def token_expired?
     token_issued_at.nil? || token_issued_at < TOKEN_TTL.ago
@@ -55,5 +61,13 @@ class Download < ApplicationRecord
   def ensure_token
     self.download_token ||= SecureRandom.hex(20)
     self.token_issued_at ||= Time.current
+  end
+
+  # 이메일 도메인으로 신청자를 분류한다. 발송을 막지는 않고 기록만 한다 — 대표님이
+  # 누구에게 먼저 연락할지 판단하는 신호다. 이메일이 바뀌면 다시 분류한다.
+  def classify_investor
+    return unless email_changed? || investor_kind.blank?
+
+    self.investor_kind = InvestorClassifier.call(email).kind.to_s
   end
 end

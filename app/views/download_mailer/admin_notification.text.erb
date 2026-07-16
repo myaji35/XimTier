@@ -1,0 +1,17 @@
+<%= @classification.label %> — IR 자료 신청
+
+자료는 이미 자동 발송되었습니다. 아래는 후속 연락 판단용입니다.
+
+신청자: <%= @download.name %>
+이메일: <%= @download.email %>
+회사:   <%= @download.company.presence || "—" %>
+직책:   <%= @download.role.presence || "—" %>
+자료:   <%= @download.asset %>
+시각:   <%= @download.created_at.strftime("%Y-%m-%d %H:%M") %>
+<% if @classification.kind == :vc %>
+※ 알려진 VC 도메인입니다. 자료를 열어본 직후에 연락하는 편이 반응이 좋습니다.
+<% elsif @classification.kind == :unknown %>
+※ 무료 메일이라 회사를 확인할 수 없습니다. 무료 메일을 쓰는 심사역도 있으니
+   이름·회사·직책을 함께 보고 판단해 주세요.
+<% end %>
+관리자에서 보기: <%= @admin_url %>

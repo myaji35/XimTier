@@ -1,0 +1,39 @@
+<h2 style="font-family:-apple-system,sans-serif;color:#0B132D;font-size:18px;">
+  <%= @classification.label %> — IR 자료 신청
+</h2>
+
+<p style="font-family:-apple-system,sans-serif;color:#697386;font-size:13px;">
+  자료는 이미 자동 발송되었습니다. 아래는 후속 연락 판단용입니다.
+</p>
+
+<table style="font-family:-apple-system,sans-serif;font-size:14px;color:#475467;border-collapse:collapse;">
+  <tr><td style="padding:6px 0;width:120px;color:#697386;">신청자</td><td><%= @download.name %></td></tr>
+  <tr><td style="padding:6px 0;color:#697386;">이메일</td><td><a href="mailto:<%= @download.email %>" style="color:#2563EB;"><%= @download.email %></a></td></tr>
+  <tr><td style="padding:6px 0;color:#697386;">회사</td><td><%= @download.company.presence || "—" %></td></tr>
+  <tr><td style="padding:6px 0;color:#697386;">직책</td><td><%= @download.role.presence || "—" %></td></tr>
+  <tr><td style="padding:6px 0;color:#697386;">요청 자료</td><td><%= @download.asset %></td></tr>
+  <tr><td style="padding:6px 0;color:#697386;">신청 시각</td><td><%= l(@download.created_at, format: :long) rescue @download.created_at %></td></tr>
+</table>
+
+<% if @classification.kind == :vc %>
+  <p style="font-family:-apple-system,sans-serif;background:#ECFDF5;border-left:3px solid #059669;padding:10px 12px;color:#065F46;font-size:13px;">
+    알려진 VC 도메인입니다. 자료를 열어본 직후에 연락하는 편이 반응이 좋습니다.
+  </p>
+<% elsif @classification.kind == :unknown %>
+  <p style="font-family:-apple-system,sans-serif;background:#FFFBEB;border-left:3px solid #D97706;padding:10px 12px;color:#92400E;font-size:13px;">
+    무료 메일이라 회사를 확인할 수 없습니다. 무료 메일을 쓰는 심사역도 있으니
+    이름·회사·직책을 함께 보고 판단해 주세요.
+  </p>
+<% end %>
+
+<p style="margin:22px 0;">
+  <a href="<%= @admin_url %>" style="display:inline-block;padding:10px 18px;border-radius:999px;background:#ff385c;color:#fff;text-decoration:none;font-family:-apple-system,sans-serif;font-weight:600;font-size:13px;">
+    관리자에서 보기
+  </a>
+</p>
+
+<hr style="border:0;border-top:1px solid #e5e9f0;margin:20px 0;">
+<p style="font-family:-apple-system,sans-serif;color:#697386;font-size:12px;">
+  다운로드 횟수는 관리자 화면에서 확인할 수 있습니다. 신청만 하고 열어보지 않은 건과
+  여러 번 열어본 건은 관심도가 다릅니다.
+</p>

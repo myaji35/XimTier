@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_16_060000) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_16_070000) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -145,6 +145,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_16_060000) do
     t.string "download_token", null: false
     t.integer "downloaded_count", default: 0, null: false
     t.string "email", null: false
+    t.string "investor_kind"
     t.string "locale", default: "ko", null: false
     t.string "name"
     t.datetime "privacy_agreed_at"
@@ -154,6 +155,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_16_060000) do
     t.index ["created_at"], name: "index_downloads_on_created_at"
     t.index ["download_token"], name: "index_downloads_on_download_token", unique: true
     t.index ["email"], name: "index_downloads_on_email"
+    t.index ["investor_kind"], name: "index_downloads_on_investor_kind"
   end
 
   create_table "users", force: :cascade do |t|

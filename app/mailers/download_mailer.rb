@@ -10,4 +10,21 @@ class DownloadMailer < ApplicationMailer
       mail(to: download.email, subject: t("mailer.download.subject"))
     end
   end
+
+  # IR 신청이 오면 대표님께 알린다. 자료는 이미 자동 발송된 뒤다 —
+  # 이 메일의 목적은 "누가 받아갔는지" 를 놓치지 않고 후속 연락 타이밍을 잡는 것이다.
+  # 데모 신청·문의는 알림이 있는데 IR 만 없었다.
+  def admin_notification(download)
+    @download = download
+    @classification = InvestorClassifier.call(download.email)
+    @admin_url = "https://#{ENV.fetch('APP_HOST', 'ximtier.com')}/admin/resources/downloads/#{download.id}"
+
+    # 제목만 보고도 우선순위를 판단할 수 있어야 한다.
+    I18n.with_locale(:ko) do
+      mail(
+        to: ENV.fetch("ADMIN_EMAIL", "admin@ximtier.io"),
+        subject: "[XimTier] #{@classification.label} IR 신청 — #{download.name} (#{download.company})"
+      )
+    end
+  end
 end
