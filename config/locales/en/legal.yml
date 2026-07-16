@@ -33,7 +33,10 @@ en:
           - Access, correct, or delete your personal information
           - Withdraw consent and stop processing
           - GDPR additional rights (EU residents): data portability, object to automated decisions
-          Contact: contact@ximtier.io
+          Closing your account: sign in and use "Close account" at the bottom of your dashboard.
+          Your account details, demo requests, uploaded data files, and comments are
+          deleted immediately with no grace period.
+          Other requests: contact@ximtier.io
       - title: "6. Cookie Policy"
         body: |
           XimTier uses only the following cookies:

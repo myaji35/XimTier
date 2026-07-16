@@ -1,0 +1,43 @@
+<% content_for :title, "#{t('account.close.title')} — #{t('site.brand')}" %>
+
+<section class="section-tinted section-pad">
+  <div class="wrap" style="max-width:640px;">
+    <div class="eyebrow"><span class="dot"></span>ACCOUNT</div>
+    <h1 class="h-section mt-3"><%= t("account.close.title") %></h1>
+    <p class="lead mt-3" style="color:#475467;"><%= t("account.close.lead") %></p>
+
+    <% if flash.now[:alert] || flash[:alert] %>
+      <div class="mt-6 p-4 rounded-[14px]" style="background:#FEF2F2;border:1px solid #FCA5A5;color:#991B1B;">
+        <%= flash.now[:alert] || flash[:alert] %>
+      </div>
+    <% end %>
+
+    <div class="card mt-8" style="padding:28px;">
+      <h2 class="text-[16px] font-semibold mb-3" style="color:#0B132D;"><%= t("account.close.what_happens") %></h2>
+      <ul class="list-disc list-inside text-[14px] space-y-2" style="color:#475467;">
+        <% t("account.close.deleted_items").each do |item| %>
+          <li><%= item %></li>
+        <% end %>
+      </ul>
+      <p class="mt-5 text-[14px] font-semibold" style="color:#991B1B;"><%= t("account.close.irreversible") %></p>
+    </div>
+
+    <%= form_with url: account_path(locale: I18n.locale), method: :delete, local: true, class: "mt-8 space-y-4" do |f| %>
+      <div>
+        <label for="current_password" class="block text-[13px] font-medium mb-2" style="color:#0B132D;">
+          <%= t("account.close.confirm_password") %>
+        </label>
+        <%= password_field_tag :current_password, nil, required: true, autocomplete: "current-password",
+              class: "w-full px-4 py-3 rounded-[10px] border text-[15px]",
+              style: "border-color:#e5e9f0; color:#0B132D; background:#fff;" %>
+      </div>
+
+      <div class="flex items-center gap-3 pt-2">
+        <%= submit_tag t("account.close.submit"), class: "btn",
+              style: "background:#991B1B; color:#fff; border:0; cursor:pointer;",
+              data: { turbo_confirm: t("account.close.confirm_dialog") } %>
+        <%= link_to t("account.close.cancel"), dashboard_path(locale: I18n.locale), class: "btn btn-ghost" %>
+      </div>
+    <% end %>
+  </div>
+</section>

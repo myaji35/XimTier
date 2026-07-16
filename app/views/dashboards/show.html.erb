@@ -85,5 +85,10 @@
         <% end %>
       </div>
     <% end %>
+
+    <div class="mt-16 pt-6" style="border-top:1px solid #e5e9f0;">
+      <%= link_to t("account.close.title"), close_account_path(locale: I18n.locale),
+            class: "text-[13px]", style: "color:#697386; text-decoration:underline;" %>
+    </div>
   </div>
 </section>

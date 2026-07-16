@@ -1,0 +1,22 @@
+en:
+  account:
+    close:
+      title: Close account
+      lead: Closing your account deletes the following immediately. Deleted data cannot be recovered.
+      what_happens: What gets deleted
+      deleted_items:
+        - Account details (email, name, company, role)
+        - All demo requests
+        - Data files attached to those requests
+        - Your comments and the XimTier team's replies
+      irreversible: Deleted immediately with no grace period. This cannot be undone.
+      confirm_password: Enter your password to confirm
+      submit: Close my account
+      cancel: Cancel
+      confirm_dialog: Close your account? All data is deleted immediately and cannot be recovered.
+      flash:
+        done: Your account has been closed. Thank you for using XimTier.
+      errors:
+        password_required: Please enter your password.
+        password_invalid: That password doesn't match.
+        failed: Something went wrong while closing your account. Please contact contact@ximtier.io.

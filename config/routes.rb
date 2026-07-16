@@ -65,6 +65,10 @@ Rails.application.routes.draw do
 
     # 사용자 대시보드 (Devise 로그인 필요)
     get "/dashboard", to: "dashboards#show", as: :dashboard
+
+    # 회원탈퇴 (개인정보보호법 제21조·제36조 삭제권)
+    get    "/account/close", to: "accounts#close",   as: :close_account
+    delete "/account",       to: "accounts#destroy", as: :account
     resources :demo_requests, only: [], path: "demo-requests" do
       resources :comments, only: [:create]
     end
