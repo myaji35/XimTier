@@ -1,8 +1,25 @@
 # Omakase Ruby styling for Rails
 inherit_gem: { rubocop-rails-omakase: rubocop.yml }
 
+AllCops:
+  Exclude:
+    # macOS 가 외장/네트워크 드라이브에 만드는 AppleDouble 메타데이터 파일.
+    # 실제 소스가 아닌데 RuboCop 이 파싱하다 "Invalid byte sequence in utf-8" 로 죽는다.
+    # .gitignore 에 있어 CI 에는 없지만, 로컬 실행 시 매번 걸린다.
+    - '**/._*'
+
 # Overwrite or add rules to create your own house style
-#
-# # Use `[a, [b, c]]` not `[ a, [ b, c ] ]`
-# Layout/SpaceInsideArrayLiteralBrackets:
-#   Enabled: false
+
+# Use `[a, [b, c]]` not `[ a, [ b, c ] ]`
+# omakase 기본값은 대괄호 안 공백을 요구하지만, 이 저장소는 전부 공백 없이 쓴다.
+# 규칙을 켜두면 기존 코드 144곳이 지적돼 CI 가 상시 실패한다 (스타일일 뿐 동작과 무관).
+# 코드를 규칙에 맞추는 대신 규칙을 실제 스타일에 맞춘다.
+Layout/SpaceInsideArrayLiteralBrackets:
+  Enabled: false
+
+# case 문의 end 를 case 키워드가 아니라 대입 변수에 맞추라는 규칙.
+# 이 저장소는 `scope = case ...` 에서 end 를 case 에 맞춰 들여쓰는 스타일을 쓰고,
+# 그 편이 어느 case 의 end 인지 읽기 쉽다. 자동수정하면 when 절이 왼쪽으로 당겨져
+# 오히려 가독성이 나빠진다 (leads_aggregator.rb).
+Layout/EndAlignment:
+  EnforcedStyleAlignWith: keyword

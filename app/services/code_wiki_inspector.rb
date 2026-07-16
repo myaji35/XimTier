@@ -152,7 +152,7 @@ class CodeWikiInspector
       rails:     Rails.version,
       env:       Rails.env,
       git_sha:   (`git rev-parse --short HEAD 2>/dev/null`.strip rescue nil),
-      git_branch:(`git rev-parse --abbrev-ref HEAD 2>/dev/null`.strip rescue nil),
+      git_branch: (`git rev-parse --abbrev-ref HEAD 2>/dev/null`.strip rescue nil),
       total_files: file_count
     }
   end

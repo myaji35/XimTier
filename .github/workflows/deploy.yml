@@ -119,19 +119,41 @@ jobs:
       - name: Kamal config validation
         run: |
           if [ "${{ needs.wait-for-ci.outputs.target }}" = "production" ]; then
-            kamal config
+            # -d 는 서브커맨드 뒤에 와야 한다. 앞에 두면 Kamal 2.12 가 인식하지 못하고
+            # Usage 만 출력한 뒤 종료코드 0 으로 끝난다 — 배포가 조용히 건너뛰어진다.
+            OUT=$(kamal config 2>&1) || { echo "$OUT"; exit 1; }
           else
-            kamal -d staging config
+            OUT=$(kamal config -d staging 2>&1) || { echo "$OUT"; exit 1; }
           fi
+          echo "$OUT"
+
+          # kamal 이 명령을 인식 못하면 Usage 를 뱉고 0 으로 끝난다. 그 경우를 잡는다.
+          if echo "$OUT" | grep -q "^Usage:"; then
+            echo "::error::kamal 이 명령을 인식하지 못했다 (Usage 출력). 플래그 위치/버전을 확인할 것."
+            exit 1
+          fi
+          # 정상 config 출력에는 반드시 이미지 좌표가 들어 있다.
+          echo "$OUT" | grep -q "absolute_image" || {
+            echo "::error::kamal config 출력이 비정상이다 — absolute_image 가 없다."
+            exit 1
+          }
 
       - name: Kamal deploy
         env:
           KAMAL_REGISTRY_PASSWORD: ${{ secrets.GHCR_PAT }}
         run: |
+          set -o pipefail
           if [ "${{ needs.wait-for-ci.outputs.target }}" = "production" ]; then
-            kamal deploy
+            kamal deploy 2>&1 | tee /tmp/deploy.log
           else
-            kamal -d staging deploy
+            kamal deploy -d staging 2>&1 | tee /tmp/deploy.log
+          fi
+
+          # Usage 출력 = 명령 미인식. 종료코드가 0 이어도 배포는 일어나지 않았다.
+          # 이 검사가 없어서 5일간 배포가 조용히 건너뛰어진 채로 지나갔다.
+          if grep -q "^Usage:" /tmp/deploy.log; then
+            echo "::error::kamal deploy 가 실행되지 않았다 (Usage 출력)."
+            exit 1
           fi
 
       - name: Post-deploy health check

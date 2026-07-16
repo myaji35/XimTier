@@ -5,4 +5,9 @@
 </p>
 <p style="font-family: -apple-system, sans-serif; color: #697386; font-size: 12px;"><%= @download_url %></p>
 <hr style="border: 0; border-top: 1px solid #e5e9f0; margin: 24px 0;">
+<p style="font-family: -apple-system, sans-serif; color: #475467; font-size: 13px; line-height: 1.6;">
+  <%= t("mailer.download.market_note") %><br>
+  <a href="<%= @market_url %>" style="color:#2563EB; font-weight:600;"><%= t("mailer.download.market_cta") %></a>
+</p>
+<hr style="border: 0; border-top: 1px solid #e5e9f0; margin: 24px 0;">
 <p style="font-family: -apple-system, sans-serif; color: #697386; font-size: 13px;"><%= t("mailer.download.signature") %></p>

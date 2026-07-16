@@ -1,0 +1,25 @@
+{
+  "ignored_warnings": [
+    {
+      "fingerprint": "6273d1ac4974622a804c8e9ee0bd34af5611011615ef670e307f0aba9d50563d",
+      "note": "오탐. asset 은 enum 이고 Download#asset_path 가 ASSET_FILES 화이트리스트로 fetch 한다 (없는 값이면 기본 파일). 사용자 입력이 경로에 직접 닿지 않는다. 2026-07-16 검토."
+    },
+    {
+      "fingerprint": "67935243dc54ee966db82f5725319a154490ee14b1291dc9c73e7be340bd5f37",
+      "note": "오탐. 라우트가 slug 를 /[\\w\\-]+/ 로 제한해 경로 조작 문자(../)가 차단되고, 이 화면 자체가 Basic 인증 뒤에 있다. 2026-07-16 검토."
+    },
+    {
+      "fingerprint": "839e324dfe87bc861a8c986a84a034f79a494396416d44367613a2eb3f1b51f7",
+      "note": "오탐. permit 하는 :asset 은 enum 이라 정의된 3개 값 외에는 ArgumentError 로 거부된다 (실측: Download.new(asset: '../../etc/passwd') → \"is not a valid asset\"). 2026-07-16 검토."
+    },
+    {
+      "fingerprint": "abc4cf44046600b71594480e3952c18c057f5b25533ac0a2f448946927dc18d6",
+      "note": "오탐. 라우트가 slug 를 10개 값으로 고정한다 (routes.rb:27 constraints: /manufacturing|hospital|public|smart-city|finance|retail|logistics|energy|education|telecom/). 임의 경로가 들어올 수 없다. 2026-07-16 검토."
+    },
+    {
+      "fingerprint": "c95d75d57c319f0dfed172e257297a4cb71b064dea38ccbf7d26d3d84fad555f",
+      "note": "오탐. 위와 동일한 render 로 같은 라우트 제약이 적용된다. 2026-07-16 검토."
+    }
+  ],
+  "brakeman_version": "8.0.5"
+}

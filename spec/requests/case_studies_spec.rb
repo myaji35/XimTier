@@ -51,10 +51,12 @@ RSpec.describe "Case Studies", type: :request do
     expect(response.body).to include("기능 비교 매트릭스")
   end
 
-  it "Hero CTA 라우팅 — /demo, /investors 정상 path" do
+  # v3 개편에서 홈 CTA 를 고객용(데모·문의)으로 정리했다.
+  # 투자자용 IR 은 /company/investors 로 분리하고 홈에서는 링크하지 않는다 (2026-07-16 결정).
+  it "Hero CTA 라우팅 — 고객용 CTA(데모·문의) 정상 path" do
     get "/ko"
     expect(response.body).to match(%r{href="/ko/demo"})
-    expect(response.body).to match(%r{href="/ko/company/investors"})
+    expect(response.body).to match(%r{href="/ko/contact"})
   end
 
   it "Tweaks Panel 마운트" do

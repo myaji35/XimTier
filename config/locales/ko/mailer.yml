@@ -13,6 +13,8 @@ ko:
       greeting: "%{name}님, 안녕하세요."
       body: "요청하신 XimTier IR 자료 다운로드 링크입니다. 24시간 이내에 클릭해 주세요."
       cta: "IR 자료 다운로드"
+      market_note: "XimTier가 보는 시장 규모($81B)를 인접 시장 합산 모델로 검증한 근거도 함께 준비했습니다."
+      market_cta: "시장 근거 자료 보기"
       signature: "— XimTier 팀"
     demo:
       welcome:

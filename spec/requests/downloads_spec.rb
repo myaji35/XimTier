@@ -45,3 +45,45 @@ RSpec.describe "IR Download flow", type: :request do
     expect(response).to redirect_to("/ko/company/investors")
   end
 end
+
+# 시장($81B TAM) 근거는 투자자용 자료다. 고객용 헤더 메뉴에서 분리하고
+# IR 자료를 받는 이 경로로 안내한다 (2026-07-16 결정).
+RSpec.describe "IR 메일의 시장 근거 안내", type: :request do
+  include ActiveJob::TestHelper
+
+  it "IR 메일에 시장 페이지 링크가 들어간다 (ko)" do
+    perform_enqueued_jobs do
+      post "/ko/company/investors", params: {
+        download: { name: "투자자", email: "market-note@test.com", company: "VC",
+                    role: "심사역", asset: "ir_deck_ko", consent: "1" }
+      }
+    end
+
+    mail = ActionMailer::Base.deliveries.find { |m| m.to.include?("market-note@test.com") }
+    expect(mail).to be_present
+
+    text = mail.text_part ? mail.text_part.body.decoded : mail.body.decoded
+    expect(text).to include("/ko/company/market")
+    expect(text).to include("시장 근거 자료 보기")
+    # 번역이 빠지면 "translation missing" 이 그대로 메일로 나간다.
+    # 첫 구현에서 실제로 그랬고, 느슨한 정규식 탓에 테스트가 통과해버렸다.
+    expect(text).not_to include("translation missing")
+  end
+
+  it "영문 신청에는 영문 안내가 들어간다" do
+    perform_enqueued_jobs do
+      post "/en/company/investors", params: {
+        download: { name: "Investor", email: "market-en@test.com", company: "VC",
+                    role: "Partner", asset: "ir_deck_en", consent: "1" }
+      }
+    end
+
+    mail = ActionMailer::Base.deliveries.find { |m| m.to.include?("market-en@test.com") }
+    expect(mail).to be_present
+
+    text = mail.text_part ? mail.text_part.body.decoded : mail.body.decoded
+    expect(text).to include("/en/company/market")
+    expect(text).to include("See the market evidence")
+    expect(text).not_to include("translation missing")
+  end
+end

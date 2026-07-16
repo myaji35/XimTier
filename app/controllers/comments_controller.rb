@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
       by_admin: false
     )
     if comment.save
-      redirect_to dashboard_path(locale: I18n.locale), notice: I18n.t("dashboard.comment_added", default: "코멘트가 등록되었습니다.")
+      redirect_to dashboard_path(locale: I18n.locale), notice: I18n.t("dashboard.comment_added")
     else
       redirect_to dashboard_path(locale: I18n.locale), alert: comment.errors.full_messages.join(", ")
     end

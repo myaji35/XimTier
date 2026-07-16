@@ -20,8 +20,13 @@ servers:
 ssh:
   user: root
 
+# proxy 는 prod(deploy.yml)의 설정 위에 병합된다.
+# prod 가 hosts(배열)를 쓰므로 여기서도 hosts 로 맞춰야 배열이 통째로 덮인다.
+# host(단수)를 쓰면 prod 의 hosts 와 함께 남아
+# "Specify one of 'host' or 'hosts', not both" 로 배포가 실패한다.
 proxy:
-  host: ximtier-staging.158.247.235.31.nip.io
+  hosts:
+    - ximtier-staging.158.247.235.31.nip.io
   app_port: 80
   healthcheck:
     path: /up

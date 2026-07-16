@@ -44,6 +44,7 @@ en:
       email_taken: This email is already registered. Please sign in and submit your request.
     note: If your email is new, we'll auto-create your account and send a temporary password. Already registered? Sign in first.
   dashboard:
+    comment_added: Your comment has been posted.
     title: My demo requests
     welcome: "Welcome, %{name}."
     no_requests: No demo requests yet.

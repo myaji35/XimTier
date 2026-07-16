@@ -13,6 +13,8 @@ en:
       greeting: "Hello %{name},"
       body: "Here is the requested download link for the XimTier IR deck. Please use it within 24 hours."
       cta: "Download the IR deck"
+      market_note: "We've also prepared the evidence behind our $81B market estimate, built from a sum-of-adjacent-markets model."
+      market_cta: "See the market evidence"
       signature: "— The XimTier Team"
     demo:
       welcome:
