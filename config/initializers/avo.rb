@@ -7,7 +7,8 @@ Avo.configure do |config|
   # config.prefix_path = "/internal"
 
   # Where should the user be redirected when visiting the `/avo` url
-  # config.home_path = nil
+  # 기본값은 Avo 데모 페이지("Welcome to Avo" + 제품 홍보 문구)다. 실제 업무 화면으로 보낸다.
+  config.home_path = "/admin/kpi"
 
   ## == Licensing ==
   # config.license_key = ENV['AVO_LICENSE_KEY']
@@ -106,7 +107,7 @@ Avo.configure do |config|
 
   ## == Customization ==
   config.click_row_to_view_record = true
-  # config.app_name = 'Avocadelicious'
+  config.app_name = "XimTier 관리자"
   # config.timezone = 'UTC'
   # config.currency = 'USD'
   # config.hide_layout_when_printing = false
@@ -146,19 +147,12 @@ Avo.configure do |config|
   # end
 
   ## == Menus ==
-  # config.main_menu = -> {
-  #   section "Dashboards", icon: "avo/dashboards" do
-  #     all_dashboards
-  #   end
-
-  #   section "Resources", icon: "avo/resources" do
-  #     all_resources
-  #   end
-
-  #   section "Tools", icon: "avo/tools" do
-  #     all_tools
-  #   end
-  # }
+  # main_menu(메뉴 편집기)는 avo-pro 전용이다. OSS 판에서 설정하면 무시되고
+  # "The menu editor is available exclusively with the Pro license" 경고만 뜬다
+  # (avo.rb:191). 인가(authorization_client)와 같은 구조다 — ISS-007 참조.
+  # 따라서 메뉴 순서는 제어할 수 없고, 리소스명 한글화(config/locales/avo.ko.yml)로만
+  # 가독성을 확보한다.
+  # config.main_menu = -> { ... }
   # config.profile_menu = -> {
   #   link "Profile", path: "/avo/profile", icon: "heroicons/outline/user-circle"
   # }

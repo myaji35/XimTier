@@ -1,4 +1,10 @@
 class Avo::Resources::Download < Avo::BaseResource
+  # Avo 는 번역 결과에 humanize 를 걸어 "IR 자료 신청" 을 "Ir 자료 신청" 으로 바꾼다
+  # (avo/resources/base.rb:222). 약어를 살리려면 이름을 직접 정의해 우회해야 한다.
+  def self.name = "IR 자료 신청"
+  def self.plural_name = "IR 자료 신청"
+  def self.navigation_label = plural_name
+
   self.search = {
     query: -> {
       query.where("email LIKE :q OR name LIKE :q OR company LIKE :q", q: "%#{params[:q]}%")

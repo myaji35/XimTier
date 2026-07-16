@@ -11,6 +11,21 @@ ko:
       case_comment:
         one: 사례 댓글
         other: 사례 댓글
+      demo_request:
+        one: 데모 신청
+        other: 데모 신청
+      contact_inquiry:
+        one: 문의
+        other: 문의
+      download:
+        one: IR 자료 신청
+        other: IR 자료 신청
+      comment:
+        one: 데모 코멘트
+        other: 데모 코멘트
+      user:
+        one: 회원
+        other: 회원
     action_ran_successfully: 액션을 실행했습니다!
     actions: 액션
     add_filter: 필터 추가
