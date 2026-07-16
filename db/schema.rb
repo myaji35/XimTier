@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_16_030000) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_16_050000) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -191,6 +191,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_16_030000) do
     t.string "name"
     t.datetime "privacy_agreed_at"
     t.string "role"
+    t.datetime "token_issued_at"
     t.datetime "updated_at", null: false
     t.index ["created_at"], name: "index_downloads_on_created_at"
     t.index ["download_token"], name: "index_downloads_on_download_token", unique: true

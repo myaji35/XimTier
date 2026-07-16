@@ -32,5 +32,6 @@ en:
     flash:
       success: Please check your email — we've sent the download link.
     errors:
+      token_expired: This download link has expired (valid for 24 hours). Please request a new one below.
       invalid_token: The download link is invalid or has expired.
       file_missing: The file could not be located. Please contact the administrator.

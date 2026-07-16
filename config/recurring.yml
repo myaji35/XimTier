@@ -13,3 +13,9 @@ production:
   clear_solid_queue_finished_jobs:
     command: "SolidQueue::Job.clear_finished_in_batches(sleep_between_batches: 0.3)"
     schedule: every hour at minute 12
+
+  # 처리방침 3항이 공표한 보유기간을 이행한다 (ISS-009).
+  # 이 잡이 멈추면 방침 위반 상태가 된다 — 로그의 [PurgeExpiredRecords] 로 확인할 것.
+  purge_expired_records:
+    class: PurgeExpiredRecordsJob
+    schedule: every day at 4am

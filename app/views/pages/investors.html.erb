@@ -67,6 +67,13 @@
 
     <% @download ||= Download.new %>
 
+    <%# 만료·오류 안내 — 없으면 링크가 왜 안 되는지 알 수 없다 %>
+    <% if flash[:alert] %>
+      <div class="mt-6 p-4 rounded-[14px]" style="background:#FEF2F2; border:1px solid #FCA5A5; color:#991B1B;">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
+
     <% if params[:sent] %>
       <div class="mt-6 p-5 rounded-[14px]" style="background:#E0F2FE; border:1px solid #0891B2; color:#0E7490;">
         <%= t("investors.flash.success") %>

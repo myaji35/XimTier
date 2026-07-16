@@ -28,6 +28,9 @@ class DownloadsController < ApplicationController
     end
 
     @download.privacy_agreed_at = Time.current
+    # 기존 레코드 재사용 시 토큰을 새로 발급한다 — 갱신하지 않으면
+    # 지난번 발급 시각이 남아 메일을 받자마자 만료된 링크가 된다. — ISS-009
+    @download.reissue_token! if @download.persisted?
 
     if @download.save
       DownloadMailer.link(@download).deliver_later
@@ -40,6 +43,11 @@ class DownloadsController < ApplicationController
   def show
     if @download.nil?
       redirect_to investors_path(locale: I18n.locale), alert: I18n.t("investors.errors.invalid_token") and return
+    end
+
+    # 처리방침 3항: 발급 후 24시간. — ISS-009
+    if @download.token_expired?
+      redirect_to investors_path(locale: I18n.locale), alert: I18n.t("investors.errors.token_expired") and return
     end
 
     @download.increment_download!
