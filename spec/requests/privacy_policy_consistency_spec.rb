@@ -56,7 +56,8 @@ RSpec.describe "처리방침 ↔ 코드 일치", type: :request do
   # 데이터를 읽는 코드는 어디에도 없었는데도 수집만 하고 있었다 (ISS-011).
   # 분석 도구를 다시 넣으면 여기서 잡는다.
   describe "쿠키 — 방침이 허용한 것만 나간다" do
-    ALLOWED = %w[_xaisimtier_session remember_user_token].freeze
+    # 방침 6항이 명시한 세 가지. 이 밖의 쿠키가 나가면 방침 위반이다.
+    ALLOWED = %w[_xaisimtier_session remember_user_token xim_visitor].freeze
 
     it "홈에서 추적 쿠키가 나가지 않는다" do
       get "/ko"
@@ -69,9 +70,25 @@ RSpec.describe "처리방침 ↔ 코드 일치", type: :request do
       expect(cookie_names).to all(be_in(ALLOWED))
     end
 
+    # 갤러리 상세는 좋아요 쿠키를 심는 유일한 경로다.
+    # 처음 이 검사가 홈·대시보드만 봐서 20년짜리 xim_visitor 를 놓쳤다.
+    it "갤러리 상세에서도 허용된 쿠키만 나간다" do
+      CaseStudy.create!(slug: "cookie-guard", title_ko: "쿠키 가드", published: true)
+      get "/ko/cases/cookie-guard/gallery"
+      expect(cookie_names).to all(be_in(ALLOWED))
+    end
+
     it "분석 도구 gem 이 설치되어 있지 않다" do
       gems = File.read(Rails.root.join("Gemfile"))
       expect(gems).not_to match(/ahoy|mixpanel|segment|google-analytics|amplitude/i)
+    end
+
+    # 배너 문구는 뷰에 하드코딩돼 있어 방침만 고치면 따로 논다.
+    # 실제로 ahoy 제거 후에도 배너는 "cookieless 분석" 을 계속 주장하고 있었다.
+    it "쿠키 배너가 방침과 어긋나지 않는다" do
+      get "/ko"
+      expect(response.body).not_to include("cookieless")
+      expect(response.body).not_to match(/분석만 사용/)
     end
 
     def cookie_names

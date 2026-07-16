@@ -1,4 +1,9 @@
 class CaseStudiesController < ApplicationController
+  # 익명 좋아요 중복 방지용 방문자 토큰의 수명.
+  # cookies.permanent 는 만료가 20년이라 "로그인에 필요한 쿠키만 사용" 이라는
+  # 처리방침과 충돌했다. 좋아요 중복 방지에 20년은 과하다. — 2026-07-16
+  VISITOR_TOKEN_TTL = 30.days
+
   before_action :set_case, only: %i[show toggle_like create_comment]
 
   # 갤러리 인덱스 — 정렬: 최신(기본) / 좋아요순
@@ -51,8 +56,14 @@ class CaseStudiesController < ApplicationController
     params.require(:case_comment).permit(:author_name, :body)
   end
 
-  # 브라우저별 영구 토큰 — 익명 좋아요 중복 방지용 (1년 쿠키)
+  # 브라우저별 토큰 — 익명 좋아요 중복 방지용. 개인을 식별하지 않는 임의 UUID다.
   def visitor_token
-    cookies.permanent[:xim_visitor] ||= SecureRandom.uuid
+    cookies[:xim_visitor] ||= {
+      value: SecureRandom.uuid,
+      expires: VISITOR_TOKEN_TTL.from_now,
+      httponly: true,
+      same_site: :lax
+    }
+    cookies[:xim_visitor]
   end
 end

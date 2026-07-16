@@ -41,11 +41,13 @@ en:
           Other requests: contact@ximtier.io
       - title: "6. Cookie Policy"
         body: |
-          XimTier uses only the cookies required to sign you in.
+          XimTier uses only the cookies required to run the service.
           - Session cookie: keeps you signed in. Removed when you close your browser.
           - Remember-me cookie: issued only if you tick "Remember me" at sign-in.
             Expires after 2 weeks, and is removed immediately when you sign out.
-          We do not use visitor tracking, advertising, or analytics cookies.
+          - Like cookie: a random identifier that prevents duplicate likes in the case gallery.
+            Expires after 30 days. It does not identify you or track you across other sites.
+          We do not use advertising or behavioural analytics cookies.
       - title: "7. Security Measures"
         body: |
           - In transit: TLS 1.2/1.3 (HTTPS enforced)

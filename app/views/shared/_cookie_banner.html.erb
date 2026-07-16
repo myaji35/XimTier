@@ -13,9 +13,10 @@
       <div class="flex-1">
         <div class="font-mono text-[10px]" style="color:#00C8C8; letter-spacing:0.14em;">// COOKIES</div>
         <p class="mt-1 text-[13px]" style="color:#e6e8f0; line-height:1.55;">
+<%# 방침 6항과 문구를 일치시킬 것. ahoy(분석 쿠키)는 제거됐고, 갤러리 좋아요 쿠키가 추가됐다. %>
           <%= I18n.locale == :ko ?
-                "XimTier는 필수 쿠키(로그인 세션)와 cookieless 분석만 사용합니다. 추적·광고 쿠키 없음." :
-                "XimTier uses only essential cookies (login session) and cookieless analytics. No tracking or advertising cookies." %>
+                "XimTier는 필수 쿠키(로그인 세션, 갤러리 좋아요 중복 방지)만 사용합니다. 광고·행동 분석 쿠키 없음." :
+                "XimTier uses only essential cookies (login session, gallery like deduplication). No advertising or behavioural analytics cookies." %>
         </p>
       </div>
       <div class="flex items-center gap-2 flex-shrink-0">
