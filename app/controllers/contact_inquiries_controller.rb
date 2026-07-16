@@ -15,6 +15,8 @@ class ContactInquiriesController < ApplicationController
       render "pages/contact", status: :unprocessable_entity and return
     end
 
+    @inquiry.privacy_agreed_at = Time.current
+
     # Honeypot (bots fill this hidden field)
     if params[:website].present?
       redirect_to contact_path(locale: I18n.locale), notice: I18n.t("contact.flash.success") and return

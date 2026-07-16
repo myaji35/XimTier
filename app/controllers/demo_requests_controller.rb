@@ -17,9 +17,18 @@ class DemoRequestsController < ApplicationController
     end
 
     user_params = user_params_from_request
-    user = User.find_by(email: user_params[:email])
+
+    # 로그인 상태면 본인 계정으로, 아니면 신규 계정을 만들어 진행한다.
+    # 이미 가입된 이메일을 비밀번호 없이 입력한 경우에는 절대 로그인시키지 않는다.
+    user = current_user
 
     if user.nil?
+      if User.exists?(email: user_params[:email])
+        @demo_request = DemoRequest.new(demo_params_for_form)
+        @demo_request.errors.add(:base, I18n.t("demo.errors.email_taken"))
+        render "pages/demo", status: :unprocessable_entity and return
+      end
+
       generated_password = SecureRandom.alphanumeric(16)
       user = User.create(
         email: user_params[:email],
@@ -29,7 +38,8 @@ class DemoRequestsController < ApplicationController
         company: user_params[:company],
         role: user_params[:role],
         industry: user_params[:industry],
-        locale: I18n.locale.to_s
+        locale: I18n.locale.to_s,
+        privacy_agreed_at: Time.current
       )
       unless user.persisted?
         @demo_request = DemoRequest.new(demo_params_for_form)
@@ -37,6 +47,7 @@ class DemoRequestsController < ApplicationController
         render "pages/demo", status: :unprocessable_entity and return
       end
       DemoMailer.welcome(user, generated_password).deliver_later
+      sign_in(user)
     end
 
     @demo_request = user.demo_requests.build(
@@ -53,7 +64,6 @@ class DemoRequestsController < ApplicationController
     if @demo_request.save
       DemoMailer.received(@demo_request).deliver_later
       DemoMailer.admin_notification(@demo_request).deliver_later
-      sign_in(user) unless user_signed_in?
       redirect_to dashboard_path(locale: I18n.locale), notice: I18n.t("demo.flash.success")
     else
       render "pages/demo", status: :unprocessable_entity

@@ -118,6 +118,14 @@
           </div>
         </div>
 
+        <label class="flex items-start gap-3 text-[14px]" style="color:#475467;">
+          <input type="checkbox" name="download[consent]" value="1" required style="margin-top:4px;">
+          <span>
+            <%= link_to t("privacy_page.h1"), "/#{I18n.locale}/privacy", target: "_blank",
+                  class: "underline", style: "color:#0B132D;" %><%= t("investors.download_form.consent_suffix") %>
+          </span>
+        </label>
+
         <%= f.submit t("investors.download_form.submit"), class: "btn btn-grad mt-2", style: "border:0; cursor:pointer;" %>
       <% end %>
     <% end %>

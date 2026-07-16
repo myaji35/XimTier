@@ -12,7 +12,8 @@ class Avo::Resources::User < Avo::BaseResource
     field :company,  as: :text
     field :role,     as: :text
     field :industry, as: :select, options: ::User.industries.keys.index_by(&:itself)
-    field :admin,    as: :boolean
+    # 권한 상승 방지 (ISS-008) — 열람만 허용. 부여/회수는 rails 콘솔 또는 감사 가능한 전용 경로로.
+    field :admin,    as: :boolean, readonly: true
     field :locale,   as: :text
     field :demo_requests, as: :has_many
     field :created_at, as: :date_time, sortable: true, only_on: :index

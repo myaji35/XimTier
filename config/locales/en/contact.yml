@@ -40,7 +40,9 @@ en:
       submit: Request demo
     flash:
       success: Your demo request has been received. Check your dashboard for status.
-    note: If your email is new, we'll auto-create your account and send a temporary password.
+    errors:
+      email_taken: This email is already registered. Please sign in and submit your request.
+    note: If your email is new, we'll auto-create your account and send a temporary password. Already registered? Sign in first.
   dashboard:
     title: My demo requests
     welcome: "Welcome, %{name}."

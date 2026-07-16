@@ -12,7 +12,8 @@ RSpec.describe "IR Download flow", type: :request do
             email:   "investor@vc-test.com",
             company: "더벤처스",
             role:    "심사역",
-            asset:   "ir_deck_ko"
+            asset:   "ir_deck_ko",
+            consent: "1"
           }
         }
       }.to change(Download, :count).by(1)

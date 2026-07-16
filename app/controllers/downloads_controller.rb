@@ -21,6 +21,14 @@ class DownloadsController < ApplicationController
       redirect_to investors_path(locale: I18n.locale), notice: I18n.t("investors.flash.success") and return
     end
 
+    # 이름·이메일·회사·직책을 수집하므로 동의가 필요하다 (제22조). — ISS-001
+    unless params.dig(:download, :consent) == "1"
+      @download.errors.add(:base, I18n.t("contact.errors.consent_required"))
+      render "pages/investors", status: :unprocessable_entity and return
+    end
+
+    @download.privacy_agreed_at = Time.current
+
     if @download.save
       DownloadMailer.link(@download).deliver_later
       redirect_to investors_path(locale: I18n.locale, sent: 1)

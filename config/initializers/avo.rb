@@ -36,7 +36,10 @@ Avo.configure do |config|
   #   destroy: 'destroy?',
   #   search: 'search?',
   # }
-  # config.raise_error_on_missing_policy = false
+  # Avo 인가(authorization)는 avo-pro 전용 기능이다. OSS 판에는 no-op 스텁만 들어 있어
+  # authorization_client 를 :pundit 으로 바꿔도 정책이 호출되지 않는다
+  # (configuration.rb: authorization_enabled? = installed?("avo-pro") && !client.nil?).
+  # 따라서 방어는 모델 계층(User#readonly_admin_flag!, before_destroy)에서 한다. — ISS-007
   config.authorization_client = nil
   config.explicit_authorization = true
 

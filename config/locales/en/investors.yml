@@ -28,6 +28,7 @@ en:
       title: Download the IR deck
       subtitle: "We'll email you a PDF download link. Please check your inbox within a minute."
       submit: Request download
+      consent_suffix: " — I consent to the collection and use of my personal information."
     flash:
       success: Please check your email — we've sent the download link.
     errors:

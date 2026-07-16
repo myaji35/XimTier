@@ -26,7 +26,7 @@ RSpec.describe "Demo flow", type: :request do
     expect(user.industry).to eq("manufacturing")
   end
 
-  it "POST /ko/demo (기존 이메일) — User 재사용, DemoRequest만 +1" do
+  it "POST /ko/demo (기존 이메일) — 계정 생성 X, 로그인 X, 로그인 페이지로 유도" do
     User.create!(email: "existing@test.com", password: "secret123", name: "기존", locale: "ko")
 
     expect {
@@ -39,7 +39,33 @@ RSpec.describe "Demo flow", type: :request do
         }
       end
     }.to change(User, :count).by(0)
-      .and change(DemoRequest, :count).by(1)
+      .and change(DemoRequest, :count).by(0)
+
+    # 비밀번호를 제시하지 않았으므로 세션이 생겨서는 안 된다.
+    get "/ko/dashboard"
+    expect(response).to redirect_to("/users/sign_in")
+  end
+
+  # ISS-006 회귀 방지 — 비밀번호 없이 타인 계정 세션을 얻을 수 있었던 취약점
+  it "관리자 이메일로 데모 신청해도 해당 계정으로 로그인되지 않는다" do
+    admin = create(:user, :admin, email: "admin@ximtier.io")
+
+    perform_enqueued_jobs do
+      post "/ko/demo", params: {
+        demo_request: {
+          name: "공격자", email: "admin@ximtier.io", company: "Evil", role: "X",
+          industry: "other", data_description: "계정 탈취 시도", consent: "1"
+        }
+      }
+    end
+
+    expect(response).not_to redirect_to("/ko/dashboard")
+
+    # admin 세션이 열렸다면 /admin 이 통과된다 — 반드시 차단되어야 한다.
+    get "/admin"
+    expect(response).to redirect_to("/users/sign_in")
+
+    expect(admin.demo_requests.count).to eq(0)
   end
 
   it "동의 미체크 → 422 + 저장 X" do

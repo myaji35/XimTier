@@ -105,7 +105,8 @@ RSpec.describe "Character Journeys", type: :request do
         post "/ko/company/investors", params: {
           download: {
             name: "투자자", email: "vc-journey@test.com",
-            company: "더벤처스", role: "심사역", asset: "ir_deck_ko"
+            company: "더벤처스", role: "심사역", asset: "ir_deck_ko",
+            consent: "1"
           }
         }
       end
