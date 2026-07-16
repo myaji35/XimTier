@@ -24,14 +24,18 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
-  # Assume all access to the app is happening through a SSL-terminating reverse proxy.
-  # config.assume_ssl = true
+  # TLS는 외부 nginx(+certbot)가 종단한다. 앱은 그 뒤에서 평문 HTTP로 받으므로
+  # assume_ssl 없이 force_ssl만 켜면 리다이렉트 루프에 빠진다. 반드시 짝으로 둘 것. — ISS-005
+  config.assume_ssl = true
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  # HTTP→HTTPS 리다이렉트는 이미 nginx가 한다. 여기서 얻는 실익은 세션 쿠키의 secure 플래그와
+  # HSTS 헤더다 — 그전까지 세션 쿠키에 secure가 없어 첫 평문 요청에 실려 나갔다.
+  config.force_ssl = true
 
-  # Skip http-to-https redirect for the default health check endpoint.
-  # config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
+  # kamal-proxy 헬스체크(/up)는 컨테이너 내부에서 평문 HTTP로 들어온다.
+  # 제외하지 않으면 헬스체크가 301을 받아 배포가 실패한다.
+  config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
 
   # Action Mailer — generic SMTP (Postmark/Mailgun/SES/SendGrid plug-in)
   # 활성 조건: ENV SMTP_HOST + SMTP_USERNAME + SMTP_PASSWORD 모두 존재
