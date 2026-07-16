@@ -2,7 +2,7 @@ en:
   privacy_page:
     eyebrow: Privacy Policy
     h1: Privacy Policy
-    lead: "Last updated: 2026-05-13. XimTier complies with Korea PIPA and EU GDPR."
+    lead: "Last updated: 2026-07-16. XimTier complies with Korea PIPA and EU GDPR."
     sections:
       - title: "1. Information We Collect"
         body: |
@@ -10,19 +10,19 @@ en:
           - Demo requests: name, email, company, role, industry, data description, optional file, preferred time
           - Contact inquiries: name, email, company, industry, message
           - IR downloads: name, email, company, role
-          - Auto-collected: access logs (IP, browser, page views — cookieless analytics)
+          - Auto-collected: web server access logs (IP, timestamp, request path) — for security and troubleshooting
+          We do not use visitor tracking or behavioural analytics tools.
       - title: "2. Purpose of Collection"
         body: |
           - Responding to demo requests and inquiries; scheduling
           - Sending IR deck download links
-          - Anonymous statistical analysis for service improvement
           - Legal compliance (e-commerce law, information & communications network act)
       - title: "3. Retention Period"
         body: |
           - Demo requests: 1 year after the meeting concludes (completed or cancelled), or until you close your account
           - Inquiries: 1 year after submission
           - IR deck requests: 1 year after submission. The download link itself expires 24 hours after issuance.
-          - Access logs: 90 days (Plausible anonymous stats retained longer)
+          - Web server access logs: deleted automatically after 14 days
           Records past these periods are purged automatically every day.
       - title: "4. Third-party Sharing"
         body: |
@@ -41,10 +41,11 @@ en:
           Other requests: contact@ximtier.io
       - title: "6. Cookie Policy"
         body: |
-          XimTier uses only the following cookies:
-          - Essential: Devise session cookie (login)
-          - Analytics: Plausible (cookieless — activated after domain confirmation, no personal identification)
-          No tracking or advertising cookies.
+          XimTier uses only the cookies required to sign you in.
+          - Session cookie: keeps you signed in. Removed when you close your browser.
+          - Remember-me cookie: issued only if you tick "Remember me" at sign-in.
+            Expires after 2 weeks, and is removed immediately when you sign out.
+          We do not use visitor tracking, advertising, or analytics cookies.
       - title: "7. Security Measures"
         body: |
           - In transit: TLS 1.2/1.3 (HTTPS enforced)

@@ -46,7 +46,6 @@ gem "pundit"
 gem "view_component"
 gem "meta-tags"
 gem "sitemap_generator"
-gem "ahoy_matey"
 gem "rack-attack"
 gem "avo", ">= 3.0"
 

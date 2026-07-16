@@ -49,6 +49,35 @@ RSpec.describe "처리방침 ↔ 코드 일치", type: :request do
       expect(entry["schedule"]).to be_present
     end
   end
+
+  # 방침 6항: "방문자 추적 쿠키, 광고 쿠키, 분석 도구 쿠키는 사용하지 않습니다"
+  #
+  # ahoy_matey 가 2년짜리 ahoy_visitor 쿠키를 심으면서 이 문구가 거짓이 된 적이 있다.
+  # 데이터를 읽는 코드는 어디에도 없었는데도 수집만 하고 있었다 (ISS-011).
+  # 분석 도구를 다시 넣으면 여기서 잡는다.
+  describe "쿠키 — 방침이 허용한 것만 나간다" do
+    ALLOWED = %w[_xaisimtier_session remember_user_token].freeze
+
+    it "홈에서 추적 쿠키가 나가지 않는다" do
+      get "/ko"
+      expect(cookie_names).to all(be_in(ALLOWED))
+    end
+
+    it "로그인 후에도 허용된 쿠키만 나간다" do
+      sign_in create(:user)
+      get "/ko/dashboard"
+      expect(cookie_names).to all(be_in(ALLOWED))
+    end
+
+    it "분석 도구 gem 이 설치되어 있지 않다" do
+      gems = File.read(Rails.root.join("Gemfile"))
+      expect(gems).not_to match(/ahoy|mixpanel|segment|google-analytics|amplitude/i)
+    end
+
+    def cookie_names
+      response.headers["Set-Cookie"].to_s.lines.map { |l| l.split("=").first.strip }.reject(&:empty?)
+    end
+  end
 end
 
 RSpec.configure do |c|
