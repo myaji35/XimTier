@@ -54,6 +54,8 @@ env:
     - CF_TURNSTILE_SECRET_KEY
     # Slack 알림 (FR-4 문의/FR-5 데모) — 미설정 시 알림 silently skip
     - SLACK_WEBHOOK_URL
+    # 관리자 알림(데모·문의·IR) 수신 주소. 미설정 시 admin@ximtier.io 로 폴백
+    - ADMIN_EMAIL
   clear:
     SOLID_QUEUE_IN_PUMA: true
     RAILS_ENV: production
