@@ -48,6 +48,7 @@
 
 # Kamal secrets (.kamal/secrets.example만 커밋)
 /.kamal/secrets
+/.kamal/secrets-common
 /.kamal/secrets.save
 /.kamal/secrets.bak
 .claude/worktrees

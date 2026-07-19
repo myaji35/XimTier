@@ -929,6 +929,28 @@
         "area": "cases_gallery"
       },
       "spawn_rules": {}
+    },
+    {
+      "id": "ISS-025",
+      "type": "FIX_BUG",
+      "title": "[CI] deploy.yml staging 배포 실패 — secrets.staging/secrets-common 누락으로 5일간 배포 중단",
+      "description": "GitHub Actions Deploy가 7/16부터 실패. Kamal 2.x는 -d staging 배포 시 .kamal/secrets-common 또는 .kamal/secrets.staging을 요구하는데, workflow의 Write .kamal/secrets 스텝은 destination 없는 .kamal/secrets만 생성. 그래서 staging 배포가 KAMAL_REGISTRY_PASSWORD not found로 실패. 수정: workflow가 .kamal/secrets-common(항상 로드됨)으로 쓰게 하거나, staging일 때 secrets.staging도 생성. 결과적으로 코드 3커밋(ISS-016~023)이 프로덕션 미반영.",
+      "priority": "P1",
+      "status": "COMPLETED",
+      "assign_to": "cicd-harness",
+      "depth": 0,
+      "retry_count": 0,
+      "parent_id": null,
+      "depends_on": [],
+      "created_at": "2026-07-19T04:19:37Z",
+      "started_at": "2026-07-19T04:19:37Z",
+      "completed_at": "2026-07-19T04:21:13Z",
+      "result": null,
+      "source": "deploy-diagnosis-2026-07-19",
+      "payload": {
+        "scope_dir": ".github"
+      },
+      "spawn_rules": {}
     }
   ],
   "hooks": {
