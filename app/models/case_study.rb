@@ -1,4 +1,6 @@
 class CaseStudy < ApplicationRecord
+  RESERVED_SLUGS = %w[manufacturing hospital public smart-city finance retail logistics energy education telecom].freeze
+
   has_many :case_media,    -> { order(:position) }, dependent: :destroy
   has_many :case_comments, dependent: :destroy
   has_many :case_likes,    dependent: :destroy
@@ -6,6 +8,7 @@ class CaseStudy < ApplicationRecord
 
   validates :slug, presence: true, uniqueness: true,
                    format: { with: /\A[a-z0-9\-]+\z/, message: "소문자·숫자·하이픈만" }
+  validates :slug, exclusion: { in: RESERVED_SLUGS, message: "예약된 경로와 충돌합니다" }
   validates :title_ko, presence: true
 
   before_validation :set_published_at

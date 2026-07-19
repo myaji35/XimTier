@@ -18,9 +18,9 @@
             title: :title,
             description: :description,
             url: request.original_url,
-            image: { _: og_image_url, width: 1200, height: 630, alt: t("site.positioning") }
+            image: { _: content_for(:meta_og_image).presence ? content_for(:meta_og_image) : og_image_url, width: 1200, height: 630, alt: t("site.positioning") }
           },
-          twitter: { card: "summary_large_image", image: og_image_url }
+          twitter: { card: "summary_large_image", image: content_for(:meta_og_image).presence ? content_for(:meta_og_image) : og_image_url }
         ) %>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">

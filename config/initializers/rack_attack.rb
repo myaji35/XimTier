@@ -10,7 +10,7 @@ Rack::Attack.enabled = !Rails.env.test?
 
 # 폼 제출 — IP당 분당 5회
 Rack::Attack.throttle("forms/ip", limit: 5, period: 1.minute) do |req|
-  if req.post? && (req.path.end_with?("/contact") || req.path.end_with?("/company/investors") || req.path.end_with?("/demo"))
+  if req.post? && (req.path.end_with?("/contact") || req.path.end_with?("/company/investors") || req.path.end_with?("/demo") || req.path.end_with?("/comments") || req.path.end_with?("/like"))
     req.ip
   end
 end

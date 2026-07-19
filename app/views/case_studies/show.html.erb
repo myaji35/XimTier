@@ -1,5 +1,14 @@
 <% content_for :title, "#{@case.title} — #{t('site.brand')}" %>
 <% content_for :description, @case.summary %>
+<% og_image = if @case.hero_image.attached?
+                "#{request.base_url}#{url_for(@case.hero_image)}"
+              elsif (youtube_id = @media.detect(&:youtube?)&.youtube_id)
+                "https://i.ytimg.com/vi/#{youtube_id}/hqdefault.jpg"
+              else
+                "#{request.base_url}/og-image.png"
+              end %>
+<% content_for :meta_og_image, og_image %>
+<% set_meta_tags og: { type: "article", image: og_image }, article: { published_time: @case.published_at&.iso8601 } %>
 
 <article class="surface-canvas section-pad">
   <div class="wrap" style="max-width:860px;">
@@ -82,6 +91,16 @@
         <%= render IconComponent.new(name: "heart", size: 16) %>
         <span data-likes-target="label"><%= @liked ? t("cases_gallery.liked", default: "좋아요 취소") : t("cases_gallery.like", default: "좋아요") %></span>
       </button>
+      <div data-controller="share"
+           data-share-share-value="<%= t('cases_gallery.share') %>"
+           data-share-done-value="<%= t('cases_gallery.share_done') %>">
+        <button type="button" data-action="share#copy"
+                class="btn-rausch is-outline"
+                style="padding:10px 20px;font-size:14px;min-height:auto;display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--color-rausch);border:1px solid var(--color-rausch);">
+          <%= render IconComponent.new(name: "link", size: 16) %>
+          <span data-share-target="label"><%= t("cases_gallery.share") %></span>
+        </button>
+      </div>
       <span class="type-body-sm text-muted-airbnb"><span data-likes-target="count"><%= @case.likes_count %></span> <%= t("cases_gallery.likes_unit", default: "명이 좋아합니다") %></span>
     </div>
 

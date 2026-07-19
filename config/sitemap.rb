@@ -44,5 +44,22 @@ SitemapGenerator::Sitemap.create do
             { href: x_default_path,                       lang: "x-default" }
           ])
     end
+
+    add("/#{locale}/cases", priority: 0.7, changefreq: "weekly",
+        alternates: [
+          { href: "/ko/cases", lang: "ko" },
+          { href: "/en/cases", lang: "en" },
+          { href: "/cases",    lang: "x-default" }
+        ])
+
+    CaseStudy.published.find_each do |cs|
+      path = "/cases/#{cs.slug}/gallery"
+      add("/#{locale}#{path}", priority: 0.6, changefreq: "monthly", lastmod: cs.updated_at,
+          alternates: [
+            { href: "/ko#{path}", lang: "ko" },
+            { href: "/en#{path}", lang: "en" },
+            { href: path,           lang: "x-default" }
+          ])
+    end
   end
 end

@@ -10,6 +10,8 @@ ko:
     download_pdf: "PDF 내려받기"
     like: "좋아요"
     liked: "좋아요 취소"
+    share: "URL 복사"
+    share_done: "복사됨"
     likes_unit: "명이 좋아합니다"
     comments: "댓글"
     comment_submitted: "댓글이 등록되었습니다. 검토 후 게시됩니다."

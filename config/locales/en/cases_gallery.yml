@@ -10,6 +10,8 @@ en:
     download_pdf: "Download PDF"
     like: "Like"
     liked: "Unlike"
+    share: "Copy link"
+    share_done: "Copied"
     likes_unit: "people like this"
     comments: "Comments"
     comment_submitted: "Your comment has been submitted and will appear after review."
