@@ -31,6 +31,32 @@ examples = [
       { kind: :html, title: "접근 방식", position: 1,
         embed_html: "<p>데이터 로딩 → 핵심 변수 식별 → Reverse What-If 역산 → 근거 리포트 자동 생성</p>" }
     ]
+  },
+  {
+    slug: "ximtier-pitchdeck",
+    title_ko: "XimTier 소개 — 제품·비전 피치덱",
+    title_en: "XimTier Introduction — Product & Vision Pitch Deck",
+    industry: "소개",
+    summary_ko: "역방향 What-If 의사결정 인텔리전스 XimTier의 제품·시장·비전을 담은 소개 자료입니다.",
+    summary_en: "An introduction to XimTier's product, market, and vision for reverse What-If decision intelligence.",
+    published: true,
+    media: [
+      { kind: :pdf, title: "피치덱 (PDF)", position: 1,
+        pdf_path: "db/seeds/assets/ximtier-pitchdeck-v2.pdf", caption: "XimTier 제품·비전 피치덱" }
+    ]
+  },
+  {
+    slug: "ximtier-decision-engine",
+    title_ko: "XimTier AI 의사결정 엔진 — 기술 설명서",
+    title_en: "XimTier AI Decision Engine — Technical Brief",
+    industry: "기술",
+    summary_ko: "SHAP 근거 기반 Reverse What-If 엔진의 작동 원리와 EU AI Act 대응 구조를 설명하는 기술 자료입니다.",
+    summary_en: "A technical brief explaining how the SHAP-grounded Reverse What-If engine works and how its architecture supports EU AI Act compliance.",
+    published: true,
+    media: [
+      { kind: :pdf, title: "기술 설명서 (PDF)", position: 1,
+        pdf_path: "db/seeds/assets/ximtier-ai-decision-engine.pdf", caption: "AI 의사결정 엔진 기술 브리프" }
+    ]
   }
 ]
 
@@ -41,7 +67,16 @@ examples.each do |attrs|
   cs.save!
   media.each do |m|
     medium = cs.case_media.find_or_initialize_by(title: m[:title])
+    pdf_path = m.delete(:pdf_path)
     medium.assign_attributes(m)
+    if pdf_path && !medium.pdf.attached?
+      path = Rails.root.join(pdf_path)
+      medium.pdf.attach(
+        io: File.open(path),
+        filename: File.basename(path),
+        content_type: "application/pdf"
+      )
+    end
     medium.save!
   end
   puts "  seeded case: #{cs.slug} (media: #{cs.case_media.count})"

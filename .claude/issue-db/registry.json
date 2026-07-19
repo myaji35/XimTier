@@ -811,16 +811,23 @@
       "title": "[CASES] 실제 홍보 콘텐츠 등록 — 프로덕션에 시드 2건뿐",
       "description": "시드는 semiconductor-defect-reverse·public-policy-simulation 2건. 홍보 채널로 기능하려면 실제 영상(유튜브)·PDF·HTML 콘텐츠가 필요. 대표님이 홍보할 소재(피치덱 PDF, 데모 영상 등) 목록을 받아 Avo로 등록하는 콘텐츠 오퍼레이션 작업. 이전 세션(dc033f8b)부터 미해결.",
       "priority": "P1",
-      "status": "BACKLOG",
+      "status": "COMPLETED",
       "assign_to": "plan-harness",
       "depth": 0,
       "retry_count": 0,
       "parent_id": null,
       "depends_on": [],
       "created_at": "2026-07-19T02:00:00Z",
-      "started_at": null,
-      "completed_at": null,
-      "result": null,
+      "started_at": "2026-07-19T04:07:29Z",
+      "completed_at": "2026-07-19T04:10:44Z",
+      "result": {
+        "seeded": [
+          "ximtier-pitchdeck",
+          "ximtier-decision-engine"
+        ],
+        "media": "pdf x2 (Active Storage attach, 멱등)",
+        "verified": "갤러리 4건 노출·PDF iframe·다운로드·배지 실렌더 HTTP 200"
+      },
       "source": "gap-analysis:cases-gallery-2026-07-19",
       "payload": {
         "scope_dir": "app",
