@@ -951,6 +951,28 @@
         "scope_dir": ".github"
       },
       "spawn_rules": {}
+    },
+    {
+      "id": "ISS-026",
+      "type": "FIX_BUG",
+      "title": "[CI] deploy.yml Post-deploy health check가 http로 폴링 — 프록시는 https만 응답해 오탐 실패",
+      "description": "Kamal 배포는 성공(컨테이너 healthy, kamal-proxy 라우팅 완료)하는데, workflow의 Post-deploy health check 스텝이 http://${HOST}/up 으로 폴링. kamal-proxy가 nip.io 호스트에 SSL 자동 적용해 http는 404, https만 200. 그래서 배포 성공에도 workflow가 red. 실측: https .../up=200, http=404. 수정: health check를 https + curl -k 로 변경.",
+      "priority": "P2",
+      "status": "COMPLETED",
+      "assign_to": "cicd-harness",
+      "depth": 0,
+      "retry_count": 0,
+      "parent_id": null,
+      "depends_on": [],
+      "created_at": "2026-07-19T06:59:40Z",
+      "started_at": "2026-07-19T06:59:40Z",
+      "completed_at": "2026-07-19T07:00:26Z",
+      "result": null,
+      "source": "deploy-diagnosis-2026-07-19",
+      "payload": {
+        "scope_dir": ".github"
+      },
+      "spawn_rules": {}
     }
   ],
   "hooks": {

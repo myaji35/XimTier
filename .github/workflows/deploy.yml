@@ -168,7 +168,7 @@ jobs:
             HOST="ximtier-staging.158.247.235.31.nip.io"
           fi
           for i in 1 2 3 4 5; do
-            code=$(curl -s -o /dev/null -w '%{http_code}' "http://${HOST}/up" || true)
+            code=$(curl -sk -o /dev/null -w '%{http_code}' "https://${HOST}/up" || true)
             if [ "$code" = "200" ]; then
               echo "OK /up=200 on attempt $i"
               exit 0
