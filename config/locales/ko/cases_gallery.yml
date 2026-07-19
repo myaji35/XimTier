@@ -5,6 +5,7 @@ ko:
     lead: "XimTier의 실제 활용 사례와 영상·자료를 한 곳에서 만나보세요."
     sort_recent: "최신순"
     sort_likes: "좋아요순"
+    filter_all: "전체"
     empty: "아직 등록된 사례가 없습니다. 곧 새로운 콘텐츠로 찾아뵙겠습니다."
     back: "사례 목록"
     download_pdf: "PDF 내려받기"

@@ -10,7 +10,10 @@ class CaseStudiesController < ApplicationController
   def index
     scope = CaseStudy.published.includes(:case_media, hero_image_attachment: :blob)
     @sort = params[:sort] == "likes" ? "likes" : "recent"
-    @cases = @sort == "likes" ? scope.most_liked : scope.recent
+    scope = scope.where(industry: params[:industry]) if params[:industry].present?
+    scope = @sort == "likes" ? scope.most_liked : scope.recent
+    @pagy, @cases = pagy(scope)
+    @industries = CaseStudy.published.distinct.pluck(:industry).compact.sort
   end
 
   # 상세 — 미디어 룸 + 설명 + 승인된 댓글

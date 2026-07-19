@@ -5,6 +5,7 @@ en:
     lead: "Explore XimTier's real-world cases, videos, and resources all in one place."
     sort_recent: "Newest"
     sort_likes: "Most liked"
+    filter_all: "All"
     empty: "No cases published yet. New content is coming soon."
     back: "All cases"
     download_pdf: "Download PDF"

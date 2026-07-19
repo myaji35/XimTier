@@ -46,6 +46,7 @@ gem "pundit"
 gem "view_component"
 gem "meta-tags"
 gem "sitemap_generator"
+gem "pagy"
 gem "rack-attack"
 gem "avo", ">= 3.0"
 

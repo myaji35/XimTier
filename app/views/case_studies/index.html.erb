@@ -9,12 +9,26 @@
     <%# 정렬 탭 %>
     <div class="mt-8 flex items-center" style="gap:8px;">
       <%= link_to t("cases_gallery.sort_recent", default: "최신순"),
-            case_studies_path(locale: I18n.locale, sort: "recent"),
+            case_studies_path(locale: I18n.locale, sort: "recent", industry: params[:industry]),
             class: "type-body-sm px-4 py-2 rounded-full #{@sort == 'recent' ? 'bg-rausch text-white' : 'border-hairline text-body-airbnb hover:text-ink-airbnb'}" %>
       <%= link_to t("cases_gallery.sort_likes", default: "좋아요순"),
-            case_studies_path(locale: I18n.locale, sort: "likes"),
+            case_studies_path(locale: I18n.locale, sort: "likes", industry: params[:industry]),
             class: "type-body-sm px-4 py-2 rounded-full #{@sort == 'likes' ? 'bg-rausch text-white' : 'border-hairline text-body-airbnb hover:text-ink-airbnb'}" %>
     </div>
+
+    <% if @industries.any? %>
+      <%# 산업 필터 %>
+      <div class="mt-4 flex items-center flex-wrap" style="gap:8px;">
+        <%= link_to t("cases_gallery.filter_all", default: "전체"),
+              case_studies_path(locale: I18n.locale, sort: @sort),
+              class: "type-body-sm px-4 py-2 rounded-full #{params[:industry].blank? ? 'bg-rausch text-white' : 'border-hairline text-body-airbnb hover:text-ink-airbnb'}" %>
+        <% @industries.each do |industry| %>
+          <%= link_to industry,
+                case_studies_path(locale: I18n.locale, sort: @sort, industry: industry),
+                class: "type-body-sm px-4 py-2 rounded-full #{params[:industry] == industry ? 'bg-rausch text-white' : 'border-hairline text-body-airbnb hover:text-ink-airbnb'}" %>
+        <% end %>
+      </div>
+    <% end %>
 
     <% if @cases.any? %>
       <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style="gap:24px;">
@@ -63,6 +77,12 @@
     <% else %>
       <div class="mt-16 text-center">
         <p class="type-body-md text-muted-airbnb"><%= t("cases_gallery.empty", default: "아직 등록된 사례가 없습니다. 곧 새로운 콘텐츠로 찾아뵙겠습니다.") %></p>
+      </div>
+    <% end %>
+
+    <% if @pagy.pages > 1 %>
+      <div class="mt-10 flex justify-center text-body-airbnb">
+        <%== pagy_nav(@pagy) %>
       </div>
     <% end %>
   </div>
