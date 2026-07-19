@@ -70,8 +70,8 @@ env:
     # 도메인 — ximtier.com 정식 운영 (2026-05-14 SSL 발급 완료)
     APP_HOST: "ximtier.com"
     APP_PROTOCOL: "https"
-    # SMTP — Google Workspace (myaji35@ximtier.com 앱 비밀번호 .kamal/secrets에 주입)
-    SMTP_HOST: "smtp.gmail.com"
+    # SMTP — SendGrid (SMTP_USERNAME=apikey 고정, SMTP_PASSWORD=API Key 를 .kamal/secrets에 주입)
+    SMTP_HOST: "smtp.sendgrid.net"
     SMTP_PORT: "587"
     SMTP_DOMAIN: "ximtier.com"
     SMTP_AUTH: "plain"
