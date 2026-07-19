@@ -973,6 +973,28 @@
         "scope_dir": ".github"
       },
       "spawn_rules": {}
+    },
+    {
+      "id": "ISS-027",
+      "type": "FIX_BUG",
+      "title": "[CI] RSpec test 잡 FrozenError — eager_load_paths unshift (배포 전부터 존재하던 기존 버그)",
+      "description": "CI test 잡이 config/environment.rb initialize! 중 FrozenError(can't modify frozen Array: eager_load_paths)로 37개 스펙이 로드 전 실패. rails/engine.rb:578 unshift. 우리 CASES/배포 커밋과 무관 — 7/16 XIM-16 커밋도 이미 CI failure. GitHub Actions runner의 eager_load=true 환경에서만 발생(로컬 dev 재현 안 됨). 추가로 admin_wiki.password 미설정 에러도 있음(bin/set-admin-wiki-pw 미실행 또는 CI env 누락). wait-for-ci 게이트가 CI 성공을 강제하지 않아 배포는 진행되지만, test 신뢰도 위해 수정 필요. 어떤 initializer가 frozen eager_load_paths에 경로 추가하는지 추적할 것.",
+      "priority": "P2",
+      "status": "READY",
+      "assign_to": "agent-harness",
+      "depth": 0,
+      "retry_count": 0,
+      "parent_id": null,
+      "depends_on": [],
+      "created_at": "2026-07-19T07:23:21Z",
+      "started_at": null,
+      "completed_at": null,
+      "result": null,
+      "source": "deploy-diagnosis-2026-07-19",
+      "payload": {
+        "scope_dir": "config"
+      },
+      "spawn_rules": {}
     }
   ],
   "hooks": {
