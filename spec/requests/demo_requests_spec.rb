@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe "Demo flow", type: :request do
   include ActiveJob::TestHelper
 
-  it "POST /ko/demo (신규 이메일) — User+DemoRequest 생성 + 메일 3통 + sign_in" do
+  it "POST /ko/demo (신규 이메일) — User+DemoRequest 생성 + 메일 4통 + sign_in" do
     perform_enqueued_jobs do
       expect {
         post "/ko/demo", params: {
@@ -17,7 +17,7 @@ RSpec.describe "Demo flow", type: :request do
         }
       }.to change(User, :count).by(1)
         .and change(DemoRequest, :count).by(1)
-        .and change { ActionMailer::Base.deliveries.size }.by(3) # welcome + received + admin
+        .and change { ActionMailer::Base.deliveries.size }.by(4) # confirmation + welcome + received + admin
     end
 
     expect(response).to redirect_to("/ko/dashboard")
