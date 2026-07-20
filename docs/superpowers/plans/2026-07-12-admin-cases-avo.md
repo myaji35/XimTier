@@ -291,7 +291,9 @@ Run: `cd /Volumes/E_SSD/02_GitHub.nosync/0019_XimTier/xaisimtier && bin/rails se
 
 - [ ] **Step 2: seed로 admin 유저 + 사례 확보**
 
-Run: `bin/rails runner 'User.find_or_create_by(email:"admin@ximtier.dev"){|u| u.password="password123"; u.admin=true; u.name="Admin"; u.company="X"; u.role="PM"; u.industry=:manufacturing; u.locale="ko"}; load Rails.root.join("db/seeds/case_studies.rb")'`
+Run: `ADMIN_PW='<로컬에서 직접 지정>' bin/rails runner 'User.find_or_create_by(email:"admin@ximtier.dev"){|u| u.password=ENV.fetch("ADMIN_PW"); u.admin=true; u.name="Admin"; u.company="X"; u.role="PM"; u.industry=:manufacturing; u.locale="ko"}; load Rails.root.join("db/seeds/case_studies.rb")'`
+
+> ⚠️ 이 저장소는 public 이다. admin 비밀번호를 문서에 적지 말 것 — 반드시 ENV 로 주입한다.
 Expected: 에러 없이 완료. CaseStudy 3건 존재.
 
 - [ ] **Step 3: 저니 시나리오 실제 클릭 (browse/gstack)**

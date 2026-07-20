@@ -285,7 +285,7 @@ end
 if Rails.env.development?
   3.times do |i|
     User.find_or_create_by!(email: "demo#{i}@example.com") do |u|
-      u.password = "password123"
+      u.password = ENV.fetch("DEMO_SEED_PW")  # 문서·코드에 평문 금지 (public repo)
       u.name     = "Demo User #{i}"
       u.industry = User.industries.keys.sample
     end
