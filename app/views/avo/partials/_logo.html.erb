@@ -1,0 +1,7 @@
+<%# gem 원본(avo/app/views/avo/partials/_logo.html.erb)은 title 을 'Avo' 로 하드코딩한다.
+    로고 이미지는 branding 설정으로 바뀌지만 접근성 이름은 그대로여서
+    스크린리더가 XimTier 관리자를 "Avo" 로 읽는다. 구조는 원본을 따르고 title 만 교체. %>
+<%= link_to avo.root_path, class: 'logo-placeholder h-full w-full block justify-start' do %>
+  <%= image_tag Avo.configuration.branding.logo, class: 'hidden sm:block object-contain h-full', title: 'XimTier 관리자', alt: 'XimTier' %>
+  <%= image_tag Avo.configuration.branding.logomark, class: 'sm:hidden object-contain h-full', title: 'XimTier 관리자', alt: 'XimTier' %>
+<% end %>

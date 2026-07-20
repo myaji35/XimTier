@@ -125,20 +125,17 @@ Avo.configure do |config|
   # config.model_generator_hook = true
 
   ## == Branding ==
-  # config.branding = {
-  #   colors: {
-  #     background: "248 246 242",
-  #     100 => "#CEE7F8",
-  #     400 => "#399EE5",
-  #     500 => "#0886DE",
-  #     600 => "#066BB2",
-  #   },
-  #   chart_colors: ["#0B8AE2", "#34C683", "#2AB1EE", "#34C6A8"],
-  #   logo: "/avo-assets/logo.png",
-  #   logomark: "/avo-assets/logomark.png",
-  #   placeholder: "/avo-assets/placeholder.svg",
-  #   favicon: "/avo-assets/favicon.ico"
-  # }
+  config.branding = {
+    colors: {
+      background: "242 244 247",
+      100 => "219 234 254",
+      400 => "59 130 246",
+      500 => "37 99 235",
+      600 => "29 78 216"
+    },
+    logo: "/avo-assets/ximtier-mark.svg",
+    logomark: "/avo-assets/ximtier-mark.svg"
+  }
 
   ## == Breadcrumbs ==
   # config.display_breadcrumbs = true

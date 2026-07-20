@@ -1,0 +1,12 @@
+<%= stylesheet_link_tag "https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" %>
+
+<%= content_tag(:style, nonce: content_security_policy_nonce) do %>
+  html {
+    font-family: "Pretendard", "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+      system-ui, "Apple SD Gothic Neo", sans-serif;
+  }
+
+  [data-component-name="avo/partials/table_header"] [data-table-header-field-id] {
+    text-transform: none;
+  }
+<% end %>

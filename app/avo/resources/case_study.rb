@@ -5,6 +5,21 @@ class Avo::Resources::CaseStudy < Avo::BaseResource
     query: -> { query.where("title_ko LIKE :q OR title_en LIKE :q OR slug LIKE :q", q: "%#{params[:q]}%") }
   }
 
+  # CaseStudy#to_param 이 slug 를 돌려주므로 Avo 가 만드는 링크도 slug 를 담는다.
+  # 그런데 Avo 기본 find_record 는 기본키로만 조회해서 id = NULL 이 되고
+  # 상세·편집이 전부 404 였다. (ISS-027)
+  # 공개 URL 이 slug 를 쓰므로 모델의 to_param 은 두고 조회 쪽을 맞춘다.
+  # 숫자로 들어오면 id 로 찾는다 — Avo 내부가 기본키로 부르는 경로(일괄 액션 등)를 깨뜨리지 않기 위함.
+  self.find_record_method = -> {
+    column = ->(value) { value.to_s.match?(/\A\d+\z/) ? :id : :slug }
+
+    if id.is_a?(Array)
+      query.where(slug: id).or(query.where(id: id.grep(/\A\d+\z/)))
+    else
+      query.find_by!(column.call(id) => id)
+    end
+  }
+
   def fields
     field :id,          as: :id
     field :slug,        as: :text, help: "URL에 쓰입니다. 소문자·숫자·하이픈만. 예: incheon-smart-factory"
