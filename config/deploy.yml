@@ -70,8 +70,16 @@ env:
     # 도메인 — ximtier.com 정식 운영 (2026-05-14 SSL 발급 완료)
     APP_HOST: "ximtier.com"
     APP_PROTOCOL: "https"
-    # SMTP — SendGrid (SMTP_USERNAME=apikey 고정, SMTP_PASSWORD=API Key 를 .kamal/secrets에 주입)
-    SMTP_HOST: "smtp.sendgrid.net"
+    # SMTP — Gmail (SMTP_USERNAME=계정주소, SMTP_PASSWORD=앱 비밀번호 16자리를 .kamal/secrets에 주입)
+    #
+    # SendGrid 는 2025년에 영구 무료가 폐지되고 60일 체험 후 월 $19.95 가 됐다.
+    # Google Workspace SMTP 릴레이는 ximtier.com 의 Workspace 관리자 계정이 없어 불가.
+    # 배포서버 자체 메일서버는 Vultr 가 25번 포트를 막아 기술적으로 불가(실측 확인).
+    # → 무료이면서 즉시 가능한 Gmail SMTP 로 간다. 한도 500통/일.
+    #
+    # 한계: 발신자가 gmail 주소로 표시된다. noreply@ximtier.com 발신이 필요해지면
+    #       Amazon SES(1,000통당 $0.10)로 전환한다 — 아래 3개 값만 바꾸면 된다.
+    SMTP_HOST: "smtp.gmail.com"
     SMTP_PORT: "587"
     SMTP_DOMAIN: "ximtier.com"
     SMTP_AUTH: "plain"
