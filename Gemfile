@@ -48,7 +48,7 @@ gem "meta-tags"
 gem "sitemap_generator"
 gem "pagy"
 gem "rack-attack"
-gem "avo", ">= 3.0"
+gem "avo", "~> 3.32", ">= 3.32.1"
 
 # Sentry — ENV SENTRY_DSN 있을 때만 활성 (initializer에서 가드)
 gem "sentry-ruby"
