@@ -12,7 +12,7 @@ examples = [
     body_html_ko: "<p>기존 BI 도구는 회귀 결과만 보여줄 뿐, <strong>어떤 변수를 얼마나 조절해야 하는지</strong>는 답하지 못했습니다. XimTier는 SHAP 근거와 함께 변수별 최적값을 제시합니다.</p>",
     published: true,
     media: [
-      { kind: :youtube, title: "제품 데모 영상", youtube_url: "https://www.youtube.com/watch?v=aqz-KE-bpKQ", position: 1,
+      { kind: :youtube, title: "제품 데모 영상", youtube_url: "https://youtu.be/1rm-QeiHsQU?si=dLWhjL8ehYhTqulk", position: 1,
         caption: "영상은 예시 링크입니다. Avo에서 실제 영상 URL로 교체하세요." },
       { kind: :html, title: "핵심 요약", position: 2,
         embed_html: "<ul><li>목표 불량률: 1.2%</li><li>식별 핵심 변수: 5개</li><li>EU AI Act 대응: SHAP 근거 자동 첨부</li></ul>" }
