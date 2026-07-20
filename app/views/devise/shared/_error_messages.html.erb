@@ -1,0 +1,9 @@
+<% if resource.errors.any? %>
+  <%# 레이아웃의 flash와 달리 제출한 폼의 필드 오류를 가까이에서 안내한다. %>
+  <div id="error_explanation" class="card-airbnb p-4" data-turbo-temporary>
+    <h2 class="type-body-md font-semibold"><%= t("errors.messages.not_saved", count: resource.errors.count, resource: resource.class.model_name.human.downcase) %></h2>
+    <ul class="list-disc list-inside type-body-md mt-2">
+      <% resource.errors.full_messages.each do |message| %><li><%= message %></li><% end %>
+    </ul>
+  </div>
+<% end %>

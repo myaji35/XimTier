@@ -1,0 +1,33 @@
+<% content_for :title, t("devise.sessions.new.sign_in") %>
+
+<section class="section-pad">
+  <div class="wrap" style="max-width:640px;">
+    <h1 class="h-section"><%= t("devise.sessions.new.sign_in") %></h1>
+    <p class="lead mt-3"><%= t("devise.shared.sign_in_lead") %></p>
+
+    <div class="card-airbnb mt-8 p-7">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "space-y-5" }) do |f| %>
+        <div>
+          <%= f.label :email, t("devise.shared.email"), class: "block type-body-sm font-semibold mb-2" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full px-4 py-3 rounded-[10px] border-hairline type-body-md" %>
+        </div>
+
+        <div>
+          <%= f.label :password, t("devise.shared.password"), class: "block type-body-sm font-semibold mb-2" %>
+          <%= f.password_field :password, autocomplete: "current-password", class: "w-full px-4 py-3 rounded-[10px] border-hairline type-body-md" %>
+        </div>
+
+        <% if devise_mapping.rememberable? %>
+          <label class="flex items-center gap-2 type-body-md">
+            <%= f.check_box :remember_me %>
+            <span><%= t("devise.sessions.new.remember_me") %></span>
+          </label>
+        <% end %>
+
+        <%= f.submit t("devise.sessions.new.sign_in"), class: "btn-rausch", data: { turbo_submits_with: t("devise.shared.processing") } %>
+      <% end %>
+    </div>
+
+    <%= render "devise/shared/links" %>
+  </div>
+</section>

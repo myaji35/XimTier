@@ -1,0 +1,23 @@
+<% content_for :title, t("devise.passwords.edit.change_your_password") %>
+
+<section class="section-pad"><div class="wrap" style="max-width:640px;">
+  <h1 class="h-section"><%= t("devise.passwords.edit.change_your_password") %></h1>
+  <p class="lead mt-3"><%= t("devise.passwords.edit.lead") %></p>
+  <div class="card-airbnb mt-8 p-7">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: "space-y-5" }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <%= f.hidden_field :reset_password_token %>
+      <div>
+        <%= f.label :password, t("devise.passwords.edit.new_password"), class: "block type-body-sm font-semibold mb-2" %>
+        <% if @minimum_password_length %><p class="type-body-md mb-2"><%= t("devise.shared.minimum_password_length", count: @minimum_password_length) %></p><% end %>
+        <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "w-full px-4 py-3 rounded-[10px] border-hairline type-body-md" %>
+      </div>
+      <div>
+        <%= f.label :password_confirmation, t("devise.passwords.edit.confirm_new_password"), class: "block type-body-sm font-semibold mb-2" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "w-full px-4 py-3 rounded-[10px] border-hairline type-body-md" %>
+      </div>
+      <%= f.submit t("devise.passwords.edit.change_my_password"), class: "btn-rausch", data: { turbo_submits_with: t("devise.shared.processing") } %>
+    <% end %>
+  </div>
+  <%= render "devise/shared/links" %>
+</div></section>
