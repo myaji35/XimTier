@@ -11,13 +11,6 @@
       <%= button_to t("dashboard.sign_out"), destroy_user_session_path, method: :delete, class: "btn btn-ghost", form: { style: "display:inline-block;" }, data: { turbo: false } %>
     </div>
 
-    <% if flash[:notice] %>
-      <div class="mb-6 p-4 rounded-[14px]" style="background:#E0F2FE;border:1px solid #0891B2;color:#0E7490;"><%= flash[:notice] %></div>
-    <% end %>
-    <% if flash[:alert] %>
-      <div class="mb-6 p-4 rounded-[14px]" style="background:#FEF2F2;border:1px solid #FCA5A5;color:#991B1B;"><%= flash[:alert] %></div>
-    <% end %>
-
     <% if @demo_requests.empty? %>
       <div class="card text-center" style="padding:48px;">
         <p style="color:#697386;"><%= t("dashboard.no_requests") %></p>

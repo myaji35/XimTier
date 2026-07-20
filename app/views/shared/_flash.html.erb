@@ -1,0 +1,16 @@
+<%# flash 는 레이아웃에서만 그린다.
+    이전에는 페이지 7곳이 각자 flash 블록을 갖고 있었는데, 자체 뷰가 없는
+    Devise 화면은 그 대상에서 빠져 인증 실패 사유가 통째로 묻혔다. (ISS-023)
+    notice 만 안내색이고 alert 를 포함한 나머지 키는 경고색으로 처리한다. %>
+<% if flash.any? { |_, message| message.present? } %>
+  <div class="wrap">
+    <% flash.each do |key, message| %>
+      <% next if message.blank? %>
+      <% if key.to_sym == :notice %>
+        <div role="alert" class="mb-6 p-4 rounded-[14px]" style="background:#E0F2FE;border:1px solid #0891B2;color:#0E7490;"><%= message %></div>
+      <% else %>
+        <div role="alert" class="mb-6 p-4 rounded-[14px]" style="background:#FEF2F2;border:1px solid #FCA5A5;color:#991B1B;"><%= message %></div>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

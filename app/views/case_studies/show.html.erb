@@ -108,13 +108,6 @@
     <section class="mt-12">
       <h2 class="type-display-sm mb-5"><%= t("cases_gallery.comments", default: "댓글") %> <span class="text-muted-airbnb">(<%= @comments.size %>)</span></h2>
 
-      <% if flash[:notice] %>
-        <div class="mb-4 p-3 rounded-lg type-body-sm" style="background:var(--color-surface-soft,#f7f7f7);color:var(--color-ink,#222);"><%= flash[:notice] %></div>
-      <% end %>
-      <% if flash[:alert] %>
-        <div class="mb-4 p-3 rounded-lg type-body-sm" style="background:#fdecec;color:var(--color-primary-error-text,#c13515);"><%= flash[:alert] %></div>
-      <% end %>
-
       <%= form_with url: case_comments_path(locale: I18n.locale, slug: @case.slug), method: :post, class: "mb-8" do |f| %>
         <%= f.fields_for :case_comment do |c| %>
           <div class="grid grid-cols-1 sm:grid-cols-[200px_1fr]" style="gap:10px;">

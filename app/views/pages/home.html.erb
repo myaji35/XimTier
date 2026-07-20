@@ -1,12 +1,5 @@
 <% content_for :title, "#{t('site.brand')} — #{t('site.positioning')}" %>
 
-<% if flash[:notice] %>
-  <div class="wrap" style="max-width:960px; padding-top:24px;">
-    <div class="p-4 rounded-[14px]" style="background:#E0F2FE;border:1px solid #0891B2;color:#0E7490;">
-      <%= flash[:notice] %>
-    </div>
-  </div>
-<% end %>
 
 <%= render "shared/mini_nav" %>
 

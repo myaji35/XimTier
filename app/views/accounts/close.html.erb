@@ -6,12 +6,6 @@
     <h1 class="h-section mt-3"><%= t("account.close.title") %></h1>
     <p class="lead mt-3" style="color:#475467;"><%= t("account.close.lead") %></p>
 
-    <% if flash.now[:alert] || flash[:alert] %>
-      <div class="mt-6 p-4 rounded-[14px]" style="background:#FEF2F2;border:1px solid #FCA5A5;color:#991B1B;">
-        <%= flash.now[:alert] || flash[:alert] %>
-      </div>
-    <% end %>
-
     <div class="card mt-8" style="padding:28px;">
       <h2 class="text-[16px] font-semibold mb-3" style="color:#0B132D;"><%= t("account.close.what_happens") %></h2>
       <ul class="list-disc list-inside text-[14px] space-y-2" style="color:#475467;">
