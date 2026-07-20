@@ -21,21 +21,10 @@ jobs:
       - name: Scan for common Rails security vulnerabilities using static analysis
         run: bin/brakeman --no-pager
       
-      # ⚠️ 임시 비차단(2026-07-16) — XIM-13 에서 해소할 것.
-      #
-      # 11개 gem 에 알려진 취약점이 있다 (avo, concurrent-ruby, crass, json, msgpack,
-      # net-imap, nokogiri, puma, sqlite3, view_component, websocket-driver).
-      # 전부 버전 업으로 해결되지만 puma(웹서버)·sqlite3(DB) 가 포함돼 일괄 업데이트는
-      # 앱 기동 실패 위험이 있어 별도 작업으로 분리했다.
-      #
-      # 이 취약점들은 이번 변경으로 생긴 게 아니다. brakeman 이 구버전이라 스캔 자체가
-      # 돌지 않는 등 CI 가 오래 실패 상태였고, 그 사이 아무도 보지 않았을 뿐이다.
-      # 지금은 5일째 미배포 상태인 보안 수정(계정 탈취·세션 쿠키)을 먼저 내보내기 위해
-      # 이 단계만 비차단으로 둔다.
-      #
-      # 재개 조건: XIM-13 에서 gem 업데이트 + 테스트 통과 후 continue-on-error 를 제거한다.
+      # 비차단 해제 완료(2026-07-20, XIM-13). 취약점 11건을 전부 해소해
+      # bundler-audit 이 다시 CI 를 막는다 — 새 취약점이 들어오면 여기서 걸린다.
+      # 재발 시 gem 업데이트로 해결할 것. 다시 continue-on-error 로 덮지 마라.
       - name: Scan for known security vulnerabilities in gems used
-        continue-on-error: true
         run: bin/bundler-audit
       
   scan_js:
