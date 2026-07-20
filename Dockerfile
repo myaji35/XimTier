@@ -15,8 +15,10 @@ FROM docker.io/library/ruby:$RUBY_VERSION-slim AS base
 WORKDIR /rails
 
 # Install base packages — sqlite3 런타임 라이브러리 (production DB) + libvips/jemalloc
+# poppler-utils: ActiveStorage 가 PDF 첫 페이지 preview 를 만들 때 쓰는 pdftoppm.
+#   없으면 previewable? 이 false 가 되어 에러 없이 조용히 썸네일이 빠진다.
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl libjemalloc2 libvips sqlite3 && \
+    apt-get install --no-install-recommends -y curl libjemalloc2 libvips poppler-utils sqlite3 && \
     ln -s /usr/lib/$(uname -m)-linux-gnu/libjemalloc.so.2 /usr/local/lib/libjemalloc.so && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 

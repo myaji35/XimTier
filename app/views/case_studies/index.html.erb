@@ -35,12 +35,19 @@
         <% @cases.each do |c| %>
           <%= link_to case_gallery_path(locale: I18n.locale, slug: c.slug), class: "no-underline group" do %>
             <article class="card-airbnb shadow-card-hover h-full flex flex-col" style="padding:0;overflow:hidden;">
-              <%# 썸네일: hero_image > 유튜브 썸네일 > 플레이스홀더 %>
+              <%# 썸네일: hero_image > 유튜브 > PDF 첫 페이지 > HTML 본문 발췌 > 플레이스홀더 %>
               <div class="relative w-full" style="aspect-ratio:16/9;background:var(--color-surface-soft, #f7f7f7);">
                 <% if c.hero_image.attached? %>
                   <%= image_tag c.hero_image, class: "w-full h-full object-cover", loading: "lazy", alt: c.title %>
                 <% elsif (yid = c.thumbnail_youtube_id) %>
                   <%= image_tag "https://i.ytimg.com/vi/#{yid}/hqdefault.jpg", class: "w-full h-full object-cover", loading: "lazy", alt: c.title %>
+                <% elsif (pdf = c.thumbnail_pdf) %>
+                  <%# 문서 표지는 위쪽이 제목이라 object-top 으로 잘라야 알아볼 수 있다 %>
+                  <%= image_tag pdf.preview(resize_to_limit: [640, 360]), class: "w-full h-full object-cover", style: "object-position:top;", loading: "lazy", alt: c.title %>
+                <% elsif (excerpt = c.thumbnail_excerpt) %>
+                  <div class="w-full h-full flex items-center" style="padding:18px 20px;">
+                    <p class="font-mono" style="font-size:12px;line-height:1.7;color:var(--color-text-secondary, #667085);margin:0;"><%= excerpt %></p>
+                  </div>
                 <% else %>
                   <div class="w-full h-full flex items-center justify-center text-muted-airbnb">
                     <%= render IconComponent.new(name: "layers", size: 32) %>

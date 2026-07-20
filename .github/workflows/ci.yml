@@ -135,7 +135,7 @@ jobs:
           bundler-cache: true
 
       - name: Install packages
-        run: sudo apt-get update && sudo apt-get install -y libvips
+        run: sudo apt-get update && sudo apt-get install -y libvips poppler-utils
 
       # 레이아웃이 stylesheet_link_tag "tailwind" 를 부르는데 app/assets/builds/ 는
       # .keep 만 추적한다(빌드 산출물 미커밋). CI 는 새로 체크아웃하므로 빌드해 두지 않으면

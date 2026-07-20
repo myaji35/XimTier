@@ -29,6 +29,20 @@ class CaseStudy < ApplicationRecord
     case_media.detect(&:youtube?)&.youtube_id
   end
 
+  # PDF 첫 페이지를 썸네일로 쓴다. previewable? 는 poppler(pdftoppm) 유무에 따라
+  # 달라지므로 반드시 확인한다 — 없는 환경에서는 nil 을 돌려 다음 폴백으로 넘긴다.
+  def thumbnail_pdf
+    case_media.detect { |m| m.pdf.attached? && m.pdf.previewable? }&.pdf
+  end
+
+  # 이미지가 없는 html 매체용. 본문 앞부분을 그대로 카드에 얹는다.
+  def thumbnail_excerpt
+    html = case_media.detect { |m| m.embed_html.present? }&.embed_html
+    return nil if html.blank?
+
+    ActionController::Base.helpers.strip_tags(html).squish.truncate(90).presence
+  end
+
   private
 
   def pick(attr, locale)
