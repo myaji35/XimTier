@@ -137,6 +137,12 @@ jobs:
       - name: Install packages
         run: sudo apt-get update && sudo apt-get install -y libvips
 
+      # 레이아웃이 stylesheet_link_tag "tailwind" 를 부르는데 app/assets/builds/ 는
+      # .keep 만 추적한다(빌드 산출물 미커밋). CI 는 새로 체크아웃하므로 빌드해 두지 않으면
+      # 뷰를 렌더하는 모든 스펙이 "asset 'tailwind.css' was not found" 로 실패한다.
+      - name: Build Tailwind CSS
+        run: bin/rails tailwindcss:build
+
       - name: Prepare database
         run: bin/rails db:test:prepare
 
