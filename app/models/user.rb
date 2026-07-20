@@ -45,6 +45,32 @@ class User < ApplicationRecord
   validates :locale, inclusion: { in: %w[ko en] }
 
   scope :admins, -> { where(admin: true) }
+  scope :suspended, -> { where.not(suspended_at: nil) }
+  scope :active, -> { where(suspended_at: nil) }
+
+  # 정지 상태는 일반 폼 수정과 분리해 사유와 시각이 항상 함께 기록되게 한다.
+  def suspend!(reason:)
+    raise ArgumentError, "정지 사유를 입력해야 합니다." if reason.blank?
+
+    update!(suspended_at: Time.current, suspension_reason: reason)
+  end
+
+  def unsuspend!
+    update!(suspended_at: nil, suspension_reason: nil)
+  end
+
+  def suspended?
+    suspended_at.present?
+  end
+
+  # 비밀번호가 맞아도 정지 회원의 Devise 인증은 통과시키지 않는다.
+  def active_for_authentication?
+    super && !suspended?
+  end
+
+  def inactive_message
+    suspended? ? :suspended : super
+  end
 
   def display_name
     name.presence || email
