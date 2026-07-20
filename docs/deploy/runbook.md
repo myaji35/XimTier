@@ -62,6 +62,44 @@ bin/kamal -d staging deploy
 bin/kamal deploy
 ```
 
+### 1-4. kamal 도 막혔을 때 — 서버 직접 빌드 (2026-07-20 실증)
+
+`gh` 토큰이 만료되면 `.kamal/secrets` 의 `KAMAL_REGISTRY_PASSWORD` 가 빈 값이 되어
+kamal 이 통째로 막힌다. 게다가 이 저장소는 exFAT 볼륨(`/Volumes/E_SSD`)에 있어
+**로컬 docker build 자체가 불가능**하다 — macOS 가 만드는 `._*` 메타데이터 때문에:
+
+- `buildx`: `failed to xattr ._.bundle: operation not permitted`
+- `tailwindcss:build`: `._` 파일을 UTF-8 로 읽다 `Utf8Error` → SIGABRT
+
+`.dockerignore` 로는 못 막는다(컨텍스트 전송 *전* 단계에서 죽는다).
+서버에서 네이티브로 빌드하는 것이 가장 확실하다:
+
+```bash
+SHA=$(git rev-parse HEAD)
+HOST=root@158.247.235.31
+
+# 1. 커밋된 내용만 뽑고(._ 없음) COPYFILE_DISABLE 로 tar 가 xattr 을 되살리지 못하게 한다.
+#    이 플래그를 빠뜨리면 서버에서 ._ 파일 700여개가 되살아나 tailwind 가 죽는다.
+rm -rf /tmp/xb && mkdir -p /tmp/xb && git archive HEAD | tar -x -C /tmp/xb
+COPYFILE_DISABLE=1 tar --exclude='._*' --exclude='.DS_Store' -czf /tmp/xb.tgz -C /tmp/xb .
+tar tzf /tmp/xb.tgz | grep -c '\._'   # 반드시 0
+
+# 2. 전송 후 서버에서 빌드 (6코어 amd64, 크로스 에뮬레이션 불필요)
+ssh $HOST "rm -rf /root/build-ximtier && mkdir -p /root/build-ximtier"
+scp /tmp/xb.tgz $HOST:/root/build-ximtier/
+ssh $HOST "cd /root/build-ximtier && tar xzf xb.tgz && \
+  docker build -t ghcr.io/myaji35/ximtier:$SHA . > /root/build.log 2>&1; tail -3 /root/build.log"
+
+# 3. 컨테이너 교체는 kamal-manual-deploy 스킬의 3~6단계를 따른다.
+#    특히 빠뜨리기 쉬운 두 가지:
+#    - SQLite 볼륨 승계: docker inspect <구컨테이너> 로 -v 옵션을 그대로 물려받을 것
+#    - 프록시 재지정: 이걸 안 하면 앱이 떠도 외부에서 502
+```
+
+**주의**: 이건 임시 조치다. 근본 복구는 `gh auth refresh -h github.com -s write:packages`
+와 GitHub Actions 빌링 한도 확인(ISS-029). 복구 후 커밋 1건으로 자동배포가 실제로
+도는지 반드시 검증할 것.
+
 ---
 
 ## 2. 롤백
