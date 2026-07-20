@@ -49,3 +49,8 @@
 # Ignore Docker-related files
 /.dockerignore
 /Dockerfile*
+
+# macOS AppleDouble 메타데이터 — exFAT 볼륨에서 생성되며
+# Docker 빌드 시 "failed to xattr ._xxx: operation not permitted" 로 빌드를 막는다.
+._*
+.DS_Store
