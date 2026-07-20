@@ -24,6 +24,13 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
+  # 이미지 URL 을 서명된 임시 링크로 302 리다이렉트하지 않고 앱이 직접 서빙한다.
+  # 기본값(:redirect)은 Cache-Control: max-age=300, private 인 302 를 거치는데,
+  # 5분이 지나면 링크가 만료되어 캐시된 페이지에서 썸네일이 깨진다
+  # ("보였다 안 보였다" 하는 증상의 원인 — 2026-07-20).
+  # :proxy 는 리다이렉트 없이 이미지를 그대로 내보내므로 만료가 없고 캐시도 오래 간다.
+  config.active_storage.resolve_model_to_route = :rails_storage_proxy
+
   # TLS는 외부 nginx(+certbot)가 종단한다. 앱은 그 뒤에서 평문 HTTP로 받으므로
   # assume_ssl 없이 force_ssl만 켜면 리다이렉트 루프에 빠진다. 반드시 짝으로 둘 것. — ISS-005
   config.assume_ssl = true
