@@ -117,6 +117,13 @@ ssh $HOST "cd /root/build-ximtier && tar xzf xb.tgz && \
 #    특히 빠뜨리기 쉬운 두 가지:
 #    - SQLite 볼륨 승계: docker inspect <구컨테이너> 로 -v 옵션을 그대로 물려받을 것
 #    - 프록시 재지정: 이걸 안 하면 앱이 떠도 외부에서 502
+
+# 4. 배포 후 정리 — kamal deploy 는 구버전을 자동 정리하지만 수동 교체는 그걸 우회한다.
+#    안 하면 컨테이너·이미지가 계속 쌓인다(실제로 9개/12개까지 누적됐다).
+#    롤백용으로 최근 2개는 남기고, GHCR 에 있는 것만 지운다 —
+#    서버에서 직접 빌드한 이미지는 GHCR 에 없어서 지우면 재획득이 안 된다.
+ssh $HOST "docker ps -a --filter name=ximtier-web --filter status=exited --format '{{.Names}}'" # 목록 확인 후
+# 최근 2개를 제외하고 docker rm → 그 다음에야 docker rmi 가 먹는다(컨테이너가 이미지를 붙잡는다)
 ```
 
 **주의**: 이건 임시 조치다. 근본 복구는 `gh auth refresh -h github.com -s write:packages`
