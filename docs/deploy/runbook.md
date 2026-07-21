@@ -62,7 +62,25 @@ bin/kamal -d staging deploy
 bin/kamal deploy
 ```
 
-### 1-4. kamal 도 막혔을 때 — 서버 직접 빌드 (2026-07-20 실증)
+### 1-4. gh 토큰이 만료됐을 때 — 먼저 이걸 시도하라 (30초)
+
+`gh auth status` 가 `token is invalid` 면 kamal 이 레지스트리 로그인에서 막힌다.
+**아래 1-5 의 서버 직접 빌드로 넘어가기 전에 이걸 먼저 해봐라.** 대부분 이걸로 끝난다.
+
+서버에는 유효한 GHCR 토큰이 남아 있다(kamal 이 예전에 심어둔 것):
+
+```bash
+# 서버에서 토큰을 꺼내 환경변수로 주입 — .kamal/secrets 가 GHCR_TOKEN 을 먼저 본다
+GHCR_TOKEN=$(ssh root@158.247.235.31 "cat /root/.docker/config.json" \
+  | python3 -c "import sys,json,base64; print(base64.b64decode(json.load(sys.stdin)['auths']['ghcr.io']['auth']).decode().split(':',1)[1])")
+
+GHCR_TOKEN="$GHCR_TOKEN" bin/kamal deploy
+```
+
+단, 로컬이 exFAT 볼륨이면 빌드 단계에서 `._*` 문제로 여전히 죽는다(아래 1-5 참조).
+그때만 서버 직접 빌드로 간다.
+
+### 1-5. kamal 도 막혔을 때 — 서버 직접 빌드 (2026-07-20 실증)
 
 `gh` 토큰이 만료되면 `.kamal/secrets` 의 `KAMAL_REGISTRY_PASSWORD` 가 빈 값이 되어
 kamal 이 통째로 막힌다. 게다가 이 저장소는 exFAT 볼륨(`/Volumes/E_SSD`)에 있어
