@@ -123,6 +123,35 @@ ssh $HOST "cd /root/build-ximtier && tar xzf xb.tgz && \
 와 GitHub Actions 빌링 한도 확인(ISS-029). 복구 후 커밋 1건으로 자동배포가 실제로
 도는지 반드시 검증할 것.
 
+### 1-6. 프로덕션 배포 워치독 (서버 cron)
+
+GitHub Actions가 큐잉조차 되지 않는 침묵 실패는 서버 밖 알림이 없으므로, 서버 cron이
+공개 GitHub API의 `main` SHA와 `https://ximtier.com/version`의 실행 SHA를 비교한다.
+불일치가 2시간 지속되면 앱 컨테이너의 Rails 메일러로 관리자에게 알리고, 이후 하루에
+한 번만 다시 알린다.
+
+설치:
+
+```bash
+scp bin/deploy-watchdog root@158.247.235.31:/usr/local/bin/deploy-watchdog
+scp config/deploy/ximtier-deploy-watchdog.cron root@158.247.235.31:/etc/cron.d/ximtier-deploy-watchdog
+ssh root@158.247.235.31 'chmod 755 /usr/local/bin/deploy-watchdog && chmod 644 /etc/cron.d/ximtier-deploy-watchdog'
+```
+
+확인:
+
+```bash
+ssh root@158.247.235.31 '/usr/local/bin/deploy-watchdog; echo exit=$?'
+ssh root@158.247.235.31 'cat /var/lib/ximtier-watchdog/mismatch_since 2>/dev/null || echo 정상/아직 불일치 없음'
+```
+
+해제(상태도 함께 초기화할 때만 마지막 명령까지 실행):
+
+```bash
+ssh root@158.247.235.31 'rm /etc/cron.d/ximtier-deploy-watchdog'
+ssh root@158.247.235.31 'rm -rf /var/lib/ximtier-watchdog'
+```
+
 ---
 
 ## 2. 롤백

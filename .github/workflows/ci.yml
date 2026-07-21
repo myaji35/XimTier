@@ -26,6 +26,16 @@ jobs:
       # 재발 시 gem 업데이트로 해결할 것. 다시 continue-on-error 로 덮지 마라.
       - name: Scan for known security vulnerabilities in gems used
         run: bin/bundler-audit
+
+      - name: Notify Slack on failure
+        if: ${{ failure() }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          # 웹훅이 비어 있는 현재 환경에서는 조용히 건너뛴다.
+          [ -n "$SLACK_WEBHOOK_URL" ] || exit 0
+          payload=$(jq -n --arg text "❌ CI / scan_ruby 실패: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" '{text: $text}')
+          curl -sS -X POST -H 'Content-Type: application/json' --data "$payload" "$SLACK_WEBHOOK_URL" || true
       
   scan_js:
     runs-on: ubuntu-latest
@@ -41,6 +51,15 @@ jobs:
 
       - name: Scan for security vulnerabilities in JavaScript dependencies
         run: bin/importmap audit
+
+      - name: Notify Slack on failure
+        if: ${{ failure() }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          [ -n "$SLACK_WEBHOOK_URL" ] || exit 0
+          payload=$(jq -n --arg text "❌ CI / scan_js 실패: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" '{text: $text}')
+          curl -sS -X POST -H 'Content-Type: application/json' --data "$payload" "$SLACK_WEBHOOK_URL" || true
 
   lint:
     runs-on: ubuntu-latest
@@ -67,6 +86,15 @@ jobs:
 
       - name: Lint code for consistent style
         run: bin/rubocop -f github
+
+      - name: Notify Slack on failure
+        if: ${{ failure() }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          [ -n "$SLACK_WEBHOOK_URL" ] || exit 0
+          payload=$(jq -n --arg text "❌ CI / lint 실패: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" '{text: $text}')
+          curl -sS -X POST -H 'Content-Type: application/json' --data "$payload" "$SLACK_WEBHOOK_URL" || true
 
   i18n:
     runs-on: ubuntu-latest
@@ -95,6 +123,15 @@ jobs:
 
       - name: Copy lint (금지어 검출, design.md §9)
         run: bash .claude/hooks/copy-lint.sh
+
+      - name: Notify Slack on failure
+        if: ${{ failure() }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          [ -n "$SLACK_WEBHOOK_URL" ] || exit 0
+          payload=$(jq -n --arg text "❌ CI / i18n 실패: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" '{text: $text}')
+          curl -sS -X POST -H 'Content-Type: application/json' --data "$payload" "$SLACK_WEBHOOK_URL" || true
 
   test:
     runs-on: ubuntu-latest
@@ -137,3 +174,12 @@ jobs:
 
       - name: Run RSpec
         run: bundle exec rspec
+
+      - name: Notify Slack on failure
+        if: ${{ failure() }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          [ -n "$SLACK_WEBHOOK_URL" ] || exit 0
+          payload=$(jq -n --arg text "❌ CI / test 실패: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" '{text: $text}')
+          curl -sS -X POST -H 'Content-Type: application/json' --data "$payload" "$SLACK_WEBHOOK_URL" || true

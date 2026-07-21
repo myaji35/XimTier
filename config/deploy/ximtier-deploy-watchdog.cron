@@ -1,0 +1,6 @@
+# 설치: scp config/deploy/ximtier-deploy-watchdog.cron root@158.247.235.31:/etc/cron.d/ximtier-deploy-watchdog && ssh root@158.247.235.31 'chmod 644 /etc/cron.d/ximtier-deploy-watchdog'
+# 제거: ssh root@158.247.235.31 'rm /etc/cron.d/ximtier-deploy-watchdog'
+# cron의 기본 PATH에는 docker가 없을 수 있으므로 서버의 일반 시스템 경로를 명시한다.
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+*/15 * * * * root /usr/local/bin/deploy-watchdog

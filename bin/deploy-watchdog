@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+STATE_DIR="/var/lib/ximtier-watchdog"
+MISMATCH_FILE="${STATE_DIR}/mismatch_since"
+LAST_ALERT_FILE="${STATE_DIR}/last_alert_at"
+ALERT_AFTER=$((2 * 60 * 60))
+ALERT_INTERVAL=$((24 * 60 * 60))
+
+# GitHub 자체가 잠시 응답하지 않을 때는 배포 실패로 단정해 알림을 만들지 않는다.
+github_json=$(curl -sSf --max-time 15 \
+  "https://api.github.com/repos/myaji35/XimTier/commits/main" 2>/dev/null) || exit 0
+expected_sha=$(jq -r '.sha // empty' <<<"$github_json" 2>/dev/null) || exit 0
+[[ "$expected_sha" =~ ^[0-9a-f]{40}$ ]] || exit 0
+
+version_json=$(curl -sSf --max-time 15 "https://ximtier.com/version" 2>/dev/null) || exit 0
+actual_sha=$(jq -r '.version // empty' <<<"$version_json" 2>/dev/null) || exit 0
+[[ "$actual_sha" =~ ^[0-9a-f]{40}$ ]] || exit 0
+
+if [[ "$expected_sha" == "$actual_sha" ]]; then
+  rm -f "$MISMATCH_FILE" "$LAST_ALERT_FILE"
+  exit 0
+fi
+
+mkdir -p "$STATE_DIR"
+now=$(date +%s)
+
+if [[ ! -f "$MISMATCH_FILE" ]]; then
+  printf '%s\n' "$now" > "$MISMATCH_FILE"
+  exit 0
+fi
+
+mismatch_since=$(<"$MISMATCH_FILE")
+[[ "$mismatch_since" =~ ^[0-9]+$ ]] || {
+  printf '%s\n' "$now" > "$MISMATCH_FILE"
+  exit 0
+}
+
+duration_seconds=$((now - mismatch_since))
+(( duration_seconds >= ALERT_AFTER )) || exit 0
+
+if [[ -f "$LAST_ALERT_FILE" ]]; then
+  last_alert_at=$(<"$LAST_ALERT_FILE")
+  if [[ "$last_alert_at" =~ ^[0-9]+$ ]] && (( now - last_alert_at < ALERT_INTERVAL )); then
+    exit 0
+  fi
+fi
+
+container=$(docker ps --filter name=ximtier-web --format '{{.Names}}' | head -1)
+[[ -n "$container" ]] || exit 0
+
+# 호스트에는 메일 전송기가 없다. SMTP 설정이 살아 있는 앱 컨테이너의 Rails 메일러를 쓴다.
+if docker exec \
+  -e WATCHDOG_EXPECTED_SHA="$expected_sha" \
+  -e WATCHDOG_ACTUAL_SHA="$actual_sha" \
+  -e WATCHDOG_DURATION_SECONDS="$duration_seconds" \
+  "$container" bin/rails runner \
+  'DeployWatchdogMailer.stalled(expected_sha: ENV.fetch("WATCHDOG_EXPECTED_SHA"), actual_sha: ENV.fetch("WATCHDOG_ACTUAL_SHA"), duration_seconds: ENV.fetch("WATCHDOG_DURATION_SECONDS")).deliver_now'; then
+  printf '%s\n' "$now" > "$LAST_ALERT_FILE"
+fi
+
+exit 0

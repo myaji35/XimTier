@@ -52,6 +52,16 @@ jobs:
           fi
       - name: Echo target
         run: echo "Will deploy to ${{ steps.target.outputs.target }}"
+
+      - name: Notify Slack on failure
+        if: ${{ failure() }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          # 웹훅을 아직 운영하지 않는 환경에서는 알림 단계 자체가 실패 원인이 되면 안 된다.
+          [ -n "$SLACK_WEBHOOK_URL" ] || exit 0
+          payload=$(jq -n --arg text "❌ Deploy / wait-for-ci 실패: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" '{text: $text}')
+          curl -sS -X POST -H 'Content-Type: application/json' --data "$payload" "$SLACK_WEBHOOK_URL" || true
     outputs:
       target: ${{ steps.target.outputs.target }}
 
@@ -195,3 +205,13 @@ jobs:
           # staging 도 nginx block + TLS 를 갖췄으므로(ISS-033) production 과 동일하게 막는다.
           echo "::error::배포 버전 검증 실패 — 기대 SHA: $GITHUB_SHA, 실제 SHA: $actual_sha"
           exit 1
+
+      - name: Notify Slack on failure
+        if: ${{ failure() }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          # 웹훅을 아직 운영하지 않는 환경에서는 알림 단계 자체가 실패 원인이 되면 안 된다.
+          [ -n "$SLACK_WEBHOOK_URL" ] || exit 0
+          payload=$(jq -n --arg text "❌ Deploy / deploy 실패: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" '{text: $text}')
+          curl -sS -X POST -H 'Content-Type: application/json' --data "$payload" "$SLACK_WEBHOOK_URL" || true

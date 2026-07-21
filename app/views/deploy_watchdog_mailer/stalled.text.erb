@@ -1,0 +1,10 @@
+XimTier 프로덕션 배포가 <%= @duration %> 동안 최신 main 커밋을 반영하지 못했습니다.
+
+기대 SHA (main): <%= @expected_sha %>
+실제 SHA (production): <%= @actual_sha %>
+불일치 지속 시간: <%= @duration %>
+
+조치:
+1. gh run list 로 CI와 Deploy 실행 여부를 확인합니다.
+2. GitHub Actions 빌링 한도와 토큰 만료 여부를 확인합니다.
+3. 자동 배포를 복구할 수 없으면 docs/deploy/runbook.md의 1-4 수동배포 절차를 따릅니다.
