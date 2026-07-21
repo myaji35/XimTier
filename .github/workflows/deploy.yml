@@ -192,10 +192,6 @@ jobs:
             exit 0
           fi
 
-          # ISS-033 해결 전 staging 호스트는 nginx 미등록이라 외부 검증 실패를 경고로만 남긴다.
-          if [ "$TARGET" = "staging" ]; then
-            echo "::warning::staging 배포 버전 검증 실패(ISS-033 해결 전 soft fail) — 기대 SHA: $GITHUB_SHA, 실제 SHA: $actual_sha"
-            exit 0
-          fi
+          # staging 도 nginx block + TLS 를 갖췄으므로(ISS-033) production 과 동일하게 막는다.
           echo "::error::배포 버전 검증 실패 — 기대 SHA: $GITHUB_SHA, 실제 SHA: $actual_sha"
           exit 1

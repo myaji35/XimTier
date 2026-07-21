@@ -157,6 +157,46 @@ curl -i http://ximtier.158.247.235.31.nip.io/up
 
 ---
 
+## 2-1. 신규 호스트 개통 체크리스트 (3종 세트를 반드시 함께)
+
+이 서버는 라우팅이 **2계층**이다: 외부 80/443 → **nginx** → **kamal-proxy** → 컨테이너.
+`kamal deploy` 는 **kamal-proxy 만** 갱신한다. nginx block 과 인증서는 수동이다.
+그래서 신규 호스트를 열 때 하나라도 빠지면 **컨테이너는 멀쩡한데 외부에서는 404**가 된다.
+
+실제로 staging 이 이 함정에 빠져 있었다 — kamal-proxy 에는 등록돼 있고 컨테이너
+`/up` 도 200 인데 nginx 에 block 이 없어 외부에서 죽어 있었고, CI 의 staging
+health check 가 이 호스트를 보므로 staging 배포는 구조적으로 항상 red 였다. (ISS-033)
+
+새 호스트를 열 때 **세 가지를 모두** 확인한다:
+
+```bash
+H=root@158.247.235.31
+NEW=<새-호스트>            # 예: ximtier-staging.158.247.235.31.nip.io
+
+# 0) 변경 전 백업 — 공유 인프라다. 22개 서비스가 같은 nginx 를 쓴다.
+ssh $H "cp -a /etc/nginx /root/backup-nginx-\$(date +%y%m%d)"
+
+# 1) kamal-proxy 등록 확인 (kamal deploy 가 해준다)
+ssh $H "docker exec kamal-proxy kamal-proxy list | grep \$NEW"
+
+# 2) nginx block — 기존 블록을 복제하고 server_name 만 바꾼다
+ssh $H "sed 's/server_name .*/server_name \$NEW;/' /etc/nginx/sites-available/ximtier \
+  > /etc/nginx/sites-available/\$NEW && ln -sf /etc/nginx/sites-available/\$NEW /etc/nginx/sites-enabled/"
+ssh $H "nginx -t"          # 반드시 통과 확인 후에만 reload
+ssh $H "systemctl reload nginx"
+
+# 3) 인증서 — dry-run 으로 레이트리밋을 먼저 확인한다
+ssh $H "certbot certonly --nginx -d \$NEW --dry-run --non-interactive"
+ssh $H "certbot --nginx -d \$NEW --non-interactive --agree-tos --register-unsafely-without-email --redirect"
+
+# 검증: -k 없이 200 이어야 진짜 개통이다. -k 를 붙이면 남의 인증서로도 200 이 나온다.
+curl -sS -o /dev/null -w "%{http_code}\n" https://\$NEW/up
+# 그리고 기존 서비스가 안 깨졌는지 반드시 확인
+for d in ximtier.com saas.ximtier.com www.townin.net; do curl -sSL -o /dev/null -w "$d %{http_code}\n" https://$d/; done
+```
+
+---
+
 ## 3. Cloudflare DNS + WAF + Turnstile 등록
 
 ### 3-1. 도메인 등록 (CEO)
