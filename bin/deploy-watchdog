@@ -23,6 +23,23 @@ if [[ "$expected_sha" == "$actual_sha" ]]; then
   exit 0
 fi
 
+# SHA 가 달라도 그 사이 커밋이 전부 문서(docs/**, *.md)면 정체가 아니다.
+# deploy.yml 이 paths-ignore 로 문서 커밋에는 배포를 안 돌리므로, 프로덕션이
+# 문서 커밋만큼 뒤처지는 건 정상이다. 이걸 정체로 오판해 알림을 보낸 적이 있다.
+# compare API 로 두 SHA 사이 파일 목록을 받아, 코드 변경이 하나도 없으면 종료.
+compare_json=$(curl -sSf --max-time 15 \
+  "https://api.github.com/repos/myaji35/XimTier/compare/${actual_sha}...${expected_sha}" 2>/dev/null || true)
+if [[ -n "$compare_json" ]]; then
+  code_changes=$(jq -r '
+    [.files[]?.filename
+     | select((startswith("docs/") | not) and (endswith(".md") | not))]
+    | length' <<<"$compare_json" 2>/dev/null || echo "1")
+  if [[ "$code_changes" == "0" ]]; then
+    rm -f "$MISMATCH_FILE" "$LAST_ALERT_FILE"
+    exit 0
+  fi
+fi
+
 mkdir -p "$STATE_DIR"
 now=$(date +%s)
 
