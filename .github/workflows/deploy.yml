@@ -162,19 +162,40 @@ jobs:
 
       - name: Post-deploy health check
         run: |
-          if [ "${{ needs.wait-for-ci.outputs.target }}" = "production" ]; then
+          TARGET="${{ needs.wait-for-ci.outputs.target }}"
+          if [ "$TARGET" = "production" ]; then
             HOST="ximtier.158.247.235.31.nip.io"
           else
             HOST="ximtier-staging.158.247.235.31.nip.io"
           fi
+
+          healthy=false
           for i in 1 2 3 4 5; do
             code=$(curl -sk -o /dev/null -w '%{http_code}' "https://${HOST}/up" || true)
             if [ "$code" = "200" ]; then
               echo "OK /up=200 on attempt $i"
-              exit 0
+              healthy=true
+              break
             fi
             echo "attempt $i: got ${code:-no-response}; sleeping 5s"
             sleep 5
           done
-          echo "Health check failed after 5 attempts"
+
+          actual_sha="no-response"
+          if [ "$healthy" = "true" ]; then
+            version_json=$(curl -skf "https://${HOST}/version" || true)
+            actual_sha=$(echo "$version_json" | jq -r '.version // "invalid-response"' 2>/dev/null || echo "invalid-response")
+          fi
+
+          if [ "$healthy" = "true" ] && [ "$actual_sha" = "$GITHUB_SHA" ]; then
+            echo "OK deployed SHA=$actual_sha"
+            exit 0
+          fi
+
+          # ISS-033 해결 전 staging 호스트는 nginx 미등록이라 외부 검증 실패를 경고로만 남긴다.
+          if [ "$TARGET" = "staging" ]; then
+            echo "::warning::staging 배포 버전 검증 실패(ISS-033 해결 전 soft fail) — 기대 SHA: $GITHUB_SHA, 실제 SHA: $actual_sha"
+            exit 0
+          fi
+          echo "::error::배포 버전 검증 실패 — 기대 SHA: $GITHUB_SHA, 실제 SHA: $actual_sha"
           exit 1

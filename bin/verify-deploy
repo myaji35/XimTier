@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+PRODUCTION_HOST="ximtier.com"
+STAGING_HOST="ximtier-staging.158.247.235.31.nip.io"
+POLL_INTERVAL=15
+TIMEOUT=600
+
+cd "$(dirname "$0")/.."
+
+target="${1:-production}"
+case "$target" in
+  production) host="$PRODUCTION_HOST" ;;
+  staging) host="$STAGING_HOST" ;;
+  *)
+    echo "사용법: bin/verify-deploy [production|staging]" >&2
+    exit 2
+    ;;
+esac
+
+expected_sha=$(git rev-parse HEAD)
+deadline=$((SECONDS + TIMEOUT))
+
+echo "$target 배포 확인 중 — 기대 SHA: $expected_sha"
+while (( SECONDS < deadline )); do
+  version_json=$(curl -sSf --max-time 10 "https://${host}/version" 2>/dev/null || true)
+  actual_sha=$(ruby -rjson -e 'print JSON.parse(STDIN.read).fetch("version", "")' <<<"$version_json" 2>/dev/null || true)
+
+  if [[ "$actual_sha" == "$expected_sha" ]]; then
+    echo "배포 확인 성공 — $host 에서 SHA $actual_sha 실행 중"
+    exit 0
+  fi
+
+  echo "대기 중 — 기대 SHA: $expected_sha, 실제 SHA: ${actual_sha:-응답 없음}"
+  remaining=$((deadline - SECONDS))
+  (( remaining > 0 )) || break
+  (( remaining < POLL_INTERVAL )) && sleep "$remaining" || sleep "$POLL_INTERVAL"
+done
+
+echo "배포 확인 타임아웃 — 기대 SHA: $expected_sha, 실제 SHA: ${actual_sha:-응답 없음}" >&2
+echo "CI 미실행 의심 — gh run list 확인 / GitHub Actions 빌링 한도 확인 / 수동배포는 docs/deploy/runbook.md 1-4 참조" >&2
+exit 1

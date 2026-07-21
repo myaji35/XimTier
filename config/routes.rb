@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   # Health check (Kamal proxy / load balancers)
   get "up" => "rails/health#show", as: :rails_health_check
+  get "version" => "versions#show"
 
   # Root: Accept-Language 기반 자동 리디렉트
   root to: redirect { |_params, request|

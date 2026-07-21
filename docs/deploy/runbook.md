@@ -37,6 +37,11 @@ chmod 600 .kamal/secrets
 - URL: http://ximtier-staging.158.247.235.31.nip.io
 - 헬스체크: `/up` → 200 (워크플로우 마지막 step에서 5회 polling)
 
+push 후에는 파이프라인 밖에서 실제 실행 SHA까지 확인한다:
+```bash
+bin/verify-deploy staging
+```
+
 수동 강제:
 ```bash
 gh workflow run deploy.yml -f target=staging
@@ -49,7 +54,7 @@ gh workflow run deploy.yml -f target=production
 ```
 - GitHub Environments → `production` → Required reviewers에 등록된 인원이 승인해야 진행.
 - 승인 후 약 3–5분 (원격 amd64 빌드 + push + boot).
-- 검증: https://ximtier.158.247.235.31.nip.io/up (Cloudflare 후엔 https://ximtier.io/up)
+- push 후 검증: `bin/verify-deploy` (기본 대상 production, 최대 10분간 실제 실행 SHA 확인)
 
 ### 1-3. 로컬에서 직접 (긴급 시)
 
