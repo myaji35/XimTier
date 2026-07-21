@@ -41,9 +41,9 @@ test.describe('Journey 1 — 김상무 (제조 SME 임원)', () => {
       await page.check('[name="demo_request[consent]"]');
       await page.screenshot({ path: `${SHOTS}/j1-kim-s5-demo-filled.png` });
       await page.click('form[action="/ko/demo"] button[type="submit"]');
-      await expect(page).toHaveURL(/\/ko\/dashboard$/);
+      await expect(page).toHaveURL(/\/ko$/);
       await expect(page.locator('body')).toContainText(/대기|PENDING|신청|접수/i);
-      await page.screenshot({ path: `${SHOTS}/j1-kim-s6-dashboard.png` });
+      await page.screenshot({ path: `${SHOTS}/j1-kim-s6-home.png` });
     });
   });
 });

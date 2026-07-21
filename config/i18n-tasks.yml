@@ -44,11 +44,8 @@ ignore_unused:
   - 'team.strengths.*'
   - 'vision.phases.*'
   - 'contact.industries.*'
-  - 'dashboard.status.*'
-  - 'account.close.errors.*'  # accounts_controller: t("account.close.errors.#{result.error}")
 
   # Rails 표준 날짜/시각 포맷. t() 가 아니라 l() 헬퍼가 참조하므로 정적 분석에 안 잡힌다.
-  #   예) dashboards/show.html.erb  l(dr.created_at, format: :long)
   - 'date.formats.*'
   - 'time.formats.*'
 

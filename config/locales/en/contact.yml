@@ -39,29 +39,8 @@ en:
       preferred_at: Preferred time
       submit: Request demo
     flash:
-      success: Your demo request has been received. Check your dashboard for status.
-    errors:
-      email_taken: This email is already registered. Please sign in and submit your request.
-    note: If your email is new, we'll auto-create your account and send a temporary password. Already registered? Sign in first.
-  dashboard:
-    comment_added: Your comment has been posted.
-    title: My demo requests
-    welcome: "Welcome, %{name}."
-    no_requests: No demo requests yet.
-    status:
-      pending:   Received — scheduling
-      scheduled: Scheduled
-      completed: Completed
-      cancelled: Cancelled
-    meeting_url: Meeting link
-    requested_at: Requested
-    preferred_at: Preferred
-    description: Description
-    file: Attached file
-    comments: Comments
-    comment_placeholder: Add a question or note
-    add_comment: Post comment
-    sign_out: Sign out
+      success: Your demo request has been received. We'll contact you to schedule it.
+    note: We'll send scheduling updates to the email address you provide.
   privacy:
     eyebrow: Privacy Policy
     h1: Privacy Policy

@@ -7,7 +7,7 @@ RSpec.describe "Character Journeys", type: :request do
 
   # === 1. 김상무 (제조 SME, 한글) ===
   describe "1. 김상무 — 제조 SME (한글)" do
-    it "Hero → use-cases → 케이스스터디 → 데모 신청 → 대시보드" do
+    it "Hero → use-cases → 케이스스터디 → 데모 신청 → 홈" do
       # Step 1: Accept-Language ko → /ko 리디렉트
       get "/", headers: { "Accept-Language" => "ko-KR,ko;q=0.9" }
       expect(response).to redirect_to("/ko")
@@ -39,12 +39,12 @@ RSpec.describe "Character Journeys", type: :request do
           }
         }
       end
-      expect(response).to redirect_to("/ko/dashboard")
+      expect(response).to redirect_to("/ko")
 
-      # Step 7: 대시보드
+      # Step 7: 홈
       follow_redirect!
       expect(response).to have_http_status(:ok)
-      expect(response.body).to include("김상무")
+      expect(response.body).to include("데모 신청이 접수되었습니다")
     end
   end
 

@@ -8,7 +8,7 @@
 #   - IR 자료 신청 기록: 1년 (다운로드 토큰 자체는 발급 후 24시간이면 무효)
 #   - 접속 로그: 90일 (Plausible 익명 통계만 장기 보관)
 #
-# "사용자 삭제 요청 시까지" 경로는 회원탈퇴(AccountClosing)가 담당한다.
+# 별도 삭제 요청은 개인정보보호 연락처를 통해 처리한다.
 class PurgeExpiredRecordsJob < ApplicationJob
   queue_as :default
 

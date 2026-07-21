@@ -21,13 +21,6 @@ RSpec.describe "처리방침 ↔ 코드 일치", type: :request do
   end
 
   describe "방침이 약속한 것이 실제로 존재한다" do
-    it "탈퇴 경로 — 방침이 안내한 화면이 실제로 있다" do
-      user = create(:user)
-      sign_in user
-      get "/ko/account/close"
-      expect(response).to have_http_status(:ok)
-    end
-
     it "토큰 만료 — 방침이 말한 24시간이 코드 상수와 일치한다" do
       expect(Download::TOKEN_TTL).to eq(24.hours)
       get "/ko/privacy"
@@ -66,7 +59,7 @@ RSpec.describe "처리방침 ↔ 코드 일치", type: :request do
 
     it "로그인 후에도 허용된 쿠키만 나간다" do
       sign_in create(:user)
-      get "/ko/dashboard"
+      get "/ko"
       expect(cookie_names).to all(be_in(ALLOWED))
     end
 

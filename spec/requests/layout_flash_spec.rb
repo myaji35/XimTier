@@ -26,10 +26,11 @@ RSpec.describe "레이아웃 flash 렌더", type: :request do
   end
 
   # 페이지가 자체 flash 블록을 되살리면 레이아웃과 겹쳐 두 번 나온다.
-  # 실제로 그렇게 회귀한 적이 있어(ISS-023) 자체 flash 를 가진 화면으로 고정 검증한다.
-  it "자체 flash 블록이 있던 대시보드에서도 중복되지 않는다" do
+  # 실제로 그렇게 회귀한 적이 있어(ISS-023) 고정 검증한다.
+  # 원래는 대시보드로 검증했으나 회원기능 축소(ISS-039)로 사라져 홈으로 옮겼다.
+  it "로그인 성공 후 홈에서도 flash를 중복 렌더링하지 않는다" do
     post "/users/sign_in", params: { user: { email: user.email, password: password } }
-    get "/ko/dashboard"
+    follow_redirect!
 
     expect(response).to have_http_status(:ok)
     expect(response.body.scan("background:#E0F2FE").size).to be <= 1

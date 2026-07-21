@@ -63,15 +63,6 @@ Rails.application.routes.draw do
     # v3 항목별 PPTX 근거 상세 (drill-down)
     get "/v3/detail/:slug", to: "pages#v3_detail", as: :v3_detail
 
-    # 사용자 대시보드 (Devise 로그인 필요)
-    get "/dashboard", to: "dashboards#show", as: :dashboard
-
-    # 회원탈퇴 (개인정보보호법 제21조·제36조 삭제권)
-    get    "/account/close", to: "accounts#close",   as: :close_account
-    delete "/account",       to: "accounts#destroy", as: :account
-    resources :demo_requests, only: [], path: "demo-requests" do
-      resources :comments, only: [:create]
-    end
   end
 
   # Admin Wiki (Basic auth — single password gate, bypasses Devise)

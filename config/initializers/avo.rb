@@ -21,7 +21,12 @@ Avo.configure do |config|
   ## == Authentication (PRD §FR-7) ==
   config.current_user_method = :current_user
   config.authenticate_with do
-    redirect_to main_app.new_user_session_path unless current_user&.admin?
+    unless current_user&.admin?
+      # 목적지를 저장해야 로그인 후 원래 관리자 화면으로 돌아온다.
+      # 없으면 홈으로 떨어져 관리자가 매번 /admin 을 다시 눌러야 한다. (ISS-039)
+      store_location_for(:user, request.fullpath) if request.get?
+      redirect_to main_app.new_user_session_path
+    end
   end
 
   ## == Authorization ==

@@ -1,6 +1,5 @@
 class User < ApplicationRecord
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable
+  devise :database_authenticatable, :recoverable, :rememberable, :validatable, :confirmable
 
   has_many :demo_requests, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -12,8 +11,7 @@ class User < ApplicationRecord
   before_update :reject_admin_flag_change
 
   # 회원 삭제는 demo_requests·comments·업로드 파일까지 연쇄 삭제한다(dependent: :destroy).
-  # 관리 화면의 실수나 코드 오류로 우연히 지워지지 않도록 기본은 막아두고,
-  # 본인이 탈퇴를 신청한 경로(AccountClosing)에서만 명시적으로 연다. — ISS-002 / ISS-007
+  # 관리 화면의 실수나 코드 오류로 우연히 지워지지 않도록 기본은 막는다. — ISS-007
   before_destroy :block_hard_delete, prepend: true
 
   def grant_admin!
@@ -22,15 +20,6 @@ class User < ApplicationRecord
 
   def revoke_admin!
     update_column(:admin, false)
-  end
-
-  # 본인 탈퇴 의사가 확인된 경우에만 물리 삭제를 허용한다.
-  # AccountClosing 서비스가 이 경로로만 호출한다.
-  def destroy_by_owner!
-    @closing_by_owner = true
-    destroy!
-  ensure
-    @closing_by_owner = false
   end
 
   enum :industry, {
@@ -86,8 +75,6 @@ class User < ApplicationRecord
   end
 
   def block_hard_delete
-    return if @closing_by_owner
-
     errors.add(:base, :hard_delete_blocked)
     throw :abort
   end

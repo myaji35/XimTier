@@ -18,19 +18,12 @@ class DemoRequestsController < ApplicationController
 
     user_params = user_params_from_request
 
-    # 로그인 상태면 본인 계정으로, 아니면 신규 계정을 만들어 진행한다.
-    # 이미 가입된 이메일을 비밀번호 없이 입력한 경우에는 절대 로그인시키지 않는다.
-    user = current_user
+    # DemoRequest가 User에 속하는 기존 데이터 구조는 유지하되, 리드에게 계정 기능은 노출하지 않는다.
+    user = User.find_by(email: user_params[:email])
 
     if user.nil?
-      if User.exists?(email: user_params[:email])
-        @demo_request = DemoRequest.new(demo_params_for_form)
-        @demo_request.errors.add(:base, I18n.t("demo.errors.email_taken"))
-        render "pages/demo", status: :unprocessable_entity and return
-      end
-
       generated_password = SecureRandom.alphanumeric(16)
-      user = User.create(
+      user = User.new(
         email: user_params[:email],
         password: generated_password,
         password_confirmation: generated_password,
@@ -41,13 +34,14 @@ class DemoRequestsController < ApplicationController
         locale: I18n.locale.to_s,
         privacy_agreed_at: Time.current
       )
+      # 리드 수집 과정에서 관리자용 가입 확인 메일이 나가지 않게 한다.
+      user.skip_confirmation!
+      user.save
       unless user.persisted?
         @demo_request = DemoRequest.new(demo_params_for_form)
         user.errors.full_messages.each { |m| @demo_request.errors.add(:base, m) }
         render "pages/demo", status: :unprocessable_entity and return
       end
-      DemoMailer.welcome(user, generated_password).deliver_later
-      sign_in(user)
     end
 
     @demo_request = user.demo_requests.build(
@@ -64,7 +58,7 @@ class DemoRequestsController < ApplicationController
     if @demo_request.save
       DemoMailer.received(@demo_request).deliver_later
       DemoMailer.admin_notification(@demo_request).deliver_later
-      redirect_to dashboard_path(locale: I18n.locale), notice: I18n.t("demo.flash.success")
+      redirect_to home_path(locale: I18n.locale), notice: I18n.t("demo.flash.success")
     else
       render "pages/demo", status: :unprocessable_entity
     end

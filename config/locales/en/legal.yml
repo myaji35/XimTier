@@ -19,7 +19,7 @@ en:
           - Legal compliance (e-commerce law, information & communications network act)
       - title: "3. Retention Period"
         body: |
-          - Demo requests: 1 year after the meeting concludes (completed or cancelled), or until you close your account
+          - Demo requests: 1 year after the meeting concludes (completed or cancelled)
           - Inquiries: 1 year after submission
           - IR deck requests: 1 year after submission. The download link itself expires 24 hours after issuance.
           - Web server access logs: deleted automatically after 14 days
@@ -35,10 +35,7 @@ en:
           - Access, correct, or delete your personal information
           - Withdraw consent and stop processing
           - GDPR additional rights (EU residents): data portability, object to automated decisions
-          Closing your account: sign in and use "Close account" at the bottom of your dashboard.
-          Your account details, demo requests, uploaded data files, and comments are
-          deleted immediately with no grace period.
-          Other requests: contact@ximtier.io
+          Rights requests: contact@ximtier.io
       - title: "6. Cookie Policy"
         body: |
           XimTier uses only the cookies required to run the service.
@@ -76,9 +73,9 @@ en:
           - Located in Korea or a GDPR-compliant jurisdiction
       - title: "3. Account + Data"
         body: |
-          - Demo request auto-creates your account. Change the temporary password after first login.
+          - Demo requests are available without creating an account.
           - Uploaded data files are accessed only by XimTier ops for demo preparation.
-          - You may request account + data deletion at any time.
+          - You may request data deletion at any time.
       - title: "4. Prohibited Actions"
         body: |
           - Identity theft

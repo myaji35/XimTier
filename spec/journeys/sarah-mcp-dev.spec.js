@@ -33,8 +33,8 @@ test.describe('Journey 3 — Sarah (Anthropic MCP Developer)', () => {
 
     await test.step('Step 4 — 제출 → EN 대시보드 도착', async () => {
       await page.click('form[action="/en/demo"] button[type="submit"]');
-      await expect(page).toHaveURL(/\/en\/dashboard$/);
-      await page.screenshot({ path: `${SHOTS}/j3-sarah-s4-en-dashboard.png` });
+      await expect(page).toHaveURL(/\/en$/);
+      await page.screenshot({ path: `${SHOTS}/j3-sarah-s4-en-home.png` });
     });
   });
 });
