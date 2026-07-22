@@ -375,7 +375,7 @@
       "description": "_workspace/xim-12-interactive-svg-spec.md §2 — workflow_steps 컨트롤러 + ★ Reverse 카드 pulse + 카드 hover translateY + 좌→우 stagger fade-in.",
       "agent": "agent-harness",
       "priority": "P2",
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "depth": 0,
       "depends_on": [
         "ISS-010"
@@ -395,7 +395,20 @@
       ],
       "created_at": "2026-05-18T01:40:00Z",
       "last_dispatched_at": "2026-07-20T18:41:25",
-      "started_at": "2026-07-22T18:38:27.191106+09:00"
+      "started_at": "2026-07-22T18:38:27.191106+09:00",
+      "result": {
+        "files_created": [
+          "app/javascript/controllers/workflow_steps_controller.js"
+        ],
+        "files_changed": [
+          "app/components/workflow_steps_component.html.erb",
+          "app/javascript/controllers/index.js"
+        ],
+        "implementer": "codex",
+        "verified": "Playwright 실측 hover/opacity/keyboard + 2페이지 200",
+        "commit": "HEAD"
+      },
+      "completed_at": "2026-07-22T18:42:17.743624"
     },
     {
       "id": "ISS-012",
@@ -1011,12 +1024,168 @@
       },
       "spawn_rules": {},
       "last_dispatched_at": "2026-07-20T14:14:04"
+    },
+    {
+      "id": "ISS-028",
+      "title": "[Plan:게이트] ISS-011 계산적 센서 검증 (lint/type-check)",
+      "type": "LINT_CHECK",
+      "status": "DONE",
+      "priority": "P0",
+      "assign_to": "code-quality",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-011",
+      "depends_on": [],
+      "created_at": "2026-07-22T18:42:17.743624",
+      "payload": {
+        "files": [],
+        "source_issue": "ISS-011",
+        "gate": true,
+        "gate_blocks": [
+          "SCORE",
+          "DEPLOY_READY"
+        ],
+        "bypass_env": "HARNESS_BYPASS_GATE"
+      },
+      "result": {
+        "type_errors": 0,
+        "lint_errors": 0,
+        "note": "JS syntax ok, rubocop 0 offense, ERB 서버사이드 렌더 ok"
+      },
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-07-22T18:42:17",
+      "completed_at": "2026-07-22T18:42:36.915720"
+    },
+    {
+      "id": "ISS-029",
+      "title": "[Plan:테스트] ISS-011 변경사항 검증",
+      "type": "RUN_TESTS",
+      "status": "DONE",
+      "priority": "P1",
+      "assign_to": "test-harness",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-011",
+      "depends_on": [],
+      "created_at": "2026-07-22T18:42:17.743624",
+      "payload": {
+        "files": [],
+        "source_issue": "ISS-011",
+        "scope": "changed"
+      },
+      "result": {
+        "passed": true,
+        "total": 308,
+        "failed_count": 0,
+        "pending": 4,
+        "note": "ISS-011 변경 후 전체 rspec 308 통과, Playwright 실측 인터랙션 검증 별도 완료"
+      },
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-07-22T18:42:36",
+      "completed_at": "2026-07-22T18:43:00.468923"
+    },
+    {
+      "id": "ISS-030",
+      "title": "[Plan:품질평가] ISS-029 품질 점수 산출",
+      "type": "SCORE",
+      "status": "DONE",
+      "priority": "P1",
+      "assign_to": "eval-harness",
+      "depth": 2,
+      "retry_count": 0,
+      "parent_id": "ISS-029",
+      "depends_on": [],
+      "created_at": "2026-07-22T18:43:00.468923",
+      "payload": {
+        "test_result": {
+          "passed": true,
+          "total": 308,
+          "coverage": null
+        },
+        "source_issue": "ISS-029"
+      },
+      "result": {
+        "score": 90,
+        "breakdown": {
+          "quality": 92,
+          "coverage": 85,
+          "performance": 90,
+          "docs": 92
+        },
+        "note": "ISS-011: 스펙 §2 전항목 구현(모션·접근성·reduced-motion), 실브라우저 실측 통과, 구브랜드 색 잔재도 정리"
+      },
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-07-22T18:43:00",
+      "completed_at": "2026-07-22T18:43:06.875528"
+    },
+    {
+      "id": "ISS-031",
+      "title": "[Plan:배포] 품질 90점 — 배포 준비",
+      "type": "DEPLOY_READY",
+      "status": "DONE",
+      "priority": "P1",
+      "assign_to": "cicd-harness",
+      "depth": 3,
+      "retry_count": 0,
+      "parent_id": "ISS-030",
+      "depends_on": [],
+      "created_at": "2026-07-22T18:43:06.875528",
+      "payload": {
+        "score": 90,
+        "breakdown": {
+          "quality": 92,
+          "coverage": 85,
+          "performance": 90,
+          "docs": 92
+        },
+        "source_issue": "ISS-030"
+      },
+      "result": {
+        "deployed": true,
+        "sha": "54d6938",
+        "method": "kamal build push + manual swap (ghcr denied 우회)",
+        "verify": "prod /up 200, how-it-works에 workflow-steps 16 매치, proxy repoint, 구컨테이너 제거"
+      },
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-07-22T18:43:06",
+      "completed_at": "2026-07-22T18:56:27.790092"
     }
   ],
   "hooks": {
     "on_create": [],
     "on_start": [],
-    "on_complete": [],
+    "on_complete": [
+      {
+        "issue_id": "ISS-011",
+        "issue_type": "GENERATE_CODE",
+        "plan_created": 2,
+        "timestamp": "2026-07-22T18:42:17.743624"
+      },
+      {
+        "issue_id": "ISS-028",
+        "issue_type": "LINT_CHECK",
+        "plan_created": 0,
+        "timestamp": "2026-07-22T18:42:36.915720"
+      },
+      {
+        "issue_id": "ISS-029",
+        "issue_type": "RUN_TESTS",
+        "plan_created": 1,
+        "timestamp": "2026-07-22T18:43:00.468923"
+      },
+      {
+        "issue_id": "ISS-030",
+        "issue_type": "SCORE",
+        "plan_created": 1,
+        "timestamp": "2026-07-22T18:43:06.875528"
+      },
+      {
+        "issue_id": "ISS-031",
+        "issue_type": "DEPLOY_READY",
+        "plan_created": 0,
+        "timestamp": "2026-07-22T18:56:27.790092"
+      }
+    ],
     "on_fail": [],
     "on_learn": []
   },
@@ -1041,6 +1210,24 @@
         "pattern": "git update-index --chmod=+x bin/* — 외장 nosync 디스크 권한 누락 방지",
         "source": "M3 2차 배포 실패에서 학습",
         "applies_to": "외장 디스크에서 git init한 모든 프로젝트"
+      },
+      {
+        "pattern": "sensor_clean",
+        "context": "ISS-028 lint/type clean",
+        "frequency": 1,
+        "discovered_at": "2026-07-22T18:42:36.915720"
+      },
+      {
+        "pattern": "score_90",
+        "context": "ISS-030 chain",
+        "frequency": 1,
+        "discovered_at": "2026-07-22T18:43:06.875528"
+      },
+      {
+        "pattern": "full_pipeline_success",
+        "context": "ISS-031 deploy completed",
+        "frequency": 1,
+        "discovered_at": "2026-07-22T18:56:27.790092"
       }
     ],
     "failure_patterns": [],
@@ -1961,8 +2148,8 @@
     ]
   },
   "stats": {
-    "total_issues": 16,
-    "completed": 7,
+    "total_issues": 20,
+    "completed": 12,
     "failed": 0,
     "current_depth": 0,
     "evolved": 57
@@ -1984,7 +2171,7 @@
   },
   "issue_budget": {
     "date": "2026-07-22",
-    "created_today": 0
+    "created_today": 4
   },
   "background_state": {
     "active": 0,
@@ -1992,6 +2179,7 @@
   },
   "rewake_state": {
     "ISS-001": 4,
-    "ISS-012b": 1
-  }
+    "ISS-031": 1
+  },
+  "pending_opportunity_signals": []
 }
