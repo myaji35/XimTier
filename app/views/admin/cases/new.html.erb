@@ -1,0 +1,6 @@
+<% content_for :title, "사례 콘텐츠 생성" %>
+<div class="admin-head">
+  <div><h1 class="type-display-xl">사례 콘텐츠 생성</h1></div>
+  <%= link_to "목록으로", admin_cases_path, class: "btn-secondary-airbnb" %>
+</div>
+<%= render "form", case_study: @case_study %>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title><%= content_for(:title).presence || "사례 콘텐츠 관리" %> — XimTier</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <style>
+      .shell{display:grid;grid-template-columns:240px minmax(0,1fr);min-height:100vh;}
+      .sidebar{background:#0B132D;color:#e6e8f0;position:sticky;top:0;height:100vh;}
+      .sidebar .brand{padding:22px;background:linear-gradient(135deg,#2563EB 0%,#00C8C8 100%);}
+      .sidebar .brand h1{margin:0;color:#fff;font-size:17px;font-weight:700;}
+      .sidebar .brand p{margin:4px 0 0;color:#fff;font-size:11px;opacity:.88;}
+      .sidebar nav{padding:14px 0;}
+      .sidebar nav a{display:block;padding:10px 22px;border-left:3px solid transparent;color:#a7b1c7;font-size:13px;}
+      .sidebar nav a:hover,.sidebar nav a.active{background:rgba(0,200,200,.08);border-left-color:#00C8C8;color:#fff;}
+      .sidebar .account{position:absolute;right:0;bottom:0;left:0;padding:16px 22px;border-top:1px solid rgba(255,255,255,.07);color:#a7b1c7;font-size:11px;}
+      .admin-main{min-width:0;padding:32px 0 64px;}
+      .admin-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:24px;}
+      .admin-actions{display:flex;align-items:center;flex-wrap:wrap;gap:8px;}
+      .admin-grid{display:grid;gap:16px;}
+      .admin-grid.two{grid-template-columns:repeat(2,minmax(0,1fr));}
+      .admin-field label{display:block;margin-bottom:7px;font-size:14px;font-weight:600;}
+      .admin-input{width:100%;padding:11px 13px;border:1px solid var(--color-hairline);border-radius:var(--radius-airbnb-sm);background:var(--color-canvas);color:var(--color-ink-airbnb);}
+      textarea.admin-input{resize:vertical;}
+      .admin-table{width:100%;border-collapse:collapse;}
+      .admin-table th,.admin-table td{padding:13px 14px;border-bottom:1px solid var(--color-hairline-soft);text-align:left;vertical-align:middle;}
+      .admin-table th{font-size:12px;color:var(--color-muted-airbnb);}
+      .admin-badge{display:inline-flex;padding:5px 9px;border-radius:999px;background:var(--color-surface-soft);font-size:12px;font-weight:600;}
+      .admin-errors{margin-bottom:20px;padding:16px;border:1px solid var(--color-rausch);border-radius:var(--radius-airbnb-sm);}
+      .admin-errors ul{margin:8px 0 0;padding-left:20px;}
+      @media(max-width:900px){.shell{grid-template-columns:1fr;}.sidebar{position:relative;height:auto}.sidebar .account{display:none}.admin-main{padding-top:24px}.admin-grid.two{grid-template-columns:1fr;}}
+    </style>
+  </head>
+  <body class="surface-soft">
+    <div class="shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <h1>XimTier 관리</h1>
+          <p>콘텐츠 운영 화면</p>
+        </div>
+        <nav>
+          <%= link_to "사례 콘텐츠", admin_cases_path, class: "active" %>
+          <%= link_to "공개 사례 보기", case_studies_path(locale: :ko), target: "_blank", rel: "noopener" %>
+        </nav>
+        <div class="account"><%= current_user.display_name %></div>
+      </aside>
+      <main class="admin-main">
+        <div class="wrap">
+          <%= render "shared/flash" %>
+          <%= yield %>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

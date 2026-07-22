@@ -1,0 +1,22 @@
+<% content_for :title, @case_study.title_ko %>
+<div class="admin-head">
+  <div>
+    <h1 class="type-display-xl"><%= @case_study.title_ko %></h1>
+    <p class="type-body-sm text-muted-airbnb mt-2"><%= @case_study.slug %> · <%= @case_study.published? ? "공개" : "비공개" %></p>
+  </div>
+  <div class="admin-actions">
+    <%= link_to "목록으로", admin_cases_path, class: "btn-secondary-airbnb" %>
+    <%= link_to "편집", edit_admin_case_path(@case_study), class: "btn-rausch" %>
+  </div>
+</div>
+
+<div class="card-airbnb admin-grid two">
+  <div><strong>업종</strong><p class="type-body-md mt-2"><%= @case_study.industry.presence || "—" %></p></div>
+  <div><strong>정렬순서</strong><p class="type-body-md mt-2"><%= @case_study.position %></p></div>
+  <div><strong>공개일시</strong><p class="type-body-md mt-2"><%= @case_study.published_at&.strftime("%Y-%m-%d %H:%M") || "—" %></p></div>
+  <div><strong>좋아요</strong><p class="type-body-md mt-2"><%= @case_study.likes_count %></p></div>
+  <div><strong>한국어 요약</strong><p class="type-body-md mt-2"><%= @case_study.summary_ko.presence || "—" %></p></div>
+  <div><strong>영문 요약</strong><p class="type-body-md mt-2"><%= @case_study.summary_en.presence || "—" %></p></div>
+</div>
+
+<%= render "media", case_study: @case_study, case_medium: @case_medium %>

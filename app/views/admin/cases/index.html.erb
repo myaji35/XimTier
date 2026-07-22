@@ -1,0 +1,34 @@
+<% content_for :title, "사례 콘텐츠 관리" %>
+<div class="admin-head">
+  <div>
+    <h1 class="type-display-xl">사례 콘텐츠</h1>
+    <p class="type-body-md text-body-airbnb mt-2">공개 갤러리에 노출할 사례와 매체를 관리합니다.</p>
+  </div>
+  <%= link_to "신규 생성", new_admin_case_path, class: "btn-rausch" %>
+</div>
+
+<div class="card-airbnb" style="padding:0;overflow-x:auto;">
+  <table class="admin-table">
+    <thead><tr><th>순서</th><th>제목</th><th>슬러그</th><th>업종</th><th>상태</th><th>매체</th><th></th></tr></thead>
+    <tbody>
+      <% @case_studies.each do |case_study| %>
+        <tr>
+          <td><%= case_study.position %></td>
+          <td><%= link_to case_study.title_ko, admin_case_path(case_study), class: "type-title-md" %></td>
+          <td class="type-body-sm text-muted-airbnb"><%= case_study.slug %></td>
+          <td><%= case_study.industry.presence || "—" %></td>
+          <td><span class="admin-badge"><%= case_study.published? ? "공개" : "비공개" %></span></td>
+          <td><%= case_study.case_media.size %></td>
+          <td><div class="admin-actions">
+            <%= link_to "편집", edit_admin_case_path(case_study), class: "btn-tertiary-airbnb" %>
+            <%= button_to "삭제", admin_case_path(case_study), method: :delete, class: "btn-tertiary-airbnb",
+                  form: { data: { turbo_confirm: "‘#{case_study.title_ko}’ 사례를 삭제하시겠습니까? 관련 매체와 댓글도 함께 삭제됩니다." } } %>
+          </div></td>
+        </tr>
+      <% end %>
+      <% if @case_studies.empty? %>
+        <tr><td colspan="7" class="text-muted-airbnb">등록된 사례 콘텐츠가 없습니다.</td></tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

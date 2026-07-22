@@ -72,6 +72,16 @@ Rails.application.routes.draw do
   get  "/admin/wiki/reports/:slug.pdf", to: "admin/wikis#report_pdf",   as: :admin_wiki_report_pdf, constraints: { slug: /[\w\-]+/ }
   get  "/admin/wiki/reports/:slug",     to: "admin/wikis#report_show",  as: :admin_wiki_report, constraints: { slug: /[\w\-]+/ }
 
+  # 사례 콘텐츠 관리 (Devise 관리자 전용)
+  namespace :admin do
+    resources :cases do
+      member do
+        post "media", to: "cases#create_medium", as: :media
+        delete "media/:medium_id", to: "cases#destroy_medium", as: :destroy_medium
+      end
+    end
+  end
+
   # letter_opener_web for development
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

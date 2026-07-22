@@ -1,0 +1,10 @@
+<% content_for :title, "#{@case_study.title_ko} 편집" %>
+<div class="admin-head">
+  <div>
+    <h1 class="type-display-xl">사례 콘텐츠 편집</h1>
+    <p class="type-body-sm text-muted-airbnb mt-2"><%= @case_study.slug %></p>
+  </div>
+  <%= link_to "상세로", admin_case_path(@case_study), class: "btn-secondary-airbnb" %>
+</div>
+<%= render "form", case_study: @case_study %>
+<%= render "media", case_study: @case_study, case_medium: @case_medium %>

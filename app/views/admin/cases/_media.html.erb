@@ -1,0 +1,73 @@
+<section class="card-airbnb mt-8">
+  <div class="admin-head">
+    <div>
+      <h2 class="type-display-sm">매체</h2>
+      <p class="type-body-sm text-muted-airbnb mt-2">유튜브, PDF, HTML 매체를 노출 순서대로 관리합니다.</p>
+    </div>
+  </div>
+
+  <% if case_study.case_media.loaded? ? case_study.case_media.reject(&:new_record?).any? : case_study.case_media.exists? %>
+    <div style="overflow-x:auto;">
+      <table class="admin-table">
+        <thead><tr><th>순서</th><th>유형</th><th>제목</th><th>내용</th><th></th></tr></thead>
+        <tbody>
+          <% case_study.case_media.select(&:persisted?).each do |medium| %>
+            <tr>
+              <td><%= medium.position %></td>
+              <td><span class="admin-badge"><%= { "youtube" => "유튜브", "pdf" => "PDF", "html" => "HTML" }[medium.kind] %></span></td>
+              <td><%= medium.title.presence || "—" %></td>
+              <td class="type-body-sm text-muted-airbnb">
+                <% if medium.youtube? %><%= medium.youtube_url %><% end %>
+                <% if medium.pdf? %><%= medium.pdf.attached? ? medium.pdf.filename : "파일 없음" %><% end %>
+                <% if medium.html? %><%= truncate(strip_tags(medium.embed_html), length: 70) %><% end %>
+              </td>
+              <td>
+                <%= button_to "삭제", destroy_medium_admin_case_path(case_study, medium_id: medium.id), method: :delete,
+                      class: "btn-tertiary-airbnb", form: { data: { turbo_confirm: "이 매체를 삭제하시겠습니까?" } } %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <p class="type-body-sm text-muted-airbnb">등록된 매체가 없습니다.</p>
+  <% end %>
+
+  <hr class="my-7 border-hairline-soft">
+  <h3 class="type-title-md mb-4">매체 추가</h3>
+  <%= render "errors", record: case_medium %>
+  <%= form_with model: case_medium, url: media_admin_case_path(case_study), html: { multipart: true }, class: "admin-grid" do |form| %>
+    <div class="admin-grid two">
+      <div class="admin-field">
+        <%= form.label :kind %>
+        <%= form.select :kind, [["유튜브", "youtube"], ["PDF", "pdf"], ["HTML", "html"]], {}, class: "admin-input" %>
+      </div>
+      <div class="admin-field">
+        <%= form.label :position %>
+        <%= form.number_field :position, class: "admin-input" %>
+      </div>
+      <div class="admin-field">
+        <%= form.label :title %>
+        <%= form.text_field :title, class: "admin-input" %>
+      </div>
+      <div class="admin-field">
+        <%= form.label :caption %>
+        <%= form.text_field :caption, class: "admin-input" %>
+      </div>
+      <div class="admin-field">
+        <%= form.label :youtube_url %>
+        <%= form.url_field :youtube_url, class: "admin-input", placeholder: "https://www.youtube.com/watch?v=..." %>
+      </div>
+      <div class="admin-field">
+        <%= form.label :pdf %>
+        <%= form.file_field :pdf, accept: "application/pdf", class: "admin-input" %>
+      </div>
+    </div>
+    <div class="admin-field">
+      <%= form.label :embed_html %>
+      <%= form.text_area :embed_html, rows: 7, class: "admin-input" %>
+    </div>
+    <div><%= form.submit "매체 추가", class: "btn-rausch" %></div>
+  <% end %>
+</section>

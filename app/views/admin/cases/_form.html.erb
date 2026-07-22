@@ -1,0 +1,73 @@
+<%= render "errors", record: case_study %>
+
+<%= form_with model: case_study,
+      url: case_study.persisted? ? admin_case_path(case_study) : admin_cases_path,
+      scope: :case_study, html: { multipart: true }, class: "admin-grid" do |form| %>
+  <div class="card-airbnb admin-grid two">
+    <div class="admin-field">
+      <%= form.label :slug, "슬러그 *" %>
+<%# 하이픈은 문자클래스 끝에 둔다 — 중간이면 v-플래그 정규식에서 범위로 해석돼 콘솔 에러. %>
+      <%= form.text_field :slug, required: true, pattern: "[a-z0-9\\-]+", class: "admin-input", placeholder: "customer-case" %>
+      <p class="type-body-sm text-muted-airbnb mt-2">소문자, 숫자, 하이픈만 사용할 수 있습니다.</p>
+    </div>
+    <div class="admin-field">
+      <%= form.label :industry %>
+      <%= form.text_field :industry, class: "admin-input" %>
+    </div>
+    <div class="admin-field">
+      <%= form.label :title_ko, "제목(한국어) *" %>
+      <%= form.text_field :title_ko, required: true, class: "admin-input" %>
+    </div>
+    <div class="admin-field">
+      <%= form.label :title_en %>
+      <%= form.text_field :title_en, class: "admin-input" %>
+    </div>
+    <div class="admin-field">
+      <%= form.label :summary_ko %>
+      <%= form.text_area :summary_ko, rows: 4, class: "admin-input" %>
+    </div>
+    <div class="admin-field">
+      <%= form.label :summary_en %>
+      <%= form.text_area :summary_en, rows: 4, class: "admin-input" %>
+    </div>
+    <div class="admin-field">
+      <%= form.label :body_html_ko %>
+      <%= form.text_area :body_html_ko, rows: 12, class: "admin-input" %>
+    </div>
+    <div class="admin-field">
+      <%= form.label :body_html_en %>
+      <%= form.text_area :body_html_en, rows: 12, class: "admin-input" %>
+    </div>
+  </div>
+
+  <div class="card-airbnb admin-grid two">
+    <div class="admin-field">
+      <%= form.label :hero_image %>
+      <% if case_study.hero_image.attached? %>
+        <p class="type-body-sm text-muted-airbnb mb-2">현재 파일: <%= case_study.hero_image.filename %></p>
+      <% end %>
+      <%= form.file_field :hero_image, accept: "image/*", class: "admin-input" %>
+    </div>
+    <div class="admin-field">
+      <%= form.label :position %>
+      <%= form.number_field :position, class: "admin-input" %>
+    </div>
+    <div class="admin-field">
+      <%= form.label :published_at %>
+      <%= form.datetime_local_field :published_at, class: "admin-input" %>
+    </div>
+    <div class="admin-field">
+      <%= form.label :published do %>
+        <%= form.check_box :published %> 공개 상태
+      <% end %>
+      <% if case_study.persisted? %>
+        <p class="type-body-sm text-muted-airbnb mt-2">좋아요 <%= case_study.likes_count %>개 (읽기 전용)</p>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="admin-actions">
+    <%= form.submit case_study.persisted? ? "변경사항 저장" : "사례 생성", class: "btn-rausch" %>
+    <%= link_to "취소", case_study.persisted? ? admin_case_path(case_study) : admin_cases_path, class: "btn-secondary-airbnb" %>
+  </div>
+<% end %>

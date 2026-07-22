@@ -1,0 +1,10 @@
+<% if record.errors.any? %>
+  <div class="admin-errors" role="alert">
+    <strong>입력 내용을 확인해 주세요.</strong>
+    <ul>
+      <% record.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
