@@ -8,7 +8,7 @@ class Avo::SidebarComponent < Avo::BaseComponent
     "회원 관리" => %w[users]
   }.freeze
 
-  TOOL_ORDER = %w[kpi leads harness_dashboard].freeze
+  TOOL_ORDER = %w[kpi leads content_cases ops_wiki harness_dashboard].freeze
 
   prop :sidebar_open, default: false
   prop :for_mobile, default: false

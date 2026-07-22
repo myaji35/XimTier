@@ -167,7 +167,8 @@ Devise.setup do |config|
 
   # ==> Configuration for :rememberable
   # The time the user will be remembered without asking for credentials again.
-  # config.remember_for = 2.weeks
+  # 관리자 /admin 상시 접근 편의 — "로그인 상태 유지" 체크 시 90일간 재로그인 불요 (XIM-23)
+  config.remember_for = 90.days
 
   # Invalidates all the remember me tokens when the user signs out.
   config.expire_all_remember_me_on_sign_out = true

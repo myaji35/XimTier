@@ -44,7 +44,9 @@
           <p>콘텐츠 운영 화면</p>
         </div>
         <nav>
+          <%= link_to "관리자 홈 (/admin)", "/admin" %>
           <%= link_to "사례 콘텐츠", admin_cases_path, class: "active" %>
+          <%= link_to "운영관리 위키", admin_wiki_path %>
           <%= link_to "공개 사례 보기", case_studies_path(locale: :ko), target: "_blank", rel: "noopener" %>
         </nav>
         <div class="account"><%= current_user.display_name %></div>
