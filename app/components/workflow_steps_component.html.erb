@@ -1,17 +1,27 @@
-<div class="grid grid-cols-1 md:grid-cols-5" style="gap:16px;">
+<div data-controller="workflow-steps"
+     data-workflow-steps-active-key-value=""
+     class="grid grid-cols-1 md:grid-cols-5" style="gap:16px;">
   <% steps.each_with_index do |step, i| %>
     <% is_core = step["sub"].to_s.include?("★") || step[:sub].to_s.include?("★") %>
+    <% key       = step["key"]   || step[:key] || "step-#{i + 1}" %>
     <% sub_text  = step["sub"]   || step[:sub] %>
     <% title     = step["title"] || step[:title] %>
     <% desc      = step["desc"]  || step[:desc] %>
 
-    <div class="relative rounded-[14px] p-5 transition" style="
-        background: <%= is_core ? 'linear-gradient(135deg, rgba(37,99,235,0.12), rgba(0,200,200,0.10))' : card_bg %>;
-        border: 1.5px solid <%= is_core ? '#2563EB' : card_border %>;
-        <%= 'box-shadow: 0 8px 32px -12px rgba(37,99,235,0.45);' if is_core %>
+    <article data-workflow-steps-target="card"
+             data-key="<%= key %>"
+             data-step-index="<%= i %>"
+             data-core="<%= is_core %>"
+             tabindex="0" role="group"
+             aria-label="단계 <%= i + 1 %>: <%= title %>"
+             data-action="mouseenter->workflow-steps#highlight mouseleave->workflow-steps#release focus->workflow-steps#highlight blur->workflow-steps#release click->workflow-steps#toggle keydown.enter->workflow-steps#toggle keydown.right->workflow-steps#navigate keydown.left->workflow-steps#navigate keydown.home->workflow-steps#navigate keydown.end->workflow-steps#navigate"
+             class="workflow-card relative rounded-[14px] p-5 transition" style="
+        background: <%= is_core ? 'linear-gradient(135deg, rgba(255,56,92,0.12), rgba(255,56,92,0.06))' : card_bg %>;
+        border: 1.5px solid <%= is_core ? 'rgba(255,56,92,0.72)' : card_border %>;
+        <%= 'box-shadow: 0 8px 32px -12px rgba(255,56,92,0.38);' if is_core %>
       ">
       <%# Step index %>
-      <div class="font-mono text-[11px] mb-3" style="color:<%= is_core ? '#2563EB' : muted_color %>; letter-spacing:0.12em;">
+      <div class="font-mono text-[11px] mb-3" style="color:<%= is_core ? 'var(--color-rausch, #ff385c)' : muted_color %>; letter-spacing:0.12em;">
         STEP / <%= format('%02d', i + 1) %>
       </div>
 
@@ -20,25 +30,25 @@
       </h4>
 
       <% if sub_text %>
-        <div class="mt-1 font-mono text-[11px]" style="color:<%= is_core ? '#00C8C8' : muted_color %>;">
+        <div data-workflow-sub class="mt-1 font-mono text-[11px]" style="color:<%= is_core ? 'var(--color-rausch, #ff385c)' : muted_color %>;">
           <%= sub_text %>
         </div>
       <% end %>
 
       <% if desc %>
-        <p class="mt-3 text-[13px] leading-relaxed" style="color:<%= muted_color %>;">
+        <p data-workflow-desc class="mt-3 text-[13px] leading-relaxed" style="color:<%= muted_color %>;">
           <%= desc %>
         </p>
       <% end %>
 
       <%# Arrow between steps (desktop only) %>
       <% unless i == steps.size - 1 %>
-        <div class="hidden md:block absolute" style="right:-12px; top:50%; transform:translateY(-50%); color:<%= muted_color %>; z-index:1;">
+        <div data-workflow-steps-target="arrow" data-pair-from="<%= key %>" class="workflow-arrow hidden md:block absolute" style="right:-12px; top:50%; transform:translateY(-50%); color:<%= muted_color %>; z-index:1;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
             <path d="M5 12h14m-5-5l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
       <% end %>
-    </div>
+    </article>
   <% end %>
 </div>

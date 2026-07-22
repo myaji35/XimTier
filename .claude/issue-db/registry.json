@@ -375,7 +375,7 @@
       "description": "_workspace/xim-12-interactive-svg-spec.md §2 — workflow_steps 컨트롤러 + ★ Reverse 카드 pulse + 카드 hover translateY + 좌→우 stagger fade-in.",
       "agent": "agent-harness",
       "priority": "P2",
-      "status": "READY",
+      "status": "IN_PROGRESS",
       "depth": 0,
       "depends_on": [
         "ISS-010"
@@ -394,7 +394,8 @@
         "interactive"
       ],
       "created_at": "2026-05-18T01:40:00Z",
-      "last_dispatched_at": "2026-07-20T18:41:25"
+      "last_dispatched_at": "2026-07-20T18:41:25",
+      "started_at": "2026-07-22T18:38:27.191106+09:00"
     },
     {
       "id": "ISS-012",
@@ -568,7 +569,7 @@
       "description": "4개 ViewComponent(hero/cta/card/brand_logo)의 erb/ruby를 v0.5.0 시스템(canvas + Rausch primary + ink 텍스트)로 교체. Hero는 section-dark 폐기 → canvas + 28px h1 + 아래에 search-pill or pill-rausch CTA. CTA는 .btn-rausch / .btn-secondary-airbnb 사용. Card는 .card-airbnb + .shadow-card-hover. Logo는 Rausch 워드마크 1차 검토 (X 4-blade 유지 여부는 후속).",
       "agent": "agent-harness",
       "priority": "P1",
-      "status": "READY",
+      "status": "COMPLETED",
       "depth": 0,
       "depends_on": [
         "ISS-012a"
@@ -591,7 +592,11 @@
         "brand-dna-v0.5"
       ],
       "created_at": "2026-05-18T03:00:00Z",
-      "last_dispatched_at": "2026-07-20T19:01:51"
+      "last_dispatched_at": "2026-07-22T18:36:21",
+      "completed_at": "2026-07-22T18:37:05.272922+09:00",
+      "result": {
+        "note": "위임前 검수에서 기완료 확인 — 4개 컴포넌트(hero/cta/card/brand_logo) 모두 v0.5.0 적용 상태(surface-canvas/text-rausch/type-*), 구 클래스(section-dark/brand-grad/btn-grad) 0건. ISS-012c 수행 시 함께 처리됨. 코드 변경 불필요."
+      }
     },
     {
       "id": "ISS-012c",
@@ -986,16 +991,20 @@
       "title": "[CI] RSpec test 잡 FrozenError — eager_load_paths unshift (배포 전부터 존재하던 기존 버그)",
       "description": "CI test 잡이 config/environment.rb initialize! 중 FrozenError(can't modify frozen Array: eager_load_paths)로 37개 스펙이 로드 전 실패. rails/engine.rb:578 unshift. 우리 CASES/배포 커밋과 무관 — 7/16 XIM-16 커밋도 이미 CI failure. GitHub Actions runner의 eager_load=true 환경에서만 발생(로컬 dev 재현 안 됨). 추가로 admin_wiki.password 미설정 에러도 있음(bin/set-admin-wiki-pw 미실행 또는 CI env 누락). wait-for-ci 게이트가 CI 성공을 강제하지 않아 배포는 진행되지만, test 신뢰도 위해 수정 필요. 어떤 initializer가 frozen eager_load_paths에 경로 추가하는지 추적할 것.",
       "priority": "P2",
-      "status": "READY",
+      "status": "BLOCKED",
       "assign_to": "agent-harness",
       "depth": 0,
       "retry_count": 0,
       "parent_id": null,
-      "depends_on": [],
+      "depends_on": [
+        "ISS-029"
+      ],
       "created_at": "2026-07-19T07:23:21Z",
-      "started_at": null,
+      "started_at": "2026-07-22T18:37:17.847152+09:00",
       "completed_at": null,
-      "result": null,
+      "result": {
+        "note": "로컬 CI=1 부팅 재현 실패(boot-ok), gh 토큰 401로 Actions 로그·재실행 관측 불가. 수정해도 검증 불가하므로 ISS-029(gh/GHCR 토큰 갱신, AWAITING_USER) 해소 후 재개."
+      },
       "source": "deploy-diagnosis-2026-07-19",
       "payload": {
         "scope_dir": "config"
@@ -1982,6 +1991,7 @@
     "issues": []
   },
   "rewake_state": {
-    "ISS-001": 4
+    "ISS-001": 4,
+    "ISS-012b": 1
   }
 }
