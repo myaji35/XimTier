@@ -1,8 +1,8 @@
 ko:
   cases_gallery:
-    eyebrow: "CASES & MEDIA"
+    eyebrow: "CASES"
     h1: "사례와 홍보 콘텐츠"
-    lead: "XimTier의 실제 활용 사례와 영상·자료를 한 곳에서 만나보세요."
+    lead: "XimTier의 실제 활용 사례를 한 곳에서 만나보세요."
     sort_recent: "최신순"
     sort_likes: "좋아요순"
     filter_all: "전체"
