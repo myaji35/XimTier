@@ -76,7 +76,11 @@ ko:
       - { id: "moat",         label: "08 · Moat" }
       - { id: "cta",          label: "09 · CTA" }
     footer:
-      copyright: "© 2025 XimTier (Gagahoho, Inc.) · All rights reserved."
+      copyright: "© 2026 주식회사 심티어(XimTier) · All rights reserved."
+      company_name: "주식회사 심티어(XimTier)"
+      ceo: "대표이사 한일"
+      biz_no: "사업자등록번호 196-87-03935"
+      address: "서울특별시 동작구 신대방1가길 38, 105동 517호"
     regulation_strip:
       label: 규제 키워드
       keywords: ["EU AI Act 2026", "한국 AI 기본법", "AI Bill of Rights", "ISO/IEC 42001"]

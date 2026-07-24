@@ -76,7 +76,11 @@ en:
       - { id: "moat",         label: "08 · Moat" }
       - { id: "cta",          label: "09 · CTA" }
     footer:
-      copyright: "© 2025 XimTier (Gagahoho, Inc.) · All rights reserved."
+      copyright: "© 2026 XimTier Inc. · All rights reserved."
+      company_name: "XimTier Inc. (주식회사 심티어)"
+      ceo: "CEO Han Il"
+      biz_no: "Business Reg. No. 196-87-03935"
+      address: "517, 105-dong, 38 Sindaebang 1ga-gil, Dongjak-gu, Seoul, Korea"
     regulation_strip:
       label: Regulation
       keywords: ["EU AI Act 2026", "Korea AI Framework Act", "US AI Bill of Rights", "ISO/IEC 42001"]
