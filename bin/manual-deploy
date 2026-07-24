@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+# manual-deploy — kamal 레지스트리 로그인(denied) 우회 수동 배포
+#
+# 배경: `kamal deploy`가 원격 `docker login ghcr.io`에서 denied로 실패한다
+#       (KAMAL_REGISTRY_PASSWORD/gh 토큰 스코프 문제). 이미지 빌드·푸시는 되고
+#       서버는 pull이 되므로, 컨테이너 스왑만 손으로 한다.
+#       근본 수리(GHCR_TOKEN 재발급 등)는 대표님 계정 권한 필요 → ISS-057 참조.
+#
+# 이 앱은 SQLite(볼륨 ximtier_storage)라 두 컨테이너가 동시에 DB를 잡으면
+# "database is locked"가 난다. 그래서 반드시 old 정지 → new 기동 순서를 지킨다.
+#
+# 사용법: bin/manual-deploy            (HEAD SHA로 배포)
+#         bin/manual-deploy <SHA>      (특정 커밋 배포)
+set -euo pipefail
+
+HOST=158.247.235.31
+REPO=ghcr.io/myaji35/ximtier
+SERVICE=ximtier-web
+SHA="${1:-$(git rev-parse HEAD)}"
+NET=kamal
+DOMAINS=(ximtier.com www.ximtier.com ximtier.158.247.235.31.nip.io)
+
+# deploy.yml env.clear 값 (DB_HOST 빈값 포함 — SQLite라 DB 컨테이너 없음)
+CLEAR=(
+  -e SOLID_QUEUE_IN_PUMA=true -e RAILS_ENV=production -e PORT=3000
+  -e XIMTIER_SAAS_URL=https://ximtier-saas.158.247.235.31.nip.io
+  -e WEB_CONCURRENCY=1 -e RAILS_SERVE_STATIC_FILES=true -e RAILS_LOG_TO_STDOUT=true
+  -e DB_HOST= -e APP_HOST=ximtier.com -e APP_PROTOCOL=https
+  -e SMTP_HOST=smtp.gmail.com -e SMTP_PORT=587 -e SMTP_DOMAIN=ximtier.com
+  -e SMTP_AUTH=plain -e SMTP_STARTTLS=true -e PLAUSIBLE_DOMAIN=
+)
+ENVFILE=/root/.kamal/apps/ximtier/env/roles/web.env
+VOL="ximtier_storage:/rails/storage"
+
+echo "==> 배포 SHA: $SHA"
+
+echo "==> [1/6] 이미지 빌드+푸시 (kamal build push)"
+kamal build push
+
+echo "==> [2/6] 서버에서 새 이미지 pull"
+ssh "root@$HOST" "docker pull $REPO:$SHA >/dev/null 2>&1 && echo pulled"
+
+OLD=$(ssh "root@$HOST" "docker ps --filter name=$SERVICE --format '{{.Names}}' | grep -v staging | grep -v $SHA | head -1" || true)
+echo "==> [3/6] 기존 컨테이너 정지 (SQLite 락 해제): ${OLD:-none}"
+[ -n "$OLD" ] && ssh "root@$HOST" "docker stop $OLD >/dev/null 2>&1 || true"
+
+echo "==> [4/6] 새 컨테이너 기동"
+ssh "root@$HOST" "docker rm -f $SERVICE-$SHA >/dev/null 2>&1 || true
+docker run -d --name $SERVICE-$SHA --network $NET --restart unless-stopped \
+  --env-file $ENVFILE -v $VOL ${CLEAR[*]} \
+  -e KAMAL_CONTAINER_NAME=$SERVICE-$SHA -e KAMAL_VERSION=$SHA --label service=ximtier \
+  $REPO:$SHA ./bin/thrust ./bin/rails server >/dev/null && echo started"
+
+echo "==> [5/6] 헬스체크 대기 (rails 부팅 ~40s)"
+ssh "root@$HOST" "for i in \$(seq 1 15); do sleep 5;
+  c=\$(docker exec $SERVICE-$SHA sh -c 'curl -s -o /dev/null -w %{http_code} http://localhost:80/up' 2>/dev/null);
+  echo \"  try\$i: \$c\"; [ \"\$c\" = 200 ] && break; done"
+
+echo "==> [6/6] kamal-proxy 재지정 + old 제거"
+HOST_ARGS=""; for d in "${DOMAINS[@]}"; do HOST_ARGS="$HOST_ARGS --host $d"; done
+ssh "root@$HOST" "docker exec kamal-proxy kamal-proxy deploy $SERVICE \
+  --target $SERVICE-$SHA:80 $HOST_ARGS --health-check-path /up --deploy-timeout 30s"
+[ -n "$OLD" ] && ssh "root@$HOST" "docker rm $OLD >/dev/null 2>&1 || true"
+
+echo "==> 외부 검증"
+for d in ximtier.com www.ximtier.com; do
+  code=$(curl -sS -o /dev/null -w "%{http_code}" --max-time 15 "https://$d/up" || echo ERR)
+  echo "  https://$d/up → $code"
+done
+echo "==> 완료. 배포 SHA=$SHA"
