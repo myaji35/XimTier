@@ -152,6 +152,20 @@ jobs:
             exit 1
           }
 
+      # 시크릿이 러너에 실제로 도달하는지 확인한다. 값은 절대 찍지 않고 길이만 본다.
+      # 3회 연속 ghcr denied 가 났는데 같은 토큰이 로컬에선 push 권한(202)이 확인돼,
+      # 값 자체가 아니라 "전달"이 끊긴 경우를 배제하기 위한 진단이다.
+      - name: Registry secret 도달 확인
+        env:
+          KAMAL_REGISTRY_PASSWORD: ${{ secrets.GHCR_PAT }}
+        run: |
+          echo "GHCR_PAT 길이: ${#KAMAL_REGISTRY_PASSWORD}"
+          echo "secrets-common 내 길이: $(grep '^KAMAL_REGISTRY_PASSWORD=' .kamal/secrets-common | cut -d= -f2- | wc -c)"
+          if [ -z "$KAMAL_REGISTRY_PASSWORD" ]; then
+            echo "::error::GHCR_PAT 이 비어 있다 — 시크릿이 러너에 전달되지 않았다."
+            exit 1
+          fi
+
       - name: Kamal deploy
         env:
           KAMAL_REGISTRY_PASSWORD: ${{ secrets.GHCR_PAT }}
