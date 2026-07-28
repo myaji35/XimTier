@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # avo-3.32.1 에서 eject — 메뉴 그룹/순서 커스텀 (ISS-028). gem 업그레이드 시 원본과 diff 확인 필요
 
 class Avo::SidebarComponent < Avo::BaseComponent

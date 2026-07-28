@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     get "/why-not-llm",  to: "pages#why_not_llm", as: :why_not_llm
     get "/use-cases",    to: "pages#use_cases",    as: :use_cases
     get "/cases/:slug",  to: "pages#case_study",   as: :case_study,
-        constraints: { slug: /manufacturing|hospital|public|smart-city|finance|retail|logistics|energy|education|telecom/ }
+        constraints: { slug: /manufacturing|hospital|public|smart-city|finance|retail|logistics|energy|education|telecom|ga-branch/ }
 
     # Cases 갤러리 (사례·홍보 미디어) — 운영자 등록 / 누구나 열람
     get  "/cases",              to: "case_studies#index",   as: :case_studies
@@ -63,7 +63,6 @@ Rails.application.routes.draw do
     get "/v3/usage",     to: "pages#v3_usage",     as: :v3_usage
     # v3 항목별 PPTX 근거 상세 (drill-down)
     get "/v3/detail/:slug", to: "pages#v3_detail", as: :v3_detail
-
   end
 
   # Admin Wiki (Basic auth — single password gate, bypasses Devise)

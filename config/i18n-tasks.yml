@@ -247,3 +247,8 @@ ignore_missing:
   # 화면에 노출되지 않는다(실사용 중인 것은 별도 키 v3.versus). 작성하다 만 콘텐츠로 보인다.
   # 영문을 채울지 키를 지울지는 콘텐츠 판단이므로 여기서 결정하지 않고 예외로 둔다.
   - 'v3.versus_pptx.*'
+  # avo 관리자 UI 번역은 avo gem + config/locales/avo.ko.yml 이 제공하는데,
+  # 그 파일들은 위 read 경로(%{locale}.yml / %{locale}/*.yml)에 걸리지 않아
+  # i18n-tasks 만 "누락"으로 오판한다(런타임에는 Rails 가 정상 로드).
+  # 관리자 화면은 ko 전용 운영이므로 en 번역도 불필요하다.
+  - 'avo.*'
