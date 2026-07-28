@@ -22,12 +22,22 @@ export default class extends Controller {
     try {
       const raw = localStorage.getItem(this.STORAGE_KEY)
       if (raw) return { ...this.DEFAULTS, ...JSON.parse(raw) }
-    } catch (_e) {}
+    } catch (e) {
+      // localStorage 미가용(프라이빗 모드·용량 초과)은 정상 실패다.
+      // 동작은 유지하되 침묵하지 않는다 — 실패경로 4문항 ②
+      console.warn("[tweaks] localStorage 접근 실패", e)
+    }
     return { ...this.DEFAULTS }
   }
 
   save() {
-    try { localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.state)) } catch (_e) {}
+    try {
+      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.state))
+    } catch (e) {
+      // localStorage 미가용(프라이빗 모드·용량 초과)은 정상 실패다.
+      // 동작은 유지하되 침묵하지 않는다 — 실패경로 4문항 ②
+      console.warn("[tweaks] localStorage 접근 실패", e)
+    }
   }
 
   apply() {

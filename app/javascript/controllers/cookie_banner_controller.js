@@ -20,7 +20,13 @@ export default class extends Controller {
   }
 
   accept() {
-    try { localStorage.setItem(this.STORAGE_KEY, "ack") } catch (_e) {}
+    try {
+      localStorage.setItem(this.STORAGE_KEY, "ack")
+    } catch (e) {
+      // localStorage 미가용(프라이빗 모드·용량 초과)은 정상 실패다.
+      // 동작은 유지하되 침묵하지 않는다 — 실패경로 4문항 ②
+      console.warn("[cookie-banner] localStorage 접근 실패", e)
+    }
     this.bannerTarget.style.transform = "translateY(120%)"
     this.bannerTarget.style.opacity = "0"
     setTimeout(() => { this.bannerTarget.style.display = "none" }, 300)
