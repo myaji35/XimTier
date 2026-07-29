@@ -158,11 +158,35 @@ jobs:
       - name: Registry secret 도달 확인
         env:
           KAMAL_REGISTRY_PASSWORD: ${{ secrets.GHCR_PAT }}
+          # config/deploy.yml 의 registry.username 과 image 좌표에 맞춘다.
+          KAMAL_REGISTRY_USERNAME: myaji35
+          GHCR_REPO: myaji35/ximtier
         run: |
           echo "GHCR_PAT 길이: ${#KAMAL_REGISTRY_PASSWORD}"
           echo "secrets-common 내 길이: $(grep '^KAMAL_REGISTRY_PASSWORD=' .kamal/secrets-common | cut -d= -f2- | wc -c)"
           if [ -z "$KAMAL_REGISTRY_PASSWORD" ]; then
             echo "::error::GHCR_PAT 이 비어 있다 — 시크릿이 러너에 전달되지 않았다."
+            exit 1
+          fi
+
+          # 길이만으로는 만료·무효 토큰을 걸러내지 못한다(gho_/ghp_ 모두 40자).
+          # docker login 과 동일한 경로로 push scope 토큰을 받아 blob upload 를 개시해
+          # "실제로 밀어넣을 수 있는 토큰인가"를 확인한다. 값은 절대 출력하지 않는다.
+          B64=$(printf '%s:%s' "$KAMAL_REGISTRY_USERNAME" "$KAMAL_REGISTRY_PASSWORD" | base64 -w0)
+          RT=$(curl -sS -H "Authorization: Basic ${B64}" \
+                "https://ghcr.io/token?service=ghcr.io&scope=repository:${GHCR_REPO}:pull,push" \
+               | python3 -c 'import json,sys; print(json.load(sys.stdin).get("token",""))')
+          if [ -z "$RT" ]; then
+            echo "::error::GHCR 토큰 교환 실패 — GHCR_PAT 이 유효하지 않다."
+            exit 1
+          fi
+          PUSH_CODE=$(curl -sS -o /dev/null -w '%{http_code}' -X POST \
+            -H "Authorization: Bearer ${RT}" \
+            "https://ghcr.io/v2/${GHCR_REPO}/blobs/uploads/")
+          echo "blob upload 개시 HTTP: ${PUSH_CODE}"
+          if [ "$PUSH_CODE" != "202" ]; then
+            echo "::error::GHCR push 권한 없음(HTTP ${PUSH_CODE}). GHCR_PAT 이 만료됐거나 write:packages 스코프가 없다."
+            echo "::error::복구: github.com/settings/tokens 에서 write:packages 스코프 classic PAT 발급 후 'gh secret set GHCR_PAT'."
             exit 1
           fi
 
