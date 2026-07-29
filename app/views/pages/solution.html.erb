@@ -54,6 +54,39 @@
   </div>
 </section>
 
+<%# Prescription — 진단이 아니라 처방 (ISS-051) %>
+<section class="section-dark section-pad">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span><%= t("solution.prescription.eyebrow") %></div>
+    <h2 class="h-section mt-3" style="color:#fff; max-width:920px;"><%= t("solution.prescription.h2") %></h2>
+    <p class="lead mt-5" style="color:#a7b1c7; max-width:760px;"><%= t("solution.prescription.lead") %></p>
+
+    <div class="mt-12 p-8" style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:14px; max-width:860px;">
+      <div class="h-card" style="color:#fff;"><%= t("solution.prescription.gap_title") %></div>
+      <p class="mt-4" style="color:#a7b1c7; line-height:1.75;"><%= t("solution.prescription.gap_body") %></p>
+      <blockquote class="mt-6 pl-5" style="border-left:3px solid; border-image:linear-gradient(135deg,#2563EB,#00C8C8) 1;">
+        <p class="text-[17px] italic" style="color:#e6e8f0;"><%= t("solution.prescription.gap_quote") %></p>
+      </blockquote>
+    </div>
+
+    <div class="h-card mt-14" style="color:#fff;"><%= t("solution.prescription.steps_title") %></div>
+    <div class="mt-8 grid gap-5" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); max-width:1000px;">
+      <% t("solution.prescription.steps").each_with_index do |step, i| %>
+        <div class="p-6" style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:14px;">
+          <div class="font-mono text-[11px] text-brand-grad" style="letter-spacing:0.14em;">STEP <%= i + 1 %></div>
+          <div class="mt-2 text-[17px] font-semibold" style="color:#fff;"><%= step[:title] %></div>
+          <p class="mt-3 text-[14px]" style="color:#a7b1c7; line-height:1.7;"><%= step[:desc] %></p>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="mt-12 p-7" style="background:rgba(0,200,200,0.07); border:1px solid rgba(0,200,200,0.28); border-radius:14px; max-width:860px;">
+      <div class="text-[17px] font-semibold" style="color:#fff;"><%= t("solution.prescription.honesty_title") %></div>
+      <p class="mt-3" style="color:#a7b1c7; line-height:1.75;"><%= t("solution.prescription.honesty_body") %></p>
+    </div>
+  </div>
+</section>
+
 <%# 5-step workflow %>
 <section class="section-tinted section-pad-compact">
   <div class="wrap">

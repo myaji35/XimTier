@@ -24,6 +24,25 @@ en:
           xst: "Industry-vertical depth — manufacturing, hospital, public"
         - llm: Cannot satisfy regulated XAI duty
           xst: "Same input → same output — reproducible consistency"
+    prescription:
+      eyebrow: Prescription, not diagnosis
+      h2: Most AI reports stop at "we hit 0.9 accuracy"
+      lead: What the operations director wants to know is what to change on Monday.
+      gap_title: The top-ranked driver is not an action item
+      gap_body: In an analysis of 480 convenience stores, the #1 and #3 drivers were office-district location (0.172) and competitors within 300m (0.135). Neither can be changed. You cannot relocate a store that's already open, and you cannot remove the competitor that opened next door.
+      gap_quote: "\"Location matters\" is a correct finding but an unusable one. A report that skips this distinction leaves the reader asking, \"So what am I supposed to do?\""
+      steps_title: How XimTier goes one step further
+      steps:
+        - title: Keep only what can be changed
+          desc: Each variable is judged for controllability. Location and competitor count are excluded; cleanliness scores, promo execution rate, and order accuracy become action candidates.
+        - title: Strip out variables that already contain the outcome
+          desc: Post-hoc fields like monthly settlement and revenue rank are removed from training. Including them pushes accuracy to 1.000 while telling you nothing.
+        - title: Quantify the gap
+          desc: Stores in the top third of promo execution show a +23.1%p higher rate of being top performers than the bottom third — 1.8× the odds.
+        - title: Turn the unchangeable into targeting
+          desc: The 180 stores with 3+ nearby competitors perform at one third the rate of zero-competitor stores. Concentrating support there beats spreading it evenly.
+      honesty_title: When we don't know, we say so
+      honesty_body: If the predictive basis is too weak or a range has no data, the output is "cannot compute." We do not fill blanks with averages or defaults. Excluded variables are shown along with the reason they were excluded.
   workflow:
     steps:
       - title: Data Exploration
