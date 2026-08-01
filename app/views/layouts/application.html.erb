@@ -49,6 +49,8 @@
     <%# JSON-LD 구조화 데이터 (SEO) %>
     <%= jsonld_script(organization_jsonld) %>
     <%= jsonld_script(website_jsonld) %>
+    <%# 제품 엔티티를 검색엔진에 일관되게 전달하기 위해 전 페이지에 삽입 %>
+    <%= jsonld_script(software_application_jsonld) %>
     <%= yield :jsonld %>
 
     <%# Plausible Analytics — ENV PLAUSIBLE_DOMAIN 설정 시만 활성 %>
