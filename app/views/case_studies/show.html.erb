@@ -1,4 +1,4 @@
-<% content_for :title, "#{@case.title} — #{t('site.brand')}" %>
+<% content_for :title, @case.title %>
 <% content_for :description, @case.summary %>
 <% og_image = if @case.hero_image.attached?
                 "#{request.base_url}#{url_for(@case.hero_image)}"
