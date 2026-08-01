@@ -65,6 +65,11 @@
         gtag('config', '<%= ENV["GA4_MEASUREMENT_ID"] %>', { 'anonymize_ip': true });
       </script>
     <% end %>
+
+    <%# 네이버 서치어드바이저 소유확인 — ENV 설정 시만 활성 %>
+    <% if ENV["NAVER_SITE_VERIFICATION"].present? %>
+      <meta name="naver-site-verification" content="<%= ENV['NAVER_SITE_VERIFICATION'] %>">
+    <% end %>
   </head>
 
   <body class="surface-canvas">

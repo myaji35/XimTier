@@ -70,6 +70,8 @@ env:
     SMTP_STARTTLS: "true"
     PLAUSIBLE_DOMAIN: ""
     GA4_MEASUREMENT_ID: ""
+    # 네이버 서치어드바이저 — 네이버 발급값 입력 (스테이징은 빈 값 유지)
+    NAVER_SITE_VERIFICATION: ""
     # robots.txt는 staging에서 강제 Disallow (production.rb에서 APP_ENV 분기).
     ROBOTS_DISALLOW_ALL: "true"
 
