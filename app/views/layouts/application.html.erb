@@ -76,9 +76,7 @@
          [t("v3nav.analysis"),  v3_analysis_path(locale: I18n.locale)],
          [t("v3nav.solutions"), v3_solutions_path(locale: I18n.locale)],
          [t("v3nav.usage"),     v3_usage_path(locale: I18n.locale)],
-         [t("v3nav.cases"),     case_studies_path(locale: I18n.locale)],
-         [t("site.nav.how_it_works"), how_it_works_path(locale: I18n.locale)],
-         [t("site.nav.why_not_llm"),  why_not_llm_path(locale: I18n.locale)]
+         [t("v3nav.cases"),     case_studies_path(locale: I18n.locale)]
        ] %>
     <header class="nav-sticky" data-controller="nav-menu">
       <div class="wrap flex items-center justify-between" style="height:68px;">
@@ -86,7 +84,7 @@
           <%= render BrandLogoComponent.new(variant: :light, size: 28) %>
         <% end %>
 
-        <nav class="hidden md:flex items-center" style="gap:22px;">
+        <nav class="hidden md:flex items-center" style="gap:30px;">
           <% nav_links.each do |label, path| %>
             <%= link_to label, path, class: "type-body-sm text-body-airbnb hover:text-ink-airbnb transition" %>
           <% end %>
