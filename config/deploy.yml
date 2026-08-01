@@ -88,7 +88,8 @@ env:
     SMTP_STARTTLS: "true"
     # Plausible — 도메인 결정 후 활성
     PLAUSIBLE_DOMAIN: ""
-    GA4_MEASUREMENT_ID: ""
+    # GA4 — XimTier 프로덕션 웹 속성
+    GA4_MEASUREMENT_ID: "G-Q2EYN13CYN"
 
 # SQLite + Active Storage volume
 volumes:

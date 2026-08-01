@@ -19,3 +19,9 @@ production:
   purge_expired_records:
     class: PurgeExpiredRecordsJob
     schedule: every day at 4am
+
+  # 실패 잡이 알림 없이 누적되지 않도록 매시간 확인한다 (ISS-141).
+  # 로그의 [MonitorFailedJobs] 와 ADMIN_EMAIL 알림으로 확인할 것.
+  monitor_failed_jobs:
+    class: MonitorFailedJobsJob
+    schedule: every hour
