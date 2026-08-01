@@ -2,7 +2,7 @@ en:
   privacy_page:
     eyebrow: Privacy Policy
     h1: Privacy Policy
-    lead: "Last updated: 2026-07-16. XimTier complies with Korea PIPA and EU GDPR."
+    lead: "Last updated: 2026-08-01. XimTier complies with Korea PIPA and EU GDPR."
     sections:
       - title: "1. Information We Collect"
         body: |
@@ -11,7 +11,7 @@ en:
           - Contact inquiries: name, email, company, industry, message
           - IR downloads: name, email, company, role
           - Auto-collected: web server access logs (IP, timestamp, request path) — for security and troubleshooting
-          We do not use visitor tracking or behavioural analytics tools.
+          We use Google Analytics 4 to collect anonymized aggregate statistics such as visit counts, country, referral source, and device; IP addresses are anonymized.
       - title: "2. Purpose of Collection"
         body: |
           - Responding to demo requests and inquiries; scheduling
@@ -23,12 +23,14 @@ en:
           - Inquiries: 1 year after submission
           - IR deck requests: 1 year after submission. The download link itself expires 24 hours after issuance.
           - Web server access logs: deleted automatically after 14 days
+          - Google Analytics data: deleted automatically after 14 months
           Records past these periods are purged automatically every day.
       - title: "4. Third-party Sharing"
         body: |
           XimTier does not share personal information with third parties, except:
           - Required by law or investigation
           - Service operation processing (Postmark/SendGrid for email — announced after domain confirmation)
+          - Google LLC (Google Analytics 4 — web usage analytics, transferred internationally to the United States)
       - title: "5. User Rights"
         body: |
           You may exercise the following rights at any time.
@@ -38,13 +40,15 @@ en:
           Rights requests: contact@ximtier.io
       - title: "6. Cookie Policy"
         body: |
-          XimTier uses only the cookies required to run the service.
+          XimTier uses cookies required to run the service and analytics cookies.
           - Session cookie: keeps you signed in. Removed when you close your browser.
           - Remember-me cookie: issued only if you tick "Remember me" at sign-in.
             Expires after 2 weeks, and is removed immediately when you sign out.
           - Like cookie: a random identifier that prevents duplicate likes in the case gallery.
             Expires after 30 days. It does not identify you or track you across other sites.
-          We do not use advertising or behavioural analytics cookies.
+          - Analytics cookie (_ga): a visitor-distinguishing identifier issued by Google Analytics 4.
+            It expires after 2 years and does not identify individuals.
+          We do not use advertising cookies.
       - title: "7. Security Measures"
         body: |
           - In transit: TLS 1.2/1.3 (HTTPS enforced)

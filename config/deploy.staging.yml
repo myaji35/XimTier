@@ -69,6 +69,7 @@ env:
     SMTP_AUTH: "plain"
     SMTP_STARTTLS: "true"
     PLAUSIBLE_DOMAIN: ""
+    GA4_MEASUREMENT_ID: ""
     # robots.txt는 staging에서 강제 Disallow (production.rb에서 APP_ENV 분기).
     ROBOTS_DISALLOW_ALL: "true"
 

@@ -86,6 +86,7 @@ env:
     SMTP_STARTTLS: "true"
     # Plausible — 도메인 결정 후 활성
     PLAUSIBLE_DOMAIN: ""
+    GA4_MEASUREMENT_ID: ""
 
 # SQLite + Active Storage volume
 volumes:
