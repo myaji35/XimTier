@@ -22,6 +22,7 @@ en:
           - Demo requests: 1 year after the meeting concludes (completed or cancelled)
           - Inquiries: 1 year after submission
           - IR deck requests: 1 year after submission. The download link itself expires 24 hours after issuance.
+          - Case gallery comments: published comments are retained until deletion is requested
           - Web server access logs: deleted automatically after 14 days
           - Google Analytics data: deleted automatically after 14 months
           Records past these periods are purged automatically every day.

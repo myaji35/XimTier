@@ -1,6 +1,12 @@
 ko:
   activerecord:
     errors:
+      models:
+        demo_request:
+          attributes:
+            data_file:
+              invalid_content_type: "CSV, XLSX, JSON, TXT, PDF 파일만 첨부할 수 있습니다"
+              file_too_large: "파일 크기는 10MB 이하여야 합니다"
       messages:
         blank: "값을 입력해 주세요"
         taken: "이미 사용 중입니다"
@@ -155,3 +161,12 @@ ko:
       other_than: "%{count}와 달라야 합니다"
       inclusion: "%{value}은(는) 목록에 포함되어 있지 않습니다"
       exclusion: "%{value}은(는) 사용할 수 없는 값입니다"
+en:
+  activerecord:
+    errors:
+      models:
+        demo_request:
+          attributes:
+            data_file:
+              invalid_content_type: "must be a CSV, XLSX, JSON, TXT, or PDF file"
+              file_too_large: "must be 10MB or smaller"
