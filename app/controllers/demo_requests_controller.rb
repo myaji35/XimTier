@@ -7,6 +7,7 @@ class DemoRequestsController < ApplicationController
   def create
     # Honeypot
     if params[:website].present?
+      log_honeypot_submission(form: "demo_request", email: params.dig(:demo_request, :email))
       redirect_to demo_path(locale: I18n.locale), notice: I18n.t("demo.flash.success") and return
     end
 

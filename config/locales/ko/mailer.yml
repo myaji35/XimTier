@@ -20,3 +20,11 @@ ko:
       received:
         subject: "[XimTier] 데모 신청이 접수되었습니다"
         body: "데모 신청을 잘 받았습니다. 1주일 내 담당자가 미팅 일정을 안내드립니다."
+      scheduled:
+        subject: "[XimTier] 데모 미팅이 확정되었습니다"
+        greeting: "%{name}님, 안녕하세요."
+        body: "요청하신 데모 미팅 일정이 확정되었습니다."
+        scheduled_at: "미팅 일시"
+        meeting_url: "미팅 URL"
+        meeting_url_pending: "별도 안내 예정"
+        signature: "— XimTier 팀"

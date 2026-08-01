@@ -26,4 +26,5 @@ ko:
       short: "%m/%d"
   time:
     formats:
+      long: "%Y년 %-m월 %-d일 %H:%M"
       short: "%Y.%m.%d %H:%M"

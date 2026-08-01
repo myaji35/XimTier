@@ -14,6 +14,7 @@ class Avo::Resources::ContactInquiry < Avo::BaseResource
     field :message,  as: :textarea, hide_on: :index
     field :locale,   as: :text
     field :handled,  as: :boolean
+    field :admin_notes, as: :textarea, hide_on: :index
     field :source,   as: :text, hide_on: :index
     field :created_at, as: :date_time, sortable: true, only_on: :index
   end

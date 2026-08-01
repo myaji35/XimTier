@@ -19,6 +19,7 @@ class ContactInquiriesController < ApplicationController
 
     # Honeypot (bots fill this hidden field)
     if params[:website].present?
+      log_honeypot_submission(form: "contact_inquiry", email: params.dig(:contact_inquiry, :email))
       redirect_to contact_path(locale: I18n.locale), notice: I18n.t("contact.flash.success") and return
     end
 

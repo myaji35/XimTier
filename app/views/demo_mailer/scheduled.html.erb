@@ -1,0 +1,19 @@
+<p style="font-family:-apple-system,sans-serif;color:#0B132D;font-size:15px;"><%= t("mailer.demo.scheduled.greeting", name: @user.display_name) %></p>
+<p style="font-family:-apple-system,sans-serif;color:#0B132D;font-size:15px;"><%= t("mailer.demo.scheduled.body") %></p>
+<table style="font-family:-apple-system,sans-serif;font-size:14px;color:#475467;border-collapse:collapse;">
+  <tr>
+    <td style="padding:6px 12px 6px 0;color:#697386;"><%= t("mailer.demo.scheduled.scheduled_at") %></td>
+    <td><%= l(@demo_request.scheduled_at, format: :long) %></td>
+  </tr>
+  <tr>
+    <td style="padding:6px 12px 6px 0;color:#697386;"><%= t("mailer.demo.scheduled.meeting_url") %></td>
+    <td>
+      <% if @demo_request.meeting_url.present? %>
+        <a href="<%= @demo_request.meeting_url %>" style="color:#2563EB;"><%= @demo_request.meeting_url %></a>
+      <% else %>
+        <%= t("mailer.demo.scheduled.meeting_url_pending") %>
+      <% end %>
+    </td>
+  </tr>
+</table>
+<p style="font-family:-apple-system,sans-serif;color:#697386;font-size:13px;"><%= t("mailer.demo.scheduled.signature") %></p>

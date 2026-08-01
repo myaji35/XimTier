@@ -28,7 +28,17 @@ class DemoRequest < ApplicationRecord
   scope :recent, -> { order(created_at: :desc) }
   scope :open,   -> { where(status: %w[pending scheduled]) }
 
+  after_update_commit :send_scheduled_email, if: :newly_scheduled?
+
   private
+
+  def newly_scheduled?
+    saved_change_to_status? && status_before_last_save == "pending" && scheduled?
+  end
+
+  def send_scheduled_email
+    DemoMailer.scheduled(self).deliver_later
+  end
 
   def data_file_is_valid
     return unless data_file.attached?

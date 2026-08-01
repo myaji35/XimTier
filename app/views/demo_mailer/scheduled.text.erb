@@ -1,0 +1,8 @@
+<%= t("mailer.demo.scheduled.greeting", name: @user.display_name) %>
+
+<%= t("mailer.demo.scheduled.body") %>
+
+<%= t("mailer.demo.scheduled.scheduled_at") %>: <%= l(@demo_request.scheduled_at, format: :long) %>
+<%= t("mailer.demo.scheduled.meeting_url") %>: <%= @demo_request.meeting_url.presence || t("mailer.demo.scheduled.meeting_url_pending") %>
+
+<%= t("mailer.demo.scheduled.signature") %>

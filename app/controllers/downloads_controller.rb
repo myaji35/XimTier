@@ -18,6 +18,7 @@ class DownloadsController < ApplicationController
 
     # Honeypot
     if params[:website].present?
+      log_honeypot_submission(form: "download", email: params.dig(:download, :email))
       redirect_to investors_path(locale: I18n.locale), notice: I18n.t("investors.flash.success") and return
     end
 

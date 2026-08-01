@@ -20,3 +20,11 @@ en:
       received:
         subject: "[XimTier] Demo request received"
         body: "Your demo request has been received. We'll contact you within a week to schedule."
+      scheduled:
+        subject: "[XimTier] Your demo meeting is confirmed"
+        greeting: "Hello %{name},"
+        body: "Your requested demo meeting has been confirmed."
+        scheduled_at: "Meeting time"
+        meeting_url: "Meeting URL"
+        meeting_url_pending: "Details will be provided separately"
+        signature: "— The XimTier Team"

@@ -28,4 +28,18 @@ class ApplicationController < ActionController::Base
   def default_url_options
     { locale: I18n.locale }
   end
+
+  def log_honeypot_submission(form:, email:)
+    Rails.logger.warn(
+      "Honeypot submission dropped form=#{form} email=#{masked_email(email)} at=#{Time.current.iso8601}"
+    )
+  end
+
+  def masked_email(email)
+    return "(none)" if email.blank?
+
+    local, domain = email.to_s.split("@", 2)
+    masked = "#{local.first(2)}***"
+    domain.present? ? "#{masked}@#{domain}" : masked
+  end
 end

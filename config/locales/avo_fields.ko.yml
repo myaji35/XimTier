@@ -70,3 +70,7 @@ ko:
       updated_at: "수정일시"
       user_id: "회원"
       youtube_url: "유튜브 URL"
+en:
+  avo:
+    field_translations:
+      admin_notes: "Admin notes"
