@@ -5,7 +5,7 @@ SitemapGenerator::Sitemap.default_host =
   if ENV["APP_HOST"].present?
     "#{ENV.fetch('APP_PROTOCOL', 'https')}://#{ENV['APP_HOST']}"
   else
-    "https://ximtier.io"
+    "https://ximtier.com"
   end
 
 # 우선순위 1.0: 핵심 컨버전, 0.8: 정보, 0.6: 법적
@@ -14,6 +14,7 @@ PUBLIC_PAGES = [
   { path: "/problem",              priority: 0.8, changefreq: "monthly" },
   { path: "/solution",             priority: 0.8, changefreq: "monthly" },
   { path: "/how-it-works",         priority: 0.9, changefreq: "monthly" },
+  { path: "/why-not-llm",          priority: 0.9, changefreq: "monthly" },
   { path: "/use-cases",            priority: 0.8, changefreq: "monthly" },
   { path: "/cases/manufacturing",  priority: 0.7, changefreq: "monthly" },
   { path: "/cases/hospital",       priority: 0.7, changefreq: "monthly" },
@@ -22,6 +23,11 @@ PUBLIC_PAGES = [
   { path: "/cases/ga-branch",      priority: 0.7, changefreq: "monthly" },
   { path: "/pricing",              priority: 0.8, changefreq: "monthly" },
   { path: "/platform-api",         priority: 0.7, changefreq: "monthly" },
+  { path: "/v3/overview",          priority: 0.7, changefreq: "monthly" },
+  { path: "/v3/data",              priority: 0.7, changefreq: "monthly" },
+  { path: "/v3/analysis",          priority: 0.7, changefreq: "monthly" },
+  { path: "/v3/solutions",         priority: 0.7, changefreq: "monthly" },
+  { path: "/v3/usage",             priority: 0.7, changefreq: "monthly" },
   { path: "/company/team",         priority: 0.6, changefreq: "monthly" },
   { path: "/company/vision",       priority: 0.6, changefreq: "monthly" },
   { path: "/company/market",       priority: 0.7, changefreq: "monthly" },

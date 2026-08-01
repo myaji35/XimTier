@@ -11,4 +11,4 @@ Disallow: /ir/
 Crawl-delay: 1
 
 # Sitemap
-Sitemap: https://ximtier.io/sitemap.xml
+Sitemap: https://ximtier.com/sitemap.xml.gz

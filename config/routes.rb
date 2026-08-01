@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
   get "version" => "versions#show"
 
+  # SEO: 비압축 sitemap 요청을 실제 산출물(.gz)로 유도
+  get "/sitemap.xml", to: redirect("/sitemap.xml.gz", status: 301)
+
   # Root: Accept-Language 기반 자동 리디렉트
   root to: redirect { |_params, request|
     lang = request.env["HTTP_ACCEPT_LANGUAGE"].to_s
