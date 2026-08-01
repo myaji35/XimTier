@@ -1,0 +1,131 @@
+# XimTier
+
+XimTier는 제조·의료·금융·공공 산업의 현업 의사결정자를 위한 Post-LLM Decision Intelligence Platform이다. 목표값에서 필요한 변수 조합을 역산하는 Reverse What-If, SHAP 기반의 수학적 설명, 고객사 자체 서버 또는 VPC에서 학습·추론·SHAP 계산을 끝내는 100% 온프레미스 배포를 핵심으로 하며, 비전문가도 평균 5분 안에 결론에 도달하도록 설계되었다. SHAP 값, 모델 카드, 데이터 출처, 결정 로그를 함께 출력해 EU AI Act와 한국 AI 기본법의 설명 가능성 요구에 대응할 수 있다. 포지셔닝은 "Decision Intelligence, Proven by Numbers"이며, 태그라인은 "LLM이 못 푸는 수치를, 우리가 증명한다"이다.
+
+## 핵심 사실
+
+- 표준 PoC 기간은 4~6주다. 1주차에는 데이터 연결과 스키마 검증, 2~3주차에는 모델 학습과 SHAP 분석, 4주차에는 Reverse What-If 시뮬레이션, 5~6주차에는 운영 전환과 임원 보고를 진행한다.
+- Reverse What-If는 목표값에 도달하기 위한 변수별 최적값을 0.18초 안에 자동 산출한다.
+- EU AI Act는 2026년 8월 2일 발효되며, 위반 시 €35,000,000 또는 글로벌 매출의 7%가 부과될 수 있다.
+- XimTier는 EU AI Act Article 13/14를 위한 증거 패키지로 모든 결정에 변수별 기여도와 SHAP 기반 수학적 근거를 자동 첨부한다.
+- 한국 AI 기본법은 2026년 1월 22일부터 시행되며, '인공지능 설명 방안 수립' 의무가 적용되고 안정성·신뢰성 확보 문서를 5년간 보관해야 한다.
+- XimTier는 100% 온프레미스 배포를 기본으로 한다. 모든 학습·추론·SHAP 계산은 고객사 인프라(자체 서버 또는 VPC) 안에서 끝나며, 데이터는 XimTier 클라우드로 전송되지 않는다.
+- ChatGPT·Claude·Gemini는 변수 영향 분석에 환각 위험이 있고, Reverse What-If와 수학적 근거 자동 첨부 및 100% 온프레미스를 지원하지 않는다.
+- BI(Tableau·PowerBI)는 회귀 분석을 통한 변수 영향 분석과 온프레미스를 지원하지만, Reverse What-If와 수학적 근거 자동 첨부는 지원하지 않는다.
+- 일반 ML(DataRobot·H2O)은 변수 영향 분석을 지원하고 Reverse What-If와 온프레미스를 제한적으로 지원하지만, 블랙박스이므로 수학적 근거 자동 첨부는 지원하지 않는다.
+- XimTier는 변수 영향 분석, Reverse What-If, SHAP 기반 수학적 근거 자동 첨부, 100% 온프레미스를 모두 지원한다.
+- XimTier의 5단계 One-Stop 워크플로우는 데이터 탐색 → 통계 분석 → Reverse What-If → 자동 보고서 → AI Q&A 순서다.
+- 편의점 480개 점포 분석에서 오피스 상권(0.172)과 반경 300m 경쟁점 수(0.135)는 영향력 1위와 3위였지만 둘 다 변경할 수 없는 변수였다.
+- 같은 편의점 분석에서 판촉 실행률 하위 33% 대비 상위 33%의 우수점포 비율 격차는 +23.1%p였고, 성실히 실행하는 점포가 우수점포가 될 확률은 1.8배였다.
+
+## 주요 페이지
+
+- https://ximtier.com/ko/why-not-llm — LLM, BI, 일반 ML, XimTier의 기능 비교와 규제 대응 근거.
+- https://ximtier.com/en/why-not-llm — English page comparing LLMs, BI, conventional ML, and XimTier.
+- https://ximtier.com/ko/how-it-works — XimTier의 분석 및 의사결정 과정.
+- https://ximtier.com/en/how-it-works — English overview of how XimTier works.
+- https://ximtier.com/ko/solution — LLM과 XimTier의 역할 및 5단계 One-Stop 워크플로우.
+- https://ximtier.com/en/solution — English overview of the XimTier solution and five-step workflow.
+- https://ximtier.com/ko/pricing — XimTier 가격 안내.
+- https://ximtier.com/en/pricing — XimTier pricing information in English.
+- https://ximtier.com/ko/use-cases — XimTier 활용 사례 안내.
+- https://ximtier.com/en/use-cases — XimTier use cases in English.
+- https://ximtier.com/ko/cases — XimTier 고객 사례 모음.
+- https://ximtier.com/en/cases — XimTier case studies in English.
+
+## 자주 묻는 질문
+
+Q: 우리 회사 데이터를 외부에 보내지 않아도 되나요?
+
+A: 네. XimTier는 온프레미스 100% 배포를 기본으로 합니다. 모든 학습·추론·SHAP 계산이 고객사 인프라(자체 서버 또는 VPC) 안에서 끝납니다. 데이터가 XimTier 클라우드로 전송되지 않습니다.
+
+Q: LLM(ChatGPT, Claude 등)과 어떻게 다른가요?
+
+A: LLM은 언어 모델이고 XimTier는 결정 엔진입니다. LLM은 회귀·SHAP·시계열을 직접 계산하지 못하며, 같은 질문에 매번 다른 답을 줍니다. XimTier는 SHAP 기반의 수학적 설명과 재현 가능한 결과를 제공하므로 EU AI Act·한국 AI 기본법 같은 규제에 대응할 수 있습니다.
+
+Q: Reverse What-If가 정확히 무엇인가요?
+
+A: 전통적인 What-If는 "변수 X를 바꾸면 결과는?"입니다. Reverse What-If는 반대 방향입니다. "불량률을 1.2%로 만들려면 변수들을 어떻게 조합해야 하는가?"처럼 목표 결과를 먼저 정하고, 그 결과를 만들어 내는 변수 조합을 역산합니다.
+
+Q: 도입까지 얼마나 걸리나요?
+
+A: 표준 PoC는 4~6주입니다. 1주차에 데이터 연결과 스키마 검증, 2~3주차에 모델 학습과 SHAP 분석, 4주차에 Reverse What-If 시뮬레이션, 5~6주차에 운영 전환과 임원 보고를 진행합니다.
+
+Q: EU AI Act와 한국 AI 기본법 대응이 정말 가능합니까?
+
+A: 고위험 AI에 요구되는 "설명 가능성"의 핵심은 "입력 변수가 결과에 얼마나 기여했는지"를 수학적으로 보일 수 있어야 한다는 것입니다. XimTier는 SHAP 값과 함께 모델 카드, 데이터 출처, 결정 로그를 함께 출력하므로 감사에 그대로 사용할 수 있습니다.
+
+Q: 비전문가도 직접 사용할 수 있나요?
+
+A: 네. 데이터 사이언티스트가 없는 현업 의사결정자(공장장, 병원장, 정책 담당자)가 직접 사용하도록 설계되었습니다. 5단계 워크플로우(데이터 탐색 → 통계 분석 → Reverse What-If → 자동 보고서 → AI Q&A)가 한 화면에서 끝나며, 평균 5분 안에 결론에 도달합니다.
+
+## 연락처
+
+- 이메일: contact@ximtier.io
+- 문의: https://ximtier.com/ko/contact
+
+# XimTier (English)
+
+XimTier is a Post-LLM Decision Intelligence Platform for decision-makers in manufacturing, healthcare, finance, and the public sector. Its core capabilities are Reverse What-If, which works backward from a target outcome to the required combination of variables; SHAP-based mathematical explainability; and 100% on-premises deployment, where all training, inference, and SHAP computation stays within the customer's own servers or VPC. It is designed to let non-specialists reach a conclusion in an average of five minutes. By producing SHAP values together with model cards, data sources, and decision logs, XimTier can support explainability requirements under the EU AI Act and Korea's AI Basic Act. Its positioning is "Decision Intelligence, Proven by Numbers," and its tagline is "We prove the numbers LLMs can't."
+
+## Key Facts
+
+- A standard proof of concept takes four to six weeks: data connection and schema validation in week 1; model training and SHAP analysis in weeks 2–3; Reverse What-If simulation in week 4; and production transition and executive reporting in weeks 5–6.
+- Reverse What-If automatically calculates the optimal value of each variable needed to reach a target in under 0.18 seconds.
+- The EU AI Act takes effect on August 2, 2026. Violations may incur a fine of €35,000,000 or 7% of global revenue.
+- For an EU AI Act Article 13/14 evidence package, XimTier automatically attaches variable-level contributions and SHAP-based mathematical evidence to every decision.
+- Korea's AI Basic Act took effect on January 22, 2026. It requires an "AI explanation plan," and documents establishing safety and reliability must be retained for five years.
+- XimTier defaults to 100% on-premises deployment. All training, inference, and SHAP computation is completed inside the customer's infrastructure—its own servers or VPC—and data is not transmitted to the XimTier cloud.
+- ChatGPT, Claude, and Gemini carry a hallucination risk for variable-attribution analysis and do not support Reverse What-If, automatic mathematical evidence, or 100% on-premises deployment.
+- BI tools such as Tableau and Power BI support regression-based variable-attribution analysis and on-premises deployment, but not Reverse What-If or automatic mathematical evidence.
+- Conventional ML tools such as DataRobot and H2O support variable-attribution analysis and offer limited Reverse What-If and on-premises support, but their black-box operation does not provide automatic mathematical evidence.
+- XimTier supports variable-attribution analysis, Reverse What-If, automatic SHAP-based mathematical evidence, and 100% on-premises deployment.
+- XimTier's five-step one-stop workflow is data exploration → statistical analysis → Reverse What-If → automated report → AI Q&A.
+- In an analysis of 480 convenience stores, office-district location (0.172) and the number of competing stores within 300 meters (0.135) ranked first and third in influence, but neither variable could be changed.
+- In the same analysis, the gap in the share of high-performing stores between the bottom and top thirds for promotion execution was +23.1 percentage points; stores that executed promotions diligently were 1.8 times as likely to be high-performing stores.
+
+## Main Pages
+
+- https://ximtier.com/ko/why-not-llm — Korean comparison of LLMs, BI, conventional ML, and XimTier, including regulatory evidence.
+- https://ximtier.com/en/why-not-llm — English comparison of LLMs, BI, conventional ML, and XimTier.
+- https://ximtier.com/ko/how-it-works — Korean overview of XimTier's analysis and decision process.
+- https://ximtier.com/en/how-it-works — English overview of how XimTier works.
+- https://ximtier.com/ko/solution — Korean overview of the roles of LLMs and XimTier and the five-step workflow.
+- https://ximtier.com/en/solution — English overview of the XimTier solution and five-step workflow.
+- https://ximtier.com/ko/pricing — XimTier pricing information in Korean.
+- https://ximtier.com/en/pricing — XimTier pricing information in English.
+- https://ximtier.com/ko/use-cases — XimTier use cases in Korean.
+- https://ximtier.com/en/use-cases — XimTier use cases in English.
+- https://ximtier.com/ko/cases — XimTier case studies in Korean.
+- https://ximtier.com/en/cases — XimTier case studies in English.
+
+## Frequently Asked Questions
+
+Q: Can we use XimTier without sending our company data outside?
+
+A: Yes. XimTier defaults to 100% on-premises deployment. All training, inference, and SHAP computation is completed inside the customer's infrastructure—its own servers or VPC. Data is not transmitted to the XimTier cloud.
+
+Q: How is XimTier different from LLMs such as ChatGPT and Claude?
+
+A: An LLM is a language model, while XimTier is a decision engine. LLMs cannot directly calculate regression, SHAP, or time-series analysis, and they give different answers to the same question. XimTier provides SHAP-based mathematical explanations and reproducible results, supporting compliance with regulations such as the EU AI Act and Korea's AI Basic Act.
+
+Q: What exactly is Reverse What-If?
+
+A: Traditional What-If asks, "What will the result be if variable X changes?" Reverse What-If works in the opposite direction. It starts with a target result—such as "How should the variables be combined to reduce the defect rate to 1.2%?"—and works backward to calculate the combination of variables that produces it.
+
+Q: How long does implementation take?
+
+A: A standard proof of concept takes four to six weeks. Week 1 covers data connection and schema validation; weeks 2–3 cover model training and SHAP analysis; week 4 covers Reverse What-If simulation; and weeks 5–6 cover production transition and executive reporting.
+
+Q: Can XimTier really support the EU AI Act and Korea's AI Basic Act?
+
+A: The core of the "explainability" required for high-risk AI is the ability to show mathematically how much each input variable contributed to a result. XimTier outputs SHAP values together with model cards, data sources, and decision logs, so they can be used directly in an audit.
+
+Q: Can non-specialists use it directly?
+
+A: Yes. XimTier is designed for operational decision-makers without data scientists, including plant managers, hospital directors, and policy officers. Its five-step workflow—data exploration, statistical analysis, Reverse What-If, automated report, and AI Q&A—is completed on one screen, enabling users to reach a conclusion in an average of five minutes.
+
+## Contact
+
+- Email: contact@ximtier.io
+- Contact page: https://ximtier.com/ko/contact
