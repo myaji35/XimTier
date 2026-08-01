@@ -19,6 +19,7 @@ PUBLIC_PAGES = [
   { path: "/cases/hospital",       priority: 0.7, changefreq: "monthly" },
   { path: "/cases/public",         priority: 0.7, changefreq: "monthly" },
   { path: "/cases/smart-city",     priority: 0.7, changefreq: "monthly" },
+  { path: "/cases/ga-branch",      priority: 0.7, changefreq: "monthly" },
   { path: "/pricing",              priority: 0.8, changefreq: "monthly" },
   { path: "/platform-api",         priority: 0.7, changefreq: "monthly" },
   { path: "/company/team",         priority: 0.6, changefreq: "monthly" },

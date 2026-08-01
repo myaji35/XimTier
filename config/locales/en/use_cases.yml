@@ -105,3 +105,13 @@ en:
           - Proactive care for high-risk subscribers
           - Identify network quality degradation causes
           - Simulate the impact of new plans
+      ga_branch:
+        icon: users
+        persona: Insurance agency branch manager
+        ai_role: AI Branch Analyst
+        title: Insurance agency — lead conversion & advisor attrition
+        body: Branch lead funnel and advisor activity analysed on-premise. Post-hoc fields are flagged as leakage so apparent high performance is filtered out.
+        outcomes:
+          - Surface the drivers of consultation requests
+          - Identify advisors needing early support
+          - Pre-empt 13th-month lapse and commission clawback

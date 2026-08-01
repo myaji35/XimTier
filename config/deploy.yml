@@ -61,7 +61,9 @@ env:
     RAILS_ENV: production
     PORT: "3000"
     # XimTier SaaS 분석 게이트웨이 — 헤더 로그인 버튼 연결 대상
-    XIMTIER_SAAS_URL: https://ximtier-saas.158.247.235.31.nip.io
+    # 구주소(ximtier-saas.158.247.235.31.nip.io)는 서버 IP 가 노출되고 301 을 한 번 더 탄다.
+    # 정식 도메인으로 직접 연결한다 (XIM-20 연장선).
+    XIMTIER_SAAS_URL: https://saas.ximtier.com
     WEB_CONCURRENCY: "1"
     RAILS_SERVE_STATIC_FILES: "true"
     RAILS_LOG_TO_STDOUT: "true"

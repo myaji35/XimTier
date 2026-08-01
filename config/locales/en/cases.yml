@@ -284,6 +284,60 @@ en:
         - "Retention-campaign ROI +43%"
       note: "Example data — fine-tuned on customer data at deployment."
 
+    ga_branch:
+      eyebrow: Case · Insurance Agency
+      slug: ga-branch
+      title: "Insurance agency branch — reverse-solving lead conversion, with leakage warnings"
+      persona: "Branch manager Park / Insurance agency (GA) branch · 24 advisors"
+      industry_label: "Insurance Agency / GA"
+      dataset: "case_11 · ga_branch_lead_funnel.csv · 480 rows"
+      problem_title: The problem
+      problem_body: >
+        Hundreds of coverage analyses are shared each month, yet there is no way to tell why so few
+        turn into consultation requests. Advisor attrition cannot be anticipated, so training spend
+        walks out the door, and 13th-month lapses claw back commission straight out of branch P&L.
+        Above all, customer records and advisor performance data cannot leave the branch.
+      approach_title: The XimTier approach
+      approach_body: >
+        Branch data is analysed entirely on-premise to surface the variables driving conversion,
+        persistency and attrition, then Reverse What-If computes what must change, and by how much,
+        to hit a target conversion rate. Critically, the post-hoc fields common in agency data
+        (consultation start date, policy number, premium instalment count, last-activity date) are
+        flagged as leakage — so apparent high performance is never taken at face value.
+      outcomes_title: Outcomes
+      outcomes:
+        - "Conversion drivers surfaced automatically (tenure, activity volume, analysis depth)"
+        - "Early-support targets identified before an advisor disengages"
+        - "13th-month persistency drivers reverse-solved, pre-empting commission clawback"
+        - "4 leakage findings flagged — blocking blind trust in an apparent AUC of 1.0"
+        - "Zero data leaving the premises (100% on-premise within the branch)"
+      variables_title: Key conversion variables
+      variables:
+        - name: Advisor tenure (months)
+          from: "18"
+          to: "-"
+          delta: "Top contributor"
+        - name: Advisor monthly activity
+          from: "40"
+          to: "-"
+          delta: "Top contributor"
+        - name: Coverage analysis items
+          from: "8"
+          to: "-"
+          delta: "Mid contributor"
+        - name: Existing policy held
+          from: "42%"
+          to: "-"
+          delta: "Mid contributor"
+        - name: Share time of day
+          from: "14:00"
+          to: "-"
+          delta: "Lower contributor"
+      note: >
+        Example data — fine-tuned on branch data at deployment. The sample deliberately contains
+        four leakage cases (consultation start date, policy number, instalment count, last-activity
+        date) so you can watch the scanner filter them out.
+
   cases_cta:
     title: "Apply this to your industry?"
     body: "See it yourself in a 5-minute demo."

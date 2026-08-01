@@ -1,5 +1,5 @@
 class CaseStudy < ApplicationRecord
-  RESERVED_SLUGS = %w[manufacturing hospital public smart-city finance retail logistics energy education telecom].freeze
+  RESERVED_SLUGS = %w[manufacturing hospital public smart-city finance retail logistics energy education telecom ga-branch].freeze
 
   has_many :case_media,    -> { order(:position) }, dependent: :destroy
   has_many :case_comments, dependent: :destroy

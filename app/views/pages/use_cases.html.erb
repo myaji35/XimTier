@@ -13,7 +13,7 @@
 
     <div class="mt-14 grid grid-cols-1 md:grid-cols-2" style="gap:24px;">
       <%# ISS-015 reverted: 1차 사진 셀렉션 불승인 → 사진 숨김. 재선정은 별도 진행. %>
-      <% %w[manufacturing hospital public smart_city finance retail logistics energy education telecom].each do |key| %>
+      <% %w[manufacturing hospital public smart_city finance retail logistics energy education telecom ga_branch].each do |key| %>
         <% c = t("use_cases.cards.#{key}") %>
         <article class="card-airbnb shadow-card-hover">
           <div class="flex items-start gap-4">
