@@ -1,4 +1,4 @@
-<% content_for :title, "#{@case[:title]} — #{t('site.brand')}" %>
+<% content_for :title, @case[:title] %>
 <% content_for :jsonld do %>
   <%= jsonld_script(article_jsonld(
         title: @case[:title],
