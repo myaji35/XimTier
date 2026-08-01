@@ -41,6 +41,7 @@ class CaseStudiesController < ApplicationController
   def create_comment
     comment = @case.case_comments.new(comment_params.merge(status: :pending))
     if comment.save
+      CaseCommentMailer.admin_notification(comment).deliver_later
       redirect_to case_gallery_path(slug: @case.slug, locale: I18n.locale),
                   notice: t("cases_gallery.comment_submitted", default: "댓글이 등록되었습니다. 검토 후 게시됩니다.")
     else

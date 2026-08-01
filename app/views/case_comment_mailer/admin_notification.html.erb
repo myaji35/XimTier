@@ -1,0 +1,15 @@
+<h2 style="font-family: -apple-system, sans-serif; color: #0B132D; font-size: 18px;">새 댓글 승인 대기</h2>
+<table style="font-family: -apple-system, sans-serif; font-size: 14px; color: #475467; border-collapse: collapse;">
+  <tr><td style="padding: 6px 0; width: 100px; color: #697386;">사례 제목</td><td><%= @comment.case_study.title %></td></tr>
+  <tr><td style="padding: 6px 0; color: #697386;">작성자</td><td><%= @comment.author_name %></td></tr>
+  <tr><td style="padding: 6px 0; color: #697386;">접수 시각</td><td><%= @comment.created_at %></td></tr>
+</table>
+<hr style="border: 0; border-top: 1px solid #e5e9f0; margin: 20px 0;">
+<p style="font-family: -apple-system, sans-serif; color: #0B132D;"><strong>댓글 내용</strong></p>
+<blockquote style="border-left: 3px solid #2563EB; padding-left: 12px; font-family: -apple-system, sans-serif; color: #475467; line-height: 1.6;">
+  <%= simple_format(@comment.body) %>
+</blockquote>
+<p style="font-family: -apple-system, sans-serif; color: #475467; font-size: 14px; line-height: 1.6;">
+  이 댓글은 승인 대기 상태로 아직 사이트에 노출되지 않았습니다.<br>
+  Avo 관리자 <strong>/admin/resources/case_comments</strong>에서 승인 또는 숨김 처리해 주세요.
+</p>

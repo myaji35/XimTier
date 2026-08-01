@@ -1,0 +1,11 @@
+새 댓글 승인 대기
+
+사례 제목: <%= @comment.case_study.title %>
+작성자: <%= @comment.author_name %>
+접수 시각: <%= @comment.created_at %>
+
+댓글 내용:
+<%= @comment.body %>
+
+이 댓글은 승인 대기 상태로 아직 사이트에 노출되지 않았습니다.
+Avo 관리자 /admin/resources/case_comments에서 승인 또는 숨김 처리해 주세요.
