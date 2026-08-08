@@ -26,4 +26,5 @@ en:
       short: "%m/%d"
   time:
     formats:
+      long: "%B %-d, %Y %H:%M"
       short: "%Y.%m.%d %H:%M"
