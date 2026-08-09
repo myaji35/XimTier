@@ -71,6 +71,11 @@ USER 1000:1000
 COPY --chown=rails:rails --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
 COPY --chown=rails:rails --from=build /rails /rails
 
+# 이 라벨이 있어야 GHCR 패키지가 저장소에 자동 연결되어 GITHUB_TOKEN으로 push할 수 있다.
+LABEL org.opencontainers.image.source="https://github.com/myaji35/XimTier" \
+      org.opencontainers.image.description="XimTier 마케팅 사이트 (Rails)" \
+      org.opencontainers.image.licenses="UNLICENSED"
+
 # Entrypoint prepares the database.
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
