@@ -9,7 +9,7 @@ name: Deploy
 # - production 환경은 "Required reviewers"에 대표님 (또는 CTO) 지정
 # - Repository Secrets:
 #     RAILS_MASTER_KEY        — config/master.key 내용
-#     GHCR_PAT                — packages:write 스코프의 PAT (kamal builder login용)
+#     GHCR 인증은 자동 발급되는 GITHUB_TOKEN을 사용하므로 GHCR_PAT은 불필요
 #     KAMAL_SSH_PRIVATE_KEY   — Vultr 서버 root 접속용 SSH 키
 #     SMTP_USERNAME / SMTP_PASSWORD / SENTRY_DSN — 선택
 #     CF_TURNSTILE_SITE_KEY / CF_TURNSTILE_SECRET_KEY — XIM-16/17 활성 시
@@ -105,7 +105,7 @@ jobs:
       - name: Write .kamal/secrets-common
         env:
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
-          KAMAL_REGISTRY_PASSWORD: ${{ secrets.GHCR_PAT }}
+          KAMAL_REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
           SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
           SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
@@ -157,15 +157,15 @@ jobs:
       # 값 자체가 아니라 "전달"이 끊긴 경우를 배제하기 위한 진단이다.
       - name: Registry secret 도달 확인
         env:
-          KAMAL_REGISTRY_PASSWORD: ${{ secrets.GHCR_PAT }}
-          # config/deploy.yml 의 registry.username 과 image 좌표에 맞춘다.
+          KAMAL_REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+          # 이 값은 config/deploy.yml 의 registry.username 과 반드시 일치해야 한다 — 진단과 실제 로그인이 같은 좌표를 쓰게 하기 위함.
           KAMAL_REGISTRY_USERNAME: myaji35
           GHCR_REPO: myaji35/ximtier
         run: |
-          echo "GHCR_PAT 길이: ${#KAMAL_REGISTRY_PASSWORD}"
+          echo "GITHUB_TOKEN 길이: ${#KAMAL_REGISTRY_PASSWORD}"
           echo "secrets-common 내 길이: $(grep '^KAMAL_REGISTRY_PASSWORD=' .kamal/secrets-common | cut -d= -f2- | wc -c)"
           if [ -z "$KAMAL_REGISTRY_PASSWORD" ]; then
-            echo "::error::GHCR_PAT 이 비어 있다 — 시크릿이 러너에 전달되지 않았다."
+            echo "::error::GITHUB_TOKEN 이 비어 있다 — 시크릿이 러너에 전달되지 않았다."
             exit 1
           fi
 
@@ -177,7 +177,7 @@ jobs:
                 "https://ghcr.io/token?service=ghcr.io&scope=repository:${GHCR_REPO}:pull,push" \
                | python3 -c 'import json,sys; print(json.load(sys.stdin).get("token",""))')
           if [ -z "$RT" ]; then
-            echo "::error::GHCR 토큰 교환 실패 — GHCR_PAT 이 유효하지 않다."
+            echo "::error::GHCR 토큰 교환 실패 — GITHUB_TOKEN 이 유효하지 않다."
             exit 1
           fi
           PUSH_CODE=$(curl -sS -o /dev/null -w '%{http_code}' -X POST \
@@ -185,14 +185,14 @@ jobs:
             "https://ghcr.io/v2/${GHCR_REPO}/blobs/uploads/")
           echo "blob upload 개시 HTTP: ${PUSH_CODE}"
           if [ "$PUSH_CODE" != "202" ]; then
-            echo "::error::GHCR push 권한 없음(HTTP ${PUSH_CODE}). GHCR_PAT 이 만료됐거나 write:packages 스코프가 없다."
-            echo "::error::복구: github.com/settings/tokens 에서 write:packages 스코프 classic PAT 발급 후 'gh secret set GHCR_PAT'."
+            echo "::error::GHCR push 권한 없음(HTTP ${PUSH_CODE}). GITHUB_TOKEN 에 packages: write 권한이 없다."
+            echo "::error::복구: 워크플로우에 permissions: packages: write 가 선언되어 있는지 확인하라."
             exit 1
           fi
 
       - name: Kamal deploy
         env:
-          KAMAL_REGISTRY_PASSWORD: ${{ secrets.GHCR_PAT }}
+          KAMAL_REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -o pipefail
           if [ "${{ needs.wait-for-ci.outputs.target }}" = "production" ]; then
