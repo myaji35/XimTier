@@ -51,6 +51,8 @@ env:
     - CF_TURNSTILE_SITE_KEY
     - CF_TURNSTILE_SECRET_KEY
     - SLACK_WEBHOOK_URL
+    # Solid Queue 전용 PostgreSQL — SQLite 잠금 경합(ISS-033) 해소용.
+    - QUEUE_DATABASE_URL
   clear:
     SOLID_QUEUE_IN_PUMA: true
     RAILS_ENV: production
