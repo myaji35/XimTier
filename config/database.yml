@@ -65,9 +65,10 @@ production:
     timeout: 5000
     migrations_paths: db/cache_migrate
   queue:
-    adapter: sqlite3
-    database: storage/production_queue.sqlite3
-    timeout: 5000
+    adapter: postgresql
+    encoding: unicode
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+    url: <%= ENV["QUEUE_DATABASE_URL"] %>
     migrations_paths: db/queue_migrate
   cable:
     adapter: sqlite3

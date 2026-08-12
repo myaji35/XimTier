@@ -56,6 +56,9 @@ env:
     - SLACK_WEBHOOK_URL
     # 관리자 알림(데모·문의·IR) 수신 주소. 미설정 시 admin@ximtier.io 로 폴백
     - ADMIN_EMAIL
+    # Solid Queue 전용 PostgreSQL — SQLite 잠금 경합(ISS-033) 해소용.
+    # 실값은 .kamal/secrets 에서 주입한다(코드에 절대 넣지 마라).
+    - QUEUE_DATABASE_URL
   clear:
     SOLID_QUEUE_IN_PUMA: true
     RAILS_ENV: production
