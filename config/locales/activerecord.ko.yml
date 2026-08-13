@@ -80,6 +80,7 @@ ko:
         updated_at: "수정일시"
         user_id: "회원"
       contact_inquiry:
+        admin_notes: "관리자 메모"
         company: "회사명"
         created_at: "생성일시"
         email: "이메일"
@@ -163,6 +164,9 @@ ko:
       exclusion: "%{value}은(는) 사용할 수 없는 값입니다"
 en:
   activerecord:
+    attributes:
+      contact_inquiry:
+        admin_notes: "Admin notes"
     errors:
       models:
         demo_request:

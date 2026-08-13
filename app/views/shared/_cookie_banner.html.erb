@@ -3,16 +3,17 @@
        class="fixed z-50"
        style="bottom: 20px; left: 20px; right: 20px;
               max-width: 540px; margin: 0 auto;
-              background: #0B132D; color: #fff;
+              background: #ffffff; color: #222222;
               padding: 18px 22px; border-radius: 14px;
-              box-shadow: 0 20px 40px -10px rgba(11,19,45,0.4);
+              border: 1px solid #ebebeb;
+              box-shadow: rgba(0,0,0,0.02) 0 0 0 1px, rgba(0,0,0,0.04) 0 2px 6px 0, rgba(0,0,0,0.1) 0 4px 8px 0;
               transform: translateY(120%); opacity: 0;
               transition: transform 0.3s ease, opacity 0.3s ease;">
 
     <div class="flex flex-col md:flex-row md:items-center gap-3">
       <div class="flex-1">
-        <div class="font-mono text-[10px]" style="color:#00C8C8; letter-spacing:0.14em;">// COOKIES</div>
-        <p class="mt-1 text-[13px]" style="color:#e6e8f0; line-height:1.55;">
+        <div class="font-mono text-[10px]" style="color:#6a6a6a; letter-spacing:0.14em;">// COOKIES</div>
+        <p class="mt-1 text-[13px]" style="color:#3f3f3f; line-height:1.55;">
 <%# 방침 6항과 문구를 일치시킬 것. Google Analytics 분석 쿠키와 갤러리 좋아요 쿠키를 사용한다. %>
           <%= I18n.locale == :ko ?
                 "XimTier는 필수 쿠키와 분석 쿠키(Google Analytics, IP 익명화)를 사용합니다. 광고 쿠키는 사용하지 않습니다." :
@@ -22,9 +23,9 @@
       <div class="flex items-center gap-2 flex-shrink-0">
         <%= link_to (I18n.locale == :ko ? "자세히" : "Details"),
               "/#{I18n.locale}/privacy",
-              class: "text-[12px] underline", style: "color:#a7b1c7;" %>
+              class: "text-[12px] underline", style: "color:#6a6a6a;" %>
         <button type="button" data-action="click->cookie-banner#accept"
-                class="btn btn-grad"
+                class="btn-rausch"
                 style="border:0; cursor:pointer; padding:8px 18px; font-size:13px;">
           <%= I18n.locale == :ko ? "확인" : "Got it" %>
         </button>
