@@ -52,6 +52,8 @@ env:
     - CF_TURNSTILE_SECRET_KEY
     - SLACK_WEBHOOK_URL
     # Solid Queue 전용 PostgreSQL — SQLite 잠금 경합(ISS-033) 해소용.
+    # .kamal/secrets 에서 POSTGRES_PASSWORD와 accessory 호스트명 ximtier-queue_db를 조합해 주입한다.
+    # 실제 비밀번호와 URL은 코드에 절대 넣지 마라.
     - QUEUE_DATABASE_URL
   clear:
     SOLID_QUEUE_IN_PUMA: true
@@ -79,6 +81,22 @@ env:
 
 volumes:
   - "ximtier_staging_storage:/rails/storage"
+
+# Solid Queue 전용 PostgreSQL — 앱은 kamal 네트워크에서 ximtier-queue_db 호스트명으로 접근
+accessories:
+  queue_db:
+    image: postgres:16-alpine
+    host: 158.247.235.31
+    env:
+      clear:
+        POSTGRES_DB: ximtier_queue_staging
+        POSTGRES_USER: ximtier
+      secret:
+        - POSTGRES_PASSWORD
+    volumes:
+      - "ximtier_queue_db_staging_data:/var/lib/postgresql/data"
+    options:
+      network: kamal
 
 asset_path: /rails/public/assets
 
