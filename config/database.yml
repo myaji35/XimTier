@@ -68,7 +68,12 @@ production:
     adapter: postgresql
     encoding: unicode
     pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-    url: <%= ENV["QUEUE_DATABASE_URL"] %>
+    # 언더스코어 호스트명 URI 파싱 회피를 위해 url을 사용하지 않음
+    host: <%= ENV.fetch("QUEUE_DB_HOST") { "ximtier-queue_db" } %>
+    port: <%= ENV.fetch("QUEUE_DB_PORT") { 5432 } %>
+    database: <%= ENV.fetch("QUEUE_DB_NAME") { "ximtier_queue_production" } %>
+    username: <%= ENV.fetch("QUEUE_DB_USER") { "ximtier" } %>
+    password: <%= ENV["POSTGRES_PASSWORD"] %>
     migrations_paths: db/queue_migrate
   cable:
     adapter: sqlite3
