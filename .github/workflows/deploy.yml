@@ -115,8 +115,9 @@ jobs:
           # 관리자 알림(데모·문의·IR) 수신 주소. 저장소가 public 이라 deploy.yml 에
           # 평문으로 두면 개인 이메일이 노출된다.
           ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
-          # Solid Queue 전용 PostgreSQL 접속 URL (ISS-033). 비밀번호 포함이라 Secrets 로만 주입.
-          QUEUE_DATABASE_URL: ${{ secrets.QUEUE_DATABASE_URL }}
+          # Solid Queue 전용 PostgreSQL accessory(queue_db)의 비밀번호. 호스트/DB명/유저는
+          # database.yml 기본값을 쓰고 비밀번호만 Secrets 로 주입한다. (ISS-214)
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
         run: |
           mkdir -p .kamal
           cat > .kamal/secrets-common <<SECRETS
@@ -129,7 +130,7 @@ jobs:
           CF_TURNSTILE_SECRET_KEY=${CF_TURNSTILE_SECRET_KEY}
           SLACK_WEBHOOK_URL=${SLACK_WEBHOOK_URL}
           ADMIN_EMAIL=${ADMIN_EMAIL}
-          QUEUE_DATABASE_URL=${QUEUE_DATABASE_URL}
+          POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
           SECRETS
           chmod 600 .kamal/secrets-common
 
