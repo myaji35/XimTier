@@ -54,7 +54,7 @@ env:
     - CF_TURNSTILE_SECRET_KEY
     # Slack 알림 (FR-4 문의/FR-5 데모) — 미설정 시 알림 silently skip
     - SLACK_WEBHOOK_URL
-    # 관리자 알림(데모·문의·IR) 수신 주소. 미설정 시 admin@ximtier.io 로 폴백
+    # 관리자 알림(데모·문의·IR) 수신 주소. 미설정 시 myaji35@ximtier.com 로 폴백
     - ADMIN_EMAIL
     # accessory queue_db의 비밀번호를 웹 컨테이너에도 전달한다.
     # 호스트/DB명/유저는 database.yml 기본값(ximtier-queue_db / ximtier_queue_production / ximtier)을 쓴다.
