@@ -94,6 +94,8 @@ end
 RSpec.describe "IR 신청 관리자 알림", type: :request do
   include ActiveJob::TestHelper
 
+  let(:admin_address) { ENV.fetch("ADMIN_EMAIL", "myaji35@ximtier.com") }
+
   def apply(email:, name: "신청자", company: "회사")
     perform_enqueued_jobs do
       post "/ko/company/investors", params: {
@@ -104,7 +106,7 @@ RSpec.describe "IR 신청 관리자 알림", type: :request do
   end
 
   def admin_mail
-    ActionMailer::Base.deliveries.find { |m| m.to.include?("admin@ximtier.io") }
+    ActionMailer::Base.deliveries.find { |m| m.to.include?(admin_address) }
   end
 
   it "신청하면 관리자에게 알림이 간다" do
@@ -115,7 +117,7 @@ RSpec.describe "IR 신청 관리자 알림", type: :request do
   it "신청자에게 가는 자료 메일과는 별개다" do
     apply(email: "someone@somewhere.co.kr")
     expect(ActionMailer::Base.deliveries.map(&:to).flatten)
-      .to include("someone@somewhere.co.kr", "admin@ximtier.io")
+      .to include("someone@somewhere.co.kr", admin_address)
   end
 
   describe "제목만 보고 우선순위를 알 수 있다" do
