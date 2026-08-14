@@ -7,6 +7,7 @@ SitemapGenerator::Sitemap.default_host =
   else
     "https://ximtier.com"
   end
+SITEMAP_HOST = SitemapGenerator::Sitemap.default_host
 
 # 우선순위 1.0: 핵심 컨버전, 0.8: 정보, 0.6: 법적
 PUBLIC_PAGES = [
@@ -38,34 +39,35 @@ PUBLIC_PAGES = [
   { path: "/terms",                priority: 0.3, changefreq: "yearly" }
 ].freeze
 
-SitemapGenerator::Sitemap.create do
+# 루트는 301 리다이렉트되므로 sitemap에 넣으면 Search Console이 색인을 거부한다.
+# /ko와 /en을 명시 등록하고 x-default로 루트를 가리키는 것으로 충분하다. (ISS-215)
+SitemapGenerator::Sitemap.create(include_root: false) do
   %i[ko en].each do |locale|
     PUBLIC_PAGES.each do |entry|
       is_root = entry[:path] == "/"
       url = is_root ? "/#{locale}" : "/#{locale}#{entry[:path]}"
-      x_default_path = is_root ? "/" : entry[:path]
       add(url, priority: entry[:priority], changefreq: entry[:changefreq],
           alternates: [
-            { href: "/ko#{is_root ? '' : entry[:path]}", lang: "ko" },
-            { href: "/en#{is_root ? '' : entry[:path]}", lang: "en" },
-            { href: x_default_path,                       lang: "x-default" }
+            { href: "#{SITEMAP_HOST}/ko#{is_root ? '' : entry[:path]}", lang: "ko" },
+            { href: "#{SITEMAP_HOST}/en#{is_root ? '' : entry[:path]}", lang: "en" },
+            { href: is_root ? SITEMAP_HOST : "#{SITEMAP_HOST}#{entry[:path]}", lang: "x-default" }
           ])
     end
 
     add("/#{locale}/cases", priority: 0.7, changefreq: "weekly",
         alternates: [
-          { href: "/ko/cases", lang: "ko" },
-          { href: "/en/cases", lang: "en" },
-          { href: "/cases",    lang: "x-default" }
+          { href: "#{SITEMAP_HOST}/ko/cases", lang: "ko" },
+          { href: "#{SITEMAP_HOST}/en/cases", lang: "en" },
+          { href: "#{SITEMAP_HOST}/cases",    lang: "x-default" }
         ])
 
     CaseStudy.published.find_each do |cs|
       path = "/cases/#{cs.slug}/gallery"
       add("/#{locale}#{path}", priority: 0.6, changefreq: "monthly", lastmod: cs.updated_at,
           alternates: [
-            { href: "/ko#{path}", lang: "ko" },
-            { href: "/en#{path}", lang: "en" },
-            { href: path,           lang: "x-default" }
+            { href: "#{SITEMAP_HOST}/ko#{path}", lang: "ko" },
+            { href: "#{SITEMAP_HOST}/en#{path}", lang: "en" },
+            { href: "#{SITEMAP_HOST}#{path}",    lang: "x-default" }
           ])
     end
   end
