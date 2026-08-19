@@ -78,12 +78,13 @@
     <%= render "shared/brand_svg_defs" %>
 
     <% nav_links = [
-         [t("v3nav.overview"),  v3_overview_path(locale: I18n.locale)],
-         [t("v3nav.data"),      v3_data_path(locale: I18n.locale)],
-         [t("v3nav.analysis"),  v3_analysis_path(locale: I18n.locale)],
-         [t("v3nav.solutions"), v3_solutions_path(locale: I18n.locale)],
-         [t("v3nav.usage"),     v3_usage_path(locale: I18n.locale)],
-         [t("v3nav.cases"),     case_studies_path(locale: I18n.locale)]
+         [t("v3nav.overview"),  v3_overview_path(locale: I18n.locale), false],
+         [t("v3nav.data"),      v3_data_path(locale: I18n.locale), false],
+         [t("v3nav.analysis"),  v3_analysis_path(locale: I18n.locale), false],
+         [t("v3nav.solutions"), v3_solutions_path(locale: I18n.locale), false],
+         [t("v3nav.usage"),     v3_usage_path(locale: I18n.locale), false],
+         [t("v3nav.cases"),     case_studies_path(locale: I18n.locale), false],
+         [t("v3nav.saas"),      "https://ximtier-saas-production.up.railway.app/", true]
        ] %>
     <header class="nav-sticky" data-controller="nav-menu">
       <div class="wrap flex items-center justify-between" style="height:68px;">
@@ -92,8 +93,8 @@
         <% end %>
 
         <nav class="hidden md:flex items-center" style="gap:30px;">
-          <% nav_links.each do |label, path| %>
-            <%= link_to label, path, class: "type-body-sm text-body-airbnb hover:text-ink-airbnb transition" %>
+          <% nav_links.each do |label, path, external| %>
+            <%= link_to label, path, class: "type-body-sm text-body-airbnb hover:text-ink-airbnb transition", target: (external ? "_blank" : nil), rel: (external ? "noopener" : nil) %>
           <% end %>
         </nav>
 
@@ -117,10 +118,11 @@
       <nav class="md:hidden hidden border-t border-hairline" data-nav-menu-target="panel"
            style="background:var(--color-canvas,#fff);">
         <div class="wrap flex flex-col" style="padding:8px 0;">
-          <% nav_links.each do |label, path| %>
+          <% nav_links.each do |label, path, external| %>
             <%= link_to label, path,
                   class: "type-body-md text-ink-airbnb hover:text-rausch transition",
-                  style: "padding:12px 4px;border-bottom:1px solid var(--color-hairline-soft,#ebebeb);" %>
+                  style: "padding:12px 4px;border-bottom:1px solid var(--color-hairline-soft,#ebebeb);",
+                  target: (external ? "_blank" : nil), rel: (external ? "noopener" : nil) %>
           <% end %>
           <%= link_to t("site.nav.login", default: "로그인"), ximtier_saas_login_url,
                 class: "type-body-md font-semibold text-rausch", style: "padding:14px 4px;" %>
