@@ -1,4 +1,6 @@
 # XimTier robots.txt
+
+# Default crawlers
 User-agent: *
 Allow: /
 Disallow: /admin
@@ -6,9 +8,125 @@ Disallow: /users
 Disallow: /letter_opener
 Disallow: /rails/active_storage
 Disallow: /ir/
-
-# Crawl delay
 Crawl-delay: 1
 
-# Sitemap
+# OpenAI GPTBot
+User-agent: GPTBot
+Allow: /
+Disallow: /admin
+Disallow: /users
+Disallow: /letter_opener
+Disallow: /rails/active_storage
+Disallow: /ir/
+
+# OpenAI SearchBot
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /admin
+Disallow: /users
+Disallow: /letter_opener
+Disallow: /rails/active_storage
+Disallow: /ir/
+
+# OpenAI ChatGPT user requests
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /admin
+Disallow: /users
+Disallow: /letter_opener
+Disallow: /rails/active_storage
+Disallow: /ir/
+
+# Anthropic ClaudeBot
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin
+Disallow: /users
+Disallow: /letter_opener
+Disallow: /rails/active_storage
+Disallow: /ir/
+
+# Anthropic AI crawler
+User-agent: anthropic-ai
+Allow: /
+Disallow: /admin
+Disallow: /users
+Disallow: /letter_opener
+Disallow: /rails/active_storage
+Disallow: /ir/
+
+# Anthropic Claude Web
+User-agent: Claude-Web
+Allow: /
+Disallow: /admin
+Disallow: /users
+Disallow: /letter_opener
+Disallow: /rails/active_storage
+Disallow: /ir/
+
+# Perplexity crawler
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin
+Disallow: /users
+Disallow: /letter_opener
+Disallow: /rails/active_storage
+Disallow: /ir/
+
+# Perplexity user requests
+User-agent: Perplexity-User
+Allow: /
+Disallow: /admin
+Disallow: /users
+Disallow: /letter_opener
+Disallow: /rails/active_storage
+Disallow: /ir/
+
+# Google Extended
+User-agent: Google-Extended
+Allow: /
+Disallow: /admin
+Disallow: /users
+Disallow: /letter_opener
+Disallow: /rails/active_storage
+Disallow: /ir/
+
+# Applebot Extended
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /admin
+Disallow: /users
+Disallow: /letter_opener
+Disallow: /rails/active_storage
+Disallow: /ir/
+
+# Common Crawl
+User-agent: CCBot
+Allow: /
+Disallow: /admin
+Disallow: /users
+Disallow: /letter_opener
+Disallow: /rails/active_storage
+Disallow: /ir/
+
+# ByteDance crawler
+User-agent: Bytespider
+Allow: /
+Disallow: /admin
+Disallow: /users
+Disallow: /letter_opener
+Disallow: /rails/active_storage
+Disallow: /ir/
+
+# Meta external agent
+User-agent: meta-externalagent
+Allow: /
+Disallow: /admin
+Disallow: /users
+Disallow: /letter_opener
+Disallow: /rails/active_storage
+Disallow: /ir/
+
+# Sitemaps
+Sitemap: https://ximtier.com/sitemap.xml
 Sitemap: https://ximtier.com/sitemap.xml.gz

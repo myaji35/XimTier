@@ -7,6 +7,7 @@ SitemapGenerator::Sitemap.default_host =
   else
     "https://ximtier.com"
   end
+SitemapGenerator::Sitemap.compress = false
 SITEMAP_HOST = SitemapGenerator::Sitemap.default_host
 
 # 우선순위 1.0: 핵심 컨버전, 0.8: 정보, 0.6: 법적
