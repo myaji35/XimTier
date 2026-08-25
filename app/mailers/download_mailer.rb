@@ -22,7 +22,7 @@ class DownloadMailer < ApplicationMailer
     # 제목만 보고도 우선순위를 판단할 수 있어야 한다.
     I18n.with_locale(:ko) do
       mail(
-        to: ENV.fetch("ADMIN_EMAIL", "myaji35@ximtier.com"),
+        to: admin_recipients,
         subject: "[XimTier] #{@classification.label} IR 신청 — #{download.name} (#{download.company})"
       )
     end

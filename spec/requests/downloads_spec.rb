@@ -94,7 +94,7 @@ end
 RSpec.describe "IR 신청 관리자 알림", type: :request do
   include ActiveJob::TestHelper
 
-  let(:admin_address) { ENV.fetch("ADMIN_EMAIL", "myaji35@ximtier.com") }
+  let(:admin_address) { ENV.fetch("ADMIN_EMAIL", "contact@ximtier.com") }
 
   def apply(email:, name: "신청자", company: "회사")
     perform_enqueued_jobs do

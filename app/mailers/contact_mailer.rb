@@ -9,7 +9,7 @@ class ContactMailer < ApplicationMailer
   def admin_notification(inquiry)
     @inquiry = inquiry
     mail(
-      to: ENV.fetch("ADMIN_EMAIL", "myaji35@ximtier.com"),
+      to: admin_recipients,
       subject: "[XimTier] 새 문의 — #{inquiry.name} (#{inquiry.company})"
     )
   end

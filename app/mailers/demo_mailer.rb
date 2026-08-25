@@ -11,7 +11,7 @@ class DemoMailer < ApplicationMailer
     @demo_request = demo_request
     @user = demo_request.user
     mail(
-      to: ENV.fetch("ADMIN_EMAIL", "myaji35@ximtier.com"),
+      to: admin_recipients,
       subject: "[XimTier] 새 데모 신청 — #{@user.display_name} (#{@user.company})"
     )
   end
