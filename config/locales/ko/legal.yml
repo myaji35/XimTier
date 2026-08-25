@@ -39,7 +39,7 @@ ko:
           - 개인정보 열람·정정·삭제 요청
           - 처리 중지 및 수집 동의 철회
           - GDPR 추가 권리(EU 거주자): 데이터 이전, 자동 의사결정 거부
-          권리 행사 요청: contact@ximtier.io
+          권리 행사 요청: contact@ximtier.com
       - title: "6. 쿠키 정책"
         body: |
           XimTier는 서비스 동작에 필요한 쿠키와 분석 쿠키를 사용합니다.
@@ -59,7 +59,7 @@ ko:
       - title: "8. 책임자 + 연락처"
         body: |
           - 개인정보보호책임자: 강승식 (CTO)
-          - 연락처: contact@ximtier.io
+          - 연락처: contact@ximtier.com
           - 분쟁 조정: 개인정보보호위원회 (privacy.go.kr)
 
   terms_page:

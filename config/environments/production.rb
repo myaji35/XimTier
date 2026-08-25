@@ -52,7 +52,7 @@ Rails.application.configure do
     config.action_mailer.smtp_settings = {
       address:              ENV["SMTP_HOST"],
       port:                 ENV.fetch("SMTP_PORT", "587").to_i,
-      domain:               ENV.fetch("SMTP_DOMAIN", ENV.fetch("APP_HOST", "ximtier.io")),
+      domain:               ENV.fetch("SMTP_DOMAIN", ENV.fetch("APP_HOST", "ximtier.com")),
       user_name:            ENV["SMTP_USERNAME"],
       password:             ENV["SMTP_PASSWORD"],
       authentication:       (ENV["SMTP_AUTH"] || "plain").to_sym,
