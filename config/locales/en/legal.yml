@@ -30,7 +30,14 @@ en:
         body: |
           XimTier does not share personal information with third parties, except:
           - Required by law or investigation
-          - Service operation processing (Postmark/SendGrid for email — announced after domain confirmation)
+          - Google LLC (Gmail SMTP — sending confirmation and notification emails, transferred internationally to the United States)
+            · Items: recipient email address, and the name, company, and inquiry content contained in the message
+            · Country: United States / Timing: at the time of sending / Method: SMTP over TLS
+            · Recipient: Google LLC (contact: https://support.google.com/policies)
+            · Purpose: sending confirmation and notification emails / Retention: subject to Google's policy
+            · Right to refuse: email contact@ximtier.com to stop email delivery.
+              We will notify you of the result by other means, with no disadvantage
+          - Gabia, Inc. (email hosting — receiving and storing @ximtier.com mail, within Korea)
           - Google LLC (Google Analytics 4 — web usage analytics, transferred internationally to the United States)
           - Google LLC (Google Sheets — inquiry and demo request management, transferred internationally to the United States)
             · Items: name, email, company, industry, inquiry/request content, submission time, referral source, language
