@@ -1,5 +1,14 @@
 ko:
   mailer:
+    signature:
+      company: "주식회사 심티어 (XimTier Inc.)"
+      ceo: "대표이사 한일"
+      address: "서울특별시 동작구 신대방1가길 38, 105동 517호"
+      biz_no: "사업자등록번호 196-87-03935"
+      mail_order_no: "통신판매업신고 제2026-서울동작-1047호"
+      contact: "문의 contact@ximtier.com"
+      site: "https://ximtier.com"
+      notice: "본 메일은 XimTier 서비스 이용 및 문의 처리를 위해 발송되었습니다."
     contact:
       auto_reply:
         subject: "[XimTier] 문의 접수 확인"

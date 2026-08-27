@@ -9,5 +9,17 @@
 
   <body>
     <%= yield %>
+    <hr style="border:0;border-top:1px solid #e5e9f0;margin:32px 0 16px;">
+    <div style="font-family:-apple-system,'Malgun Gothic',sans-serif;color:#8892a6;font-size:12px;line-height:1.7;">
+      <div style="color:#475467;font-weight:600;font-size:13px;"><%= t("mailer.signature.company") %></div>
+      <div><%= t("mailer.signature.ceo") %></div>
+      <div style="margin-top:6px;"><%= t("mailer.signature.address") %></div>
+      <div><%= t("mailer.signature.biz_no") %> &nbsp;|&nbsp; <%= t("mailer.signature.mail_order_no") %></div>
+      <div style="margin-top:6px;">
+        <%= t("mailer.signature.contact") %> &nbsp;|&nbsp;
+        <a href="<%= t("mailer.signature.site") %>" style="color:#2563EB;text-decoration:none;"><%= t("mailer.signature.site") %></a>
+      </div>
+      <div style="margin-top:10px;color:#a7b1c7;font-size:11px;"><%= t("mailer.signature.notice") %></div>
+    </div>
   </body>
 </html>
