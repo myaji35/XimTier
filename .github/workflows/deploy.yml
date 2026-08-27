@@ -118,6 +118,10 @@ jobs:
           # Solid Queue 전용 PostgreSQL accessory(queue_db)의 비밀번호. 호스트/DB명/유저는
           # database.yml 기본값을 쓰고 비밀번호만 Secrets 로 주입한다. (ISS-214)
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          # 구글시트 리드 기록(ISS-239)
+          GOOGLE_SHEETS_SA_EMAIL: ${{ secrets.GOOGLE_SHEETS_SA_EMAIL }}
+          GOOGLE_SHEETS_SA_PRIVATE_KEY: ${{ secrets.GOOGLE_SHEETS_SA_PRIVATE_KEY }}
+          GOOGLE_SHEETS_ID: ${{ secrets.GOOGLE_SHEETS_ID }}
         run: |
           mkdir -p .kamal
           cat > .kamal/secrets-common <<SECRETS
@@ -131,6 +135,9 @@ jobs:
           SLACK_WEBHOOK_URL=${SLACK_WEBHOOK_URL}
           ADMIN_EMAIL=${ADMIN_EMAIL}
           POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+          GOOGLE_SHEETS_SA_EMAIL=${GOOGLE_SHEETS_SA_EMAIL}
+          GOOGLE_SHEETS_SA_PRIVATE_KEY=${GOOGLE_SHEETS_SA_PRIVATE_KEY//$'\n'/\\n}
+          GOOGLE_SHEETS_ID=${GOOGLE_SHEETS_ID}
           SECRETS
           chmod 600 .kamal/secrets-common
 

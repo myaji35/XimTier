@@ -60,6 +60,11 @@ env:
     # 호스트/DB명/유저는 database.yml 기본값(ximtier-queue_db / ximtier_queue_production / ximtier)을 쓴다.
     # 실제 비밀번호는 코드에 절대 넣지 않는다.
     - POSTGRES_PASSWORD
+    # 구글시트 리드 기록(ISS-239). 문의/데모/테스트 태그로 시트에 append 한다.
+    # SA 개인키는 절대 평문 커밋 금지 — GitHub Secrets 경유.
+    - GOOGLE_SHEETS_SA_EMAIL
+    - GOOGLE_SHEETS_SA_PRIVATE_KEY
+    - GOOGLE_SHEETS_ID
   clear:
     SOLID_QUEUE_IN_PUMA: true
     RAILS_ENV: production
