@@ -32,6 +32,13 @@ en:
           - Required by law or investigation
           - Service operation processing (Postmark/SendGrid for email — announced after domain confirmation)
           - Google LLC (Google Analytics 4 — web usage analytics, transferred internationally to the United States)
+          - Google LLC (Google Sheets — inquiry and demo request management, transferred internationally to the United States)
+            · Items: name, email, company, industry, inquiry/request content, submission time, referral source, language
+            · Country: United States / Timing: immediately upon submission / Method: HTTPS API transfer
+            · Recipient: Google LLC (contact: https://support.google.com/policies)
+            · Purpose: inquiry response and lead management / Retention: 1 year after submission (same as Section 3)
+            · Right to refuse: email contact@ximtier.com to stop the international transfer.
+              Your inquiry will still be received and answered without any disadvantage
       - title: "5. User Rights"
         body: |
           You may exercise the following rights at any time.
