@@ -37,6 +37,9 @@ Rails.application.routes.draw do
     post "/cases/:slug/comments", to: "case_studies#create_comment", as: :case_comments
 
     get "/pricing",      to: "pages#pricing"
+    get  "/payments/new",      to: "payments#new",      as: :new_payment
+    post "/payments",          to: "payments#create",   as: :payments
+    post "/payments/complete", to: "payments#complete", as: :complete_payment
     get "/platform-api", to: "pages#platform_api", as: :platform_api
 
     # Company

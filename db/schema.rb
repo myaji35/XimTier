@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_01_000000) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_27_000001) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -159,6 +159,27 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_01_000000) do
     t.index ["investor_kind"], name: "index_downloads_on_investor_kind"
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.integer "amount", null: false
+    t.datetime "created_at", null: false
+    t.string "currency", default: "KRW", null: false
+    t.datetime "failed_at"
+    t.text "failure_reason"
+    t.datetime "paid_at"
+    t.string "payment_id", null: false
+    t.string "payment_method"
+    t.string "plan_code", null: false
+    t.string "portone_tx_id"
+    t.json "raw_response", default: {}
+    t.string "status", default: "pending", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["payment_id"], name: "index_payments_on_payment_id", unique: true
+    t.index ["portone_tx_id"], name: "index_payments_on_portone_tx_id", unique: true
+    t.index ["status"], name: "index_payments_on_status"
+    t.index ["user_id"], name: "index_payments_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.boolean "admin", default: false, null: false
     t.string "company"
@@ -196,4 +217,5 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_01_000000) do
   add_foreign_key "comments", "demo_requests"
   add_foreign_key "comments", "users"
   add_foreign_key "demo_requests", "users"
+  add_foreign_key "payments", "users"
 end
