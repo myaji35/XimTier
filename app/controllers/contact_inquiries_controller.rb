@@ -36,6 +36,7 @@ class ContactInquiriesController < ApplicationController
       ContactMailer.auto_reply(@inquiry).deliver_later
       ContactMailer.admin_notification(@inquiry).deliver_later
       SlackContactNotificationJob.perform_later(@inquiry.id)
+      GoogleSheetExportJob.perform_later("contact", @inquiry.id)
       redirect_to contact_path(locale: I18n.locale), notice: I18n.t("contact.flash.success")
     else
       render "pages/contact", status: :unprocessable_entity

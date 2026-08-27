@@ -59,6 +59,7 @@ class DemoRequestsController < ApplicationController
     if @demo_request.save
       DemoMailer.received(@demo_request).deliver_later
       DemoMailer.admin_notification(@demo_request).deliver_later
+      GoogleSheetExportJob.perform_later("demo", @demo_request.id)
       redirect_to home_path(locale: I18n.locale), notice: I18n.t("demo.flash.success")
     else
       render "pages/demo", status: :unprocessable_entity
