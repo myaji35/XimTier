@@ -102,7 +102,7 @@ class GoogleSheetExporter
     }
 
     signing_input = [header, claims].map { |part| base64url(part.to_json) }.join(".")
-    private_key = ENV.fetch("GOOGLE_SHEETS_SA_PRIVATE_KEY").gsub("\\n", "\n")
+    private_key = normalized_private_key
     signature = OpenSSL::PKey::RSA.new(private_key).sign(OpenSSL::Digest::SHA256.new, signing_input)
     assertion = "#{signing_input}.#{base64url(signature)}"
 
@@ -138,6 +138,23 @@ class GoogleSheetExporter
     Base64.urlsafe_encode64(value, padding: false)
   end
 
+  # SA 개인키는 주입 경로에 따라 형태가 제각각이다.
+  # ① 실제 개행 포함(정상) ② \n 리터럴(이스케이프) ③ 개행이 통째로 사라진 한 줄(실측 사고)
+  # 어떤 형태로 들어와도 유효한 PEM 으로 복원한다.
+  def self.normalized_private_key
+    raw = ENV.fetch("GOOGLE_SHEETS_SA_PRIVATE_KEY", "").to_s
+    key = raw.gsub("\\n", "\n")
+    return key if key.include?("\n")
+
+    # 개행이 전부 사라진 경우: 헤더/푸터를 떼고 본문을 64자씩 재조립한다
+    m = key.match(/-----BEGIN ([A-Z ]+)-----(.*)-----END \1-----/m)
+    return key unless m
+
+    label = m[1]
+    body = m[2].gsub(/\s+/, "")
+    "-----BEGIN #{label}-----\n#{body.scan(/.{1,64}/).join("\n")}\n-----END #{label}-----\n"
+  end
+
   def self.internal_email?(email)
     normalized = email.to_s.strip.downcase
     return false if normalized.blank?
@@ -150,5 +167,5 @@ class GoogleSheetExporter
     internal_email?(email) ? "테스트" : default_tag
   end
 
-  private_class_method :access_token, :base64url, :internal_email?, :tag_for
+  private_class_method :access_token, :base64url, :normalized_private_key, :internal_email?, :tag_for
 end
