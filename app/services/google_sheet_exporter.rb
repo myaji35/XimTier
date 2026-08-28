@@ -138,21 +138,57 @@ class GoogleSheetExporter
     Base64.urlsafe_encode64(value, padding: false)
   end
 
-  # SA 개인키는 주입 경로에 따라 형태가 제각각이다.
-  # ① 실제 개행 포함(정상) ② \n 리터럴(이스케이프) ③ 개행이 통째로 사라진 한 줄(실측 사고)
+  # SA 개인키는 주입 경로에 따라 형태가 제각각이다. 실측된 것만 세 가지다.
+  # ① 실제 개행 포함(정상)
+  # ② "\n" 리터럴(이스케이프)
+  # ③ 백슬래시만 유실되어 본문에 n 이 박힌 형태 (GitHub Actions 치환 사고)
   # 어떤 형태로 들어와도 유효한 PEM 으로 복원한다.
   def self.normalized_private_key
     raw = ENV.fetch("GOOGLE_SHEETS_SA_PRIVATE_KEY", "").to_s
     key = raw.gsub("\\n", "\n")
-    return key if key.include?("\n")
+    begin
+      return key if key.include?("\n") && OpenSSL::PKey::RSA.new(key)
+    rescue StandardError
+      nil
+    end
 
-    # 개행이 전부 사라진 경우: 헤더/푸터를 떼고 본문을 64자씩 재조립한다
-    m = key.match(/-----BEGIN ([A-Z ]+)-----(.*)-----END \1-----/m)
+    m = key.match(/-----BEGIN ([A-Z ]+)-----(.*?)-----END \1-----/m)
     return key unless m
 
     label = m[1]
     body = m[2].gsub(/\s+/, "")
-    "-----BEGIN #{label}-----\n#{body.scan(/.{1,64}/).join("\n")}\n-----END #{label}-----\n"
+
+    # ③ 대응: base64 본문 길이가 4의 배수가 아니면 개행 자리의 n 이 섞인 것이다.
+    # 헤더 직후·푸터 직전·64자 주기 위치의 n 을 제거해 복원을 시도한다.
+    candidates = [body]
+    unless body.length % 4 == 0
+      stripped = body.dup
+      stripped = stripped.sub(/\An/, "")
+      stripped = stripped.sub(/n\z/, "")
+      # 64자마다 삽입된 n 제거: 65자 주기로 끊어 각 블록 끝의 n 을 뗀다
+      rebuilt = +""
+      rest = stripped.dup
+      while rest.length > 64
+        chunk = rest[0, 64]
+        rest = rest[64..]
+        rest = rest[1..] if rest.start_with?("n")
+        rebuilt << chunk
+      end
+      rebuilt << rest
+      candidates << rebuilt
+    end
+
+    candidates.each do |b|
+      pem = "-----BEGIN #{label}-----\n#{b.scan(/.{1,64}/).join("\n")}\n-----END #{label}-----\n"
+      begin
+        OpenSSL::PKey::RSA.new(pem)
+        return pem
+      rescue StandardError
+        next
+      end
+    end
+
+    key
   end
 
   def self.internal_email?(email)
