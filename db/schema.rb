@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_27_000001) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_01_000000) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -140,12 +140,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_27_000001) do
   end
 
   create_table "downloads", force: :cascade do |t|
+    t.text "admin_notes"
     t.integer "asset", default: 0, null: false
     t.string "company"
+    t.datetime "contacted_at"
     t.datetime "created_at", null: false
     t.string "download_token", null: false
     t.integer "downloaded_count", default: 0, null: false
     t.string "email", null: false
+    t.boolean "handled", default: false, null: false
     t.string "investor_kind"
     t.string "locale", default: "ko", null: false
     t.string "name"
@@ -156,7 +159,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_27_000001) do
     t.index ["created_at"], name: "index_downloads_on_created_at"
     t.index ["download_token"], name: "index_downloads_on_download_token", unique: true
     t.index ["email"], name: "index_downloads_on_email"
+    t.index ["handled"], name: "index_downloads_on_handled"
     t.index ["investor_kind"], name: "index_downloads_on_investor_kind"
+  end
+
+  create_table "email_opt_outs", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "email", null: false
+    t.string "reason"
+    t.string "source", null: false
+    t.index ["email"], name: "index_email_opt_outs_on_email", unique: true
   end
 
   create_table "payments", force: :cascade do |t|
