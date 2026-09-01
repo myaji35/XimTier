@@ -16,9 +16,17 @@ class DownloadsController < ApplicationController
       download_params.except(:asset).merge(locale: I18n.locale.to_s, asset: asset)
     )
 
-    # Honeypot
-    if params[:website].present?
-      log_honeypot_submission(form: "download", email: params.dig(:download, :email))
+    # Honeypot·제출 시간·내용 기반 스팸은 성공한 것처럼 응답해 봇의 우회를 막는다.
+    spam_reason = if params[:website].present?
+      "honeypot"
+                  elsif invalid_form_submission_time?
+      "form_timing"
+                  elsif SpamFilter.spam?(message: nil, name: @download.name,
+                           company: @download.company, email: @download.email)
+      "content"
+                  end
+    if spam_reason
+      log_honeypot_submission(form: "download", email: @download.email, reason: spam_reason)
       redirect_to investors_path(locale: I18n.locale), notice: I18n.t("investors.flash.success") and return
     end
 

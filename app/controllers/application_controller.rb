@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
 
   before_action :set_locale
 
+  helper_method :form_timestamp
+
   private
 
   # /admin 에서 온 관리자는 원래 목적지로, 직접 로그인한 관리자는 한국어 홈으로 보낸다.
@@ -29,9 +31,23 @@ class ApplicationController < ActionController::Base
     { locale: I18n.locale }
   end
 
-  def log_honeypot_submission(form:, email:)
+  def form_timestamp
+    Rails.application.message_verifier(:marketing_form_submission).generate(Time.current.to_f)
+  end
+
+  def invalid_form_submission_time?
+    return false if Rails.env.test?
+
+    rendered_at = Rails.application.message_verifier(:marketing_form_submission).verified(params[:form_ts])
+    return true unless rendered_at.is_a?(Numeric)
+
+    elapsed = Time.current.to_f - rendered_at
+    elapsed < 3.seconds || elapsed > 6.hours
+  end
+
+  def log_honeypot_submission(form:, email:, reason: "honeypot")
     Rails.logger.warn(
-      "Honeypot submission dropped form=#{form} email=#{masked_email(email)} at=#{Time.current.iso8601}"
+      "Honeypot submission dropped form=#{form} reason=#{reason} email=#{masked_email(email)} at=#{Time.current.iso8601}"
     )
   end
 

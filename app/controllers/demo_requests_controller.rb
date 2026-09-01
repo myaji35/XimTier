@@ -5,9 +5,19 @@ class DemoRequestsController < ApplicationController
   end
 
   def create
-    # Honeypot
-    if params[:website].present?
-      log_honeypot_submission(form: "demo_request", email: params.dig(:demo_request, :email))
+    # Honeypot·제출 시간·내용 기반 스팸은 성공한 것처럼 응답해 봇의 우회를 막는다.
+    spam_reason = if params[:website].present?
+      "honeypot"
+                  elsif invalid_form_submission_time?
+      "form_timing"
+                  elsif SpamFilter.spam?(message: params.dig(:demo_request, :data_description),
+                           name: params.dig(:demo_request, :name),
+                           company: params.dig(:demo_request, :company),
+                           email: params.dig(:demo_request, :email))
+      "content"
+                  end
+    if spam_reason
+      log_honeypot_submission(form: "demo_request", email: params.dig(:demo_request, :email), reason: spam_reason)
       redirect_to demo_path(locale: I18n.locale), notice: I18n.t("demo.flash.success") and return
     end
 

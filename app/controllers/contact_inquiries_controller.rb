@@ -10,18 +10,26 @@ class ContactInquiriesController < ApplicationController
       source: request.referer.to_s.first(255)
     ))
 
+    # Honeypot·제출 시간·내용 기반 스팸은 성공한 것처럼 응답해 봇의 우회를 막는다.
+    spam_reason = if params[:website].present?
+      "honeypot"
+                  elsif invalid_form_submission_time?
+      "form_timing"
+                  elsif SpamFilter.spam?(message: @inquiry.message, name: @inquiry.name,
+                           company: @inquiry.company, email: @inquiry.email)
+      "content"
+                  end
+    if spam_reason
+      log_honeypot_submission(form: "contact_inquiry", email: @inquiry.email, reason: spam_reason)
+      redirect_to contact_path(locale: I18n.locale), notice: I18n.t("contact.flash.success") and return
+    end
+
     unless params.dig(:contact_inquiry, :consent) == "1"
       @inquiry.errors.add(:base, I18n.t("contact.errors.consent_required"))
       render "pages/contact", status: :unprocessable_entity and return
     end
 
     @inquiry.privacy_agreed_at = Time.current
-
-    # Honeypot (bots fill this hidden field)
-    if params[:website].present?
-      log_honeypot_submission(form: "contact_inquiry", email: params.dig(:contact_inquiry, :email))
-      redirect_to contact_path(locale: I18n.locale), notice: I18n.t("contact.flash.success") and return
-    end
 
     # Cloudflare Turnstile (skipped automatically when env keys are absent)
     if TurnstileVerifier.enabled?

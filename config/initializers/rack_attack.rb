@@ -1,15 +1,15 @@
 # Rack::Attack — XimTier 스팸/abuse 차단
 # 안전 우선, false-positive 최소화. throttle 우선, blocklist는 명확한 어뷰즈에만.
 
-Rack::Attack.cache.store = ActiveSupport::Cache::MemoryStore.new
+Rack::Attack.cache.store = Rails.cache
 
 # Test 환경에서는 비활성화 (RSpec 다중 요청 시 throttle false positive 방지)
 Rack::Attack.enabled = !Rails.env.test?
 
 # === Throttles ===
 
-# 폼 제출 — IP당 분당 5회
-Rack::Attack.throttle("forms/ip", limit: 5, period: 1.minute) do |req|
+# 폼 제출 — IP당 분당 3회
+Rack::Attack.throttle("forms/ip", limit: 3, period: 1.minute) do |req|
   if req.post? && (req.path.end_with?("/contact") || req.path.end_with?("/company/investors") || req.path.end_with?("/demo") || req.path.end_with?("/comments") || req.path.end_with?("/like"))
     req.ip
   end

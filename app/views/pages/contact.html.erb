@@ -26,9 +26,10 @@
       <% end %>
 
       <%# Honeypot — bots fill this %>
-      <div style="position:absolute; left:-9999px;" aria-hidden="true">
+      <div style="position:absolute; left:-9999px; opacity:0; height:0; width:0; overflow:hidden;" aria-hidden="true">
         <label>Website (leave empty)<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
       </div>
+      <input type="hidden" name="form_ts" value="<%= form_timestamp %>">
 
       <div>
         <%= f.label :name, t("contact.form.name"), class: "block type-body-sm font-semibold text-ink-airbnb mb-2" %>
