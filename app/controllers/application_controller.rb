@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   before_action :set_locale
 
-  helper_method :form_timestamp
+  helper_method :form_timestamp, :masked_email
 
   private
 

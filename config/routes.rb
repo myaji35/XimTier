@@ -61,6 +61,10 @@ Rails.application.routes.draw do
     get  "/demo", to: "demo_requests#new",    as: :demo
     post "/demo", to: "demo_requests#create"
 
+    # 광고성 이메일 수신거부 (로그인 불필요)
+    get  "/unsubscribe", to: "email_opt_outs#show",   as: :unsubscribe
+    post "/unsubscribe", to: "email_opt_outs#create"
+
     # v3 Chapter pages
     get "/v3/overview",  to: "pages#v3_overview",  as: :v3_overview
     get "/v3/data",      to: "pages#v3_data",      as: :v3_data

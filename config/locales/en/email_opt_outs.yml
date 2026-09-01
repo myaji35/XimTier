@@ -1,0 +1,12 @@
+en:
+  email_opt_outs:
+    eyebrow: Email opt-out
+    show:
+      title: Unsubscribe from marketing emails?
+      description: "This will unsubscribe %{email} from marketing emails."
+      cancel: Cancel
+      confirm: Unsubscribe
+    create:
+      title: You have been unsubscribed
+      description: We will no longer send marketing emails to this address.
+      home: Go to home

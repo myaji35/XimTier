@@ -9,4 +9,10 @@ module ApplicationHelper
   def ximtier_saas_login_url
     "#{ximtier_saas_url}/login?lang=#{I18n.locale}"
   end
+
+  # 메일 본문에서 사용할 서명된 수신거부 절대 주소.
+  def unsubscribe_url_for(email)
+    token = Rails.application.message_verifier(:email_optout).generate(EmailOptOut.normalize(email))
+    unsubscribe_url(token: token, locale: I18n.locale)
+  end
 end

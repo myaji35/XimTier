@@ -1,0 +1,12 @@
+<% content_for :title, t("email_opt_outs.create.title") %>
+
+<section class="surface-canvas section-pad">
+  <div class="wrap" style="max-width:640px;">
+    <p class="type-uppercase-tag text-rausch"><%= t("email_opt_outs.eyebrow") %></p>
+    <h1 class="type-display-xl mt-3"><%= t("email_opt_outs.create.title") %></h1>
+    <p class="type-body-md text-body-airbnb mt-5"><%= t("email_opt_outs.create.description") %></p>
+    <div class="mt-10">
+      <%= link_to t("email_opt_outs.create.home"), home_path(locale: I18n.locale), class: "btn-rausch" %>
+    </div>
+  </div>
+</section>

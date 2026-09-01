@@ -1,0 +1,12 @@
+ko:
+  email_opt_outs:
+    eyebrow: 이메일 수신거부
+    show:
+      title: 수신거부 하시겠습니까?
+      description: "%{email} 주소로 보내는 광고성 이메일의 수신을 거부합니다."
+      cancel: 취소
+      confirm: 수신거부 확인
+    create:
+      title: 수신거부 처리가 완료되었습니다
+      description: 앞으로 해당 주소로 광고성 이메일을 보내지 않겠습니다.
+      home: 홈으로
