@@ -48,6 +48,7 @@ Rails.application.configure do
   # 활성 조건: ENV SMTP_HOST + SMTP_USERNAME + SMTP_PASSWORD 모두 존재
   # 없으면 :test로 폴백 → 메일 발송 시도 시 deliveries 배열에만 저장 (404 X)
   if ENV["SMTP_HOST"].present? && ENV["SMTP_USERNAME"].present? && ENV["SMTP_PASSWORD"].present?
+    smtp_ssl = ENV["SMTP_SSL"] == "true"
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
       address:              ENV["SMTP_HOST"],
@@ -56,7 +57,10 @@ Rails.application.configure do
       user_name:            ENV["SMTP_USERNAME"],
       password:             ENV["SMTP_PASSWORD"],
       authentication:       (ENV["SMTP_AUTH"] || "plain").to_sym,
-      enable_starttls_auto: ENV["SMTP_STARTTLS"] != "false",
+      ssl:                  smtp_ssl,
+      enable_starttls_auto: !smtp_ssl && ENV["SMTP_STARTTLS"] != "false",
+      # peer 검증 시 인증서 이름과 일치하도록 SMTP_HOST에는 IP가 아닌 호스트명을 사용한다.
+      openssl_verify_mode:  ENV.fetch("SMTP_VERIFY_MODE", "peer"),
       open_timeout:         10,
       read_timeout:         20
     }

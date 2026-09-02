@@ -81,20 +81,20 @@ env:
     # 도메인 — ximtier.com 정식 운영 (2026-05-14 SSL 발급 완료)
     APP_HOST: "ximtier.com"
     APP_PROTOCOL: "https"
-    # SMTP — Gmail (SMTP_USERNAME=계정주소, SMTP_PASSWORD=앱 비밀번호 16자리를 .kamal/secrets에 주입)
-    #
-    # SendGrid 는 2025년에 영구 무료가 폐지되고 60일 체험 후 월 $19.95 가 됐다.
-    # Google Workspace SMTP 릴레이는 ximtier.com 의 Workspace 관리자 계정이 없어 불가.
-    # 배포서버 자체 메일서버는 Vultr 가 25번 포트를 막아 기술적으로 불가(실측 확인).
-    # → 무료이면서 즉시 가능한 Gmail SMTP 로 간다. 한도 500통/일.
-    #
-    # 한계: 발신자가 gmail 주소로 표시된다. noreply@ximtier.com 발신이 필요해지면
-    #       Amazon SES(1,000통당 $0.10)로 전환한다 — 아래 3개 값만 바꾸면 된다.
-    SMTP_HOST: "smtp.gmail.com"
-    SMTP_PORT: "587"
+    # SMTP — 자사 Mailu (SMTP_USERNAME=info@ximtier.com, SMTP_PASSWORD는 .kamal/secrets에 주입)
+    # Vultr 프로덕션 서버에서 25·587번은 닫혀 있고 465번만 열려 있어 implicit SSL로 접속한다.
+    # 인증서 이름 검증을 위해 서버 IP가 아닌 mx.ximtier.com 호스트명을 사용한다.
+    SMTP_HOST: "mx.ximtier.com"
+    SMTP_PORT: "465"
     SMTP_DOMAIN: "ximtier.com"
     SMTP_AUTH: "plain"
-    SMTP_STARTTLS: "true"
+    SMTP_SSL: "true"
+    SMTP_STARTTLS: "false"
+    # Mailu 465는 자체 서명 인증서다(Let's Encrypt 미발급 — mail.ximtier.com이 Cloudflare
+    # Tunnel 뒤에 있어 ACME HTTP 검증이 닿지 않는다). 우리 서버 → 우리 메일서버 구간이므로
+    # 검증을 생략한다. 정식 인증서 발급은 ISS-252.
+    SMTP_VERIFY_MODE: "none"
+    MAIL_FROM: "XimTier <info@ximtier.com>"
     # Plausible — 도메인 결정 후 활성
     PLAUSIBLE_DOMAIN: ""
     # GA4 — XimTier 프로덕션 웹 속성
