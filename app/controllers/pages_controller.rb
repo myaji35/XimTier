@@ -19,6 +19,17 @@ class PagesController < ApplicationController
     @case = I18n.t("cases.#{slug}", default: nil)
     raise ActionController::RoutingError, "Not Found" if @case.nil?
   end
+
+  def insights
+    @insights = I18n.locale == :ko ? I18n.t("insights.list", default: []) : []
+  end
+
+  def insight
+    slug = params[:slug].to_s.tr("-", "_")
+    @insight = I18n.t("insights.articles.#{slug}", default: nil)
+    raise ActionController::RoutingError, "Not Found" if @insight.nil?
+  end
+
   def pricing; end
   def platform_api; end
   def team; end

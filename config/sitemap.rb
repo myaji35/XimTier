@@ -18,6 +18,8 @@ PUBLIC_PAGES = [
   { path: "/how-it-works",         priority: 0.9, changefreq: "monthly" },
   { path: "/why-not-llm",          priority: 0.9, changefreq: "monthly" },
   { path: "/use-cases",            priority: 0.8, changefreq: "monthly" },
+  { path: "/insights",             priority: 0.8, changefreq: "weekly" },
+  { path: "/insights/defect-rate-analysis", priority: 0.8, changefreq: "monthly" },
   { path: "/cases/manufacturing",  priority: 0.7, changefreq: "monthly" },
   { path: "/cases/hospital",       priority: 0.7, changefreq: "monthly" },
   { path: "/cases/public",         priority: 0.7, changefreq: "monthly" },

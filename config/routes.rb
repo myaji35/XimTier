@@ -29,6 +29,8 @@ Rails.application.routes.draw do
     get "/use-cases",    to: "pages#use_cases",    as: :use_cases
     get "/cases/:slug",  to: "pages#case_study",   as: :case_study,
         constraints: { slug: /manufacturing|hospital|public|smart-city|finance|retail|logistics|energy|education|telecom|ga-branch/ }
+    get "/insights", to: "pages#insights", as: :insights
+    get "/insights/:slug", to: "pages#insight", as: :insight, constraints: { slug: /[a-z0-9\-]+/ }
 
     # Cases 갤러리 (사례·홍보 미디어) — 운영자 등록 / 누구나 열람
     get  "/cases",              to: "case_studies#index",   as: :case_studies

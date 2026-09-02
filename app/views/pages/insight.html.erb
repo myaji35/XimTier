@@ -1,0 +1,81 @@
+<% content_for :title, @insight[:title] %>
+<% content_for :description, @insight[:meta_description] %>
+<% content_for :jsonld do %>
+  <%= jsonld_script(article_jsonld(title: @insight[:title], description: @insight[:meta_description])) %>
+<% end %>
+
+<section class="surface-canvas section-pad">
+  <div class="wrap" style="max-width:920px;">
+    <p class="type-uppercase-tag text-rausch">INSIGHTS · <%= @insight[:published_at] %></p>
+    <h1 class="type-display-xl mt-3"><%= @insight[:title] %></h1>
+    <p class="type-body-md text-body-airbnb mt-5"><%= @insight[:subtitle] %></p>
+  </div>
+</section>
+
+<% @insight[:sections].each_with_index do |section, section_index| %>
+  <section class="<%= section_index.odd? ? 'surface-soft' : 'surface-canvas' %> section-pad">
+    <div class="wrap" style="max-width:920px;">
+      <p class="type-uppercase-tag text-rausch">SECTION / <%= format('%02d', section_index + 1) %></p>
+      <h2 class="type-display-xl mt-3"><%= section[:heading] %></h2>
+
+      <div class="mt-8">
+        <% section[:body].each do |block| %>
+          <% case block[:type] %>
+          <% when "subheading" %>
+            <h3 class="type-display-md mt-10"><%= block[:content] %></h3>
+          <% when "paragraph" %>
+            <p class="type-body-md text-body-airbnb mt-5" style="line-height:1.8;"><%= sanitize(block[:content], tags: %w[strong]) %></p>
+          <% when "quote" %>
+            <blockquote class="card-airbnb mt-6" style="padding:24px; border-left:4px solid var(--color-rausch);">
+              <% block[:lines].each do |line| %>
+                <p class="type-body-md text-ink-airbnb"><%= line %></p>
+              <% end %>
+            </blockquote>
+          <% when "numbered" %>
+            <div class="mt-6 grid grid-cols-1" style="gap:16px;">
+              <% block[:items].each do |item| %>
+                <div class="card-airbnb" style="padding:24px;">
+                  <p class="type-body-md text-ink-airbnb"><strong><%= item[:title] %></strong></p>
+                  <p class="type-body-md text-body-airbnb mt-2" style="line-height:1.8;"><%= item[:content] %></p>
+                </div>
+              <% end %>
+            </div>
+          <% when "bullets" %>
+            <ul class="mt-5" style="padding-left:24px; list-style:disc;">
+              <% block[:items].each do |item| %>
+                <li class="type-body-md text-body-airbnb mt-2" style="line-height:1.8;"><%= sanitize(item, tags: %w[strong]) %></li>
+              <% end %>
+            </ul>
+          <% when "table" %>
+            <div class="mt-8 overflow-x-auto">
+              <table class="w-full card-airbnb" style="border-collapse:separate; border-spacing:0; min-width:560px; padding:0; overflow:hidden;">
+                <thead>
+                  <tr>
+                    <% block[:headers].each do |header| %>
+                      <th class="text-left p-4 font-mono type-uppercase-tag text-muted-airbnb border-b-hairline" style="background:var(--color-surface-soft); font-size:11px; letter-spacing:0.14em;"><%= header %></th>
+                    <% end %>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% block[:rows].each_with_index do |row, row_index| %>
+                    <tr>
+                      <% row.each do |cell| %>
+                        <td class="p-4 type-body-md text-ink-airbnb <%= 'border-b-hairline' unless row_index == block[:rows].size - 1 %>" style="background:var(--color-canvas);"><%= sanitize(cell.to_s, tags: %w[strong]) %></td>
+                      <% end %>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </section>
+<% end %>
+
+<section class="surface-soft section-pad-compact text-center">
+  <div class="wrap">
+    <%= link_to @insight[:cta_label], contact_path(locale: I18n.locale), class: "btn-rausch" %>
+  </div>
+</section>

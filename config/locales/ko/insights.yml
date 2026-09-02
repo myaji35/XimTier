@@ -1,0 +1,127 @@
+ko:
+  insights:
+    index_title: 인사이트
+    index_lead: 데이터 기반 의사결정과 AI 시뮬레이션을 위한 실무 인사이트를 전합니다.
+    list:
+      - slug: defect-rate-analysis
+        title: 불량률 원인 분석, 데이터가 있는데 왜 답이 안 나오나
+        summary: 상관관계는 보이는데 "그래서 뭘 바꿔야 하나"에 답하지 못하는 이유
+        date: '2026-09-02'
+    articles:
+      defect_rate_analysis:
+        slug: defect-rate-analysis
+        title: 불량률 원인 분석, 데이터가 있는데 왜 답이 안 나오나
+        subtitle: 상관관계는 보이는데 "그래서 뭘 바꿔야 하나"에 답하지 못하는 이유
+        meta_description: 공정 데이터가 충분해도 불량률을 낮출 조건을 찾지 못하는 이유와 역방향 What-if 분석으로 목표 변수 조합을 역산하는 방법을 설명합니다.
+        published_at: '2026-09-02'
+        sections:
+          - heading: 데이터가 부족해서가 아닙니다
+            body:
+              - type: paragraph
+                content: 공정 로그는 쌓여 있습니다. 온도, 압력, 속도, 습도, 체류 시간까지 초 단위로 기록됩니다. 6개월치면 수만 행입니다.
+              - type: paragraph
+                content: 그런데 회의에서 이런 대화가 반복됩니다.
+              - type: quote
+                lines:
+                  - '"불량률이 왜 올랐죠?"'
+                  - '"온도랑 상관관계가 좀 보이긴 하는데요…"'
+                  - '"그래서 온도를 몇 도로 맞추면 됩니까?"'
+                  - '"그건 좀 더 봐야…"'
+              - type: paragraph
+                content: '<strong>데이터가 부족한 게 아니라 질문에 답하는 도구가 없는 것입니다.</strong>'
+          - heading: 지금 쓰는 방법이 답하지 못하는 이유
+            body:
+              - type: subheading
+                content: BI 대시보드 — 과거를 보여줄 뿐입니다
+              - type: paragraph
+                content: Tableau나 Power BI는 "지난달 불량률이 2.4%였고 온도가 높을 때 함께 올랐다"까지 보여줍니다. 훌륭한 관측 도구입니다.
+              - type: paragraph
+                content: 하지만 <strong>관측은 처방이 아닙니다.</strong> 대시보드는 "온도를 224도로 올리고 압력을 4MPa 내리면 목표에 도달한다"고 말해주지 않습니다. 그건 대시보드가 하는 일이 아닙니다.
+              - type: subheading
+                content: 회귀분석 — 방향은 알려주지만 크기는 모릅니다
+              - type: paragraph
+                content: '"온도가 1도 오르면 불량률이 0.03%p 오른다" 같은 계수는 나옵니다.'
+              - type: paragraph
+                content: 문제는 <strong>변수가 하나가 아니라는 것</strong>입니다. 온도를 내리면 처리 시간이 늘고, 압력을 조정하면 온도가 따라 움직입니다. 변수 5개가 서로 얽혀 있으면 개별 계수를 합산해도 실제 결과와 맞지 않습니다.
+              - type: paragraph
+                content: 그리고 회귀는 <strong>"현재 조건에서 결과가 어떻게 될까"</strong>에 답하지, <strong>"목표 결과를 얻으려면 조건이 어때야 하나"</strong>에는 답하지 않습니다. 방향이 반대입니다.
+              - type: subheading
+                content: 생성형 AI — 데이터를 못 올립니다
+              - type: paragraph
+                content: ChatGPT에 공정 로그를 붙여넣으면 그럴듯한 분석이 나옵니다.
+              - type: paragraph
+                content: 그런데 <strong>그 순간 사내 보안 정책을 위반합니다.</strong> 제조 공정 데이터는 영업비밀입니다. 외부 API로 나가는 것 자체가 금지된 회사가 대부분입니다.
+              - type: paragraph
+                content: 설령 올릴 수 있다 해도, LLM은 수치를 계산하지 않고 <strong>문장으로 그럴듯하게 씁니다.</strong> 소수점 둘째 자리까지 맞아야 하는 공정 판단에는 쓸 수 없습니다.
+          - heading: 질문의 방향을 뒤집어야 합니다
+            body:
+              - type: paragraph
+                content: 지금까지의 접근은 전부 <strong>"조건 → 결과"</strong> 방향입니다.
+              - type: quote
+                lines:
+                  - 온도가 이렇고 압력이 저러면 → 불량률이 얼마가 될까
+              - type: paragraph
+                content: 현장에서 필요한 건 반대입니다.
+              - type: quote
+                lines:
+                  - 불량률을 1.2%로 만들려면 → 온도와 압력을 얼마로 맞춰야 하나
+              - type: paragraph
+                content: 이걸 <strong>역방향 What-if 분석(Reverse What-If)</strong> 이라고 합니다. 목표값을 먼저 고정하고, 그 목표를 달성하는 변수 조합을 역산하는 방식입니다.
+              - type: subheading
+                content: 왜 어려운가
+              - type: paragraph
+                content: 변수가 5개면 조합이 사실상 무한합니다. 온도를 올리고 압력을 내려도, 온도를 내리고 속도를 늦춰도 같은 목표에 도달할 수 있습니다.
+              - type: paragraph
+                content: 여기서 필요한 건 두 가지입니다.
+              - type: numbered
+                items:
+                  - title: 1. 실현 가능한 범위 안에서 찾기
+                    content: 온도를 300도로 올리면 목표는 달성되지만 설비가 견디지 못합니다. 각 변수의 물리적·운영적 한계를 제약으로 걸어야 합니다.
+                  - title: 2. 왜 그 조합인지 설명하기
+                    content: '"이 값으로 맞추세요"만으로는 현장이 움직이지 않습니다. 어느 변수가 결과에 얼마나 기여했는지 근거가 있어야 품질팀과 생산팀이 합의할 수 있습니다.'
+          - heading: 실제로 어떻게 나오나
+            body:
+              - type: paragraph
+                content: XimTier가 반도체 공정 데이터(12,480행)로 시연한 결과입니다. <strong>공개 시연용 데이터셋이며 특정 고객 사례가 아닙니다.</strong>
+              - type: paragraph
+                content: '목표: 불량률 2.40% → <strong>1.20%</strong>'
+              - type: table
+                headers: [변수, 현재, 목표값, 조정폭]
+                rows:
+                  - [공정 온도, 215.0°C, 224.9°C, '<strong>+9.9°C</strong>']
+                  - [주입 압력, 88.0 MPa, 83.7 MPa, '<strong>−4.3 MPa</strong>']
+              - type: paragraph
+                content: 주목할 점이 있습니다. <strong>온도는 올리고 압력은 내립니다.</strong> 상관분석만 봤다면 "온도가 높을수록 불량이 는다"는 결론에서 온도를 내렸을 겁니다. 변수 간 상호작용을 함께 풀어야 이런 조합이 나옵니다.
+              - type: paragraph
+                content: '부가 지표:'
+              - type: bullets
+                items:
+                  - 처리 시간 <strong>0.18초</strong> — 슬라이더를 움직이며 실시간으로 시나리오를 볼 수 있는 속도입니다
+                  - 예측 정확도 <strong>92.4%</strong> (R² 0.887)
+                  - 각 변수 기여도는 <strong>SHAP 값</strong>으로 자동 첨부됩니다 — "왜 이 값인가"에 답이 붙습니다
+          - heading: 데이터를 내보내지 않고 하는 방법
+            body:
+              - type: paragraph
+                content: 앞서 말한 보안 문제가 남습니다. 이 계산을 하려면 데이터를 어딘가에 올려야 하지 않나?
+              - type: paragraph
+                content: <strong>온프레미스로 돌리면 됩니다.</strong> 분석 엔진을 사내 환경에 설치하고 데이터는 방화벽 안에 둡니다. 계산도 안에서 끝납니다. 외부로 나가는 것은 없습니다.
+              - type: paragraph
+                content: EU AI Act처럼 <strong>설명 가능성을 요구하는 규제</strong>가 늘고 있습니다. "AI가 그렇게 판단했다"로는 부족하고, 근거를 문서로 제출해야 하는 상황이 옵니다. SHAP 기반 근거가 자동으로 남으면 그 요구를 함께 충족합니다.
+          - heading: 정리하면
+            body:
+              - type: table
+                headers: [방법, 답하는 질문, 못 하는 것]
+                rows:
+                  - [BI 대시보드, 무슨 일이 있었나, 무엇을 바꿔야 하나]
+                  - [회귀분석, 조건 → 결과, 결과 → 조건 (역방향)]
+                  - [생성형 AI, 문장으로 설명, 데이터 반출 · 정확한 수치]
+                  - ['<strong>역방향 What-if</strong>', '<strong>목표 → 필요 조건</strong>', —]
+              - type: paragraph
+                content: 데이터가 있는데 답이 안 나온다면, 도구를 더 사는 것보다 <strong>질문의 방향을 뒤집어 보는 것</strong>이 먼저입니다.
+          - heading: 더 알아보시려면
+            body:
+              - type: paragraph
+                content: XimTier의 AX 시뮬레이션 적용 사례와 도입 절차를 담은 자료를 보내드립니다. 제조 외에 병원·공공·금융 사례도 함께 있습니다.
+              - type: paragraph
+                content: 문의 주시면 24시간 내에 답신드립니다. 보안이 필요한 데이터는 폼 대신 직접 이메일로 보내주십시오.
+        cta_label: 자료 요청하기 →

@@ -1,0 +1,27 @@
+<% content_for :title, t("insights.index_title") %>
+<% content_for :description, t("insights.index_lead") %>
+
+<section class="surface-canvas section-pad">
+  <div class="wrap" style="max-width:920px;">
+    <p class="type-uppercase-tag text-rausch">INSIGHTS</p>
+    <h1 class="type-display-xl mt-3"><%= t("insights.index_title") %></h1>
+    <p class="type-body-md text-body-airbnb mt-5"><%= t("insights.index_lead") %></p>
+  </div>
+</section>
+
+<section class="surface-soft section-pad">
+  <div class="wrap" style="max-width:920px;">
+    <div class="grid grid-cols-1" style="gap:16px;">
+      <% @insights.each do |item| %>
+        <article class="card-airbnb shadow-card-hover" style="padding:28px;">
+          <p class="font-mono type-uppercase-tag text-rausch"><%= item[:date] %></p>
+          <h2 class="type-display-xl mt-3"><%= item[:title] %></h2>
+          <p class="type-body-md text-body-airbnb mt-4"><%= item[:summary] %></p>
+          <div class="mt-6">
+            <%= link_to "읽어보기 →", insight_path(locale: I18n.locale, slug: item[:slug]), class: "type-body-sm font-semibold text-rausch hover:underline" %>
+          </div>
+        </article>
+      <% end %>
+    </div>
+  </div>
+</section>
