@@ -81,6 +81,9 @@ env:
     # 도메인 — ximtier.com 정식 운영 (2026-05-14 SSL 발급 완료)
     APP_HOST: "ximtier.com"
     APP_PROTOCOL: "https"
+    # 문의·데모 기록 탭. 미설정이면 A:Z 기본값이라 첫 번째 탭(kClay VC 리드)에
+    # append 돼 리드 목록이 오염된다 — 반드시 탭 이름을 명시한다.
+    GOOGLE_SHEETS_RANGE: "XimTier 문의·데모!A:H"
     # SMTP — 자사 Mailu (SMTP_USERNAME=info@ximtier.com, SMTP_PASSWORD는 .kamal/secrets에 주입)
     # Vultr 프로덕션 서버에서 25·587번은 닫혀 있고 465번만 열려 있어 implicit SSL로 접속한다.
     # 인증서 이름 검증을 위해 서버 IP가 아닌 mx.ximtier.com 호스트명을 사용한다.
