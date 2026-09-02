@@ -65,6 +65,7 @@
       <div>
         <%= f.label :message, t("contact.form.message"), class: "block type-body-sm font-semibold text-ink-airbnb mb-2" %>
         <%= f.text_area :message, required: true, rows: 5, maxlength: 5000,
+              placeholder: t("contact.form.message_placeholder"),
               class: "w-full px-4 py-3 rounded-[10px] border-hairline type-body-md text-ink-airbnb",
               style: "background: var(--color-canvas);" %>
       </div>
@@ -84,3 +85,14 @@
     <% end %>
   </div>
 </section>
+
+<% if flash[:notice].present? && ENV['GA4_MEASUREMENT_ID'].present? %>
+  <script>
+    if (typeof gtag === 'function') {
+      gtag('event', 'generate_lead', {
+        form_name: 'contact_inquiry',
+        form_destination: 'contact'
+      });
+    }
+  </script>
+<% end %>

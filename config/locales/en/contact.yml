@@ -1,14 +1,15 @@
 en:
   contact:
     eyebrow: Contact
-    h1: Demo · Partnership · Investment inquiries
-    lead: We respond within 24 hours. For sensitive data, please email us directly instead of using the form.
+    h1: We will send you the materials
+    lead: We'll send you materials covering AX simulation use cases and the implementation process. We'll respond within 24 hours. For sensitive data, please email us directly instead of using the form.
     form:
       name: Name
       email: Email
       company: Company
       industry: Industry
       message: Message
+      message_placeholder: "e.g., Please send me materials on AX implementation use cases. If available, please include examples from the manufacturing industry."
       consent: "I consent to the collection and use of personal information."
       submit: Send inquiry
     industries:

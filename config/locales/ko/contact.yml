@@ -1,14 +1,15 @@
 ko:
   contact:
     eyebrow: 문의
-    h1: 데모·파트너십·투자 문의
-    lead: 24시간 내에 답신드립니다. 보안이 필요한 데이터는 폼 대신 직접 이메일로 보내주세요.
+    h1: 상세 자료를 보내드립니다
+    lead: AX 시뮬레이션 적용 사례와 도입 절차를 담은 자료를 보내드립니다. 24시간 내에 답신드립니다. 보안이 필요한 데이터는 폼 대신 직접 이메일로 보내주세요.
     form:
       name: 이름
       email: 이메일
       company: 회사
       industry: 산업
       message: 메시지
+      message_placeholder: "예) AX 도입 사례 자료 요청합니다. 제조업 관련 사례가 있으면 함께 보내주세요."
       consent: "개인정보 수집·이용에 동의합니다."
       submit: 문의 보내기
     industries:
