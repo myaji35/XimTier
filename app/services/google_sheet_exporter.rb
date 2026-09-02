@@ -5,6 +5,8 @@ require "openssl"
 require "uri"
 
 class GoogleSheetExporter
+  class TransientError < StandardError; end
+
   TOKEN_URL = "https://oauth2.googleapis.com/token"
   SHEETS_SCOPE = "https://www.googleapis.com/auth/spreadsheets"
 
@@ -40,8 +42,8 @@ class GoogleSheetExporter
 
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
-    http.open_timeout = 3
-    http.read_timeout = 5
+    http.open_timeout = 10
+    http.read_timeout = 20
 
     request = Net::HTTP::Post.new(
       uri.request_uri,
@@ -53,10 +55,20 @@ class GoogleSheetExporter
     response = http.request(request)
     return true if response.is_a?(Net::HTTPSuccess)
 
+    # 5xx와 타임아웃은 같은 요청을 다시 보내면 복구될 수 있으므로 잡까지 예외를 전파한다.
+    # 인증·권한·시트 ID 오류인 4xx는 재시도로 해결되지 않으므로 기존처럼 false를 반환한다.
+    if response.is_a?(Net::HTTPServerError)
+      raise TransientError,
+            "append failed: status=#{response.code} body=#{response.body}"
+    end
+
     Rails.logger.warn(
       "[GoogleSheetExporter] append failed: status=#{response.code} body=#{response.body}"
     )
     false
+  rescue TransientError, Net::OpenTimeout, Net::ReadTimeout, Timeout::Error => e
+    Rails.logger.warn("[GoogleSheetExporter] append failed: #{e.class}: #{e.message}")
+    raise
   rescue StandardError => e
     Rails.logger.warn("[GoogleSheetExporter] append failed: #{e.class}: #{e.message}")
     false
@@ -109,8 +121,8 @@ class GoogleSheetExporter
     uri = URI(TOKEN_URL)
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
-    http.open_timeout = 3
-    http.read_timeout = 5
+    http.open_timeout = 10
+    http.read_timeout = 20
 
     request = Net::HTTP::Post.new(uri.request_uri)
     request.set_form_data(
@@ -120,6 +132,12 @@ class GoogleSheetExporter
 
     response = http.request(request)
     unless response.is_a?(Net::HTTPSuccess)
+      # 토큰 서버의 5xx도 일시 장애이므로 append와 동일하게 잡 재시도 대상으로 올린다.
+      if response.is_a?(Net::HTTPServerError)
+        raise TransientError,
+              "token request failed: status=#{response.code} body=#{response.body}"
+      end
+
       Rails.logger.warn(
         "[GoogleSheetExporter] token request failed: status=#{response.code} body=#{response.body}"
       )
@@ -129,6 +147,9 @@ class GoogleSheetExporter
     JSON.parse(response.body)["access_token"].presence.tap do |token|
       Rails.logger.warn("[GoogleSheetExporter] token response missing access_token") unless token
     end
+  rescue TransientError, Net::OpenTimeout, Net::ReadTimeout, Timeout::Error => e
+    Rails.logger.warn("[GoogleSheetExporter] token request failed: #{e.class}: #{e.message}")
+    raise
   rescue StandardError => e
     Rails.logger.warn("[GoogleSheetExporter] token request failed: #{e.class}: #{e.message}")
     nil
