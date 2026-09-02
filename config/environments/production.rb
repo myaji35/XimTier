@@ -1,5 +1,20 @@
 require "active_support/core_ext/integer/time"
 
+class StaticFileCacheControl
+  SHORT_CACHE_PATHS = %w[/sitemap.xml /sitemap.xml.gz /robots.txt /llms.txt].freeze
+  SHORT_CACHE_CONTROL = "public, max-age=3600, must-revalidate"
+
+  def initialize(app)
+    @app = app
+  end
+
+  def call(env)
+    status, headers, body = @app.call(env)
+    headers["cache-control"] = SHORT_CACHE_CONTROL if SHORT_CACHE_PATHS.include?(env["PATH_INFO"])
+    [status, headers, body]
+  end
+end
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -17,6 +32,10 @@ Rails.application.configure do
 
   # Cache assets for far-future expiry since they are all digest stamped.
   config.public_file_server.headers = { "cache-control" => "public, max-age=#{1.year.to_i}" }
+
+  # digest가 없는 SEO 파일은 URL이 고정된 채 내용이 바뀌므로 1년 캐시에서 제외한다.
+  # 정적 파일 서버를 감싸는 미들웨어에서 해당 경로만 1시간 캐시로 덮어쓴다.
+  config.middleware.insert_before ActionDispatch::Static, StaticFileCacheControl
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.asset_host = "http://assets.example.com"
