@@ -102,6 +102,8 @@ env:
     PLAUSIBLE_DOMAIN: ""
     # GA4 — XimTier 프로덕션 웹 속성
     GA4_MEASUREMENT_ID: "G-Q2EYN13CYN"
+    # Meta 픽셀 — 빈 문자열이면 비활성
+    META_PIXEL_ID: "1299950782092213"
     # 네이버 서치어드바이저 — 네이버 발급값 입력
     NAVER_SITE_VERIFICATION: "e6366cd0bbe57817b30665e642956495d07a1297"
 

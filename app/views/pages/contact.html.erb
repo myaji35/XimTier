@@ -96,3 +96,11 @@
     }
   </script>
 <% end %>
+
+<% if flash[:notice].present? && ENV['META_PIXEL_ID'].present? %>
+  <script>
+    if (typeof fbq === 'function') {
+      fbq('track', 'Lead');
+    }
+  </script>
+<% end %>
