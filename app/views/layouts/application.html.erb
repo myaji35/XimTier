@@ -68,8 +68,9 @@
       </script>
     <% end %>
 
-    <%# Meta 픽셀 — ENV 설정 시만 활성 %>
-    <% if ENV["META_PIXEL_ID"].present? %>
+    <%# Meta 픽셀 — 유효한 ENV 설정 시만 활성 %>
+    <% pixel_ids = meta_pixel_ids %>
+    <% if pixel_ids.any? %>
       <script>
         !function(f,b,e,v,n,t,s)
         {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -79,12 +80,16 @@
         t.src=v;s=b.getElementsByTagName(e)[0];
         s.parentNode.insertBefore(t,s)}(window, document,'script',
         'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '<%= ENV["META_PIXEL_ID"] %>');
+        <% pixel_ids.each do |pixel_id| %>
+        fbq('init', '<%= pixel_id %>');
+        <% end %>
         fbq('track', 'PageView');
       </script>
+      <% pixel_ids.each do |pixel_id| %>
       <noscript><img height="1" width="1" style="display:none"
-        src="https://www.facebook.com/tr?id=<%= ENV['META_PIXEL_ID'] %>&ev=PageView&noscript=1"
+        src="https://www.facebook.com/tr?id=<%= pixel_id %>&ev=PageView&noscript=1"
       ></noscript>
+      <% end %>
     <% end %>
 
     <%# 네이버 서치어드바이저 소유확인 — ENV 설정 시만 활성 %>
