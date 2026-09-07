@@ -3,6 +3,18 @@
 # If running the rails server then create or migrate existing database
 if [ "${@: -2:1}" == "./bin/rails" ] && [ "${@: -1:1}" == "server" ]; then
   ./bin/rails db:prepare
+  sitemap_status=0
+  bundle exec rake sitemap:refresh:no_ping || sitemap_status=$?
+  if [ "$sitemap_status" -eq 0 ]; then
+    gzip -c public/sitemap.xml > public/sitemap.xml.gz.tmp &&
+      mv public/sitemap.xml.gz.tmp public/sitemap.xml.gz || sitemap_status=$?
+  fi
+  if [ "$sitemap_status" -eq 0 ]; then
+    echo "Sitemap refresh succeeded (public/sitemap.xml and public/sitemap.xml.gz)"
+  else
+    rm -f public/sitemap.xml.gz.tmp || true
+    echo "Sitemap refresh failed with status ${sitemap_status}; continuing server startup"
+  fi
 fi
 
 exec "${@}"
