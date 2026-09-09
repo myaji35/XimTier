@@ -1149,6 +1149,4003 @@
       "spawn_rules": [],
       "last_dispatched_at": "2026-07-22T18:43:06",
       "completed_at": "2026-07-22T18:56:27.790092"
+    },
+    {
+      "id": "ISS-032",
+      "title": "[지시] admin@ximtier.com 관리자 이메일 gmail로 바꿔줘",
+      "type": "FEATURE_PLAN",
+      "status": "READY",
+      "priority": "P1",
+      "assign_to": "product-manager",
+      "depth": 0,
+      "created_at": "2026-08-19T18:29:02.902948",
+      "updated_at": "2026-08-19T18:29:02.902948",
+      "payload": {
+        "origin": "intent-gate",
+        "raw_prompt": "admin@ximtier.com 관리자 이메일 gmail로 바꿔줘"
+      },
+      "last_dispatched_at": "2026-08-28T15:21:21"
+    },
+    {
+      "id": "ISS-033",
+      "title": "[지시] (가)로 DNS 교체까지 포함한 프롬프트 만들어줘",
+      "type": "FEATURE_PLAN",
+      "status": "READY",
+      "priority": "P1",
+      "assign_to": "product-manager",
+      "depth": 0,
+      "created_at": "2026-08-19T19:36:14.114992",
+      "updated_at": "2026-08-19T19:36:14.114992",
+      "payload": {
+        "origin": "intent-gate",
+        "raw_prompt": "(가)로 DNS 교체까지 포함한 프롬프트 만들어줘"
+      },
+      "last_dispatched_at": "2026-08-28T15:25:57"
+    },
+    {
+      "id": "ISS-034",
+      "title": "[아이디어] 3개월 월결제로 하나가 연장하자.",
+      "type": "IDEA",
+      "status": "BACKLOG",
+      "priority": "P3",
+      "assign_to": "product-manager",
+      "depth": 0,
+      "created_at": "2026-08-20T20:57:24.255404",
+      "updated_at": "2026-08-20T20:57:24.255404",
+      "payload": {
+        "origin": "intent-gate:idea",
+        "raw_prompt": "3개월 월결제로 하나가 연장하자.",
+        "note": "대표님 제안형 발화 자동 포착. BACKLOG라 자동 착수 안 함 — 검토 후 READY로 올려야 실행된다."
+      }
+    },
+    {
+      "id": "ISS-035",
+      "title": "[지시] 가비아 메일호스팅으로 옮겼어, contact@ 계정 만들어놨다. 관련된 홈페이지 수정해줘.",
+      "type": "FEATURE_PLAN",
+      "status": "READY",
+      "priority": "P1",
+      "assign_to": "product-manager",
+      "depth": 0,
+      "created_at": "2026-08-26T08:21:12.811299",
+      "updated_at": "2026-08-26T08:21:12.811299",
+      "payload": {
+        "origin": "intent-gate",
+        "raw_prompt": "가비아 메일호스팅으로 옮겼어, contact@ 계정 만들어놨다. 관련된 홈페이지 수정해줘."
+      },
+      "last_dispatched_at": "2026-08-28T15:26:01"
+    },
+    {
+      "id": "ISS-036",
+      "title": "[지시] ./download (XimTier) 메뉴구성과 구현 화면_260818 2050 pptx pdf로 변환해줘.",
+      "type": "FEATURE_PLAN",
+      "status": "READY",
+      "priority": "P1",
+      "assign_to": "product-manager",
+      "depth": 0,
+      "created_at": "2026-08-26T11:55:16.547769",
+      "updated_at": "2026-08-26T11:55:16.547769",
+      "payload": {
+        "origin": "intent-gate",
+        "raw_prompt": "./download (XimTier) 메뉴구성과 구현 화면_260818 2050 pptx pdf로 변환해줘."
+      },
+      "last_dispatched_at": "2026-08-28T15:27:34"
+    },
+    {
+      "id": "ISS-037",
+      "title": "[지시] 포트원(구 아임포트) 결제 연동 구축 — 국내 우선, 글로벌(MoR) 확장 대비 추상화",
+      "type": "FEATURE_PLAN",
+      "status": "READY",
+      "priority": "P1",
+      "assign_to": "product-manager",
+      "depth": 0,
+      "created_at": "2026-08-27T10:09:23.313248",
+      "updated_at": "2026-08-27T10:09:23.313248",
+      "payload": {
+        "origin": "ceo-directive",
+        "raw_prompt": "1년 이내 계획이야, 지금은 포트원으로 시작하자. ../0019 ximtier에 포트원으로 구축하자.",
+        "decision": "국내=포트원 추천패키지(가입비 22만원 면제, 월거래 5천만↓ 무료). 1년 내 글로벌은 Paddle(MoR) 추가. 결제 provider 추상화하여 나중 MoR 확장 대비.",
+        "stack": "Rails 8.1.3 / Ruby 3.3.10 / Kamal / devise / importmap. 기존 결제 코드 없음(신규).",
+        "coding_delegate": "codex",
+        "scope": [
+          "포트원 결제 요청(결제창 호출) 플로우",
+          "결제 완료 콜백 + 서버측 결제 검증(위변조 방지, 금액 대조)",
+          "웹훅(webhook) 수신 검증",
+          "주문/결제 레코드 모델(order/payment)",
+          "provider 추상화 레이어(향후 Paddle 추가 대비)"
+        ],
+        "constraints": [
+          "실패경로 4문항 필수: 결제검증 실패 시 가짜성공 금지·무음실패 금지·사용자 인지·금전 정합",
+          "API 키/시크릿은 Rails credentials 또는 env만, 코드 하드코딩 금지(secret-guard)",
+          "코딩은 Codex 위임, Opus는 위임前後 검수"
+        ]
+      },
+      "retry_count": 1,
+      "last_dispatched_at": "2026-08-28T15:21:18"
+    },
+    {
+      "id": "ISS-038",
+      "title": "[아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I",
+      "type": "IDEA",
+      "status": "ESCALATED",
+      "priority": "P3",
+      "assign_to": "product-manager",
+      "depth": 0,
+      "created_at": "2026-08-27T10:17:48.802071",
+      "updated_at": "2026-08-27T10:17:48.802071",
+      "payload": {
+        "origin": "intent-gate:idea",
+        "raw_prompt": "<agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] ISS-493 재검토 결과 전문.  ### 판정: 된다 (조건부) 법인((주)심티어, 2026-07-09 개업)·사업자등록이 있어 포트원 PG 심사 요건의 핵심을 충족하고, 대표님 최신 발화(2026-08-27 \"지금은 포트원으로 시작하자\")가 2026-07-27 개인계좌 규칙보다 나중이므로 나중 발화가 이긴다 — 단, PG 심사 완료 전까지는 결제가 물리적으로 불가능하므로 \"심사 완료\"를 전제로 된다.  ### 수금 방침 결론: 전환이 아니라 \"병행 → 단계적 전환\" - 두 지시는 양립한다. 개인계좌 규칙 원문 자체가 \"PG 연동이 지연되는 동안\"의 임시 조치였고, 재검토 시점 조항(월 인보이스 20건 초과 또는 구독 자동갱신 필요 시)을 대표님이 스스로 앞당긴 것이다. 방침 위반이 아니라 방침의 예정된 다음 단계다. - **폐기하지 않는 것**: 개인계좌(계좌이체) 수금 경로. PG 심사 1~2주 + 연동 기간 동안 유일한 수금 수단이고, 심사 후에도 B2B 고객의 세금계산서+계좌이체 선호 때문에 병행 유지가 유리하다(수수료 0% vs 카드 ~3%대). - **폐기(수정)하는 것**: payout-account 스킬의 \"PG 연동 작업은 회피 행동으로 간주한다\" 문구 — 대표님 명시 지시로 무효화됐다. 스킬 문서에 \"2026-08-27 대표님 지시로 포트원 병행 개시\" 한 줄 추가 권고. - **CEO 시선 우려 1건 (정직하게)**: ISS-391 부검 기준 유료 고객 0명·인보이스 발행 0회 상태다. 포트원은 결제 수단이지 매출이 아니다. 코드보다 먼저 \"가격을 말하고 청구하는 행위\"가 실행항목 1번이어야 하며, 아래 실행 계획에 그렇게 배치했다.  ### 적용 계층 결론: 0019 (대표님 명시값), 단 아키텍처 불일치 1건 명시 - 실측: 0019 xaisimtier는 순수 마케팅 사이트다. 모델은 user/case_study/contact_inquiry/demo_request/download뿐, 결제·구독·플랜 모델 없음. routes.rb에 checkout 없음. `/pricing`은 정적 페이지로 가격이 **범위**로만 표기(\"월 30–100만원\", \"연 500–3,000만원\")되고 CTA는 전부 /demo·/contact 문의 유도다. - 요금제·테넌트·사용량(tenant.plan, api_keys, usage_events)은 0029 게이트웨이에 있다. 구독 \"권한 부여\"의 자연스러운 집은 0029다. - 그러나 대표님 명시값 절대 우선 — **0019에 구축한다**. 0019는 고객 대면 접점(pricing 페이지 + Devise 로그인)이라 결제창을 붙이는 위치로도 타당하다. 결제 완료 → 0029 테넌트 개통은 전환기 동안 수동(confirm! 패턴)으로 하고, 자동 연동은 후속 이슈로 분리한다. 이 불일치는 오류가 아니라 순서의 문제다.  ### 그래서 이렇게 한다 **대표님이 직접 (코드로 대체 불가):** 1. **첫 결제 상품 가격 1개 확정** — 현재 pricing은 범위라 결제 불가. Light SaaS 월 정액 1개(예: 월 50만원)를 정해야 SKU가 성립한다. 이것이 최우선이다. 2. 포트원 콘솔 회원가입(portone.io) — 무료, 가입 즉시 테스트 채널 키 발급 가능. 포트원 자체 이용료는 월 순거래액 5,000만원 미만 무료. 3. 콘솔에서 PG사 계약 신청 — 필요: 사업자등록증, **법인 명의 정산계좌**(개인 카카오뱅크로는 정산 불가), **통신판매업 신고번호**(미신고면 구청 신고 선행 — 신고 여부 미확인, 확인 필요). 심사 1~2주. 포트원 패키지로 PG 가입비(평균 22만원) 면제 가능. 4. 정기결제(빌링키) 사용 시 PG/카드사 별도 심사 요청 — 단건 결제보다 심사가 까다로움.  **코드(Codex 위임, XimTier registry에 이슈 선등록 후):** 5. payments 테이블·모델(user_id, tier, amount, portone_payment_id(tx_id), status, paid_at) + 마이그레이션 6. 포트원 V2 브라우저 SDK 결제 페이지 + 서버측 결제 검증(REST API, 금액 대사) + 웹훅 엔드포인트(서명 검증). 키는 전부 ENV(`PORTONE_STORE_ID`/`PORTONE_API_SECRET` 등), .env.example엔 placeholder만 7. pricing 페이지 CTA에 결제 진입 추가 — feature flag로 숨겨두고 심사 완료 후 노출 8. 결제 완료 → 관리자 알림(기존 slack 서비스 재사용) → 수동 개통  ### 지금 당장 코드로 할 수 있는 것 (API 키 없이) 있다 — 5·6·7·8 전부 키 없이 작성 가능하다(키는 ENV 주입 설계). 단, 실동작 검증은 테스트 채널 키(대표님 가입 즉시 발급) 이후에만 가능하므로, 키 수령 전 \"완료\" 보고는 금지 상태로 잡아야 한다. Rails 공식 gem은 없음 — JS SDK + REST API 직접 호출이 표준(확인됨). 현재 Gemfile에 결제 관련 gem 전무(확인됨).  ### 더 하면 좋은 것 (부수적 이익) - 결제 페이지에 계좌이체 옵션 병기(PAYOUT_* ENV 렌더링, 스킬 규칙상 화면 렌더링은 정상 용도) → 심사 대기 중에도 오늘부터 청구 가능 - 첫 실결제 1건 발생 시점을 성공 시그널로 registry에 기록 → ISS-391 \"매출 0원\" 상태 종료를 관측 가능하게 - 전자세금계산서(홈택스) 발행 절차를 청구 문구에 포함 → B2B 마찰 감소  ### 리스크 (돈·신뢰가 새는 지점) - **웹훅/서버 검증 생략**: 클라이언트 결제 응답만 믿으면 금액 위변조 결제가 통과된다. 서버측 금액 대사 + 웹훅 서명 검증 필수(실패경로 4문항 중 금전 정합, P0). - **정산계좌 불일치**: 법인 PG 계약의 정산은 법인계좌로만 간다. 법인계좌 유무 미확인 — 없으면 개설이 선행 블로커. - **통신판매업 미신고**: 신고번호 없으면 PG 심사 반려. 신고 여부 미확인. - **범위 가격인 채 결제 버튼만 달기**: SKU 없이 결제 UI만 만들면 죽은 코드가 된다(ISS-391 재현). 실행항목 1번(가격 확정)이 코드보다 먼저다. - **0019 결제 ≠ 0029 개통**: 두 층의 유저가 분리돼 있어 결제해도 서비스가 자동 개통되지 않는다. 전환기 수동 개통을 명시하지 않으면 \"돈 냈는데 안 열림\" 신뢰 사고가 난다. - 0019 production 배포는 승인게이트(workflow_dispatch) 경유 — main 푸시만으로는 staging까지만 나간다.  미확인 항목: 통신판매업 신고 여부, 법인계좌 유무, ㈜심티어 명의 포트원 가입 여부 — 전부 대표님 확인 사항으로 남긴다.  출처: [포트원 요금](https://www.portone.io/pricing), [PG사 비교 2026](https://blog.portone.io/opi_pg-comparison2026/), [포트원 헬프센터 이용요금](https://help.portone.io/content/portone-pricing), [포트원 실전 가이드](https://agentic30.app/blog/portone-guide) 관련 파일: /Volumes/E_SSD/02_GitHub.nosync/0019_XimTier/xaisimtier/config/routes.rb, /Volumes/E_SSD/02_GitHub.nosync/0019_XimTier/xaisimtier/app/views/pages/pricing.html.erb, /Volumes/E_SSD/02_GitHub.nosync/0019_XimTier/xaisimtier/config/locales/ko/pricing.yml, /Volumes/E_SSD/02_GitHub.nosync/0019_XimTier/xaisimtier/app/models/user.rb, ~/.claude/skills/payout-account/SKILL.md </agent-message>",
+        "note": "대표님 제안형 발화 자동 포착. BACKLOG라 자동 착수 안 함 — 검토 후 READY로 올려야 실행된다."
+      },
+      "retry_count": 179
+    },
+    {
+      "id": "ISS-039",
+      "type": "GENERATE_CODE",
+      "priority": "P1",
+      "status": "IN_PROGRESS",
+      "title": "[깔때기] IR 리드 후속추적 컬럼 + 통합목록 포함 + IR 진입로 노출",
+      "createdAt": "2026-08-27T11:27:12.029991",
+      "payload": {
+        "detail": "대표님 승인(우선순위 ①). downloads에 contacted_at/handled/admin_notes 없음, LeadsAggregator KINDS에 ir 누락, nav_links에 investors_path 없음 — 3건 코드 실측 확인.",
+        "files_changed": []
+      }
+    },
+    {
+      "id": "ISS-038",
+      "title": "[지시] 해외 결제 Paddle(MoR) 가입조건·시스템구축 리서치 정리(md)",
+      "type": "FEATURE_PLAN",
+      "status": "IN_PROGRESS",
+      "priority": "P2",
+      "assign_to": "product-manager",
+      "depth": 0,
+      "created_at": "2026-08-27T14:56:27.651543",
+      "updated_at": "2026-08-27T14:56:27.651543",
+      "payload": {
+        "origin": "ceo-directive",
+        "raw_prompt": "pg 사를 Paddle로 하기로 했어. 가입조건 등 시스템구축에 필요한 부분을 리서치해서 md 파일로 정리해줘.",
+        "decision": "해외/글로벌 결제 = Paddle(MoR) 확정. 국내는 포트원(ISS-037). 1년 내 글로벌 확장 대비.",
+        "deliverable": "Paddle 가입조건·수수료·연동방식·한국 특이사항 md 문서",
+        "relates_to": "ISS-037"
+      }
+    },
+    {
+      "id": "ISS-027",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-27T15:52:34.125357",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T08:40:07"
+    },
+    {
+      "id": "ISS-028",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-27T15:55:39.367314",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T08:14:17"
+    },
+    {
+      "id": "ISS-029",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T09:43:34.179732",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T08:14:17"
+    },
+    {
+      "id": "ISS-030",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T09:43:37.037565",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T08:24:03"
+    },
+    {
+      "id": "ISS-031",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T09:43:44.003515",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T08:24:03"
+    },
+    {
+      "id": "ISS-032",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T09:43:49.084829",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T08:24:03"
+    },
+    {
+      "id": "ISS-033",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T09:46:23.561746",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T08:25:09"
+    },
+    {
+      "id": "ISS-034",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T09:46:26.167165",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T08:17:22"
+    },
+    {
+      "id": "ISS-035",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T09:49:32.954672",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T08:17:22"
+    },
+    {
+      "id": "ISS-036",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T09:52:46.489917",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T08:25:09"
+    },
+    {
+      "id": "ISS-037",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T10:37:44.658404",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T08:25:11"
+    },
+    {
+      "id": "ISS-038",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T10:40:55.242840",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T08:25:11"
+    },
+    {
+      "id": "ISS-039",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T10:59:52.797942",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T07:40:43"
+    },
+    {
+      "id": "ISS-040",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T11:02:57.497891",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T07:40:46"
+    },
+    {
+      "id": "ISS-041",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T11:24:19.331784",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T07:40:46"
+    },
+    {
+      "id": "ISS-042",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T11:27:30.897589",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T07:40:51"
+    },
+    {
+      "id": "ISS-043",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T12:19:00.030545",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T07:40:51"
+    },
+    {
+      "id": "ISS-044",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T12:22:05.295564",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T07:41:23"
+    },
+    {
+      "id": "ISS-045",
+      "title": "[지시] railway-verify=c3305b7dd8870084bcefc0128e71f6a7736df2d3232a8d853185bf3ae29c",
+      "type": "FEATURE_PLAN",
+      "status": "READY",
+      "priority": "P1",
+      "assign_to": "product-manager",
+      "depth": 0,
+      "created_at": "2026-08-28T15:14:08.149923",
+      "updated_at": "2026-08-28T15:14:08.149923",
+      "payload": {
+        "origin": "intent-gate",
+        "raw_prompt": "railway-verify=c3305b7dd8870084bcefc0128e71f6a7736df2d3232a8d853185bf3ae29c03b4 이 주소를 saas.ximtier.com으로 접속하려고해. 크롬에 가비아 로그인 해놨어. 수정해줘."
+      },
+      "last_dispatched_at": "2026-08-28T15:27:38"
+    },
+    {
+      "id": "ISS-046",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:15:00.298152",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T07:41:23"
+    },
+    {
+      "id": "ISS-047",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:15:38.061698",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T07:41:54"
+    },
+    {
+      "id": "ISS-048",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:15:42.237872",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T07:41:54"
+    },
+    {
+      "id": "ISS-049",
+      "title": "[아이디어] 현 saas.ximtier.com을 죽이고 railway주소가 saas.ximtier.com으로 접속할수 있게 하자고.",
+      "type": "IDEA",
+      "status": "BACKLOG",
+      "priority": "P3",
+      "assign_to": "product-manager",
+      "depth": 0,
+      "created_at": "2026-08-28T15:16:18.451078",
+      "updated_at": "2026-08-28T15:16:18.451078",
+      "payload": {
+        "origin": "intent-gate:idea",
+        "raw_prompt": "현 saas.ximtier.com을 죽이고 railway주소가 saas.ximtier.com으로 접속할수 있게 하자고.",
+        "note": "대표님 제안형 발화 자동 포착. BACKLOG라 자동 착수 안 함 — 검토 후 READY로 올려야 실행된다."
+      }
+    },
+    {
+      "id": "ISS-050",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:16:49.444176",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T07:42:26"
+    },
+    {
+      "id": "ISS-051",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:16:52.726799",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T07:42:26"
+    },
+    {
+      "id": "ISS-052",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:17:00.408525",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T07:42:58"
+    },
+    {
+      "id": "ISS-053",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:17:08.826540",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T07:42:58"
+    },
+    {
+      "id": "ISS-054",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:17:17.625739",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T07:43:29"
+    },
+    {
+      "id": "ISS-055",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:17:26.040175",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T07:43:29"
+    },
+    {
+      "id": "ISS-056",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:18:24.461369",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T07:44:01"
+    },
+    {
+      "id": "ISS-057",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:19:41.781059",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T07:44:01"
+    },
+    {
+      "id": "ISS-058",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:20:34.073523",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T07:44:32"
+    },
+    {
+      "id": "ISS-059",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:20:53.209741",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T07:44:32"
+    },
+    {
+      "id": "ISS-060",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:20:55.888426",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T07:45:04"
+    },
+    {
+      "id": "ISS-061",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:21:02.480349",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T07:45:04"
+    },
+    {
+      "id": "ISS-062",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:21:06.867755",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T07:46:06"
+    },
+    {
+      "id": "ISS-063",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:21:09.763815",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T07:46:06"
+    },
+    {
+      "id": "ISS-064",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:21:13.603916",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T07:46:38"
+    },
+    {
+      "id": "ISS-065",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:21:18.137047",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T07:46:38"
+    },
+    {
+      "id": "ISS-066",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:21:21.321576",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T07:49:39"
+    },
+    {
+      "id": "ISS-067",
+      "title": "[지시] 지금 화면을 보면 Railway 쪽 Custom Domain 추가는 정상적으로 끝났습니다.  현재 상태는:  saas.ximtier.c",
+      "type": "FEATURE_PLAN",
+      "status": "READY",
+      "priority": "P1",
+      "assign_to": "product-manager",
+      "depth": 0,
+      "created_at": "2026-08-28T15:24:08.794851",
+      "updated_at": "2026-08-28T15:24:08.794851",
+      "payload": {
+        "origin": "intent-gate",
+        "raw_prompt": "지금 화면을 보면 Railway 쪽 Custom Domain 추가는 정상적으로 끝났습니다.\n\n현재 상태는:\n\nsaas.ximtier.com → Port 8080 → Waiting for DNS update\n\n입니다.\n\n즉, Railway에서는 더 건드릴 필요가 거의 없고, 이제 ximtier.com DNS 관리 화면에서 CNAME과 TXT 레코드를 등록해야 합니다.\n\n앞에서 Railway가 요구한 값은:\n\nCNAME\nName: saas\nValue: hsmky17c.up.railway.app\nTXT\nName: _railway-verify.saas\nValue: railway-verify=... 전체 문자열\n\n두 개입니다.\n\nDNS 등록이 완료되면 이 화면의 노란 경고가 사라지고 보통 Active / Valid / Verified 상태로 바뀝니다.\n\n지금 단계에서는 Show DNS records를 다시 눌러 TXT 전체 값을 복사해 두고, ximtier.com을 관리하는 도메인 업체의 DNS 설정 화면으로 이동하시면 됩니다.\n\n그 DNS 화면을 캡처해서 보내주시면, 다음 입력을 제가 정확히 짚어드리겠습니다."
+      },
+      "last_dispatched_at": "2026-08-28T15:27:49"
+    },
+    {
+      "id": "ISS-068",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:25:56.974231",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T07:49:39"
+    },
+    {
+      "id": "ISS-069",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:26:01.682004",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T07:50:11"
+    },
+    {
+      "id": "ISS-070",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:27:34.383970",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T07:50:11"
+    },
+    {
+      "id": "ISS-071",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:27:38.375845",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T07:50:58"
+    },
+    {
+      "id": "ISS-072",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:27:49.041212",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-09-10T07:50:58"
+    },
+    {
+      "id": "ISS-073",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:27:56.355683",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-08-28T15:27:56"
+    },
+    {
+      "id": "ISS-074",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:28:35.255589",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-08-28T15:28:35"
+    },
+    {
+      "id": "ISS-075",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:28:39.192659",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": [],
+      "last_dispatched_at": "2026-08-28T15:28:39"
+    },
+    {
+      "id": "ISS-076",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:31:41.555835",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-077",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:33:07.438530",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-078",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:33:11.458813",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-079",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:33:40.487220",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-080",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:33:44.156612",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-081",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:33:49.913994",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-082",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:33:56.376354",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-083",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:37:06.489477",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-084",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:45:22.160327",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-085",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:48:15.166631",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-086",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:52:19.774358",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-087",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:52:22.898549",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-088",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T15:59:56.705094",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-089",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T16:10:39.349282",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-090",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T16:10:42.815712",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-091",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T18:20:03.150360",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-092",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T18:22:28.920365",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-093",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T18:28:51.978933",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-094",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T18:28:55.036396",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-095",
+      "title": "[지시] 기획자도 전달한 문장을 chatgpt에게 물어보고 있어. 충분한 문장으로 만들어줘.",
+      "type": "FEATURE_PLAN",
+      "status": "READY",
+      "priority": "P1",
+      "assign_to": "product-manager",
+      "depth": 0,
+      "created_at": "2026-08-28T18:29:38.564354",
+      "updated_at": "2026-08-28T18:29:38.564354",
+      "payload": {
+        "origin": "intent-gate",
+        "raw_prompt": "기획자도 전달한 문장을 chatgpt에게 물어보고 있어. 충분한 문장으로 만들어줘."
+      }
+    },
+    {
+      "id": "ISS-096",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T18:30:23.034312",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-097",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T18:30:26.102534",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-098",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T18:30:32.896158",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-099",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T18:30:37.652243",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-100",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T18:36:41.381669",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-101",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T18:39:04.465709",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-102",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T19:01:46.622193",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-103",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T19:01:49.485264",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-104",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T19:32:21.472246",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-105",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T20:03:20.397033",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-106",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T20:34:21.181798",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-107",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T21:15:19.969524",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-108",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T21:56:20.288585",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-109",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-28T22:47:20.873336",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-110",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-31T09:01:17.060679",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-111",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-31T09:04:20.627776",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-112",
+      "title": "[지시] mail서버에 hello@ 계정 추가해줘 pw:ximdnjs!00 이야.",
+      "type": "FEATURE_PLAN",
+      "status": "READY",
+      "priority": "P1",
+      "assign_to": "product-manager",
+      "depth": 0,
+      "created_at": "2026-08-31T09:08:05.295136",
+      "updated_at": "2026-08-31T09:08:05.295136",
+      "payload": {
+        "origin": "intent-gate",
+        "raw_prompt": "mail서버에 hello@ 계정 추가해줘 pw:ximdnjs!00 이야."
+      }
+    },
+    {
+      "id": "ISS-113",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-31T09:11:43.088920",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-114",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-31T09:14:46.904362",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-115",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-31T10:00:06.482934",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-116",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-31T10:10:21.927797",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-117",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-31T10:13:25.498327",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-118",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-31T12:31:34.902975",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-119",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-31T12:48:15.597159",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-120",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-31T12:48:52.531272",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-121",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-31T12:51:56.972295",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-122",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-31T13:08:05.385550",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-123",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-31T13:11:09.986142",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-124",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-31T15:04:55.041854",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-125",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-08-31T15:07:59.800550",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-126",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-01T11:22:34.950470",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-127",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-01T11:22:37.466356",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-128",
+      "title": "[지시] ①②④ 넣고 ③ 고쳐줘",
+      "type": "FIX_BUG",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "agent-harness",
+      "depth": 0,
+      "created_at": "2026-09-01T11:24:25.219494",
+      "updated_at": "2026-09-01T11:24:25.219494",
+      "payload": {
+        "origin": "intent-gate",
+        "raw_prompt": "①②④ 넣고 ③ 고쳐줘"
+      },
+      "last_dispatched_at": "2026-09-10T08:40:07"
+    },
+    {
+      "id": "ISS-129",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-01T11:33:22.602402",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-130",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-01T11:36:26.993248",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-131",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-01T12:48:29.241750",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-132",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-01T12:51:33.378094",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-133",
+      "title": "[지시] 네비게이션 메뉴에 ximtier saas 링크를 saas.ximtier.com으로 수정하고 배포해줘.",
+      "type": "FEATURE_PLAN",
+      "status": "READY",
+      "priority": "P1",
+      "assign_to": "product-manager",
+      "depth": 0,
+      "created_at": "2026-09-01T13:49:50.281176",
+      "updated_at": "2026-09-01T13:49:50.281176",
+      "payload": {
+        "origin": "intent-gate",
+        "raw_prompt": "네비게이션 메뉴에 ximtier saas 링크를 saas.ximtier.com으로 수정하고 배포해줘."
+      }
+    },
+    {
+      "id": "ISS-134",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-01T14:01:10.627756",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-135",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-01T14:04:14.824430",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-136",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-01T14:31:14.224559",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-137",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-01T14:36:05.517955",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-138",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-01T14:39:10.842645",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-139",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-01T16:51:13.001063",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-140",
+      "title": "[아이디어] 120건 모두 발송하자.",
+      "type": "IDEA",
+      "status": "BACKLOG",
+      "priority": "P3",
+      "assign_to": "product-manager",
+      "depth": 0,
+      "created_at": "2026-09-01T16:53:24.142998",
+      "updated_at": "2026-09-01T16:53:24.142998",
+      "payload": {
+        "origin": "intent-gate:idea",
+        "raw_prompt": "120건 모두 발송하자.",
+        "note": "대표님 제안형 발화 자동 포착. BACKLOG라 자동 착수 안 함 — 검토 후 READY로 올려야 실행된다."
+      }
+    },
+    {
+      "id": "ISS-141",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-01T17:18:39.115439",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-142",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-01T17:30:24.027612",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-143",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-01T17:33:33.835814",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-144",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-01T17:42:26.482640",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-145",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-02T15:02:18.929748",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-146",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-02T15:05:42.932510",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-147",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-02T15:09:18.056213",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-148",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-02T15:10:46.466881",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-149",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-02T15:11:45.413062",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-150",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-02T15:12:20.156413",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-151",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-02T15:13:30.223319",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-152",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-02T15:21:21.462793",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-250",
+      "type": "REFACTOR",
+      "priority": "P2",
+      "status": "READY",
+      "title": "Rails 발송 경로 Gmail SMTP → Mailu 전환 (SPF 정리 선행조건)",
+      "created_at": "2026-09-02T15:22:40",
+      "payload": {
+        "origin": "user-instruction",
+        "why": "현재 SMTP_HOST=smtp.gmail.com. 발신자가 Gmail 계정으로 표시되고, SPF에서 Google을 뺄 수 없는 원인.",
+        "scope": [
+          "config/deploy.yml 93~97행 SMTP_* 를 Mailu 로 교체",
+          "GitHub Secrets: SMTP_USERNAME=info@ximtier.com, SMTP_PASSWORD 갱신",
+          "production.rb 가 465(SSL) 를 지원하는지 확인 — 현재 enable_starttls_auto 만 있음",
+          "Mailu 587 포트가 서버간 통신에서 열려 있는지 실측 (외부에서는 closed 였음)"
+        ],
+        "affected_mailers": [
+          "ContactMailer.auto_reply (고객 수신)",
+          "DownloadMailer.link (고객 수신)",
+          "DemoMailer.received/.scheduled (고객 수신)",
+          "각 admin_notification, FailedJobsMailer, CaseCommentMailer"
+        ],
+        "verify": "홈페이지 문의 폼 실제 제출 → 자동회신 도착 확인(받은편지함/스팸함) → 발신주소가 info@ximtier.com 인지 → Mailu 로그 status=sent",
+        "blocks": "ISS-251"
+      }
+    },
+    {
+      "id": "ISS-251",
+      "type": "REFACTOR",
+      "priority": "P3",
+      "status": "BLOCKED",
+      "title": "SPF 레코드에서 include:_spf.google.com 제거",
+      "created_at": "2026-09-02T15:22:40",
+      "payload": {
+        "origin": "user-instruction",
+        "blocked_by": "ISS-250",
+        "why": "Google Workspace 탈퇴 결정(2026-09-02). 메일은 이미 Rpi5 Mailu 로 이전됨. Google 항목이 불필요해짐.",
+        "current": "v=spf1 ip4:210.178.59.13 include:spf.brevo.com include:_spf.google.com ~all",
+        "target": "v=spf1 ip4:210.178.59.13 include:spf.brevo.com ~all",
+        "where": "Cloudflare DNS → ximtier.com → TXT 레코드",
+        "precondition": [
+          "ISS-250 완료 — Rails 앱이 더 이상 smtp.gmail.com 을 쓰지 않을 것",
+          "Google Workspace 탈퇴 완료",
+          "Gmail 의 '다른 주소에서 메일 보내기'로 @ximtier.com 을 쓰고 있지 않은지 확인"
+        ],
+        "risk_if_early": "홈페이지 메일 9종(고객 수신 3종 포함)이 SPF 실패 → DMARC p=quarantine 이라 스팸함 격리"
+      }
+    },
+    {
+      "id": "ISS-153",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-02T15:23:04.285686",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-154",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-02T15:26:15.110435",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-155",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-02T15:45:53.990579",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-156",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-02T15:49:03.099038",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-157",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-02T16:31:51.358929",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-158",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-02T16:34:59.904208",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-252",
+      "type": "REFACTOR",
+      "priority": "P3",
+      "status": "READY",
+      "title": "Mailu SMTP(465) 정식 인증서 발급 — 현재 자체 서명",
+      "created_at": "2026-09-02T16:54:07",
+      "payload": {
+        "origin": "ISS-250 파생",
+        "why": "465 포트가 자체 서명 인증서(subject=issuer=CN=mail.ximtier.com)라 SMTP_VERIFY_MODE=none 으로 검증을 생략 중.",
+        "cause": "mail.ximtier.com 이 Cloudflare Tunnel 뒤에 있어 ACME HTTP-01 검증이 닿지 않는다.",
+        "solution": "Rpi5 에서 DNS-01 방식으로 Let's Encrypt 발급. Cloudflare API 토큰 필요.",
+        "after": "deploy.yml 의 SMTP_VERIFY_MODE 를 peer 로 되돌린다.",
+        "risk_now": "우리 서버 → 우리 메일서버 구간이라 실질 위험은 낮음. 급하지 않음."
+      }
+    },
+    {
+      "id": "ISS-253",
+      "type": "FIX_BUG",
+      "priority": "P1",
+      "status": "READY",
+      "title": "구글시트 기록 간헐 실패 — read_timeout 5초 + 재시도 없음",
+      "created_at": "2026-09-02T16:54:07",
+      "payload": {
+        "origin": "2026-09-02 /ko/contact 점검 중 발견",
+        "evidence": "[GoogleSheetExporter] append failed: Net::ReadTimeout — 실제 문의 제출 시 발생. 수동 재시도는 성공.",
+        "cause": "app/services/google_sheet_exporter.rb 43-44행, 112-113행: open_timeout=3, read_timeout=5. 구글 API 응답 지연 시 포기.",
+        "impact": "문의는 DB·메일·Slack 정상. 시트에만 누락되고 아무도 모른다.",
+        "fix": [
+          "타임아웃 상향 open 3→10, read 5→20",
+          "GoogleSheetExportJob 에 retry_on Net::ReadTimeout, Net::OpenTimeout 추가",
+          "최종 실패 시 관리자 알림 — 현재는 로그에만 남음"
+        ],
+        "files": [
+          "app/services/google_sheet_exporter.rb",
+          "app/jobs/google_sheet_export_job.rb"
+        ]
+      }
+    },
+    {
+      "id": "ISS-159",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-02T16:54:20.113498",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-160",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-02T16:57:31.985818",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-161",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-02T17:48:50.771003",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-162",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-02T17:52:00.073359",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-163",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-03T08:18:38.728239",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-164",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-03T08:21:47.572980",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-165",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-03T14:30:51.391053",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-166",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-03T14:33:59.624389",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-167",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-03T14:35:24.873685",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-168",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-03T14:36:40.490882",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-169",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-03T14:36:44.493346",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-170",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-03T14:39:18.238360",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-171",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-03T14:48:38.893184",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-172",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-03T17:19:33.970136",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-173",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-03T17:23:16.181514",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-174",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-03T17:55:56.570338",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-175",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-03T17:59:05.530030",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-176",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-07T11:18:11.096049",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-177",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-07T11:53:09.298559",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-178",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-07T11:56:16.591531",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-179",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-10T07:37:03.859055",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-180",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-10T07:39:03.347356",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-181",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-10T07:39:05.561865",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-182",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-10T07:40:08.143190",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-183",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-10T07:40:10.413130",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-184",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-10T07:40:20.049682",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-185",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-10T07:40:43.655049",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-186",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-10T07:40:46.092441",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-187",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-10T07:40:51.609238",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-188",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-10T07:41:23.203264",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-189",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-10T07:41:54.708786",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-190",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-10T07:42:26.280275",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-191",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-10T07:42:58.006201",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-192",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-10T07:43:29.752380",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-193",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-10T07:44:01.092767",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-194",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-10T07:44:32.706057",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-195",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-10T07:45:04.408654",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-196",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-10T07:46:06.138064",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-197",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-10T07:46:37.979451",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-254",
+      "type": "FIX_BUG",
+      "priority": "P1",
+      "status": "COMPLETED",
+      "title": "[i18n] /en/v3/* 5개 챕터 페이지 + 홈 히어로 eyebrow — 한글 하드코딩을 로케일 키로 이전 (v3pages.yml 신설)",
+      "created_at": "2026-09-10T07:49:15",
+      "updated_at": "2026-09-10T07:49:15",
+      "depth": 0,
+      "assign_to": "agent-harness",
+      "payload": {
+        "origin": "2026-09-10 Fable 5.1 분석 (Opus Playwright 실측 + 라이브 curl 재검증). 대표님 지시: /en 페이지 한글 노출 근본 원인 분석.",
+        "evidence": [
+          "라이브 /en/v3/overview: <html lang=en> 인데 title '메뉴 구성 개요 — XimTier', H1/H2/CTA 전부 한글 (Opus Playwright 실측). 라이브 한글 어절: overview 148 / usage 116 / data 113 / analysis 100 / solutions 90.",
+          "코드 실측(Fable): app/views/pages/v3_{overview,data,analysis,solutions,usage}.html.erb 에 t() 호출 0회 (부모 보고의 '5회'는 link_to/…_path 오탐). 한글 포함 행: 31/21/33/23/17. 대조군 contact.html.erb: t() 14회, 한글 0행.",
+          "v3_detail.html.erb 는 정상: 컨트롤러가 I18n.t(\"v3detail.#{slug}\") 로 해시를 넘기고 뷰는 @detail[:title] 등만 출력. ko/en v3detail.yml 에 30개 slug 전부 존재(en 번역 완료).",
+          "홈(/en): app/views/pages/home.html.erb:525 '핵심 기술력 · AI Decision Intelligence' eyebrow 하드코딩 → 라이브 노출 확인. 같은 파일 583/604/614/624행 다이어그램 값('불량률 1.2% 이하', '온도 215°C → 207°C', '압력 3.2bar → 2.8bar', '속도 12m/min → 10.5m/min')도 하드코딩(라이브 curl 에선 미검출 — 프로덕션이 main 보다 뒤처졌거나 렌더 조건 차이. 어느 쪽이든 소스는 하드코딩)."
+        ],
+        "hangul_types_found": {
+          "content_for :title / :description": "5개 파일 전부 1~2행. <title> 과 meta description 이 한글로 나감 → SEO 신호 불일치(hreflang en 페이지가 한글).",
+          "본문 텍스트(h1/h2/p/div)": "히어로 헤드라인·서브, 섹션 제목·리드, 아키텍처 레이어명·설명, 로드맵 5단계 라벨·설명, 분석종류 카드(회귀/판별/다중분류/시계열 + '알고리즘'), 칩(수시 성능 평가 등), CTA 제목·리드",
+          "ERB 인라인 배열 리터럴": "v3_data 8건 / v3_analysis 5건 / v3_solutions 10건 / v3_usage 4건 — [번호, 제목, (설명), slug] 형태로 카드 데이터를 뷰 안에 박아둠. v3detail.yml 과 동일 slug 를 쓰면서 제목 텍스트는 별도 사본(30개 중 14개가 v3detail 제목과 미세하게 다름 — '·' vs '/' 등).",
+          "링크 텍스트": "'← XimTier 홈', '상세 보기 →', '상세 →', link_to \"데모 신청\", link_to \"문의하기\" — 5개 파일 공통 반복",
+          "alt/aria-label/JS 문자열": "없음(이미지·JS 없음). 인라인 <style> 내 한글 주석은 화면 미노출 — 손대지 않는다."
+        },
+        "root_cause": "2026-06-05 하루에 commit 5992acf(챕터 5페이지 신규)·3110ab1·001a186(v3_detail)·5481b15(홈 히어로) 로 'PPTX 메뉴구성 → 웹' 작업이 일괄 진행됐다. 챕터 5페이지는 PPTX 슬라이드를 페이지별 인라인 CSS + 인라인 텍스트로 '옮겨 그린' 정적 목업이고, 같은 날 만든 v3_detail 만 PPTX 원문을 v3detail.yml 로 추출해 데이터 구동으로 지었다. 즉 '슬라이드 외형' 페이지와 '콘텐츠' 페이지를 다른 방식으로 만들었고 외형 페이지는 i18n 대상으로 인식되지 않았다. 이후 2026-08-01 ISS-158(SEO description) 커밋 76cd17b/5811369 이 5개 파일을 전부 다시 만지면서 content_for :description 을 또 한글로 추가 — 파일 안의 기존 패턴(하드코딩)을 그대로 따른 결과(패턴 전파). 두 번의 기회 모두 놓친 이유는 탐지 장치가 없어서다: ① config/application.rb:45 fallbacks=[:ko] 가 런타임에 조용히 한국어를 대체, ② CI 의 i18n-tasks missing/unused 는 '키 쌍 불일치'만 잡고 뷰의 하드코딩 리터럴은 원리상 못 잡음, ③ spec/requests/pages_spec.rb 의 PUBLIC_PAGES 목록에 v3 5페이지가 등록되지 않아 /en 요청 테스트가 아예 없음(6/5 배치가 스펙도 안 넣음).",
+        "impact": "영문 방문자에게 5개 핵심 제품 페이지(상단 내비 5개 중 5개)가 전부 한글. hreflang 이 /en/v3/* 를 영문 대체 페이지로 광고하므로 검색엔진에도 lang/콘텐츠 불일치 신호. 신규 유입(네이버 검색광고 판단이라 ko 위주)보다 해외 IR·파트너 링크 공유 시 신뢰 손상.",
+        "fix": [
+          "① 로케일 파일 신설: config/locales/ko/v3pages.yml + config/locales/en/v3pages.yml (기존 관행: 서브디렉터리 파일은 접미사 없이 '<최상위키>.yml' — v3.yml/v3nav.yml/v3detail.yml 과 동일). 최상위 키 'v3pages'. 'v3.*' 아래에 넣지 말 것 — v3.solutions 가 홈 섹션 키로 이미 존재해 충돌한다.",
+          "② 키 구조(페이지별 서브키 5개 + common): v3pages.common.{back_home('← XimTier 홈'), more('상세 보기 →'), more_short('상세 →'), cta_demo('데모 신청'), cta_contact('문의하기')} / v3pages.{overview,data,analysis,solutions,usage}.{title(=<title>·h1 공용), description(meta), hero_sub, sections.<name>.{title,lead}, cards:[{num,title,desc,slug}], cta.{title,lead}}. 배열은 v3.yml(steps/layers/items)·v3detail.yml(stats/blocks) 과 같은 방식으로 t('v3pages.data.cards') 순회. overview 는 arch.layers:[{name,desc,slug}] 와 roadmap.steps:[{year,label,desc}], analysis 는 pipeline.steps / types:[{name,count,unit}] / chips:[] 로 둔다.",
+          "③ 뷰 치환: 5개 파일에서 한글 리터럴을 전부 t() 로. content_for :title 은 t('v3pages.<page>.title'), h1 도 같은 키. 인라인 배열 리터럴은 slug 만 남기지 말고 배열 전체를 yml 로 옮기고 뷰는 t('...cards').each do |c| ... c[:slug] ... 로 순회 (v3_detail 패턴). 카드 제목은 v3detail.<slug>.title 을 재사용하지 말 것 — ko 원문이 14곳에서 다르므로 재사용하면 한국어 카피가 바뀐다(Surgical 위반). 대신 en 번역 시 용어만 v3detail en 과 맞춘다.",
+          "④ home.html.erb:525 eyebrow → t('v3.hero.eyebrow') 로 기존 v3.yml hero 아래에 ko/en 키 추가(홈은 이미 v3.* 네임스페이스). 583~624행 다이어그램 값 4개 → v3.reverse.diagram.{goal,temp,pressure,speed} (ko/en). 그 외 홈 한글은 CSS/ERB 주석뿐이므로 손대지 않는다.",
+          "⑤ ko 값은 현재 뷰의 문자열을 글자 그대로 옮긴다(카피 수정 금지 — 이 이슈는 이전이지 리라이팅이 아니다). en 값은 Codex 가 초안 작성하되 톤 기준은 en/v3.yml·en/v3detail.yml (예: 'AI analyzes. XimTier decides what to do.', 'Not analysis — Decision optimization', 'Ready for any industry, immediately' — 짧고 단언형, 직역 금지). 고정 용어는 en/v3detail.yml 제목을 정본으로: Reverse What-If, WhatDataAI, XimSolution, 'Target YX Optimization', 'AX Enablement', 'Variable Selection & Derived Data' 등. copy-lint.sh 금지어(game-changing/revolutionary/cutting-edge/world-class/next-gen/paradigm shift) 사용 금지.",
+          "⑥ 재발 방지(최소): spec/requests/pages_spec.rb PUBLIC_PAGES 에 /v3/overview,/v3/data,/v3/analysis,/v3/solutions,/v3/usage 5줄 추가(ko/en 스니펫) + 같은 파일에 'GET /en#{path} 본문에 한글 없음' 예제 1개 추가 — 응답 body 에서 <head>…</head> 와 푸터 법인명 '(주식회사 심티어)' 를 제거한 뒤 /[가-힣]/ 불일치 단언. 전 PUBLIC_PAGES 에 대해 루프. 이 한 예제가 i18n-tasks 가 못 잡는 '하드코딩 한글'을 잡는다. rubocop 커스텀 룰·erb-lint 도입은 과잉이므로 하지 않는다.",
+          "⑦ config/environments/test.rb:46 주석 해제 → config.i18n.raise_on_missing_translations = true (테스트 환경만). 프로덕션의 fallbacks=[:ko] 는 유지 — 방문자에게 'translation missing' 문자열보다 한국어가 낫다. 단 테스트에서는 누락이 즉시 실패해야 한다. 해제 후 기존 스펙이 깨지면 그것이 진짜 누락이므로 키를 채운다(스펙 우회 금지).",
+          "⑧ i18n-tasks: 새 v3pages.* 는 뷰에서 동적 순회(t('v3pages.data.cards'))하므로 'unused' 오탐이 나면 config/i18n-tasks.yml ignore_unused 에 'v3pages.*.cards' 등 하위만 추가 — 기존 'v3detail.*' 과 같은 주석 형식으로 이유 명기."
+        ],
+        "order_and_split": "한 이슈·한 PR·커밋은 페이지별 6개(common+overview → data → analysis → solutions → usage → home)로 쪼갠다. 첫 커밋(overview)에 yml 골격·common 키·스펙 확장·test.rb 설정을 함께 넣어 이후 커밋이 스펙 실패로 누락을 드러내게 한다. 페이지마다 bundle exec rspec spec/requests/pages_spec.rb + bundle exec i18n-tasks missing 을 통과시키고 다음으로.",
+        "do_not": [
+          "인라인 <style> 블록·CSS 주석·ERB 주석(<%# %>)의 한글은 건드리지 않는다(화면 미노출, diff 팽창).",
+          "ko 카피 문구 변경 금지. '·'→'/' 통일 같은 정리도 금지(별도 이슈).",
+          "v3_detail.html.erb·v3detail.yml 수정 금지(정상 동작 중, 이 이슈 범위 밖).",
+          "config.i18n.fallbacks 제거 금지(프로덕션 영향).",
+          "5개 페이지 공통 CSS 를 파셜로 뽑는 리팩토링 금지(별도 REFACTOR 이슈 대상).",
+          "config/locales/{ko,en}/v3nav.yml 에 현재 미커밋 변경(investors 키 추가)이 있다 — 내 작업 아님, 되돌리거나 덮어쓰지 말 것.",
+          "/en/insights(ISS-255)·/en/cases(ISS-256) 는 원인이 다르므로 이 이슈에서 손대지 않는다."
+        ],
+        "files": [
+          "app/views/pages/v3_overview.html.erb",
+          "app/views/pages/v3_data.html.erb",
+          "app/views/pages/v3_analysis.html.erb",
+          "app/views/pages/v3_solutions.html.erb",
+          "app/views/pages/v3_usage.html.erb",
+          "app/views/pages/home.html.erb",
+          "config/locales/ko/v3pages.yml (신규)",
+          "config/locales/en/v3pages.yml (신규)",
+          "config/locales/ko/v3.yml",
+          "config/locales/en/v3.yml",
+          "spec/requests/pages_spec.rb",
+          "config/environments/test.rb",
+          "config/i18n-tasks.yml (필요 시)"
+        ],
+        "estimate": "뷰 6개 + yml 4개 + 스펙 1개 + 설정 1개. 번역 대상 문자열 약 130개(overview 31·data 28·analysis 38·solutions 27·usage 21·home 5 — 배열 원소 개별 집계). ko 는 이전만, en 은 신규 번역 130개 + 검수.",
+        "acceptance_criteria": [
+          "라이브(또는 로컬) /en/v3/{overview,data,analysis,solutions,usage} 및 /en 본문(head·푸터 법인명 제외)에 한글 0자 — Playwright 또는 curl 실측 증거 첨부",
+          "/ko/v3/* 5페이지 렌더 결과가 작업 전과 텍스트 동일(diff 0) — 카피 무변경 증명",
+          "<title>·meta description 이 로케일별로 다르게 출력",
+          "bundle exec rspec spec/requests/pages_spec.rb 통과(신규 '한글 없음' 예제 포함) + bundle exec i18n-tasks missing / unused 통과(insights 건은 ISS-255 에서 해소되므로 그 전까지는 insights.* 만 남는 것이 정상)",
+          "test.rb raise_on_missing_translations 활성 상태로 전체 rspec 통과"
+        ],
+        "pitfalls": [
+          "부모 보고의 't() 5회' 등은 오탐이다 — 실제 0회. 부분 적용이 아니라 전무.",
+          "v3.solutions 키 충돌: 챕터 solutions 페이지를 v3.solutions 아래에 넣으면 홈 섹션 데이터를 덮어쓴다.",
+          "카드 제목을 v3detail 에서 끌어오면 ko 카피 14곳이 바뀐다.",
+          "YAML 배열 원소에 ':' 나 '&' 가 있는 문자열('AI Q&A (Knowledge Graph & GraphRAG)', 'What-If / Reverse What-If')은 반드시 따옴표.",
+          "content_for :title 에 브랜드를 붙이지 말 것 — 레이아웃 display_meta_tags 가 ' — XimTier' 를 붙인다(ISS-158 에서 잡은 중복 재발 금지).",
+          "fallbacks 때문에 en 키를 빠뜨려도 화면은 멀쩡해 보인다 — 반드시 test.rb 설정 + i18n-tasks missing 으로 확인.",
+          "프로덕션은 main 푸시로 배포되지 않는다(staging 만). 라이브 검증은 production 승인 후에 하거나 staging URL 로 한다."
+        ],
+        "related": [
+          "ISS-255",
+          "ISS-256",
+          "ISS-158(SEO description — 하드코딩 전파 지점)"
+        ]
+      }
+    },
+    {
+      "id": "ISS-255",
+      "type": "FIX_BUG",
+      "priority": "P2",
+      "status": "READY",
+      "title": "[i18n] /en/insights — en/insights.yml 부재로 제목·리드 한글 폴백 + CI i18n 잡 9/2 이후 상시 실패",
+      "created_at": "2026-09-10T07:49:15",
+      "updated_at": "2026-09-10T07:49:15",
+      "depth": 0,
+      "assign_to": "agent-harness",
+      "payload": {
+        "origin": "2026-09-10 Fable 5.1 분석 (Opus Playwright 실측 + 라이브 curl 재검증). 대표님 지시: /en 페이지 한글 노출 근본 원인 분석.",
+        "evidence": [
+          "라이브 /en/insights 본문 한글: '인사이트', '데이터 기반 의사결정과 AI 시뮬레이션을 위한 실무 인사이트를 전합니다.' 2건(+푸터 법인명). 목록은 비어 있음.",
+          "config/locales/ko/insights.yml 만 존재(commit ca35f9c 2026-09-02, SEO 아티클 1편). en/insights.yml 없음.",
+          "app/controllers/pages_controller.rb:24 — @insights = I18n.locale == :ko ? t('insights.list') : [] 로 en 에서는 의도적으로 목록을 비움. 그러나 뷰(insights.html.erb:1-2,7-8)의 t('insights.index_title')·t('insights.index_lead') 는 fallbacks=[:ko] 로 한글 대체. 같은 뷰 21행 link_to '읽어보기 →' 하드코딩(현재 en 에선 목록이 비어 미노출).",
+          "로컬 bundle exec i18n-tasks missing → en 누락 10항목 전부 insights.* (index_title/index_lead/list/articles.defect_rate_analysis.*). GitHub CI ci.yml 'i18n' 잡이 최근 4회(9/2~9/7) 연속 failure — 이 누락이 원인. (같은 런에서 test·scan_ruby 잡도 failure — 별건, 이 이슈 범위 아님.)",
+          "레이아웃 hreflang 이 모든 페이지에 en 대체를 광고하므로 /en/insights 가 검색엔진에 '영문 페이지' 로 노출된다."
+        ],
+        "root_cause": "9/2 SEO 아티클을 ko 전용으로 추가하면서 로케일 파일 명명은 관행대로(insights.yml) 따랐지만 en 짝 파일을 만들지 않았고, 컨트롤러에서 en 목록만 비우는 것으로 '영문 대응' 을 끝냈다. 페이지 껍데기(제목·리드)는 fallbacks 가 가려 눈에 안 띄었고, CI 는 이미 test/scan_ruby 실패로 빨간 상태라 i18n 잡의 추가 실패가 신호로 읽히지 않았다. v3 건(2026-06-05 목업 일괄 제작)과는 시점·성격이 다르다 — 이쪽은 '콘텐츠를 ko 전용으로 두기로 한 결정' 이 로케일 골격까지 빠뜨린 것.",
+        "impact": "낮음(트래픽 적은 SEO 진입 페이지, 내비 링크 없음). 다만 CI i18n 게이트가 무력화된 상태가 지속되면 ISS-254 재발 방지책도 같이 죽는다 — 그래서 P2 이지만 ISS-254 와 같은 배치로 처리.",
+        "fix": [
+          "① config/locales/en/insights.yml 신설(ko 와 동일 파일명 관행): en.insights.{index_title:'Insights', index_lead:(ko 리드의 영문 — 톤은 en/site.yml 수준), empty:'English articles are coming soon.', read_more:'Read more →'}. ko/insights.yml 에도 empty·read_more 키 추가('아직 등록된 글이 없습니다.' / '읽어보기 →').",
+          "② app/views/pages/insights.html.erb:21 '읽어보기 →' → t('insights.read_more'). @insights.empty? 일 때 t('insights.empty') 문단 출력(현재 en 은 빈 섹션만 렌더).",
+          "③ 아티클 본문(insights.list / insights.articles.*)은 ko 전용 콘텐츠로 확정하고 config/i18n-tasks.yml ignore_missing 에 'insights.list' 와 'insights.articles.*' 추가 — 기존 'v3.versus_pptx.*' 항목과 같은 형식으로 사유 주석('SEO 아티클은 ko 전용 운영, en 은 컨트롤러가 목록을 비움'). 영문 아티클 번역은 콘텐츠 결정이므로 이 이슈에서 하지 않는다.",
+          "④ 완료 판정: bundle exec i18n-tasks missing 결과 0건 → CI i18n 잡 green. /en/insights 본문 한글 0자."
+        ],
+        "do_not": [
+          "컨트롤러의 en 빈 목록 로직을 바꿔 ko 아티클을 en 에 노출시키지 말 것(한글 아티클이 영문 페이지에 나오는 더 큰 문제).",
+          "hreflang 에서 insights 만 예외 처리하는 레이아웃 분기 추가 금지(과잉). 필요하면 별도 SEO 이슈.",
+          "ko 아티클 문구 수정 금지."
+        ],
+        "files": [
+          "config/locales/en/insights.yml (신규)",
+          "config/locales/ko/insights.yml",
+          "app/views/pages/insights.html.erb",
+          "config/i18n-tasks.yml"
+        ],
+        "estimate": "파일 4개, 번역 문자열 4개. 30분 이내.",
+        "acceptance_criteria": [
+          "i18n-tasks missing 0건",
+          "/en/insights 본문 한글 0자 + 빈 상태 안내 영문 출력",
+          "/ko/insights 렌더 무변경"
+        ],
+        "related": [
+          "ISS-254(같은 배치 처리 권장 — CI 게이트 복구가 254 재발방지의 전제)"
+        ]
+      },
+      "retry_count": 1
+    },
+    {
+      "id": "ISS-256",
+      "type": "FIX_BUG",
+      "priority": "P2",
+      "status": "READY",
+      "title": "[cases] /en/cases 한글 노출 — industry 컬럼 로케일 미대응(코드) + 사례 2건 summary_en/미디어 발췌 미입력(데이터)",
+      "created_at": "2026-09-10T07:49:15",
+      "updated_at": "2026-09-10T07:49:15",
+      "depth": 0,
+      "assign_to": "agent-harness",
+      "payload": {
+        "origin": "2026-09-10 Fable 5.1 분석 (Opus Playwright 실측 + 라이브 curl 재검증). 대표님 지시: /en 페이지 한글 노출 근본 원인 분석. 부모 추가 지시로 /en/cases 포함.",
+        "evidence": [
+          "뷰·컨트롤러는 정상: app/views/case_studies/index.html.erb 는 t('cases_gallery.*') 로 전부 키 처리, en/cases_gallery.yml 존재. 한글은 DB 에서 온다.",
+          "라이브 /en/cases 한글 조각 분류: (a) industry 값 '제조·공공·소개·기술·에너지' 가 필터 칩(index.html.erb:27 link_to industry)과 카드 태그(68행 '// <%= c.industry.upcase %>')에 원문 그대로 2회씩 = 10조각. (b) gwangju-energy-grid 카드 summary '태양광·풍력 발전량 변동을…' — summary_en 비어 있어 모델 pick() 이 ko 로 폴백. (c) '데이터 로딩 → 핵심 변수 식별 → Reverse What-If 역산 → 근거 리포트 자동 생성' — case_media.embed_html 기반 thumbnail_excerpt(model:39-44) 또는 summary 폴백. 미디어 HTML 은 로케일 컬럼 자체가 없다.",
+          "스키마(db/schema.rb:76-94): title_ko/title_en, summary_ko/summary_en, body_html_ko/body_html_en 은 쌍이 있으나 industry 는 단일 string. Avo(app/avo/resources/case_study.rb:28) help 가 '예: 제조, 병원' 으로 한글 자유입력 유도.",
+          "모델 app/models/case_study.rb pick(): en 비면 ko 폴백 — 의도된 설계. 따라서 en 컬럼을 채우는 것이 정답이지 코드 문제가 아니다."
+        ],
+        "root_cause": "v3(정적 뷰 하드코딩)·insights(로케일 파일 누락)와 달리 이 페이지는 i18n 골격이 갖춰져 있고, 남은 한글은 ① industry 를 표시용 자유 문자열로 설계해 로케일 매핑을 두지 않은 스키마/뷰 결정과 ② 운영자가 최근 사례(에너지 건) 입력 시 en 필드를 비운 데이터 문제다. 원인이 다르므로 별도 이슈.",
+        "impact": "낮음~중간. 영문 사례 갤러리에서 태그·필터가 전부 한글, 사례 1~2건 요약 한글.",
+        "fix": [
+          "[코드 — Codex] ① config/locales/{ko,en}/cases_gallery.yml 에 cases_gallery.industry_labels 맵 추가. 키는 DB 원문(한글) 그대로: ko 는 항등('제조':'제조'…), en 은 '제조':'Manufacturing', '공공':'Public Sector', '소개':'Company', '기술':'Technology', '에너지':'Energy'. 라이브 값 5종 외에 Avo help 의 '병원':'Healthcare' 포함. ② index.html.erb 27행·68행에서 industry 표시를 t(\"cases_gallery.industry_labels.#{industry}\", default: industry) 로. 필터 파라미터(params[:industry]) 값은 원문 유지(URL·쿼리 무변경). ③ config/i18n-tasks.yml ignore_unused 에 'cases_gallery.industry_labels.*' 추가(동적 키). ④ spec/requests/case_gallery_spec.rb 에 en 예제 1개: industry '제조' 사례 발행 후 GET /en/cases 본문에 'Manufacturing' 포함·'제조' 미포함.",
+          "[데이터 — 운영자(Avo) 작업, 코드 아님] gwangju-energy-grid 의 summary_en 입력; '데이터 로딩 → …' 조각의 출처(해당 사례의 case_media embed_html 또는 summary) 를 Avo 에서 확인해 en 대응. 미디어 HTML 은 로케일 컬럼이 없으므로 '영문 방문자에게 한글 HTML 발췌가 노출되는 것을 허용할지' 는 대표님 판단 — 허용 안 하면 model thumbnail_excerpt 를 en 로케일에서 nil 반환하도록 1줄 분기(코드 범위에 포함).",
+          "[검증] 프로덕션 DB 는 로컬에서 볼 수 없다(로컬 sqlite 는 4건·en 채워짐, 라이브는 5건). 데이터 완료 여부는 라이브 /en/cases curl 로 판정."
+        ],
+        "do_not": [
+          "industry 를 enum/별도 컬럼으로 바꾸는 마이그레이션 금지(과잉 — 값 5~6종 자유 태그).",
+          "title_en 자동 번역·기계 채움 금지(실패경로 규칙: 모르는 값을 아는 척 채우지 않는다). 비어 있으면 ko 폴백이 현재 설계.",
+          "show.html.erb 는 이미 정상 — 건드리지 말 것."
+        ],
+        "files": [
+          "config/locales/ko/cases_gallery.yml",
+          "config/locales/en/cases_gallery.yml",
+          "app/views/case_studies/index.html.erb",
+          "config/i18n-tasks.yml",
+          "spec/requests/case_gallery_spec.rb",
+          "app/models/case_study.rb (조건부 1줄)"
+        ],
+        "estimate": "코드: 파일 5~6개, 문자열 6개. 데이터: Avo 입력 2건(운영자).",
+        "acceptance_criteria": [
+          "/en/cases 본문(푸터 제외) 한글 0자 — 데이터 입력 완료 후 라이브 curl",
+          "/ko/cases 렌더 무변경(필터 URL 파라미터 동일)",
+          "rspec case_gallery_spec 통과"
+        ],
+        "related": [
+          "ISS-254",
+          "ISS-255"
+        ]
+      }
+    },
+    {
+      "id": "ISS-201",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-10T07:49:39.551100",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-202",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-10T07:50:11.225332",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-203",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-10T07:50:57.998612",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-204",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-10T07:52:34.741233",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-205",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-10T07:55:38.513472",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-257",
+      "title": "[지시] 이슈 등록되면 codex로 수정 진행해줘",
+      "type": "FEATURE_PLAN",
+      "status": "READY",
+      "priority": "P1",
+      "assign_to": "product-manager",
+      "depth": 0,
+      "created_at": "2026-09-10T08:01:32.491114",
+      "updated_at": "2026-09-10T08:01:32.491114",
+      "payload": {
+        "origin": "intent-gate",
+        "raw_prompt": "이슈 등록되면 codex로 수정 진행해줘"
+      }
+    },
+    {
+      "id": "ISS-207",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-10T08:03:09.477950",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-208",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-10T08:06:13.448294",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-209",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-10T08:12:01.246824",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-258",
+      "title": "[아이디어] 구글메일로 메일서버 조치안으로 확인된건 적극적으로 조치하자. 가비아 claude in chrome 로그인해 놨어.",
+      "type": "IDEA",
+      "status": "BACKLOG",
+      "priority": "P3",
+      "assign_to": "product-manager",
+      "depth": 0,
+      "created_at": "2026-09-10T08:14:04.048893",
+      "updated_at": "2026-09-10T08:14:04.048893",
+      "payload": {
+        "origin": "intent-gate:idea",
+        "raw_prompt": "구글메일로 메일서버 조치안으로 확인된건 적극적으로 조치하자. 가비아 claude in chrome 로그인해 놨어.",
+        "note": "대표님 제안형 발화 자동 포착. BACKLOG라 자동 착수 안 함 — 검토 후 READY로 올려야 실행된다."
+      }
+    },
+    {
+      "id": "ISS-211",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-10T08:14:17.760079",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-212",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-10T08:17:22.331988",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-213",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-10T08:24:03.645044",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-214",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-10T08:25:09.631806",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-215",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-10T08:25:11.719261",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
+    },
+    {
+      "id": "ISS-216",
+      "title": "[에스컬레이션] [아이디어] <agent-message from=\"fable-portone-review\"> [Fable · plan-ceo-reviewer] I 반복 실패",
+      "type": "SYSTEMIC_ISSUE",
+      "status": "READY",
+      "priority": "P0",
+      "assign_to": "meta-agent",
+      "depth": 1,
+      "retry_count": 0,
+      "parent_id": "ISS-038",
+      "depends_on": [],
+      "created_at": "2026-09-10T08:40:06.955107",
+      "payload": {
+        "original_issue": "ISS-038",
+        "error": "agent stopped without completion (stall > 30min)"
+      },
+      "result": null,
+      "spawn_rules": []
     }
   ],
   "hooks": {
@@ -1186,7 +5183,913 @@
         "timestamp": "2026-07-22T18:56:27.790092"
       }
     ],
-    "on_fail": [],
+    "on_fail": [
+      {
+        "issue_id": "ISS-037",
+        "retry_count": 1,
+        "timestamp": "2026-08-27T11:27:19.314741"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 1,
+        "timestamp": "2026-08-27T15:29:53.786373"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 2,
+        "timestamp": "2026-08-27T15:32:58.913225"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 3,
+        "timestamp": "2026-08-27T15:52:34.125368"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 4,
+        "timestamp": "2026-08-27T15:55:39.367326"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 5,
+        "timestamp": "2026-08-28T09:43:34.179744"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 6,
+        "timestamp": "2026-08-28T09:43:37.037575"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 7,
+        "timestamp": "2026-08-28T09:43:44.003527"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 8,
+        "timestamp": "2026-08-28T09:43:49.084840"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 9,
+        "timestamp": "2026-08-28T09:46:23.561757"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 10,
+        "timestamp": "2026-08-28T09:46:26.167184"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 11,
+        "timestamp": "2026-08-28T09:49:32.954683"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 12,
+        "timestamp": "2026-08-28T09:52:46.489927"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 13,
+        "timestamp": "2026-08-28T10:37:44.658413"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 14,
+        "timestamp": "2026-08-28T10:40:55.242849"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 15,
+        "timestamp": "2026-08-28T10:59:52.797953"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 16,
+        "timestamp": "2026-08-28T11:02:57.497910"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 17,
+        "timestamp": "2026-08-28T11:24:19.331794"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 18,
+        "timestamp": "2026-08-28T11:27:30.897596"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 19,
+        "timestamp": "2026-08-28T12:19:00.030555"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 20,
+        "timestamp": "2026-08-28T12:22:05.295574"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 21,
+        "timestamp": "2026-08-28T15:15:00.298163"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 22,
+        "timestamp": "2026-08-28T15:15:38.061709"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 23,
+        "timestamp": "2026-08-28T15:15:42.237880"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 24,
+        "timestamp": "2026-08-28T15:16:49.444185"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 25,
+        "timestamp": "2026-08-28T15:16:52.726807"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 26,
+        "timestamp": "2026-08-28T15:17:00.408533"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 27,
+        "timestamp": "2026-08-28T15:17:08.826552"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 28,
+        "timestamp": "2026-08-28T15:17:17.625747"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 29,
+        "timestamp": "2026-08-28T15:17:26.040185"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 30,
+        "timestamp": "2026-08-28T15:18:24.461380"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 31,
+        "timestamp": "2026-08-28T15:19:41.781070"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 32,
+        "timestamp": "2026-08-28T15:20:34.073531"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 33,
+        "timestamp": "2026-08-28T15:20:53.209751"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 34,
+        "timestamp": "2026-08-28T15:20:55.888437"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 35,
+        "timestamp": "2026-08-28T15:21:02.480357"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 36,
+        "timestamp": "2026-08-28T15:21:06.867765"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 37,
+        "timestamp": "2026-08-28T15:21:09.763824"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 38,
+        "timestamp": "2026-08-28T15:21:13.603924"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 39,
+        "timestamp": "2026-08-28T15:21:18.137054"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 40,
+        "timestamp": "2026-08-28T15:21:21.321586"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 41,
+        "timestamp": "2026-08-28T15:25:56.974244"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 42,
+        "timestamp": "2026-08-28T15:26:01.682013"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 43,
+        "timestamp": "2026-08-28T15:27:34.383981"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 44,
+        "timestamp": "2026-08-28T15:27:38.375853"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 45,
+        "timestamp": "2026-08-28T15:27:49.041221"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 46,
+        "timestamp": "2026-08-28T15:27:56.355691"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 47,
+        "timestamp": "2026-08-28T15:28:35.255601"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 48,
+        "timestamp": "2026-08-28T15:28:39.192667"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 49,
+        "timestamp": "2026-08-28T15:31:41.555846"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 50,
+        "timestamp": "2026-08-28T15:33:07.438540"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 51,
+        "timestamp": "2026-08-28T15:33:11.458821"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 52,
+        "timestamp": "2026-08-28T15:33:40.487234"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 53,
+        "timestamp": "2026-08-28T15:33:44.156629"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 54,
+        "timestamp": "2026-08-28T15:33:49.914003"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 55,
+        "timestamp": "2026-08-28T15:33:56.376363"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 56,
+        "timestamp": "2026-08-28T15:37:06.489487"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 57,
+        "timestamp": "2026-08-28T15:45:22.160340"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 58,
+        "timestamp": "2026-08-28T15:48:15.166645"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 59,
+        "timestamp": "2026-08-28T15:52:19.774368"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 60,
+        "timestamp": "2026-08-28T15:52:22.898560"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 61,
+        "timestamp": "2026-08-28T15:59:56.705103"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 62,
+        "timestamp": "2026-08-28T16:10:39.349296"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 63,
+        "timestamp": "2026-08-28T16:10:42.815721"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 64,
+        "timestamp": "2026-08-28T18:20:03.150370"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 65,
+        "timestamp": "2026-08-28T18:22:28.920376"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 66,
+        "timestamp": "2026-08-28T18:28:51.978947"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 67,
+        "timestamp": "2026-08-28T18:28:55.036405"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 68,
+        "timestamp": "2026-08-28T18:30:23.034324"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 69,
+        "timestamp": "2026-08-28T18:30:26.102543"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 70,
+        "timestamp": "2026-08-28T18:30:32.896166"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 71,
+        "timestamp": "2026-08-28T18:30:37.652250"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 72,
+        "timestamp": "2026-08-28T18:36:41.381683"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 73,
+        "timestamp": "2026-08-28T18:39:04.465718"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 74,
+        "timestamp": "2026-08-28T19:01:46.622204"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 75,
+        "timestamp": "2026-08-28T19:01:49.485274"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 76,
+        "timestamp": "2026-08-28T19:32:21.472258"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 77,
+        "timestamp": "2026-08-28T20:03:20.397043"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 78,
+        "timestamp": "2026-08-28T20:34:21.181809"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 79,
+        "timestamp": "2026-08-28T21:15:19.969536"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 80,
+        "timestamp": "2026-08-28T21:56:20.288599"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 81,
+        "timestamp": "2026-08-28T22:47:20.873350"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 82,
+        "timestamp": "2026-08-31T09:01:17.060690"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 83,
+        "timestamp": "2026-08-31T09:04:20.627785"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 84,
+        "timestamp": "2026-08-31T09:11:43.088929"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 85,
+        "timestamp": "2026-08-31T09:14:46.904371"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 86,
+        "timestamp": "2026-08-31T10:00:06.482947"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 87,
+        "timestamp": "2026-08-31T10:10:21.927807"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 88,
+        "timestamp": "2026-08-31T10:13:25.498336"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 89,
+        "timestamp": "2026-08-31T12:31:34.902984"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 90,
+        "timestamp": "2026-08-31T12:48:15.597204"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 91,
+        "timestamp": "2026-08-31T12:48:52.531418"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 92,
+        "timestamp": "2026-08-31T12:51:56.972305"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 93,
+        "timestamp": "2026-08-31T13:08:05.385563"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 94,
+        "timestamp": "2026-08-31T13:11:09.986150"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 95,
+        "timestamp": "2026-08-31T15:04:55.041866"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 96,
+        "timestamp": "2026-08-31T15:07:59.800557"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 97,
+        "timestamp": "2026-09-01T11:22:34.950483"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 98,
+        "timestamp": "2026-09-01T11:22:37.466365"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 99,
+        "timestamp": "2026-09-01T11:33:22.602412"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 100,
+        "timestamp": "2026-09-01T11:36:26.993259"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 101,
+        "timestamp": "2026-09-01T12:48:29.241765"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 102,
+        "timestamp": "2026-09-01T12:51:33.378102"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 103,
+        "timestamp": "2026-09-01T14:01:10.627771"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 104,
+        "timestamp": "2026-09-01T14:04:14.824439"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 105,
+        "timestamp": "2026-09-01T14:31:14.224569"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 106,
+        "timestamp": "2026-09-01T14:36:05.517970"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 107,
+        "timestamp": "2026-09-01T14:39:10.842658"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 108,
+        "timestamp": "2026-09-01T16:51:13.001073"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 109,
+        "timestamp": "2026-09-01T17:18:39.115452"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 110,
+        "timestamp": "2026-09-01T17:30:24.027622"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 111,
+        "timestamp": "2026-09-01T17:33:33.835822"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 112,
+        "timestamp": "2026-09-01T17:42:26.482651"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 113,
+        "timestamp": "2026-09-02T15:02:18.929763"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 114,
+        "timestamp": "2026-09-02T15:05:42.932525"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 115,
+        "timestamp": "2026-09-02T15:09:18.056282"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 116,
+        "timestamp": "2026-09-02T15:10:46.466896"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 117,
+        "timestamp": "2026-09-02T15:11:45.413074"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 118,
+        "timestamp": "2026-09-02T15:12:20.156427"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 119,
+        "timestamp": "2026-09-02T15:13:30.223341"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 120,
+        "timestamp": "2026-09-02T15:21:21.462812"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 121,
+        "timestamp": "2026-09-02T15:23:04.285701"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 122,
+        "timestamp": "2026-09-02T15:26:15.110447"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 123,
+        "timestamp": "2026-09-02T15:45:53.990588"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 124,
+        "timestamp": "2026-09-02T15:49:03.099047"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 125,
+        "timestamp": "2026-09-02T16:31:51.358946"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 126,
+        "timestamp": "2026-09-02T16:34:59.904216"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 127,
+        "timestamp": "2026-09-02T16:54:20.113510"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 128,
+        "timestamp": "2026-09-02T16:57:31.985828"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 129,
+        "timestamp": "2026-09-02T17:48:50.771016"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 130,
+        "timestamp": "2026-09-02T17:52:00.073368"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 131,
+        "timestamp": "2026-09-03T08:18:38.728254"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 132,
+        "timestamp": "2026-09-03T08:21:47.572988"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 133,
+        "timestamp": "2026-09-03T14:30:51.391070"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 134,
+        "timestamp": "2026-09-03T14:33:59.624406"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 135,
+        "timestamp": "2026-09-03T14:35:24.873703"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 136,
+        "timestamp": "2026-09-03T14:36:40.490899"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 137,
+        "timestamp": "2026-09-03T14:36:44.493362"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 138,
+        "timestamp": "2026-09-03T14:39:18.238380"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 139,
+        "timestamp": "2026-09-03T14:48:38.893205"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 140,
+        "timestamp": "2026-09-03T17:19:33.970180"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 141,
+        "timestamp": "2026-09-03T17:23:16.181562"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 142,
+        "timestamp": "2026-09-03T17:55:56.570372"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 143,
+        "timestamp": "2026-09-03T17:59:05.530058"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 144,
+        "timestamp": "2026-09-07T11:18:11.096202"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 145,
+        "timestamp": "2026-09-07T11:53:09.298573"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 146,
+        "timestamp": "2026-09-07T11:56:16.591542"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 147,
+        "timestamp": "2026-09-10T07:37:03.859075"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 148,
+        "timestamp": "2026-09-10T07:39:03.347376"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 149,
+        "timestamp": "2026-09-10T07:39:05.561873"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 150,
+        "timestamp": "2026-09-10T07:40:08.143207"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 151,
+        "timestamp": "2026-09-10T07:40:10.413140"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 152,
+        "timestamp": "2026-09-10T07:40:20.049693"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 153,
+        "timestamp": "2026-09-10T07:40:43.655067"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 154,
+        "timestamp": "2026-09-10T07:40:46.092449"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 155,
+        "timestamp": "2026-09-10T07:40:51.609251"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 156,
+        "timestamp": "2026-09-10T07:41:23.203272"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 157,
+        "timestamp": "2026-09-10T07:41:54.708794"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 158,
+        "timestamp": "2026-09-10T07:42:26.280283"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 159,
+        "timestamp": "2026-09-10T07:42:58.006212"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 160,
+        "timestamp": "2026-09-10T07:43:29.752391"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 161,
+        "timestamp": "2026-09-10T07:44:01.092778"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 162,
+        "timestamp": "2026-09-10T07:44:32.706066"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 163,
+        "timestamp": "2026-09-10T07:45:04.408663"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 164,
+        "timestamp": "2026-09-10T07:46:06.138072"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 165,
+        "timestamp": "2026-09-10T07:46:37.979461"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 166,
+        "timestamp": "2026-09-10T07:49:39.551109"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 167,
+        "timestamp": "2026-09-10T07:50:11.225341"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 168,
+        "timestamp": "2026-09-10T07:50:57.998620"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 169,
+        "timestamp": "2026-09-10T07:52:34.741251"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 170,
+        "timestamp": "2026-09-10T07:55:38.513481"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 171,
+        "timestamp": "2026-09-10T08:03:09.477967"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 172,
+        "timestamp": "2026-09-10T08:06:13.448318"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 173,
+        "timestamp": "2026-09-10T08:12:01.246843"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 174,
+        "timestamp": "2026-09-10T08:14:17.760098"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 175,
+        "timestamp": "2026-09-10T08:17:22.331998"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 176,
+        "timestamp": "2026-09-10T08:24:03.645056"
+      },
+      {
+        "issue_id": "ISS-255",
+        "retry_count": 1,
+        "timestamp": "2026-09-10T08:24:03.757245"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 177,
+        "timestamp": "2026-09-10T08:25:09.631822"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 178,
+        "timestamp": "2026-09-10T08:25:11.719271"
+      },
+      {
+        "issue_id": "ISS-038",
+        "retry_count": 179,
+        "timestamp": "2026-09-10T08:40:06.955124"
+      }
+    ],
     "on_learn": []
   },
   "knowledge": {
@@ -2148,9 +7051,9 @@
     ]
   },
   "stats": {
-    "total_issues": 20,
+    "total_issues": 216,
     "completed": 12,
-    "failed": 0,
+    "failed": 181,
     "current_depth": 0,
     "evolved": 57
   },
@@ -2170,16 +7073,63 @@
     "daily_limit": 3
   },
   "issue_budget": {
-    "date": "2026-07-22",
-    "created_today": 4
+    "date": "2026-09-10",
+    "created_today": 3
   },
   "background_state": {
     "active": 0,
     "issues": []
   },
   "rewake_state": {
-    "ISS-001": 4,
-    "ISS-031": 1
+    "ISS-032:READY": 31,
+    "ISS-033:READY": 27,
+    "ISS-037:READY": 17,
+    "ISS-035:READY": 13,
+    "ISS-036:READY": 12,
+    "ISS-027:READY": 49,
+    "ISS-028:READY": 44,
+    "ISS-029:READY": 36,
+    "ISS-030:READY": 26,
+    "ISS-031:READY": 17,
+    "ISS-034:READY": 10,
+    "ISS-038:READY": 6,
+    "ISS-039:READY": 5,
+    "ISS-040:READY": 4,
+    "ISS-041:READY": 4,
+    "ISS-042:READY": 4,
+    "ISS-043:READY": 3,
+    "ISS-044:READY": 3,
+    "ISS-046:READY": 2,
+    "ISS-047:READY": 2,
+    "ISS-048:READY": 2,
+    "ISS-050:READY": 2,
+    "ISS-051:READY": 2,
+    "ISS-052:READY": 2,
+    "ISS-053:READY": 2,
+    "ISS-054:READY": 2,
+    "ISS-055:READY": 2,
+    "ISS-056:READY": 2,
+    "ISS-057:READY": 2,
+    "ISS-058:READY": 2,
+    "ISS-059:READY": 2,
+    "ISS-060:READY": 2,
+    "ISS-061:READY": 2,
+    "ISS-062:READY": 2,
+    "ISS-063:READY": 2,
+    "ISS-064:READY": 2,
+    "ISS-065:READY": 2,
+    "ISS-066:READY": 2,
+    "ISS-068:READY": 2,
+    "ISS-069:READY": 2,
+    "ISS-070:READY": 2,
+    "ISS-071:READY": 2,
+    "ISS-045:READY": 1,
+    "ISS-072:READY": 2,
+    "ISS-067:READY": 1,
+    "ISS-073:READY": 1,
+    "ISS-074:READY": 1,
+    "ISS-075:READY": 1,
+    "ISS-128:READY": 24
   },
   "pending_opportunity_signals": []
 }
