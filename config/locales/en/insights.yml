@@ -1,0 +1,127 @@
+en:
+  insights:
+    index_title: Insights
+    index_lead: Practical insights into data-driven decision-making and AI simulation.
+    list:
+      - slug: defect-rate-analysis
+        title: Analyzing the Causes of Defect Rates — Why Data Alone Does Not Provide Answers
+        summary: Why identifying correlations does not answer the question "What should we change?"
+        date: '2026-09-02'
+    articles:
+      defect_rate_analysis:
+        slug: defect-rate-analysis
+        title: Analyzing the Causes of Defect Rates — Why Data Alone Does Not Provide Answers
+        subtitle: Why identifying correlations does not answer the question "What should we change?"
+        meta_description: Learn why ample process data may not reveal how to lower defect rates, and how Reverse What-If finds combinations of variables that achieve your target.
+        published_at: '2026-09-02'
+        sections:
+          - heading: The Problem Is Not a Lack of Data
+            body:
+              - type: paragraph
+                content: Process logs have been accumulating. Temperature, pressure, speed, humidity, and even residence time are recorded every second. Six months of data can amount to tens of thousands of rows.
+              - type: paragraph
+                content: Yet the same conversation keeps coming up in meetings.
+              - type: quote
+                lines:
+                  - '"Why did the defect rate go up?"'
+                  - '"There does seem to be some correlation with temperature…"'
+                  - '"So what temperature should we set?"'
+                  - '"We need to look into that further…"'
+              - type: paragraph
+                content: '<strong>What is missing is not data, but a tool that can answer the question.</strong>'
+          - heading: Why Current Methods Cannot Answer the Question
+            body:
+              - type: subheading
+                content: BI Dashboards — They Only Show the Past
+              - type: paragraph
+                content: Tableau or Power BI can show that "last month, the defect rate was 2.4%, and it rose when the temperature was higher." They are excellent tools for observation.
+              - type: paragraph
+                content: But <strong>observation is not prescription.</strong> A dashboard does not tell you to "raise the temperature to 224°C and lower the pressure by 4 MPa to reach the target." That is not what a dashboard does.
+              - type: subheading
+                content: Regression Analysis — It Shows the Direction, but Not the Size of the Required Change
+              - type: paragraph
+                content: 'It can produce coefficients such as "a 1°C increase in temperature raises the defect rate by 0.03 percentage points."'
+              - type: paragraph
+                content: The problem is that <strong>there is more than one variable.</strong> Lowering the temperature increases processing time, and adjusting the pressure also changes the temperature. When five variables are interdependent, adding up individual coefficients does not match the actual outcome.
+              - type: paragraph
+                content: Regression also answers <strong>"What will the outcome be under the current conditions?"</strong>, rather than <strong>"What conditions are needed to achieve the target outcome?"</strong> The direction is reversed.
+              - type: subheading
+                content: Generative AI — You Cannot Upload the Data
+              - type: paragraph
+                content: Paste process logs into ChatGPT, and it produces a plausible analysis.
+              - type: paragraph
+                content: But <strong>doing so immediately violates internal security policies.</strong> Manufacturing process data is a trade secret. Most companies prohibit sending it to an external API at all.
+              - type: paragraph
+                content: Even if uploading were allowed, an LLM does not calculate the numbers; it <strong>writes plausible sentences.</strong> That is not suitable for process decisions that require accuracy to two decimal places.
+          - heading: Reverse the Direction of the Question
+            body:
+              - type: paragraph
+                content: All the approaches discussed so far follow the direction <strong>"conditions → outcome."</strong>
+              - type: quote
+                lines:
+                  - Given this temperature and that pressure → what will the defect rate be?
+              - type: paragraph
+                content: What the production floor needs is the reverse.
+              - type: quote
+                lines:
+                  - To achieve a defect rate of 1.2% → what temperature and pressure should we set?
+              - type: paragraph
+                content: This is called <strong>Reverse What-If analysis.</strong> It fixes the target value first, then uses Reverse What-If to find the combination of variables that achieves it.
+              - type: subheading
+                content: Why This Is Difficult
+              - type: paragraph
+                content: With five variables, the number of combinations is effectively infinite. Raising the temperature and lowering the pressure, or lowering the temperature and reducing the speed, may both achieve the same target.
+              - type: paragraph
+                content: Two things are needed here.
+              - type: numbered
+                items:
+                  - title: 1. Search Within Feasible Limits
+                    content: Raising the temperature to 300°C may achieve the target, but the equipment cannot withstand it. The physical and operational limits of each variable must be imposed as constraints.
+                  - title: 2. Explain Why This Combination Was Chosen
+                    content: 'Simply saying "use these settings" is not enough for the production floor to act. The quality and production teams need evidence of how much each variable contributes to the outcome before they can agree.'
+          - heading: What the Results Look Like in Practice
+            body:
+              - type: paragraph
+                content: These are the results of a XimTier demonstration using semiconductor process data with 12,480 rows. <strong>This is a dataset for public demonstrations, not a specific customer case.</strong>
+              - type: paragraph
+                content: 'Target: defect rate 2.40% → <strong>1.20%</strong>'
+              - type: table
+                headers: [Variable, Current Value, Target Value, Adjustment]
+                rows:
+                  - [Process Temperature, 215.0°C, 224.9°C, '<strong>+9.9°C</strong>']
+                  - [Injection Pressure, 88.0 MPa, 83.7 MPa, '<strong>−4.3 MPa</strong>']
+              - type: paragraph
+                content: Notice that <strong>the temperature increases while the pressure decreases.</strong> Looking only at correlation analysis, you would have lowered the temperature based on the conclusion that "higher temperatures mean more defects." Finding this combination requires solving for the interactions between variables together.
+              - type: paragraph
+                content: 'Additional metrics:'
+              - type: bullets
+                items:
+                  - Processing time of <strong>0.18 seconds</strong> — fast enough to view scenarios in real time as you move a slider
+                  - Prediction accuracy of <strong>92.4%</strong> (R² 0.887)
+                  - Each variable’s contribution is automatically included as a <strong>SHAP value</strong> — providing an answer to "why this value?"
+          - heading: How to Do This Without Sending Data Outside the Company
+            body:
+              - type: paragraph
+                content: The security issue mentioned earlier remains. Does this calculation require uploading data somewhere?
+              - type: paragraph
+                content: <strong>Run it on-premises.</strong> Install the analysis engine in your internal environment and keep the data behind the firewall. All calculations are completed there as well. Nothing is sent outside.
+              - type: paragraph
+                content: Regulations that <strong>require explainability</strong>, such as the EU AI Act, are becoming more common. Saying "the AI made that decision" is not enough; situations arise where the supporting evidence must be submitted in writing. Automatically retaining SHAP-based evidence also meets that requirement.
+          - heading: Summary
+            body:
+              - type: table
+                headers: [Method, Question It Answers, What It Cannot Do]
+                rows:
+                  - [BI Dashboards, What happened?, What should we change?]
+                  - [Regression Analysis, Conditions → outcome, Outcome → conditions (reverse direction)]
+                  - [Generative AI, Explain in words, Keep data internal · provide exact numbers]
+                  - ['<strong>Reverse What-If</strong>', '<strong>Target → required conditions</strong>', —]
+              - type: paragraph
+                content: If you have data but still cannot find an answer, the first step is to <strong>reverse the direction of the question</strong> before buying more tools.
+          - heading: Learn More
+            body:
+              - type: paragraph
+                content: We can send you materials covering XimTier AX simulation use cases and the implementation process. They include examples from hospitals, the public sector, and finance, as well as manufacturing.
+              - type: paragraph
+                content: We will reply within 24 hours of your inquiry. Please send data that requires security protection directly by email instead of through the form.
+        cta_label: Request Materials →
