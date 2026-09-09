@@ -30,6 +30,9 @@ ignore_unused:
   - 'devise.*'
   - 'errors.messages.*'
 
+  # pages_controller.rb 에서 슬러그 보간으로 동적 참조하므로 정적 분석이 잡지 못한다.
+  - 'insights.articles.*'
+
   # ↓ 아래는 코드가 키 이름을 문자열로 조립해서 부른다 (t("...#{key}")).
   #   i18n-tasks 는 정적 분석이라 이런 동적 참조를 추적하지 못하고 전부 미사용으로 오판한다.
   #   실제로는 살아있는 페이지 콘텐츠이므로 지우면 화면이 죽는다.
