@@ -1,5 +1,5 @@
-<% content_for :title, "업무 활용 방안" %>
-<% content_for :description, "별도 시스템 구축 없이 나만의 AI 의사결정 시스템을 갖습니다. XimTier 업무 활용 방안 안내." %>
+<% content_for :title, t("v3pages.usage.hero.title") %>
+<% content_for :description, t("v3pages.usage.meta.description") %>
 
 <div class="v3-root">
 <style>
@@ -57,10 +57,10 @@
 <section class="v3-hero">
   <div class="v3-wrap">
     <div class="v3-hero__inner">
-      <a href="<%= root_path(locale: I18n.locale) %>" class="v3-hero__back">← XimTier 홈</a>
+      <a href="<%= root_path(locale: I18n.locale) %>" class="v3-hero__back"><%= t("v3pages.usage.hero.back") %></a>
       <div class="v3-eyebrow">Chapter 05</div>
-      <h1 class="v3-hero__headline">업무 활용 방안</h1>
-      <p class="v3-hero__sub">별도 시스템 구축 없이, 나만의 AI 의사결정 시스템을 갖습니다.</p>
+      <h1 class="v3-hero__headline"><%= t("v3pages.usage.hero.title") %></h1>
+      <p class="v3-hero__sub"><%= t("v3pages.usage.hero.description") %></p>
     </div>
   </div>
 </section>
@@ -69,20 +69,20 @@
 <section class="v3-section">
   <div class="v3-wrap">
     <div class="v3-section__eyebrow">Business Application</div>
-    <h2 class="v3-section__title">4가지 활용 방안</h2>
-    <p class="v3-section__lead">기존 업무 흐름에 XimTier를 결합하면 AI 의사결정이 즉시 가능합니다.</p>
+    <h2 class="v3-section__title"><%= t("v3pages.usage.applications.title") %></h2>
+    <p class="v3-section__lead"><%= t("v3pages.usage.applications.lead") %></p>
     <div class="v3-usage-grid">
       <% [
-        ["01", "AX 활용성 강화 방안", "LLM의 과거 검색 능력과 XimTier의 미래 예측 능력을 결합. 현황 파악부터 최적 시나리오 도출까지 하나의 흐름으로.", "ax_strength"],
-        ["02", "데이터 기반 AI 의사결정 플랫폼", "ROI 기반 자동화 — 분석 결과가 곧 실행 근거. 데이터가 쌓일수록 의사결정 정확도가 높아집니다.", "decision_platform"],
-        ["03", "분야별 활용과 기대효과", "산업별 맞춤 설정·No Hallucination. 공공·의료·유통·제조 등 다양한 도메인에서 검증된 AI 분석.", "field_effects"],
-        ["04", "맞춤형 서비스 방안", "이기종 데이터 초융합·바이브코딩 기반 구축 70% 단축, 비용 50% 절감. 빠른 내재화가 가능합니다.", "custom_service"],
+        ["01", t("v3pages.usage.applications.ax_strength.title"), t("v3pages.usage.applications.ax_strength.desc"), "ax_strength"],
+        ["02", t("v3pages.usage.applications.decision_platform.title"), t("v3pages.usage.applications.decision_platform.desc"), "decision_platform"],
+        ["03", t("v3pages.usage.applications.field_effects.title"), t("v3pages.usage.applications.field_effects.desc"), "field_effects"],
+        ["04", t("v3pages.usage.applications.custom_service.title"), t("v3pages.usage.applications.custom_service.desc"), "custom_service"],
       ].each do |num, title, desc, slug| %>
         <%= link_to v3_detail_path(slug: slug, locale: I18n.locale), class: "v3-usage-card" do %>
           <div class="v3-usage-card__num"><%= num %></div>
           <div class="v3-usage-card__title"><%= title %></div>
           <div class="v3-usage-card__desc"><%= desc %></div>
-          <div class="v3-usage-card__more">상세 보기 →</div>
+          <div class="v3-usage-card__more"><%= t("v3pages.usage.applications.more") %></div>
         <% end %>
       <% end %>
     </div>
@@ -93,11 +93,11 @@
 <section class="v3-cta-section">
   <div class="v3-wrap">
     <div class="v3-cta-section__inner">
-      <h2 class="v3-cta-section__title">우리 조직에 맞는 활용 방법을 찾아보세요</h2>
-      <p class="v3-cta-section__lead">전문가와 함께 실제 업무 데이터로 가능성을 확인하세요.</p>
+      <h2 class="v3-cta-section__title"><%= t("v3pages.usage.cta.title") %></h2>
+      <p class="v3-cta-section__lead"><%= t("v3pages.usage.cta.lead") %></p>
       <div class="v3-cta-btns">
-        <%= link_to "데모 신청", demo_path(locale: I18n.locale), class: "v3-btn-primary" %>
-        <%= link_to "문의하기", contact_path(locale: I18n.locale), class: "v3-btn-ghost" %>
+        <%= link_to t("v3pages.usage.cta.demo"), demo_path(locale: I18n.locale), class: "v3-btn-primary" %>
+        <%= link_to t("v3pages.usage.cta.contact"), contact_path(locale: I18n.locale), class: "v3-btn-ghost" %>
       </div>
     </div>
   </div>

@@ -1,0 +1,186 @@
+en:
+  v3pages:
+    overview:
+      hero:
+        title: "Platform Overview"
+        description: "One-Stop AI decision intelligence — from data exploration and AI analysis to optimization, automated reports, and AI Q&A."
+        back: "← XimTier Home"
+      cta:
+        demo: "Request a Demo"
+        contact: "Contact Us"
+        title: "See It for Yourself"
+        lead: "Request a demo to explore the full platform."
+      arch:
+        title: "A 3-Tier Intelligence Architecture"
+        lead: "Three connected layers, from industry solutions to the statistics engine."
+        layer1:
+          desc: "Industry solutions — preconfigured AI decision packages for each domain"
+        layer2:
+          desc: "60 algorithms · XAI variable insights · What-If / Reverse What-if optimization"
+        layer3:
+          name: "Statistics · Analytics Engine"
+          desc: "Data infrastructure — collection · cleansing · coordinate parsing · basic statistics · visualization"
+        more: "View Details →"
+      roadmap:
+        title: "Optimization Roadmap"
+        phase1:
+          title: "Foundation"
+          desc: "Build the core engine and data foundation — advance WhatDataAI · develop the Reverse What-if engine"
+        phase2:
+          title: "Platform Expansion"
+          desc: "Industry solutions and decision optimization — domain-specific optimization · meetings · decisions"
+        phase3:
+          title: "Intelligence Scale-up"
+          desc: "Advance AI optimization and automated execution — connect the optimization engine · AI Agent & automated actions"
+        phase4:
+          title: "Ecosystem Growth"
+          desc: "Grow the partner ecosystem and global reach — build partnerships · expand worldwide"
+        phase5:
+          title: "Bio Innovation"
+          desc: "Extend optimization to biotech · precision medicine · drug discovery — gene · protein · pathway analysis · Reverse Bio-Design engine"
+    data:
+      hero:
+        title: "Data Exploration"
+        description: "Upload your data. AI shows you what it can do."
+        back: "← XimTier Home"
+      meta:
+        description: "Upload your data. AI shows you what it can do. Explore the data discovery workflow in XimTier."
+      cta:
+        demo: "Request a Demo"
+        contact: "Contact Us"
+        title: "Try Uploading Your Data"
+        lead: "Get started immediately with sample data."
+      features:
+        title: "8 Ways to Explore Your Data"
+        lead: "An automated exploration pipeline starts as soon as you upload."
+        data_explore:
+          desc: "Auto-generated basic · descriptive statistics and correlation heatmaps"
+        whatdataai:
+          title: "WhatDataAI Analysis"
+          desc: "Automatic recommendations for applicable AI algorithms · variables"
+        address_xy:
+          title: "Address XY Refinement"
+          desc: "Addresses → latitude/longitude · administrative regions, parsed automatically"
+        explore_chart:
+          title: "AI Exploration Charts"
+          desc: "24 individual · 22 automatic chart types"
+        text_explore:
+          title: "AI Text Exploration"
+          desc: "Word clouds · automated unstructured text analysis"
+        thematic_map:
+          title: "Thematic Map Analysis"
+          desc: "Spatial thematic maps with administrative boundaries · grids · hexagons"
+        insight_report:
+          title: "AI Insight Report"
+          desc: "Natural-language questions → automated reports. No hallucinations."
+        target_yx:
+          title: "AI Target YX Optimization"
+          desc: "60 competing algorithms + Reverse What-if optimization"
+        more: "View Details →"
+    analysis:
+      hero:
+        title: "AI Statistical Analysis"
+        description: "60+ algorithms compete. Set your target, and Reverse What-if finds the optimal variable combination."
+        back: "← XimTier Home"
+      meta:
+        description: "60+ algorithms compete. Set your target, and Reverse What-if finds the optimal variable combination. AI statistical analysis with XimTier."
+      cta:
+        demo: "Request a Demo"
+        contact: "Contact Us"
+        title: "See 60 Algorithms in Action"
+        lead: "Run an algorithm competition with real data in your demo."
+      pipeline:
+        title: "A 5-Step AI Analysis Pipeline"
+        lead: "From variable selection to AI Q&A — one connected workflow for better decisions."
+        step1:
+          title: "Variable Selection · Derived Data"
+        step2:
+          title: "Variable Insights · XAI Variable Selection"
+        step3:
+          title: "Algorithm Competition · Real-Time Validation"
+        step4:
+          title: "Prediction · Simulation & XY Optimization"
+        more: "Details →"
+      types:
+        title: "Analysis Types"
+        lead: "Choose the analysis type for your goal. The right algorithms start competing immediately."
+        regression:
+          title: "Regression"
+        discriminant:
+          title: "Discriminant Analysis"
+        multiclass:
+          title: "Multi-Class Classification"
+        time_series:
+          title: "Time-Series Analysis"
+        unit: "algorithms"
+      reporting:
+        title: "On-Demand Evaluation and Automated Reports"
+        lead: "Reassess performance anytime after analysis, and turn What-If results into reports automatically."
+        evaluation: "On-Demand Performance Evaluation"
+        what_if: "On-Demand What-If"
+        reverse_what_if: "On-Demand Reverse What-if"
+    solutions:
+      hero:
+        title: "AI One-Stop Solutions"
+        description: "Load data → AI situation analysis → What-If / Reverse What-if optimization → comprehensive AI report. Practical decision guidance for each domain."
+        back: "← XimTier Home"
+      cta:
+        demo: "Request a Demo"
+        contact: "Contact Us"
+        title: "A Solution for Your Industry"
+        lead: "Request a demo tailored to your domain."
+      domains:
+        title: "10 Domain Solutions"
+        lead: "Every solution delivers a One-Stop workflow, from loading data to the final report."
+        meeting:
+          title: "AI Smart Meeting Analysis"
+        survey:
+          title: "AI Smart Survey Analysis"
+        sns:
+          title: "AI Smart SNS Analysis"
+        festival:
+          title: "AI Festival · Event YX Optimization"
+        market:
+          title: "AI Traditional Market · Commercial District YX Optimization"
+        store:
+          title: "AI Small Business · Store YX Optimization"
+        clinic:
+          title: "AI Clinic Advertising YX Optimization"
+        maintenance:
+          title: "AI Equipment Failure · Predictive Maintenance YX Optimization"
+        sns_product:
+          title: "AI SNS-Driven Product Feature Development"
+        survey_product:
+          title: "AI Survey-Driven Product Feature Development"
+        more: "View Details →"
+    usage:
+      hero:
+        title: "Business Applications"
+        description: "Your own AI decision system, without a separate build."
+        back: "← XimTier Home"
+      meta:
+        description: "Your own AI decision system, without a separate build. Explore business applications for XimTier."
+      cta:
+        demo: "Request a Demo"
+        contact: "Contact Us"
+        title: "Find the Right Fit for Your Organization"
+        lead: "Explore the possibilities with an expert, using your real business data."
+      applications:
+        title: "4 Ways to Put AI to Work"
+        lead: "Add XimTier to your existing workflow and start making AI-powered decisions immediately."
+        ax_strength:
+          title: "Strengthen Your AX Capabilities"
+          desc: "Combine LLM retrieval of past information with XimTier predictions of future outcomes. One workflow, from understanding the current situation to finding the optimal scenario."
+        decision_platform:
+          title: "Data-Driven AI Decision Platform"
+          desc: "ROI-driven automation — analysis becomes the basis for action. Decision accuracy improves as your data grows."
+        field_effects:
+          title: "Industry Applications and Expected Benefits"
+          desc: "Industry-specific configuration · No Hallucination. AI analysis validated across the public sector · healthcare · retail · manufacturing and more."
+        custom_service:
+          title: "Tailored Services"
+          desc: "Unify diverse data · build with vibe coding. Cut development time by 70% and costs by 50%. Bring capabilities in-house faster."
+        more: "View Details →"
+  v3:
+    hero:
+      eyebrow: "Core Technology · AI Decision Intelligence"

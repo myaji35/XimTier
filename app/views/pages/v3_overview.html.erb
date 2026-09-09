@@ -1,5 +1,5 @@
-<% content_for :title, "메뉴 구성 개요" %>
-<% content_for :description, "데이터 탐색부터 AI 분석, 최적화 시뮬레이션, 자동 보고서, AI Q&A까지 한 번에 수행하는 One-Stop AI 의사결정 플랫폼." %>
+<% content_for :title, t("v3pages.overview.hero.title") %>
+<% content_for :description, t("v3pages.overview.hero.description") %>
 
 <div class="v3-root">
 <style>
@@ -74,10 +74,10 @@
 <section class="v3-hero">
   <div class="v3-wrap">
     <div class="v3-hero__inner">
-      <a href="<%= root_path(locale: I18n.locale) %>" class="v3-hero__back">← XimTier 홈</a>
+      <a href="<%= root_path(locale: I18n.locale) %>" class="v3-hero__back"><%= t("v3pages.overview.hero.back") %></a>
       <div class="v3-eyebrow">Chapter 01</div>
-      <h1 class="v3-hero__headline">메뉴 구성 개요</h1>
-      <p class="v3-hero__sub">데이터 탐색부터 AI 분석, 최적화 시뮬레이션, 자동 보고서, AI Q&A까지 한 번에 수행하는 One-Stop AI 의사결정 플랫폼.</p>
+      <h1 class="v3-hero__headline"><%= t("v3pages.overview.hero.title") %></h1>
+      <p class="v3-hero__sub"><%= t("v3pages.overview.hero.description") %></p>
     </div>
   </div>
 </section>
@@ -86,26 +86,26 @@
 <section class="v3-section v3-section--dark">
   <div class="v3-wrap">
     <div class="v3-section__eyebrow">Platform Architecture</div>
-    <h2 class="v3-section__title">3단 지능형 아키텍처</h2>
-    <p class="v3-section__lead">산업 특화 솔루션부터 통계 엔진까지, 세 개 레이어가 유기적으로 연결됩니다.</p>
+    <h2 class="v3-section__title"><%= t("v3pages.overview.arch.title") %></h2>
+    <p class="v3-section__lead"><%= t("v3pages.overview.arch.lead") %></p>
     <div class="v3-arch-stack">
       <%= link_to v3_detail_path(slug: "arch_top", locale: I18n.locale), class: "v3-arch-layer v3-arch-layer--top" do %>
         <div class="v3-arch-label">Top Layer</div>
         <div class="v3-arch-name">XimSolution</div>
-        <div class="v3-arch-desc">산업 특화 솔루션 — 도메인별 사전 구성된 AI 의사결정 패키지</div>
-        <div class="v3-arch-more">상세 보기 →</div>
+        <div class="v3-arch-desc"><%= t("v3pages.overview.arch.layer1.desc") %></div>
+        <div class="v3-arch-more"><%= t("v3pages.overview.arch.more") %></div>
       <% end %>
       <%= link_to v3_detail_path(slug: "arch_core", locale: I18n.locale), class: "v3-arch-layer v3-arch-layer--core" do %>
         <div class="v3-arch-label">Core Layer</div>
         <div class="v3-arch-name">WhatDataAI</div>
-        <div class="v3-arch-desc">60종 알고리즘 · XAI 변수 이해 · What-If / Reverse What-If 최적화</div>
-        <div class="v3-arch-more">상세 보기 →</div>
+        <div class="v3-arch-desc"><%= t("v3pages.overview.arch.layer2.desc") %></div>
+        <div class="v3-arch-more"><%= t("v3pages.overview.arch.more") %></div>
       <% end %>
       <%= link_to v3_detail_path(slug: "arch_base", locale: I18n.locale), class: "v3-arch-layer v3-arch-layer--base" do %>
         <div class="v3-arch-label">Base Layer</div>
-        <div class="v3-arch-name">통계·분석 엔진</div>
-        <div class="v3-arch-desc">데이터 인프라 — 수집·정제·좌표 파싱·기초 통계·시각화 기반</div>
-        <div class="v3-arch-more">상세 보기 →</div>
+        <div class="v3-arch-name"><%= t("v3pages.overview.arch.layer3.name") %></div>
+        <div class="v3-arch-desc"><%= t("v3pages.overview.arch.layer3.desc") %></div>
+        <div class="v3-arch-more"><%= t("v3pages.overview.arch.more") %></div>
       <% end %>
     </div>
   </div>
@@ -115,32 +115,32 @@
 <section class="v3-section v3-section--dark" style="padding-top:0;">
   <div class="v3-wrap">
     <div class="v3-section__eyebrow">Roadmap</div>
-    <h2 class="v3-section__title">최적화 로드맵</h2>
+    <h2 class="v3-section__title"><%= t("v3pages.overview.roadmap.title") %></h2>
     <div class="v3-roadmap">
       <div class="v3-roadmap-item">
         <div class="v3-roadmap-year">01 · 2024</div>
-        <div class="v3-roadmap-label">기반 구축 단계</div>
-        <div class="v3-roadmap-desc">핵심 엔진 및 데이터 기반 구축 — WhatDataAI 엔진 고도화·Reverse What-if 엔진 개발</div>
+        <div class="v3-roadmap-label"><%= t("v3pages.overview.roadmap.phase1.title") %></div>
+        <div class="v3-roadmap-desc"><%= t("v3pages.overview.roadmap.phase1.desc") %></div>
       </div>
       <div class="v3-roadmap-item v3-roadmap-item--active">
         <div class="v3-roadmap-year">02 · 2025</div>
-        <div class="v3-roadmap-label">플랫폼 확장 단계</div>
-        <div class="v3-roadmap-desc">산업별 솔루션 및 의사결정 최적화 — 산업별 최적화 솔루션·회의·의사결정 최적화</div>
+        <div class="v3-roadmap-label"><%= t("v3pages.overview.roadmap.phase2.title") %></div>
+        <div class="v3-roadmap-desc"><%= t("v3pages.overview.roadmap.phase2.desc") %></div>
       </div>
       <div class="v3-roadmap-item">
         <div class="v3-roadmap-year">03 · 2026</div>
-        <div class="v3-roadmap-label">지능 고도화 단계</div>
-        <div class="v3-roadmap-desc">AI 최적화 고도화 및 자동 실행 지원 — AI 최적화 엔진·AI Agent & 자동 실행 연계</div>
+        <div class="v3-roadmap-label"><%= t("v3pages.overview.roadmap.phase3.title") %></div>
+        <div class="v3-roadmap-desc"><%= t("v3pages.overview.roadmap.phase3.desc") %></div>
       </div>
       <div class="v3-roadmap-item">
         <div class="v3-roadmap-year">04 · 2027–2028</div>
-        <div class="v3-roadmap-label">생태계 확장 단계</div>
-        <div class="v3-roadmap-desc">파트너 생태계 및 글로벌 확장 — 파트너 생태계 구축·글로벌 확장</div>
+        <div class="v3-roadmap-label"><%= t("v3pages.overview.roadmap.phase4.title") %></div>
+        <div class="v3-roadmap-desc"><%= t("v3pages.overview.roadmap.phase4.desc") %></div>
       </div>
       <div class="v3-roadmap-item">
         <div class="v3-roadmap-year">05 · 2028–2030+</div>
-        <div class="v3-roadmap-label">바이오 혁신 단계</div>
-        <div class="v3-roadmap-desc">바이오·정밀의료·신약 최적화 확장 — 유전자·단백질·경로 분석·Reverse Bio-Design 엔진</div>
+        <div class="v3-roadmap-label"><%= t("v3pages.overview.roadmap.phase5.title") %></div>
+        <div class="v3-roadmap-desc"><%= t("v3pages.overview.roadmap.phase5.desc") %></div>
       </div>
     </div>
   </div>
@@ -150,11 +150,11 @@
 <section class="v3-cta-section">
   <div class="v3-wrap">
     <div class="v3-cta-section__inner">
-      <h2 class="v3-cta-section__title">직접 경험해보세요</h2>
-      <p class="v3-cta-section__lead">데모 신청 후 플랫폼 전체를 체험하실 수 있습니다.</p>
+      <h2 class="v3-cta-section__title"><%= t("v3pages.overview.cta.title") %></h2>
+      <p class="v3-cta-section__lead"><%= t("v3pages.overview.cta.lead") %></p>
       <div class="v3-cta-btns">
-        <%= link_to "데모 신청", demo_path(locale: I18n.locale), class: "v3-btn-primary" %>
-        <%= link_to "문의하기", contact_path(locale: I18n.locale), class: "v3-btn-ghost" %>
+        <%= link_to t("v3pages.overview.cta.demo"), demo_path(locale: I18n.locale), class: "v3-btn-primary" %>
+        <%= link_to t("v3pages.overview.cta.contact"), contact_path(locale: I18n.locale), class: "v3-btn-ghost" %>
       </div>
     </div>
   </div>

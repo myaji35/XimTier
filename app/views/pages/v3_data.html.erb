@@ -1,5 +1,5 @@
-<% content_for :title, "데이터 탐색" %>
-<% content_for :description, "데이터를 올리면 무엇을 할 수 있는지 AI가 먼저 알려줍니다. XimTier의 데이터 탐색 단계 안내." %>
+<% content_for :title, t("v3pages.data.hero.title") %>
+<% content_for :description, t("v3pages.data.meta.description") %>
 
 <div class="v3-root">
 <style>
@@ -60,10 +60,10 @@
 <section class="v3-hero">
   <div class="v3-wrap">
     <div class="v3-hero__inner">
-      <a href="<%= root_path(locale: I18n.locale) %>" class="v3-hero__back">← XimTier 홈</a>
+      <a href="<%= root_path(locale: I18n.locale) %>" class="v3-hero__back"><%= t("v3pages.data.hero.back") %></a>
       <div class="v3-eyebrow">Chapter 02</div>
-      <h1 class="v3-hero__headline">데이터 탐색</h1>
-      <p class="v3-hero__sub">데이터를 올리면, 무엇을 할 수 있는지 AI가 먼저 알려줍니다.</p>
+      <h1 class="v3-hero__headline"><%= t("v3pages.data.hero.title") %></h1>
+      <p class="v3-hero__sub"><%= t("v3pages.data.hero.description") %></p>
     </div>
   </div>
 </section>
@@ -72,24 +72,24 @@
 <section class="v3-section">
   <div class="v3-wrap">
     <div class="v3-section__eyebrow">Exploration Features</div>
-    <h2 class="v3-section__title">8가지 탐색 기능</h2>
-    <p class="v3-section__lead">데이터 업로드 즉시 자동으로 수행되는 탐색 파이프라인입니다.</p>
+    <h2 class="v3-section__title"><%= t("v3pages.data.features.title") %></h2>
+    <p class="v3-section__lead"><%= t("v3pages.data.features.lead") %></p>
     <div class="v3-cards">
       <% [
-        ["01", "데이터 탐색", "기초·기술 통계, 상관관계 히트맵 자동 생성", "data_explore"],
-        ["02", "WhatDataAI 분석", "활용 가능 AI 알고리즘·변수 자동 추천", "whatdataai"],
-        ["03", "주소 XY 정제", "주소→위경도 좌표·행정구역 자동 파싱", "address_xy"],
-        ["04", "AI 탐색 차트", "개별 24종·자동 22종 차트 생성", "explore_chart"],
-        ["05", "AI 텍스트 탐색", "워드클라우드·비정형 텍스트 자동 분석", "text_explore"],
-        ["06", "주제도 분석", "행정경계·격자·헥사곤 기반 공간 주제도", "thematic_map"],
-        ["07", "AI 종합 인사이트 리포트", "자연어 질의→자동 리포트 생성. No 환각.", "insight_report"],
-        ["08", "AI Target YX 최적화", "60종 경쟁 + Reverse What-If 역산", "target_yx"],
+        ["01", t("v3pages.data.hero.title"), t("v3pages.data.features.data_explore.desc"), "data_explore"],
+        ["02", t("v3pages.data.features.whatdataai.title"), t("v3pages.data.features.whatdataai.desc"), "whatdataai"],
+        ["03", t("v3pages.data.features.address_xy.title"), t("v3pages.data.features.address_xy.desc"), "address_xy"],
+        ["04", t("v3pages.data.features.explore_chart.title"), t("v3pages.data.features.explore_chart.desc"), "explore_chart"],
+        ["05", t("v3pages.data.features.text_explore.title"), t("v3pages.data.features.text_explore.desc"), "text_explore"],
+        ["06", t("v3pages.data.features.thematic_map.title"), t("v3pages.data.features.thematic_map.desc"), "thematic_map"],
+        ["07", t("v3pages.data.features.insight_report.title"), t("v3pages.data.features.insight_report.desc"), "insight_report"],
+        ["08", t("v3pages.data.features.target_yx.title"), t("v3pages.data.features.target_yx.desc"), "target_yx"],
       ].each do |num, title, desc, slug| %>
         <%= link_to v3_detail_path(slug: slug, locale: I18n.locale), class: "v3-card" do %>
           <div class="v3-card__num"><%= num %></div>
           <div class="v3-card__title"><%= title %></div>
           <div class="v3-card__desc"><%= desc %></div>
-          <div class="v3-card__more">상세 보기 →</div>
+          <div class="v3-card__more"><%= t("v3pages.data.features.more") %></div>
         <% end %>
       <% end %>
     </div>
@@ -100,11 +100,11 @@
 <section class="v3-cta-section">
   <div class="v3-wrap">
     <div class="v3-cta-section__inner">
-      <h2 class="v3-cta-section__title">직접 데이터를 올려보세요</h2>
-      <p class="v3-cta-section__lead">샘플 데이터로 즉시 체험 가능합니다.</p>
+      <h2 class="v3-cta-section__title"><%= t("v3pages.data.cta.title") %></h2>
+      <p class="v3-cta-section__lead"><%= t("v3pages.data.cta.lead") %></p>
       <div class="v3-cta-btns">
-        <%= link_to "데모 신청", demo_path(locale: I18n.locale), class: "v3-btn-primary" %>
-        <%= link_to "문의하기", contact_path(locale: I18n.locale), class: "v3-btn-ghost" %>
+        <%= link_to t("v3pages.data.cta.demo"), demo_path(locale: I18n.locale), class: "v3-btn-primary" %>
+        <%= link_to t("v3pages.data.cta.contact"), contact_path(locale: I18n.locale), class: "v3-btn-ghost" %>
       </div>
     </div>
   </div>

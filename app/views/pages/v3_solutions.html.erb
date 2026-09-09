@@ -1,5 +1,5 @@
-<% content_for :title, "AI One-Stop 솔루션" %>
-<% content_for :description, "데이터 로딩 → AI 현황분석 → What-If / Reverse What-If 최적화 → AI 종합 보고서. 도메인별 실전 의사결정 가이드." %>
+<% content_for :title, t("v3pages.solutions.hero.title") %>
+<% content_for :description, t("v3pages.solutions.hero.description") %>
 
 <div class="v3-root">
 <style>
@@ -56,10 +56,10 @@
 <section class="v3-hero">
   <div class="v3-wrap">
     <div class="v3-hero__inner">
-      <a href="<%= root_path(locale: I18n.locale) %>" class="v3-hero__back">← XimTier 홈</a>
+      <a href="<%= root_path(locale: I18n.locale) %>" class="v3-hero__back"><%= t("v3pages.solutions.hero.back") %></a>
       <div class="v3-eyebrow">Chapter 04</div>
-      <h1 class="v3-hero__headline">AI One-Stop 솔루션</h1>
-      <p class="v3-hero__sub">데이터 로딩 → AI 현황분석 → What-If / Reverse What-If 최적화 → AI 종합 보고서. 도메인별 실전 의사결정 가이드.</p>
+      <h1 class="v3-hero__headline"><%= t("v3pages.solutions.hero.title") %></h1>
+      <p class="v3-hero__sub"><%= t("v3pages.solutions.hero.description") %></p>
     </div>
   </div>
 </section>
@@ -68,25 +68,25 @@
 <section class="v3-section">
   <div class="v3-wrap">
     <div class="v3-section__eyebrow">Domain Solutions</div>
-    <h2 class="v3-section__title">10가지 도메인 솔루션</h2>
-    <p class="v3-section__lead">각 솔루션은 데이터 로딩부터 보고서 출력까지 One-Stop으로 완결됩니다.</p>
+    <h2 class="v3-section__title"><%= t("v3pages.solutions.domains.title") %></h2>
+    <p class="v3-section__lead"><%= t("v3pages.solutions.domains.lead") %></p>
     <div class="v3-sol-grid">
       <% [
-        ["SOL 01", "AI 스마트 Meeting 분석", "sol_meeting"],
-        ["SOL 02", "AI 스마트 설문 분석", "sol_survey"],
-        ["SOL 03", "AI 스마트 SNS 분석", "sol_sns"],
-        ["SOL 04", "AI 축제·행사 YX 최적화", "sol_festival"],
-        ["SOL 05", "AI 전통시장·상권 YX 최적화", "sol_market"],
-        ["SOL 06", "AI 소상공인·매장 YX 최적화", "sol_store"],
-        ["SOL 07", "AI 광고형 병의원 YX 최적화", "sol_clinic"],
-        ["SOL 08", "AI 설비고장·예지보전 YX 최적화", "sol_maintenance"],
-        ["SOL 09", "AI SNS 기반 제품 기능 개발", "sol_sns_product"],
-        ["SOL 10", "AI 설문 기반 제품 기능 개발", "sol_survey_product"],
+        ["SOL 01", t("v3pages.solutions.domains.meeting.title"), "sol_meeting"],
+        ["SOL 02", t("v3pages.solutions.domains.survey.title"), "sol_survey"],
+        ["SOL 03", t("v3pages.solutions.domains.sns.title"), "sol_sns"],
+        ["SOL 04", t("v3pages.solutions.domains.festival.title"), "sol_festival"],
+        ["SOL 05", t("v3pages.solutions.domains.market.title"), "sol_market"],
+        ["SOL 06", t("v3pages.solutions.domains.store.title"), "sol_store"],
+        ["SOL 07", t("v3pages.solutions.domains.clinic.title"), "sol_clinic"],
+        ["SOL 08", t("v3pages.solutions.domains.maintenance.title"), "sol_maintenance"],
+        ["SOL 09", t("v3pages.solutions.domains.sns_product.title"), "sol_sns_product"],
+        ["SOL 10", t("v3pages.solutions.domains.survey_product.title"), "sol_survey_product"],
       ].each do |idx, name, slug| %>
         <%= link_to v3_detail_path(slug: slug, locale: I18n.locale), class: "v3-sol-card" do %>
           <div class="v3-sol-card__idx"><%= idx %></div>
           <div class="v3-sol-card__name"><%= name %></div>
-          <div class="v3-sol-card__more">상세 보기 →</div>
+          <div class="v3-sol-card__more"><%= t("v3pages.solutions.domains.more") %></div>
         <% end %>
       <% end %>
     </div>
@@ -97,11 +97,11 @@
 <section class="v3-cta-section">
   <div class="v3-wrap">
     <div class="v3-cta-section__inner">
-      <h2 class="v3-cta-section__title">우리 업종에 맞는 솔루션이 있습니다</h2>
-      <p class="v3-cta-section__lead">도메인별 맞춤 데모를 신청하세요.</p>
+      <h2 class="v3-cta-section__title"><%= t("v3pages.solutions.cta.title") %></h2>
+      <p class="v3-cta-section__lead"><%= t("v3pages.solutions.cta.lead") %></p>
       <div class="v3-cta-btns">
-        <%= link_to "데모 신청", demo_path(locale: I18n.locale), class: "v3-btn-primary" %>
-        <%= link_to "문의하기", contact_path(locale: I18n.locale), class: "v3-btn-ghost" %>
+        <%= link_to t("v3pages.solutions.cta.demo"), demo_path(locale: I18n.locale), class: "v3-btn-primary" %>
+        <%= link_to t("v3pages.solutions.cta.contact"), contact_path(locale: I18n.locale), class: "v3-btn-ghost" %>
       </div>
     </div>
   </div>
