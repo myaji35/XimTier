@@ -22,6 +22,7 @@ proxy:
   hosts:
     - ximtier.com
     - www.ximtier.com
+    - home.ximtier.com
     - ximtier.158.247.235.31.nip.io
   app_port: 80
   healthcheck:

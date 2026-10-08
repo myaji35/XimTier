@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  # 기획 결정(2026-10-05): www 는 SaaS 로 보낸다. apex 는 마케팅 사이트 유지
+  # 기획 결정(2026-10-08, 한일 대표 승인): apex·www 는 SaaS 로, 마케팅 사이트는 home.ximtier.com 으로
   # 기획 변경 시 브라우저의 영구 캐시를 피할 수 있도록 302를 사용한다.
-  constraints(host: "www.ximtier.com") do
+  constraints(host: ["www.ximtier.com", "ximtier.com"]) do
     match "/*path", to: redirect("https://saas.ximtier.com", status: 302), via: :all,
                      constraints: ->(request) { request.path != "/up" }
     match "/", to: redirect("https://saas.ximtier.com", status: 302), via: :all

@@ -145,6 +145,7 @@ Rails.application.configure do
   config.hosts = [
     "ximtier.com",
     "www.ximtier.com",
+    "home.ximtier.com",
     "ximtier.158.247.235.31.nip.io",
     "158.247.235.31",
     /.*\.nip\.io/, # 향후 stage/preview 호스트도 nip.io로 운용 가능
